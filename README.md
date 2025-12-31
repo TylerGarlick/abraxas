@@ -10,6 +10,102 @@ A Python CLI application with ArangoDB database support and an MCP (Model Contex
 - **Comprehensive Testing**: Full test suite with pytest
 - **Modern Python**: Uses pyproject.toml for configuration
 
+## Prerequisites
+
+- **Python 3.9 or higher** - [Download Python](https://www.python.org/downloads/)
+- **ArangoDB** (optional, for database features) - [Download ArangoDB](https://www.arangodb.com/download/)
+
+## Getting Started
+
+### Quick Setup (Recommended)
+
+We provide setup scripts that automatically create a virtual environment and install all dependencies.
+
+#### On Linux/macOS:
+
+```bash
+# Clone the repository
+git clone https://github.com/TylerGarlick/abraxas.git
+cd abraxas
+
+# Run the setup script
+./setup.sh
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Verify installation
+abraxas --version
+```
+
+#### On Windows:
+
+```cmd
+# Clone the repository
+git clone https://github.com/TylerGarlick/abraxas.git
+cd abraxas
+
+# Run the setup script
+setup.bat
+
+# Activate the virtual environment
+.venv\Scripts\activate.bat
+
+# Verify installation
+abraxas --version
+```
+
+### Manual Setup
+
+If you prefer to set up the environment manually:
+
+#### 1. Clone the repository
+
+```bash
+git clone https://github.com/TylerGarlick/abraxas.git
+cd abraxas
+```
+
+#### 2. Create a virtual environment
+
+**Linux/macOS:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**Windows:**
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+#### 3. Upgrade pip
+
+```bash
+pip install --upgrade pip
+```
+
+#### 4. Install the package
+
+**For development (includes testing tools):**
+```bash
+pip install -e ".[dev]"
+```
+
+**For production use:**
+```bash
+pip install .
+```
+
+#### 5. Verify installation
+
+```bash
+abraxas --version
+```
+
+You should see: `abraxas, version 0.1.0`
+
 ## Installation
 
 ### Development Installation
@@ -23,7 +119,7 @@ cd abraxas
 2. Create a virtual environment:
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate.bat
 ```
 
 3. Install the package in development mode:
@@ -47,14 +143,31 @@ abraxas info
 ```
 
 #### Test ArangoDB Connection
+
+First, ensure ArangoDB is running on your system. Then:
+
 ```bash
 abraxas db-test --host localhost --port 8529 --username root --password your_password
+```
+
+**Example output:**
+```
+Connecting to ArangoDB at localhost:8529...
+✓ Successfully connected to ArangoDB 3.11.0
 ```
 
 #### Start MCP Server
 ```bash
 abraxas serve --host 0.0.0.0 --port 8000
 ```
+
+**Example output:**
+```
+Starting MCP server on 0.0.0.0:8000...
+MCP Server listening on ('0.0.0.0', 8000)
+```
+
+Press `Ctrl+C` to stop the server.
 
 ### Using as a Library
 
@@ -88,6 +201,22 @@ server.start()
 
 ## Development
 
+### Activating the Virtual Environment
+
+Before running any development commands, make sure your virtual environment is activated:
+
+**Linux/macOS:**
+```bash
+source .venv/bin/activate
+```
+
+**Windows:**
+```cmd
+.venv\Scripts\activate.bat
+```
+
+You should see `(.venv)` at the beginning of your terminal prompt.
+
 ### Running Tests
 
 Run all tests:
@@ -105,6 +234,11 @@ Run specific test file:
 pytest tests/test_cli.py
 ```
 
+Run a specific test:
+```bash
+pytest tests/test_cli.py::test_cli_version
+```
+
 ### Code Quality
 
 Format code with Black:
@@ -117,9 +251,22 @@ Lint with Ruff:
 ruff check src tests
 ```
 
+Auto-fix linting issues:
+```bash
+ruff check --fix src tests
+```
+
 Type check with mypy:
 ```bash
 mypy src
+```
+
+### Deactivating the Virtual Environment
+
+When you're done working on the project:
+
+```bash
+deactivate
 ```
 
 ## Project Structure
@@ -137,7 +284,10 @@ abraxas/
 │   ├── test_cli.py           # CLI tests
 │   ├── test_database.py      # Database tests
 │   └── test_mcp_server.py    # MCP server tests
+├── .venv/                    # Virtual environment (created by setup)
 ├── pyproject.toml            # Project configuration
+├── setup.sh                  # Setup script for Linux/macOS
+├── setup.bat                 # Setup script for Windows
 ├── README.md                 # This file
 └── .gitignore               # Git ignore file
 ```
@@ -163,6 +313,27 @@ abraxas/
 - ruff: Linting
 - mypy: Type checking
 
+## Troubleshooting
+
+### Virtual environment not activating
+
+**Linux/macOS:** Make sure you're using `source .venv/bin/activate` not just `.venv/bin/activate`
+
+**Windows:** Use `.venv\Scripts\activate.bat` for Command Prompt or `.venv\Scripts\Activate.ps1` for PowerShell
+
+### Command not found: abraxas
+
+Make sure:
+1. Your virtual environment is activated (you should see `(.venv)` in your prompt)
+2. The package is installed: `pip install -e ".[dev]"`
+
+### ArangoDB connection failed
+
+Ensure:
+1. ArangoDB is installed and running
+2. The host, port, username, and password are correct
+3. The database exists
+
 ## License
 
 This project is open source.
@@ -170,3 +341,16 @@ This project is open source.
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+### Development Workflow
+
+1. Fork the repository
+2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/abraxas.git`
+3. Create a new branch: `git checkout -b feature/your-feature-name`
+4. Set up the development environment: `./setup.sh` (or `setup.bat` on Windows)
+5. Make your changes
+6. Run tests: `pytest`
+7. Run linting: `ruff check src tests`
+8. Commit your changes: `git commit -m "Add your feature"`
+9. Push to your fork: `git push origin feature/your-feature-name`
+10. Create a Pull Request
