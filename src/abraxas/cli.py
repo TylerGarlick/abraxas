@@ -7,6 +7,8 @@ import click
 from abraxas import __version__
 from abraxas.database import ArangoDBClient
 from abraxas.mcp_server import MCPServer
+from abraxas.seed import seed_command
+from abraxas.ui import run_ui
 
 
 @click.group()
@@ -62,7 +64,28 @@ def info() -> None:
     click.echo("\nAvailable commands:")
     click.echo("  db-test  - Test ArangoDB connection")
     click.echo("  serve    - Start the MCP server")
+    click.echo("  seed     - Seed ArangoDB with demo data")
+    click.echo("  ui       - Start the Ollama chat UI")
     click.echo("  info     - Display this information")
+
+
+# Expose seed command
+main.add_command(seed_command)
+
+
+@main.command()
+@click.option("--host", default="0.0.0.0", help="UI server host")
+@click.option("--port", default=3000, help="UI server port")
+def ui(host: str, port: int) -> None:
+    """Start the chat UI (loads genesis.md and targets Ollama)."""
+    click.echo(f"Starting UI on {host}:{port} with model mistral...")
+    try:
+        run_ui(host=host, port=port)
+    except KeyboardInterrupt:
+        click.echo("\nShutting down UI...")
+    except Exception as e:
+        click.echo(f"✗ Failed to start UI: {e}", err=True)
+        raise click.Abort()
 
 
 if __name__ == "__main__":
