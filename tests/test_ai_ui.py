@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from starlette.testclient import TestClient
 
-from abraxas.ai import OllamaClient, load_genesis
+from abraxas.ai import OllamaClient, chat_sync, load_genesis
 from abraxas.ui import create_app
 
 
@@ -65,3 +65,34 @@ def test_ui_chat_endpoint_uses_ollama_client():
         assert resp.status_code == 200
         assert resp.json()["content"] == "echo"
         assert events["user_message"] == "hi"
+
+
+def test_create_app_loads_genesis(monkeypatch):
+    monkeypatch.setattr("abraxas.ui.load_genesis", lambda: "Constitution!")
+
+    app = create_app()
+    assert app.state.genesis_prompt == "Constitution!"
+    assert getattr(app.state.ollama_client, "system_prompt") == "Constitution!"
+
+
+def test_chat_sync_uses_client():
+    class DummyClient:
+        async def chat(self, user_message, history=None, model=None):
+            return {"content": f"echo:{user_message}", "model": model or "mistral"}
+
+    result = chat_sync("ping", client=DummyClient())
+    assert result["content"] == "echo:ping"
+
+
+def test_ui_root_shows_genesis_preview(monkeypatch):
+    monkeypatch.setattr("abraxas.ui.load_genesis", lambda: "PreviewGenesis")
+
+    class DummyClient:
+        async def chat(self, user_message, history=None, model=None):
+            return {"content": "ok", "model": "mistral"}
+
+    app = create_app(ollama_client=DummyClient())
+    with TestClient(app) as client:
+        resp = client.get("/")
+        assert resp.status_code == 200
+        assert "PreviewGenesis" in resp.text
