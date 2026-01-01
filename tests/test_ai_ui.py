@@ -96,3 +96,16 @@ def test_ui_root_shows_genesis_preview(monkeypatch):
         resp = client.get("/")
         assert resp.status_code == 200
         assert "PreviewGenesis" in resp.text
+
+
+def test_ui_chat_hello_world(monkeypatch):
+    """Ensure UI endpoint returns model response for 'Say \"Hello World\"'."""
+    class DummyClient:
+        async def chat(self, user_message, history=None, model=None):
+            return {"content": "Hello World", "model": model or "mistral"}
+
+    app = create_app(ollama_client=DummyClient())
+    with TestClient(app) as client:
+        resp = client.post("/api/chat", json={"message": 'Say "Hello World"'})
+        assert resp.status_code == 200
+        assert resp.json()["content"] == "Hello World"
