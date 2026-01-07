@@ -1,0 +1,12 @@
+{
+  "name": "abraxas",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "python -m abraxas.ui",
+    "api": "abraxas serve --host 0.0.0.0 --port 8000",
+    "ui": "python -m abraxas.ui",
+    "api-ui": "python -m abraxas.run_all"
+  }
+}
