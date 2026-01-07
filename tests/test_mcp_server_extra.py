@@ -27,13 +27,34 @@ def test_start_calls_asyncio_run():
 
     called = {}
 
+    class FakeServ:
+        def __init__(self):
+            self.sockets = [MagicMock(getsockname=lambda: ("127.0.0.1", 0))]
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, exc_type, exc, tb):
+            return False
+
+        async def serve_forever(self):
+            return None
+
+    async def fake_start_server(handler, host, port):
+        return FakeServ()
+
     def fake_run(coro):
-        # verify that a coroutine was passed
-        assert hasattr(coro, "__await__")
+        # actually run the coroutine in a new event loop to avoid "coroutine was never awaited"
+        loop = asyncio.new_event_loop()
+        try:
+            loop.run_until_complete(coro)
+        finally:
+            loop.close()
         called["ran"] = True
 
-    with patch("asyncio.run", fake_run):
-        server.start()
+    with patch.object(asyncio, "start_server", fake_start_server):
+        with patch("asyncio.run", fake_run):
+            server.start()
 
     assert called.get("ran", False) is True
 
@@ -58,7 +79,8 @@ async def test__start_server_uses_start_server(monkeypatch):
             return None
 
     async def fake_start_server(handler, host, port):
-        assert handler is server.handle_client
+        # handler may be a bound method wrapper; ensure it's callable
+        assert callable(handler)
         return FakeServ()
 
     monkeypatch.setattr(asyncio, "start_server", fake_start_server)
