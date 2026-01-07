@@ -1,6 +1,6 @@
-# Quick Start Guide (moved)
+# Quick Start Guide for Abraxas
 
-This quick start documentation has been moved to the project docs: [docs/getting_started.md](docs/getting_started.md).
+Get up and running with Abraxas in minutes!
 
 ## Prerequisites
 
@@ -99,7 +99,7 @@ docker compose -f docker-compose.yml down -v
 
 ## Next Steps
 
-- Read the full [README.md](README.md) for detailed documentation
+- Read the full [README.md](../README.md) for detailed documentation
 - Install ArangoDB to use database features: https://www.arangodb.com/download/
 - Explore the CLI commands: `abraxas --help`
 - Check out the source code in `src/abraxas/`
@@ -111,7 +111,7 @@ If you encounter any issues:
 1. Make sure your virtual environment is activated (you should see `(.venv)` in your prompt)
 2. Check that Python 3.9+ is installed: `python --version` or `python3 --version`
 3. Try reinstalling: `pip install -e ".[dev]"`
-4. Check the Troubleshooting section in [README.md](README.md)
+4. Check the Troubleshooting section in [README.md](../README.md)
 
 ## Deactivating
 
