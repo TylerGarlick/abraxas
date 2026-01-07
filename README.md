@@ -83,11 +83,31 @@ MCP Server listening on ('0.0.0.0', 8000)
 
 Press `Ctrl+C` to stop the server.
 
+#### Seed the database with demo data
+
+```bash
+abraxas seed --host localhost --port 8529 --username root --password your_password --database _system
+```
+
+#### Start the Ollama chat UI (loads genesis.md)
+
+```bash
+abraxas ui --host 0.0.0.0 --port 3000
+```
+
+#### Run UI + API together (npm script)
+
+```bash
+npm install   # no dependencies, sets up scripts
+npm run api-ui
+```
+
 ### Using as a Library
 
 ```python
 from abraxas.database import ArangoDBClient
 from abraxas.mcp_server import MCPServer
+from abraxas.ai import chat_sync
 
 # Connect to ArangoDB
 client = ArangoDBClient(
@@ -111,6 +131,10 @@ client.close()
 # Start MCP Server
 server = MCPServer(host="0.0.0.0", port=8000)
 server.start()
+
+# Chat with Ollama using the genesis prompt
+reply = chat_sync("Hello!")
+print(reply["content"])
 ```
 
 ## Development
