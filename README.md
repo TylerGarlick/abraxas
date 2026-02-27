@@ -1,294 +1,115 @@
 # Abraxas
 
-A Python CLI application with ArangoDB database support and an MCP (Model Context Protocol) server.
+Abraxas is a Claude Code project that packages reusable AI agent skills and custom subagent definitions for use within Claude Code workflows. The project is currently organized around two principal artifacts: distributable `.skill` archives and a custom Claude Code subagent definition.
 
-## Features
+> **Note:** Abraxas began as a Python CLI application with ArangoDB and MCP server integrations. That phase of the project has concluded. The Python source is preserved in git history for reference. The project is now focused on the Claude Code skills and agents ecosystem.
 
-- **CLI Interface**: Command-line interface built with Click
-- **ArangoDB Integration**: Connect to and interact with ArangoDB databases
-- **MCP Server**: Model Context Protocol server implementation
-- **Comprehensive Testing**: Full test suite with pytest
-- **Modern Python**: Uses pyproject.toml for configuration
+---
 
-## Prerequisites
+## Table of Contents
 
-- **Python 3.9 or higher** - [Download Python](https://www.python.org/downloads/)
-- **ArangoDB** (optional, for database features) - [Download ArangoDB](https://www.arangodb.com/download/)
+- [What Abraxas Is](#what-abraxas-is)
+- [Project Structure](#project-structure)
+- [Skills](#skills)
+- [Agents](#agents)
+- [Development Workflow](#development-workflow)
+- [Planning](#planning)
+- [Documentation](#documentation)
 
-## Getting Started
+---
 
-A full Quick Start guide is available in the project documentation: [docs/getting_started.md](docs/getting_started.md).
+## What Abraxas Is
 
+Abraxas serves as a workspace for authoring, testing, and distributing Claude Code **skills** and **subagents**. Skills are distributable, installable capability packages for Claude Code. Subagents are specialized Claude instances invoked by Claude Code to handle specific categories of work.
 
-## Installation
+The name *Abraxas* refers to a Gnostic cosmological symbol representing the totality of all forces — a fitting metaphor for an AI orchestration layer that brings together heterogeneous capabilities under a single system.
 
-### Development Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/TylerGarlick/abraxas.git
-cd abraxas
-```
-
-2. Create a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate.bat
-```
-
-3. Install the package in development mode:
-```bash
-pip install -e ".[dev]"
-```
-
-### Production Installation
-
-```bash
-pip install .
-```
-
-## Usage
-
-### CLI Commands
-
-#### Get Information
-```bash
-abraxas info
-```
-
-#### Test ArangoDB Connection
-
-First, ensure ArangoDB is running on your system. Then:
-
-```bash
-abraxas db-test --host localhost --port 8529 --username root --password your_password
-```
-
-**Example output:**
-```
-Connecting to ArangoDB at localhost:8529...
-✓ Successfully connected to ArangoDB 3.11.0
-```
-
-#### Start MCP Server
-```bash
-abraxas serve --host 0.0.0.0 --port 8000
-```
-
-**Example output:**
-```
-Starting MCP server on 0.0.0.0:8000...
-MCP Server listening on ('0.0.0.0', 8000)
-```
-
-Press `Ctrl+C` to stop the server.
-
-#### Seed the database with demo data
-
-```bash
-abraxas seed --host localhost --port 8529 --username root --password your_password --database _system
-```
-
-#### Start the Ollama chat UI (loads genesis.md)
-
-```bash
-abraxas ui --host 0.0.0.0 --port 3000
-```
-
-#### Run UI + API together (npm script)
-
-```bash
-npm install   # no dependencies, sets up scripts
-npm run api-ui
-```
-
-### Using as a Library
-
-```python
-from abraxas.database import ArangoDBClient
-from abraxas.mcp_server import MCPServer
-from abraxas.ai import chat_sync
-
-# Connect to ArangoDB
-client = ArangoDBClient(
-    host="localhost",
-    port=8529,
-    username="root",
-    password="your_password",
-    database="_system"
-)
-
-# Get database version
-version = client.get_version()
-print(f"ArangoDB version: {version}")
-
-# Create a collection
-client.create_collection("my_collection")
-
-# Close connection
-client.close()
-
-# Start MCP Server
-server = MCPServer(host="0.0.0.0", port=8000)
-server.start()
-
-# Chat with Ollama using the genesis prompt
-reply = chat_sync("Hello!")
-print(reply["content"])
-```
-
-## Development
-
-### Activating the Virtual Environment
-
-Before running any development commands, make sure your virtual environment is activated:
-
-**Linux/macOS:**
-```bash
-source .venv/bin/activate
-```
-
-**Windows:**
-```cmd
-.venv\Scripts\activate.bat
-```
-
-You should see `(.venv)` at the beginning of your terminal prompt.
-
-### Running Tests
-
-Run all tests:
-```bash
-pytest
-```
-
-Run tests with coverage:
-```bash
-pytest --cov=abraxas --cov-report=term-missing
-```
-
-Run specific test file:
-```bash
-pytest tests/test_cli.py
-```
-
-Run a specific test:
-```bash
-pytest tests/test_cli.py::test_cli_version
-```
-
-### Code Quality
-
-Format code with Black:
-```bash
-black src tests
-```
-
-Lint with Ruff:
-```bash
-ruff check src tests
-```
-
-Auto-fix linting issues:
-```bash
-ruff check --fix src tests
-```
-
-Type check with mypy:
-```bash
-mypy src
-```
-
-### Deactivating the Virtual Environment
-
-When you're done working on the project:
-
-```bash
-deactivate
-```
+---
 
 ## Project Structure
 
 ```
 abraxas/
-├── src/
-│   └── abraxas/
-│       ├── __init__.py       # Package initialization
-│       ├── cli.py            # CLI interface
-│       ├── database.py       # ArangoDB client
-│       └── mcp_server.py     # MCP server implementation
-├── tests/
-│   ├── conftest.py           # Test configuration
-│   ├── test_cli.py           # CLI tests
-│   ├── test_database.py      # Database tests
-│   └── test_mcp_server.py    # MCP server tests
-├── .venv/                    # Virtual environment (created by setup)
-├── pyproject.toml            # Project configuration
-├── setup.sh                  # Setup script for Linux/macOS
-├── setup.bat                 # Setup script for Windows
-├── README.md                 # This file
-└── .gitignore               # Git ignore file
+├── .claude/
+│   ├── agents/
+│   │   └── docs-architect.md       # Custom docs-architect subagent definition
+│   └── agent-memory/
+│       └── docs-architect/         # Persistent memory for docs-architect agent
+├── docs/
+│   ├── index.md                    # Documentation hub
+│   ├── architecture.md             # System architecture diagrams
+│   └── skills.md                   # Skills reference
+├── skills/
+│   ├── abraxas-oneironautics.skill # Oneiric reasoning skill archive
+│   └── janus-system.skill          # Dual-perspective system analysis skill archive
+├── CLAUDE.md                       # Claude Code project instructions
+├── PLAN.md                         # Active work items across all agents
+└── README.md                       # This file
 ```
 
-## Requirements
+---
 
-- Python 3.9 or higher
-- ArangoDB server (for database functionality)
+## Skills
 
-## Dependencies
+Skills are `.skill` archive files (zip-based) that Claude Code can install and invoke. They package prompting strategies, behavioral guidance, and structured instructions into a portable, shareable format.
 
-### Core
-- click: CLI interface
-- python-arango: ArangoDB client
-- mcp: Model Context Protocol
-- pydantic: Data validation
+| Skill | File | Description |
+|---|---|---|
+| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | Oneiric reasoning and exploratory ideation skill |
+| Janus System | `skills/janus-system.skill` | Dual-perspective analysis and decision framing skill |
 
-### Development
-- pytest: Testing framework
-- pytest-cov: Coverage reporting
-- pytest-asyncio: Async testing
-- black: Code formatting
-- ruff: Linting
-- mypy: Type checking
+See [docs/skills.md](./docs/skills.md) for detailed descriptions of each skill.
 
-## Troubleshooting
+---
 
-### Virtual environment not activating
+## Agents
 
-**Linux/macOS:** Make sure you're using `source .venv/bin/activate` not just `.venv/bin/activate`
+Custom Claude Code subagents are defined in `.claude/agents/` as markdown files. Each subagent file contains a YAML front matter block with metadata and a full system prompt body.
 
-**Windows:** Use `.venv\Scripts\activate.bat` for Command Prompt or `.venv\Scripts\Activate.ps1` for PowerShell
+| Agent | File | Purpose |
+|---|---|---|
+| docs-architect | `.claude/agents/docs-architect.md` | Creates and updates multi-level technical documentation with Mermaid diagrams |
 
-### Command not found: abraxas
+Subagents are invoked by Claude Code automatically when the user's request matches the agent's described use cases, or they can be invoked explicitly.
 
-Make sure:
-1. Your virtual environment is activated (you should see `(.venv)` in your prompt)
-2. The package is installed: `pip install -e ".[dev]"`
+---
 
-### ArangoDB connection failed
+## Development Workflow
 
-Ensure:
-1. ArangoDB is installed and running
-2. The host, port, username, and password are correct
-3. The database exists
+### Working with Skills
 
-## License
+Skills are zip archives with a `.skill` extension. To author a new skill:
 
-This project is open source.
+1. Create a directory containing a `SKILL.md` and any supporting markdown reference files.
+2. Zip the directory contents and rename the archive with the `.skill` extension.
+3. Place the `.skill` file in the `skills/` directory.
 
-## Contributing
+Claude Code can install skills from this directory for use in sessions.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Working with Agents
 
-### Development Workflow
+Agent definitions live in `.claude/agents/`. To add a new subagent:
 
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/YOUR_USERNAME/abraxas.git`
-3. Create a new branch: `git checkout -b feature/your-feature-name`
-4. Set up the development environment: `./setup.sh` (or `setup.bat` on Windows)
-5. Make your changes
-6. Run tests: `pytest`
-7. Run linting: `ruff check src tests`
-8. Commit your changes: `git commit -m "Add your feature"`
-9. Push to your fork: `git push origin feature/your-feature-name`
-10. Create a Pull Request
+1. Create a markdown file in `.claude/agents/` named after the agent (e.g., `my-agent.md`).
+2. Add YAML front matter with at minimum `name`, `description`, and `model`.
+3. Write the full system prompt as the body of the markdown file.
+
+The agent will be available to Claude Code immediately after the file is saved.
+
+---
+
+## Planning
+
+Active work items are tracked in [PLAN.md](./PLAN.md).
+
+---
+
+## Documentation
+
+Full documentation lives in the [`docs/`](./docs/) directory.
+
+| Document | Description |
+|---|---|
+| [docs/index.md](./docs/index.md) | Documentation hub and navigation index |
+| [docs/architecture.md](./docs/architecture.md) | System architecture with Mermaid diagrams |
+| [docs/skills.md](./docs/skills.md) | Skills reference and usage guide |
