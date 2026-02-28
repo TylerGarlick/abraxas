@@ -32,9 +32,19 @@ The name *Abraxas* refers to a Gnostic cosmological symbol representing the tota
 abraxas/
 ├── .claude/
 │   ├── agents/
-│   │   └── docs-architect.md       # Custom docs-architect subagent definition
+│   │   ├── skill-author.md         # Skill authoring and packaging
+│   │   ├── project-coordinator.md  # PLAN.md and cross-agent coordination
+│   │   ├── docs-architect.md       # Technical documentation
+│   │   ├── ai-rd-visionary.md      # AI architecture and safety
+│   │   ├── brand-ux-architect.md   # Brand identity and naming
+│   │   └── systems-architect.md    # Project structure and tooling
 │   └── agent-memory/
-│       └── docs-architect/         # Persistent memory for docs-architect agent
+│       ├── skill-author/           # Persistent memory for skill-author
+│       ├── project-coordinator/    # Persistent memory for project-coordinator
+│       ├── docs-architect/         # Persistent memory for docs-architect
+│       ├── ai-rd-visionary/        # Persistent memory for ai-rd-visionary
+│       ├── brand-ux-architect/     # Persistent memory for brand-ux-architect
+│       └── systems-architect/      # Persistent memory for systems-architect
 ├── docs/
 │   ├── index.md                    # Documentation hub
 │   ├── architecture.md             # System architecture diagrams
@@ -68,7 +78,12 @@ Custom Claude Code subagents are defined in `.claude/agents/` as markdown files.
 
 | Agent | File | Purpose |
 |---|---|---|
+| skill-author | `.claude/agents/skill-author.md` | Authors and packages `.skill` archives; the primary output artifact of the project |
+| project-coordinator | `.claude/agents/project-coordinator.md` | Owns PLAN.md; coordinates work across agents; maintains meta-layer consistency |
 | docs-architect | `.claude/agents/docs-architect.md` | Creates and updates multi-level technical documentation with Mermaid diagrams |
+| ai-rd-visionary | `.claude/agents/ai-rd-visionary.md` | AI model and agent architecture; hallucination and scheming risk assessment |
+| brand-ux-architect | `.claude/agents/brand-ux-architect.md` | Brand identity, naming conventions, aesthetic coherence; future UI design |
+| systems-architect | `.claude/agents/systems-architect.md` | Project structure, skill format evolution, distribution mechanisms, tooling |
 
 Subagents are invoked by Claude Code automatically when the user's request matches the agent's described use cases, or they can be invoked explicitly.
 
