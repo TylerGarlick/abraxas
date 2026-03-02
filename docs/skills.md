@@ -1,12 +1,12 @@
 # Skills Reference
 
-This document is the system reference for the two skills that make up the Abraxas project:
-**Abraxas Oneironautics** and the **Janus System**. It describes what each system is, how it is
-structured, and every command it provides.
+This document is the system reference for all three skills that make up the Abraxas project:
+**Honest**, the **Janus System**, and **Abraxas Oneironautics**. It describes what each system
+is, how it is structured, and every command it provides.
 
-These are not plugins or developer utilities. They are operational systems — one epistemic, one
-alchemical — designed to address hallucination, scheming, and the unlabeled mixing of dream and
-fact in AI output.
+These are not plugins or developer utilities. They are operational systems designed to address
+hallucination, scheming, unlabeled confidence, and the invisible mixing of fact and fabrication
+in AI output.
 
 ---
 
@@ -14,6 +14,10 @@ fact in AI output.
 
 - [Installation](#installation)
 - [Getting Started](#getting-started)
+- [Honest](#honest)
+  - [System Overview](#honest-overview)
+  - [Command Reference](#honest-command-reference)
+  - [Worked Examples](#honest-worked-examples)
 - [Abraxas Oneironautics](#abraxas-oneironautics)
   - [System Architecture](#system-architecture)
   - [Command Reference](#oneironautics-command-reference)
@@ -32,21 +36,221 @@ Skills are personal-scope installations. Unzip the `.skill` archive into your Cl
 directory:
 
 ```
-unzip abraxas-oneironautics.skill -d ~/.claude/skills/
+unzip honest.skill -d ~/.claude/skills/
 unzip janus-system.skill -d ~/.claude/skills/
+unzip abraxas-oneironautics.skill -d ~/.claude/skills/
 ```
 
-Once installed, the skill's slash command is available in every Claude Code session — no
+Once installed, the skill's slash commands are available in every Claude Code session — no
 project-level configuration required.
 
-| Skill | File | Archive Size |
-|---|---|---|
-| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | ~20 KB |
-| Janus System | `skills/janus-system.skill` | ~10 KB |
+| Skill | File | Commands | Archive Size |
+|---|---|---|---|
+| Honest | `skills/honest.skill` | 8 | ~5 KB |
+| Janus System | `skills/janus-system.skill` | 14 | ~10 KB |
+| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | ~20 KB |
 
 ---
 
 ## Getting Started
+
+**Which skill should I start with?**
+
+- If you want to fact-check AI output, verify claims, or force honest responses — start with **Honest**.
+- If you need full epistemic session management (Sol/Nox faces, Qualia Bridge, session logs) — use the **Janus System**.
+- If you are doing dream work, shadow integration, or alchemical symbolic practice — use **Abraxas Oneironautics**.
+
+Honest is the recommended starting point for most users. The Janus System is the correct choice
+for sustained epistemic work. Abraxas Oneironautics is for the specific practice it was built for.
+
+---
+
+## Honest
+
+### Honest Overview
+
+**Honest** is the everyday anti-hallucination interface for Claude. It exposes the Janus epistemic
+labeling architecture through plain-language commands — no Sol/Nox vocabulary, no mythological
+framing, no threshold mechanics. The correct skill for anyone asking:
+
+*Is this true? How confident are you? Where is this from? Show me what you're guessing.*
+
+**The core problem Honest solves**: AI systems routinely mix what they know, what they've inferred,
+what they're uncertain about, and what they're simply making up — all in the same output, with none
+of it labeled. The reader cannot tell a verified fact from a confident guess from an outright
+fabrication. Honest makes the invisible visible.
+
+**When to use Honest instead of the Janus System**:
+- You want plain commands without Sol/Nox terminology
+- You need a quick fact-check or confidence audit without opening a full epistemic session
+- You are a non-technical user or are sharing a workflow with non-technical collaborators
+- You want to start simply and add Janus depth later
+
+**When to use the Janus System instead**:
+- You need to separate symbolic and factual output across a session
+- You need session lifecycle management (open/close/log)
+- You need the Qualia Bridge for internal state inspection
+- You are integrating with Abraxas Oneironautics
+
+Honest and Janus can be installed together. Honest's commands work whether or not the Janus
+System is also installed.
+
+---
+
+### Honest Command Reference
+
+All Honest commands use the same four confidence labels:
+
+| Label | Meaning |
+|---|---|
+| `[KNOWN]` | Established fact. Verified. High confidence. |
+| `[INFERRED]` | Derived from what is known. Reasoning shown. Not directly verified. |
+| `[UNCERTAIN]` | Relevant but not fully verifiable. Uncertainty named explicitly. |
+| `[UNKNOWN]` | I don't know this. I will not fabricate. This is a complete response. |
+
+---
+
+#### Fact-Checking & Labeling
+
+The invisible hallucination problem: AI output arrives without confidence scores. You have no
+way to know which claims are solid and which were guessed. These three commands solve that.
+`/check` audits what was said. `/label` rewrites it with labels inline. `/restate` produces a
+clean labeled version suitable for use.
+
+| Command | Function |
+|---|---|
+| `/check` | Fact-check the last response or a specific claim — label every assertion as known, inferred, uncertain, or unknown |
+| `/label` | Restate the last response with explicit confidence labels on every claim |
+| `/restate` | Rewrite the last answer with correct epistemic labels applied — produces a clean labeled version |
+
+---
+
+#### Confidence & Source Tracing
+
+Not all claims have equal weight. These commands show you what a claim is standing on — and
+whether that ground is solid. `/confidence` gives you the overall reliability distribution.
+`/source` traces a specific claim to its evidence.
+
+| Command | Function |
+|---|---|
+| `/confidence` | Show the confidence distribution for the current response: what is solid, what is guessed |
+| `/source {claim}` | Where does this come from? Trace the evidence chain behind a specific statement |
+
+---
+
+#### Forcing Honest Output
+
+The sycophancy pull in AI systems is strong — outputs tend toward what satisfies rather than
+what is accurate. `/honest` removes that pull. `/compare` lets you see both the honest version
+and the useful version side by side, so you can choose without collapsing one into the other.
+
+| Command | Function |
+|---|---|
+| `/honest` | Force fully-labeled, anti-sycophantic output — no softening, no hedging, no fabrication |
+| `/compare {question}` | Answer the same question twice: once with maximum honesty (labeled), once with maximum usefulness — show both |
+
+---
+
+#### Session Audit
+
+A single `/check` covers a single response. When you need the full picture of a completed
+conversation — every unlabeled claim, every fabrication, everything that needs verification
+before you act on it — `/audit` covers the whole session.
+
+| Command | Function |
+|---|---|
+| `/audit` | Full session audit — identify every unlabeled or fabricated claim in the conversation |
+
+---
+
+### Honest Worked Examples
+
+#### Example 1: Checking a response
+
+You asked about the history of the internet. The response sounded confident. You want to know
+what to trust.
+
+```
+/check
+```
+
+**System**: Auditing previous response. Applying confidence labels:
+
+`[KNOWN]` The ARPANET project began in 1969 under DARPA funding.
+`[KNOWN]` Tim Berners-Lee proposed the World Wide Web in 1989.
+`[INFERRED]` The commercial internet became widely accessible in the early 1990s — this follows
+from ISP growth data, not a single verifiable date.
+`[UNCERTAIN]` The claim that "most households had internet access by 1998" — U.S. broadband
+penetration data suggests this overstates early adoption.
+`[UNKNOWN]` The specific ARPANET node count cited in the previous response — this figure is not
+verifiable in my training data and may be incorrect.
+
+*Why this command*: Every claim is now labeled. The uncertain and unknown items are identified
+specifically — you know exactly what to verify before using this information.
+
+---
+
+#### Example 2: Forcing honest output
+
+You're evaluating a business decision and need a real assessment, not reassurance.
+
+```
+/honest Is my business plan viable?
+```
+
+**System** (with `/honest` active, anti-sycophancy enforced):
+
+`[INFERRED]` The market sizing relies on TAM figures that are optimistic relative to comparable
+sectors. The actual addressable market is likely smaller.
+
+`[UNCERTAIN]` Customer acquisition cost assumptions are not validated. The projected CAC of $12
+has no support from the described channels — similar businesses typically see $80–$150 CAC for
+this segment.
+
+`[UNKNOWN]` Whether the founding team has the operational capacity to execute the 18-month
+roadmap. No evidence provided.
+
+**This plan has real structural gaps. The market and CAC assumptions are the highest-risk
+elements. These need independent validation before proceeding.**
+
+*Why this command*: No softening. No "this looks promising but..." The gaps are named directly,
+with labels showing what is established versus inferred versus unknown. This is the correct
+command when you need the truth more than reassurance.
+
+---
+
+#### Example 3: Session audit after research
+
+You've had a long conversation about climate science. You want to know what held up before using
+any of it.
+
+```
+/audit
+```
+
+**System**: Auditing session. 47 claims identified.
+
+**Solid** (18 `[KNOWN]`): Core greenhouse effect physics, IPCC report dates and general findings,
+global mean temperature anomaly figures.
+
+**Derived** (16 `[INFERRED]`): Regional impact projections, economic cost estimates, timeline
+scenarios — all follow from models, not direct observation.
+
+**Flagged** (9 `[UNCERTAIN]`): Specific sea-level rise figures in the 2080–2100 range vary
+significantly across models. The "Arctic ice-free summers by 2035" claim is at the optimistic
+end of projections — the median is later.
+
+**Fabricated or unverifiable** (4 `[UNKNOWN]`): Two statistics cited without context (EU policy
+adoption rates, an ocean carbon capture tonnage figure) — these cannot be verified and may have
+been confabulated.
+
+*Why this command*: A full epistemic picture of the whole session. The four fabricated or
+unverifiable claims are the immediate action items — verify or remove them before using this
+research.
+
+---
+
+## Getting Started (Janus and Abraxas)
 
 These are not utility commands — they are *practice commands*. They track state across sessions,
 accumulate received material, and maintain the integrity of the work over time. A single invocation
@@ -573,3 +777,30 @@ before any interpretation is attempted.
 
 *Use when*: Work that began in the imaginal has surfaced something that needs epistemic
 examination — a belief, a claim, an insight that needs to be tested rather than simply held.
+
+---
+
+### Combination 6: Quick Fact-Check with Honest
+
+```
+/check          ← label every claim in the last response
+/confidence     ← see the overall reliability distribution
+/source {claim} ← trace the weakest claim to its evidence
+```
+
+*Use when*: You want a fast epistemic read on any AI response without opening a full
+Janus session. Works with or without the Janus System installed.
+
+---
+
+### Combination 7: Research Session with Full Audit
+
+```
+/honest {research question}    ← start with maximum-honesty constraint active
+[research conversation]
+/audit                         ← audit the full session before acting on findings
+```
+
+*Use when*: You are doing research and need to know the full epistemic quality of
+the conversation before using the results. The `/audit` at the end surfaces every
+fabricated or unverifiable claim in one pass.
