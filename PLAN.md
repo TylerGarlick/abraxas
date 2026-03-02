@@ -58,7 +58,8 @@ New skills and ecosystem growth.
 
 Items identified but not yet scheduled into a phase:
 
-- Consider: web-based skill installer (drag `.skill` into browser to install)
-- Consider: Honest as a default Claude Code session wrapper
+- Consider: OpenCode support for agents and memory (if possible).  What are alternatives to the memory.md?
 - Consider: Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling
 - Consider: Janus v2 with cross-session epistemic ledger persistence
+- Consider: web-based skill installer (drag `.skill` into browser to install)
+- Consider: Honest as a default Claude Code session wrapper
