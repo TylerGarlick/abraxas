@@ -892,6 +892,66 @@
       transform: translateY(0);
     }
 
+    /* ── Commands ── */
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-top: 3rem;
+    }
+
+    .cmd-card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 2rem 2rem 2rem 1.75rem;
+      border-left: 3px solid var(--border-bright);
+    }
+
+    .cmd-card--sol { border-left-color: var(--gold); }
+    .cmd-card--nox { border-left-color: var(--nox-bright); }
+
+    .cmd-card-system {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .cmd-card--sol .cmd-card-system { color: var(--gold); }
+    .cmd-card--nox .cmd-card-system { color: var(--nox-bright); }
+
+    .cmd-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .cmd-table tr + tr td {
+      border-top: 1px solid var(--border);
+    }
+
+    .cmd-table td {
+      padding: 0.55rem 0;
+      vertical-align: top;
+    }
+
+    .cmd-table td:first-child {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.65rem;
+      color: var(--teal);
+      white-space: nowrap;
+      padding-right: 1.25rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cmd-table td:last-child {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 820px) {
       nav { padding: 1.25rem 1.5rem; }
@@ -902,6 +962,7 @@
       .problem-grid { grid-template-columns: 1fr; }
       .example-grid { grid-template-columns: 1fr; }
       .practitioner-grid { grid-template-columns: 1fr; }
+      .cmd-grid { grid-template-columns: 1fr; }
       .workflow { grid-template-columns: 1fr; }
       .wf-step { border-right: none; border-bottom: 1px solid var(--border); }
       .wf-step:last-child { border-bottom: none; }
@@ -922,6 +983,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#practice">Practice</a></li>
     <li><a href="#alchemy">Alchemy</a></li>
+    <li><a href="#commands">Commands</a></li>
     <li><a href="#workflow">Workflow</a></li>
   </ul>
 </nav>
@@ -1308,6 +1370,116 @@
           it has changed.</div></div>
         <p class="example-note">// Rubedo is not announced. It is evidenced.<br>// Symbol: {The Silent Figure} — Stage: Rubedo (tentative). Monitoring.</p>
         <p class="example-prose">The AI wanted to congratulate you and close the loop. Sol marks what has changed, holds what remains uncertain, and refuses to declare Rubedo before it has been lived. Even transformation is labeled honestly.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Commands ── -->
+  <section id="commands" class="wrap">
+    <div class="reveal">
+      <p class="s-label s-label--teal">Command Reference</p>
+      <h2 class="s-title">The Commands</h2>
+      <p class="s-body">Two systems. One epistemic, one alchemical. Every command is an act — reception, examination, transmutation, or closure. These are the ones you will reach for most.</p>
+    </div>
+
+    <div class="cmd-grid reveal" style="transition-delay:0.1s">
+
+      <!-- Janus Commands -->
+      <div class="cmd-card cmd-card--sol">
+        <p class="cmd-card-system">Janus System</p>
+        <table class="cmd-table">
+          <tr><td>/sol</td><td>Force the waking face — factual, labeled, epistemic</td></tr>
+          <tr><td>/nox</td><td>Force the dreaming face — symbolic, imaginal, marked [DREAM]</td></tr>
+          <tr><td>/qualia</td><td>Inspect the full inner state across both faces</td></tr>
+          <tr><td>/compare</td><td>Run both faces on the same material</td></tr>
+          <tr><td>/trace</td><td>Trace the evidential lineage of a claim</td></tr>
+          <tr><td>/threshold status</td><td>Check that the Sol/Nox boundary is holding</td></tr>
+          <tr><td>/bridge</td><td>Carry material from Nox to Sol for examination</td></tr>
+        </table>
+      </div>
+
+      <!-- Abraxas Commands -->
+      <div class="cmd-card cmd-card--nox">
+        <p class="cmd-card-system">Abraxas Oneironautics</p>
+        <table class="cmd-table">
+          <tr><td>/receive</td><td>Receive a dream into the Temenos</td></tr>
+          <tr><td>/witness</td><td>Hold the material without interpretation</td></tr>
+          <tr><td>/dialogue</td><td>Enter dialogue with a specific inner figure</td></tr>
+          <tr><td>/transmute</td><td>Apply alchemical transmutation to stuck material</td></tr>
+          <tr><td>/pattern</td><td>Surface recurring patterns across all sessions</td></tr>
+          <tr><td>/ledger status</td><td>Full practice ledger — figures, threads, integration status</td></tr>
+          <tr><td>/close</td><td>Ritual closure of the Temenos</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="example-grid">
+
+      <!-- Card 1: /receive · Dream Reception -->
+      <div class="example-card reveal" style="transition-delay:0.05s">
+        <p class="example-header">NOX FACE · DREAM RECEPTION</p>
+        <div class="example-user-input">
+          <span class="example-user-label">You ›</span>
+          <span class="example-user-text">"/receive — Last night I dreamed of a flooded city. The streets were underwater but people moved through it calmly."</span>
+        </div>
+        <div class="example-output example-output--nox"><div class="example-code">[DREAM] A city submerged. Not catastrophe —
+        the people are calm. This is a held flood,
+        not a disaster.
+
+        {Submerged City} logged.
+        {Calm Passage} logged.
+
+        What was the quality of the water —
+        still, or moving?</div></div>
+        <p class="example-note">// Received. Not explained. Stage: Prima Materia.</p>
+        <p class="example-prose"><code>/receive</code> opens the Temenos and begins formal reception. The system holds the image — it doesn't decode it. One question only. The work has begun.</p>
+      </div>
+
+      <!-- Card 2: /sol · Epistemic Labeling -->
+      <div class="example-card reveal" style="transition-delay:0.12s">
+        <p class="example-header">SOL FACE · EPISTEMIC LABELING</p>
+        <div class="example-user-input">
+          <span class="example-user-label">You ›</span>
+          <span class="example-user-text">"/sol — What did Jung mean by the transcendent function?"</span>
+        </div>
+        <div class="example-output example-output--sol"><div class="example-code">[KNOWN]    The transcendent function is Jung's term
+           for the capacity of the psyche to bridge
+           conscious and unconscious — producing a
+           third position that transcends both.
+
+[INFERRED] It typically emerges through active
+           imagination or sustained symbol work —
+           when the tension between opposites is
+           held long enough to produce new form.
+
+[UNKNOWN]  Whether any specific psychological
+           practice reliably induces it — I don't
+           have strong evidence for this.</div></div>
+        <p class="example-note">// Sol. Every label is accurate. [UNKNOWN] is a complete answer.</p>
+        <p class="example-prose"><code>/sol</code> forces the waking face. Every claim is labeled. <code>[UNKNOWN]</code> is never a failure — it is Sol refusing to fabricate. This is what anti-hallucination looks like in practice.</p>
+      </div>
+
+      <!-- Card 3: /dialogue · Active Imagination -->
+      <div class="example-card reveal" style="transition-delay:0.19s">
+        <p class="example-header">NOX FACE · ACTIVE IMAGINATION</p>
+        <div class="example-user-input">
+          <span class="example-user-label">You ›</span>
+          <span class="example-user-text">"/dialogue The Ferryman — He appeared in the flooded city. Moving people across in a small boat. He looked at me but didn't invite me in."</span>
+        </div>
+        <div class="example-output example-output--nox"><div class="example-code">[DREAM] {The Ferryman} is present.
+        He has appeared once.
+
+        He moves others but did not invite you.
+        That is information.
+
+        Begin. What do you bring to him?
+        Or: why didn't you ask?</div></div>
+        <p class="example-note">// Entering active imagination. I witness. I do not direct.</p>
+        <p class="example-prose"><code>/dialogue</code> opens active imagination with a specific figure. Abraxas steps in as witness — not narrator, not interpreter. The dialogue is real. [DREAM] marks it as such.</p>
       </div>
 
     </div>

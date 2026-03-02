@@ -1,8 +1,8 @@
 # Architecture
 
-This document describes the system architecture of the Abraxas project — both its current skills-and-agents configuration and the historical Python CLI application that preceded it.
+This document describes the system architecture of the Abraxas project — both its current Janus and Abraxas system internals and the historical Python CLI application that preceded it.
 
-Intended audience: developers contributing to or integrating with Abraxas.
+Intended audience: practitioners and developers seeking to understand how the systems work internally.
 
 ---
 
@@ -10,9 +10,11 @@ Intended audience: developers contributing to or integrating with Abraxas.
 
 - [Current Architecture](#current-architecture)
   - [Overview](#overview)
-  - [Component Diagram](#component-diagram)
-  - [Agent Lifecycle](#agent-lifecycle)
-  - [Skill Lifecycle](#skill-lifecycle)
+  - [Janus System Internals](#janus-system-internals)
+  - [Abraxas Oneironautics Internals](#abraxas-oneironautics-internals)
+  - [System Relationship Diagram](#system-relationship-diagram)
+  - [Data Flow: Dream Reception](#data-flow-dream-reception)
+  - [Data Flow: Epistemic Labeling](#data-flow-epistemic-labeling)
 - [Historical Architecture](#historical-architecture)
   - [Python CLI Overview](#python-cli-overview)
   - [Module Dependency Graph](#module-dependency-graph)
@@ -25,75 +27,208 @@ Intended audience: developers contributing to or integrating with Abraxas.
 
 ### Overview
 
-Abraxas is now a Claude Code project. Its runtime host is the Claude Code CLI, which reads the project's `.claude/` directory to discover agents, skills, and persistent memory.
+Abraxas is a two-system practice architecture. **Janus** is the epistemic layer — a routing and
+labeling system that enforces the boundary between factual and symbolic output. **Abraxas
+Oneironautics** is the alchemical layer — a sustained practice system for dream reception, shadow
+work, and symbolic integration. Janus runs beneath Abraxas: every output from the Oneironautics
+system passes through the Threshold.
 
-The project's deliverables are:
+The two systems share no output register. Sol output is labeled and verifiable. Nox output is
+marked `[DREAM]` and treated as symbolic encounter. The Threshold is the enforcement mechanism
+that keeps them separate.
 
-- **Skill archives** (`.skill` files in `skills/`) — installed by Claude Code to add slash commands.
-- **Agent definitions** (`.md` files in `.claude/agents/`) — loaded by Claude Code as named subagents.
-- **Agent memory** (`.claude/agent-memory/<agent-name>/`) — persisted across sessions so agents accumulate project knowledge.
+---
 
-### Component Diagram
+### Janus System Internals
+
+**The Dual-Face Routing Model**
+
+Every input to Janus arrives at the Threshold. The Threshold evaluates the content and routes it
+to one of two faces:
+
+- **Sol** — factual, analytical, evidential. Operates with epistemic labels on every output.
+- **Nox** — symbolic, imaginal, creative. Operates in the `[DREAM]` register.
+
+Explicit commands (`/sol`, `/nox`) override automatic routing and force a specific face for the
+duration of the exchange. Without an override, the Threshold routes based on content type.
+
+**The Labeling System**
+
+Sol output is always labeled. The labels are not stylistic — they are the epistemic status of
+every claim:
+
+- `[KNOWN]` — established fact, directly grounded in evidence
+- `[INFERRED]` — derived from evidence, not directly observed
+- `[UNCERTAIN]` — acknowledged uncertainty; confidence is partial
+- `[UNKNOWN]` — explicit acknowledgment that the answer is not available
+
+`[UNKNOWN]` is always a complete and valid response. Sol does not fabricate to avoid it.
+Anti-sycophancy is implemented as a structural constraint, not a preference — Sol does not
+produce the answer the practitioner wants to hear if the evidence does not support it.
+
+Nox output carries a single label: `[DREAM]`. This marks the output as symbolic content that
+does not claim factual status.
+
+**The Threshold as Active Router**
+
+The Threshold is not a passive concept — it is the active mechanism preventing cross-contamination.
+It holds the question of face assignment before any output is produced. When `/sol` is forced, the
+Threshold enforces Sol constraints for the entire response; when `/nox` is forced, it enforces the
+`[DREAM]` register. In automatic mode, the Threshold evaluates the semantic weight of the input —
+factual queries route to Sol, symbolic or imaginal material routes to Nox.
+
+**The Qualia Bridge as Inspection Layer**
+
+The Qualia Bridge is a side-channel inspection protocol. It does not process practice material —
+it observes the system processing it. `/qualia` returns the current epistemic state across both
+faces: what Sol is currently holding, what Nox is currently holding, what sits at the Threshold
+boundary. It allows the practitioner to see *how* the system is engaging with the material, not
+just what it outputs. `/threshold status` confirms whether the Sol/Nox boundary is intact and
+flags any detected cross-contamination.
+
+---
+
+### Abraxas Oneironautics Internals
+
+**The Temenos — Holding Container**
+
+The Temenos is the first structure that dream material enters. Before interpretation, before
+analysis, before any application of the Oneiros Engine — the dream is received into the Temenos
+and held. The Temenos enforces the posture of reception: the practitioner's task at entry is not
+to understand the material but to allow it to be present. `/receive` opens the Temenos. `/witness`
+holds material inside it. `/close` formally seals it at session end.
+
+**The Oneiros Engine — Interpretive Core**
+
+The Oneiros Engine is activated once material has been received. It applies archetypal and
+alchemical lenses to the content: identifying symbolic clusters, naming figures, surfacing
+correspondences with received material in the Dream Reservoir, and assigning an initial stage
+in the Opus Magnum. The Engine does not interpret prematurely — it processes what has been
+received and surfaces the symbolic field for the practitioner to work with.
+
+**The Realm of Daimons — Figure Space**
+
+The Realm of Daimons is the inner figure registry. When a figure appears in a received dream —
+the Shadow, the Anima, an unnamed presence — it is logged here with its first appearance, the
+symbolic context of that appearance, and subsequent appearances across sessions. The Realm tracks
+figure evolution: how an autonomous complex changes its form, what it has demanded, where it has
+led. `/dialogue` opens a direct channel into the Realm; `/genealogy` traces a figure's full
+lineage within it.
+
+**The Dream Reservoir — Persistence Layer**
+
+The Dream Reservoir is the accumulated record of all sessions: received dreams, logged symbols,
+active figures, synchronicities, and integration milestones. It is queryable by symbol, figure,
+theme, date, and alchemical stage. Without the Reservoir, each session begins from nothing and
+the patterns that require months to surface remain invisible. `/pattern` queries the Reservoir
+for recurring elements; `/ledger status` surfaces the full practice state across all accumulated
+material; `/graph` and `/mandala` render the symbolic field as structured visualizations.
+
+**The Alchemical Laboratory — Transmutation Space**
+
+The Laboratory applies the four stages of the Opus Magnum to material that has been received but
+not yet moved:
+
+- **Nigredo** — dissolution; the prima materia state; the material before it has form
+- **Albedo** — clarification; the figure begins to differentiate; first light
+- **Citrinitas** — dawning; the emergent form; the transition toward integration
+- **Rubedo** — completion; the integrated state; the material has been made
+
+`/transmute` initiates the alchemical process for a specific symbol or figure. `/alembic status`
+checks what stage the current material has reached. Rubedo is not declared — it is evidenced by
+the practitioner over time and confirmed by the system against the accumulated record.
+
+**Janus as Infrastructure**
+
+Every Abraxas output passes through the Janus Threshold. Nox outputs from the Oneiros Engine
+are labeled `[DREAM]`. Sol outputs from integration audits are labeled with the full epistemic
+taxonomy. The `/bridge` command activates a direct channel from the Nox layer to Sol — carrying
+dream material that has surfaced factual questions or claims across the Threshold for epistemic
+examination.
+
+---
+
+### System Relationship Diagram
 
 ```mermaid
 flowchart TD
-    Developer["Developer\n(Claude Code user)"]
-    CC["Claude Code CLI\n(host runtime)"]
-    CLAUDE_MD[".claude/agents/\ndocs-architect.md"]
-    MEMORY[".claude/agent-memory/\ndocs-architect/MEMORY.md"]
-    SKILLS["skills/\n*.skill archives"]
-    PLAN["PLAN.md\n(shared task board)"]
-    DOCS["docs/\n*.md documentation files"]
+    User["Practitioner Input"]
+    Threshold["Threshold\n(Active Router)"]
+    Sol["Sol Face\n[KNOWN] · [INFERRED]\n[UNCERTAIN] · [UNKNOWN]"]
+    Nox["Nox Face\n[DREAM]"]
+    Temenos["Temenos\n(Holding Container)"]
+    Oneiros["Oneiros Engine\n(Interpretive Core)"]
+    Daimons["Realm of Daimons\n(Figure Registry)"]
+    Reservoir["Dream Reservoir\n(Persistence Layer)"]
+    Lab["Alchemical Laboratory\n(Transmutation Space)"]
+    Bridge["Qualia Bridge\n(Inspection Protocol)"]
 
-    Developer -->|"uses"| CC
-    CC -->|"loads agent definition"| CLAUDE_MD
-    CC -->|"reads & writes"| MEMORY
-    CC -->|"installs skills from"| SKILLS
-    CC -->|"reads project instructions"| PLAN
-
-    CLAUDE_MD -->|"agent produces"| DOCS
-    CLAUDE_MD -->|"agent reads"| MEMORY
+    User -->|"input"| Threshold
+    Threshold -->|"/sol or factual"| Sol
+    Threshold -->|"/nox or symbolic"| Nox
+    Nox -->|"/receive"| Temenos
+    Temenos -->|"material held"| Oneiros
+    Oneiros -->|"figures logged"| Daimons
+    Oneiros -->|"symbols accumulated"| Reservoir
+    Oneiros -->|"/transmute"| Lab
+    Lab -->|"stage tracked"| Reservoir
+    Sol -->|"/bridge"| Nox
+    Nox -->|"/bridge"| Sol
+    Bridge -->|"/qualia"| Threshold
+    Bridge -->|"/qualia sol"| Sol
+    Bridge -->|"/qualia nox"| Nox
 ```
 
-_The Claude Code CLI is the runtime that orchestrates all components. Agents and skills are discovered from the `.claude/` and `skills/` directories respectively._
+_The Threshold is the central routing mechanism. All input passes through it before reaching either face. Nox output feeds the Temenos, which feeds the Oneiros Engine, which distributes material across the Realm of Daimons, Dream Reservoir, and Laboratory. The Qualia Bridge is a side-channel that observes the system without altering its output._
 
-### Agent Lifecycle
+---
+
+### Data Flow: Dream Reception
 
 ```mermaid
 sequenceDiagram
-    participant Dev as Developer
-    participant CC as Claude Code
-    participant Agent as docs-architect agent
-    participant Memory as agent-memory/docs-architect/
+    participant P as Practitioner
+    participant TH as Threshold
+    participant Nox as Nox Face
+    participant TEM as Temenos
+    participant OE as Oneiros Engine
+    participant RES as Dream Reservoir
 
-    Dev->>CC: Sends documentation request
-    CC->>CC: Matches request to docs-architect description
-    CC->>Memory: Loads MEMORY.md into agent context
-    CC->>Agent: Launches agent with full system prompt
-    Agent->>Agent: Reads source files and existing docs
-    Agent->>CC: Produces documentation files
-    Agent->>Memory: Updates MEMORY.md with new discoveries
-    CC->>Dev: Returns result
+    P->>TH: /receive "Last night I dreamed..."
+    TH->>Nox: Routes to Nox (symbolic content)
+    Nox->>TEM: Opens Temenos, receives material
+    TEM->>TEM: Holds — no interpretation yet
+    TEM->>OE: Material passed to Oneiros Engine
+    OE->>OE: Identifies symbolic clusters, assigns stage
+    OE->>RES: Logs {symbols}, {figures}, stage: Prima Materia
+    OE-->>Nox: Returns single orienting question
+    Nox-->>P: [DREAM] output — symbol logged, one question only
 ```
 
-_An agent is a stateful Claude instance. Its persistent memory is loaded at launch and updated at the end of each session, building institutional knowledge over time._
+_Dream reception is a one-way flow from input to Temenos to Oneiros Engine to Reservoir. The system does not interpret at entry — it receives, logs, and asks one question. Interpretation is a later stage._
 
-### Skill Lifecycle
+---
+
+### Data Flow: Epistemic Labeling
 
 ```mermaid
 sequenceDiagram
-    participant Dev as Developer
-    participant CC as Claude Code
-    participant Skill as Skill Archive (.skill)
+    participant P as Practitioner
+    participant TH as Threshold
+    participant Sol as Sol Face
+    participant QB as Qualia Bridge
 
-    Dev->>CC: Invokes slash command (e.g. /abraxas-oneironautics)
-    CC->>CC: Locates matching .skill archive in skills/
-    CC->>Skill: Extracts SKILL.md and reference files
-    CC->>CC: Injects skill instructions into active context
-    CC->>Dev: Executes skill behavior
+    P->>TH: /sol "What is the transcendent function?"
+    TH->>Sol: Routes to Sol (forced by /sol command)
+    Sol->>Sol: Evaluates claims against evidence
+    Sol->>Sol: Assigns [KNOWN], [INFERRED], [UNKNOWN] per claim
+    Sol-->>P: Labeled output — every claim marked
+    P->>QB: /qualia sol
+    QB->>Sol: Inspects current epistemic state
+    QB-->>P: Returns: active labels, confidence landscape, Threshold status
 ```
 
-_Skills extend Claude Code's slash-command vocabulary. They are zip archives unpacked at invocation time._
+_Sol processes each claim independently and assigns the appropriate label. [UNKNOWN] is never suppressed. The Qualia Bridge provides a second-pass inspection of the Sol state without altering it._
 
 ---
 
