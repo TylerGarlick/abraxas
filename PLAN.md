@@ -59,6 +59,7 @@ New skills and ecosystem growth.
 Items identified but not yet scheduled into a phase:
 
 - Consider: OpenCode support for agents and memory (if possible).  What are alternatives to the memory.md?
+- Consider: The ability to frame the facts or considerations for a given session.
 - Consider: Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling
 - Consider: Janus v2 with cross-session epistemic ledger persistence
 - Consider: web-based skill installer (drag `.skill` into browser to install)
