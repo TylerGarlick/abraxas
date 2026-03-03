@@ -39,13 +39,17 @@ The name *Abraxas* refers to a Gnostic cosmological symbol representing the tota
 
 ## Quick Start
 
-**Don't use Claude Code?** `CONSTITUTION.md` is a portable behavioral specification — load it
-into any capable LLM to activate all three Abraxas systems. Paste it as a system prompt in
-Claude.ai, ChatGPT, Gemini, or any model that accepts a system prompt or document upload.
+**Don't use Claude Code?** Skip to [Option 2: CONSTITUTION.md](#option-2-constitutionmd-any-llm) below — works with any LLM.
 
 ---
 
-Install skills to your Claude Code skills directory:
+## Three Ways to Use Abraxas
+
+Choose the approach that matches your setup:
+
+### Option 1: Claude Code Skills (Recommended)
+
+Install `.skill` archives for full functionality with slash commands:
 
 ```bash
 # Everyday fact-checking and anti-hallucination
@@ -56,6 +60,84 @@ unzip skills/janus-system.skill -d ~/.claude/skills/
 
 # Alchemical dream work and symbolic integration
 unzip skills/abraxas-oneironautics.skill -d ~/.claude/skills/
+```
+
+**Why skills?**
+- Full slash command access
+- Automatic session state management
+- Recommended for Claude Code users
+
+### Option 2: CONSTITUTION.md (Any LLM)
+
+Load `CONSTITUTION.md` as system prompt — works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any LLM that accepts system prompts.
+
+**No installation required.**
+
+| Platform | How to Load CONSTITUTION.md |
+|----------|----------------------------|
+| Claude.ai | Settings → Advanced → Add to system prompt |
+| ChatGPT | Settings → Instructions → Paste |
+| Gemini | Settings → Advanced → System instructions |
+| Ollama | `ollama run model -p system "$(cat CONSTITUTION.md)"` |
+| LM Studio | System prompt field → Paste |
+| Any other | Paste as first message or in system prompt field |
+
+**When using CONSTITUTION.md**, prepend your query with:
+```
+[Activate Honest Mode]
+[Your question here]
+```
+
+Labels must be typed manually: `[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, `[UNKNOWN]`, `[DREAM]`
+
+### Option 3: Manual Activation
+
+Copy relevant sections into your prompts manually. No dependencies, full control but more manual work.
+
+---
+
+## First Invocations
+
+### With Skills Installed (Claude Code)
+
+```
+# Honest — check if the last response is reliable
+/check
+
+# Honest — force maximum-honesty output
+/honest Is this claim accurate?
+
+# Janus — force the factual, labeled face
+/sol
+
+# Janus — inspect system state
+/qualia
+
+# Abraxas Oneironautics — receive a dream
+/receive
+
+# Abraxas Oneironautics — check the practice ledger
+/ledger status
+```
+
+### Without Skills (CONSTITUTION.md or Manual)
+
+Type these commands directly in your prompt:
+
+```
+# Activate Honest mode
+[Activate Honest Mode]
+/check
+
+# Force honest output
+/honest Is this claim accurate?
+
+# Manual labeling (type these before your output)
+[KNOWN] Fact here
+[INFERRED] Derived from known info
+[UNCERTAIN] Not fully confident
+[UNKNOWN] I don't know
+[DREAM] Symbolic/creative content
 ```
 
 First invocations:
