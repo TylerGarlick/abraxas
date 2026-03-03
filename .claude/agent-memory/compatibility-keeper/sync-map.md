@@ -12,14 +12,14 @@ This file tracks cross-platform compatibility between Claude Code (`.claude/`) a
 
 | Claude Code | OpenCode | Status | Notes |
 |-------------|----------|--------|-------|
-| .claude/agents/skill-author.md | .opencode/agent/skill-author.md | pending | Needs translation |
-| .claude/agents/project-coordinator.md | .opencode/agent/project-coordinator.md | pending | Needs translation |
-| .claude/agents/docs-architect.md | .opencode/agent/docs-architect.md | pending | Needs translation |
-| .claude/agents/ai-rd-visionary.md | .opencode/agent/ai-rd-visionary.md | pending | Needs translation |
-| .claude/agents/brand-ux-architect.md | .opencode/agent/brand-ux-architect.md | pending | Needs translation |
-| .claude/agents/systems-architect.md | .opencode/agent/systems-architect.md | pending | Needs translation |
-| .claude/agents/constitution-keeper.md | .opencode/agent/constitution-keeper.md | pending | Needs translation |
-| .claude/agents/compatibility-keeper.md | .opencode/agent/compatibility-keeper.md | pending | Needs translation |
+| .claude/agents/skill-author.md | .opencode/agent/skill-author.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/project-coordinator.md | .opencode/agent/project-coordinator.md | ✓ synced | qwen3-coder-32b, mode: primary |
+| .claude/agents/docs-architect.md | .opencode/agent/docs-architect.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/ai-rd-visionary.md | .opencode/agent/ai-rd-visionary.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/brand-ux-architect.md | .opencode/agent/brand-ux-architect.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/systems-architect.md | .opencode/agent/systems-architect.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/constitution-keeper.md | .opencode/agent/constitution-keeper.md | ✓ synced | qwen3-coder-32b, mode: subagent |
+| .claude/agents/compatibility-keeper.md | .opencode/agent/compatibility-keeper.md | ✓ synced | qwen3-coder-32b, mode: subagent |
 
 ### Commands
 
@@ -33,26 +33,29 @@ No commands currently defined.
 | janus-system | ✓ | SKILL.md format is natively compatible |
 | abraxas-oneironautics | ✓ | SKILL.md format is natively compatible |
 
-## Known Issues
-
-- Claude Code uses `model: inherit` / `model: haiku` — OpenCode requires explicit model
-- Claude Code uses tool lists — OpenCode requires boolean flags
-- Claude Code has implicit permissions — OpenCode requires explicit permissions
-- Claude Code agents don't specify `mode` — OpenCode requires `mode: subagent` or `mode: primary`
-
-## Translation Patterns
+## Translation Details
 
 ### Model Mapping
-- `model: inherit` → `model: anthropic/claude-3-5-sonnet-20241022`
-- `model: haiku` → `model: anthropic/claude-haiku-2024-05-22`
+- Claude Code `model: haiku` → OpenCode `model: qwen/qwen3-coder-32b`
+- Claude Code `model: sonnet` → OpenCode `model: qwen/qwen3-coder-32b`
+- Claude Code `model: inherit` → OpenCode `model: qwen/qwen3-coder-32b`
 
-### Tool Mapping
-- `tools: Read` → `read: true`
-- `tools: Write` → `write: true`
-- `tools: Edit` → `edit: true`
-- `tools: Bash` → `bash: true`
-- `tools: Grep` → `grep: true`
-- `tools: Glob` → `glob: true`
+### Default Settings
+- `temperature: 0.2` for all agents
+- `mode: subagent` for all except project-coordinator (mode: primary)
+
+### Tool Permissions by Agent
+
+| Agent | bash | edit | Notes |
+|-------|------|------|-------|
+| skill-author | false | true | File writing only |
+| project-coordinator | true | true | Full access for coordination |
+| docs-architect | false | true | Documentation work |
+| ai-rd-visionary | false | false | Analysis only |
+| brand-ux-architect | false | true | Design work |
+| systems-architect | true | true | Project tooling |
+| constitution-keeper | false | true | File editing |
+| compatibility-keeper | false | true | Sync operations |
 
 ## Run Commands
 

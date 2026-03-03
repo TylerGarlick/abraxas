@@ -1283,8 +1283,7 @@
           </div>
           <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
             <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">Gemini</p>
-            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">Settings → Advanced →</p>
-          </div System instructions>
+            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">Settings → Advanced → System instructions</p>
           <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
             <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">Ollama</p>
             <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">ollama run model -p system "$(cat CONSTITUTION.md)"</p>
@@ -1297,8 +1296,6 @@
         <a href="docs/index.md" class="constitution-path-link" style="display:inline-block;margin-top:1rem;margin-left:1.5rem">Detailed Setup Guide</a>
       </div>
     </section>
-
-  </section>
 
   <div class="divider"></div>
 
@@ -1534,7 +1531,7 @@
       <div class="cmd-card cmd-card--teal" style="grid-column: 1 / -1">
         <p class="cmd-card-system">Honest</p>
         <table class="cmd-table">
-          <tr><td>/frame</td><td>Declare session facts and context — accumulates; save and load across sessions</td></tr>
+          <tr><td>/frame</td><td>Declare session context — accumulates. Save/load across sessions. Pre-built frames for common scenarios: skeptic, learner, expert, cautious, creative, collaborator, evaluate-code, evaluate-argument, evaluate-decision, evaluate-writing, evaluate-research, debug-criteria. <a href="docs/skills.md" style="color:var(--teal)">See all frames →</a></td></tr>
           <tr><td>/check</td><td>Fact-check the last response or a specific claim</td></tr>
           <tr><td>/label</td><td>Restate with explicit confidence labels on every claim</td></tr>
           <tr><td>/source</td><td>Trace the evidence chain behind a specific statement</td></tr>

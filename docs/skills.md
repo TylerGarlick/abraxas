@@ -47,7 +47,7 @@ project-level configuration required.
 | Skill | File | Commands | Archive Size |
 |---|---|---|---|
 | Honest | `skills/honest.skill` | 9 | ~5 KB |
-| Janus System | `skills/janus-system.skill` | 14 | ~10 KB |
+| Janus System v2 | `skills/janus-system.skill` | 19 | ~15 KB |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | ~20 KB |
 
 ---
@@ -83,7 +83,7 @@ Without skills, type commands directly in your prompt:
 | Skill | What to Type |
 |-------|-------------|
 | Honest | `/check`, `/honest Is...`, `/frame facts...`, `/confidence`, `/source claim`, `/compare question`, `/audit` |
-| Janus | `/sol`, `/nox`, `/qualia`, `/threshold status`, `/session open`, `/session log` |
+| Janus | `/sol`, `/nox`, `/qualia`, `/threshold status`, `/session open`, `/session close`, `/ledger`, `/bridge` |
 | Abraxas | `/receive`, `/witness`, `/ledger status`, `/audit`, `/pattern`, `/integrate`, `/myth`, `/chronicle` |
 
 ### Manual Labeling
@@ -205,6 +205,75 @@ so the user can verify and evaluate what is in the frame at any time.
 | `/frame delete {name}` | Remove a saved frame file |
 | `/frame default {name}` | Designate a saved frame as the session default — auto-loads in future sessions |
 | `/frame default clear` | Remove the default designation; sessions return to blank-slate start |
+
+---
+
+## Pre-built Frames
+
+These frames are **tool-agnostic** — copy into any AI's context, or save to your tool's equivalent storage. The `frames/` directory in this project contains ready-to-use templates.
+
+### Context Frames — Who You Are / How You Work
+
+These frames establish your role, communication preferences, and working style.
+
+| Frame | Description | When to Use |
+|-------|-------------|-------------|
+| [skeptic.md](/frames/skeptic.md) | Challenge my assumptions. Be direct. Don't soften. | When you need pushback, not agreement |
+| [learner.md](/frames/learner.md) | Explain simply. I'm new. No jargon. | When learning something unfamiliar |
+| [expert.md](/frames/expert.md) | Skip basics. Go deep. Assume high context. | When doing advanced work |
+| [cautious.md](/frames/cautious.md) | Show risks first. What could go wrong? | When stakes are high |
+| [creative.md](/frames/creative.md) | Take risks. Surprise me. Don't play it safe. | When brainstorming |
+| [collaborator.md](/frames/collaborator.md) | This is joint work. Debate me. Build together. | When co-creating |
+
+### Evaluation Frames — What to Judge / How to Evaluate
+
+These frames set criteria for assessing work — code, arguments, decisions, writing, research, and debugging.
+
+| Frame | Description | When to Use |
+|-------|-------------|-------------|
+| [evaluate-code.md](/frames/evaluate-code.md) | Security, performance, correctness. Flag real bugs. | When reviewing code |
+| [evaluate-argument.md](/frames/evaluate-argument.md) | Logic, evidence, assumptions. Find weaknesses first. | When evaluating claims |
+| [evaluate-decision.md](/frames/evaluate-decision.md) | Cost, risk, tradeoffs. Challenge assumptions. | When making decisions |
+| [evaluate-writing.md](/frames/evaluate-writing.md) | Clarity, audience, tone, structure. | When reviewing content |
+| [evaluate-research.md](/frames/evaluate-research.md) | Source credibility, freshness, methodology. | When doing research |
+| [debug-criteria.md](/frames/debug-criteria.md) | Reproduce → diagnose → fix → validate. | When troubleshooting |
+| [context-template.md](/frames/context-template.md) | Blank template for custom frames. | When creating your own |
+
+### Using Pre-built Frames
+
+**Option 1: Copy into context**
+
+Copy the frame content directly into your AI's context window before starting your session:
+
+```
+[Frame content pasted here]
+```
+
+**Option 2: Load from file**
+
+If your tool supports file-based frames:
+
+```
+/frame load skeptic
+/frame load evaluate-code
+```
+
+**Option 3: Reference in prompt**
+
+Include frame name in your opening prompt:
+
+```
+I'm working on code review. Use evaluate-code criteria. [Then ask your question]
+```
+
+### Creating Custom Frames
+
+Use `context-template.md` as a starting point. Include:
+
+- **Context** — What you need the AI to know
+- **Communication style** — How you want to be addressed
+- **Priorities** — What matters most
+- **Evaluation criteria** — What makes a good answer for you
 
 ---
 
@@ -1044,10 +1113,28 @@ state directly.
 Epistemic session lifecycle management.
 
 | Command | Function |
-|---|---|
+|:---|:---|
 | `/session open` | Open a new Janus session — initialize the epistemic container, establish baseline state. |
-| `/session close` | Close the current session — seal the record, note what was established, mark the transition. |
+| `/session close` | Close the current session — seal the record, append to persistent ledger, generate Closure Report. |
 | `/session log` | Review the session log — all outputs, their labels, and the epistemic record of the session. |
+
+---
+
+#### Epistemic Ledger (v2)
+
+Cross-session persistence layer. The ledger tracks substantive epistemic findings across sessions,
+enabling pattern recognition and accountability.
+
+| Command | Function |
+|:---|:---|
+| `/ledger status` | Show cross-session Epistemic Ledger — accumulated [UNKNOWN] marks, anti-sycophancy events, patterns. |
+| `/ledger {query}` | Query the ledger — "what have I marked as unknown?", "show anti-sycophancy events". |
+| `/ledger pattern {topic}` | Trace epistemic patterns over time — recurring [UNKNOWN] domains, confidence trends. |
+| `/ledger clear` | Clear loaded ledger for this session — does not delete persistent storage. |
+
+**Storage:** `~/.janus/` — ledger.md, sessions/, config.md
+
+**Auto-load:** Enabled by default. On session start, the ledger loads automatically. Disable via config or use `/ledger clear` for session-only clearing.
 
 ---
 

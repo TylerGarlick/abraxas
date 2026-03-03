@@ -776,6 +776,67 @@ contamination events.
 
 ---
 
+### `/ledger status` (Janus)
+
+Show the cross-session Epistemic Ledger — accumulated [UNKNOWN] marks, anti-sycophancy
+events, and patterns across all sessions.
+
+**Triggers:** `/ledger status`.
+
+**Storage:** `~/.janus/ledger.md`
+
+**Output template:**
+
+```
+[EPISTEMIC LEDGER]
+
+Prior sessions: {N}
+Total [UNKNOWN] marks: {X}
+Total [INFERRED] marks: {Y}
+Total anti-sycophancy events: {Z}
+Total contamination events: {W}
+
+Recent entries:
+- {session uuid}: {key finding}
+- {session uuid}: {key finding}
+...
+```
+
+---
+
+### `/ledger {query}` (Janus)
+
+Query the ledger with natural language — "what have I marked as unknown?", "show
+anti-sycophancy events", "list all [UNCERTAIN] marks about {topic}".
+
+**Triggers:** `/ledger {query}`.
+
+**Behavior:** Searches across all persisted session entries for matching content.
+
+---
+
+### `/ledger pattern {topic}` (Janus)
+
+Trace epistemic patterns over time — recurring [UNKNOWN] domains, confidence trends,
+anti-sycophancy frequency.
+
+**Triggers:** `/ledger pattern {topic}`.
+
+**Output:** Analysis of how this topic has been treated across sessions.
+
+---
+
+### `/ledger clear` (Janus)
+
+Clear the loaded ledger from session context only. Does not delete persistent storage —
+data remains in `~/.janus/ledger.md`.
+
+**Triggers:** `/ledger clear`.
+
+**Output:** `[LEDGER CLEARED] — Persistent data unaffected.`
+
+---
+
 ### `/compare {query}` (Janus)
 
 Force both faces to respond in parallel, then run Threshold Analysis of convergence
