@@ -4,7 +4,7 @@
 
 - **Project name:** Abraxas
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired)
+- **Current phase:** Claude Code skills and agents workspace
 - **Primary output artifact:** `.skill` archives in `skills/`
 
 ## Skill File Format

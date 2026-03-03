@@ -3,7 +3,7 @@
 ## Project Identity
 
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired)
+- **Current phase:** Claude Code skills and agents workspace 
 - **AI stack:** Claude Code / Claude API (Anthropic) — not OpenAI, not Gemini
 - **Primary Claude model in use:** claude-sonnet-4-6 (as of Feb 2026)
 

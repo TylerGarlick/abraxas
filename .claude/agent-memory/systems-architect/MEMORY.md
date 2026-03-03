@@ -3,7 +3,7 @@
 ## Project Identity
 
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired)
+- **Current phase:** Claude Code skills and agents workspace
 - **System type:** File-based; no runtime code, server, or database
 
 ## Current Architecture
