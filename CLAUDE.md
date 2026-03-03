@@ -35,7 +35,7 @@ abraxas/
 │       └── SKILL.md
 ├── docs/
 │   ├── skills.md                    ← full command reference (primary user doc)
-│   ├── architecture.md              ← Janus + Abraxas internals + historical Python
+│   ├── architecture.md              ← Janus + Abraxas internals 
 │   └── index.md                     ← documentation hub
 ├── .claude/
 │   ├── agents/                      ← 7 subagent definitions (.md files)

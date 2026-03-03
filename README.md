@@ -2,8 +2,6 @@
 
 Abraxas is the container for three AI systems — **Janus**, **Honest**, and **Abraxas Oneironautics** — packaged as Claude Code skills and supported by six specialized subagents. Each system addresses a distinct layer of the AI output problem: epistemic labeling, everyday fact-checking, and alchemical symbolic integration.
 
-> **Note:** Abraxas began as a Python CLI application with ArangoDB and MCP server integrations. That phase of the project has concluded. The Python source is preserved in git history for reference. The project is now focused on the Claude Code skills and agents ecosystem.
-
 ---
 
 ## Table of Contents

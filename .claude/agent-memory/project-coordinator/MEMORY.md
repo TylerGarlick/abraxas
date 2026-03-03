@@ -4,7 +4,7 @@
 
 - **Project name:** Abraxas
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired Feb 2026)
+- **Current phase:** Claude Code skills and agents workspace
 - **Git remote:** https://github.com/TylerGarlick/abraxas
 
 ## Meta-Layer Files
@@ -32,7 +32,6 @@
 - Two `.skill` archives exist: `abraxas-oneironautics` and `janus-system`
 - Six agents defined (including the two new agents added in this session)
 - No runtime code, no server, no database — project is purely files + Claude Code host
-- Python CLI phase is preserved in git history only
 
 ## PLAN.md Format Convention
 

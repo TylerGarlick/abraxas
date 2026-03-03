@@ -4,7 +4,7 @@
 
 - **Project name:** Abraxas
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired)
+- **Current phase:** Claude Code skills and agents workspace
 - **Git remote:** https://github.com/TylerGarlick/abraxas
 
 ## Current Project Structure
@@ -40,9 +40,6 @@ abraxas/
 - `.skill` files are zip archives containing `SKILL.md` and optional reference files
 - Agent definitions in `.claude/agents/` use YAML front matter + markdown body
 - `PLAN.md` is the shared task board; all agents coordinate through it
-- Python source (`src/abraxas/`) was deleted from working tree but exists in git history
-- Historical Python stack: Click CLI, ArangoDB (python-arango), asyncio MCP server, Starlette UI, Ollama/httpx AI client, uvicorn
-- `genesis.md` was the AI system prompt ("Abraxas constitution") — now in git history only
 
 ## Mermaid Conventions Used
 
@@ -61,4 +58,3 @@ abraxas/
 ## Notes
 
 - The Write tool was blocked on first attempt for README.md; Edit tool succeeded after chmod confirmed permissions were already correct. Use Edit tool for existing files.
-- Python code in git history should NOT be treated as current — user confirmed it is an old artifact.

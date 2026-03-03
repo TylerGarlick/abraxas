@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes the system architecture of the Abraxas project — both its current Janus and Abraxas system internals and the historical Python CLI application that preceded it.
+This document describes the system architecture of the Abraxas project — both its current Janus and Abraxas system internals.
 
 Intended audience: practitioners and developers seeking to understand how the systems work internally.
 
@@ -232,4 +232,3 @@ _Sol processes each claim independently and assigns the appropriate label. [UNKN
 
 ## Historical Architecture
 
-> **Note:** The Python CLI application has been retired. This section is preserved for reference only. No Python source files exist in the current working tree.

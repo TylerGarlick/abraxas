@@ -4,7 +4,7 @@
 
 - **Project name:** Abraxas
 - **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-- **Current phase:** Claude Code skills and agents workspace (Python CLI phase retired)
+- **Current phase:** Claude Code skills and agents workspace
 
 ## Brand Identity
 
