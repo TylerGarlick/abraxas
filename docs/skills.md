@@ -52,6 +52,54 @@ project-level configuration required.
 
 ---
 
+## Using Without Skills (CONSTITUTION.md)
+
+Don't have Claude Code? Load `CONSTITUTION.md` as your system prompt to activate all three
+systems in any LLM.
+
+### Setup by Platform
+
+| Platform | Instructions |
+|----------|-------------|
+| Claude.ai | Settings → Advanced → System prompt → Paste CONSTITUTION.md |
+| ChatGPT | Settings → GPT-4 → Custom instructions → Paste |
+| Gemini | Settings → Gemini → Advanced settings → System prompt |
+| Ollama | `ollama run model -p system "$(cat CONSTITUTION.md)"` |
+| LM Studio | System prompt field → Paste CONSTITUTION.md |
+| Any other | Paste as first message or in system prompt field |
+
+### Activating Honest Mode
+
+When CONSTITUTION.md is loaded, prepend your query with:
+```
+[Activate Honest Mode]
+[Your question here]
+```
+
+### Manual Command Reference
+
+Without skills, type commands directly in your prompt:
+
+| Skill | What to Type |
+|-------|-------------|
+| Honest | `/check`, `/honest Is...`, `/frame facts...`, `/confidence`, `/source claim`, `/compare question`, `/audit` |
+| Janus | `/sol`, `/nox`, `/qualia`, `/threshold status`, `/session open`, `/session log` |
+| Abraxas | `/receive`, `/witness`, `/ledger status`, `/audit`, `/pattern`, `/integrate`, `/myth`, `/chronicle` |
+
+### Manual Labeling
+
+When using CONSTITUTION.md, prefix your outputs with labels:
+
+```
+[KNOWN] This is established fact.
+[INFERRED] This is derived from known information.
+[UNCERTAIN] I'm not fully confident about this.
+[UNKNOWN] I don't know this and won't fabricate.
+[DREAM] This is symbolic/creative material.
+```
+
+---
+
 ## Getting Started
 
 **Which skill should I start with?**
@@ -96,6 +144,31 @@ and designate a default frame that auto-loads at the start of every conversation
 
 Honest and Janus can be installed together. Honest's commands work whether or not the Janus
 System is also installed.
+
+---
+
+### When to Use Each Command
+
+| Situation | Command | Why |
+|-----------|---------|-----|
+| "Was that accurate?" | `/check` | Fact-checks the last response |
+| "Tell me the truth, no hedging" | `/honest [question]` | Forces labeled, anti-sycophantic output |
+| "Show me both honest and useful" | `/compare [question]` | Side-by-side comparison |
+| "What's your confidence?" | `/confidence` | Shows distribution of certainty |
+| "Where did that come from?" | `/source [claim]` | Traces evidence chain |
+| "Before we start, here's context" | `/frame [facts]` | Pre-declares known facts |
+| "Audit this whole conversation" | `/audit` | Full session fact-check |
+
+### Frame Management
+
+```bash
+/frame The project uses React 18, TypeScript, and Vitest
+/frame status        # See current frame
+/frame save myproject  # Save for later sessions
+/frame load myproject  # Load saved frame
+/frame default myproject # Auto-load on session start
+/frame clear        # Reset to blank
+```
 
 ---
 

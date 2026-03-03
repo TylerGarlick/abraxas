@@ -1069,6 +1069,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
+    <li><a href="#constitution">Constitution</a></li>
     <li><a href="#practice">Practice</a></li>
     <li><a href="#alchemy">Alchemy</a></li>
     <li><a href="#commands">Commands</a></li>
@@ -1265,12 +1266,37 @@
     </div>
 
     <!-- ── Constitution Path ── -->
-    <div class="constitution-path reveal">
-      <p class="constitution-path-label">Alternative Path · Any LLM</p>
-      <h3 class="constitution-path-title">Not using Claude Code? Load the Constitution.</h3>
-      <p class="constitution-path-desc"><code>CONSTITUTION.md</code> is a portable behavioral specification — a single document that any capable language model can read to operate all three Abraxas systems. Paste it as a system prompt in Claude.ai, ChatGPT, Gemini, or any model interface. No installation required.</p>
-      <a href="CONSTITUTION.md" class="constitution-path-link">CONSTITUTION.md</a>
-    </div>
+    <section id="constitution" class="wrap" style="padding-top:0">
+      <div class="constitution-path reveal">
+        <p class="constitution-path-label">Alternative Path · Any LLM</p>
+        <h3 class="constitution-path-title">Not using Claude Code? Load the Constitution.</h3>
+        <p class="constitution-path-desc"><code>CONSTITUTION.md</code> is a portable behavioral specification — a single document that any capable language model can read to operate all three Abraxas systems. Paste it as a system prompt in Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, or any model interface. No installation required.</p>
+        
+        <div style="margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+          <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
+            <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">Claude.ai</p>
+            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">Settings → Advanced → Add to system prompt</p>
+          </div>
+          <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
+            <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">ChatGPT</p>
+            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">Settings → Instructions → Paste</p>
+          </div>
+          <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
+            <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">Gemini</p>
+            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">Settings → Advanced →</p>
+          </div System instructions>
+          <div style="background:rgba(61,174,154,0.06);border:1px solid rgba(61,174,154,0.2);padding:1rem 1.25rem">
+            <p style="font-family:'Source Code Pro',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:0.5rem">Ollama</p>
+            <p style="font-family:'Crimson Pro',serif;font-size:0.9rem;color:var(--text-dim)">ollama run model -p system "$(cat CONSTITUTION.md)"</p>
+          </div>
+        </div>
+
+        <p style="margin-top:1.25rem;font-family:'Crimson Pro',serif;font-size:0.95rem;color:var(--text-dim)">When active, prepend queries with <code style="color:var(--teal)">[Activate Honest Mode]</code> and type labels manually: <code style="color:var(--gold)">[KNOWN]</code> <code style="color:var(--gold)">[INFERRED]</code> <code style="color:var(--gold)">[UNCERTAIN]</code> <code style="color:var(--gold)">[UNKNOWN]</code> <code style="color:var(--nox-bright)">[DREAM]</code></p>
+        
+        <a href="CONSTITUTION.md" class="constitution-path-link" style="display:inline-block;margin-top:1rem">CONSTITUTION.md</a>
+        <a href="docs/index.md" class="constitution-path-link" style="display:inline-block;margin-top:1rem;margin-left:1.5rem">Detailed Setup Guide</a>
+      </div>
+    </section>
 
   </section>
 
