@@ -56,6 +56,7 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
 | [Skills Reference](./skills.md) | Full command reference for all three skills: Honest, Janus, and Abraxas Oneironautics |
+| [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
 
 ---
 
@@ -148,8 +149,14 @@ abraxas/
 ├── README.md                # Start here — project overview and Quick Start
 ├── CONSTITUTION.md          # Universal LLM specification — load into any capable model
 ├── PLAN.md                  # Active roadmap
+├── frames/                  # Pre-built frame templates
+│   ├── skeptic.md
+│   ├── learner.md
+│   ├── expert.md
+│   └── ...
 └── docs/
     ├── index.md             # This file — documentation hub
     ├── architecture.md      # Mermaid architecture diagrams
-    └── skills.md            # Full system reference: all commands for all three skills
+    ├── skills.md            # Full system reference: all commands for all three skills
+    └── frames.md            # Frames reference: all 13 frame templates
 ```

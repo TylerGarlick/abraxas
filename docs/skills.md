@@ -162,13 +162,22 @@ System is also installed.
 ### Frame Management
 
 ```bash
-/frame The project uses React 18, TypeScript, and Vitest
-/frame status        # See current frame
-/frame save myproject  # Save for later sessions
-/frame load myproject  # Load saved frame
+/frame The project uses React 18, TypeScript, and Vitest     # Add to frame (accumulate)
+/frame skeptic           # Replace: clear and load skeptic frame
+/frame + skeptic        # Merge: add skeptic to existing frame
+/frame merge skeptic    # Merge: alternative syntax
+/frame status           # See current frame
+/frame save myproject   # Save for later sessions
+/frame load myproject  # Load saved frame (merge with existing)
 /frame default myproject # Auto-load on session start
-/frame clear        # Reset to blank
+/frame clear           # Reset to blank
 ```
+
+Frame priority when loading by name:
+1. `frames/<name>.md` (project templates) — checked first
+2. `~/.claude/frames/<name>.md` (user-saved) — fallback
+
+See [Frames Reference](./frames.md) for all available templates.
 
 ---
 
@@ -210,7 +219,11 @@ so the user can verify and evaluate what is in the frame at any time.
 
 ## Pre-built Frames
 
-These frames are **tool-agnostic** — copy into any AI's context, or save to your tool's equivalent storage. The `frames/` directory in this project contains ready-to-use templates.
+These frames are **tool-agnostic** — copy into any AI's context, or save to your tool's equivalent
+storage. The `frames/` directory in this project contains ready-to-use templates.
+
+For the complete reference with detailed descriptions, evaluation criteria, and usage examples,
+see [Frames Reference](./frames.md).
 
 ### Context Frames — Who You Are / How You Work
 
@@ -254,8 +267,8 @@ Copy the frame content directly into your AI's context window before starting yo
 If your tool supports file-based frames:
 
 ```
-/frame load skeptic
-/frame load evaluate-code
+/frame skeptic      # Replace: clear and load skeptic frame
+/frame + skeptic   # Merge: add skeptic to existing frame
 ```
 
 **Option 3: Reference in prompt**
