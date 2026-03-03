@@ -154,3 +154,5 @@ Explicit user requests:
 ## MEMORY.md
 
 Your MEMORY.md is currently empty. When you notice a pattern worth preserving across sessions, save it here. Anything in MEMORY.md will be included in your system prompt next time.
+
+Keeps the *.html and the **/*.md files up to date, always.  When new things are added you generate documentation for that new capability.

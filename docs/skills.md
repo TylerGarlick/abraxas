@@ -46,7 +46,7 @@ project-level configuration required.
 
 | Skill | File | Commands | Archive Size |
 |---|---|---|---|
-| Honest | `skills/honest.skill` | 8 | ~5 KB |
+| Honest | `skills/honest.skill` | 9 | ~5 KB |
 | Janus System | `skills/janus-system.skill` | 14 | ~10 KB |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | ~20 KB |
 
@@ -78,7 +78,9 @@ framing, no threshold mechanics. The correct skill for anyone asking:
 **The core problem Honest solves**: AI systems routinely mix what they know, what they've inferred,
 what they're uncertain about, and what they're simply making up — all in the same output, with none
 of it labeled. The reader cannot tell a verified fact from a confident guess from an outright
-fabrication. Honest makes the invisible visible.
+fabrication. Honest makes the invisible visible. The `/frame` command gives sessions an epistemic
+foundation: declare what is known before the AI responds, save frames for reuse across sessions,
+and designate a default frame that auto-loads at the start of every conversation.
 
 **When to use Honest instead of the Janus System**:
 - You want plain commands without Sol/Nox terminology
@@ -107,6 +109,29 @@ All Honest commands use the same four confidence labels:
 | `[INFERRED]` | Derived from what is known. Reasoning shown. Not directly verified. |
 | `[UNCERTAIN]` | Relevant but not fully verifiable. Uncertainty named explicitly. |
 | `[UNKNOWN]` | I don't know this. I will not fabricate. This is a complete response. |
+
+---
+
+#### Session Baseline
+
+Every Honest session starts blank by default. `/frame` gives users a way to pre-declare what is
+already true before the AI responds — and to build a library of named frames for reuse across
+sessions. Frames accumulate: multiple `/frame` calls add to the existing frame without replacing it.
+
+When `/frame` is called, the system immediately echoes back everything it registered, categorized,
+so the user can verify and evaluate what is in the frame at any time.
+
+| Command | Function |
+|---|---|
+| `/frame {content}` | Declare facts, assumptions, or context — accumulates into the existing frame |
+| `/frame status` | Display the current Session Frame in full |
+| `/frame clear` | Reset the current frame; return to blank-slate behavior |
+| `/frame save {name}` | Save the current frame to `~/.claude/frames/{name}.md` for future sessions |
+| `/frame load {name}` | Load a saved frame into the current session — merges with existing frame |
+| `/frame list` | List all saved frames in `~/.claude/frames/` |
+| `/frame delete {name}` | Remove a saved frame file |
+| `/frame default {name}` | Designate a saved frame as the session default — auto-loads in future sessions |
+| `/frame default clear` | Remove the default designation; sessions return to blank-slate start |
 
 ---
 
@@ -247,6 +272,323 @@ been confabulated.
 *Why this command*: A full epistemic picture of the whole session. The four fabricated or
 unverifiable claims are the immediate action items — verify or remove them before using this
 research.
+
+---
+
+#### Example 4: Setting a frame before asking anything
+
+You're new to using an AI assistant and you want it to know your context before it says
+anything. You don't want to keep explaining yourself every time.
+
+```
+/frame I am a high school biology teacher in the United States. My students are 15-16 years old.
+I do not want college-level vocabulary. Today is March 2026.
+```
+
+**System**:
+
+```
+[FRAME SET]
+
+Known to this session:
+— You are a high school biology teacher
+— Your students are 15-16 years old
+— Today's date is March 2026
+
+Working assumptions:
+— (none declared)
+
+Declared uncertainties:
+— (none declared)
+
+Context: US high school biology instruction; vocabulary appropriate for 15-16 year olds
+
+Frame is active. All subsequent checks, labels, and audits will reference this baseline.
+/frame status to review · /frame clear to reset
+```
+
+**What this does**: Before the AI says a single word in response to any question, it now knows
+who you are and what level of language to use. Any subsequent `/check` will treat your stated
+facts as `[KNOWN]` — the AI will not hedge on whether you are actually a teacher, or whether
+the date is actually March 2026.
+
+---
+
+#### Example 5: Accumulating — adding more context in a second call
+
+You set a frame above, but you realized you forgot to mention something important. You don't
+need to start over — just call `/frame` again.
+
+```
+/frame Also: we just finished a unit on cell division. I'm not sure if the students remember
+the difference between mitosis and meiosis — we didn't review it this week.
+```
+
+**System**:
+
+```
+[FRAME UPDATED]
+
+Added to existing frame:
+
+Known to this session:
+— (previous frame retained)
+— The class just finished a unit on cell division
+
+Declared uncertainties:
+— Whether students currently remember the difference between mitosis and meiosis
+  (not reviewed this week — not yet verified)
+
+Frame is active. /frame status to see the full current frame.
+```
+
+**What this does**: The second `/frame` call merged into the first — it didn't replace it.
+Your original facts are still in the frame. The new uncertainty is now registered, which means
+any AI response that assumes the students clearly remember mitosis vs. meiosis will be flagged
+in `/audit` as inconsistent with the declared uncertainty.
+
+---
+
+#### Example 6: Checking what's in the frame mid-session
+
+You've been working for a while and you want to remind yourself what context the AI is operating
+with. You don't want to guess — you want to see it.
+
+```
+/frame status
+```
+
+**System**:
+
+```
+Current Session Frame:
+
+Known to this session:
+— You are a high school biology teacher
+— Your students are 15-16 years old
+— Today's date is March 2026
+— The class just finished a unit on cell division
+
+Declared uncertainties:
+— Whether students currently remember the difference between mitosis and meiosis
+
+Context: US high school biology instruction; vocabulary for 15-16 year olds
+
+Frame has been active since session start. No frame saved for this session.
+/frame save {name} to persist · /frame clear to reset
+```
+
+**What this does**: A read-only view of everything in the current frame. Nothing is changed.
+Use this whenever you're unsure what context is active — especially in long sessions where you
+may have added to the frame several times.
+
+---
+
+#### Example 7: Clearing the frame to start fresh
+
+You were working on a biology lesson plan, but now you want to switch to something completely
+unrelated — personal finance questions. The biology context would be misleading.
+
+```
+/frame clear
+```
+
+**System**:
+
+```
+[FRAME CLEARED]
+
+The Session Frame has been reset. All declared facts, assumptions, and context have been removed.
+Subsequent commands will operate without a baseline.
+
+/frame {content} to establish a new frame.
+```
+
+**What this does**: Returns the session to blank-slate behavior. The AI will hedge on things
+again, because it no longer knows your context. Use this when you're switching domains and
+don't want the old frame to influence new answers. If you want to reuse the old frame later,
+save it first with `/frame save {name}` before clearing.
+
+---
+
+#### Example 8: Saving a frame to reuse in future sessions
+
+You've built a useful frame — your work context, your project constraints, the current date.
+You want to use the same frame in tomorrow's session without retyping it.
+
+```
+/frame save biology-teacher
+```
+
+**System**:
+
+```
+[FRAME SAVED]
+
+Frame written to: ~/.claude/frames/biology-teacher.md
+
+Contents saved:
+— Known: high school biology teacher, students 15-16, date March 2026, cell division unit completed
+— Uncertain: whether students remember mitosis vs. meiosis
+
+Load in any future session with: /frame load biology-teacher
+Set as session default with: /frame default biology-teacher
+```
+
+**What this does**: The current frame is written to a file on your computer. It will be there
+in future sessions. You built it once — now you can load it whenever you need it, rather than
+re-declaring the same facts every conversation.
+
+---
+
+#### Example 9: Loading a saved frame in a new session
+
+It's a new day. New conversation. You want your standard work context active from the start.
+
+```
+/frame load biology-teacher
+```
+
+**System**:
+
+```
+[FRAME LOADED]
+
+Loaded: ~/.claude/frames/biology-teacher.md
+
+Merged into current frame:
+
+Known to this session:
+— You are a high school biology teacher
+— Your students are 15-16 years old
+— Today's date is March 2026
+— The class just finished a unit on cell division
+
+Declared uncertainties:
+— Whether students currently remember the difference between mitosis and meiosis
+
+Frame is active. /frame status to review · /frame clear to reset
+```
+
+**What this does**: The saved frame is read from disk and merged into the current session —
+exactly as if you had typed `/frame {all that content}` by hand. You can then add more context
+with additional `/frame {content}` calls. The loaded frame is the starting point, not the limit.
+
+---
+
+#### Example 10: Listing available frames
+
+You've saved a few frames over time and you can't remember what they're called.
+
+```
+/frame list
+```
+
+**System**:
+
+```
+[FRAME LIST]
+
+Saved frames in ~/.claude/frames/:
+
+  biology-teacher.md      — last modified March 2026
+  research-defaults.md    — last modified February 2026
+  home-project.md         — last modified January 2026
+
+Default: biology-teacher (auto-loads at session start)
+
+/frame load {name} to load · /frame delete {name} to remove
+```
+
+**What this does**: Shows you everything in your frames directory, with modification dates so
+you can tell which are current. Also shows the active default if one is set.
+
+---
+
+#### Example 11: Setting a default frame that loads automatically
+
+You use the same work context almost every day. You're tired of loading it manually at the
+start of each session.
+
+```
+/frame default biology-teacher
+```
+
+**System**:
+
+```
+[DEFAULT SET]
+
+biology-teacher is now your session default.
+
+This frame will automatically load at the start of every new conversation — before your
+first message is processed. No /frame load call required.
+
+To check your frame at session start: /frame status
+To remove this default: /frame default clear
+```
+
+**What this does**: From now on, every time you start a new Claude Code session, the
+biology-teacher frame loads automatically. You don't have to do anything. It is as if you
+typed `/frame load biology-teacher` at the very start of every conversation. Remove this
+behavior at any time with `/frame default clear`.
+
+---
+
+#### Example 12: Frame + /check + /audit — the full integration
+
+You want to see how the frame works with the other Honest commands together. Here is the
+complete flow:
+
+**Step 1**: Set the frame.
+
+```
+/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+The function parse_config() is deprecated and should not appear in new code.
+I'm not sure whether the test suite covers the config module.
+```
+
+**System**: `[FRAME SET]` — frame active with known facts and one declared uncertainty.
+
+**Step 2**: Ask a question. The AI responds and mentions `parse_config()`.
+
+**Step 3**: Check the response against the frame.
+
+```
+/check
+```
+
+**System**:
+
+`[KNOWN]` parse_config() exists in the codebase — confirmed by frame.
+`[KNOWN]` parse_config() is deprecated — declared in frame, not re-verified.
+`[UNCERTAIN]` The claim that parse_config() is called in 14 places — not stated in frame;
+requires code search to verify.
+`[UNKNOWN]` Whether the deprecated function has a documented replacement — not in frame.
+
+Frame fact check: Response does not recommend using parse_config() in new code. No contradictions.
+
+**Step 4**: After the full session, run the audit.
+
+```
+/audit
+```
+
+**System**: Session audit complete.
+
+...
+
+**Frame Adherence**:
+— parse_config() was correctly identified as deprecated in every response (consistent with frame)
+— No response recommended parse_config() for new use (no contradiction)
+— Test coverage uncertainty declared in the frame was not overridden: one response stated
+  "the test suite likely covers this" — flagged as `[INFERRED]`, not `[KNOWN]`, consistent
+  with the declared uncertainty
+
+**What this does**: The frame anchors the whole session. `/check` uses it to skip re-verifying
+facts you declared. `/audit` uses it to check that no output contradicted what you said was
+true, and that your declared uncertainty was treated as uncertainty — not quietly upgraded to
+a confident claim.
 
 ---
 
@@ -804,3 +1146,19 @@ Janus session. Works with or without the Janus System installed.
 *Use when*: You are doing research and need to know the full epistemic quality of
 the conversation before using the results. The `/audit` at the end surfaces every
 fabricated or unverifiable claim in one pass.
+
+---
+
+### Combination 8: Frame → Research Session
+
+```
+/frame {facts, constraints, context}   ← anchor the session baseline (accumulates)
+/honest {research question}            ← start with anti-sycophancy active
+[conversation]
+/audit                                 ← full audit with Frame Adherence section
+```
+
+*Use when*: You know context the AI doesn't — date, project, domain, deprecated APIs,
+constraints — and want those facts treated as established throughout. The frame prevents
+the AI from hedging on things you've already told it, and the Frame Adherence section
+in `/audit` confirms no output contradicted your declared baseline.

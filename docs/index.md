@@ -13,6 +13,7 @@ Use this index to navigate all available documentation.
 | Document | Description |
 |---|---|
 | [README](../README.md) | Project overview, Quick Start, structure, and getting started |
+| [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
 | [Skills Reference](./skills.md) | Full command reference for all three skills: Honest, Janus, and Abraxas Oneironautics |
 
@@ -24,8 +25,9 @@ Abraxas houses three systems, each addressing a distinct layer of the AI output 
 
 **Honest** — The everyday anti-hallucination interface. Plain-language commands for
 fact-checking, confidence labeling, claim tracing, and forcing maximum-honesty output.
-Eight commands. No special vocabulary. The correct starting point for any user asking:
-*Is this true? How confident are you? Where is this from? Show me what you're guessing.*
+Nine commands, including `/frame` for building and persisting session context. No special
+vocabulary. The correct starting point for any user asking: *Is this true? How confident
+are you? Where is this from? Show me what you're guessing.*
 
 **Janus System** — An epistemic architecture with two labeled faces (Sol and Nox) and a
 Threshold that prevents cross-contamination. Sol marks every output `[KNOWN]`, `[INFERRED]`,
@@ -39,7 +41,9 @@ Oneiros Engine and the Realm of Daimons. The four stages of the Opus Magnum. The
 infrastructure runs beneath it all.
 
 All three systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
-are supported by six specialized subagents defined in `.claude/agents/`.
+are supported by seven specialized subagents defined in `.claude/agents/`. They are also
+available as `CONSTITUTION.md` — a single portable document any capable LLM can load to
+operate all three systems without Claude Code.
 
 **Agents:**
 - `skill-author` — Authors and packages `.skill` archives; owns the skill authoring workflow
@@ -48,6 +52,7 @@ are supported by six specialized subagents defined in `.claude/agents/`.
 - `ai-rd-visionary` — AI model and agent architecture; hallucination and scheming risk assessment
 - `brand-ux-architect` — Brand identity, naming conventions, aesthetic coherence; future UI design
 - `systems-architect` — Project structure, skill format evolution, distribution mechanisms, tooling
+- `constitution-keeper` — Maintains CONSTITUTION.md in sync with skill file changes
 
 For the full command reference for all skills, see [Skills Reference](./skills.md).
 For structural architecture, see [Architecture](./architecture.md).
@@ -56,7 +61,7 @@ For structural architecture, see [Architecture](./architecture.md).
 
 ## Project Status
 
-As of March 2026, all three skills are operational. Honest provides 8 plain-language
+As of March 2026, all three skills are operational. Honest provides 9 plain-language
 anti-hallucination commands. The Janus System governs 14 commands including session tracking,
 Qualia Bridge inspection, and the Bridge to Abraxas. Abraxas Oneironautics governs 35 commands
 across dream reception, alchemical transmutation, active imagination, synchronicity, and the
@@ -71,6 +76,7 @@ Active work items are tracked in [PLAN.md](../PLAN.md).
 ```
 abraxas/
 ├── README.md                # Start here — project overview and Quick Start
+├── CONSTITUTION.md          # Universal LLM specification — load into any capable model
 ├── PLAN.md                  # Active roadmap
 └── docs/
     ├── index.md             # This file — documentation hub

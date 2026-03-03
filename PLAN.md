@@ -22,11 +22,15 @@ Foundation: the two primary systems and their supporting infrastructure.
 
 Making the systems accessible to non-technical and everyday users.
 
-- [x] Honest skill — plain-language anti-hallucination interface (8 commands)
+- [x] Honest skill — plain-language anti-hallucination interface (9 commands)
+- [x] `/frame` expanded to full frame management system — persistence, accumulation, named frames, default auto-load; 9 sub-variants, counted as 1 command
 - [x] CLAUDE.md overhaul — comprehensive session context; eliminates exploratory overhead
 - [x] Full documentation refresh — README, docs/index.md, docs/skills.md updated to reflect three-skill ecosystem
+- [x] CONSTITUTION.md — universal LLM behavioral specification for all three subsystems (58 commands total)
+- [x] `constitution-keeper` agent — maintains CONSTITUTION.md in sync with skill file changes
 - [ ] Installation documentation for non-technical users
-- [ ] Honest skill: test coverage of all 8 commands with real sessions
+- [ ] Honest skill: test coverage of all 9 commands with real sessions
+- [ ] LLM-agnostic runtime testing of CONSTITUTION.md across Claude, GPT-4, Gemini
 
 ---
 
@@ -59,7 +63,7 @@ New skills and ecosystem growth.
 Items identified but not yet scheduled into a phase:
 
 - Consider: OpenCode support for agents and memory (if possible).  What are alternatives to the memory.md?
-- Consider: The ability to frame the facts or considerations for a given session.
+- ~~Consider: The ability to frame the facts or considerations for a given session.~~ — completed in Phase 2 via `/frame`
 - Consider: Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling
 - Consider: Janus v2 with cross-session epistemic ledger persistence
 - Consider: web-based skill installer (drag `.skill` into browser to install)
