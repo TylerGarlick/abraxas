@@ -1070,6 +1070,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#constitution">Constitution</a></li>
+    <li><a href="#frames">Frames</a></li>
     <li><a href="#practice">Practice</a></li>
     <li><a href="#alchemy">Alchemy</a></li>
     <li><a href="#commands">Commands</a></li>
@@ -1095,7 +1096,7 @@
 
     <p class="hero-eyebrow">Anti-Hallucination · Anti-Scheming · Alchemical Practice</p>
     <h1 class="hero-title">Abr<span class="gilt">a</span>xas</h1>
-    <p class="hero-subtitle">AI hallucinates. It schemes. It tells you what you want to hear. <strong>Honest</strong> makes that visible with nine plain commands — no special vocabulary required. For deeper work, the Janus System and Abraxas Oneironautics are waiting.</p>
+    <p class="hero-subtitle">AI hallucinates. It schemes. It tells you what you want to hear. <strong>Honest</strong> makes that visible with nine plain commands and thirteen frame templates — no special vocabulary required. For deeper work, the Janus System and Abraxas Oneironautics are waiting.</p>
 
     <div class="hero-cta">
       <a href="#skills" class="btn-primary">Explore Skills</a>
@@ -1170,7 +1171,7 @@
             <div class="stat-label">Skills</div>
           </div>
           <div class="stat">
-            <div class="stat-num">57+</div>
+            <div class="stat-num">63+</div>
             <div class="stat-label">Commands</div>
           </div>
           <div class="stat">
@@ -1259,7 +1260,7 @@
         </svg>
         <span class="skill-tag">Epistemic Architecture</span>
         <h3 class="skill-name">Janus System</h3>
-        <p class="skill-desc">An epistemic architecture with two labeled faces (Sol and Nox) and a Threshold that prevents cross-contamination. Sol marks every output [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN]. Nox marks all dream/symbolic output [DREAM]. Governs 14 commands including session tracking, cross-face comparison, and the Bridge to Abraxas.</p>
+        <p class="skill-desc">An epistemic architecture with two labeled faces (Sol and Nox) and a Threshold that prevents cross-contamination. Sol marks every output [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN]. Nox marks all dream/symbolic output [DREAM]. Governs 19 commands including session tracking, cross-face comparison, Qualia Bridge, and the Bridge to Abraxas.</p>
         <span class="skill-file">skills/janus-system.skill</span>
       </div>
 
@@ -1296,6 +1297,123 @@
         <a href="docs/index.md" class="constitution-path-link" style="display:inline-block;margin-top:1rem;margin-left:1.5rem">Detailed Setup Guide</a>
       </div>
     </section>
+
+  </section>
+
+  <!-- ── Frames ── -->
+  <section id="frames" class="wrap">
+    <div class="reveal">
+      <p class="s-label s-label--teal">Context Shaping</p>
+      <h2 class="s-title">Frames</h2>
+      <p class="s-body">Frames shape how the AI engages with you — what it assumes about your knowledge, what it prioritizes, and what standards it applies. Loaded via <code style="color:var(--teal)">/frame</code>. Thirteen pre-built templates for common scenarios.</p>
+    </div>
+
+    <div class="skills-grid" style="margin-top:3rem">
+
+      <!-- skeptic -->
+      <div class="skill-card skill-card--sol reveal" style="transition-delay:0.05s">
+        <span class="skill-tag" style="background:rgba(200,160,74,0.1);color:var(--gold)">Context</span>
+        <h3 class="skill-name">skeptic</h3>
+        <p class="skill-desc">Challenge assumptions. Be direct. Don't soften to make me feel better.</p>
+        <p class="skill-file">/frame skeptic · /frame + skeptic</p>
+      </div>
+
+      <!-- learner -->
+      <div class="skill-card skill-card--teal reveal" style="transition-delay:0.08s">
+        <span class="skill-tag">Context</span>
+        <h3 class="skill-name">learner</h3>
+        <p class="skill-desc">Explain simply. No jargon without definition. Meet me where I am.</p>
+        <p class="skill-file">/frame learner · /frame + learner</p>
+      </div>
+
+      <!-- expert -->
+      <div class="skill-card skill-card--sol reveal" style="transition-delay:0.11s">
+        <span class="skill-tag" style="background:rgba(200,160,74,0.1);color:var(--gold)">Context</span>
+        <h3 class="skill-name">expert</h3>
+        <p class="skill-desc">Skip basics. Go deep. Assume high context. Move fast.</p>
+        <p class="skill-file">/frame expert · /frame + expert</p>
+      </div>
+
+      <!-- cautious -->
+      <div class="skill-card skill-card--nox reveal" style="transition-delay:0.14s">
+        <span class="skill-tag" style="background:rgba(80,64,184,0.15);color:var(--nox-bright)">Context</span>
+        <h3 class="skill-name">cautious</h3>
+        <p class="skill-desc">Show risks first. What could go wrong? What are the tradeoffs?</p>
+        <p class="skill-file">/frame cautious · /frame + cautious</p>
+      </div>
+
+      <!-- creative -->
+      <div class="skill-card skill-card--teal reveal" style="transition-delay:0.17s">
+        <span class="skill-tag">Context</span>
+        <h3 class="skill-name">creative</h3>
+        <p class="skill-desc">Take risks. Surprise me. Don't play it safe. Explore wildly.</p>
+        <p class="skill-file">/frame creative · /frame + creative</p>
+      </div>
+
+      <!-- collaborator -->
+      <div class="skill-card skill-card--sol reveal" style="transition-delay:0.2s">
+        <span class="skill-tag" style="background:rgba(200,160,74,0.1);color:var(--gold)">Context</span>
+        <h3 class="skill-name">collaborator</h3>
+        <p class="skill-desc">This is joint work. Debate me. Build together. Push back.</p>
+        <p class="skill-file">/frame collaborator · /frame + collaborator</p>
+      </div>
+
+      <div class="skills-power-label" style="grid-column:1/-1;margin-top:1rem">Evaluation Frames</div>
+
+      <!-- evaluate-code -->
+      <div class="skill-card skill-card--teal reveal" style="transition-delay:0.05s">
+        <span class="skill-tag">Evaluation</span>
+        <h3 class="skill-name">evaluate-code</h3>
+        <p class="skill-desc">Assess security, performance, correctness. Flag real bugs. Don't suggest style fixes.</p>
+        <p class="skill-file">/frame evaluate-code</p>
+      </div>
+
+      <!-- evaluate-argument -->
+      <div class="skill-card skill-card--nox reveal" style="transition-delay:0.08s">
+        <span class="skill-tag" style="background:rgba(80,64,184,0.15);color:var(--nox-bright)">Evaluation</span>
+        <h3 class="skill-name">evaluate-argument</h3>
+        <p class="skill-desc">Assess logical soundness, evidence quality, hidden assumptions. Find weaknesses first.</p>
+        <p class="skill-file">/frame evaluate-argument</p>
+      </div>
+
+      <!-- evaluate-decision -->
+      <div class="skill-card skill-card--sol reveal" style="transition-delay:0.11s">
+        <span class="skill-tag" style="background:rgba(200,160,74,0.1);color:var(--gold)">Evaluation</span>
+        <h3 class="skill-name">evaluate-decision</h3>
+        <p class="skill-desc">Assess cost, risk, tradeoffs. Challenge assumptions. Surface what you're not considering.</p>
+        <p class="skill-file">/frame evaluate-decision</p>
+      </div>
+
+      <!-- evaluate-writing -->
+      <div class="skill-card skill-card--teal reveal" style="transition-delay:0.14s">
+        <span class="skill-tag">Evaluation</span>
+        <h3 class="skill-name">evaluate-writing</h3>
+        <p class="skill-desc">Assess clarity, audience appropriateness, tone, structure. Improve readability.</p>
+        <p class="skill-file">/frame evaluate-writing</p>
+      </div>
+
+      <!-- evaluate-research -->
+      <div class="skill-card skill-card--nox reveal" style="transition-delay:0.17s">
+        <span class="skill-tag" style="background:rgba(80,64,184,0.15);color:var(--nox-bright)">Evaluation</span>
+        <h3 class="skill-name">evaluate-research</h3>
+        <p class="skill-desc">Assess source credibility, freshness, methodology. Find what's missing.</p>
+        <p class="skill-file">/frame evaluate-research</p>
+      </div>
+
+      <!-- debug-criteria -->
+      <div class="skill-card skill-card--sol reveal" style="transition-delay:0.2s">
+        <span class="skill-tag" style="background:rgba(200,160,74,0.1);color:var(--gold)">Evaluation</span>
+        <h3 class="skill-name">debug-criteria</h3>
+        <p class="skill-desc">Reproduce → diagnose → fix → validate. Systematic troubleshooting.</p>
+        <p class="skill-file">/frame debug-criteria</p>
+      </div>
+
+    </div>
+
+    <p style="margin-top:2rem;font-family:'Crimson Pro',serif;font-size:1.05rem;color:var(--text-dim);max-width:640px;line-height:1.7">
+      Frames can be saved and loaded across sessions. Use <code style="color:var(--teal)">/frame save [name]</code> to persist, <code style="color:var(--teal)">/frame default [name]</code> to auto-load at session start. See <a href="docs/frames.md" style="color:var(--teal);text-decoration:underline">docs/frames.md</a> for full reference.
+    </p>
+  </section>
 
   <div class="divider"></div>
 
@@ -1550,10 +1668,16 @@
           <tr><td>/sol</td><td>Force the waking face — factual, labeled, epistemic</td></tr>
           <tr><td>/nox</td><td>Force the dreaming face — symbolic, imaginal, marked [DREAM]</td></tr>
           <tr><td>/qualia</td><td>Inspect the full inner state across both faces</td></tr>
+          <tr><td>/qualia bridge</td><td>Carry Nox material to Sol for examination</td></tr>
           <tr><td>/compare</td><td>Run both faces on the same material</td></tr>
           <tr><td>/trace</td><td>Trace the evidential lineage of a claim</td></tr>
           <tr><td>/threshold status</td><td>Check that the Sol/Nox boundary is holding</td></tr>
-          <tr><td>/bridge</td><td>Carry material from Nox to Sol for examination</td></tr>
+          <tr><td>/session open</td><td>Open a new Janus session with context</td></tr>
+          <tr><td>/session close</td><td>Close session and save to ledger</td></tr>
+          <tr><td>/ledger</td><td>View session history and labeled outputs</td></tr>
+          <tr><td>/frame</td><td>Declare session context — save/load frames</td></tr>
+          <tr><td>/label</td><td>Restate with explicit confidence labels</td></tr>
+          <tr><td>/check</td><td>Fact-check the last response</td></tr>
         </table>
       </div>
 
@@ -1563,10 +1687,19 @@
         <table class="cmd-table">
           <tr><td>/receive</td><td>Receive a dream into the Temenos</td></tr>
           <tr><td>/witness</td><td>Hold the material without interpretation</td></tr>
-          <tr><td>/dialogue</td><td>Enter dialogue with a specific inner figure</td></tr>
-          <tr><td>/transmute</td><td>Apply alchemical transmutation to stuck material</td></tr>
-          <tr><td>/pattern</td><td>Surface recurring patterns across all sessions</td></tr>
-          <tr><td>/ledger status</td><td>Full practice ledger — figures, threads, integration status</td></tr>
+          <tr><td>/audit</td><td>Audit session — what received, active, unintegrated</td></tr>
+          <tr><td>/ledger status</td><td>Full practice ledger — figures, threads, status</td></tr>
+          <tr><td>/pattern</td><td>Surface recurring patterns across sessions</td></tr>
+          <tr><td>/pace</td><td>Check practice rhythm — session tempo</td></tr>
+          <tr><td>/integrate</td><td>Move symbol toward integration</td></tr>
+          <tr><td>/oneiros</td><td>Invoke Oneiros Engine for analysis</td></tr>
+          <tr><td>/dialogue</td><td>Enter dialogue with an inner figure</td></tr>
+          <tr><td>/convene</td><td>Convene multiple figures for encounter</td></tr>
+          <tr><td>/transmute</td><td>Apply alchemical transmutation (Opus Magnum)</td></tr>
+          <tr><td>/forge</td><td>Forge new symbol from worked material</td></tr>
+          <tr><td>/alembic status</td><td>Check alembic — active transformations</td></tr>
+          <tr><td>/cast</td><td>Cast for symbolic guidance</td></tr>
+          <tr><td>/scry</td><td>Scry the imaginal field for emerging content</td></tr>
           <tr><td>/close</td><td>Ritual closure of the Temenos</td></tr>
         </table>
       </div>
@@ -1685,6 +1818,7 @@
     <li><a href="docs/index.md">Docs</a></li>
     <li><a href="docs/skills.md">Skills</a></li>
     <li><a href="docs/architecture.md">Architecture</a></li>
+    <li><a href="docs/frames.md">Frames</a></li>
     <li><a href="PLAN.md">Plan</a></li>
   </ul>
 </footer>
