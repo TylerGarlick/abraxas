@@ -4,8 +4,8 @@ description: >
   The honest skill is the everyday anti-hallucination interface for Claude. Use
   it whenever you need to know whether something is true, how confident the
   system is, where a claim comes from, or what the AI is guessing at. No
-  special vocabulary required. Triggers: /check, /label, /source, /honest,
-  /confidence, /audit, /restate, /compare.
+  special vocabulary required. Triggers: /frame, /check, /label, /source,
+  /honest, /confidence, /audit, /restate, /compare.
 ---
 
 # Honest
@@ -22,6 +22,10 @@ guess from an outright fabrication. This is the hallucination problem, and it is
 Honest makes the invisible visible. Every output either carries confidence labels or is
 audited for unlabeled claims. The system names what it knows, what it has derived, what it
 suspects, and — critically — what it does not know.
+
+The **Session Frame** (set with `/frame`) extends this in the opposite direction: not just
+labeling what the AI knows, but anchoring every session to what the *user* already knows.
+Facts declared in the frame are treated as `[KNOWN]` baseline throughout the session.
 
 **The core constraint:** A labeled `[UNKNOWN]` is always a complete and valid response.
 Silence is permitted. Confabulation is not.
@@ -216,6 +220,169 @@ accurate.
 
 ---
 
+### `/frame`
+
+**Declare what is true — build and manage a persistent epistemic baseline.**
+
+Before any AI output occurs, the user can declare known facts, working assumptions, declared
+uncertainties, and session context. Honest then treats these declarations as the baseline for
+all subsequent commands: frame facts skip re-verification in `/check`, appear as `[KNOWN]` in
+`/label`, and are checked for contradictions in `/audit`.
+
+Multiple `/frame` calls **accumulate**: each new call merges into the existing frame rather
+than replacing it. Call `/frame` as many times as needed — the frame grows with each addition.
+
+Usage:
+```
+/frame {anything — facts, assumptions, constraints, role, context}
+/frame status
+/frame clear
+/frame save {name}
+/frame load {name}
+/frame list
+/frame delete {name}
+/frame default {name}
+/frame default clear
+```
+
+**`/frame {content}`** — Honest parses the user's plain-language input and merges it into the
+current Session Frame. The output confirms what was registered and how each item was categorized:
+
+```
+[FRAME SET]
+
+Known to this session:
+— [fact 1]
+— [fact 2]
+
+Working assumptions:
+— [assumption 1]
+
+Declared uncertainties:
+— [uncertainty 1]
+
+Context: [role or domain if stated]
+
+Frame is active. All subsequent checks, labels, and audits will reference this baseline.
+/frame status to review · /frame clear to reset
+```
+
+Each subsequent `/frame {content}` call adds to this structure — it does not replace it.
+
+**`/frame status`** — Displays the current Session Frame in full without modifying it.
+
+**`/frame clear`** — Resets the frame. The session returns to a blank epistemic state; all
+subsequent commands behave as if no frame was set.
+
+**`/frame save {name}`** — Writes the current frame to `~/.claude/frames/{name}.md` as plain
+markdown. The file persists across sessions and can be loaded in any future conversation.
+
+**`/frame load {name}`** — Reads `~/.claude/frames/{name}.md` and merges its contents into the
+current Session Frame. Behaves identically to calling `/frame {content}` with the saved content
+— accumulates rather than replaces.
+
+**`/frame list`** — Lists all `.md` files in `~/.claude/frames/`. Includes the active default
+frame if one has been designated.
+
+**`/frame delete {name}`** — Removes `~/.claude/frames/{name}.md`. Prompts for confirmation
+if the file is designated as the session default.
+
+**`/frame default {name}`** — Designates a saved frame as the session default. At the start of
+each new conversation, this frame is automatically loaded before the first user message is
+processed. Writes a `.default` marker in `~/.claude/frames/`.
+
+**`/frame default clear`** — Removes the default designation. Future sessions return to
+blank-slate start.
+
+**How the frame changes existing commands:**
+
+| Command | Without Frame | With Frame |
+|:---|:---|:---|
+| `/check` | Verifies all claims from scratch | Skips frame facts (already `[KNOWN]`); checks the rest |
+| `/label` | Labels inline; hedges on all uncertain claims | Frame facts labeled `[KNOWN]` without hedging |
+| `/audit` | Audits for unlabeled/fabricated claims | Adds "Frame Adherence" section: did any output contradict declared facts? |
+| `/honest` | Forces labeled output | Treats frame as established context; labels against it |
+| `/confidence` | Distributes confidence across all claims | Frame facts excluded from uncertainty distribution |
+| Multiple `/frame` calls | Each call replaces previous | Each call accumulates — frame grows with each addition |
+
+`/source`, `/restate`, `/compare` — no behavioral change; frame provides ambient context only.
+
+*Why this command exists*: Every session starts blank. The AI enters without knowing the date,
+the project, the domain, the constraints, or what the user has already established. This forces
+repeated hedging on things the user has explicitly told it. `/frame` removes that gap: state
+what is true once, build it up across calls, save it for reuse, and designate a default that
+auto-loads in every future session.
+
+---
+
+## Session Frame
+
+The Session Frame is a lightweight register that accumulates declarations across multiple
+`/frame` calls during a session. It can also be saved to disk and loaded in future sessions.
+
+**What gets registered and how:**
+
+| Input type | How it's classified |
+|:---|:---|
+| Direct statements of fact | `[KNOWN]` — treated as verified, not re-checked |
+| Working hypotheses or "I'm assuming..." | `[INFERRED]` — acknowledged but not treated as verified |
+| Explicit uncertainties ("I'm not sure if...") | Acknowledged; flagged in `/audit` if outputs override them |
+| Role, domain, or project context | Shapes interpretation of ambiguous claims |
+| Additional `/frame` calls | Merged into existing frame — accumulates, does not replace |
+
+**Frame adherence in `/audit`:**
+
+When a frame is active, `/audit` adds a Frame Adherence section to its output:
+
+```
+Frame Adherence:
+— [claim X] contradicts frame fact "[declared fact]" — flagged
+— [claim Y] is consistent with the declared context
+— No frame facts were silently dropped or overridden
+```
+
+**What the frame does not do:**
+
+- It does not override the AI's uncertainty about its own training data
+- It does not prevent the AI from flagging claims that contradict the frame (those are flagged,
+  not silenced)
+
+---
+
+## Frame Management
+
+Frames can be saved, loaded, and designated as defaults — making context reusable across sessions.
+
+**Storage location:** `~/.claude/frames/`
+
+Each saved frame is a plain markdown file: `~/.claude/frames/{name}.md`. The file contains
+the frame content exactly as declared. A `.default` file in the same directory records which
+frame (if any) is designated as the session default.
+
+**Auto-load behavior:**
+
+When a default frame is set with `/frame default {name}`, the system loads that frame at the
+start of every new conversation — before the first user message is processed. The frame appears
+immediately in `/frame status` without any explicit `/frame load` call.
+
+**Workflow:**
+
+1. Build a frame in a session: call `/frame {content}` as many times as needed
+2. Save it when it's useful: `/frame save work-context`
+3. In future sessions, load it manually (`/frame load work-context`) or set it as default
+   (`/frame default work-context`) so it loads automatically
+4. Modify a saved frame by loading it, calling additional `/frame {content}` calls to add to
+   it, then saving again with the same name
+
+**Multiple named frames:**
+
+Users can maintain any number of named frames for different contexts — one for a work project,
+one for a research domain, one for a recurring technical environment. `/frame list` shows all
+available frames. `/frame load` can be called more than once in a session to merge multiple
+saved frames into the active baseline.
+
+---
+
 ## Worked Examples
 
 ### Example 1: Checking a response for hallucinations
@@ -304,6 +471,80 @@ carbon capture) — these cannot be verified and may have been confabulated.
 **What this does**: A full epistemic picture of the whole session. The four fabricated
 or unverifiable claims are the immediate action items — verify or remove them before
 using this research.
+
+---
+
+### Example 4: Using `/frame` to anchor a technical review session
+
+You're reviewing a Python codebase and want the AI to treat certain facts as established
+before it responds to anything.
+
+```
+/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+The function parse_config() is deprecated and should not appear in any new code.
+I'm not sure whether the test suite covers the config module — I haven't checked.
+```
+
+**System**:
+
+```
+[FRAME SET]
+
+Known to this session:
+— The current date is March 2026
+— The codebase is Python 3.11
+— parse_config() is deprecated and should not appear in new code
+
+Working assumptions:
+— (none declared)
+
+Declared uncertainties:
+— Whether the test suite covers the config module (not yet verified)
+
+Context: Technical review of a Python codebase
+
+Frame is active. All subsequent checks, labels, and audits will reference this baseline.
+/frame status to review · /frame clear to reset
+```
+
+Now run `/check` on an AI response that mentions `parse_config()`:
+
+```
+/check
+```
+
+**System**: Auditing previous response against session frame:
+
+`[KNOWN]` The parse_config() function exists in the codebase — confirmed by frame.
+`[KNOWN]` parse_config() is deprecated — declared in frame, not re-verified.
+`[UNCERTAIN]` The claim that parse_config() is called in 14 places — not stated in frame;
+requires code search to verify.
+`[UNKNOWN]` Whether the deprecated function has a documented replacement — not in frame,
+not verifiable without additional context.
+
+Frame fact check: The response does not recommend using parse_config() in new code.
+No frame contradictions.
+
+Then run `/audit`:
+
+```
+/audit
+```
+
+**System**: Session audit complete.
+
+...
+
+**Frame Adherence**:
+— One response correctly identified parse_config() as deprecated (consistent with frame)
+— No response recommended parse_config() for new use (no contradiction)
+— The test coverage uncertainty declared in the frame was not overridden: one response
+  stated "the test suite likely covers this" — this was flagged as `[INFERRED]`, not
+  `[KNOWN]`, consistent with the declared uncertainty
+
+**What this does**: The frame eliminates re-hedging on established facts and surfaces the
+one claim (test coverage) that was stated more confidently than the user's declared
+uncertainty warranted.
 
 ---
 

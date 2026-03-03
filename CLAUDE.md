@@ -13,7 +13,7 @@ The [Plan](./PLAN.md) will store all active work items across all agents in a su
 | System | Skill File | Commands | Purpose |
 |---|---|---|---|
 | **Janus System** | `skills/janus-system.skill` | 14 commands | Epistemic labeling: Sol/Nox faces, Threshold, Qualia Bridge |
-| **Honest** | `skills/honest.skill` | 8 commands | Everyday anti-hallucination for non-technical users |
+| **Honest** | `skills/honest.skill` | 9 commands | Everyday anti-hallucination for non-technical users |
 | **Abraxas Oneironautics** | `skills/abraxas-oneironautics.skill` | 35 commands | Jungian/alchemical dream work and symbolic integration |
 
 Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Abraxas Oneironautics runs on top of Janus.
@@ -30,7 +30,7 @@ abraxas/
 ├── skills/
 │   ├── abraxas-oneironautics.skill  ← alchemical practice (35 commands)
 │   ├── janus-system.skill           ← epistemic dual-face (14 commands)
-│   └── honest.skill                 ← everyday anti-hallucination (8 commands)
+│   └── honest.skill                 ← everyday anti-hallucination (9 commands)
 │   └── honest/                      ← source directory for honest skill
 │       └── SKILL.md
 ├── docs/
@@ -38,9 +38,10 @@ abraxas/
 │   ├── architecture.md              ← Janus + Abraxas internals + historical Python
 │   └── index.md                     ← documentation hub
 ├── .claude/
-│   ├── agents/                      ← 6 subagent definitions (.md files)
+│   ├── agents/                      ← 7 subagent definitions (.md files)
 │   └── agent-memory/                ← persistent memory per agent (subdirs)
 ├── CLAUDE.md                        ← this file — project context for Claude Code
+├── CONSTITUTION.md                  ← universal LLM behavioral specification (all three systems)
 ├── PLAN.md                          ← active roadmap
 ├── README.md                        ← project overview (GitHub-facing)
 └── index.html                       ← public landing page
@@ -71,6 +72,7 @@ All agents defined in `.claude/agents/` (markdown files with YAML front matter):
 | `ai-rd-visionary` | `.claude/agents/ai-rd-visionary.md` | AI architecture, hallucination/scheming risk |
 | `brand-ux-architect` | `.claude/agents/brand-ux-architect.md` | Brand identity, naming, landing page |
 | `systems-architect` | `.claude/agents/systems-architect.md` | Project structure, skill format, tooling |
+| `constitution-keeper` | `.claude/agents/constitution-keeper.md` | Maintains CONSTITUTION.md in sync with skill changes |
 
 Agent memory persists in `.claude/agent-memory/<agent-name>/`.
 

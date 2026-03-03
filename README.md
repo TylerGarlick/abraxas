@@ -31,13 +31,19 @@ The name *Abraxas* refers to a Gnostic cosmological symbol representing the tota
 
 **Janus System** is an epistemic architecture with two labeled faces and a Threshold between them. Sol handles factual output, labeling every claim as `[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, or `[UNKNOWN]`. Nox handles symbolic and creative output, labeling everything `[DREAM]`. The Threshold prevents cross-contamination. A Qualia Bridge provides inspection of the system's internal state. Anti-sycophancy is structural: the system does not tell you what you want to hear. Janus is the infrastructure layer that makes honest output enforced rather than aspirational.
 
-**Honest** is the everyday anti-hallucination interface — plain-language commands for anyone who needs to know whether something is true, how confident the system is, where a claim comes from, or what the AI is guessing at. No Sol/Nox vocabulary required. No mythological framing. Just `/check`, `/label`, `/source`, `/honest`, `/confidence`, `/audit`, `/restate`, and `/compare`. Honest runs on the same labeling infrastructure as Janus, exposed through commands any user can understand immediately.
+**Honest** is the everyday anti-hallucination interface — plain-language commands for anyone who needs to know whether something is true, how confident the system is, where a claim comes from, or what the AI is guessing at. No Sol/Nox vocabulary required. No mythological framing. Nine commands including `/frame` for building and persisting session context. Honest runs on the same labeling infrastructure as Janus, exposed through commands any user can understand immediately.
 
 **Abraxas Oneironautics** is the alchemical practice system: dream reception, shadow work, symbolic integration, active imagination, and the Nekyia descent. The Temenos, the Oneiros Engine, the Realm of Daimons, the Dream Reservoir, and the Alchemical Laboratory. The four stages of the Opus Magnum. Thirty-five commands for sustained multi-session practice. Janus runs beneath it all — every output is labeled, the Threshold holds, and the Qualia Bridge is always available for inspection.
 
 ---
 
 ## Quick Start
+
+**Don't use Claude Code?** `CONSTITUTION.md` is a portable behavioral specification — load it
+into any capable LLM to activate all three Abraxas systems. Paste it as a system prompt in
+Claude.ai, ChatGPT, Gemini, or any model that accepts a system prompt or document upload.
+
+---
 
 Install skills to your Claude Code skills directory:
 
@@ -106,6 +112,7 @@ abraxas/
 │   └── honest/                     # honest skill source
 │       └── SKILL.md
 ├── CLAUDE.md                       # Claude Code project instructions
+├── CONSTITUTION.md                 # Universal LLM behavioral specification
 ├── PLAN.md                         # Active roadmap
 ├── README.md                       # This file
 └── index.html                      # Public landing page
@@ -119,7 +126,7 @@ Skills are `.skill` archive files (zip-based) that Claude Code can install and i
 
 | Skill | File | Commands | For |
 |---|---|---|---|
-| Honest | `skills/honest.skill` | 8 | Everyone — everyday fact-checking and anti-hallucination |
+| Honest | `skills/honest.skill` | 9 | Everyone — everyday fact-checking and anti-hallucination |
 | Janus System | `skills/janus-system.skill` | 14 | Users needing full epistemic session infrastructure |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | Jungian/alchemical practice across sessions |
 
@@ -139,6 +146,7 @@ Custom Claude Code subagents are defined in `.claude/agents/` as markdown files.
 | ai-rd-visionary | `.claude/agents/ai-rd-visionary.md` | AI architecture; hallucination and scheming risk assessment |
 | brand-ux-architect | `.claude/agents/brand-ux-architect.md` | Brand identity, naming, aesthetic coherence; UI design |
 | systems-architect | `.claude/agents/systems-architect.md` | Project structure, skill format, distribution, tooling |
+| constitution-keeper | `.claude/agents/constitution-keeper.md` | Maintains CONSTITUTION.md in sync with skill changes |
 
 ---
 
@@ -163,5 +171,6 @@ Custom Claude Code subagents are defined in `.claude/agents/` as markdown files.
 | Document | Description |
 |---|---|
 | [docs/index.md](./docs/index.md) | Documentation hub and navigation index |
+| [CONSTITUTION.md](./CONSTITUTION.md) | Universal LLM behavioral specification — no Claude Code required |
 | [docs/architecture.md](./docs/architecture.md) | System architecture with Mermaid diagrams |
 | [docs/skills.md](./docs/skills.md) | Full command reference for all three skills |

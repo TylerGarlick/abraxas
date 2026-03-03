@@ -8,18 +8,16 @@ Intended audience: practitioners and developers seeking to understand how the sy
 
 ## Table of Contents
 
-- [Current Architecture](#current-architecture)
-  - [Overview](#overview)
-  - [Janus System Internals](#janus-system-internals)
-  - [Abraxas Oneironautics Internals](#abraxas-oneironautics-internals)
-  - [System Relationship Diagram](#system-relationship-diagram)
-  - [Data Flow: Dream Reception](#data-flow-dream-reception)
-  - [Data Flow: Epistemic Labeling](#data-flow-epistemic-labeling)
-- [Historical Architecture](#historical-architecture)
-  - [Python CLI Overview](#python-cli-overview)
-  - [Module Dependency Graph](#module-dependency-graph)
-  - [Data Flow: Chat UI to Ollama](#data-flow-chat-ui-to-ollama)
-  - [Data Flow: Database Seed](#data-flow-database-seed)
+- [Architecture](#architecture)
+  - [Table of Contents](#table-of-contents)
+  - [Current Architecture](#current-architecture)
+    - [Overview](#overview)
+    - [Janus System Internals](#janus-system-internals)
+    - [Abraxas Oneironautics Internals](#abraxas-oneironautics-internals)
+    - [System Relationship Diagram](#system-relationship-diagram)
+    - [Data Flow: Dream Reception](#data-flow-dream-reception)
+    - [Data Flow: Epistemic Labeling](#data-flow-epistemic-labeling)
+  - [Historical Architecture](#historical-architecture)
 
 ---
 
@@ -235,93 +233,3 @@ _Sol processes each claim independently and assigns the appropriate label. [UNKN
 ## Historical Architecture
 
 > **Note:** The Python CLI application has been retired. This section is preserved for reference only. No Python source files exist in the current working tree.
-
-### Python CLI Overview
-
-The original Abraxas was a Python 3.9+ CLI built with Click. It exposed five commands that integrated ArangoDB, an MCP server, and an Ollama-hosted AI model.
-
-```mermaid
-flowchart LR
-    CLI["abraxas CLI\n(click)"]
-
-    CLI --> INFO["info\nPrint version & commands"]
-    CLI --> DBTEST["db-test\nTest ArangoDB connection"]
-    CLI --> SERVE["serve\nStart MCP server"]
-    CLI --> SEED["seed\nSeed ArangoDB with demo data"]
-    CLI --> UI["ui\nStart Starlette chat UI"]
-
-    DBTEST --> DB["ArangoDBClient\n(python-arango)"]
-    SERVE --> MCP["MCPServer\n(asyncio TCP)"]
-    SEED --> DB
-    SEED --> SEEDFN["seed_database()\nTopics / Sources / Users"]
-    UI --> WEBUI["Starlette app\n(uvicorn)"]
-    WEBUI --> AI["OllamaClient\n(httpx async)"]
-    AI --> OLLAMA["Ollama / Docker\nLLM host (mistral)"]
-```
-
-_The CLI was the single entry point for all subsystems. Each command delegated to a dedicated module._
-
-### Module Dependency Graph
-
-```mermaid
-graph TD
-    cli["cli.py"]
-    db["database.py\nArangoDBClient"]
-    mcp["mcp_server.py\nMCPServer"]
-    ai["ai.py\nOllamaClient / chat_sync"]
-    seed["seed.py\nseed_database()"]
-    ui["ui.py\nStarlette app"]
-    run_all["run_all.py\nUI + API runner"]
-
-    cli --> db
-    cli --> mcp
-    cli --> seed
-    cli --> ui
-    seed --> db
-    ui --> ai
-    run_all --> ui
-    run_all --> mcp
-```
-
-_Each module had a single responsibility. `cli.py` wired them together; `run_all.py` launched the UI and MCP server concurrently._
-
-### Data Flow: Chat UI to Ollama
-
-```mermaid
-sequenceDiagram
-    participant User as Browser User
-    participant UI as Starlette UI (uvicorn)
-    participant AI as OllamaClient
-    participant Genesis as genesis.md
-    participant Ollama as Ollama / Docker LLM
-
-    User->>UI: POST /api/chat {"message": "..."}
-    UI->>Genesis: load_genesis() — read system prompt
-    UI->>AI: OllamaClient.chat(message, history)
-    AI->>Ollama: POST /api/chat {model, messages}
-    Ollama-->>AI: {message: {content: "..."}}
-    AI-->>UI: {content, model, raw}
-    UI-->>User: JSONResponse {content, model}
-```
-
-_The system prompt (Abraxas constitution) was loaded from `genesis.md` on startup and prepended to every conversation._
-
-### Data Flow: Database Seed
-
-```mermaid
-sequenceDiagram
-    participant CLI as abraxas seed
-    participant Client as ArangoDBClient
-    participant ArangoDB as ArangoDB
-
-    CLI->>Client: Connect(host, port, user, password, database)
-    Client->>ArangoDB: Authenticate
-    CLI->>ArangoDB: Upsert topics collection (2 docs)
-    CLI->>ArangoDB: Upsert sources collection (2 docs)
-    CLI->>ArangoDB: Upsert users collection (2 docs)
-    CLI->>ArangoDB: AQL query — join topics + sources
-    ArangoDB-->>CLI: Query results
-    CLI->>CLI: Print JSON summary
-```
-
-_The seed command was idempotent — it used `overwrite=True` on insert, so re-running it was safe._

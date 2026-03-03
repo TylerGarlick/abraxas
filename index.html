@@ -634,6 +634,66 @@
       z-index: 1;
     }
 
+    /* ── Constitution Path ── */
+    .constitution-path {
+      margin-top: 2.5rem;
+      border: 1px solid var(--teal);
+      background: rgba(61, 174, 154, 0.04);
+      padding: 2rem 2.5rem;
+      position: relative;
+    }
+
+    .constitution-path::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(61,174,154,0.04), transparent 60%);
+      pointer-events: none;
+    }
+
+    .constitution-path-label {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.9rem;
+    }
+
+    .constitution-path-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.65rem;
+      position: relative;
+    }
+
+    .constitution-path-desc {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.68;
+      margin-bottom: 1.25rem;
+      max-width: 72ch;
+    }
+
+    .constitution-path-link {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.68rem;
+      color: var(--teal);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid rgba(61,174,154,0.35);
+      padding-bottom: 0.1em;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .constitution-path-link:hover {
+      color: #5dd4be;
+      border-color: rgba(61,174,154,0.7);
+    }
+
     /* ── In Practice ── */
     .example-grid {
       display: grid;
@@ -1034,7 +1094,7 @@
 
     <p class="hero-eyebrow">Anti-Hallucination · Anti-Scheming · Alchemical Practice</p>
     <h1 class="hero-title">Abr<span class="gilt">a</span>xas</h1>
-    <p class="hero-subtitle">AI hallucinates. It schemes. It tells you what you want to hear. <strong>Honest</strong> makes that visible with eight plain commands — no special vocabulary required. For deeper work, the Janus System and Abraxas Oneironautics are waiting.</p>
+    <p class="hero-subtitle">AI hallucinates. It schemes. It tells you what you want to hear. <strong>Honest</strong> makes that visible with nine plain commands — no special vocabulary required. For deeper work, the Janus System and Abraxas Oneironautics are waiting.</p>
 
     <div class="hero-cta">
       <a href="#skills" class="btn-primary">Explore Skills</a>
@@ -1164,7 +1224,7 @@
         </svg>
         <span class="skill-tag">Start Here · Everyday Use</span>
         <h3 class="skill-name">Honest</h3>
-        <p class="skill-desc">The plain-language fact-checking and confidence-labeling skill. No special vocabulary. Eight commands that label every AI claim [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN] — making the invisible visible. The fastest path from "I'm not sure I can trust this" to knowing exactly what to verify.</p>
+        <p class="skill-desc">The plain-language fact-checking and confidence-labeling skill. No special vocabulary. Nine commands — including /frame to declare and manage session context across sessions — that label every AI claim [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN], making the invisible visible. The fastest path from "I'm not sure I can trust this" to knowing exactly what to verify.</p>
         <span class="skill-file">skills/honest.skill</span>
       </div>
 
@@ -1203,6 +1263,15 @@
       </div>
 
     </div>
+
+    <!-- ── Constitution Path ── -->
+    <div class="constitution-path reveal">
+      <p class="constitution-path-label">Alternative Path · Any LLM</p>
+      <h3 class="constitution-path-title">Not using Claude Code? Load the Constitution.</h3>
+      <p class="constitution-path-desc"><code>CONSTITUTION.md</code> is a portable behavioral specification — a single document that any capable language model can read to operate all three Abraxas systems. Paste it as a system prompt in Claude.ai, ChatGPT, Gemini, or any model interface. No installation required.</p>
+      <a href="CONSTITUTION.md" class="constitution-path-link">CONSTITUTION.md</a>
+    </div>
+
   </section>
 
   <div class="divider"></div>
@@ -1439,6 +1508,7 @@
       <div class="cmd-card cmd-card--teal" style="grid-column: 1 / -1">
         <p class="cmd-card-system">Honest</p>
         <table class="cmd-table">
+          <tr><td>/frame</td><td>Declare session facts and context — accumulates; save and load across sessions</td></tr>
           <tr><td>/check</td><td>Fact-check the last response or a specific claim</td></tr>
           <tr><td>/label</td><td>Restate with explicit confidence labels on every claim</td></tr>
           <tr><td>/source</td><td>Trace the evidence chain behind a specific statement</td></tr>
