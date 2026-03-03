@@ -235,10 +235,13 @@ than replacing it. Call `/frame` as many times as needed — the frame grows wit
 Usage:
 ```
 /frame {anything — facts, assumptions, constraints, role, context}
+/frame <name>              # Replace: clear and load named frame
+/frame + <name>            # Merge: add named frame to existing
+/frame merge <name>        # Merge: add named frame to existing (alternative)
+/frame load {name}         # Merge: add saved frame to existing (backwards compatible)
 /frame status
 /frame clear
 /frame save {name}
-/frame load {name}
 /frame list
 /frame delete {name}
 /frame default {name}
@@ -274,6 +277,34 @@ Each subsequent `/frame {content}` call adds to this structure — it does not r
 **`/frame clear`** — Resets the frame. The session returns to a blank epistemic state; all
 subsequent commands behave as if no frame was set.
 
+**`/frame <name>`** — **Replace** the current frame with a named frame. Clears all existing
+frame content first, then loads the named frame.
+
+When loading by name, the system checks two locations in priority order:
+1. **Project frames**: `{project}/frames/<name>.md` — pre-built templates shipped with the project
+2. **User frames**: `~/.claude/frames/<name>.md` — user-saved personal frames
+
+Project frames are checked first. If not found there, falls back to user frames.
+
+```
+/frame skeptic      # Clear and load skeptic frame
+/frame evaluate-code # Clear and load code evaluation frame
+```
+
+**`/frame + <name>`** — **Merge** a named frame into the existing frame. Adds the frame's
+content to whatever is already in the session frame (accumulates).
+
+```
+/frame + skeptic   # Add skeptic frame to current frame
+/frame + expert    # Add expert frame to current frame
+```
+
+**`/frame merge <name>`** — Same as `/frame + <name>`. Alternative syntax for the merge operation.
+
+```
+/frame merge cautious # Add cautious frame to current frame
+```
+
 **`/frame save {name}`** — Writes the current frame to `~/.claude/frames/{name}.md` as plain
 markdown. The file persists across sessions and can be loaded in any future conversation.
 
@@ -303,7 +334,10 @@ blank-slate start.
 | `/audit` | Audits for unlabeled/fabricated claims | Adds "Frame Adherence" section: did any output contradict declared facts? |
 | `/honest` | Forces labeled output | Treats frame as established context; labels against it |
 | `/confidence` | Distributes confidence across all claims | Frame facts excluded from uncertainty distribution |
-| Multiple `/frame` calls | Each call replaces previous | Each call accumulates — frame grows with each addition |
+| `/frame {content}` | N/A | Accumulates — adds to existing frame |
+| `/frame <name>` | N/A | Replaces — clears then loads named frame |
+| `/frame + <name>` | N/A | Merges — adds named frame to existing |
+| `/frame load {name}` | N/A | Merges — adds saved frame to existing (backwards compatible) |
 
 `/source`, `/restate`, `/compare` — no behavioral change; frame provides ambient context only.
 
@@ -319,6 +353,19 @@ auto-loads in every future session.
 
 The Session Frame is a lightweight register that accumulates declarations across multiple
 `/frame` calls during a session. It can also be saved to disk and loaded in future sessions.
+
+**Project Frames**
+
+The project ships with pre-built frame templates in the `frames/` directory. These cover common
+contexts and evaluation criteria:
+
+- **Context frames**: skeptic, learner, expert, cautious, creative, collaborator
+- **Evaluation frames**: evaluate-code, evaluate-argument, evaluate-decision, evaluate-writing, evaluate-research, debug-criteria
+
+Use `/frame <name>` to replace the current frame with a project frame, or `/frame + <name>` to
+merge it into an existing frame. Project frames are checked before user frames when loading by name.
+
+See [Frames Reference](../docs/frames.md) for the full list of available frames and their use cases.
 
 **What gets registered and how:**
 
