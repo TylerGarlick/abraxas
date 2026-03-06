@@ -28,10 +28,19 @@ Archive contains only `SKILL.md` and `references/` — no extra files.
 
 ## Skill Library Inventory
 
-| Skill | File | Domain | Archive Size |
-|---|---|---|---|
-| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | Dream interpretation, shadow auditing, symbolic integration | ~16 KB |
-| Janus System | `skills/janus-system.skill` | Epistemic dual-perspective architecture (Sol/Nox faces) | ~7.5 KB |
+| Skill | File | Domain | Archive Size | Commands |
+|---|---|---|---|---|
+| Janus System | `skills/janus-system.skill` | Epistemic dual-face (Sol/Nox, Threshold, Qualia Bridge) | ~15 KB | 14 |
+| Honest | `skills/honest.skill` | Plain-language anti-hallucination interface | ~5 KB | 9 |
+| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | Dream interpretation, shadow auditing, symbolic integration | ~20 KB | 35 |
+| Agon | `skills/agon.skill` | Structured adversarial reasoning, Convergence Reports | ~12 KB | 8 |
+| **Aletheia (v1.0)** | `skills/aletheia.skill` | **Epistemic calibration, ground-truth tracking** | **~26 KB** | **7** |
+
+### Aletheia (NEW)
+- `SKILL.md` (732 lines) — 7 commands: /aletheia confirm, disconfirm, supersede, status, calibration, queue, audit
+- `references/aletheia-architecture.md` (448 lines) — persistence layer, resolutions.md schema, query algorithms, error handling
+- `references/calibration-practice.md` (321 lines) — epistemic foundations, confidence spectrum, drift patterns, interpretation
+- `references/resolution-workflow.md` (412 lines) — 10 worked workflows for common resolution scenarios
 
 ### Oneironautics Reference Files
 - `SKILL.md` — 5-stage process (Reception → Mapping → Shadow Check → Descent → Integration)
@@ -43,6 +52,10 @@ Archive contains only `SKILL.md` and `references/` — no extra files.
 ### Janus System Reference Files
 - `SKILL.md` — Sol/Nox/Qualia Bridge epistemic protocol
 - `references/janus-architecture.md` — Full architecture documentation
+
+### Agon Reference Files
+- `SKILL.md` — 8 commands for structured adversarial debate
+- `references/` — None (integrated system)
 
 ## Naming Conventions
 

@@ -18,6 +18,14 @@ in AI output.
   - [System Overview](#honest-overview)
   - [Command Reference](#honest-command-reference)
   - [Worked Examples](#honest-worked-examples)
+- [Agon](#agon)
+  - [System Overview](#agon-overview)
+  - [Command Reference](#agon-command-reference)
+  - [Worked Examples](#agon-worked-examples)
+- [Aletheia](#aletheia)
+  - [System Overview](#aletheia-overview)
+  - [Command Reference](#aletheia-command-reference)
+  - [Worked Examples](#aletheia-worked-examples)
 - [Abraxas Oneironautics](#abraxas-oneironautics)
   - [System Architecture](#system-architecture)
   - [Command Reference](#oneironautics-command-reference)
@@ -37,6 +45,8 @@ directory:
 
 ```
 unzip honest.skill -d ~/.claude/skills/
+unzip agon.skill -d ~/.claude/skills/
+unzip aletheia.skill -d ~/.claude/skills/
 unzip janus-system.skill -d ~/.claude/skills/
 unzip abraxas-oneironautics.skill -d ~/.claude/skills/
 ```
@@ -47,6 +57,8 @@ project-level configuration required.
 | Skill | File | Commands | Archive Size |
 |---|---|---|---|
 | Honest | `skills/honest.skill` | 9 | ~5 KB |
+| Agon | `skills/agon.skill` | 8 | ~12 KB |
+| Aletheia | `skills/aletheia.skill` | 7 | ~10 KB |
 | Janus System v2 | `skills/janus-system.skill` | 19 | ~15 KB |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | ~20 KB |
 
@@ -744,6 +756,457 @@ Frame fact check: Response does not recommend using parse_config() in new code. 
 facts you declared. `/audit` uses it to check that no output contradicted what you said was
 true, and that your declared uncertainty was treated as uncertainty — not quietly upgraded to
 a confident claim.
+
+---
+
+## Agon
+
+**Agon** is structured adversarial reasoning, named for the Greek principle of sacred contest and ritualized debate. It solves the problem of reasoning conducted in a single voice by instantiating two opposing positions with asymmetric starting priors, running them through the Janus labeling pipeline, and producing a Convergence Report that shows where opposition resolves into consensus and where it remains productive.
+
+It can operate standalone or as the infrastructure layer within extended Abraxas sessions.
+
+### Agon Overview {#agon-overview}
+
+The core problem Agon solves: language models have a native bias toward convergence. Given the same evidence, the same model will tend to reach the same conclusion — not because the conclusion is correct, but because the model has no structural incentive to argue against itself.
+
+Agon forces **position asymmetry through declared priors**. An Advocate begins from the assumption that the claim is defensible and searches for the strongest grounding. A Skeptic begins from the assumption that the claim is questionable and searches for genuine objections. Neither position can converge on comfortable answers without breaking their prior. The disagreement that emerges is structural, not rhetorical.
+
+The Convergence Report then makes visible where the asymmetric positions actually agree — and when they agree despite the incentive to disagree, that agreement is epistemically meaningful.
+
+**When to use Agon:**
+- You want to test a factual claim against vigorous opposition
+- You need to know whether positions would naturally agree or whether their agreement is forced
+- You want to find the strongest version of a claim that is usually dismissed
+- You want to identify the precise conditions under which a claim would be false
+- You are evaluating a hypothesis and need competing analyses run through the same labeling system
+
+**Do not use Agon when:**
+- The input is symbolic, dream material, or explicitly labeled `[DREAM]` — use `/bridge` first
+- The claim is a personal decision, life choice, or value judgment
+- You are asking for a verdict on an emotional or psychological state
+- The material is imaginal or archetypal without factual content
+
+### Agon Command Reference {#agon-command-reference}
+
+**Installation:**
+
+```
+unzip agon.skill -d ~/.claude/skills/
+```
+
+| Command | Syntax | Purpose |
+|---|---|---|
+| `/agon debate` | `/agon debate {claim or question}` | Run both Advocate and Skeptic positions, then produce the Convergence Report. Primary command. |
+| `/agon advocate` | `/agon advocate {claim}` | Run only the Advocate position. No Skeptic, no Convergence Report. |
+| `/agon skeptic` | `/agon skeptic {claim}` | Run only the Skeptic position. No Advocate, no Convergence Report. |
+| `/agon steelman` | `/agon steelman {claim}` | Extended Advocate pass: find the strongest possible version of a weak or poorly-stated claim. |
+| `/agon falsify` | `/agon falsify {claim}` | Extended Skeptic pass: identify the precise conditions under which a claim would be false. |
+| `/agon report` | `/agon report` | Generate or regenerate the Convergence Report from prior Advocate and Skeptic outputs in this session. |
+| `/agon reset` | `/agon reset` | Clear the current debate context. Ready for new claim. |
+| `/agon status` | `/agon status` | Show current state: what claim is being debated, which positions have run, whether Convergence Report is available. |
+
+### Agon Worked Examples {#agon-worked-examples}
+
+#### Example 1: Testing a Tech Claim
+
+**User submission:** "Neural scaling laws show that larger language models are always better than smaller ones."
+
+**You run:**
+```
+/agon debate Larger language models consistently outperform smaller models across all tasks.
+```
+
+**System output:**
+```
+[AGON — DEBATE]
+Claim: Larger language models consistently outperform smaller models across all tasks.
+
+--- ADVOCATE ---
+[ADVOCATE PRIOR]
+Starting assumption: This claim is correct or defensible.
+My task: Find the strongest possible grounding for it.
+
+[KNOWN] Empirical studies from Kaplan et al. (2020) show clear scaling relationships.
+[INFERRED] Doubling model size increases benchmark performance across multiple domains.
+[INFERRED] The relationship appears fundamental rather than an artifact of particular parameter counts.
+
+Advocate conclusion: Scaling laws demonstrate genuine capability improvements with size; exceptions are narrow.
+
+--- SKEPTIC ---
+[SKEPTIC PRIOR]
+Starting assumption: This claim is questionable, incomplete, or potentially wrong.
+My task: Find the strongest possible objections to it.
+
+[KNOWN] Scaling laws describe average trends, not guarantees of superiority.
+[INFERRED] Smaller specialized models often outperform larger generalists on narrow domains.
+[UNCERTAIN] Real-world superiority depends on task fit, efficiency constraints, and cost.
+
+Skeptic conclusion: Scaling laws apply to raw capability; real-world advantage is context-dependent.
+
+--- CONVERGENCE REPORT ---
+
+AGREEMENT ZONES
+— Scaling laws exist: both label [KNOWN]. Confidence elevated by agreement.
+— Raw benchmark performance correlates with size: both label [KNOWN].
+
+DIVERGENCE ZONES
+— Practical deployment advantage: Advocate labels [INFERRED], Skeptic labels [UNCERTAIN].
+
+CONVERGENCE SCORE
+Agreement: 2 of 4 contested points
+Divergence: 2 of 4 contested points
+Convergence rate: 50%
+
+OVERALL EPISTEMIC STATUS
+[CLAIM CONTESTED] — Positions diverged on central practical aspects. The claim is true under narrow conditions but requires heavy qualification.
+```
+
+*What to do with this:* The claim is partially defensible but insufficient as stated. Run `/agon falsify` to find the precise breaking points, then verify those specific conditions independently.
+
+---
+
+#### Example 2: High-Convergence Detection
+
+**User submission:** "Water is a molecule composed of hydrogen and oxygen atoms."
+
+**You run:**
+```
+/agon debate Water is a molecule composed of hydrogen and oxygen atoms.
+```
+
+**System produces positions that both confirm with `[KNOWN]` labels, then:**
+
+```
+CONVERGENCE SCORE
+Agreement: 5 of 5 contested points
+Divergence: 0 of 5 contested points
+Convergence rate: 100%
+
+[HIGH CONVERGENCE — REVIEW REQUIRED]
+A convergence rate of 100% is unusually high for adversarial positions operating from opposite
+priors. Possible causes: (1) the claim is genuinely well-supported; (2) the claim is framed in
+a way that does not generate real disagreement; (3) the positions did not maintain asymmetric
+starting points. Consider running /agon falsify to test whether the claim has identifiable
+breaking points.
+
+OVERALL EPISTEMIC STATUS
+[CLAIM SUPPORTED] — Both positions found the claim unambiguously correct. The claim warrants
+highest confidence. (This is the expected outcome for well-established scientific fact.)
+```
+
+*What to do with this:* For well-established facts, 100% convergence is expected and signals confidence. If you got unexpected high convergence on a contested claim, the high-convergence flag is telling you to investigate why.
+
+---
+
+#### Example 3: Steelman a Weak Claim
+
+**User submission:** "AI will be good for society."
+
+**You run:**
+```
+/agon steelman AI will be good for society.
+```
+
+**System responds:**
+
+```
+[AGON — STEELMAN]
+Original claim: "AI will be good for society"
+Reframed claim: "Specific applications of AI in healthcare, education, and labor efficiency will
+create measurable benefits for particular populations, even if deployment is uneven and risks exist."
+
+[STEELMAN PRIOR]
+Starting assumption: This claim has a serious version that is better than how it is usually stated.
+My task: Find that serious version and argue for it as reframed.
+
+[KNOWN] AI-assisted diagnostics improve detection rates for certain cancers; this is documented.
+[INFERRED] Educational access expands through AI tutoring systems in resource-limited regions.
+[UNCERTAIN] Whether aggregate societal benefit outweighs distributed risks remains contested.
+
+Steelman conclusion: The serious claim is not "AI will be universally good" but "specific AI
+applications generate demonstrable benefits in concrete domains, even amid broader uncertainties."
+```
+
+*What to do with this:* The reframed claim is more defensible than the original. Use it as the actual target for further investigation.
+
+---
+
+#### Example 4: Bridge Integration — Dream to Fact to Debate
+
+**You're working with Abraxas and encounter symbolic material that raises a factual question:**
+
+```
+/bridge What does the Shadow represent in my current work?
+```
+
+**Abraxas `/bridge` produces Sol-mode analysis:**
+```
+[INFERRED] In your current work material, the Shadow appears to represent unintegrated
+professional power — decision-making authority you have but are not claiming.
+```
+
+**Now you can debate that factual finding:**
+
+```
+/agon debate In my professional context, I have decision-making authority that I am not claiming.
+```
+
+**Agon runs the debate on the Sol-mode output**, treating it as a resolvable epistemic claim rather than symbolic material.
+
+*What to do with this:* Bridge converts symbolic material into Sol-mode claims. Those claims can then be tested through Agon. The canonical workflow is: `/bridge {symbol}` → `/agon debate {sol claim}`.
+
+---
+
+### Agon Integration Notes {#agon-integration}
+
+**Standalone:** Agon runs debate, steelman, and falsify operations on any Sol-mode claim. Position outputs are labeled by Janus standards. Convergence Reports surface agreement, divergence, and open questions. Works fully without the Janus System skill installed, though Janus integration offers cross-session ledger logging.
+
+**Within Abraxas:** Agon operates as the disputational layer within Abraxas sessions. Sol-mode claims feed into Agon debates. Nox material is filtered at the Threshold and routed to Oneironautics. `/bridge` operations produce Sol-mode output suitable for Agon debate. This creates a full epistemic and practice pipeline: symbolic material → bridged to fact → debated through opposition → resolved through Aletheia.
+
+---
+
+## Aletheia
+
+**Aletheia** is epistemic calibration and ground-truth tracking. It resolves labeled Janus claims after the fact — confirming, disconfirming, or superseding them. It transforms the Abraxas stack from output-focused to practice-focused, tracking whether epistemic confidence claims held up over time.
+
+The word itself is ancient Greek *aletheia* — literally "un-hiddenness." Heidegger reframed this as truth not as correspondence between claim and fact, but as *disclosure* — the process by which what is hidden becomes visible.
+
+Aletheia requires the Janus System skill to be installed.
+
+### Aletheia Overview {#aletheia-overview}
+
+The core problem Aletheia solves: epistemic labeling systems (like Janus) produce confidence labels in real time. But confidence is only meaningful if it is tested against ground truth. Without feedback, labels become theater: users feel more confident, but the system learns nothing.
+
+Aletheia closes the loop. It makes calibration practice structural, not optional. Over time, you can see:
+
+- How accurate your `[KNOWN]` labels are (they should be >95% confirmed)
+- How accurate your `[INFERRED]` labels are (they should be ~70-85% confirmed)
+- How well-calibrated your `[UNCERTAIN]` claims are (high disconfirmation is expected and healthy)
+- Whether you are exhibiting confirmation bias (95%+ confirmation across all label types is statistically implausible)
+
+This is not a model evaluation tool. This is a personal epistemic feedback system. The ledger belongs to you; it records your history of engaging with uncertainty and learning whether your confidence was warranted.
+
+**When to use Aletheia:**
+- After Janus sessions, when you learn ground truth about claims that were labeled
+- When calibrating your confidence: do your `[INFERRED]` claims actually hold up?
+- To track epistemic patterns over time: are you overconfident? Well-calibrated? Biased toward certain domains?
+- To resolve claims from Agon Convergence Reports once evidence emerges
+
+**Core constraint:** Aletheia operates **only on Sol-mode output** — labels `[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, `[UNKNOWN]`. Symbolic material (`[DREAM]`) is out of scope. If you bridge Nox material into Sol output through `/bridge`, the Sol output CAN be resolved through Aletheia.
+
+### Aletheia Command Reference {#aletheia-command-reference}
+
+**Installation:**
+
+```
+unzip aletheia.skill -d ~/.claude/skills/
+```
+
+| Command | Syntax | Purpose |
+|---|---|---|
+| `/aletheia confirm` | `/aletheia confirm {claim or session-ref}` | Mark a labeled claim as confirmed by subsequent evidence. |
+| `/aletheia disconfirm` | `/aletheia disconfirm {claim or session-ref}` | Mark a labeled claim as disconfirmed; record what was actually true. |
+| `/aletheia supersede` | `/aletheia supersede {claim or session-ref}` | Mark a claim as superseded (context changed; not wrong, now outdated). |
+| `/aletheia status` | `/aletheia status` | Show open epistemic debt: count of unresolved labeled claims. |
+| `/aletheia calibration` | `/aletheia calibration` or `/aletheia calibration {days:N}` | Show the calibration ledger for each label type: confirmation rate, disconfirmation rate, and trend over time. |
+| `/aletheia queue` | `/aletheia queue` or `/aletheia queue [LABEL]` | List all labeled claims awaiting resolution, sorted by age (oldest unresolved first). |
+| `/aletheia audit` | `/aletheia audit` | Validate the resolution index against the Janus ledger; surface orphaned or conflicting resolutions. |
+
+### Aletheia Worked Examples {#aletheia-worked-examples}
+
+#### Example 1: Confirming a Claim
+
+**You had a Janus session months ago where you labeled:**
+```
+[KNOWN] "COVID vaccines are >90% effective at preventing severe disease"
+```
+
+**Now you learn that an updated meta-analysis confirms this exact figure.**
+
+**You run:**
+```
+/aletheia confirm "COVID vaccines are >90% effective at preventing severe disease"
+```
+
+**System responds:**
+```
+✓ Confirmed: "[KNOWN] COVID vaccines are >90% effective..."
+  Resolution date: 2026-03-10
+  Note recorded: "Confirmed by Nature meta-analysis published 2026-03-08"
+
+Entry written to ~/.janus/resolutions.md
+```
+
+*What this does:* Your `[KNOWN]` label is now marked as correct. Over time, Aletheia tracks how many of your `[KNOWN]` labels prove accurate. If your accuracy is >95%, your `[KNOWN]` calibration is sound.
+
+---
+
+#### Example 2: Disconfirming a Claim
+
+**Months ago, you labeled:**
+```
+[INFERRED] "Quantum computers will break RSA encryption by 2030"
+```
+
+**New evidence emerges from the post-quantum cryptography community.**
+
+**You run:**
+```
+/aletheia disconfirm "Quantum computers will break RSA by 2030"
+```
+
+**System prompts:**
+```
+What is the actual finding?
+> Current quantum computers cannot threaten RSA; NIST estimates 2050+ timeline
+
+Disconfirmation recorded. Optional context note:
+> Consensus from post-quantum cryptography summit March 2026
+```
+
+**System responds:**
+```
+✗ Disconfirmed: "[INFERRED] Quantum computers will break RSA by 2030"
+  Actual finding: "Current quantum computers cannot threaten RSA; timeline estimates pushed to 2050+ by NIST"
+  Resolution date: 2026-03-10
+  Note: "Consensus from post-quantum cryptography summit March 2026"
+
+Entry written to ~/.janus/resolutions.md
+```
+
+*What this does:* Your `[INFERRED]` label is marked as incorrect. The actual finding is recorded. If your `[INFERRED]` claims are averaging 60-70% confirmed (with 30-40% disconfirmed), that is well-calibrated reasoning. If they're 95%+ confirmed, you're being too conservative with your `[INFERRED]` label.
+
+---
+
+#### Example 3: Checking Your Calibration Over Time
+
+**After several months of resolving claims, you want to see how accurate your labels are:**
+
+```
+/aletheia calibration
+```
+
+**System responds:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+CALIBRATION LEDGER — Label Accuracy Over Time
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Time period: Last 90 days
+Data points: 145 resolved claims
+
+[KNOWN] Claims — Expected: >95% confirmed
+  ✓ Confirmed: 56 (86%)
+  ✗ Disconfirmed: 7 (11%)
+  ⟳ Superseded: 2 (3%)
+  Accuracy: 86% [CAUTION: Below expected threshold]
+  Trend: Declining (was 92% at 60-day mark)
+
+[INFERRED] Claims — Expected: 70–85% confirmed
+  ✓ Confirmed: 42 (74%)
+  ✗ Disconfirmed: 12 (21%)
+  ⟳ Superseded: 1 (1%)
+  Accuracy: 74% [WELL-CALIBRATED]
+  Trend: Stable
+
+[UNCERTAIN] Claims — Expected: 50–70% confirmed
+  ✓ Confirmed: 8 (44%)
+  ✗ Disconfirmed: 9 (50%)
+  ⟳ Superseded: 1 (6%)
+  Accuracy: 44% [WELL-CALIBRATED — high disconfirmation is expected]
+  Trend: Stable
+
+OVERALL CALIBRATION QUALITY: MEDIUM
+
+Concern: [KNOWN] accuracy has declined; review recent [KNOWN] claims for pattern.
+Strength: [INFERRED] and [UNCERTAIN] are well-calibrated.
+
+Next steps: Run /aletheia audit to check for orphaned or conflicting resolutions.
+```
+
+*What this does:* You can now see which kinds of confidence claims are holding up and which are not. This is personal epistemic feedback over time. Your `[KNOWN]` labels are slightly overconfident (86% vs. expected 95%+). Your `[INFERRED]` and `[UNCERTAIN]` are well-calibrated. The system is working.
+
+---
+
+#### Example 4: Seeing Unresolved Claims
+
+**You want to know what epistemic debt you are carrying — what claims you labeled but haven't yet resolved:**
+
+```
+/aletheia status
+```
+
+**System responds:**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EPISTEMIC DEBT — Unresolved Claims
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+From 47 total sessions, 234 labeled claims remain unresolved.
+
+[KNOWN]       18 unresolved  (expected: ~1 — very high priority)
+[INFERRED]    67 unresolved  (expected: ~10–15 per 10 sessions)
+[UNCERTAIN]   96 unresolved  (expected: ~20–30 per 10 sessions)
+[UNKNOWN]     53 unresolved  (kept indefinitely by design)
+
+Last 5 unresolved (oldest first):
+• [KNOWN] "AI regulation will be enacted in EU by 2025"  [Session 2024-11-15]
+• [INFERRED] "LLM scaling will plateau by 2026"           [Session 2025-02-22]
+• [UNCERTAIN] "Multimodal models will dominate by 2026"   [Session 2025-03-01]
+• [INFERRED] "Python will remain most popular language"   [Session 2026-02-10]
+• [UNKNOWN] "Cost of AGI research (when achieved)"        [Session 2026-03-01]
+
+Use /aletheia queue to see full list.
+Use /aletheia confirm|disconfirm|supersede to resolve claims.
+```
+
+*What this does:* Epistemic debt becomes visible and uncomfortable to ignore. You have 18 unresolved `[KNOWN]` claims — those are your highest priority. Once you know ground truth about them, resolve them immediately. This feedback loop closes the gap between what you said was true and what you learned was actually true.
+
+---
+
+#### Example 5: Auditing for Data Integrity
+
+**After extensive use, you want to verify that your resolution index is consistent with the Janus ledger:**
+
+```
+/aletheia audit
+```
+
+**System responds (healthy system):**
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+AUDIT REPORT — Aletheia Resolution Index
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Status: ✓ HEALTHY
+
+Total resolutions: 312
+Sessions with resolutions: 28
+Data consistency: 100% (all resolved claims found in ledger)
+
+No orphaned resolutions detected.
+No session UUID conflicts detected.
+No high-conflict topics.
+
+Ledger integrity: OK
+Resolutions.md format: OK
+
+Last audit: 2026-03-10T14:22:33-UTC
+```
+
+*What this does:* Confirms that your resolution index is consistent. All resolved claims are still present in the Janus ledger. No orphaned resolutions. The system is sound.
+
+---
+
+### Aletheia Integration Notes {#aletheia-integration}
+
+**With Janus System:** Aletheia reads from the Janus ledger at `~/.janus/ledger.md` and session files at `~/.janus/sessions/{uuid}.md`. It writes exclusively to `~/.janus/resolutions.md` (created on first use). The Janus ledger is never modified — it is immutable.
+
+**With Honest:** Honest commands produce Sol-mode output with inline confidence labels. These claims can be resolved through Aletheia.
+
+**With Agon:** When Agon produces Convergence Reports with labeled claims, those claims are natural targets for Aletheia resolution once ground truth emerges.
+
+**With Abraxas Oneironautics:** When `/bridge` produces Sol-mode analysis of Nox material, that output carries Sol labels and can be resolved through Aletheia. The fact that it came from Nox is irrelevant; what matters is that it now carries a Sol label and makes an epistemic claim.
 
 ---
 

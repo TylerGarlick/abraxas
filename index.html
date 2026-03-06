@@ -329,6 +329,8 @@
     .about-card.honest { border-left: 3px solid var(--teal); }
     .about-card.janus { border-left: 3px solid var(--gold); }
     .about-card.abraxas { border-left: 3px solid var(--nox-bright); }
+    .about-card.agon { border-left: 3px solid var(--rubedo-bright); }
+    .about-card.aletheia { border-left: 3px solid var(--albedo); }
 
     .about-card h3 {
       font-family: 'Cinzel', serif;
@@ -421,6 +423,16 @@
     .skill-card.abraxas {
       border-color: var(--nox-bright);
       background: rgba(128,96,208,0.05);
+    }
+
+    .skill-card.agon {
+      border-color: var(--rubedo-bright);
+      background: rgba(192,54,74,0.05);
+    }
+
+    .skill-card.aletheia {
+      border-color: var(--albedo);
+      background: rgba(168,184,200,0.05);
     }
 
     .skill-card:hover {
@@ -980,7 +992,7 @@
     </svg>
 
     <h1><span class="initial">A</span>braxas</h1>
-    <p class="hero-subtitle">Epistemic integrity, anti-hallucination practice, and alchemical symbolic integration — unified under one system.</p>
+    <p class="hero-subtitle">Epistemic integrity, adversarial reasoning, calibration, anti-hallucination practice, and alchemical symbolic integration — unified under one system.</p>
 
     <div class="cta-buttons">
       <button class="cta-btn" onclick="document.querySelector('#skills').scrollIntoView({behavior: 'smooth'})">Explore Skills</button>
@@ -1025,15 +1037,23 @@
         <h3>Abraxas Oneironautics</h3>
         <p><strong>Alchemical practice system.</strong> Dream reception, shadow work, symbolic integration. Four stages of the Opus Magnum: Nigredo → Albedo → Citrinitas → Rubedo. 35 commands for sustained practice.</p>
       </div>
+      <div class="about-card agon">
+        <h3>Agon</h3>
+        <p><strong>Structured adversarial reasoning.</strong> Advocate and Skeptic positions run simultaneously against any claim. Produces a labeled Convergence Report. Tests falsifiability, finds steelman arguments, and stress-tests beliefs under real opposition.</p>
+      </div>
+      <div class="about-card aletheia">
+        <h3>Aletheia</h3>
+        <p><strong>Epistemic calibration and ground-truth tracking.</strong> Confirms or disconfirms labeled claims as evidence arrives. Maintains a resolutions ledger. Shows label accuracy rates over time so you know where your uncertainty estimates are off.</p>
+      </div>
     </div>
 
     <div class="stats reveal">
       <div class="stat">
-        <div class="stat-value">03</div>
+        <div class="stat-value">05</div>
         <div class="stat-label">Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">63+</div>
+        <div class="stat-value">73</div>
         <div class="stat-label">Commands</div>
       </div>
       <div class="stat">
@@ -1054,7 +1074,7 @@
 
   <!-- Skills Section -->
   <section class="skills" id="skills">
-    <h2 class="section-header reveal">Three Systems, One Container</h2>
+    <h2 class="section-header reveal">Five Systems, One Container</h2>
 
     <div class="skills-grid reveal">
       <div class="skill-card honest">
@@ -1077,12 +1097,26 @@
         <p>Dual-face epistemic architecture. Sol marks all output with epistemic labels. Nox marks symbolic material [DREAM]. Threshold prevents cross-contamination. Qualia Bridge for inspection.</p>
         <div class="commands-badge">19 Commands</div>
       </div>
+
+      <div class="skill-card agon">
+        <div class="skill-label">Adversarial Reasoning</div>
+        <h3>Agon</h3>
+        <p>Structured adversarial reasoning. Advocate and Skeptic positions run against any claim. Steelman, falsify, and stress-test beliefs. Produces a labeled Convergence Report with final verdict.</p>
+        <div class="commands-badge">8 Commands</div>
+      </div>
+
+      <div class="skill-card aletheia">
+        <div class="skill-label">Epistemic Calibration</div>
+        <h3>Aletheia</h3>
+        <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy rates over time.</p>
+        <div class="commands-badge">7 Commands</div>
+      </div>
     </div>
 
     <!-- Constitution Path -->
     <div class="constitution-path reveal" id="constitution">
       <h4>Don't use Claude Code? Load CONSTITUTION.md</h4>
-      <p>A portable system prompt that activates all three systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts. No installation required.</p>
+      <p>A portable system prompt that activates all five systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts. No installation required.</p>
 
       <table class="platform-table">
         <tr>
@@ -1300,6 +1334,30 @@ Who is the Ferryman?</code>
         <h4>/dialogue</h4>
         <p>Open dialogue with a specific inner figure or archetypal presence.</p>
       </div>
+      <div class="command-card">
+        <h4>/agon debate</h4>
+        <p>Run full Advocate + Skeptic cycle on any claim. Produces a labeled Convergence Report with final verdict.</p>
+      </div>
+      <div class="command-card">
+        <h4>/agon steelman</h4>
+        <p>Find the strongest possible version of a contested claim before engaging with it.</p>
+      </div>
+      <div class="command-card">
+        <h4>/agon falsify</h4>
+        <p>Hunt for breaking conditions. Test whether a claim is falsifiable and what would disprove it.</p>
+      </div>
+      <div class="command-card">
+        <h4>/aletheia confirm</h4>
+        <p>Mark a labeled claim as confirmed by evidence. Record the confirming source in the ledger.</p>
+      </div>
+      <div class="command-card">
+        <h4>/aletheia disconfirm</h4>
+        <p>Mark a labeled claim as disconfirmed. Record the actual truth against the original prediction.</p>
+      </div>
+      <div class="command-card">
+        <h4>/aletheia calibration</h4>
+        <p>Show label accuracy rates over time by label type. Know where your uncertainty estimates are off.</p>
+      </div>
     </div>
 
     <h3 style="margin-top: 3rem; margin-bottom: 2rem; text-align: center; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text); position: relative; z-index: 10;">Example Workflows</h3>
@@ -1324,6 +1382,13 @@ Open dialogue with an inner figure</pre>
 [answer the question]
 /check [fact-check it]
 /qualia [inspect the state]</pre>
+      </div>
+      <div class="example-card">
+        <h4>/agon debate → /aletheia confirm</h4>
+        <pre>Run adversarial debate on a claim
+Advocate and Skeptic produce verdict
+Later: confirm or disconfirm the verdict
+Ledger tracks accuracy over time</pre>
       </div>
     </div>
   </section>

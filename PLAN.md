@@ -34,7 +34,32 @@ Making the systems accessible to non-technical and everyday users.
 
 ---
 
-## Phase 3 — Distribution
+## Phase 3 — Dialogue Engine & Veritas
+
+New epistemic reasoning and calibration skills.
+
+### Agon (new skill) — Structured adversarial reasoning
+
+- [x] Specification document — position constraint asymmetry, Convergence Report format, Threshold routing rules — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit with Abraxas family — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: command set, position specs, Convergence Report schema, Threshold rules, behavioral constraints — **Agent:** skill-author
+- [x] Skill packaging and testing (position asymmetry validation, high-agreement detection) — **Agent:** skill-author
+- [x] docs/skills.md updated with Agon commands — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended with Agon commands; constitution-keeper review — **Agent:** constitution-keeper
+
+### Aletheia (new skill) — Epistemic calibration and ground-truth tracking
+
+- [x] Epistemic ledger schema research — existing `~/.janus/` format, resolution field extensions — **Agent:** systems-architect
+- [x] Specification document — frictionless resolution commands, open epistemic debt surfacing, calibration ledger tracking, Nox/[DREAM] scoping — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit with Abraxas family — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: resolution commands, ledger schema extensions, disconfirmation tracking, open-debt presentation — **Agent:** skill-author
+- [x] Skill packaging and testing (ledger persistence, disconfirmation rate flagging) — **Agent:** skill-author
+- [x] docs/skills.md updated with Aletheia commands — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended with Aletheia commands; constitution-keeper review — **Agent:** constitution-keeper
+
+---
+
+## Phase 4 — Distribution
 
 Packaging and release tooling for wider distribution.
 
@@ -46,10 +71,14 @@ Packaging and release tooling for wider distribution.
 
 ---
 
-## Phase 4 — Expansion
+## Phase 5 — Expansion
 
-New skills and ecosystem growth.
+New skills and ecosystem growth beyond Dialogue Engine and Veritas.
 
+- [ ] Synthesis skill — session-closing artifact generator; requires Veritas in place
+- [ ] Scribe skill — source-grounded citation management; creation-time complement to Veritas
+- [ ] Retrieval grounding layer — live external lookup; first tool-use dependency in the stack
+- [ ] Oneironautics v2 + Individuation Ledger — depth expansion for committed practitioners
 - [ ] Research assistant skill — citation tracking, source verification, research session management
 - [ ] Citation checker skill — bibliography verification and claim-source pairing
 - [ ] Honest integration guide — how to use Honest alongside common dev tools and workflows

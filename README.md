@@ -231,6 +231,8 @@ Skills are `.skill` archive files (zip-based) that Claude Code can install and i
 |---|---|---|---|
 | Honest | `skills/honest.skill` | 9 | Everyone — everyday fact-checking and anti-hallucination |
 | Janus System | `skills/janus-system.skill` | 14 | Users needing full epistemic session infrastructure |
+| Agon | `skills/agon.skill` | 8 | Structured adversarial reasoning — Advocate and Skeptic positions |
+| Aletheia | `skills/aletheia.skill` | 7 | Epistemic calibration — ground-truth tracking and claim resolution |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | Jungian/alchemical practice across sessions |
 
 See [docs/skills.md](./docs/skills.md) for detailed descriptions and all commands.

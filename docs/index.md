@@ -16,6 +16,8 @@ Use this index to navigate all available documentation.
 |-----------|------------|
 | Fact-check AI output, verify claims, force honest responses | **Honest** |
 | Full epistemic session with Sol/Nox faces, Qualia Bridge | **Janus System** |
+| Structured multi-perspective reasoning with opposing positions | **Agon** |
+| Resolve labeled claims and track ground-truth calibration | **Aletheia** |
 | Dream work, shadow integration, alchemical practice | **Abraxas Oneironautics** |
 | Using a different LLM (ChatGPT, Claude.ai, Gemini) | **CONSTITUTION.md** |
 
