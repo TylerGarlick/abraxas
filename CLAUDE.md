@@ -21,7 +21,7 @@ The [Plan](./PLAN.md) will store all active work items across all agents in a su
 Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Agon and Aletheia extend epistemic reasoning and calibration. Abraxas Oneironautics runs on top of Janus.
 
 **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-**Current phase:** Phase 2 — Accessibility (see PLAN.md)
+**Current phase:** Phase 5 — Expansion (see PLAN.md)
 
 ---
 
@@ -40,10 +40,10 @@ abraxas/
 │   ├── architecture.md              ← Janus + Abraxas internals 
 │   └── index.md                     ← documentation hub
 ├── .claude/
-│   ├── agents/                      ← 7 subagent definitions (.md files)
+│   ├── agents/                      ← 8 subagent definitions (.md files)
 │   └── agent-memory/                ← persistent memory per agent (subdirs)
 ├── CLAUDE.md                        ← this file — project context for Claude Code
-├── CONSTITUTION.md                  ← universal LLM behavioral specification (all three systems)
+├── CONSTITUTION.md                  ← universal LLM behavioral specification (all five systems)
 ├── PLAN.md                          ← active roadmap
 ├── README.md                        ← project overview (GitHub-facing)
 └── index.html                       ← public landing page

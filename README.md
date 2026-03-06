@@ -279,3 +279,7 @@ Custom Claude Code subagents are defined in `.claude/agents/` as markdown files.
 | [CONSTITUTION.md](./CONSTITUTION.md) | Universal LLM behavioral specification — no Claude Code required |
 | [docs/architecture.md](./docs/architecture.md) | System architecture with Mermaid diagrams |
 | [docs/skills.md](./docs/skills.md) | Full command reference for all three skills |
+
+## Upcoming Features
+
+See the [plan](./PLAN.md) for more information.

@@ -4,8 +4,8 @@
 
 # Abraxas Documentation
 
-This is the documentation hub for the Abraxas project. Abraxas is the container for three
-systems — **Honest**, the **Janus System**, and **Abraxas Oneironautics** — packaged as
+This is the documentation hub for the Abraxas project. Abraxas is the container for five
+systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, and **Abraxas Oneironautics** — packaged as
 Claude Code skills and supported by a suite of specialized subagents.
 
 Use this index to navigate all available documentation.
@@ -61,7 +61,9 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [README](../README.md) | Project overview, Quick Start, structure, and getting started |
 | [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
-| [Skills Reference](./skills.md) | Full command reference for all three skills: Honest, Janus, and Abraxas Oneironautics |
+| [Skills Reference](./skills.md) | Full command reference for all five skills: Honest, Janus, Agon, Aletheia, and Abraxas Oneironautics |
+| [Honest Integration Guide](./honest-integration.md) | How to use Honest alongside development tools, PR review, and coding sessions |
+| [Composition Patterns](./composition-patterns.md) | Multi-skill session workflows: Honest+Janus, Agon+Aletheia, full-stack patterns |
 | [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
 | [Visual Design](./visual-design.md) | Sacred geometry, alchemical aesthetics, and landing page design |
 
@@ -69,7 +71,7 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 
 ## Project Overview
 
-Abraxas houses three systems, each addressing a distinct layer of the AI output problem:
+Abraxas houses five systems, each addressing a distinct layer of the AI output problem:
 
 **Honest** — The everyday anti-hallucination interface. Plain-language commands for
 fact-checking, confidence labeling, claim tracing, and forcing maximum-honesty output.
@@ -83,15 +85,23 @@ Threshold that prevents cross-contamination. Sol marks every output `[KNOWN]`, `
 is built in. The Qualia Bridge provides inspection of the system's internal state. Janus is the
 infrastructure layer — Honest runs on top of it, and Abraxas Oneironautics runs beneath it.
 
+**Agon** — Structured adversarial reasoning. Two constrained positions (Advocate and Skeptic)
+debate a claim with asymmetric position rules and a mandatory Convergence Report. Prevents the
+collapse into single-perspective recommendations. Eight commands.
+
+**Aletheia** — Epistemic calibration and ground-truth tracking. Resolves claims labeled by
+Janus (or Honest), maintains a persistent resolution ledger, tracks disconfirmation rates, and
+surfaces open epistemic debt. Seven commands. Stores resolutions in `~/.janus/` alongside Janus data.
+
 **Abraxas Oneironautics** — The alchemical practice system built on top of Janus. Dream
 reception, shadow work, symbolic integration, active imagination, the Nekyia descent. The
 Oneiros Engine and the Realm of Daimons. The four stages of the Opus Magnum. The Janus
-infrastructure runs beneath it all.
+infrastructure runs beneath it all. Thirty-five commands.
 
-All three systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
-are supported by seven specialized subagents defined in `.claude/agents/`. They are also
+All five systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
+are supported by eight specialized subagents defined in `.claude/agents/`. They are also
 available as `CONSTITUTION.md` — a single portable document any capable LLM can load to
-operate all three systems without Claude Code.
+operate all five systems without Claude Code.
 
 **Agents:**
 - `skill-author` — Authors and packages `.skill` archives; owns the skill authoring workflow
@@ -101,6 +111,7 @@ operate all three systems without Claude Code.
 - `brand-ux-architect` — Brand identity, naming conventions, aesthetic coherence; future UI design
 - `systems-architect` — Project structure, skill format evolution, distribution mechanisms, tooling
 - `constitution-keeper` — Maintains CONSTITUTION.md in sync with skill file changes
+- `compatibility-keeper` — Maintains cross-platform compatibility between Claude Code and OpenCode
 
 For the full command reference for all skills, see [Skills Reference](./skills.md).
 For structural architecture, see [Architecture](./architecture.md).
@@ -158,11 +169,13 @@ When CONSTITUTION.md is active, prepend your query with:
 
 ## Project Status
 
-As of March 2026, all three skills are operational. Honest provides 9 plain-language
+As of March 2026, all five skills are operational. Honest provides 9 plain-language
 anti-hallucination commands. The Janus System governs 14 commands including session tracking,
-Qualia Bridge inspection, and the Bridge to Abraxas. Abraxas Oneironautics governs 35 commands
-across dream reception, alchemical transmutation, active imagination, synchronicity, and the
-Bridge to Janus.
+Qualia Bridge inspection, and the Bridge to Abraxas. Agon governs 8 commands for structured
+adversarial reasoning with mandatory Convergence Reports. Aletheia governs 7 commands for
+epistemic calibration and persistent resolution tracking. Abraxas Oneironautics governs 35
+commands across dream reception, alchemical transmutation, active imagination, synchronicity,
+and the Bridge to Janus.
 
 Active work items are tracked in [PLAN.md](../PLAN.md).
 
@@ -184,7 +197,9 @@ abraxas/
 └── docs/
     ├── index.md             # This file — documentation hub
     ├── architecture.md      # Mermaid architecture diagrams
-    ├── skills.md            # Full system reference: all commands for all three skills
+    ├── skills.md            # Full system reference: all commands for all five skills
+    ├── honest-integration.md  # How to use Honest with dev tools and coding workflows
+    ├── composition-patterns.md # Multi-skill session patterns and workflows
     ├── frames.md            # Frames reference: all 13 frame templates
     └── visual-design.md     # Visual design, sacred geometry, and aesthetic principles
 ```

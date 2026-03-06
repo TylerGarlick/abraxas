@@ -31,6 +31,8 @@ No commands currently defined.
 |-------|------------|-------|
 | honest | ✓ | SKILL.md format is natively compatible |
 | janus-system | ✓ | SKILL.md format is natively compatible |
+| agon | ✓ | SKILL.md format is natively compatible |
+| aletheia | ✓ | SKILL.md format is natively compatible |
 | abraxas-oneironautics | ✓ | SKILL.md format is natively compatible |
 
 ## Translation Details
