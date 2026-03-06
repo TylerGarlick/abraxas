@@ -39,3 +39,21 @@ The Janus System is particularly relevant to this agent's mandate: its `[KNOWN]`
 - Agent memory is markdown-based (MEMORY.md max 200 lines, loaded into system prompt)
 - Skills are static files (no runtime hooks or tool-use within skills currently)
 - Agents use `model: sonnet` by default; Opus not used (cost/latency tradeoff)
+
+## Approved Roadmap (from architectural analysis, 2026-03-05)
+
+Recommended skill build sequence after Phase 2 (Accessibility):
+
+1. **Dialogue Engine** — adversarial reasoning; Advocate/Skeptic positions with asymmetric priors; Convergence Report; structural anti-sycophancy. Spec written — see below.
+2. **Veritas** — epistemic calibration and ground-truth tracking; closes the feedback loop on Janus labels; extends `~/.janus/` ledger schema with resolution tracking.
+3. **Synthesis** — session-closing artifact generator; cross-system (Janus + Oneironautics + Dialogue Engine); benefits from Veritas being in place.
+4. **Scribe** — source-grounded citation management; creation-time source attribution; complements Veritas outcome-tracking.
+5. **Retrieval grounding layer** — live external lookup; first tool-use dependency in the stack; partially breaks CONSTITUTION.md model-agnosticism.
+6. **Oneironautics v2 + Individuation Ledger** — expanded Realm of Daimons; figure genealogy; long-arc individuation tracking.
+
+Key insight: R1 (Research Assistant) and R2 (Citation Checker) from Phase 4 roadmap must NOT be built before the Retrieval grounding layer — without live retrieval they are hallucination amplifiers.
+
+## Specification Artifacts
+
+- **Dialogue Engine spec:** `/Users/tylergarlick/@Projects/abraxas/.claude/agent-memory/ai-rd-visionary/dialogue-engine-spec.md`
+  - Covers: position asymmetry constraints, 8-command set, Convergence Report format, Threshold routing rules for Nox material, failure-mode detection (theatrical debate, label laundering, scope creep), Janus integration, CONSTITUTION.md compatibility notes, worked examples guidance, notes for skill-author.

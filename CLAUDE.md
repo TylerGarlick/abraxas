@@ -8,15 +8,17 @@ The [Plan](./PLAN.md) will store all active work items across all agents in a su
 
 ## Project Identity
 
-**Abraxas** is the container for three AI systems, each packaged as a Claude Code skill:
+**Abraxas** is the container for five AI systems, each packaged as a Claude Code skill:
 
 | System | Skill File | Commands | Purpose |
 |---|---|---|---|
 | **Janus System** | `skills/janus-system.skill` | 14 commands | Epistemic labeling: Sol/Nox faces, Threshold, Qualia Bridge |
 | **Honest** | `skills/honest.skill` | 9 commands | Everyday anti-hallucination for non-technical users |
+| **Agon** | `skills/agon.skill` | 8 commands | Structured adversarial reasoning: Advocate and Skeptic positions with Convergence Report |
+| **Aletheia** | `skills/aletheia.skill` | 7 commands | Epistemic calibration and ground-truth tracking — resolves labeled claims |
 | **Abraxas Oneironautics** | `skills/abraxas-oneironautics.skill` | 35 commands | Jungian/alchemical dream work and symbolic integration |
 
-Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Abraxas Oneironautics runs on top of Janus.
+Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Agon and Aletheia extend epistemic reasoning and calibration. Abraxas Oneironautics runs on top of Janus.
 
 **Project root:** `/Users/tylergarlick/@Projects/abraxas`
 **Current phase:** Phase 2 — Accessibility (see PLAN.md)

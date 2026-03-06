@@ -48,6 +48,51 @@ abraxas/
 - **Skill versioning:** Should archives include a manifest with version + metadata fields?
 - **Agent testing:** How to validate `description` triggers fire on the right requests?
 
-## Current Agent Roster (6 agents)
+## Current Agent Roster (7 agents)
 
-`skill-author`, `project-coordinator`, `docs-architect`, `ai-rd-visionary`, `brand-ux-architect`, `systems-architect`
+`skill-author`, `project-coordinator`, `docs-architect`, `ai-rd-visionary`, `brand-ux-architect`, `systems-architect`, `constitution-keeper`
+
+## Janus Epistemic Ledger Schema — Veritas Integration (Mar 2026)
+
+### Current Ledger Design (Append-Only)
+
+`~/.janus/` contains three files:
+- **`ledger.md`** — Main append-only markdown chronicle of all sessions
+- **`sessions/{uuid}.md`** — Individual session Closure Reports (metrics, findings, anti-sycophancy, contamination)
+- **`config.md`** — User preferences (auto-load, default-frame)
+
+**Key invariant:** ledger.md and sessions/ files are **never mutated** after closure — only appended.
+
+### Veritas Resolution Fields (New)
+
+- `resolution_status` — one of: confirmed | disconfirmed | superseded | open
+- `resolution_date` — ISO 8601 timestamp
+- `resolution_note` — user narrative
+
+### Recommended Extension: Separate Resolutions Index
+
+**Approach:** Create `~/.janus/resolutions.md` (new file) for all Veritas-managed resolution data.
+
+**Rationale:**
+- Preserves append-only ledger invariant (zero mutation of existing files)
+- Independent write surface — Veritas resolution failures don't corrupt Janus ledger
+- Clean git diffs — each resolution is new line in resolutions.md
+- Backward compatible — existing ledger files unchanged
+
+**Format:** Markdown with per-session resolution blocks (topic → status/date/note)
+
+**Key insight:** Janus owns *observations* (what Sol/Nox/Threshold did). Veritas owns *resolutions* (what user validated after the fact). Separate files, separate concerns.
+
+**Risk:** Keep resolutions.md schema-versioned (header field) for v2+ compatibility.
+
+### Nox/[DREAM] Constraint
+
+Veritas applies **only to Sol output** ([KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN]). Cannot resolve [DREAM] material — it is symbolic, not truth-testable. Enforce this in Veritas command validation.
+
+### CONSTITUTION.md Integration
+
+Will extend CONSTITUTION.md with Veritas command registry + persistence specification once skill is packaged. Include:
+- Veritas command list (mark-confirmed, mark-disconfirmed, etc.)
+- Persistence file: `~/.janus/resolutions.md`
+- Schema version field
+- Nox scoping rule (Sol-only)
