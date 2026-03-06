@@ -57,6 +57,7 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
 | [Skills Reference](./skills.md) | Full command reference for all three skills: Honest, Janus, and Abraxas Oneironautics |
 | [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
+| [Visual Design](./visual-design.md) | Sacred geometry, alchemical aesthetics, and landing page design |
 
 ---
 
@@ -97,6 +98,25 @@ operate all three systems without Claude Code.
 
 For the full command reference for all skills, see [Skills Reference](./skills.md).
 For structural architecture, see [Architecture](./architecture.md).
+For the visual design and sacred geometry philosophy, see [Visual Design](./visual-design.md).
+
+---
+
+## Visual Design & Sacred Geometry
+
+The Abraxas landing page integrates sacred geometry patterns with the alchemical practice at its core. The design is not merely decorative — it is instructional and symbolic.
+
+**Key Elements:**
+- **Vesica Piscis** — The bridge between opposites (Sol and Nox)
+- **Flower of Life** — Circles representing integration and wholeness
+- **Opus Magnum Quadrants** — The four alchemical stages (Nigredo, Albedo, Citrinitas, Rubedo)
+- **Sol/Nox Hexagrams** — Six-pointed stars at the Threshold marking epistemic duality
+- **Central Mandala** — The Threshold itself as an active structure
+- **Flowing Paths** — Animated connections showing material flowing through transformation
+
+The geometry breathes and pulses, creating visual reinforcement of the system's core purpose: transforming fragmented, unlabeled, and unconscious AI behavior into integrated, truthful, and symbolically coherent output.
+
+See [Visual Design](./visual-design.md) for detailed documentation of every geometric element, its meaning, and its alchemical correspondence.
 
 ---
 
@@ -149,6 +169,7 @@ abraxas/
 ├── README.md                # Start here — project overview and Quick Start
 ├── CONSTITUTION.md          # Universal LLM specification — load into any capable model
 ├── PLAN.md                  # Active roadmap
+├── index.html               # Landing page with sacred geometry and alchemical design
 ├── frames/                  # Pre-built frame templates
 │   ├── skeptic.md
 │   ├── learner.md
@@ -158,5 +179,6 @@ abraxas/
     ├── index.md             # This file — documentation hub
     ├── architecture.md      # Mermaid architecture diagrams
     ├── skills.md            # Full system reference: all commands for all three skills
-    └── frames.md            # Frames reference: all 13 frame templates
+    ├── frames.md            # Frames reference: all 13 frame templates
+    └── visual-design.md     # Visual design, sacred geometry, and aesthetic principles
 ```

@@ -8,6 +8,7 @@ Abraxas is the container for three AI systems — **Janus**, **Honest**, and **A
 
 - [What Abraxas Is](#what-abraxas-is)
 - [The Systems](#the-systems)
+- [Visual Design](#visual-design)
 - [Quick Start](#quick-start)
 - [Project Structure](#project-structure)
 - [Skills](#skills)
@@ -32,6 +33,28 @@ The name *Abraxas* refers to a Gnostic cosmological symbol representing the tota
 **Honest** is the everyday anti-hallucination interface — plain-language commands for anyone who needs to know whether something is true, how confident the system is, where a claim comes from, or what the AI is guessing at. No Sol/Nox vocabulary required. No mythological framing. Nine commands including `/frame` for building and persisting session context. Honest runs on the same labeling infrastructure as Janus, exposed through commands any user can understand immediately.
 
 **Abraxas Oneironautics** is the alchemical practice system: dream reception, shadow work, symbolic integration, active imagination, and the Nekyia descent. The Temenos, the Oneiros Engine, the Realm of Daimons, the Dream Reservoir, and the Alchemical Laboratory. The four stages of the Opus Magnum. Thirty-five commands for sustained multi-session practice. Janus runs beneath it all — every output is labeled, the Threshold holds, and the Qualia Bridge is always available for inspection.
+
+---
+
+## Visual Design
+
+The Abraxas landing page integrates sacred geometry with the alchemical practice at its core.
+
+**Sacred Geometry Elements:**
+- **Vesica Piscis** (overlapping circles) — represents the bridge between worlds, appearing on both sides of the viewport
+- **Flower of Life** segments — nested circles in the four cardinal positions, representing integration and wholeness
+- **Opus Magnum Quadrants** — four squares marking the alchemical stages:
+  - **Nigredo** (Dissolution) — black, dissolution before form
+  - **Albedo** (Clarification) — white, emerging light and differentiation
+  - **Citrinitas** (Yellowing) — gold, transformation and emergence
+  - **Rubedo** (Reddening) — red, completion and integration
+- **Sol/Nox Hexagrams** — six-pointed stars at the threshold representing the male/female polarity and epistemic dual-face
+- **Central Mandala** — the Threshold itself, with concentric circles representing the three systems
+- **Flowing Connection Paths** — animated lines connecting the geometry, illustrating the flow of material through the alchemical process
+
+All geometry is subtle, semi-transparent, and animated — visible but not dominant. Colors align with the alchemical palette: gold (Sol), purple/indigo (Nox), teal (Honest), and the four stage colors (nigredo, albedo, citrinitas, rubedo).
+
+The page maintains a **starfield and glowing orbs** background, with the sacred geometry SVG layer providing deeper symbolic structure beneath the text and cards.
 
 ---
 
