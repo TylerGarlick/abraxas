@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="../assets/logo.svg" alt="Abraxas" width="120">
+</div>
+
 # Abraxas Documentation
 
 This is the documentation hub for the Abraxas project. Abraxas is the container for three

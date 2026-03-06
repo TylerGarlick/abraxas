@@ -183,18 +183,15 @@
     }
 
     .hero h1 {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.5rem, 6.5vw, 6rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
       line-height: 1;
       margin-bottom: 1rem;
-      color: var(--text);
-      animation: fade-up 1.2s ease-out 0.2s both;
-    }
-
-    .hero h1 .initial {
       color: var(--gold);
+      text-shadow: 0 0 60px rgba(240,184,64,0.3), 0 0 120px rgba(240,184,64,0.1);
+      animation: fade-up 1.2s ease-out 0.2s both;
     }
 
     .hero-subtitle {
@@ -207,8 +204,8 @@
     }
 
     .hero-sigil {
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       margin: 2rem auto 2rem;
       animation: fade-up 1.2s ease-out 0.1s both;
     }
@@ -839,7 +836,12 @@
       }
 
       .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+      }
+
+      .hero-sigil {
+        width: 160px;
+        height: 160px;
       }
 
       .hero-subtitle {
@@ -968,30 +970,10 @@
   <section class="hero">
     <div class="hero-eyebrow">Anti-Hallucination · Anti-Scheming · Alchemical Practice</div>
 
-    <!-- Sigil SVG -->
-    <svg class="hero-sigil" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="hero-glow">
-          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-          <feMerge>
-            <feMergeNode in="coloredBlur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-      <!-- Outer circle -->
-      <circle cx="100" cy="100" r="95" fill="none" stroke="#f0b840" stroke-width="1.5" opacity="0.8"/>
-      <!-- Inner circle -->
-      <circle cx="100" cy="100" r="80" fill="none" stroke="#a87fff" stroke-width="1.5" opacity="0.6"/>
-      <!-- Star of David - outer -->
-      <polygon points="100,20 155,95 130,175 70,175 45,95" fill="none" stroke="#f0b840" stroke-width="1.5" filter="url(#hero-glow)"/>
-      <!-- Star of David - inner inverted -->
-      <polygon points="100,180 155,105 130,25 70,25 45,105" fill="none" stroke="#a87fff" stroke-width="1.5" filter="url(#hero-glow)"/>
-      <!-- Center circle -->
-      <circle cx="100" cy="100" r="15" fill="none" stroke="#00d4b0" stroke-width="1.5"/>
-    </svg>
+    <!-- Sigil -->
+    <img src="assets/logo.svg" class="hero-sigil" alt="Abraxas sigil" width="220" height="220">
 
-    <h1><span class="initial">A</span>braxas</h1>
+    <h1>Abraxas</h1>
     <p class="hero-subtitle">Epistemic integrity, adversarial reasoning, calibration, anti-hallucination practice, and alchemical symbolic integration — unified under one system.</p>
 
     <div class="cta-buttons">
