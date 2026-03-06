@@ -18,7 +18,7 @@ Foundation: the two primary systems and their supporting infrastructure.
 
 ---
 
-## Phase 2 — Accessibility `[CURRENT]`
+## Phase 2 — Accessibility `[COMPLETE]`
 
 Making the systems accessible to non-technical and everyday users.
 
@@ -28,13 +28,13 @@ Making the systems accessible to non-technical and everyday users.
 - [x] Full documentation refresh — README, docs/index.md, docs/skills.md updated to reflect three-skill ecosystem
 - [x] CONSTITUTION.md — universal LLM behavioral specification for all three subsystems (58 commands total)
 - [x] `constitution-keeper` agent — maintains CONSTITUTION.md in sync with skill file changes
-- [ ] Installation documentation for non-technical users
-- [ ] Honest skill: test coverage of all 9 commands with real sessions
-- [ ] LLM-agnostic runtime testing of CONSTITUTION.md across Claude, GPT-4, Gemini
+- [x] Installation documentation for non-technical users
+- [x] Honest skill: test coverage of all 9 commands with real sessions
+- [x] LLM-agnostic runtime testing of CONSTITUTION.md across Claude, GPT-4, Gemini
 
 ---
 
-## Phase 3 — Dialogue Engine & Veritas
+## Phase 3 — Dialogue Engine & Veritas `[COMPLETE]`
 
 New epistemic reasoning and calibration skills.
 
@@ -71,7 +71,7 @@ Packaging and release tooling for wider distribution.
 
 ---
 
-## Phase 5 — Expansion
+## Phase 5 — Expansion `[CURRENT]`
 
 New skills and ecosystem growth beyond Dialogue Engine and Veritas.
 
@@ -87,13 +87,87 @@ New skills and ecosystem growth beyond Dialogue Engine and Veritas.
 
 ---
 
+---
+
+## Phase 6 — Epistemic Depth
+
+New systems addressing belief tracking, argument structure, and decision architecture.
+
+### Mnemon — Belief-change tracker
+
+- [ ] Specification document — belief revision schema, anti-sycophancy signal design, `~/.mnemon/` storage format — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** AI-assisted belief revision is invisible; sycophancy leaves no trace. Mnemon tracks when beliefs change, what prompted the change, and flags revisions that occurred immediately after AI output.
+
+### Logos — Argument anatomy tool
+
+- [ ] Specification document — premise/inference mapping schema, Janus label integration, Agon pre-layer design — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** LLMs generate plausible conclusions from structurally broken arguments; gaps are invisible. Logos maps premises, inference steps, and hidden assumptions before any Agon debate begins.
+
+### Kairos — Decision architecture tool
+
+- [ ] Specification document — decision space schema, known/unknown/value/reversibility framework, Agon/Krisis handoff design — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** AI decision support collapses choices into recommendations, hiding genuine uncertainty and value dimensions. Kairos structures the decision space before any analysis begins.
+
+**Phase 6 build order:** Logos first (lowest risk, clear success criteria) → Mnemon (highest epistemic value, anti-sycophancy) → Kairos (strongest user-facing value proposition)
+
+---
+
+## Phase 7 — Expression and Ethics
+
+### Ethos — Voice preservation for writers using AI assistance
+
+- [ ] Specification document — stylistic fingerprint schema, voice drift detection, Nox integration patterns — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/ethos register`, `/ethos check`, `/ethos restore`, `/ethos audit`, `/ethos compare` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** AI homogenizes creative and professional writing; voice drift is documented and growing. Ethos pairs with Janus Sol for mixed factual/expressive documents. Requires Nox integration patterns stable before build.
+
+### Krisis — Ethical deliberation across multiple frameworks
+
+- [ ] Specification document — four-framework parallel schema (consequentialist, deontological, virtue, care ethics), tension/consensus surfacing, verdict constraint design — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/krisis frame`, `/krisis frameworks`, `/krisis tension`, `/krisis consensus`, `/krisis scope`, `/krisis report` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** AI flattens ethical questions into refusals or single-framework recommendations; genuine value conflicts are suppressed. Krisis is Agon for ethics — parallel frameworks, not adversarial positions. Does NOT issue verdicts on personal moral decisions. Requires Agon + Kairos stable and in use before build.
+
+---
+
 ## Backlog
 
 Items identified but not yet scheduled into a phase:
 
-- Consider: OpenCode support for agents and memory (if possible).  What are alternatives to the memory.md?
 - ~~Consider: The ability to frame the facts or considerations for a given session.~~ — completed in Phase 2 via `/frame`
-- Consider: Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling
+- ~~Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling~~ — scheduled: Phase 5 Wave 4
 - ~~Janus v2 with cross-session epistemic ledger persistence~~ — completed (v2 shipped: ~/.janus/ storage, /ledger commands, auto-load)
 - Consider: web-based skill installer (drag `.skill` into browser to install)
 - Consider: Honest as a default Claude Code session wrapper
+
+**Aporia** — Unknown-unknown surfacer; Socratic framing examination
+- Problem: every Abraxas tool operates on what the user already knows to ask; Aporia surfaces what was never asked
+- Upstream of all analysis tools; most experimental concept in the proposed set
+- Commands: `/aporia examine`, `/aporia reframe`, `/aporia blind`, `/aporia socratic`, `/aporia ready`
+- Status: needs real-world session validation before spec; revisit after Phase 6 tools are in use
