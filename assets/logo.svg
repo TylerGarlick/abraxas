@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <filter id="sigil-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <marker id="ouroboros-tip" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 Z" fill="#a87fff" opacity="0.9"/>
+    </marker>
+  </defs>
+
+  <!-- Outer compass ring (animated) -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate"
+      from="0 100 100" to="360 100 100" dur="120s" repeatCount="indefinite"/>
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#f0b840" stroke-width="1" opacity="0.7"/>
+    <!-- 24 radial tick marks at 15° intervals -->
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(0   100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(15  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(30  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(45  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(60  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(75  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(90  100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(105 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(120 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(135 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(150 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(165 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(180 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(195 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(210 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(225 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(240 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(255 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(270 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(285 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(300 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(315 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(330 100 100)"/>
+    <line x1="100" y1="5"  x2="100" y2="10"  stroke="#f0b840" stroke-width="1" opacity="0.6" transform="rotate(345 100 100)"/>
+  </g>
+
+  <!-- Ouroboros arc: r=82, near-complete circle (355°), gap at top, arrowhead at tail -->
+  <!-- Arc from 2.5° to 357.5°, drawn as large arc -->
+  <path d="M 100 18.05 A 82 82 0 1 1 96.42 18.15"
+    fill="none" stroke="#a87fff" stroke-width="2" opacity="0.85"
+    marker-end="url(#ouroboros-tip)"/>
+
+  <!-- Hexagram: Sol triangle (upward) -->
+  <polygon points="100,32 159,132 41,132"
+    fill="#f0b840" fill-opacity="0.08"
+    stroke="#f0b840" stroke-width="1.5"
+    filter="url(#sigil-glow)" opacity="0.9"/>
+
+  <!-- Hexagram: Nox triangle (downward) -->
+  <polygon points="100,168 41,68 159,68"
+    fill="#a87fff" fill-opacity="0.08"
+    stroke="#a87fff" stroke-width="1.5"
+    filter="url(#sigil-glow)" opacity="0.9"/>
+
+  <!-- Inner sanctum circle -->
+  <circle cx="100" cy="100" r="30" fill="none" stroke="#a8b8c8" stroke-width="1" opacity="0.7"/>
+
+  <!-- Central eye: outer teal ring -->
+  <circle cx="100" cy="100" r="18" fill="none" stroke="#00d4b0" stroke-width="1" opacity="0.8"/>
+
+  <!-- Central eye: filled core -->
+  <circle cx="100" cy="100" r="10" fill="#00d4b0" fill-opacity="0.6"/>
+</svg>
