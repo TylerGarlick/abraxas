@@ -1,7 +1,7 @@
 # Skills Reference
 
-This document is the system reference for all three skills that make up the Abraxas project:
-**Honest**, the **Janus System**, and **Abraxas Oneironautics**. It describes what each system
+This document is the system reference for all ten skills that make up the Abraxas project:
+**Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, and **Synthesis**. It describes what each system
 is, how it is structured, and every command it provides.
 
 These are not plugins or developer utilities. They are operational systems designed to address
@@ -97,7 +97,7 @@ Bibliography verification. Pairs claims with sources and verifies citations.
 
 ## Using Without Skills (CONSTITUTION.md)
 
-Don't have Claude Code? Load `CONSTITUTION.md` as your system prompt to activate all three
+Don't have Claude Code? Load `CONSTITUTION.md` as your system prompt to activate all ten
 systems in any LLM.
 
 ### Setup by Platform
