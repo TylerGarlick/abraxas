@@ -49,6 +49,11 @@ unzip agon.skill -d ~/.claude/skills/
 unzip aletheia.skill -d ~/.claude/skills/
 unzip janus-system.skill -d ~/.claude/skills/
 unzip abraxas-oneironautics.skill -d ~/.claude/skills/
+unzip synthesis.skill -d ~/.claude/skills/
+unzip scribe.skill -d ~/.claude/skills/
+unzip retrieval-grounding.skill -d ~/.claude/skills/
+unzip research-assistant.skill -d ~/.claude/skills/
+unzip citation-checker.skill -d ~/.claude/skills/
 ```
 
 Once installed, the skill's slash commands are available in every Claude Code session — no
@@ -61,6 +66,32 @@ project-level configuration required.
 | Aletheia | `skills/aletheia.skill` | 7 | ~10 KB |
 | Janus System v2 | `skills/janus-system.skill` | 19 | ~15 KB |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | ~20 KB |
+| Synthesis | `skills/synthesis.skill` | 3 | ~2 KB |
+| Scribe | `skills/scribe.skill` | 4 | ~2 KB |
+| Retrieval Grounding | `skills/retrieval-grounding.skill` | 4 | ~2 KB |
+| Research Assistant | `skills/research-assistant.skill` | 5 | ~2 KB |
+| Citation Checker | `skills/citation-checker.skill` | 4 | ~2 KB |
+
+---
+
+## Phase 5 Expansion Skills
+
+The following skills were added in Phase 5 (Expansion):
+
+### Synthesis
+Session-closing artifact generator. Synthesizes epistemic outputs into structured summaries. Integrates with Veritas resolution tracking.
+
+### Scribe
+Source-grounded citation management. Tracks citations at creation time as a complement to Veritas.
+
+### Retrieval Grounding
+Live external lookup. Provides factual grounding through real-time source verification. First tool-use dependency in the stack.
+
+### Research Assistant
+Citation tracking, source verification, and research session management for multi-session projects.
+
+### Citation Checker
+Bibliography verification. Pairs claims with sources and verifies citations.
 
 ---
 
