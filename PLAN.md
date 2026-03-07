@@ -71,19 +71,19 @@ Packaging and release tooling for wider distribution.
 
 ---
 
-## Phase 5 — Expansion `[CURRENT]`
+## Phase 5 — Expansion `[COMPLETE]`
 
 New skills and ecosystem growth beyond Dialogue Engine and Veritas.
 
-- [ ] Synthesis skill — session-closing artifact generator; requires Veritas in place
-- [ ] Scribe skill — source-grounded citation management; creation-time complement to Veritas
-- [ ] Retrieval grounding layer — live external lookup; first tool-use dependency in the stack
-- [ ] Oneironautics v2 + Individuation Ledger — depth expansion for committed practitioners
-- [ ] Research assistant skill — citation tracking, source verification, research session management
-- [ ] Citation checker skill — bibliography verification and claim-source pairing
-- [ ] Honest integration guide — how to use Honest alongside common dev tools and workflows
-- [ ] Skill composition patterns — documented workflows for multi-skill sessions (e.g., Honest + Janus)
-- [ ] Community skill template — starter SKILL.md format for third-party skill authors
+- [x] Synthesis skill — session-closing artifact generator; requires Veritas in place — **Agent:** skill-author
+- [x] Scribe skill — source-grounded citation management; creation-time complement to Veritas — **Agent:** skill-author
+- [x] Retrieval grounding layer — live external lookup; first tool-use dependency in the stack — **Agent:** systems-architect
+- [x] Oneironautics v2 + Individuation Ledger — depth expansion for committed practitioners — **Agent:** brand-ux-architect
+- [x] Research assistant skill — citation tracking, source verification, research session management — **Agent:** skill-author
+- [x] Citation checker skill — bibliography verification and claim-source pairing — **Agent:** skill-author
+- [x] Honest integration guide — how to use Honest alongside common dev tools and workflows — **Agent:** brand-ux-architect
+- [x] Skill composition patterns — documented workflows for multi-skill sessions (e.g., Honest + Janus) — **Agent:** docs-architect
+- [x] Community skill template — starter SKILL.md format for third-party skill authors — **Agent:** docs-architect
 
 ---
 
