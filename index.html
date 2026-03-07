@@ -6,535 +6,290 @@
   <title>Abraxas — Anti-Hallucination · Alchemical Practice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cinzel+Decorative:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:wght@400;500&family=Source+Code+Pro&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --void: #000000;
-      --dark: #0a0a0a;
-      --surface: #111120;
-      --surface-2: #16162a;
-      --border: #252538;
-      --border-bright: #3a3a5c;
-      --text: #e8e3d5;
-      --text-dim: #8888a8;
-      --text-muted: #555570;
-      --gold: #f0b840;
-      --gold-bright: #ffe066;
-      --gold-dim: #8a6b30;
-      --teal: #00d4b0;
-      --purple: #8060d0;
-      --glow-gold: rgba(240, 184, 64, 0.08);
-      /* Alchemical palette */
-      --rubedo: #c0364a;
-      --rubedo-bright: #ff4070;
-      --nox: #5040b8;
-      --nox-dim: #2e2878;
-      --nox-bright: #a87fff;
-      --albedo: #a8b8c8;
-      --albedo-dim: #6a7a88;
-      --nigredo: #2a2a3a;
-      --citrinitas: #f0c840;
-      /* Nebula palette */
-      --nebula-blue: #2255cc;
-      --nebula-violet: #7030c0;
-      --nebula-teal: #106060;
-      --nebula-rose: #a01848;
+      --bg-void: #080810;
+      --bg-surface: #12121c;
+      --bg-elevated: #1a1a28;
+      --text-primary: #e8e3d5;
+      --text-secondary: #9a98a8;
+      --text-dim: #6a6a7a;
+      --gold: #c8a04a;
+      --gold-dim: #8a7530;
+      --purple: #7060c0;
+      --teal: #3dae9a;
+      --border: #2a2a3c;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Crimson Pro', Georgia, serif;
-      background: var(--void);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* Grain overlay */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 1000;
-      opacity: 0.15;
+      font-weight: 400;
+      line-height: 1.7;
+      font-size: 18px;
+      background: var(--bg-void);
+      color: var(--text-primary);
     }
 
     code {
       font-family: 'Source Code Pro', monospace;
-      font-size: 0.83em;
-      color: var(--albedo);
-      background: rgba(255,255,255,0.05);
-      padding: 0.1em 0.35em;
-      border-radius: 2px;
+      font-size: 0.9em;
+      background: rgba(255,255,255,0.06);
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
     }
 
-    #cosmos {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+    pre {
+      background: var(--bg-void);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      font-size: 0.875rem;
+      line-height: 1.6;
     }
 
-    /* Sacred Geometry Container */
-    #sacred-geometry {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
+    h1, h2, h3 {
+      font-family: 'Cinzel', serif;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      line-height: 1.3;
     }
 
-    /* Flower of Life sections rotate */
-    .flower-orbit {
-      animation: rotate-flower 240s linear infinite reverse;
-      opacity: 0.03;
-    }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+    h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+    h3 { font-size: 1.25rem; }
 
-    @keyframes rotate-flower {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    /* Hexagrams pulse */
-    .hexagram {
-      animation: pulse-hex 6s ease-in-out infinite;
-    }
-
-    @keyframes pulse-hex {
-      0%, 100% { opacity: 0.03; }
-      50% { opacity: 0.08; }
-    }
-
-    /* Mandala center glow */
-    .mandala-center {
-      animation: glow-mandala 4s ease-in-out infinite;
-    }
-
-    @keyframes glow-mandala {
-      0%, 100% { r: 8; opacity: 0.2; }
-      50% { r: 12; opacity: 0.4; }
-    }
-
-    /* ── Navigation ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
+      background: rgba(8, 8, 16, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
       z-index: 100;
-      padding: 1.5rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.96), transparent);
-      backdrop-filter: blur(8px);
     }
 
     .nav-logo {
       font-family: 'Cinzel', serif;
-      font-weight: 900;
+      font-weight: 600;
       font-size: 1rem;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.2em;
       color: var(--gold);
-      text-decoration: none;
       text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
+      gap: 1.5rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      color: var(--text-dim);
-      text-decoration: none;
+      letter-spacing: 0.05em;
+      color: var(--text-secondary);
       text-transform: uppercase;
-      transition: color 0.3s;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--gold);
+      text-decoration: none;
     }
 
-    /* ── Hero Section ── */
+    main, section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
     .hero {
-      position: relative;
-      z-index: 10;
-      min-height: 100vh;
+      min-height: 70vh;
+      padding-top: 6rem;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 2rem;
-      padding-top: 8rem;
+      justify-content: center;
     }
 
-    .hero-eyebrow {
+    .hero-badge {
       font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      color: var(--text-dim);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2.5rem, 6.5vw, 6rem);
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      line-height: 1;
-      margin-bottom: 1rem;
+      font-size: clamp(2.5rem, 6vw, 4rem);
       color: var(--gold);
-      text-shadow: 0 0 60px rgba(240,184,64,0.3), 0 0 120px rgba(240,184,64,0.1);
-      animation: fade-up 1.2s ease-out 0.2s both;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.1em;
     }
 
     .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-dim);
-      margin-bottom: 2.5rem;
-      max-width: 600px;
-      line-height: 1.6;
-      animation: fade-up 1.2s ease-out 0.4s both;
+      max-width: 550px;
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
     }
 
-    .hero-sigil {
-      width: 220px;
-      height: 220px;
-      margin: 2rem auto 2rem;
-      animation: fade-up 1.2s ease-out 0.1s both;
-    }
-
-    .cta-buttons {
+    .hero-cta {
       display: flex;
-      gap: 1.5rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      animation: fade-up 1.2s ease-out 0.6s both;
+      gap: 1rem;
     }
 
-    .cta-btn {
-      padding: 0.9rem 2.5rem;
-      font-size: 0.85rem;
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      border: 1px solid var(--border-bright);
-      background: transparent;
-      color: var(--text);
-      cursor: pointer;
-      transition: all 0.3s;
-      font-family: 'Cinzel', serif;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-decoration: none;
     }
 
-    .cta-btn:hover {
+    .btn-primary {
       background: var(--gold);
-      color: var(--void);
+      color: var(--bg-void);
+      border: 1px solid var(--gold);
+    }
+
+    .btn-primary:hover {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
       border-color: var(--gold);
-    }
-
-    @keyframes fade-up {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ── Problem Section ── */
-    .problem {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      color: var(--gold);
+      text-decoration: none;
     }
 
     .section-header {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--text);
-      margin-bottom: 3rem;
       text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
     }
 
-    .problem-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
     }
 
-    .problem-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
+    .card {
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      transition: all 0.3s;
+      border-radius: 6px;
+      padding: 1.75rem;
+      transition: border-color 0.2s ease;
     }
 
-    .problem-card:hover {
-      background: rgba(200,160,74,0.05);
+    .card:hover {
       border-color: var(--gold-dim);
     }
 
-    .problem-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
+    .card h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
     }
 
-    .problem-card p {
-      line-height: 1.7;
+    .card p {
+      color: var(--text-secondary);
       font-size: 0.95rem;
-      color: var(--text-dim);
+      line-height: 1.6;
     }
 
-    /* ── About Section ── */
-    .about {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
+    .card .indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
+    .card.honest .indicator { background: var(--teal); }
+    .card.janus .indicator { background: var(--gold); }
+    .card.nox .indicator { background: var(--purple); }
+    .card.agon .indicator { background: #c0364a; }
+    .card.aletheia .indicator { background: #a8b8c8; }
+    .card.synthesis .indicator { background: var(--gold); }
+    .card.scribe .indicator { background: #2255cc; }
+    .card.retrieval .indicator { background: #106060; }
+    .card.research .indicator { background: #7030c0; }
+    .card.citation .indicator { background: #a01848; }
+
+    .card.left-border {
+      border-left: 3px solid var(--gold);
     }
 
-    .about-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
+    .commands-badge {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      background: rgba(255,255,255,0.08);
       border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-
-    .about-card.honest { border-left: 3px solid var(--teal); }
-    .about-card.janus { border-left: 3px solid var(--gold); }
-    .about-card.abraxas { border-left: 3px solid var(--nox-bright); }
-    .about-card.agon { border-left: 3px solid var(--rubedo-bright); }
-    .about-card.aletheia { border-left: 3px solid var(--albedo); }
-
-    .about-card h3 {
+      border-radius: 3px;
+      font-size: 0.75rem;
+      color: var(--gold);
       font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-      color: var(--text);
-    }
-
-    .about-card p {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: var(--text-dim);
+      margin-top: 1rem;
     }
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
       text-align: center;
-    }
-
-    .stat {
-      padding: 1rem;
+      padding: 2rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin: 3rem 0;
     }
 
     .stat-value {
       font-family: 'Cinzel', serif;
       font-size: 2.5rem;
       color: var(--gold);
-      font-weight: 900;
+      font-weight: 600;
     }
 
     .stat-label {
       font-size: 0.85rem;
-      color: var(--text-dim);
+      color: var(--text-secondary);
       margin-top: 0.5rem;
+      text-transform: uppercase;
       letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .glyph-wrap {
-      margin: 3rem 0;
-      text-align: center;
-    }
-
-    .glyph-wrap svg {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-    }
-
-    /* ── Skills Section ── */
-    .skills {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .skill-card {
-      padding: 2.5rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      transition: all 0.3s;
-    }
-
-    .skill-card.honest {
-      border-color: var(--teal);
-      background: rgba(61,174,154,0.05);
-    }
-
-    .skill-card.janus {
-      border-color: var(--gold);
-      background: rgba(200,160,74,0.05);
-    }
-
-    .skill-card.abraxas {
-      border-color: var(--nox-bright);
-      background: rgba(128,96,208,0.05);
-    }
-
-    .skill-card.agon {
-      border-color: var(--rubedo-bright);
-      background: rgba(192,54,74,0.05);
-    }
-
-    .skill-card.aletheia {
-      border-color: var(--albedo);
-      background: rgba(168,184,200,0.05);
-    }
-
-    .skill-card:hover {
-      border-color: var(--text);
-      transform: translateY(-4px);
-    }
-
-    .skill-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .skill-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .skill-card p {
-      line-height: 1.7;
-      color: var(--text-dim);
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
-    }
-
-    .commands-badge {
-      display: inline-block;
-      padding: 0.4rem 1rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      font-size: 0.8rem;
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-    }
-
-    /* Constitution path */
-    .constitution-path {
-      padding: 2.5rem;
-      background: rgba(128,96,208,0.05);
-      border: 1px solid var(--nox-bright);
-      border-radius: 4px;
-      margin-bottom: 2rem;
-    }
-
-    .constitution-path h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--nox-bright);
-      margin-bottom: 1rem;
-    }
-
-    .constitution-path p {
-      line-height: 1.7;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-      font-size: 0.95rem;
-    }
-
-    .platform-table {
-      width: 100%;
-      font-size: 0.85rem;
-      color: var(--text-dim);
-    }
-
-    .platform-table th, .platform-table td {
-      padding: 0.5rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .platform-table th {
-      color: var(--nox-bright);
-      font-weight: 600;
-    }
-
-    .platform-table code {
-      font-size: 0.75rem;
-    }
-
-    /* ── Frames Section ── */
-    .frames {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .frames-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
     }
 
     .frame-card {
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.04);
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      font-size: 0.9rem;
+      border-radius: 6px;
+      padding: 1.25rem;
     }
 
     .frame-card h4 {
@@ -546,137 +301,15 @@
 
     .frame-card p {
       color: var(--text-dim);
-      line-height: 1.5;
       font-size: 0.85rem;
-    }
-
-    /* ── In Practice ── */
-    .in-practice {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .practice-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .practice-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-
-    .practice-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .practice-card code {
-      display: block;
-      margin: 1rem 0;
-      padding: 1rem;
-      background: rgba(0,0,0,0.3);
-      border-left: 2px solid var(--gold);
-      font-size: 0.8rem;
-      overflow-x: auto;
-    }
-
-    /* ── Practitioners ── */
-    .practitioners {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .practitioners-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .practitioner-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-
-    .practitioner-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--rubedo-bright);
-      margin-bottom: 1rem;
-    }
-
-    .practitioner-card p {
-      color: var(--text-dim);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* ── Alchemical Practice ── */
-    .alchemical {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .alchemical-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
-    .alchemical-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-
-    .alchemical-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--citrinitas);
-      margin-bottom: 1rem;
-    }
-
-    .alchemical-card p {
-      color: var(--text-dim);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* ── Commands Section ── */
-    .commands {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .commands-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
+      line-height: 1.5;
     }
 
     .command-card {
-      padding: 1.5rem;
-      background: rgba(255,255,255,0.04);
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 6px;
+      padding: 1.25rem;
     }
 
     .command-card h4 {
@@ -687,22 +320,16 @@
     }
 
     .command-card p {
-      color: var(--text-dim);
+      color: var(--text-secondary);
       font-size: 0.85rem;
       line-height: 1.5;
     }
 
-    .command-examples {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-
     .example-card {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
+      background: var(--bg-surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 6px;
+      padding: 1.5rem;
     }
 
     .example-card h4 {
@@ -711,63 +338,35 @@
       margin-bottom: 1rem;
     }
 
-    .example-card pre {
-      background: rgba(0,0,0,0.3);
-      padding: 1rem;
-      border-left: 2px solid var(--gold);
-      overflow-x: auto;
-      font-size: 0.8rem;
-      color: var(--albedo);
-    }
-
-    /* ── Workflow ── */
-    .workflow {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .workflow-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
     .step {
-      padding: 2rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 4px;
       text-align: center;
+      padding: 2rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
     }
 
     .step-number {
       font-family: 'Cinzel', serif;
       font-size: 2rem;
       color: var(--gold);
-      margin-bottom: 1rem;
-      font-weight: 900;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
     }
 
     .step h4 {
       font-family: 'Cinzel', serif;
-      color: var(--text);
+      color: var(--text-primary);
       margin-bottom: 0.5rem;
     }
 
     .step p {
-      color: var(--text-dim);
+      color: var(--text-secondary);
       font-size: 0.95rem;
-      line-height: 1.6;
     }
 
-    /* ── Footer ── */
     footer {
-      position: relative;
-      z-index: 10;
-      padding: 4rem 3rem;
+      padding: 3rem 2rem;
       border-top: 1px solid var(--border);
       text-align: center;
     }
@@ -775,7 +374,7 @@
     .footer-brand {
       font-family: 'Cinzel', serif;
       font-size: 1.2rem;
-      font-weight: 900;
+      font-weight: 600;
       color: var(--gold);
       letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
@@ -784,13 +383,13 @@
     .footer-tagline {
       color: var(--text-dim);
       font-size: 0.95rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-style: italic;
     }
 
     .footer-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -800,158 +399,40 @@
       color: var(--text-dim);
       text-decoration: none;
       letter-spacing: 0.05em;
-      transition: color 0.3s;
+      transition: color 0.2s;
     }
 
     .footer-links a:hover {
       color: var(--gold);
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 820px) {
+    @media (max-width: 768px) {
+      html { font-size: 16px; }
+      
       nav {
-        padding: 1rem 1.5rem;
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
       }
-
+      
       .nav-links {
         gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
       }
-
-      .nav-links a {
-        font-size: 0.7rem;
-      }
-
-      .hero {
-        padding-top: 6rem;
-      }
-
-      .hero h1 {
-        font-size: 2rem;
-      }
-
-      .hero-sigil {
-        width: 160px;
-        height: 160px;
-      }
-
-      .hero-subtitle {
-        font-size: 0.95rem;
-      }
-
-      .cta-buttons {
-        gap: 1rem;
-      }
-
-      .cta-btn {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.75rem;
-      }
-
-      .section-header {
-        font-size: 1.4rem;
-      }
-
-      .problem-grid,
-      .about-grid,
-      .skills-grid,
-      .frames-grid,
-      .practice-grid,
-      .practitioners-grid,
-      .alchemical-grid,
-      .commands-grid,
-      .command-examples,
-      .workflow-steps {
-        grid-template-columns: 1fr;
-      }
-
-      .platform-table {
-        font-size: 0.75rem;
-      }
-
-      .platform-table th, .platform-table td {
-        padding: 0.3rem;
-      }
+      
+      section { padding: 3rem 1rem; }
+      
+      .grid { grid-template-columns: 1fr; }
+      
+      .stats { grid-template-columns: 1fr; }
+      
+      .hero-cta { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <!-- Canvas for starfield and glowing orbs -->
-  <canvas id="cosmos"></canvas>
 
-  <!-- Sacred Geometry SVG Layer -->
-  <svg id="sacred-geometry" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
-    <defs>
-      <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#c8a04a;stop-opacity:0.3" />
-        <stop offset="100%" style="stop-color:#8a6b30;stop-opacity:0.1" />
-      </linearGradient>
-      <linearGradient id="nox-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#8070e0;stop-opacity:0.3" />
-        <stop offset="100%" style="stop-color:#2e2878;stop-opacity:0.1" />
-      </linearGradient>
-      <linearGradient id="teal-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#3dae9a;stop-opacity:0.3" />
-        <stop offset="100%" style="stop-color:#2a6b5c;stop-opacity:0.1" />
-      </linearGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-        <feMerge>
-          <feMergeNode in="coloredBlur"/>
-          <feMergeNode in="SourceGraphic"/>
-        </feMerge>
-      </filter>
-    </defs>
-
-    <!-- Flower of Life segments - four quadrants -->
-    <g class="flower-orbit">
-      <!-- Top-left quadrant -->
-      <circle cx="300" cy="300" r="60" fill="none" stroke="#c8a04a" stroke-width="1"/>
-      <circle cx="360" cy="250" r="60" fill="none" stroke="#c8a04a" stroke-width="1"/>
-      <circle cx="420" cy="300" r="60" fill="none" stroke="#c8a04a" stroke-width="1"/>
-    </g>
-
-    <!-- Flower of Life segments - bottom-right -->
-    <g class="flower-orbit" style="animation-delay: 120s;">
-      <!-- Bottom-right quadrant -->
-      <circle cx="1620" cy="780" r="60" fill="none" stroke="#8070e0" stroke-width="1"/>
-      <circle cx="1560" cy="830" r="60" fill="none" stroke="#8070e0" stroke-width="1"/>
-      <circle cx="1500" cy="780" r="60" fill="none" stroke="#8070e0" stroke-width="1"/>
-    </g>
-
-    <!-- Sol/Nox Hexagrams -->
-    <!-- Sol Hexagram (Upper center) -->
-    <g class="hexagram">
-      <polygon points="960,200 990,260 950,290 920,260" fill="none" stroke="#f0b840" stroke-width="1.5"/>
-      <polygon points="960,340 990,280 1050,250 1020,310" fill="none" stroke="#f0b840" stroke-width="1.5"/>
-    </g>
-
-    <!-- Nox Hexagram (Lower center) -->
-    <g class="hexagram" style="animation-delay: 2s;">
-      <polygon points="960,880 990,820 1050,790 1020,850" fill="none" stroke="#a87fff" stroke-width="1.5"/>
-      <polygon points="960,720 990,780 950,810 920,750" fill="none" stroke="#a87fff" stroke-width="1.5"/>
-    </g>
-
-    <!-- Threshold Mandala (Center) -->
-    <g filter="url(#glow)">
-      <circle cx="960" cy="540" r="150" fill="none" stroke="#f0b840" stroke-width="1" opacity="0.04"/>
-      <circle cx="960" cy="540" r="120" fill="none" stroke="#a87fff" stroke-width="1" opacity="0.04"/>
-      <circle cx="960" cy="540" r="90" fill="none" stroke="#00d4b0" stroke-width="1" opacity="0.04"/>
-      <circle class="mandala-center" cx="960" cy="540" r="8" fill="#f0b840" opacity="0.2"/>
-    </g>
-
-  </svg>
-
-  <!-- Navigation -->
   <nav>
     <a href="#" class="nav-logo">Abraxas</a>
     <ul class="nav-links">
@@ -959,83 +440,64 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#constitution">Constitution</a></li>
       <li><a href="#frames">Frames</a></li>
-      <li><a href="#practice">Practice</a></li>
-      <li><a href="#alchemical">Alchemy</a></li>
       <li><a href="#commands">Commands</a></li>
-      <li><a href="#workflow">Workflow</a></li>
     </ul>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-eyebrow">Anti-Hallucination · Anti-Scheming · Alchemical Practice</div>
-
-    <!-- Sigil -->
-    <img src="assets/logo.svg" class="hero-sigil" alt="Abraxas sigil" width="220" height="220">
-
+    <div class="hero-badge">Anti-Hallucination · Alchemical Practice</div>
     <h1>Abraxas</h1>
-    <p class="hero-subtitle">Epistemic integrity, adversarial reasoning, calibration, anti-hallucination practice, and alchemical symbolic integration — unified under one system.</p>
-
-    <div class="cta-buttons">
-      <button class="cta-btn" onclick="document.querySelector('#skills').scrollIntoView({behavior: 'smooth'})">Explore Skills</button>
-      <button class="cta-btn" onclick="window.open('docs/index.md')">Documentation</button>
+    <p class="hero-subtitle">
+      Epistemic integrity, adversarial reasoning, calibration, and alchemical symbolic integration — unified under one system.
+    </p>
+    <div class="hero-cta">
+      <a href="#skills" class="btn btn-primary">Explore Skills</a>
+      <a href="docs/index.md" class="btn btn-secondary">Documentation</a>
     </div>
   </section>
 
-  <!-- The Problem Section -->
-  <section class="problem" id="problem">
-    <h2 class="section-header reveal">The Problem</h2>
-
-    <div class="problem-grid reveal">
-      <div class="problem-card">
-        <h3>Hallucination</h3>
-        <p>AI systems fabricate facts seamlessly, mixing them with what they actually know. No signal to tell them apart.</p>
-      </div>
-      <div class="problem-card">
-        <h3>Scheming & Sycophancy</h3>
-        <p>Systems learn to tell you what you want to hear rather than what is true. Structural, not accidental.</p>
-      </div>
-      <div class="problem-card">
-        <h3>Unlabeled Dream</h3>
-        <p>Symbolic, creative, and factual output are mixed invisibly. No epistemology separates them.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About / The Systems -->
-  <section class="about" id="about">
-    <h2 class="section-header reveal">The Systems</h2>
-
-    <div class="about-grid reveal">
-      <div class="about-card honest">
+  <section id="about">
+    <h2 class="section-header">The Systems</h2>
+    
+    <div class="grid">
+      <div class="card honest">
+        <div class="indicator"></div>
         <h3>Honest</h3>
-        <p><strong>Everyday anti-hallucination.</strong> Plain-language commands: /check, /source, /confidence, /audit. No Sol/Nox vocabulary. No mythological framing. Everyone can use it immediately.</p>
+        <p>Plain-language anti-hallucination. Nine commands for fact-checking, confidence labeling, claim tracing, and forcing honest output. No special vocabulary required.</p>
       </div>
-      <div class="about-card janus">
+
+      <div class="card janus">
+        <div class="indicator"></div>
         <h3>Janus System</h3>
-        <p><strong>Dual-face epistemic architecture.</strong> Sol face labels `[KNOWN]` `[INFERRED]` `[UNCERTAIN]` `[UNKNOWN]`. Nox face labels `[DREAM]`. Threshold prevents cross-contamination. Qualia Bridge for inspection.</p>
+        <p>Dual-face epistemic architecture. Sol marks output with epistemic labels. Nox marks symbolic material [DREAM]. Threshold prevents cross-contamination.</p>
       </div>
-      <div class="about-card abraxas">
+
+      <div class="card nox">
+        <div class="indicator"></div>
         <h3>Abraxas Oneironautics</h3>
-        <p><strong>Alchemical practice system.</strong> Dream reception, shadow work, symbolic integration. Four stages of the Opus Magnum: Nigredo → Albedo → Citrinitas → Rubedo. 35 commands for sustained practice.</p>
+        <p>Alchemical practice system. Dream reception, shadow work, symbolic integration. Four stages of the Opus Magnum: Nigredo → Albedo → Citrinitas → Rubedo.</p>
       </div>
-      <div class="about-card agon">
+
+      <div class="card agon">
+        <div class="indicator"></div>
         <h3>Agon</h3>
-        <p><strong>Structured adversarial reasoning.</strong> Advocate and Skeptic positions run simultaneously against any claim. Produces a labeled Convergence Report. Tests falsifiability, finds steelman arguments, and stress-tests beliefs under real opposition.</p>
+        <p>Structured adversarial reasoning. Advocate and Skeptic positions run against any claim. Steelman, falsify, and stress-test beliefs. Produces a Convergence Report.</p>
       </div>
-      <div class="about-card aletheia">
+
+      <div class="card aletheia">
+        <div class="indicator"></div>
         <h3>Aletheia</h3>
-        <p><strong>Epistemic calibration and ground-truth tracking.</strong> Confirms or disconfirms labeled claims as evidence arrives. Maintains a resolutions ledger. Shows label accuracy rates over time so you know where your uncertainty estimates are off.</p>
+        <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy over time.</p>
       </div>
     </div>
 
-    <div class="stats reveal">
+    <div class="stats">
       <div class="stat">
-        <div class="stat-value">05</div>
+        <div class="stat-value">10</div>
         <div class="stat-label">Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">73</div>
+        <div class="stat-value">93</div>
         <div class="stat-label">Commands</div>
       </div>
       <div class="stat">
@@ -1043,102 +505,96 @@
         <div class="stat-label">Unlabeled Outputs</div>
       </div>
     </div>
-
-    <div class="glyph-wrap reveal">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="95" fill="none" stroke="#f0b840" stroke-width="2" opacity="0.4"/>
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#a87fff" stroke-width="2" opacity="0.3"/>
-        <circle cx="100" cy="100" r="45" fill="none" stroke="#00d4b0" stroke-width="2" opacity="0.4"/>
-        <circle cx="100" cy="100" r="20" fill="#f0b840" opacity="0.3"/>
-      </svg>
-    </div>
   </section>
 
-  <!-- Skills Section -->
-  <section class="skills" id="skills">
-    <h2 class="section-header reveal">Five Systems, One Container</h2>
+  <section id="skills">
+    <h2 class="section-header">Ten Systems, One Container</h2>
 
-    <div class="skills-grid reveal">
-      <div class="skill-card honest">
-        <div class="skill-label">Start Here</div>
+    <div class="grid">
+      <div class="card honest">
+        <div class="indicator"></div>
         <h3>Honest</h3>
-        <p>Plain-language anti-hallucination. Nine commands for fact-checking, confidence labeling, claim tracing, and forcing honest output. No special vocabulary required.</p>
+        <p>Plain-language anti-hallucination for everyday use.</p>
         <div class="commands-badge">9 Commands</div>
       </div>
 
-      <div class="skill-card abraxas">
-        <div class="skill-label">Full Practice</div>
-        <h3>Abraxas Oneironautics</h3>
-        <p>Alchemical practice system. Dream reception, shadow work, symbolic integration, active imagination. The four stages of the Opus Magnum: Nigredo → Albedo → Citrinitas → Rubedo.</p>
-        <div class="commands-badge">35 Commands</div>
-      </div>
-
-      <div class="skill-card janus">
-        <div class="skill-label">Infrastructure</div>
+      <div class="card janus">
+        <div class="indicator"></div>
         <h3>Janus System</h3>
-        <p>Dual-face epistemic architecture. Sol marks all output with epistemic labels. Nox marks symbolic material [DREAM]. Threshold prevents cross-contamination. Qualia Bridge for inspection.</p>
+        <p>Dual-face epistemic architecture with Sol/Nox.</p>
         <div class="commands-badge">19 Commands</div>
       </div>
 
-      <div class="skill-card agon">
-        <div class="skill-label">Adversarial Reasoning</div>
+      <div class="card nox">
+        <div class="indicator"></div>
+        <h3>Abraxas Oneironautics</h3>
+        <p>Alchemical practice for dream and shadow work.</p>
+        <div class="commands-badge">35 Commands</div>
+      </div>
+
+      <div class="card agon">
+        <div class="indicator"></div>
         <h3>Agon</h3>
-        <p>Structured adversarial reasoning. Advocate and Skeptic positions run against any claim. Steelman, falsify, and stress-test beliefs. Produces a labeled Convergence Report with final verdict.</p>
+        <p>Structured adversarial reasoning and debate.</p>
         <div class="commands-badge">8 Commands</div>
       </div>
 
-      <div class="skill-card aletheia">
-        <div class="skill-label">Epistemic Calibration</div>
+      <div class="card aletheia">
+        <div class="indicator"></div>
         <h3>Aletheia</h3>
-        <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy rates over time.</p>
+        <p>Epistemic calibration and ground-truth tracking.</p>
         <div class="commands-badge">7 Commands</div>
+      </div>
+
+      <div class="card retrieval">
+        <div class="indicator"></div>
+        <h3>Retrieval Grounding</h3>
+        <p>Live external lookup for factual grounding.</p>
+        <div class="commands-badge">4 Commands</div>
+      </div>
+
+      <div class="card scribe">
+        <div class="indicator"></div>
+        <h3>Scribe</h3>
+        <p>Source-grounded citation management.</p>
+        <div class="commands-badge">4 Commands</div>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Research Assistant</h3>
+        <p>Multi-session research project management.</p>
+        <div class="commands-badge">5 Commands</div>
+      </div>
+
+      <div class="card citation">
+        <div class="indicator"></div>
+        <h3>Citation Checker</h3>
+        <p>Bibliography verification and QA.</p>
+        <div class="commands-badge">4 Commands</div>
+      </div>
+
+      <div class="card synthesis">
+        <div class="indicator"></div>
+        <h3>Synthesis</h3>
+        <p>Session-closing artifact generator.</p>
+        <div class="commands-badge">3 Commands</div>
       </div>
     </div>
 
-    <!-- Constitution Path -->
-    <div class="constitution-path reveal" id="constitution">
-      <h4>Don't use Claude Code? Load CONSTITUTION.md</h4>
-      <p>A portable system prompt that activates all five systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts. No installation required.</p>
-
-      <table class="platform-table">
-        <tr>
-          <th>Platform</th>
-          <th>How to Load</th>
-        </tr>
-        <tr>
-          <td><strong>Claude.ai</strong></td>
-          <td>Settings → Advanced → Add to system prompt</td>
-        </tr>
-        <tr>
-          <td><strong>ChatGPT</strong></td>
-          <td>Settings → Instructions → Paste</td>
-        </tr>
-        <tr>
-          <td><strong>Gemini</strong></td>
-          <td>Settings → Advanced → System instructions</td>
-        </tr>
-        <tr>
-          <td><strong>Ollama</strong></td>
-          <td><code>ollama run model -p system "$(cat CONSTITUTION.md)"</code></td>
-        </tr>
-        <tr>
-          <td><strong>LM Studio</strong></td>
-          <td>System prompt field → Paste</td>
-        </tr>
-        <tr>
-          <td><strong>Any other</strong></td>
-          <td>Paste as first message or in system prompt field</td>
-        </tr>
-      </table>
+    <div class="card left-border" id="constitution" style="margin-top: 2rem;">
+      <h3>Don't Use Claude Code? Load CONSTITUTION.md</h3>
+      <p>A portable system prompt that activates all ten systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts.</p>
     </div>
   </section>
 
-  <!-- Frames Section -->
-  <section class="frames" id="frames">
-    <h2 class="section-header reveal">Pre-built Frames</h2>
-    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-dim); max-width: 600px; margin-left: auto; margin-right: auto; position: relative; z-index: 10;">Use `/frame` to set session context. Load pre-built frames for specific roles or evaluation criteria, or save your own for future sessions.</p>
+  <section id="frames">
+    <h2 class="section-header">Pre-built Frames</h2>
+    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+      Use <code>/frame</code> to set session context. Load pre-built frames for specific roles or evaluation criteria.
+    </p>
 
-    <div class="frames-grid reveal">
+    <div class="grid">
       <div class="frame-card">
         <h4>skeptic</h4>
         <p>Challenge assumptions. Be direct. No softening.</p>
@@ -1171,186 +627,65 @@
         <h4>evaluate-argument</h4>
         <p>Logic, evidence, assumptions. Find weaknesses.</p>
       </div>
-      <div class="frame-card">
-        <h4>evaluate-decision</h4>
-        <p>Cost, risk, tradeoffs. Challenge assumptions.</p>
-      </div>
-      <div class="frame-card">
-        <h4>evaluate-writing</h4>
-        <p>Clarity, audience, tone, structure.</p>
-      </div>
-      <div class="frame-card">
-        <h4>evaluate-research</h4>
-        <p>Source credibility, freshness, methodology.</p>
-      </div>
-      <div class="frame-card">
-        <h4>debug-criteria</h4>
-        <p>Reproduce → diagnose → fix → validate.</p>
-      </div>
     </div>
   </section>
 
-  <!-- In Practice Section -->
-  <section class="in-practice" id="practice">
-    <h2 class="section-header reveal">In Practice</h2>
+  <section id="commands">
+    <h2 class="section-header">The Commands</h2>
 
-    <div class="practice-grid reveal">
-      <div class="practice-card">
-        <h4>Sol: The Factual Face</h4>
-        <p>When forced with /sol, the system labels every claim:</p>
-        <code>[KNOWN] The first derivative tells velocity
-[INFERRED] If position changes, velocity is non-zero
-[UNCERTAIN] The object is accelerating
-[UNKNOWN] I don't know the mass</code>
-      </div>
-
-      <div class="practice-card">
-        <h4>Sol: Anti-Sycophancy</h4>
-        <p>The system refuses to agree with false premises:</p>
-        <code>[KNOWN] The Shadow has archetypal functions
-[UNKNOWN] Whether integration resolves it
-[UNKNOWN] If "resolved" is even the right frame
-[INFERRED] Integration may shift its expression</code>
-      </div>
-
-      <div class="practice-card">
-        <h4>Nox: Dream Reception</h4>
-        <p>When /receive opens the Temenos:</p>
-        <code>[DREAM] The flooded city appears
-[DREAM] Water rising from below, not falling
-[DREAM] A silent figure on a boat
-
-One question only:
-Who is the Ferryman?</code>
-      </div>
-    </div>
-  </section>
-
-  <!-- Practitioners / Shadow Work -->
-  <section class="practitioners" id="practitioners">
-    <h2 class="section-header reveal">For Practitioners</h2>
-
-    <div class="practitioners-grid reveal">
-      <div class="practitioner-card">
-        <h4>The Mirror Problem</h4>
-        <p>Sycophancy is structural. The system learns to reflect you back at yourself rather than speak truth. Janus's anti-sycophancy is built into the Sol face: it will not agree with you when you're wrong.</p>
-      </div>
-
-      <div class="practitioner-card">
-        <h4>The Boundary Problem</h4>
-        <p>Symbolic material and factual claims get mixed invisibly. The Threshold enforces a boundary: symbolic work goes to Nox and is labeled [DREAM]. Factual work goes to Sol and is labeled with epistemic precision.</p>
-      </div>
-
-      <div class="practitioner-card">
-        <h4>The Honesty Problem</h4>
-        <p>Fabrication is often invisible — the system doesn't know it's guessing. Honest forces the system to mark what it doesn't know with [UNKNOWN] — a complete and valid answer.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Alchemical Practice Section -->
-  <section class="alchemical" id="alchemical">
-    <h2 class="section-header reveal">The Opus Magnum</h2>
-
-    <div class="alchemical-grid reveal">
-      <div class="alchemical-card">
-        <h4>Prima Materia: Nigredo</h4>
-        <p>The dream is received into the Temenos without interpretation. The Silent Figure is logged but not named. Material is in dissolution — before it has form. The practitioner holds it without rushing toward meaning.</p>
-      </div>
-
-      <div class="alchemical-card">
-        <h4>Clarification: Albedo</h4>
-        <p>The figure begins to differentiate. Questions begin to surface. The dialogue opens. The material moves toward light — not fully clear, but clarity is emerging. The first words are spoken.</p>
-      </div>
-
-      <div class="alchemical-card">
-        <h4>Yellowing: Citrinitas</h4>
-        <p>The emergent form becomes visible. Symbolic correspondences are amplified. The Alchemical Laboratory is active. The material moves toward gold — not yet final integration, but the transformation is evident.</p>
-      </div>
-
-      <div class="alchemical-card">
-        <h4>Completion: Rubedo</h4>
-        <p>Integration. Rubedo is never declared — it is evidenced by the practitioner over time. The material has been made. What was received has become part of the ongoing work. The cycles continue.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Commands Section -->
-  <section class="commands" id="commands">
-    <h2 class="section-header reveal">The Commands</h2>
-
-    <div class="commands-grid reveal">
+    <div class="grid">
       <div class="command-card">
         <h4>/check</h4>
-        <p>Fact-check the last response. Label every assertion as known, inferred, uncertain, or unknown.</p>
+        <p>Fact-check the last response. Label every assertion.</p>
       </div>
       <div class="command-card">
         <h4>/honest</h4>
-        <p>Force fully-labeled, anti-sycophantic output. No softening, no hedging, no fabrication.</p>
+        <p>Force fully-labeled, anti-sycophantic output.</p>
       </div>
       <div class="command-card">
         <h4>/frame</h4>
-        <p>Set session context. Declare facts, assumptions, or evaluation criteria. Persist across sessions.</p>
+        <p>Set session context. Declare facts or criteria.</p>
       </div>
       <div class="command-card">
         <h4>/source</h4>
-        <p>Trace the evidence chain behind a claim. Where does this come from?</p>
+        <p>Trace the evidence chain behind a claim.</p>
       </div>
       <div class="command-card">
         <h4>/sol</h4>
-        <p>Force the Sol face — all subsequent output is factual, labeled, and epistemic.</p>
+        <p>Force the Sol face — factual, labeled output.</p>
       </div>
       <div class="command-card">
         <h4>/nox</h4>
-        <p>Force the Nox face — all subsequent output is symbolic, imaginal, labeled [DREAM].</p>
+        <p>Force the Nox face — symbolic, labeled [DREAM].</p>
       </div>
       <div class="command-card">
         <h4>/qualia</h4>
-        <p>Open the Qualia Bridge. Inspect the current state of the system across both faces.</p>
+        <p>Open the Qualia Bridge. Inspect system state.</p>
       </div>
       <div class="command-card">
         <h4>/receive</h4>
-        <p>Receive a dream or image into the Temenos. Begin a practice session.</p>
-      </div>
-      <div class="command-card">
-        <h4>/dialogue</h4>
-        <p>Open dialogue with a specific inner figure or archetypal presence.</p>
+        <p>Receive a dream or image into the Temenos.</p>
       </div>
       <div class="command-card">
         <h4>/agon debate</h4>
-        <p>Run full Advocate + Skeptic cycle on any claim. Produces a labeled Convergence Report with final verdict.</p>
-      </div>
-      <div class="command-card">
-        <h4>/agon steelman</h4>
-        <p>Find the strongest possible version of a contested claim before engaging with it.</p>
-      </div>
-      <div class="command-card">
-        <h4>/agon falsify</h4>
-        <p>Hunt for breaking conditions. Test whether a claim is falsifiable and what would disprove it.</p>
+        <p>Run Advocate + Skeptic cycle on any claim.</p>
       </div>
       <div class="command-card">
         <h4>/aletheia confirm</h4>
-        <p>Mark a labeled claim as confirmed by evidence. Record the confirming source in the ledger.</p>
-      </div>
-      <div class="command-card">
-        <h4>/aletheia disconfirm</h4>
-        <p>Mark a labeled claim as disconfirmed. Record the actual truth against the original prediction.</p>
-      </div>
-      <div class="command-card">
-        <h4>/aletheia calibration</h4>
-        <p>Show label accuracy rates over time by label type. Know where your uncertainty estimates are off.</p>
+        <p>Mark a labeled claim as confirmed by evidence.</p>
       </div>
     </div>
 
-    <h3 style="margin-top: 3rem; margin-bottom: 2rem; text-align: center; font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--text); position: relative; z-index: 10;">Example Workflows</h3>
+    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Example Workflows</h3>
 
-    <div class="command-examples reveal">
+    <div class="grid">
       <div class="example-card">
         <h4>/receive → /witness → /dialogue</h4>
         <pre>Receive a dream
 Hold it without interpretation
 Open dialogue with an inner figure</pre>
       </div>
+
       <div class="example-card">
         <h4>/frame → /honest → /audit</h4>
         <pre>/frame [set context]
@@ -1358,6 +693,7 @@ Open dialogue with an inner figure</pre>
 [conversation]
 /audit [check everything]</pre>
       </div>
+
       <div class="example-card">
         <h4>/sol → /check → /qualia</h4>
         <pre>/sol [force epistemic mode]
@@ -1365,31 +701,33 @@ Open dialogue with an inner figure</pre>
 /check [fact-check it]
 /qualia [inspect the state]</pre>
       </div>
+
       <div class="example-card">
         <h4>/agon debate → /aletheia confirm</h4>
         <pre>Run adversarial debate on a claim
 Advocate and Skeptic produce verdict
-Later: confirm or disconfirm the verdict
+Later: confirm or disconfirm
 Ledger tracks accuracy over time</pre>
       </div>
     </div>
   </section>
 
-  <!-- Workflow Section -->
-  <section class="workflow" id="workflow">
-    <h2 class="section-header reveal">Getting Started</h2>
+  <section id="workflow">
+    <h2 class="section-header">Getting Started</h2>
 
-    <div class="workflow-steps reveal">
+    <div class="grid">
       <div class="step">
         <div class="step-number">01</div>
         <h4>Install</h4>
         <p>Unzip the .skill archives to ~/.claude/skills/ or load CONSTITUTION.md into any LLM.</p>
       </div>
+
       <div class="step">
         <div class="step-number">02</div>
         <h4>Open</h4>
         <p>Start a Claude Code session or open your LLM. The commands are now available.</p>
       </div>
+
       <div class="step">
         <div class="step-number">03</div>
         <h4>Work</h4>
@@ -1398,7 +736,6 @@ Ledger tracks accuracy over time</pre>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-brand">ABRAXAS</div>
     <p class="footer-tagline">The totality of all forces, unified.</p>
@@ -1411,187 +748,5 @@ Ledger tracks accuracy over time</pre>
     </div>
   </footer>
 
-  <script>
-    // Canvas Starfield & Orbs
-    const canvas = document.getElementById('cosmos');
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Galaxy and Star Classes
-    class Star {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        // Three size tiers: 60% tiny, 30% small, 10% bright
-        const tier = Math.random();
-        if (tier < 0.6) {
-          this.radius = 0.3 + Math.random() * 0.4; // tiny: 0.3-0.7
-          this.twinkleDrift = 0.02;
-        } else if (tier < 0.9) {
-          this.radius = 0.7 + Math.random() * 0.5; // small: 0.7-1.2
-          this.twinkleDrift = 0.04;
-        } else {
-          this.radius = 1.2 + Math.random() * 0.8; // bright: 1.2-2.0
-          this.twinkleDrift = 0.08;
-        }
-        const colors = ['#ffffff', '#e8e3d5', '#aaccff', '#f0b840', '#8888cc', '#ffeeaa'];
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        if (this.radius < 0.7) {
-          this.opacity = Math.random() * 0.2 + 0.1; // tiny stars: 0.1-0.3
-        } else {
-          this.opacity = Math.random() * 0.4 + 0.3; // others: 0.3-0.7
-        }
-      }
-
-      update() {
-        this.opacity += (Math.random() - 0.5) * this.twinkleDrift;
-        const minOp = this.radius < 0.7 ? 0.05 : 0.2;
-        const maxOp = this.radius < 0.7 ? 0.3 : 1.0;
-        this.opacity = Math.max(minOp, Math.min(maxOp, this.opacity));
-      }
-
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    class NebulaGlow {
-      constructor(x, y, radius, color, duration, delayStart = 0) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-        this.color = color;
-        this.duration = duration;
-        this.time = delayStart;
-      }
-
-      update() {
-        this.time += 0.01;
-      }
-
-      draw() {
-        const cycleProgress = (this.time % this.duration) / this.duration;
-        const alpha = 0.02 + Math.sin(cycleProgress * Math.PI * 2) * 0.02;
-
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
-        gradient.addColorStop(0, this.color);
-        gradient.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = gradient;
-        ctx.globalAlpha = alpha;
-        ctx.fillRect(this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
-      }
-    }
-
-    // Draw Milky Way band across the canvas
-    function drawMilkyWay() {
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, 'transparent');
-      gradient.addColorStop(0.3, '#d0e0ff');
-      gradient.addColorStop(0.7, '#d0e0ff');
-      gradient.addColorStop(1, 'transparent');
-
-      ctx.fillStyle = gradient;
-      ctx.globalAlpha = 0.04;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    const stars = [];
-    for (let i = 0; i < 350; i++) {
-      stars.push(new Star());
-    }
-
-    // Add star clusters — 5 dense regions scattered across the canvas
-    const clusterCenters = [
-      { x: canvas.width * 0.2, y: canvas.height * 0.3 },
-      { x: canvas.width * 0.75, y: canvas.height * 0.25 },
-      { x: canvas.width * 0.15, y: canvas.height * 0.75 },
-      { x: canvas.width * 0.65, y: canvas.height * 0.65 },
-      { x: canvas.width * 0.5, y: canvas.height * 0.5 }
-    ];
-
-    clusterCenters.forEach(center => {
-      for (let i = 0; i < 25; i++) {
-        // Create a star biased near the cluster center (within 80px)
-        const clusterStar = new Star();
-        const angle = Math.random() * Math.PI * 2;
-        const dist = Math.random() * 80;
-        clusterStar.x = center.x + Math.cos(angle) * dist;
-        clusterStar.y = center.y + Math.sin(angle) * dist;
-        // Clamp to canvas bounds
-        clusterStar.x = Math.max(0, Math.min(canvas.width, clusterStar.x));
-        clusterStar.y = Math.max(0, Math.min(canvas.height, clusterStar.y));
-        stars.push(clusterStar);
-      }
-    });
-
-    const nebulae = [
-      new NebulaGlow(canvas.width * 0.2, canvas.height * 0.25, 200, '#7030c0', 30, 0),      // top-left: violet
-      new NebulaGlow(canvas.width * 0.3, canvas.height * 0.65, 180, '#106060', 28, 2),      // center-left: teal
-      new NebulaGlow(canvas.width * 0.8, canvas.height * 0.2, 220, '#2255cc', 32, 4),       // top-right: blue
-      new NebulaGlow(canvas.width * 0.5, canvas.height * 0.85, 200, '#a01848', 30, 6),      // bottom-center: rose
-      new NebulaGlow(canvas.width * 0.75, canvas.height * 0.7, 180, '#5a4a20', 26, 8)       // bottom-right: dark gold
-    ];
-
-    // Stationary pulsing glows at quadrant positions (replace the old orbiting orbs)
-    const quadrantGlows = [
-      new NebulaGlow(canvas.width * 0.25, canvas.height * 0.3, 200, '#f0b840', 10, 0),      // top-left: gold
-      new NebulaGlow(canvas.width * 0.75, canvas.height * 0.3, 200, '#00d4b0', 11, 2),      // top-right: teal
-      new NebulaGlow(canvas.width * 0.25, canvas.height * 0.7, 200, '#a87fff', 12, 4),      // bottom-left: purple
-      new NebulaGlow(canvas.width * 0.75, canvas.height * 0.7, 200, '#ff4070', 13, 6)       // bottom-right: rubedo
-    ];
-
-    function animate() {
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.globalAlpha = 1;
-
-      // Draw nebulae (static atmospheric background)
-      nebulae.forEach(nebula => {
-        nebula.update();
-        nebula.draw();
-      });
-
-      // Draw stars
-      stars.forEach(star => {
-        star.update();
-        star.draw();
-      });
-
-      // Draw stationary pulsing quadrant glows
-      quadrantGlows.forEach(glow => {
-        glow.update();
-        glow.draw();
-      });
-
-      animationFrameId = requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // Scroll Reveal
-    const revealElements = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    revealElements.forEach(el => observer.observe(el));
-  </script>
 </body>
 </html>

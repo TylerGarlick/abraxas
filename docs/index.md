@@ -4,8 +4,8 @@
 
 # Abraxas Documentation
 
-This is the documentation hub for the Abraxas project. Abraxas is the container for five
-systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, and **Abraxas Oneironautics** — packaged as
+This is the documentation hub for the Abraxas project. Abraxas is the container for ten
+systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, and **Synthesis** — packaged as
 Claude Code skills and supported by a suite of specialized subagents.
 
 Use this index to navigate all available documentation.
@@ -23,6 +23,11 @@ Use this index to navigate all available documentation.
 | Structured multi-perspective reasoning with opposing positions | **Agon** |
 | Resolve labeled claims and track ground-truth calibration | **Aletheia** |
 | Dream work, shadow integration, alchemical practice | **Abraxas Oneironautics** |
+| Live fact-checking with real-time source verification | **Retrieval Grounding** |
+| Track citations at creation time, verify source accessibility | **Scribe** |
+| Manage multi-session research projects with organized references | **Research Assistant** |
+| Verify citations actually support claims (QA layer) | **Citation Checker** |
+| Export session artifacts and generate final reports | **Synthesis** |
 | Using a different LLM (ChatGPT, Claude.ai, Gemini) | **CONSTITUTION.md** |
 
 ### Which Approach Should I Choose?
@@ -61,7 +66,7 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [README](../README.md) | Project overview, Quick Start, structure, and getting started |
 | [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
-| [Skills Reference](./skills.md) | Full command reference for all five skills: Honest, Janus, Agon, Aletheia, and Abraxas Oneironautics |
+| [Skills Reference](./skills.md) | Full command reference for all ten skills: Honest, Janus, Agon, Aletheia, Abraxas Oneironautics, Retrieval Grounding, Scribe, Research Assistant, Citation Checker, and Synthesis |
 | [Honest Integration Guide](./honest-integration.md) | How to use Honest alongside development tools, PR review, and coding sessions |
 | [Composition Patterns](./composition-patterns.md) | Multi-skill session workflows: Honest+Janus, Agon+Aletheia, full-stack patterns |
 | [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
@@ -71,7 +76,7 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 
 ## Project Overview
 
-Abraxas houses five systems, each addressing a distinct layer of the AI output problem:
+Abraxas houses ten systems, each addressing a distinct layer of the AI output problem:
 
 **Honest** — The everyday anti-hallucination interface. Plain-language commands for
 fact-checking, confidence labeling, claim tracing, and forcing maximum-honesty output.
@@ -98,10 +103,32 @@ reception, shadow work, symbolic integration, active imagination, the Nekyia des
 Oneiros Engine and the Realm of Daimons. The four stages of the Opus Magnum. The Janus
 infrastructure runs beneath it all. Thirty-five commands.
 
-All five systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
+**Retrieval Grounding** — Live external lookup system that provides factual grounding through
+real-time source verification. Searches the web, fetches specific sources, and grounds claims.
+The factual backbone of the Abraxas stack. Four commands. Typically invoked by other skills
+rather than directly by users.
+
+**Scribe** — Source-grounded citation management that tracks citations at creation time.
+Verifies source accessibility and maintains citation trails. Functions as the creation-time
+complement to Aletheia (which tracks resolutions post-hoc). Four commands.
+
+**Research Assistant** — Comprehensive research session management tool. Handles citation
+tracking, source verification, and organized reference management for extended research projects.
+While Scribe handles per-claim citations, Research Assistant manages the broader project —
+multiple sources, themes, and deliverables. Five commands.
+
+**Citation Checker** — Bibliography verification tool that pairs claims with their sources.
+Ensures all assertions have proper documentation and that citations actually support the claims
+they're attached to. The QA layer of the Abraxas citation system. Four commands.
+
+**Synthesis** — Session-closing artifact generator. Synthesizes epistemic outputs from a session
+into structured, exportable summaries. Integrates with all other systems to produce final reports,
+exports, and audit trails. Three commands.
+
+All ten systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
 are supported by eight specialized subagents defined in `.claude/agents/`. They are also
 available as `CONSTITUTION.md` — a single portable document any capable LLM can load to
-operate all five systems without Claude Code.
+operate all ten systems without Claude Code.
 
 **Agents:**
 - `skill-author` — Authors and packages `.skill` archives; owns the skill authoring workflow
@@ -169,13 +196,16 @@ When CONSTITUTION.md is active, prepend your query with:
 
 ## Project Status
 
-As of March 2026, all five skills are operational. Honest provides 9 plain-language
-anti-hallucination commands. The Janus System governs 14 commands including session tracking,
+As of March 2026, all ten skills are operational. Honest provides 9 plain-language
+anti-hallucination commands. The Janus System governs 19 commands including session tracking,
 Qualia Bridge inspection, and the Bridge to Abraxas. Agon governs 8 commands for structured
 adversarial reasoning with mandatory Convergence Reports. Aletheia governs 7 commands for
 epistemic calibration and persistent resolution tracking. Abraxas Oneironautics governs 35
 commands across dream reception, alchemical transmutation, active imagination, synchronicity,
-and the Bridge to Janus.
+and the Bridge to Janus. Retrieval Grounding provides 4 commands for live fact-checking.
+Scribe offers 4 commands for citation management. Research Assistant provides 5 commands for
+research project management. Citation Checker delivers 4 commands for bibliography verification.
+Synthesis provides 3 commands for session export and reporting.
 
 Active work items are tracked in [PLAN.md](../PLAN.md).
 
