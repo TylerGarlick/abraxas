@@ -1,6 +1,11 @@
 # Abraxas — Product Roadmap
 
 This file tracks the phased development of the Abraxas project across all agents.
+
+**Status tracking:**
+- ✅ = completed
+- (In Progress) = current tasks
+- (Pending) = planned but untouched
 The project-coordinator agent owns this file.
 
 ---
@@ -63,11 +68,87 @@ New epistemic reasoning and calibration skills.
 
 Packaging and release tooling for wider distribution.
 
-- [ ] Packaging script — automate zip + hash + manifest for skill archives
-- [ ] Versioning convention — semantic versioning for `.skill` archives (e.g., `honest-1.0.0.skill`)
-- [ ] Release checklist — per-skill release process documentation
-- [ ] GitHub Releases integration — attach `.skill` archives to tagged releases
-- [ ] Installation guide for non-technical users (no CLI assumed)
+- (Pending) Packaging script — automate zip + hash + manifest for skill archives
+- (Pending) Versioning convention — semantic versioning for `.skill` archives (e.g., `honest-1.0.0.skill`)
+- (Pending) Release checklist — per-skill release process documentation
+- (Pending) GitHub Releases integration — attach `.skill` archives to tagged releases
+- (Pending) Installation guide for non-technical users (no CLI assumed)
+---
+
+## Phase 4.5 — Infrastructure Foundation
+
+Critical prerequisite work before Phase 6-7 can be built. This phase enables the Retrieval Grounding skill to actually function and unifies storage across all skills.
+
+**Execution Order:** Storage Schema (first) → MCP Server (second)
+
+---
+
+### Workstream 1: Unified Storage Schema
+
+#### 1.1 Define ~/.abraxas/ Directory Hierarchy
+- [ ] Create `~/.abraxas/` directory structure — **Agent:** systems-architect
+
+```
+~/.abraxas/
+├── config.json              # Global (schema version, defaults)
+├── .janus/                  # Janus ledger (existing, keep as-is)
+│   ├── ledger.md
+│   ├── sessions/
+│   └── resolutions.md
+├── .scribe/                 # Session-scoped citations (JSON)
+│   └── session-{uuid}.json
+├── .retrieval/             # Cached lookups (JSON)
+│   └── cache/
+├── .research/              # Research projects (JSON)
+│   └── projects/
+├── .ethos/                 # Voice profiles (Phase 7, stub)
+├── .krisis/                # Ethical frameworks (Phase 7, stub)
+└── .logos/                 # Argument maps (Phase 6, stub)
+```
+
+#### 1.2 Implement Per-Skill Storage
+- [ ] Implement `~/.janus/` persistence for Janus/Veritas — **Agent:** systems-architect
+- [ ] Implement `~/.scribe/` storage for Scribe citations (JSON) — **Agent:** systems-architect
+- [ ] Implement `~/.retrieval/` storage for cached lookups (JSON) — **Agent:** systems-architect
+- [ ] Implement `~/.research/` storage for research projects (JSON) — **Agent:** systems-architect
+
+#### 1.3 Citation Database Unification
+- [ ] Create unified citation schema in `~/.abraxas/.scribe/citations.json` — **Agent:** systems-architect
+- [ ] Ensure cross-skill citation IDs usable by Scribe, Research, Citation Checker — **Agent:** systems-architect
+
+#### 1.4 Storage Documentation
+- [ ] Document schema for all skills in `docs/storage-schema.md` — **Agent:** docs-architect
+
+---
+
+### Workstream 2: MCP Server (abraxas-retrieval)
+
+#### 2.1 MCP Server Specification
+- [ ] Define MCP server architecture (TypeScript, DuckDuckGo + Tavily) — **Agent:** systems-architect
+
+#### 2.2 MCP Server Implementation
+- [ ] Create `mcp-servers/abraxas-retrieval/` directory — **Agent:** systems-architect
+- [ ] Implement `web_search` tool (DuckDuckGo → Tavily fallback) — **Agent:** systems-architect
+- [ ] Implement `web_fetch` tool — **Agent:** systems-architect
+- [ ] Implement `fact_check` tool — **Agent:** systems-architect
+
+#### 2.3 Integration with retrieval-grounding Skill
+- [ ] Update retrieval-grounding SKILL.md to reference MCP tools — **Agent:** skill-author
+- [ ] Test: verify retrieval-grounding can perform actual lookups — **Agent:** skill-author
+
+---
+
+### Phase 4.5 Dependencies
+
+| Previous Phase | Dependency |
+|----------------|------------|
+| Phase 5 (complete) | Retrieval-grounding skill exists |
+| Phase 1-3 (complete) | Janus/Veritas ledger schema stable |
+
+| This Phase Enables | For |
+|--------------------|-----|
+| MCP tools | Phase 6-7 skills requiring external lookups |
+| Unified storage | All Phase 6-7 skills |
 
 ---
 
@@ -93,36 +174,40 @@ New skills and ecosystem growth beyond Dialogue Engine and Veritas.
 
 New systems addressing belief tracking, argument structure, and decision architecture.
 
-### Mnemon — Belief-change tracker
+**Prerequisites for Phase 6:**
+- [x] Retrieval grounding (Phase 5) — MCP server must be operational
+- [x] Janus ledger stable (Phase 1) — Mnemon extends ~/.janus/ schema
+- [x] Agon stable (Phase 3) — Logos is pre-layer to Agon debates
 
+**Phase 6 build order:** Logos first (lowest risk, clear success criteria) → Mnemon (highest epistemic value, anti-sycophancy) → Kairos (strongest user-facing value proposition)
+
+### Mnemon — Belief-change tracker
 - [ ] Specification document — belief revision schema, anti-sycophancy signal design, `~/.mnemon/` storage format — **Agent:** ai-rd-visionary
 - [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- [ ] SKILL.md authoring: `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger` — **Agent:** skill-author
-- [ ] Skill packaging and testing — **Agent:** skill-author
-- [ ] docs/skills.md updated — **Agent:** docs-architect
-- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- (Pending) SKILL.md authoring: `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 **Problem:** AI-assisted belief revision is invisible; sycophancy leaves no trace. Mnemon tracks when beliefs change, what prompted the change, and flags revisions that occurred immediately after AI output.
 
 ### Logos — Argument anatomy tool
-
 - [ ] Specification document — premise/inference mapping schema, Janus label integration, Agon pre-layer design — **Agent:** ai-rd-visionary
 - [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- [ ] SKILL.md authoring: `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report` — **Agent:** skill-author
-- [ ] Skill packaging and testing — **Agent:** skill-author
-- [ ] docs/skills.md updated — **Agent:** docs-architect
-- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- (Pending) SKILL.md authoring: `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 **Problem:** LLMs generate plausible conclusions from structurally broken arguments; gaps are invisible. Logos maps premises, inference steps, and hidden assumptions before any Agon debate begins.
 
 ### Kairos — Decision architecture tool
-
 - [ ] Specification document — decision space schema, known/unknown/value/reversibility framework, Agon/Krisis handoff design — **Agent:** ai-rd-visionary
 - [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- [ ] SKILL.md authoring: `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report` — **Agent:** skill-author
-- [ ] Skill packaging and testing — **Agent:** skill-author
-- [ ] docs/skills.md updated — **Agent:** docs-architect
-- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- (Pending) SKILL.md authoring: `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 **Problem:** AI decision support collapses choices into recommendations, hiding genuine uncertainty and value dimensions. Kairos structures the decision space before any analysis begins.
 
@@ -131,6 +216,11 @@ New systems addressing belief tracking, argument structure, and decision archite
 ---
 
 ## Phase 7 — Expression and Ethics
+
+### Prerequisites for Phase 7:
+- [x] Janus Nox stable (Phase 1) — Ethos requires Nox integration patterns
+- [x] Agon stable (Phase 3) — Krisis parallels Agon's multi-position structure
+- [x] Kairos complete (Phase 6) — Krisis handoff from Kairos decision framing
 
 ### Ethos — Voice preservation for writers using AI assistance
 
@@ -156,6 +246,25 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 ---
 
+## Phase 8 — Unknown-Unknowns
+
+### Prerequisites for Phase 8:
+- [x] All Phase 6-7 skills operational — Aporia should be validated against real sessions
+- [x] Krisis stable — Aporia extends Krisis's scope-examination patterns
+
+### Aporia — Unknown-unknown surfacer; Socratic framing examination
+
+- [ ] Specification document — Socratic questioning schema, blind-spot detection, unknown-unknown taxonomy, upstream positioning — **Agent:** ai-rd-visionary
+- [ ] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [ ] SKILL.md authoring: `/aporia examine`, `/aporia reframe`, `/aporia blind`, `/aporia socratic`, `/aporia ready` — **Agent:** skill-author
+- [ ] Skill packaging and testing — **Agent:** skill-author
+- [ ] docs/skills.md updated — **Agent:** docs-architect
+- [ ] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** Every Abraxas tool operates on what the user already knows to ask; Aporia surfaces what was never asked. Upstream of all analysis tools; most experimental concept in the proposed set.
+
+---
+
 ## Backlog
 
 Items identified but not yet scheduled into a phase:
@@ -163,11 +272,6 @@ Items identified but not yet scheduled into a phase:
 - ~~Consider: The ability to frame the facts or considerations for a given session.~~ — completed in Phase 2 via `/frame`
 - ~~Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling~~ — scheduled: Phase 5 Wave 4
 - ~~Janus v2 with cross-session epistemic ledger persistence~~ — completed (v2 shipped: ~/.janus/ storage, /ledger commands, auto-load)
+- ~~Aporia — Unknown-unknown surfacer~~ — promoted to Phase 8
 - Consider: web-based skill installer (drag `.skill` into browser to install)
 - Consider: Honest as a default Claude Code session wrapper
-
-**Aporia** — Unknown-unknown surfacer; Socratic framing examination
-- Problem: every Abraxas tool operates on what the user already knows to ask; Aporia surfaces what was never asked
-- Upstream of all analysis tools; most experimental concept in the proposed set
-- Commands: `/aporia examine`, `/aporia reframe`, `/aporia blind`, `/aporia socratic`, `/aporia ready`
-- Status: needs real-world session validation before spec; revisit after Phase 6 tools are in use

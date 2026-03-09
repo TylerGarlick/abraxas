@@ -38,9 +38,9 @@ No commands currently defined.
 ## Translation Details
 
 ### Model Mapping
-- Claude Code `model: haiku` → OpenCode `model: qwen/qwen3-coder-32b`
+<!-- - Claude Code `model: haiku` → OpenCode `model: qwen/qwen3-coder-32b`
 - Claude Code `model: sonnet` → OpenCode `model: qwen/qwen3-coder-32b`
-- Claude Code `model: inherit` → OpenCode `model: qwen/qwen3-coder-32b`
+- Claude Code `model: inherit` → OpenCode `model: qwen/qwen3-coder-32b` -->
 
 ### Default Settings
 - `temperature: 0.2` for all agents
