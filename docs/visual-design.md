@@ -11,7 +11,7 @@ The visual design serves two purposes:
 1. **Symbolic Coherence** — Sacred geometry patterns reinforce the alchemical and epistemic themes at the heart of Abraxas
 2. **Subtlety** — Geometry is present but recessive, creating visual depth without dominating the content
 
-The page uses a dark theme with a gradient from void (`#07070e`) through surface layers, with alchemical color accents: gold (Sol), indigo/purple (Nox), teal (Honest), and the four stage colors.
+The page uses a dark theme with a gradient from void (`#07070e`) through surface layers, with alchemical color accents: gold (Sol), indigo (Nox), teal (Honest), and the four stage colors.
 
 ---
 
@@ -37,7 +37,7 @@ Nested circles arranged in the four cardinal directions (quadrants).
 - The divine feminine principle (circles)
 - The six petals of manifestation
 
-**Visual:** Gold circles in the top-left and upper-center quadrants; purple/indigo circles in the bottom-right quadrant. They rotate in reverse at a slow pace, emphasizing the cyclic nature of the work.
+**Visual:** Gold circles in the top-left and upper-center quadrants; indigo circles in the bottom-right quadrant. They rotate in reverse at a slow pace, emphasizing the cyclic nature of the work.
 
 ### Opus Magnum Quadrants
 
@@ -47,7 +47,7 @@ Four squares marking the alchemical stages, one in each corner.
 - **Nigredo** (Blackening/Dissolution) — bottom-left, dark, the prima materia before transformation
 - **Albedo** (Whitening/Clarification) — top-left, pale, clarity emerging
 - **Citrinitas** (Yellowing/Dawning) — top-right, gold, the yellow dawn before reddening
-- **Rubedo** (Reddening/Completion) — bottom-right, red, the completed stone
+- **Rubedo** (Reddening/Completion) — bottom-right, ruby, the completed stone
 
 **Visual:** Each square is positioned at its corresponding compass point. They fade in and out with different animation delays, creating a pulsing effect that suggests the circulation through the stages.
 
@@ -60,7 +60,7 @@ Six-pointed stars at the Threshold (center-top and center-bottom).
 - The balance of opposites (Sol and Nox)
 - The six directions of manifestation
 
-**Visual:** Gold hexagram above the center (Sol face); purple/indigo hexagram below (Nox face). Both are subtle and glow slightly, marking the epistemic threshold.
+**Visual:** Gold hexagram above the center (Sol face); indigo hexagram below (Nox face). Both are subtle and glow slightly, marking the epistemic threshold.
 
 ### Central Mandala (The Threshold)
 
@@ -71,7 +71,7 @@ Concentric circles at the exact center of the viewport.
 - The center point where all forces meet
 - The Threshold itself as an active structure
 
-**Visual:** Three concentric circles in gold, purple, and teal, pulsing in and out. A small gold circle at the very center glows and breathes, marked as the pivot point.
+**Visual:** Three concentric circles in gold, indigo, and teal, pulsing in and out. A small gold circle at the very center glows and breathes, marked as the pivot point.
 
 ### Flowing Connection Paths
 
@@ -79,24 +79,26 @@ Animated paths (SVG strokes) connecting the geometric elements.
 
 **Meaning:** The paths show the flow of material through the alchemical process — from the quadrants (Opus Magnum stages) toward the center (Threshold), and from the boundary elements (Vesica Piscis, Hexagrams) inward.
 
-**Visual:** Dash-animated lines that flow in different directions and at different speeds, colored to match their source (gold, purple, red). They pulse and shift, creating a sense of active circulation and transformation.
+**Visual:** Dash-animated lines that flow in different directions and at different speeds, colored to match their source (gold, indigo, ruby). They pulse and shift, creating a sense of active circulation and transformation.
 
 ---
 
 ## Color Palette
 
-The design uses an alchemical color scheme:
+The design uses an alchemical color scheme grounded in the Abraxas CSS custom properties:
 
-| Color | Hex | Role | Meaning |
-|-------|-----|------|---------|
-| **Gold** | `#c8a04a` | Sol, Citrinitas, Primary | Light, clarity, the waking face, golden completion |
-| **Purple/Indigo** | `#8070e0` | Nox, Dream, Secondary | Darkness, the night face, the imaginal realm |
-| **Teal** | `#3dae9a` | Honest, Bridge | Truth-telling, the bridge between faces |
-| **Red (Rubedo)** | `#c0364a` | Completion, Integration | The red stone, final integration |
-| **White (Albedo)** | `#a8b8c8` | Clarification, Emergence | Light appearing, first clarity |
-| **Black (Nigredo)** | `#2a2a3a` | Dissolution, Prima Materia | Before transformation, the blackening |
-| **Cream (Text)** | `#e8e3d5` | Body text, neutral | The parchment, readability |
-| **Void (Background)** | `#07070e` | Deep space | The void before creation |
+| Color | CSS Variable | Hex | Role | Meaning |
+|-------|--------------|-----|------|---------|
+| **Gold** | — | `#c8a04a` | Sol, Citrinitas, Primary | Light, clarity, the waking face, golden completion |
+| **Moon Gold** | `--moon-gold` | `#bf9958` | Secondary Gold | Grounded warmth, auxiliary to Sol |
+| **Indigo** | `--indigo` | `#2e4da6` | Nox, Symbolic | Darkness, the night face, the imaginal realm |
+| **Azure** | `--azure` | `#6da2ea` | Secondary Accent | Bridge element, connectivity |
+| **Teal** | — | `#3dae9a` | Honest, Bridge | Truth-telling, the bridge between faces |
+| **Ruby** | `--ruby` | `#c0354a` | Rubedo, Critical | The red stone, completion, agon indicators |
+| **Firelight** | `--firelight` | `#b63e2e` | Alchemical Urgency | Transformation energy, active transmutation |
+| **Sahara** | `--sahara` | `#58412a` | Grounded Warmth | Earth element, stability, prima materia foundation |
+| **Void** | — | `#07070e` | Deep Space | The void before creation, background |
+| **Cream** | — | `#e8e3d5` | Body Text | The parchment, readability |
 
 ---
 
