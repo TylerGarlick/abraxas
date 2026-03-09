@@ -454,6 +454,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#constitution">Constitution</a></li>
+      <li><a href="#constitution-versions">Constitution Versions</a></li>
       <li><a href="#frames">Frames</a></li>
       <li><a href="#commands">Commands</a></li>
     </ul>
@@ -463,11 +464,11 @@
     <div class="hero-badge">Anti-Hallucination · Alchemical Practice</div>
     <h1>Abraxas</h1>
     <p class="hero-subtitle">
-      Epistemic integrity, adversarial reasoning, calibration, and alchemical symbolic integration — unified under one system.
+      Epistemic integrity, adversarial reasoning, calibration, session memory, and alchemical symbolic integration — unified under one system.
     </p>
     <div class="hero-cta">
-      <a href="#skills" class="btn btn-primary">Explore Skills</a>
-      <a href="/#/docs" class="btn btn-secondary">Documentation</a>
+      <a href="#constitution-versions" class="btn btn-primary">Load Constitution</a>
+      <a href="#skills" class="btn btn-secondary">Explore Skills</a>
     </div>
   </section>
 
@@ -504,6 +505,12 @@
         <h3>Aletheia</h3>
         <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy over time.</p>
       </div>
+
+      <div class="card synthesis">
+        <div class="indicator"></div>
+        <h3>Mnemosyne</h3>
+        <p>Cross-session memory. Persists epistemic work between Claude Code invocations. Archive, restore, and retrieve sessions. Links to Janus ledgers, Mnemon beliefs, and Kairos decisions.</p>
+      </div>
     </div>
 
     <div class="stats">
@@ -512,7 +519,7 @@
         <div class="stat-label">Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">93</div>
+        <div class="stat-value">80</div>
         <div class="stat-label">Commands</div>
       </div>
       <div class="stat">
@@ -537,7 +544,7 @@
         <div class="indicator"></div>
         <h3>Janus System</h3>
         <p>Dual-face epistemic architecture with Sol/Nox.</p>
-        <div class="commands-badge">19 Commands</div>
+        <div class="commands-badge">14 Commands</div>
       </div>
 
       <div class="card nox">
@@ -558,6 +565,13 @@
         <div class="indicator"></div>
         <h3>Aletheia</h3>
         <p>Epistemic calibration and ground-truth tracking.</p>
+        <div class="commands-badge">7 Commands</div>
+      </div>
+
+      <div class="card synthesis">
+        <div class="indicator"></div>
+        <h3>Mnemosyne</h3>
+        <p>Cross-session memory and session persistence.</p>
         <div class="commands-badge">7 Commands</div>
       </div>
 
@@ -600,6 +614,77 @@
     <div class="card left-border" id="constitution" style="margin-top: 2rem;">
       <h3>Don't Use Claude Code? Load CONSTITUTION.md</h3>
       <p>A portable system prompt that activates all ten systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts.</p>
+    </div>
+
+    <div id="constitution-versions" style="margin-top: 3rem;">
+      <h3 class="section-header">Constitution Versions</h3>
+      <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+        Modular constitution fragments for different use cases. Load what you need.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Full Constitution</h3>
+          <p>Complete system with all six subsystems. All 80 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-all.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>Core Systems</h3>
+          <p>Universal + Honest + Janus + Oneironautics. 58 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-core.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card">
+          <h3>Universal Base</h3>
+          <p>Five constraints + label definitions. The foundation for all systems.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-universal.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card honest">
+          <div class="indicator"></div>
+          <h3>Honest Only</h3>
+          <p>Plain-language anti-hallucination. 9 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-honest.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card janus">
+          <div class="indicator"></div>
+          <h3>Janus Only</h3>
+          <p>Sol/Nox faces, Threshold, Qualia Bridge. 14 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-janus.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card nox">
+          <div class="indicator"></div>
+          <h3>Oneironautics Only</h3>
+          <p>Dream reception + alchemical practice. 35 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-oneironautics.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card agon">
+          <div class="indicator"></div>
+          <h3>Agon Only</h3>
+          <p>Structured adversarial reasoning. 8 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-agon.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card aletheia">
+          <div class="indicator"></div>
+          <h3>Aletheia Only</h3>
+          <p>Epistemic calibration. 7 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-aletheia.md" class="commands-badge">View on GitHub</a>
+        </div>
+      </div>
+
+      <div class="card left-border" style="margin-top: 2rem;">
+        <h3>Raw Constitution Files</h3>
+        <p>Direct access to all constitution files in the repository.</p>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="https://github.com/tylergarlick/abraxas/tree/main/constitution" class="btn btn-secondary">Browse constitution/</a>
+          <a href="https://raw.githubusercontent.com/tylergarlick/abraxas/main/constitution/constitution.md" class="btn btn-secondary">Full Constitution (raw)</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -755,8 +840,11 @@ Ledger tracks accuracy over time</pre>
     <div class="footer-brand">ABRAXAS</div>
     <p class="footer-tagline">The totality of all forces, unified.</p>
     <div class="footer-links">
+      <a href="https://github.com/tylergarlick/abraxas">GitHub</a>
+      <a href="https://github.com/tylergarlick/abraxas/tree/main/constitution">Constitution</a>
+      <a href="https://github.com/tylergarlick/abraxas/tree/main/skills">Skills</a>
       <a href="/#/docs">Docs</a>
-      <a href="/#/docs/skills">Skills</a>
+      <a href="/#/docs/skills">Skills Docs</a>
       <a href="/#/docs/architecture">Architecture</a>
       <a href="../README">README</a>
       <a href="/#/plan">Plan</a>
