@@ -1,12 +1,13 @@
 {
   "name": "abraxas-retrieval",
-  "version": "1.0.0",
-  "description": "Abraxas retrieval MCP server - web search, fetch, and fact-check tools",
+  "version": "2.0.0",
+  "description": "Abraxas retrieval MCP server v2 - web search, fetch, and fact-check tools with Claude Code 2.1 support",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "build": "tsc"
   },
   "dependencies": {
     "axios": "^1.7.9",
@@ -15,6 +16,14 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["abraxas", "mcp", "retrieval", "search"],
-  "license": "MIT"
+  "keywords": ["abraxas", "mcp", "retrieval", "search", "claude-code"],
+  "license": "MIT",
+  "mcpServer": {
+    "version": "2.1",
+    "features": {
+      "lazyLoading": true,
+      "skills2": true,
+      "agentTeams": true
+    }
+  }
 }

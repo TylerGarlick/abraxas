@@ -1,161 +1,12 @@
 # Abraxas — Product Roadmap
 
-This file tracks the phased development of the Abraxas project across all agents.
+This file tracks the active development of the Abraxas project across all agents.
 
 The project-coordinator agent owns this file.
 
 ---
 
-## Phase 1 — Core Systems `[COMPLETE]`
-
-Foundation: the two primary systems and their supporting infrastructure.
-
-- [x] Janus System v1 — epistemic dual-face architecture (14 commands)
-- [x] Abraxas Oneironautics v1 — alchemical practice system (35 commands)
-- [x] Landing page (`index.html`) — public-facing project page
-- [x] Skills reference (`docs/skills.md`) — full command documentation
-- [x] Architecture documentation (`docs/architecture.md`) — system diagrams
-- [x] Six subagent definitions in `.claude/agents/`
-
----
-
-## Phase 2 — Accessibility `[COMPLETE]`
-
-Making the systems accessible to non-technical and everyday users.
-
-- [x] Honest skill — plain-language anti-hallucination interface (9 commands)
-- [x] `/frame` expanded to full frame management system — persistence, accumulation, named frames, default auto-load; 9 sub-variants, counted as 1 command
-- [x] CLAUDE.md overhaul — comprehensive session context; eliminates exploratory overhead
-- [x] Full documentation refresh — README, docs/index.md, docs/skills.md updated to reflect three-skill ecosystem
-- [x] CONSTITUTION.md — universal LLM behavioral specification for all three subsystems (58 commands total)
-- [x] `constitution-keeper` agent — maintains CONSTITUTION.md in sync with skill file changes
-- [x] Installation documentation for non-technical users
-- [x] Honest skill: test coverage of all 9 commands with real sessions
-- [x] LLM-agnostic runtime testing of CONSTITUTION.md across Claude, GPT-4, Gemini
-
----
-
-## Phase 3 — Dialogue Engine & Veritas `[COMPLETE]`
-
-New epistemic reasoning and calibration skills.
-
-### Agon (new skill) — Structured adversarial reasoning
-
-- [x] Specification document — position constraint asymmetry, Convergence Report format, Threshold routing rules — **Agent:** ai-rd-visionary
-- [x] Brand naming and aesthetic fit with Abraxas family — **Agent:** brand-ux-architect
-- [x] SKILL.md authoring: command set, position specs, Convergence Report schema, Threshold rules, behavioral constraints — **Agent:** skill-author
-- [x] Skill packaging and testing (position asymmetry validation, high-agreement detection) — **Agent:** skill-author
-- [x] docs/skills.md updated with Agon commands — **Agent:** docs-architect
-- [x] CONSTITUTION.md extended with Agon commands; constitution-keeper review — **Agent:** constitution-keeper
-
-### Aletheia (new skill) — Epistemic calibration and ground-truth tracking
-
-- [x] Epistemic ledger schema research — existing `~/.janus/` format, resolution field extensions — **Agent:** systems-architect
-- [x] Specification document — frictionless resolution commands, open epistemic debt surfacing, calibration ledger tracking, Nox/[DREAM] scoping — **Agent:** ai-rd-visionary
-- [x] Brand naming and aesthetic fit with Abraxas family — **Agent:** brand-ux-architect
-- [x] SKILL.md authoring: resolution commands, ledger schema extensions, disconfirmation tracking, open-debt presentation — **Agent:** skill-author
-- [x] Skill packaging and testing (ledger persistence, disconfirmation rate flagging) — **Agent:** skill-author
-- [x] docs/skills.md updated with Aletheia commands — **Agent:** docs-architect
-- [x] CONSTITUTION.md extended with Aletheia commands; constitution-keeper review — **Agent:** constitution-keeper
-
----
-
-## Phase 4 — Infrastructure Foundation `[COMPLETE]`
-
-Critical prerequisite work before Phase 6-7 can be built. This phase enables the Retrieval Grounding skill to actually function and unifies storage across all skills.
-
-**Execution Order:** Storage Schema (first) → MCP Server (second)
-
----
-
-### Workstream 1: Unified Storage Schema
-
-#### 1.1 Define ~/.abraxas/ Directory Hierarchy
-- [x] Create `~/.abraxas/` directory structure — **Agent:** systems-architect
-
-```
-~/.abraxas/
-├── config.json              # Global (schema version, defaults)
-├── .janus/                  # Janus ledger (existing, keep as-is)
-│   ├── ledger.md
-│   ├── sessions/
-│   └── resolutions.md
-├── .scribe/                 # Session-scoped citations (JSON)
-│   └── session-{uuid}.json
-├── .retrieval/             # Cached lookups (JSON)
-│   └── cache/
-├── .research/              # Research projects (JSON)
-│   └── projects/
-├── .ethos/                 # Voice profiles (Phase 7, stub)
-├── .krisis/                # Ethical frameworks (Phase 7, stub)
-└── .logos/                 # Argument maps (Phase 6, stub)
-```
-
-#### 1.2 Implement Per-Skill Storage
-- [x] Implement `~/.janus/` persistence for Janus/Veritas — **Agent:** systems-architect
-- [x] Implement `~/.scribe/` storage for Scribe citations (JSON) — **Agent:** systems-architect
-- [x] Implement `~/.retrieval/` storage for cached lookups (JSON) — **Agent:** systems-architect
-- [x] Implement `~/.research/` storage for research projects (JSON) — **Agent:** systems-architect
-
-#### 1.3 Citation Database Unification
-- [x] Create unified citation schema in `~/.abraxas/.scribe/citations.json` — **Agent:** systems-architect
-- [x] Ensure cross-skill citation IDs usable by Scribe, Research, Citation Checker — **Agent:** systems-architect
-
-#### 1.4 Storage Documentation
-- [x] Document schema for all skills in `docs/storage-schema.md` — **Agent:** docs-architect
-
----
-
-### Workstream 2: MCP Server (abraxas-retrieval)
-
-#### 2.1 MCP Server Specification
-- [x] Define MCP server architecture (TypeScript, DuckDuckGo + Tavily) — **Agent:** systems-architect
-
-#### 2.2 MCP Server Implementation
-- [x] Create `mcp-servers/abraxas-retrieval/` directory — **Agent:** systems-architect
-- [x] Implement `web_search` tool (DuckDuckGo → Tavily fallback) — **Agent:** systems-architect
-- [x] Implement `web_fetch` tool — **Agent:** systems-architect
-- [x] Implement `fact_check` tool — **Agent:** systems-architect
-
-#### 2.3 Integration with retrieval-grounding Skill
-- [x] Update retrieval-grounding SKILL.md to reference MCP tools — **Agent:** skill-author
-- [x] Test: verify retrieval-grounding can perform actual lookups — **Agent:** skill-author
-
----
-
-### Phase 4 Dependencies
-
-| Previous Phase | Dependency |
-|----------------|------------|
-| Phase 5 (complete) | Retrieval-grounding skill exists |
-| Phase 1-3 (complete) | Janus/Veritas ledger schema stable |
-
-| This Phase Enables | For |
-|--------------------|-----|
-| MCP tools | Phase 6-7 skills requiring external lookups |
-| Unified storage | All Phase 6-7 skills |
-
----
-
-## Phase 5 — Expansion `[COMPLETE]`
-
-New skills and ecosystem growth beyond Dialogue Engine and Veritas.
-
-- [x] Synthesis skill — session-closing artifact generator; requires Veritas in place — **Agent:** skill-author
-- [x] Scribe skill — source-grounded citation management; creation-time complement to Veritas — **Agent:** skill-author
-- [x] Retrieval grounding layer — live external lookup; first tool-use dependency in the stack — **Agent:** systems-architect
-- [x] Oneironautics v2 + Individuation Ledger — depth expansion for committed practitioners — **Agent:** brand-ux-architect
-- [x] Research assistant skill — citation tracking, source verification, research session management — **Agent:** skill-author
-- [x] Citation checker skill — bibliography verification and claim-source pairing — **Agent:** skill-author
-- [x] Honest integration guide — how to use Honest alongside common dev tools and workflows — **Agent:** brand-ux-architect
-- [x] Skill composition patterns — documented workflows for multi-skill sessions (e.g., Honest + Janus) — **Agent:** docs-architect
-- [x] Community skill template — starter SKILL.md format for third-party skill authors — **Agent:** docs-architect
-
----
-
----
-
-## Phase 6 — Epistemic Depth
+## Phase 6 — Epistemic Depth [COMPLETE]
 
 New systems addressing belief tracking, argument structure, and decision architecture.
 
@@ -166,43 +17,57 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 **Phase 6 build order:** Logos first (lowest risk, clear success criteria) → Mnemon (highest epistemic value, anti-sycophancy) → Kairos (strongest user-facing value proposition)
 
-### Mnemon — Belief-change tracker
-- (Pending) Specification document — belief revision schema, anti-sycophancy signal design, `~/.mnemon/` storage format — **Agent:** ai-rd-visionary
-- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- (Pending) SKILL.md authoring: `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger` — **Agent:** skill-author
-- (Pending) Skill packaging and testing — **Agent:** skill-author
-- (Pending) docs/skills.md updated — **Agent:** docs-architect
-- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
-
-**Problem:** AI-assisted belief revision is invisible; sycophancy leaves no trace. Mnemon tracks when beliefs change, what prompted the change, and flags revisions that occurred immediately after AI output.
-
 ### Logos — Argument anatomy tool
-- (Pending) Specification document — premise/inference mapping schema, Janus label integration, Agon pre-layer design — **Agent:** ai-rd-visionary
-- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- (Pending) SKILL.md authoring: `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report` — **Agent:** skill-author
-- (Pending) Skill packaging and testing — **Agent:** skill-author
-- (Pending) docs/skills.md updated — **Agent:** docs-architect
-- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- [x] Specification document — premise/inference mapping schema, Janus label integration, Agon pre-layer design — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report` — **Agent:** skill-author
+- [x] Skill packaging and testing — **Agent:** skill-author
+- [x] docs/skills.md updated — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
-**Problem:** LLMs generate plausible conclusions from structurally broken arguments; gaps are invisible. Logos maps premises, inference steps, and hidden assumptions before any Agon debate begins.
+### Mnemon — Belief-change tracker
+- [x] Specification document — belief revision schema, anti-sycophancy signal design, `~/.mnemon/` storage format — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger` — **Agent:** skill-author
+- [x] Skill packaging and testing — **Agent:** skill-author
+- [x] docs/skills.md updated — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 ### Kairos — Decision architecture tool
-- (Pending) Specification document — decision space schema, known/unknown/value/reversibility framework, Agon/Krisis handoff design — **Agent:** ai-rd-visionary
-- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- (Pending) SKILL.md authoring: `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report` — **Agent:** skill-author
-- (Pending) Skill packaging and testing — **Agent:** skill-author
-- (Pending) docs/skills.md updated — **Agent:** docs-architect
-- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- [x] Specification document — decision space schema, known/unknown/value/reversibility framework, Agon/Krisis handoff design — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report` — **Agent:** skill-author
+- [x] Skill packaging and testing — **Agent:** skill-author
+- [x] docs/skills.md updated — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
-**Problem:** AI decision support collapses choices into recommendations, hiding genuine uncertainty and value dimensions. Kairos structures the decision space before any analysis begins.
-
-**Phase 6 build order:** Logos first (lowest risk, clear success criteria) → Mnemon (highest epistemic value, anti-sycophancy) → Kairos (strongest user-facing value proposition)
+### Phase 6 Infrastructure (Parallel)
+- [x] MCP Server Modernization to v2.0 — Claude Code 2.1 features — **Agent:** systems-architect
 
 ---
 
-## Phase 7 — Expression and Ethics
+## Phase 7 — Session Continuity
 
 ### Prerequisites for Phase 7:
+- [x] MCP server operational (Phase 4/5) — foundation for session persistence
+- [x] Unified storage schema (Phase 4) — ~/.abraxas/ in place
+
+### Mnemosyne — Cross-session memory layer
+
+- (Pending) Specification document — session artifact schema, cross-session linking, `~/.abraxas/.sessions/` format — **Agent:** ai-rd-visionary
+- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- (Pending) SKILL.md authoring: `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** Users cannot resume long-running epistemic analyses between Claude Code invocations; session state is lost. With 100+ commands, multi-session workflows need persistence.
+
+---
+
+## Phase 8 — Expression and Ethics
+
+### Prerequisites for Phase 8:
 - [x] Janus Nox stable (Phase 1) — Ethos requires Nox integration patterns
 - [x] Agon stable (Phase 3) — Krisis parallels Agon's multi-position structure
 - [x] Kairos complete (Phase 6) — Krisis handoff from Kairos decision framing
@@ -231,10 +96,29 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 ---
 
-## Phase 8 — Unknown-Unknowns
+## Phase 9 — Skill Composition
 
-### Prerequisites for Phase 8:
-- [x] All Phase 6-7 skills operational — Aporia should be validated against real sessions
+### Prerequisites for Phase 9:
+- [x] Multiple skills operational (Phase 6+) — requires skills to compose
+- [x] Mnemosyne complete (Phase 7) — cross-session state handling useful for compositions
+
+### Harmonia — Skill composition protocol
+
+- (Pending) Specification document — skill handoff schemas, composition templates, conflict detection — **Agent:** ai-rd-visionary
+- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- (Pending) SKILL.md authoring: `/harmonia compose`, `/harmonia sequence`, `/harmonia conflict`, `/harmonia status` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** No explicit framework for multi-skill workflows (e.g., Kairos → Krisis). Skills don't have a protocol for passing state between each other or detecting behavioral conflicts.
+
+---
+
+## Phase 10 — Unknown-Unknowns
+
+### Prerequisites for Phase 10:
+- [x] All Phase 6-9 skills operational — Aporia should be validated against real sessions
 - [x] Krisis stable — Aporia extends Krisis's scope-examination patterns
 
 ### Aporia — Unknown-unknown surfacer; Socratic framing examination
@@ -250,15 +134,29 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 ---
 
-## Phase 9 — Distribution
+## Phase 11 — Distribution & Validation
 
-Packaging and release tooling for wider distribution.
+Packaging, release tooling, and automated skill validation.
 
+### Prerequisites for Phase 11:
+- [x] Multiple skills shipped — requires artifacts to package and validate
+
+### Distribution (from original Phase 9)
 - (Pending) Packaging script — automate zip + hash + manifest for skill archives
 - (Pending) Versioning convention — semantic versioning for `.skill` archives (e.g., `honest-1.0.0.skill`)
 - (Pending) Release checklist — per-skill release process documentation
 - (Pending) GitHub Releases integration — attach `.skill` archives to tagged releases
 - (Pending) Installation guide for non-technical users (no CLI assumed)
+
+### Hephaestus — Skill Forge (automated validation)
+- (Pending) Specification document — test schemas, benchmark frameworks, validation criteria — **Agent:** ai-rd-visionary
+- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- (Pending) SKILL.md authoring: `/hephaestus test`, `/hephaestus benchmark`, `/hephaestus validate`, `/hephaestus report` — **Agent:** skill-author
+- (Pending) Skill packaging and testing — **Agent:** skill-author
+- (Pending) docs/skills.md updated — **Agent:** docs-architect
+- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+
+**Problem:** No systematic way to validate epistemic skill outputs. Logos argument mapping, Mnemon sycophancy detection, Kairos decision framing — these produce interpretive outputs that are hard to benchmark automatically.
 
 ---
 
@@ -266,9 +164,5 @@ Packaging and release tooling for wider distribution.
 
 Items identified but not yet scheduled into a phase:
 
-- ~~Consider: The ability to frame the facts or considerations for a given session.~~ — completed in Phase 2 via `/frame`
-- ~~Abraxas Oneironautics v2 with expanded Realm of Daimons and figure genealogy tooling~~ — scheduled: Phase 5 Wave 4
-- ~~Janus v2 with cross-session epistemic ledger persistence~~ — completed (v2 shipped: ~/.janus/ storage, /ledger commands, auto-load)
-- ~~Aporia — Unknown-unknown surfacer~~ — promoted to Phase 8
 - Consider: web-based skill installer (drag `.skill` into browser to install)
 - Consider: Honest as a default Claude Code session wrapper
