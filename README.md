@@ -234,6 +234,7 @@ Skills are `.skill` archive files (zip-based) that Claude Code can install and i
 | Agon | `skills/agon.skill` | 8 | Structured adversarial reasoning — Advocate and Skeptic positions |
 | Aletheia | `skills/aletheia.skill` | 7 | Epistemic calibration — ground-truth tracking and claim resolution |
 | Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | Jungian/alchemical practice across sessions |
+| Mnemosyne | `skills/mnemosyne.skill` | 7 | Cross-session memory — persist conversation state across Claude Code invocations |
 
 See [docs/skills.md](./docs/skills.md) for detailed descriptions and all commands.
 

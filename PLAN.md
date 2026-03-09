@@ -46,7 +46,7 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 ---
 
-## Phase 7 — Session Continuity
+## Phase 7 — Session Continuity [COMPLETE]
 
 ### Prerequisites for Phase 7:
 - [x] MCP server operational (Phase 4/5) — foundation for session persistence
@@ -54,12 +54,12 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 ### Mnemosyne — Cross-session memory layer
 
-- (Pending) Specification document — session artifact schema, cross-session linking, `~/.abraxas/.sessions/` format — **Agent:** ai-rd-visionary
-- (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- (Pending) SKILL.md authoring: `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export`, `/mnemosyne link`, `/mnemosyne recent` — **Agent:** skill-author
-- (Pending) Skill packaging and testing — **Agent:** skill-author
-- (Pending) docs/skills.md updated — **Agent:** docs-architect
-- (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
+- [x] Specification document — session artifact schema, cross-session linking, `~/.abraxas/.sessions/` format — **Agent:** ai-rd-visionary
+- [x] Brand naming and aesthetic fit — **Agent:** brand-ux-architect
+- [x] SKILL.md authoring: `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export`, `/mnemosyne link`, `/mnemosyne recent` — **Agent:** skill-author
+- [x] Skill packaging and testing — **Agent:** skill-author
+- [x] docs/skills.md updated — **Agent:** docs-architect
+- [x] CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 **Problem:** Users cannot resume long-running epistemic analyses between Claude Code invocations; session state is lost. With 100+ commands, multi-session workflows need persistence.
 
