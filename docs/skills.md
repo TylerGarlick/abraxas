@@ -1,7 +1,7 @@
 # Skills Reference
 
-This document is the system reference for all ten skills that make up the Abraxas project:
-**Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, and **Synthesis**. It describes what each system
+This document is the system reference for all thirteen skills that make up the Abraxas project:
+**Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, and **Kairos**. It describes what each system
 is, how it is structured, and every command it provides.
 
 These are not plugins or developer utilities. They are operational systems designed to address
@@ -34,6 +34,10 @@ in AI output.
   - [System Architecture](#janus-architecture)
   - [Command Reference](#janus-command-reference)
   - [Worked Examples](#janus-worked-examples)
+- [Phase 6 Skills](#phase-6-epistemic-depth-skills)
+  - [Logos](#logos)
+  - [Mnemon](#mnemon)
+  - [Kairos](#kairos)
 - [Useful Combinations](#useful-combinations)
 
 ---
@@ -71,6 +75,9 @@ project-level configuration required.
 | Retrieval Grounding | `skills/retrieval-grounding.skill` | 4 | ~2 KB |
 | Research Assistant | `skills/research-assistant.skill` | 5 | ~2 KB |
 | Citation Checker | `skills/citation-checker.skill` | 4 | ~2 KB |
+| Logos | `skills/logos.skill` | 6 | ~12 KB |
+| Mnemon | `skills/mnemon.skill` | 6 | ~8 KB |
+| Kairos | `skills/kairos.skill` | 7 | ~10 KB |
 
 ---
 
@@ -92,6 +99,27 @@ Citation tracking, source verification, and research session management for mult
 
 ### Citation Checker
 Bibliography verification. Pairs claims with sources and verifies citations.
+
+---
+
+## Phase 6 Epistemic Depth Skills
+
+The following skills were added in Phase 6 (Epistemic Depth):
+
+### Logos
+Argument anatomy tool. Maps argument structure: premises, conclusions, inference chains, hidden assumptions, and logical gaps. Mandatory pre-layer to Agon debates.
+
+**Commands:** `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report`
+
+### Mnemon
+Belief-change tracker. Tracks beliefs over time, records revisions with attribution, detects AI-influenced belief changes (anti-sycophancy signal).
+
+**Commands:** `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger`
+
+### Kairos
+Decision architecture tool. Structures decision spaces before analysis: maps knowns/unknowns, values at stake, reversibility assessment.
+
+**Commands:** `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report`
 
 ---
 

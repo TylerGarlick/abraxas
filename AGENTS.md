@@ -98,7 +98,6 @@ skill-name/
 ---
 name: agent-name
 description: "..."
-model: haiku
 memory: project
 ---
 
@@ -168,9 +167,5 @@ Before delivering:
 
 ## What NOT to Do
 
-- Don't create Python, JavaScript, or other code files — this is a skills/docs project
-- Don't add build tooling (npm, cargo, etc.) — unnecessary
-- Don't create tests — skills are validated manually
-- Don't use linters — markdown has no standard linter
 - Don't deviate from naming conventions
 - Don't create files outside the established structure without approval
