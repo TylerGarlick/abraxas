@@ -12,6 +12,7 @@
 | File | Purpose | Update Frequency |
 |---|---|---|
 | `PLAN.md` | Shared task board for all agents | Frequently |
+| `RELEASES.md` | Completed tasks from the `PLAN.md` that have been completed | Frequently |
 | `README.md` | Project overview, agent roster, skills table | When roster or structure changes |
 | `docs/index.md` | Documentation hub and navigation | When docs or roster changes |
 | `CLAUDE.md` | Claude Code project instructions | Rarely |
