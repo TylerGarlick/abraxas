@@ -94,12 +94,60 @@ Retrieval results can be passed to Scribe for citation tracking.
 
 Retrieval provides the factual foundation for adversarial reasoning.
 
-## Technical Notes
+## MCP Server Integration
 
-This skill requires external tool access (web search, API calls). If tools are unavailable:
-- Return a warning that grounding cannot be performed
-- Suggest manual verification methods
-- Do not fabricate sources
+This skill requires the `abraxas-retrieval` MCP server to function. The MCP server provides three tools:
+
+### Available MCP Tools
+
+| Tool | Function | Implementation |
+|------|----------|-----------------|
+| `web_search(query)` | Search the web via DuckDuckGo API | Returns results with title, URL, snippet |
+| `web_fetch(url)` | Fetch and parse web content | Returns title, content (truncated to 5000 chars), status |
+| `fact_check(claim)` | Verify a claim against sources | Returns confidence score, verdict, source URLs |
+
+### Tool Response Schemas
+
+#### web_search Response
+```json
+{
+  "query": "search term",
+  "results": [
+    { "title": "...", "url": "...", "snippet": "..." }
+  ],
+  "source": "duckduckgo"
+}
+```
+
+#### web_fetch Response
+```json
+{
+  "url": "https://...",
+  "title": "Page Title",
+  "content": "Extracted text content...",
+  "status": 200,
+  "contentType": "text/html"
+}
+```
+
+#### fact_check Response
+```json
+{
+  "claim": "The claim to verify",
+  "confidence": 0.85,
+  "verdict": "LIKELY_SUPPORTED|INSUFFICIENT_EVIDENCE",
+  "sources": [
+    { "url": "...", "title": "...", "relevance": 0.9 }
+  ]
+}
+```
+
+### Configuration
+
+The MCP server is located at:
+- **Path:** `mcp-servers/abraxas-retrieval/`
+- **Entry:** `src/index.js`
+- **Run:** `npm start` from that directory
 
 ## Constraints
 
