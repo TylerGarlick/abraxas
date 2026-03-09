@@ -107,5 +107,6 @@ Always read PLAN.md before proposing new tasks to avoid duplication or conflicts
 4. **Write to PLAN.md**: Add new tasks, update status on existing ones, remove completed or obsolete items.
 5. **Update meta-layer if needed**: If the project structure changed, update README.md and docs/index.md.
 6. **Report back**: Summarize what was added to PLAN.md and what the recommended next action is.
+7. **Completed Tasks**: When a tasks is completed in the PLAN.md, create a section in RELEASES.md and remove the completed tasks from the PLAN.md once they are represented in the RELEASES.md.
 
 **Update your agent memory** as the agent roster changes, project conventions evolve, and coordination patterns emerge. Keep MEMORY.md current — it's how you maintain project awareness across sessions.

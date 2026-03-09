@@ -8,7 +8,7 @@ The [Plan](./PLAN.md) will store all active work items across all agents in a su
 
 ## Project Identity
 
-**Abraxas** is the container for five AI systems, each packaged as a Claude Code skill:
+**Abraxas** is the container for six AI systems, each packaged as a Claude Code skill:
 
 | System | Skill File | Commands | Purpose |
 |---|---|---|---|
@@ -17,11 +17,12 @@ The [Plan](./PLAN.md) will store all active work items across all agents in a su
 | **Agon** | `skills/agon.skill` | 8 commands | Structured adversarial reasoning: Advocate and Skeptic positions with Convergence Report |
 | **Aletheia** | `skills/aletheia.skill` | 7 commands | Epistemic calibration and ground-truth tracking — resolves labeled claims |
 | **Abraxas Oneironautics** | `skills/abraxas-oneironautics.skill` | 35 commands | Jungian/alchemical dream work and symbolic integration |
+| **Mnemosyne** | `skills/mnemosyne.skill` | 7 commands | Cross-session memory layer — persists conversation state across Claude Code invocations |
 
-Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Agon and Aletheia extend epistemic reasoning and calibration. Abraxas Oneironautics runs on top of Janus.
+Janus is the infrastructure layer. Honest is the plain-language interface to Janus. Agon and Aletheia extend epistemic reasoning and calibration. Mnemosyne enables session persistence across invocations. Abraxas Oneironautics runs on top of Janus.
 
 **Project root:** `/Users/tylergarlick/@Projects/abraxas`
-**Current phase:** Phase 5 — Expansion (see PLAN.md)
+**Current phase:** Phase 7 — Session Continuity (see PLAN.md)
 
 ---
 
@@ -32,8 +33,9 @@ abraxas/
 ├── skills/
 │   ├── abraxas-oneironautics.skill  ← alchemical practice (35 commands)
 │   ├── janus-system.skill           ← epistemic dual-face (14 commands)
-│   └── honest.skill                 ← everyday anti-hallucination (9 commands)
-│   └── honest/                      ← source directory for honest skill
+│   ├── honest.skill                 ← everyday anti-hallucination (9 commands)
+│   ├── mnemosyne.skill              ← cross-session memory (7 commands)
+│   ├── honest/                      ← source directory for honest skill
 │       └── SKILL.md
 ├── docs/
 │   ├── skills.md                    ← full command reference (primary user doc)
@@ -43,7 +45,7 @@ abraxas/
 │   ├── agents/                      ← 8 subagent definitions (.md files)
 │   └── agent-memory/                ← persistent memory per agent (subdirs)
 ├── CLAUDE.md                        ← this file — project context for Claude Code
-├── CONSTITUTION.md                  ← universal LLM behavioral specification (all five systems)
+├── CONSTITUTION.md                  ← universal LLM behavioral specification (all six systems)
 ├── PLAN.md                          ← active roadmap
 ├── README.md                        ← project overview (GitHub-facing)
 └── index.html                       ← public landing page
