@@ -1,7 +1,7 @@
 # Skills Reference
 
-This document is the system reference for all thirteen skills that make up the Abraxas project:
-**Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, and **Kairos**. It describes what each system
+This document is the system reference for all fourteen skills that make up the Abraxas project:
+**Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, **Kairos**, and **Mnemosyne**. It describes what each system
 is, how it is structured, and every command it provides.
 
 These are not plugins or developer utilities. They are operational systems designed to address
@@ -38,6 +38,8 @@ in AI output.
   - [Logos](#logos)
   - [Mnemon](#mnemon)
   - [Kairos](#kairos)
+- [Phase 7 Cross-Session Memory](#phase-7-cross-session-memory)
+  - [Mnemosyne](#mnemosyne)
 - [Useful Combinations](#useful-combinations)
 
 ---
@@ -58,6 +60,7 @@ unzip scribe.skill -d ~/.claude/skills/
 unzip retrieval-grounding.skill -d ~/.claude/skills/
 unzip research-assistant.skill -d ~/.claude/skills/
 unzip citation-checker.skill -d ~/.claude/skills/
+unzip mnemosyne.skill -d ~/.claude/skills/
 ```
 
 Once installed, the skill's slash commands are available in every Claude Code session — no
@@ -78,6 +81,7 @@ project-level configuration required.
 | Logos | `skills/logos.skill` | 6 | ~12 KB |
 | Mnemon | `skills/mnemon.skill` | 6 | ~8 KB |
 | Kairos | `skills/kairos.skill` | 7 | ~10 KB |
+| Mnemosyne | `skills/mnemosyne.skill` | 7 | ~8 KB |
 
 ---
 
@@ -120,6 +124,19 @@ Belief-change tracker. Tracks beliefs over time, records revisions with attribut
 Decision architecture tool. Structures decision spaces before analysis: maps knowns/unknowns, values at stake, reversibility assessment.
 
 **Commands:** `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report`
+
+---
+
+## Phase 7 Cross-Session Memory
+
+The following skill was added in Phase 7 (Cross-Session Memory):
+
+### Mnemosyne
+Cross-session memory layer. Archives conversation sessions between Claude Code invocations with automatic cross-skill linking (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions). Enables sustained epistemic work across multiple sessions.
+
+**Commands:** `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export`, `/mnemosyne link`, `/mnemosyne recent`
+
+**Storage:** `~/.abraxas/.sessions/`
 
 ---
 

@@ -56,12 +56,18 @@ New systems addressing belief tracking, argument structure, and decision archite
 
 - (Pending) Specification document — session artifact schema, cross-session linking, `~/.abraxas/.sessions/` format — **Agent:** ai-rd-visionary
 - (Pending) Brand naming and aesthetic fit — **Agent:** brand-ux-architect
-- (Pending) SKILL.md authoring: `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export` — **Agent:** skill-author
+- (Pending) SKILL.md authoring: `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export`, `/mnemosyne link`, `/mnemosyne recent` — **Agent:** skill-author
 - (Pending) Skill packaging and testing — **Agent:** skill-author
 - (Pending) docs/skills.md updated — **Agent:** docs-architect
 - (Pending) CONSTITUTION.md extended; constitution-keeper review — **Agent:** constitution-keeper
 
 **Problem:** Users cannot resume long-running epistemic analyses between Claude Code invocations; session state is lost. With 100+ commands, multi-session workflows need persistence.
+
+**Storage design:**
+- Sessions stored in `~/.abraxas/.sessions/` with subdirectories: `active/`, `recent/`, `archived/`
+- Full conversation transcript saved by default (user doesn't need to mark parts)
+- No hard limit on sessions; user can archive old ones via command
+- Automatic cross-skill linking: Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions
 
 ---
 
