@@ -22,6 +22,15 @@
       --purple: #7060c0;
       --teal: #3dae9a;
       --border: #2a2a3c;
+
+      /* New palette additions */
+      --indigo: #2e4da6;
+      --azure: #6da2ea;
+      --firelight: #b63e2e;
+      --ruby: #c0354a;
+      --ruby-dim: #9b2a2a;
+      --moon-gold: #bf9958;
+      --sahara: #58412a;
     }
 
     html { scroll-behavior: smooth; }
@@ -106,7 +115,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--gold);
+      color: var(--azure);
       text-decoration: none;
     }
 
@@ -124,6 +133,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      background: radial-gradient(ellipse at center top, rgba(45, 77, 166, 0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at center bottom, rgba(112, 96, 192, 0.1) 0%, transparent 50%),
+                  var(--bg-void);
     }
 
     .hero-badge {
@@ -172,9 +184,10 @@
     }
 
     .btn-primary:hover {
-      background: var(--text-primary);
-      border-color: var(--text-primary);
+      background: var(--moon-gold);
+      border-color: var(--moon-gold);
       text-decoration: none;
+      box-shadow: 0 0 12px rgba(200, 160, 74, 0.3);
     }
 
     .btn-secondary {
@@ -184,9 +197,10 @@
     }
 
     .btn-secondary:hover {
-      border-color: var(--gold);
-      color: var(--gold);
+      border-color: var(--indigo);
+      color: var(--azure);
       text-decoration: none;
+      box-shadow: 0 0 8px rgba(45, 77, 166, 0.2);
     }
 
     .section-header {
@@ -206,11 +220,12 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 1.75rem;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card:hover {
-      border-color: var(--gold-dim);
+      border-color: var(--moon-gold);
+      box-shadow: 0 4px 20px rgba(200, 160, 74, 0.1);
     }
 
     .card h3 {
@@ -233,14 +248,14 @@
 
     .card.honest .indicator { background: var(--teal); }
     .card.janus .indicator { background: var(--gold); }
-    .card.nox .indicator { background: var(--purple); }
-    .card.agon .indicator { background: #c0364a; }
-    .card.aletheia .indicator { background: #a8b8c8; }
-    .card.synthesis .indicator { background: var(--gold); }
-    .card.scribe .indicator { background: #2255cc; }
-    .card.retrieval .indicator { background: #106060; }
-    .card.research .indicator { background: #7030c0; }
-    .card.citation .indicator { background: #a01848; }
+    .card.nox .indicator { background: var(--indigo); }
+    .card.agon .indicator { background: var(--ruby); }
+    .card.aletheia .indicator { background: var(--azure); }
+    .card.synthesis .indicator { background: var(--moon-gold); }
+    .card.scribe .indicator { background: var(--indigo); }
+    .card.retrieval .indicator { background: var(--teal); }
+    .card.research .indicator { background: var(--purple); }
+    .card.citation .indicator { background: var(--ruby); }
 
     .card.left-border {
       border-left: 3px solid var(--gold);
@@ -275,6 +290,7 @@
       font-size: 2.5rem;
       color: var(--gold);
       font-weight: 600;
+      text-shadow: 0 0 20px rgba(200, 160, 74, 0.3);
     }
 
     .stat-label {
@@ -290,11 +306,12 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 1.25rem;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .frame-card:hover {
-      border-color: var(--gold-dim);
+      border-color: var(--indigo);
+      box-shadow: 0 4px 16px rgba(45, 77, 166, 0.15);
     }
 
     .frame-card h4 {
@@ -315,11 +332,12 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 1.25rem;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .command-card:hover {
-      border-color: var(--gold-dim);
+      border-color: var(--teal);
+      box-shadow: 0 4px 16px rgba(61, 174, 154, 0.15);
     }
 
     .command-card h4 {
@@ -340,11 +358,12 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 1.5rem;
-      transition: border-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .example-card:hover {
-      border-color: var(--gold-dim);
+      border-color: var(--purple);
+      box-shadow: 0 4px 16px rgba(112, 96, 192, 0.15);
     }
 
     .example-card h4 {
@@ -418,7 +437,7 @@
     }
 
     .footer-links a:hover {
-      color: var(--gold);
+      color: var(--azure);
     }
 
     @media (max-width: 768px) {
