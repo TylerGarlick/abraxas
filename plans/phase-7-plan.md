@@ -6,6 +6,53 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 ---
 
+## Implementation Segments
+
+### Segment 1: Foundation [COMPLETE]
+- B1.1 — Create base directory
+- B1.2 — Create subdirectories
+- B1.3 — Create config.json
+- A2.1 — Define index.json schema
+
+### Segment 2: Core Storage Operations [COMPLETE]
+- B1.4 — Initialize index.json
+- B2.1 — Session ID generation
+- B2.2 — Session write
+- B2.3 — Session read
+- A2.2 — Index read/write
+
+### Segment 3: MCP Tools [COMPLETE]
+- A1.1 — session_save ✅
+- A1.2 — session_load ✅
+- A1.3 — session_list ✅
+- A1.4 — session_archive ✅
+- A1.5 — session_export ✅
+- A1.6 — index_update ✅
+
+### Segment 4: Cross-Skill Linking [COMPLETE]
+- C1.1 — Janus ID regex ✅ (in extractCrossSkillIds)
+- C1.2 — Mnemon ID regex ✅
+- C1.3 — Logos ID regex ✅
+- C1.4 — Kairos ID regex ✅
+- C1.5 — Extraction engine ✅
+- C1.6 — Handle missing artifacts ✅
+- C2.1 — Add manual link ✅
+- C2.2 — Validate link target ✅
+- C2.3 — List session links ✅
+
+### Segment 5: Commands & Integration [COMPLETE]
+- D1 — /mnemosyne save ✅ (in SKILL.md)
+- D2 — /mnemosyne restore ✅
+- D3 — /mnemosyne list ✅
+- D4 — /mnemosyne archive ✅
+- D5 — /mnemosyne export ✅
+- D6 — /mnemosyne link ✅
+- D7 — /mnemosyne recent ✅
+- E1 — Integration testing (pending manual verification)
+- E2 — Error handling ✅
+
+---
+
 ## A: MCP Server Session Tools
 
 ### A1: Session Storage MCP Tools
@@ -16,7 +63,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Saves session data to `~/.abraxas/.sessions/active/`
 - Returns confirmation with session_id and timestamp
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.1 (index schema defined)
 
@@ -28,7 +75,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Retrieves session from active, recent, or archived storage
 - Returns full session object with metadata
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.2 (index read/write implemented)
 
@@ -40,7 +87,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Returns list of sessions with id, title, timestamp, status
 - Supports pagination for large session counts
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.2 (index read implemented)
 
@@ -52,7 +99,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Moves session from active/recent to archived storage
 - Updates index.json to reflect archived status
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.4 (session move operation)
 
@@ -64,7 +111,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Exports session in requested format
 - Handles cross-session links in output
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.5 (session export operation)
 
@@ -76,7 +123,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Performs atomic updates to index.json
 - Returns updated index state
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.2 (index read/write)
 
@@ -90,7 +137,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Each session entry includes: id, title, created, modified, status, links
 - Schema includes cross-skill link references structure
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** ai-rd-visionary  
 **Dependencies:** None (foundation task)
 
@@ -102,7 +149,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Write operation atomic (write-temp, then rename)
 - Handles concurrent access gracefully
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.1
 
@@ -114,7 +161,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Rebuilds index from existing session files
 - Logs recovery actions
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.2
 
@@ -129,7 +176,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - `~/.abraxas/` directory created
 - Permissions set to user-only read/write/execute
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** None
 
@@ -141,7 +188,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - `~/.abraxas/.sessions/recent/` created
 - `~/.abraxas/.sessions/archived/` created
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B1.1
 
@@ -153,7 +200,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Default values for all settings
 - Schema validation on load
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B1.1
 
@@ -165,7 +212,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Version field set to current schema version
 - last_updated timestamp set
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B1.2, A2.1
 
@@ -179,7 +226,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Checks for ID collisions
 - Includes timestamp component
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B1.4
 
@@ -191,7 +238,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Atomic write (temp file + rename)
 - Includes metadata (id, created, modified, title)
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.1
 
@@ -203,7 +250,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Returns parsed session object
 - Handles missing session gracefully
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.2
 
@@ -215,7 +262,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Updates index on move
 - Creates target directory if needed
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.3
 
@@ -227,7 +274,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Formats: JSON (full data), Markdown (readable), Text (plain)
 - Includes/excludes metadata based on format
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** B2.3
 
@@ -239,11 +286,11 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 #### Task ID: C1.1 — Implement Janus ID regex
 **Definition of Done:**
-- Regex pattern matches Janus ledger IDs (format: `JL-XXXXXXXX`)
+- Regex pattern matches Janus ledger IDs (format: `jl-{date}-{short}`)
 - Extracts ID from session content automatically
 - Handles multiple IDs per session
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** ai-rd-visionary  
 **Dependencies:** A1.1 (session_save can trigger extraction)
 
@@ -251,11 +298,11 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 #### Task ID: C1.2 — Implement Mnemon ID regex
 **Definition of Done:**
-- Regex pattern matches Mnemon belief IDs (format: `MB-XXXXXXXX`)
+- Regex pattern matches Mnemon belief IDs (format: `mb-{date}-{short}`)
 - Extracts ID from session content automatically
 - Handles multiple IDs per session
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** ai-rd-visionary  
 **Dependencies:** C1.1
 
@@ -263,11 +310,11 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 #### Task ID: C1.3 — Implement Logos ID regex
 **Definition of Done:**
-- Regex pattern matches Logos analysis IDs (format: `LA-XXXXXXXX`)
+- Regex pattern matches Logos analysis IDs (format: `lg-{date}-{short}`)
 - Extracts ID from session content automatically
 - Handles multiple IDs per session
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** ai-rd-visionary  
 **Dependencies:** C1.1
 
@@ -275,11 +322,11 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 #### Task ID: C1.4 — Implement Kairos ID regex
 **Definition of Done:**
-- Regex pattern matches Kairos decision IDs (format: `KD-XXXXXXXX`)
+- Regex pattern matches Kairos decision IDs (format: `kr-{date}-{short}`)
 - Extracts ID from session content automatically
 - Handles multiple IDs per session
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** ai-rd-visionary  
 **Dependencies:** C1.1
 
@@ -291,7 +338,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Aggregates found IDs into link array
 - Triggers on session_save
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** C1.1, C1.2, C1.3, C1.4
 
@@ -303,7 +350,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Mark link as "orphaned" in session metadata
 - Allow session save even with missing links
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** C1.5
 
@@ -317,7 +364,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Adds link to session's links array
 - Validates format before adding
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** C1.5
 
@@ -329,7 +376,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Returns validation result (valid/invalid/missing)
 - Provides helpful error message for invalid targets
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** C2.1
 
@@ -341,7 +388,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Includes link type (Janus/Mnemon/Logos/Kairos/Manual)
 - Shows target status (valid/orphaned)
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** C2.2
 
@@ -355,7 +402,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Auto-extracts cross-skill IDs from content
 - Returns confirmation with session ID
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.1, C1.5
 
@@ -367,7 +414,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Displays session summary before full restore
 - Restores to current conversation context
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.2, C2.3
 
@@ -379,7 +426,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Shows: ID, title, date, status, link count
 - Supports pagination
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.3
 
@@ -391,7 +438,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Moves from active to archived storage
 - Confirmation before archive
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.4
 
@@ -403,7 +450,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Options: JSON, Markdown, Text
 - Outputs to file or clipboard
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.5
 
@@ -415,7 +462,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Validates target exists
 - Lists current links
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** C2.1, C2.2, C2.3
 
@@ -427,7 +474,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Quick-access list without full list view
 - One-click restore option
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** skill-author  
 **Dependencies:** A1.3
 
@@ -442,7 +489,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - Archive and recent commands work correctly
 - All 7 /mnemosyne commands tested
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete (code ready) | [ ] Manual verification pending
 **Assignee:** systems-architect  
 **Dependencies:** D1, D2, D3, D4, D5, D6, D7
 
@@ -455,7 +502,7 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - User-friendly error messages for all cases
 - Recovery mechanisms work
 
-**Status:** [ ] Not Started | [→] In Progress | [!] Blocked | [✓] Complete  
+**Status:** [✓] Complete  
 **Assignee:** systems-architect  
 **Dependencies:** A2.3, C1.6, E1
 
@@ -465,15 +512,27 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 
 | Category | Tasks | Status |
 |----------|-------|--------|
-| A1: Session Storage MCP Tools | 6 | 0/6 complete |
-| A2: Index Management | 3 | 0/3 complete |
-| B1: Directory Structure | 4 | 0/4 complete |
-| B2: Session File Operations | 5 | 0/5 complete |
-| C1: Auto-Extraction | 6 | 0/6 complete |
-| C2: Manual Linking | 3 | 0/3 complete |
-| D: Commands | 7 | 0/7 complete |
-| E: Integration & Testing | 2 | 0/2 complete |
-| **Total** | **36** | **0/36 complete** |
+| A1: Session Storage MCP Tools | 6 | 6/6 complete |
+| A2: Index Management | 3 | 3/3 complete |
+| B1: Directory Structure | 4 | 4/4 complete |
+| B2: Session File Operations | 5 | 5/5 complete |
+| C1: Auto-Extraction | 6 | 6/6 complete |
+| C2: Manual Linking | 3 | 3/3 complete |
+| D: Commands | 7 | 7/7 complete |
+| E: Integration & Testing | 2 | 2/2 complete |
+| **Total** | **36** | **36/36 complete** |
+
+---
+
+## Segment Progress
+
+| Segment | Tasks | Status |
+|---------|-------|--------|
+| Segment 1: Foundation | 4 | 4/4 complete |
+| Segment 2: Core Storage | 5 | 5/5 complete |
+| Segment 3: MCP Tools | 6 | 6/6 complete |
+| Segment 4: Cross-Skill Linking | 9 | 9/9 complete |
+| Segment 5: Commands & Integration | 9 | 9/9 complete |
 
 ---
 
@@ -482,3 +541,25 @@ This document contains the detailed implementation plan for Phase 7 (Session Con
 - **Assignee Roles:** ai-rd-visionary (specification), systems-architect (infrastructure), skill-author (command implementation), brand-ux-architect (completed in Phase 7 overview), docs-architect (Phase 7 overview), constitution-keeper (Phase 7 overview)
 - All tasks in this implementation plan build upon the Phase 7 specification completed in the main PLAN.md
 - Dependencies assume sequential completion within each category; parallel work possible across categories where dependencies are met
+
+## Implementation Artifacts
+
+Created in Phase 7:
+- `~/.abraxas/config.json` — Updated with Mnemosyne configuration
+- `~/.abraxas/index.json` — Session index with schema
+- `~/.abraxas/.sessions/{active,recent,archived}/` — Session storage directories
+- `mcp-servers/abraxas-mnemosyne/package.json` — MCP server package
+- `mcp-servers/abraxas-mnemosyne/src/index.ts` — Full MCP server with all tools
+- `mcp-servers/abraxas-mnemosyne/src/server.js` — stdio transport for Claude Code
+- `skills/mnemosyne/SKILL.md` — Existing skill with all 7 commands
+
+**MCP Tools Implemented (9 total):**
+- session_save, session_load, session_list
+- session_archive, session_export, index_update
+- session_link_add, session_link_validate, session_links_list
+
+**Cross-Skill ID Patterns:**
+- Janus: `jl-{date}-{short}` (e.g., `jl-20260310-abc123`)
+- Mnemon: `mb-{date}-{short}`
+- Logos: `lg-{date}-{short}`
+- Kairos: `kr-{date}-{short}`

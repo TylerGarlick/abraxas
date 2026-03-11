@@ -156,6 +156,7 @@ This document covers four composition patterns, ordered from simplest to most co
 | Single-topic debate you want to track over time | Agon + Aletheia |
 | Debate where you're unsure if the framing is sound | Honest + Agon |
 | High-stakes decisions, complex research, epistemic-first sessions | Full Stack |
+| Multi-session investigations requiring persistence across Claude invocations | Add Mnemosyne to any pattern |
 | Quick fact-checking, everyday development | Honest alone |
 | Dream work, shadow integration, alchemical practice | Oneironautics (Janus runs beneath it automatically) |
 
@@ -164,6 +165,8 @@ This document covers four composition patterns, ordered from simplest to most co
 ## Practical Notes
 
 **Skills do not need to be invoked in the same session.** You can run an Agon debate today and use Aletheia to pick up unresolved claims next session via `/aletheia debt`.
+
+**Mnemosyne preserves sessions across Claude Code invocations.** Any pattern can be extended with Mnemosyne by adding `/mnemosyne save` at session end and `/mnemosyne restore` at session start. This enables sustained multi-session investigations that persist between Claude Code invocations.
 
 **Honest commands work in any context.** `/check`, `/split`, and `/audit` are not mode-specific. They work whether or not Janus Sol is active, whether or not an Agon session is open.
 
