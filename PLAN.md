@@ -1,53 +1,89 @@
 # Abraxas — Product Roadmap
 
-This file tracks the active development of the Abraxas project across all agents.
-
-The project-coordinator agent owns this file.
+**Current Focus:** Phase 7 — Session Continuity → Integration testing
 
 ---
 
-## Phase 6 — Epistemic Depth [COMPLETE]
+## Phase Overview
 
-- [Detailed Plan](./plans/phase-6-plan.md)
+| Phase | Status | Progress | Current Task |
+|-------|--------|----------|---------------|
+| 6 — Epistemic Depth | ✅ Complete | 100% | 3 skills delivered |
+| 7 — Session Continuity | 🔄 In Progress | 72% (26/36) | E1: Integration testing |
+| 8 — Expression and Ethics | ⏳ Pending | 0% | Not started |
+| 9 — Skill Composition | ⏳ Pending | 0% | Not started |
+| 10 — Unknown-Unknowns | ⏳ Pending | 0% | Not started |
+| 11 — Distribution & Validation | ⏳ Pending | 0% | Not started |
 
 ---
 
-## Phase 7 — Session Continuity [IMPLEMENTATION IN PROGRESS]
+## Phase 7 — Session Continuity [IN PROGRESS]
 
-- [Detailed Plan](./plans/phase-7-plan.md)
+**Goal:** Cross-session memory persistence via Mnemosyne skill
+
+**Detailed Plan:** [./plans/phase-7-plan.md](./plans/phase-7-plan.md)
+
+### Progress
+- ✅ Segment 1: Foundation (4/4)
+- ✅ Segment 2: Core Storage (5/5)
+- ✅ Segment 3: MCP Tools (6/6)
+- ✅ Segment 4: Cross-Skill Linking (9/9)
+- 🔄 Segment 5: Commands & Integration (8/9)
+  - [x] D1–D7 Commands
+  - [ ] E1 — End-to-End Integration Testing ← **YOU ARE HERE**
+  - [x] E2 — Error Handling
+
+### Remaining Tasks
+- [ ] E1 — End-to-End Integration Testing (manual verification)
 
 ---
 
 ## Phase 8 — Expression and Ethics [PENDING]
 
-- [Detailed Plan](./plans/phase-8-plan.md)
+**Goal:** Voice preservation (Ethos) + Ethical deliberation (Krisis)
+
+**Detailed Plan:** [./plans/phase-8-plan.md](./plans/phase-8-plan.md)
+
+### Prerequisites
+- [x] Janus Nox stable (Phase 1)
+- [x] Agon stable (Phase 3)
+- [x] Kairos complete (Phase 6)
+
+### Skills
+- **Ethos** — Voice preservation for AI-assisted writing
+- **Krisis** — Ethical deliberation across frameworks
 
 ---
 
 ## Phase 9 — Skill Composition [PENDING]
 
-- [Detailed Plan](./plans/phase-9-plan.md)
+**Goal:** Compose multiple skills into unified workflows
+
+**Detailed Plan:** [./plans/phase-9-plan.md](./plans/phase-9-plan.md)
 
 ---
 
 ## Phase 10 — Unknown-Unknowns [PENDING]
 
-- [Detailed Plan](./plans/phase-10-plan.md)
+**Goal:** Discovery and exploration of unanticipated needs
+
+**Detailed Plan:** [./plans/phase-10-plan.md](./plans/phase-10-plan.md)
 
 ---
 
 ## Phase 11 — Distribution & Validation [PENDING]
 
-- [Detailed Plan](./plans/phase-11-plan.md)
+**Goal:** Package and validate Abraxas for distribution
+
+**Detailed Plan:** [./plans/phase-11-plan.md](./plans/phase-11-plan.md)
 
 ---
 
 ## Backlog
 
-Items identified but not yet scheduled into a phase:
-
-- Consider: web-based skill installer (drag `.skill` into browser to install)
-- Consider: Honest as a default Claude Code session wrapper
+Considered but unscheduled:
+- Web-based skill installer (drag `.skill` into browser to install)
+- Honest as a default Claude Code session wrapper
 
 ---
 
