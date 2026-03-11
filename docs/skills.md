@@ -138,6 +138,8 @@ Cross-session memory layer. Archives conversation sessions between Claude Code i
 
 **Storage:** `~/.abraxas/.sessions/`
 
+**Full reference:** See [Mnemosyne Reference](./mnemosyne.md) for detailed command documentation, storage schema, and workflow patterns.
+
 ---
 
 ## Using Without Skills (CONSTITUTION.md)

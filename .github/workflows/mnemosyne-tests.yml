@@ -1,0 +1,58 @@
+name: Mnemosyne MCP Server Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mcp-servers/abraxas-mnemosyne/**'
+  pull_request:
+    paths:
+      - 'mcp-servers/abraxas-mnemosyne/**'
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: mcp-servers/abraxas-mnemosyne
+        run: bun install
+
+      - name: Run tests
+        working-directory: mcp-servers/abraxas-mnemosyne
+        run: bun test
+
+      - name: Run tests with coverage
+        working-directory: mcp-servers/abraxas-mnemosyne
+        run: bun test --coverage
+        continue-on-error: true
+
+  lint:
+    name: Type Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        working-directory: mcp-servers/abraxas-mnemosyne
+        run: bun install
+
+      - name: Type check
+        working-directory: mcp-servers/abraxas-mnemosyne
+        run: bun run build

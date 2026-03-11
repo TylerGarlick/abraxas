@@ -4,8 +4,8 @@
 
 # Abraxas Documentation
 
-This is the documentation hub for the Abraxas project. Abraxas is the container for ten
-systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, and **Synthesis** — packaged as
+This is the documentation hub for the Abraxas project. Abraxas is the container for fourteen
+systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, **Kairos**, and **Mnemosyne** — packaged as
 Claude Code skills and supported by a suite of specialized subagents.
 
 Use this index to navigate all available documentation.
@@ -28,6 +28,7 @@ Use this index to navigate all available documentation.
 | Manage multi-session research projects with organized references | **Research Assistant** |
 | Verify citations actually support claims (QA layer) | **Citation Checker** |
 | Export session artifacts and generate final reports | **Synthesis** |
+| Cross-session memory, resume investigations across Claude invocations | **Mnemosyne** |
 | Using a different LLM (ChatGPT, Claude.ai, Gemini) | **CONSTITUTION.md** |
 
 ### Which Approach Should I Choose?
@@ -66,7 +67,8 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [README](../README.md) | Project overview, Quick Start, structure, and getting started |
 | [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
-| [Skills Reference](./skills.md) | Full command reference for all ten skills: Honest, Janus, Agon, Aletheia, Abraxas Oneironautics, Retrieval Grounding, Scribe, Research Assistant, Citation Checker, and Synthesis |
+| [Skills Reference](./skills.md) | Full command reference for all fourteen skills: Honest, Janus, Agon, Aletheia, Abraxas Oneironautics, Retrieval Grounding, Scribe, Research Assistant, Citation Checker, Synthesis, Logos, Mnemon, Kairos, and Mnemosyne |
+| [Mnemosyne Reference](./mnemosyne.md) | Cross-session memory layer: save, restore, archive, and link sessions across Claude Code invocations |
 | [Honest Integration Guide](./honest-integration.md) | How to use Honest alongside development tools, PR review, and coding sessions |
 | [Composition Patterns](./composition-patterns.md) | Multi-skill session workflows: Honest+Janus, Agon+Aletheia, full-stack patterns |
 | [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
@@ -125,10 +127,24 @@ they're attached to. The QA layer of the Abraxas citation system. Four commands.
 into structured, exportable summaries. Integrates with all other systems to produce final reports,
 exports, and audit trails. Three commands.
 
-All ten systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
+**Logos** — Argument anatomy tool. Maps argument structure: premises, conclusions, inference
+chains, hidden assumptions, and logical gaps. Six commands. Mandatory pre-layer to Agon debates.
+
+**Mnemon** — Belief-change tracker. Tracks beliefs over time, records revisions with attribution,
+detects AI-influenced belief changes (anti-sycophancy signal). Six commands.
+
+**Kairos** — Decision architecture tool. Structures decision spaces before analysis: maps
+knowns/unknowns, values at stake, reversibility assessment. Seven commands.
+
+**Mnemosyne** — Cross-session memory layer. Archives conversation sessions between Claude Code
+invocations with automatic cross-skill linking (Janus ledgers, Mnemon beliefs, Logos analyses,
+Kairos decisions). Enables sustained epistemic work across multiple sessions. Seven commands.
+Stores sessions in `~/.abraxas/.sessions/`.
+
+All fourteen systems are distributed as `.skill` archives (personal-scope Claude Code skills) and
 are supported by eight specialized subagents defined in `.claude/agents/`. They are also
 available as `CONSTITUTION.md` — a single portable document any capable LLM can load to
-operate all ten systems without Claude Code.
+operate all fourteen systems without Claude Code.
 
 **Agents:**
 - `skill-author` — Authors and packages `.skill` archives; owns the skill authoring workflow
@@ -196,7 +212,7 @@ When CONSTITUTION.md is active, prepend your query with:
 
 ## Project Status
 
-As of March 2026, all ten skills are operational. Honest provides 9 plain-language
+As of March 2026, all fourteen skills are operational. Honest provides 9 plain-language
 anti-hallucination commands. The Janus System governs 19 commands including session tracking,
 Qualia Bridge inspection, and the Bridge to Abraxas. Agon governs 8 commands for structured
 adversarial reasoning with mandatory Convergence Reports. Aletheia governs 7 commands for
@@ -205,7 +221,9 @@ commands across dream reception, alchemical transmutation, active imagination, s
 and the Bridge to Janus. Retrieval Grounding provides 4 commands for live fact-checking.
 Scribe offers 4 commands for citation management. Research Assistant provides 5 commands for
 research project management. Citation Checker delivers 4 commands for bibliography verification.
-Synthesis provides 3 commands for session export and reporting.
+Synthesis provides 3 commands for session export and reporting. Logos provides 6 commands for
+argument mapping. Mnemon provides 6 commands for belief tracking. Kairos provides 7 commands
+for decision architecture. Mnemosyne provides 7 commands for cross-session memory persistence.
 
 Active work items are tracked in [PLAN.md](../PLAN.md).
 
@@ -227,7 +245,8 @@ abraxas/
 └── docs/
     ├── index.md             # This file — documentation hub
     ├── architecture.md      # Mermaid architecture diagrams
-    ├── skills.md            # Full system reference: all commands for all five skills
+    ├── skills.md            # Full system reference: all 14 commands for all skills
+    ├── mnemosyne.md        # Mnemosyne cross-session memory reference
     ├── honest-integration.md  # How to use Honest with dev tools and coding workflows
     ├── composition-patterns.md # Multi-skill session patterns and workflows
     ├── frames.md            # Frames reference: all 13 frame templates

@@ -1,0 +1,39 @@
+{
+  "name": "abraxas-mnemosyne",
+  "version": "1.0.0",
+  "description": "Abraxas Mnemosyne MCP server - Session continuity and cross-session memory",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "build": "tsc",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "abraxas",
+    "mcp",
+    "mnemosyne",
+    "session",
+    "memory",
+    "claude-code"
+  ],
+  "license": "MIT",
+  "mcpServer": {
+    "version": "2.1",
+    "features": {
+      "lazyLoading": true,
+      "skills2": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "typescript": "^5.9.3"
+  }
+}

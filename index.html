@@ -256,6 +256,7 @@
     .card.retrieval .indicator { background: var(--teal); }
     .card.research .indicator { background: var(--purple); }
     .card.citation .indicator { background: var(--ruby); }
+    .card.mnemosyne .indicator { background: var(--gold); }
 
     .card.left-border {
       border-left: 3px solid var(--gold);
@@ -483,7 +484,7 @@
     <div class="hero-badge">Anti-Hallucination · Alchemical Practice</div>
     <h1>Abraxas</h1>
     <p class="hero-subtitle">
-      Epistemic integrity, adversarial reasoning, calibration, session memory, and alchemical symbolic integration — unified under one system.
+      Epistemic integrity, adversarial reasoning, calibration, session continuity, and alchemical symbolic integration — unified under one system.
     </p>
     <div class="hero-cta">
       <a href="#constitution-versions" class="btn btn-primary">Load Constitution</a>
@@ -525,7 +526,7 @@
         <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy over time.</p>
       </div>
 
-      <div class="card synthesis">
+      <div class="card mnemosyne">
         <div class="indicator"></div>
         <h3>Mnemosyne</h3>
         <p>Cross-session memory. Persists epistemic work between Claude Code invocations. Archive, restore, and retrieve sessions. Links to Janus ledgers, Mnemon beliefs, and Kairos decisions.</p>
@@ -538,7 +539,7 @@
         <div class="stat-label">Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">80</div>
+        <div class="stat-value">87</div>
         <div class="stat-label">Commands</div>
       </div>
       <div class="stat">
@@ -587,7 +588,7 @@
         <div class="commands-badge">7 Commands</div>
       </div>
 
-      <div class="card synthesis">
+      <div class="card mnemosyne">
         <div class="indicator"></div>
         <h3>Mnemosyne</h3>
         <p>Cross-session memory and session persistence.</p>
@@ -644,13 +645,13 @@
       <div class="grid">
         <div class="card">
           <h3>Full Constitution</h3>
-          <p>Complete system with all six subsystems. All 80 commands.</p>
+          <p>Complete system with all six subsystems. All 87 commands.</p>
           <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-all.md" class="commands-badge">View on GitHub</a>
         </div>
 
         <div class="card">
           <h3>Core Systems</h3>
-          <p>Universal + Honest + Janus + Oneironautics. 58 commands.</p>
+          <p>Universal + Honest + Janus + Oneironautics + Mnemosyne. 65 commands.</p>
           <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-core.md" class="commands-badge">View on GitHub</a>
         </div>
 
@@ -693,6 +694,13 @@
           <h3>Aletheia Only</h3>
           <p>Epistemic calibration. 7 commands.</p>
           <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-aletheia.md" class="commands-badge">View on GitHub</a>
+        </div>
+
+        <div class="card mnemosyne">
+          <div class="indicator"></div>
+          <h3>Mnemosyne Only</h3>
+          <p>Cross-session memory. 7 commands.</p>
+          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-mnemosyne.md" class="commands-badge">View on GitHub</a>
         </div>
       </div>
 
@@ -793,6 +801,30 @@
         <h4>/aletheia confirm</h4>
         <p>Mark a labeled claim as confirmed by evidence.</p>
       </div>
+      <div class="command-card">
+        <h4>/mnemosyne archive</h4>
+        <p>Archive current session state to persistent storage.</p>
+      </div>
+      <div class="command-card">
+        <h4>/mnemosyne restore</h4>
+        <p>Restore a previous session from archive.</p>
+      </div>
+      <div class="command-card">
+        <h4>/mnemosyne recall</h4>
+        <p>Search and retrieve specific memories across sessions.</p>
+      </div>
+      <div class="command-card">
+        <h4>/mnemosyne link</h4>
+        <p>Link current session to Janus ledger or Aletheia records.</p>
+      </div>
+      <div class="command-card">
+        <h4>/mnemosyne Kairos</h4>
+        <p>Mark a decision point worth remembering across sessions.</p>
+      </div>
+      <div class="command-card">
+        <h4>/mnemosyne sync</h4>
+        <p>Synchronize current context with persistent memory.</p>
+      </div>
     </div>
 
     <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Example Workflows</h3>
@@ -827,6 +859,14 @@ Open dialogue with an inner figure</pre>
 Advocate and Skeptic produce verdict
 Later: confirm or disconfirm
 Ledger tracks accuracy over time</pre>
+      </div>
+
+      <div class="example-card">
+        <h4>/mnemosyne archive → /mnemosyne recall</h4>
+        <pre>/mnemosyne Kairos [mark important decision]
+[work on project across days]
+/mnemosyne recall [find previous context]
+/mnemosyne restore [resume from checkpoint]</pre>
       </div>
     </div>
   </section>

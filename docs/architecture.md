@@ -17,6 +17,9 @@ Intended audience: practitioners and developers seeking to understand how the sy
     - [System Relationship Diagram](#system-relationship-diagram)
     - [Data Flow: Dream Reception](#data-flow-dream-reception)
     - [Data Flow: Epistemic Labeling](#data-flow-epistemic-labeling)
+  - [Phase 7: Cross-Session Memory](#phase-7-cross-session-memory)
+    - [Mnemosyne Storage Architecture](#mnemosyne-storage-architecture)
+    - [Session Lifecycle](#session-lifecycle)
   - [Historical Architecture](#historical-architecture)
 
 ---
@@ -25,11 +28,15 @@ Intended audience: practitioners and developers seeking to understand how the sy
 
 ### Overview
 
-Abraxas is a two-system practice architecture. **Janus** is the epistemic layer — a routing and
-labeling system that enforces the boundary between factual and symbolic output. **Abraxas
-Oneironautics** is the alchemical layer — a sustained practice system for dream reception, shadow
-work, and symbolic integration. Janus runs beneath Abraxas: every output from the Oneironautics
-system passes through the Threshold.
+Abraxas is a two-system practice architecture with cross-session persistence. **Janus** is the
+epistemic layer — a routing and labeling system that enforces the boundary between factual and
+symbolic output. **Abraxas Oneironautics** is the alchemical layer — a sustained practice system
+for dream reception, shadow work, and symbolic integration. **Mnemosyne** is the persistence layer —
+archives sessions across Claude Code invocations with automatic cross-skill linking.
+
+Janus runs beneath Abraxas: every output from the Oneironautics system passes through the
+Threshold. Mnemosyne runs alongside both, capturing and persisting session artifacts for retrieval
+in future invocations.
 
 The two systems share no output register. Sol output is labeled and verifiable. Nox output is
 marked `[DREAM]` and treated as symbolic encounter. The Threshold is the enforcement mechanism
@@ -227,6 +234,72 @@ sequenceDiagram
 ```
 
 _Sol processes each claim independently and assigns the appropriate label. [UNKNOWN] is never suppressed. The Qualia Bridge provides a second-pass inspection of the Sol state without altering it._
+
+---
+
+## Phase 7: Cross-Session Memory
+
+### Mnemosyne Storage Architecture
+
+Mnemosyne provides persistent session storage that survives Claude Code invocations. Sessions are stored in `~/.abraxas/.sessions/`:
+
+```mermaid
+flowchart TD
+    subgraph Sessions["~/.abraxas/.sessions/"]
+        Config["config.json\nSchema version, preferences"]
+        Index["index.json\nSession ID → metadata lookup"]
+        Active["active/\nCurrent session being written"]
+        Recent["recent/{YYYY-MM}/\nRecent sessions"]
+        Archived["archived/\nLong-term storage"]
+    end
+    
+    SessionJSON["session.json\nFull transcript + metadata\n+ artifact_links\n+ manual_links"]
+    
+    Active -->|"write"| SessionJSON
+    SessionJSON -->|"move"| Recent
+    SessionJSON -->|"archive"| Archived
+    Index -.->|"indexes"| SessionJSON
+```
+
+**Session ID format:** `mnemo-{YYYY-MM}-{uuid}` (e.g., `mnemo-2026-03-a1b2c3d4`)
+
+### Cross-Skill ID Reference
+
+Mnemosyne auto-links to artifacts from other Abraxas skills:
+
+```mermaid
+flowchart LR
+    subgraph ArtifactIDs["Artifact ID Patterns"]
+        Janus["JL-XXXXXXXX\nJanus Ledger"]
+        Mnemon["MB-XXXXXXXX\nMnemon Belief"]
+        Logos["LA-XXXXXXXX\nLogos Analysis"]
+        Kairos["KD-XXXXXXXX\nKairos Decision"]
+    end
+    
+    Save["/mnemosyne save"] -->|auto-extract| ArtifactIDs
+    ArtifactIDs -->|link to| Session["Session artifact_links"]
+```
+
+| Skill | ID Pattern | Example |
+|-------|-----------|---------|
+| Janus | `JL-{YYYY-MM}-{uuid}` | `JL-2026-03-09-abc123` |
+| Mnemon | `MB-{YYYY-MM}-{uuid}` | `MB-2026-03-09-def456` |
+| Logos | `LA-{YYYY-MM}-{uuid}` | `LA-2026-03-09-ghi789` |
+| Kairos | `KD-{YYYY-MM}-{uuid}` | `KD-2026-03-09-jkl012` |
+
+### Session Lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> Active: New session starts
+    Active --> Active: Transcript grows
+    Active --> Saved: /mnemosyne save
+    Saved --> Active: /mnemosyne restore
+    Saved --> Recent: Session closed
+    Recent --> Archived: /mnemosyne archive
+    Archived --> Recent: /mnemosyne restore
+    [*] --> Saved: /mnemosyne restore last
+```
 
 ---
 
