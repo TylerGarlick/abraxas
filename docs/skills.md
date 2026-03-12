@@ -85,113 +85,32 @@ project-level configuration required.
 | Ethos | `skills/ethos.skill` | 5 | ~12 KB |
 | Krisis | `skills/krisis.skill` | 6 | ~8 KB |
 | Harmonia | `skills/harmonia.skill` | 4 | ~8 KB |
+| Soter | `skills/soter.skill` | 6 | ~10 KB |
 
 ---
 
-## Phase 5 Expansion Skills
+## Phase 12 Agentic Orchestration
 
-The following skills were added in Phase 5 (Expansion):
+The following skill was added in Phase 12 (Agentic Orchestration):
 
-### Synthesis
-Session-closing artifact generator. Synthesizes epistemic outputs into structured summaries. Integrates with Veritas resolution tracking.
+### Soter
+Agentic orchestration and tool-use governance. A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints. Named for the Greek *sōtēr* — the savior, the preserver who guards boundaries.
 
-### Scribe
-Source-grounded citation management. Tracks citations at creation time as a complement to Veritas.
+**Commands:** `/soter plan`, `/soter bounds`, `/soter audit`, `/soter checkpoint`, `/soter execute`, `/soter rollback`
 
-### Retrieval Grounding
-Live external lookup. Provides factual grounding through real-time source verification. First tool-use dependency in the stack.
+**Anti-Scheming Design:**
+- Soter cannot modify its own constraints
+- Cannot write to its own prompt
+- Cannot access its own evaluation criteria
+- Human checkpoint required for high-risk operations
+- Immutable audit log of all actions
 
-### Research Assistant
-Citation tracking, source verification, and research session management for multi-session projects.
+**Workflow:**
+```
+/soter plan {goal} → /soter bounds {plan-id} → /soter audit {plan-id} → /soter checkpoint {plan-id} → /soter execute {plan-id}
+```
 
-### Citation Checker
-Bibliography verification. Pairs claims with sources and verifies citations.
-
----
-
-## Phase 6 Epistemic Depth Skills
-
-The following skills were added in Phase 6 (Epistemic Depth):
-
-### Logos
-Argument anatomy tool. Maps argument structure: premises, conclusions, inference chains, hidden assumptions, and logical gaps. Mandatory pre-layer to Agon debates.
-
-**Commands:** `/logos map`, `/logos gaps`, `/logos inferences`, `/logos assume`, `/logos falsify`, `/logos report`
-
-### Mnemon
-Belief-change tracker. Tracks beliefs over time, records revisions with attribution, detects AI-influenced belief changes (anti-sycophancy signal).
-
-**Commands:** `/mnemon hold`, `/mnemon revise`, `/mnemon audit`, `/mnemon delta`, `/mnemon prompted`, `/mnemon ledger`
-
-### Kairos
-Decision architecture tool. Structures decision spaces before analysis: maps knowns/unknowns, values at stake, reversibility assessment.
-
-**Commands:** `/kairos frame`, `/kairos known`, `/kairos unknown`, `/kairos values`, `/kairos reversible`, `/kairos ready`, `/kairos report`
-
----
-
-## Phase 7 Cross-Session Memory
-
-The following skill was added in Phase 7 (Cross-Session Memory):
-
-### Mnemosyne
-Cross-session memory layer. Archives conversation sessions between Claude Code invocations with automatic cross-skill linking (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions). Enables sustained epistemic work across multiple sessions.
-
-**Commands:** `/mnemosyne save`, `/mnemosyne restore`, `/mnemosyne list`, `/mnemosyne archive`, `/mnemosyne export`, `/mnemosyne link`, `/mnemosyne recent`
-
-**Storage:** `~/.abraxas/.sessions/`
-
-**Full reference:** See [Mnemosyne Reference](./mnemosyne.md) for detailed command documentation, storage schema, and workflow patterns.
-
----
-
-## Phase 8 Voice Preservation
-
-The following skill was added in Phase 8 (Voice Preservation):
-
-### Ethos
-Voice preservation architecture for AI-assisted writing. Captures stylistic fingerprints, detects voice drift in real-time, and offers restoration pathways. Integrates with Janus to handle Sol (factual) and Nox (creative) content appropriately.
-
-**Commands:** `/ethos register`, `/ethos check`, `/ethos restore`, `/ethos audit`, `/ethos compare`
-
-**Storage:** `~/.abraxas/ethos/`
-
-**Full reference:** See [Ethos Reference](./ethos.md) for detailed command documentation, fingerprint schema, drift detection algorithm, and Janus integration patterns.
-
-### Krisis
-Multi-framework ethical deliberation. Applies four ethical frameworks (Consequentialist, Deontological, Virtue Ethics, Care Ethics) in parallel to every question, surfaces tensions and consensus, and generates comprehensive deliberation reports. Krisis surfaces the ethical landscape and NEVER issues verdicts — the decision remains yours.
-
-**Commands:** `/krisis frame`, `/krisis frameworks`, `/krisis tension`, `/krisis consensus`, `/krisis scope`, `/krisis report`
-
-**Workflow:** Use with Kairos for decision architecture: `/kairos frame {decision}` → `/krisis frame {decision}` → `/krisis frameworks` → `/krisis tension` → `/krisis consensus` → `/krisis report`
-
-**CRITICAL:** Krisis never recommends action, ranks frameworks, or declares a winner. All reports close with explicit non-verdict language.
-
-**Storage:** `~/.krisis/`
-
----
-
-## Phase 9 Skill Composition
-
-The following skill was added in Phase 9 (Skill Composition):
-
-### Harmonia
-Skill composition architecture. Composes multiple Abraxas skills into unified workflows with state handoff protocols and conflict detection. Enables workflows like Kairos → Krisis → Agon to execute as unified compositions.
-
-**Commands:** `/harmonia compose`, `/harmonia sequence`, `/harmonia conflict`, `/harmonia status`
-
-**Composition Patterns:**
-- Sequential (`→`): Linear handoff between skills
-- Parallel (`∥`): Simultaneous execution
-- Conditional (`?`): Branching based on envelope state
-- Fan-out/Fan-in (`⊳⊲`): Multi-skill spawn and aggregation
-
-**Conflict Detection:**
-- Epistemic conflicts: Sol/Nox mode mismatches
-- Behavioral conflicts: Command overlap
-- Resource conflicts: Constraint contradictions
-
-**Storage:** `~/.harmonia/`
+**Storage:** `~/.soter/`
 
 ---
 

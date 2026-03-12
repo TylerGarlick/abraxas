@@ -1,5 +1,5 @@
 #!/bin/bash
-# Package ethos skill
+# Package soter skill
 cd /Users/tylergarlick/@Projects/abraxas/skills
-zip -r ethos.skill ethos/
-ls -la ethos.skill
+zip -r soter.skill soter/
+ls -la soter.skill
