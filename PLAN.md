@@ -1,6 +1,6 @@
 # Abraxas — Product Roadmap
 
-**Current Focus:** Phase 12 — Agentic Orchestration
+**Current Focus:** Phase 12 — Agentic Orchestration (Soter)
 
 ---
 
@@ -15,6 +15,8 @@
 | 10 — Unknown-Unknowns | ⏳ Pending | 0% | Not started |
 | 11 — Distribution & Validation | ⏳ Pending | 0% | Not started |
 | 12 — Agentic Orchestration | ⏳ Pending | 0% | Soter specification |
+| 13 — Creative Generation | ⏳ Pending | 0% | Sophia specification |
+| 14 — Error Recovery | ⏳ Pending | 0% | Hephaestus specification |
 
 ---
 
@@ -109,6 +111,84 @@
 
 ### Overview
 **Soter** — Agentic orchestration and tool-use governance skill
+
+A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints.
+
+### Commands
+| Command | Purpose |
+|---------|---------|
+| `/soter plan` | Decompose complex goal into skill/tool sequence |
+| `/soter execute` | Run plan with checkpointing and rollback |
+| `/soter audit` | Review agentic decision tree for scheming/risk |
+| `/soter bounds` | Define safety constraints on autonomous actions |
+| `/soter checkpoint` | Save state before high-risk operations |
+| `/soter rollback` | Revert to last checkpoint |
+
+### Prerequisites
+- [x] Harmonia complete (Phase 9)
+- [x] Krisis complete (Phase 8)
+
+### Anti-Scheming Design
+- Soter cannot modify its own constraints
+- Cannot write to its own prompt
+- Cannot access its own evaluation criteria
+- Human checkpoint required for high-risk operations
+- Immutable audit log of all actions
+
+---
+
+## Phase 13 — Creative Generation [PENDING]
+
+**Goal:** Creative generation and conceptual development
+
+**Detailed Plan:** [./plans/phase-13-plan.md](./plans/phase-13-plan.md)
+
+### Overview
+**Sophia** — Creative generation and conceptual development
+
+Greek *sophia* (σοφία) — wisdom, skill in craft, earned wisdom through practice. A skill for taking seed ideas and developing them through deliberate amplification, variation, and synthesis. The creative wing of Abraxas — where other skills check and verify, Sophia creates and develops.
+
+### Commands
+| Command | Purpose |
+|---------|---------|
+| `/sophia develop {seed}` | Take a seed concept and develop it with structured elaboration |
+| `/sophia amplify {weak-concept}` | Strengthen a weak or underdeveloped concept |
+| `/sophia vary {concept}` | Generate variations on a given concept |
+| `/sophia constrain {concept} {limitation}` | Explore how a concept changes under specific constraints |
+| `/sophia synthesize {concepts}` | Blend multiple concepts into unified output |
+| `/sophia status` | Show current development state and available variants |
+
+### Prerequisites
+- [x] Janus stable (epistemic foundation)
+- [x] Logos complete (argument mapping)
+- [x] Synthesis complete (artifact generation)
+
+---
+
+## Phase 14 — Error Recovery [PENDING]
+
+**Goal:** Error recovery, diagnostic reasoning, and meta-cognition
+
+**Detailed Plan:** [./plans/phase-14-plan.md](./plans/phase-14-plan.md)
+
+### Overview
+**Hephaestus** — Error recovery, diagnostic reasoning, meta-cognitive fallback
+
+Greek *Hephaistos* (Ἥφαιστος) — god of the forge, the mender of broken things. A skill for graceful failure — diagnosing what went wrong, recovering to known-good states, recording lessons learned. The repair layer — invoked when things break, complements Soter's prevention with recovery.
+
+### Commands
+| Command | Purpose |
+|---------|---------|
+| `/hephaestus diagnose {failure}` | Analyze what went wrong; trace error to root cause |
+| `/hephaestus recover {context}` | Attempt recovery to known-good state |
+| `/hephaestus learn {error}` | Extract and record lessons from failure |
+| `/hephaestus bounds {operation}` | Define safe recovery parameters |
+| `/hephaestus checkpoint` | Save current state as recovery point |
+| `/hephaestus rollback` | Revert to last checkpoint |
+
+### Prerequisites
+- [x] Soter complete (Phase 12) — checkpoint/rollback foundation
+- [x] Mnemosyne complete — session state management
 
 A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints.
 
