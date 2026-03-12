@@ -4,6 +4,12 @@
 
 # Abraxas Documentation
 
+## Brand Overview
+
+> **Tagline** – *"All forces united: Abraxas."*
+
+The visual identity and epistemic tagging guidelines are defined in the [Brand & Visual Style Guide](./website/style-guide.md).
+
 This is the documentation hub for the Abraxas project. Abraxas is the container for fourteen
 systems — **Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, **Kairos**, and **Mnemosyne** — packaged as
 Claude Code skills and supported by a suite of specialized subagents.
@@ -68,10 +74,11 @@ See [Skills Reference](./skills.md) for detailed command documentation.
 | [CONSTITUTION.md](../CONSTITUTION.md) | Universal LLM behavioral specification — for any LLM, no Claude Code required |
 | [Architecture](./architecture.md) | System architecture diagrams and design decisions |
 | [Skills Reference](./skills.md) | Full command reference for all fourteen skills: Honest, Janus, Agon, Aletheia, Abraxas Oneironautics, Retrieval Grounding, Scribe, Research Assistant, Citation Checker, Synthesis, Logos, Mnemon, Kairos, and Mnemosyne |
-| [Mnemosyne Reference](./mnemosyne.md) | Cross-session memory layer: save, restore, archive, and link sessions across Claude Code invocations |
-| [Honest Integration Guide](./honest-integration.md) | How to use Honest alongside development tools, PR review, and coding sessions |
+| [Brand & Visual Style Guide](./website/style-guide.md) | Visual identity, colour palette, typography, icons, and epistemic tag guidelines |
+| [Documentation Site Overview](./website.md) | Overview of documentation site structure and contribution guide |
+| [Honest Integration Guide](./honest-integration.md) | How to use Honest alongside development tools and PR review |
 | [Composition Patterns](./composition-patterns.md) | Multi-skill session workflows: Honest+Janus, Agon+Aletheia, full-stack patterns |
-| [Frames Reference](./frames.md) | Pre-built frame templates for contexts and evaluation criteria |
+| [Frames Reference](./frames.md) | Pre‑built frame templates for contexts and evaluation criteria |
 | [Visual Design](./visual-design.md) | Sacred geometry, alchemical aesthetics, and landing page design |
 
 ---
