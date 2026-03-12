@@ -1,6 +1,6 @@
 # Abraxas — Product Roadmap
 
-**Current Focus:** Phase 9 — Skill Composition
+**Current Focus:** Phase 12 — Agentic Orchestration
 
 ---
 
@@ -14,6 +14,7 @@
 | 9 — Skill Composition | ✅ Complete | 100% | Harmonia delivered |
 | 10 — Unknown-Unknowns | ⏳ Pending | 0% | Not started |
 | 11 — Distribution & Validation | ⏳ Pending | 0% | Not started |
+| 12 — Agentic Orchestration | ⏳ Pending | 0% | Soter specification |
 
 ---
 
@@ -100,11 +101,83 @@
 
 ---
 
+## Phase 12 — Agentic Orchestration [PENDING]
+
+**Goal:** Agentic orchestration and tool-use governance
+
+**Detailed Plan:** [./plans/phase-12-plan.md](./plans/phase-12-plan.md)
+
+### Overview
+**Soter** — Agentic orchestration and tool-use governance skill
+
+A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints.
+
+### Commands
+| Command | Purpose |
+|---------|---------|
+| `/soter plan` | Decompose complex goal into skill/tool sequence |
+| `/soter execute` | Run plan with checkpointing and rollback |
+| `/soter audit` | Review agentic decision tree for scheming/risk |
+| `/soter bounds` | Define safety constraints on autonomous actions |
+| `/soter checkpoint` | Save state before high-risk operations |
+| `/soter rollback` | Revert to last checkpoint |
+
+### Prerequisites
+- [x] Harmonia complete (Phase 9)
+- [x] Krisis complete (Phase 8)
+
+### Anti-Scheming Design
+- Soter cannot modify its own constraints
+- Cannot write to its own prompt
+- Cannot access its own evaluation criteria
+- Human checkpoint required for high-risk operations
+- Immutable audit log of all actions
+
+---
+
 ## Backlog
 
 Considered but unscheduled:
 - Web-based skill installer (drag `.skill` into browser to install)
 - Honest as a default Claude Code session wrapper
+
+---
+
+## Skill Decision Tree [PENDING]
+
+**Goal:** Visual flowchart in docs showing when to use which skill
+
+| Task | Status | Agent |
+|------|--------|-------|
+| Analyze all 17 skills and group by use case | [ ] Pending | explore |
+| Create Mermaid decision tree diagram | [ ] Pending | docs-architect |
+| Add to docs/skills.md or create docs/skill-selector.md | [ ] Pending | docs-architect |
+
+### Use Case Categories
+- Fact-checking & Anti-hallucination: Honest, Janus, Aletheia
+- Reasoning & Analysis: Agon, Kairos, Logos, Krisis
+- Writing & Expression: Ethos, Scribe, Mnemon
+- Research & Retrieval: Research Assistant, Citation Checker, Retrieval Grounding
+- Session & Memory: Mnemosyne, Synthesis
+- Composition & Orchestration: Harmonia, Soter
+
+---
+
+## Cross-IDE Support [PENDING]
+
+**Goal:** Ensure skills and agents work in both Claude Code and OpenCode
+
+| Task | Status | Agent |
+|------|--------|-------|
+| Audit existing agents for OpenCode compatibility | [ ] Pending | compatibility-keeper |
+| Generate OpenCode variants of all agents | [ ] Pending | compatibility-keeper |
+| Create OpenCode skill format adapter if needed | [ ] Pending | systems-architect |
+| Test skill behavior in OpenCode environment | [ ] Pending | compatibility-keeper |
+| Document cross-IDE usage in docs/index.md | [ ] Pending | docs-architect |
+
+### IDEs
+- Claude Code (current)
+- OpenCode (new target)
 
 ---
 
