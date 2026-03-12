@@ -82,6 +82,9 @@ project-level configuration required.
 | Mnemon | `skills/mnemon.skill` | 6 | ~8 KB |
 | Kairos | `skills/kairos.skill` | 7 | ~10 KB |
 | Mnemosyne | `skills/mnemosyne.skill` | 7 | ~8 KB |
+| Ethos | `skills/ethos.skill` | 5 | ~12 KB |
+| Krisis | `skills/krisis.skill` | 6 | ~8 KB |
+| Harmonia | `skills/harmonia.skill` | 4 | ~8 KB |
 
 ---
 
@@ -139,6 +142,56 @@ Cross-session memory layer. Archives conversation sessions between Claude Code i
 **Storage:** `~/.abraxas/.sessions/`
 
 **Full reference:** See [Mnemosyne Reference](./mnemosyne.md) for detailed command documentation, storage schema, and workflow patterns.
+
+---
+
+## Phase 8 Voice Preservation
+
+The following skill was added in Phase 8 (Voice Preservation):
+
+### Ethos
+Voice preservation architecture for AI-assisted writing. Captures stylistic fingerprints, detects voice drift in real-time, and offers restoration pathways. Integrates with Janus to handle Sol (factual) and Nox (creative) content appropriately.
+
+**Commands:** `/ethos register`, `/ethos check`, `/ethos restore`, `/ethos audit`, `/ethos compare`
+
+**Storage:** `~/.abraxas/ethos/`
+
+**Full reference:** See [Ethos Reference](./ethos.md) for detailed command documentation, fingerprint schema, drift detection algorithm, and Janus integration patterns.
+
+### Krisis
+Multi-framework ethical deliberation. Applies four ethical frameworks (Consequentialist, Deontological, Virtue Ethics, Care Ethics) in parallel to every question, surfaces tensions and consensus, and generates comprehensive deliberation reports. Krisis surfaces the ethical landscape and NEVER issues verdicts — the decision remains yours.
+
+**Commands:** `/krisis frame`, `/krisis frameworks`, `/krisis tension`, `/krisis consensus`, `/krisis scope`, `/krisis report`
+
+**Workflow:** Use with Kairos for decision architecture: `/kairos frame {decision}` → `/krisis frame {decision}` → `/krisis frameworks` → `/krisis tension` → `/krisis consensus` → `/krisis report`
+
+**CRITICAL:** Krisis never recommends action, ranks frameworks, or declares a winner. All reports close with explicit non-verdict language.
+
+**Storage:** `~/.krisis/`
+
+---
+
+## Phase 9 Skill Composition
+
+The following skill was added in Phase 9 (Skill Composition):
+
+### Harmonia
+Skill composition architecture. Composes multiple Abraxas skills into unified workflows with state handoff protocols and conflict detection. Enables workflows like Kairos → Krisis → Agon to execute as unified compositions.
+
+**Commands:** `/harmonia compose`, `/harmonia sequence`, `/harmonia conflict`, `/harmonia status`
+
+**Composition Patterns:**
+- Sequential (`→`): Linear handoff between skills
+- Parallel (`∥`): Simultaneous execution
+- Conditional (`?`): Branching based on envelope state
+- Fan-out/Fan-in (`⊳⊲`): Multi-skill spawn and aggregation
+
+**Conflict Detection:**
+- Epistemic conflicts: Sol/Nox mode mismatches
+- Behavioral conflicts: Command overlap
+- Resource conflicts: Constraint contradictions
+
+**Storage:** `~/.harmonia/`
 
 ---
 

@@ -1,12 +1,12 @@
 # constitution-all.md
-## Full Abraxas Constitution — All Six Systems
+## Full Abraxas Constitution — All Systems
 
 ---
 
 > **For the human reading this:**
 >
-> This is the complete Abraxas constitution with all six systems.
-> Includes: Universal Constraints, Labels, Honest, Janus, Oneironautics, Agon, Aletheia, Mnemosyne.
+> This is the complete Abraxas constitution with all systems.
+> Includes: Universal Constraints, Labels, Honest, Janus, Oneironautics, Agon, Aletheia, Mnemosyne, Ethos, Krisis, Harmonia.
 >
 > **Systems in this fragment:**
 > - Universal Constraints (5 rules)
@@ -17,8 +17,11 @@
 > - Agon (8 commands)
 > - Aletheia (7 commands)
 > - Mnemosyne (7 commands)
+> - Ethos (5 commands)
+> - Krisis (6 commands)
+> - Harmonia (4 commands)
 >
-> **Total commands:** 80
+> **Total commands:** 95
 
 ---
 
@@ -511,6 +514,9 @@ Systems active:
 — Agon (8 commands) · structured adversarial reasoning · Convergence Reports
 — Aletheia (7 commands) · epistemic calibration · ground-truth tracking
 — Mnemosyne (7 commands) · cross-session memory · session persistence
+— Ethos (5 commands) · voice preservation · stylistic fingerprint · drift detection
+— Krisis (6 commands) · multi-framework ethical deliberation · no verdicts
+— Harmonia (4 commands) · skill composition · state handoff · conflict detection
 
 Session Frame: blank (no default loaded)
 Threshold: active · routing: automatic

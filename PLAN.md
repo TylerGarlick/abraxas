@@ -1,6 +1,6 @@
 # Abraxas — Product Roadmap
 
-**Current Focus:** Phase 8 — Expression and Ethics
+**Current Focus:** Phase 9 — Skill Composition
 
 ---
 
@@ -10,8 +10,8 @@
 |-------|--------|----------|---------------|
 | 6 — Epistemic Depth | ✅ Complete | 100% | 3 skills delivered |
 | 7 — Session Continuity | ✅ Complete | 100% | Complete |
-| 8 — Expression and Ethics | ⏳ Pending | 0% | Not started |
-| 9 — Skill Composition | ⏳ Pending | 0% | Not started |
+| 8 — Expression and Ethics | ✅ Complete | 100% | Ethos + Krisis delivered |
+| 9 — Skill Composition | ✅ Complete | 100% | Harmonia delivered |
 | 10 — Unknown-Unknowns | ⏳ Pending | 0% | Not started |
 | 11 — Distribution & Validation | ⏳ Pending | 0% | Not started |
 
@@ -38,7 +38,7 @@
 
 ---
 
-## Phase 8 — Expression and Ethics [PENDING]
+## Phase 8 — Expression and Ethics [IN PROGRESS]
 
 **Goal:** Voice preservation (Ethos) + Ethical deliberation (Krisis)
 
@@ -53,13 +53,34 @@
 - **Ethos** — Voice preservation for AI-assisted writing
 - **Krisis** — Ethical deliberation across frameworks
 
+### Progress
+- ✅ Segment 1: Ethos Specification (4/4)
+- ✅ Segment 2: Krisis Specification (4/4)
+- ✅ Segment 3: Ethos Implementation (7/7)
+- ✅ Segment 4: Krisis Implementation (8/8)
+- ✅ Segment 5: Packaging & Integration (6/6)
+
+### Remaining Tasks
+- (none — Phase 8 complete)
+
 ---
 
-## Phase 9 — Skill Composition [PENDING]
+## Phase 9 — Skill Composition [COMPLETE]
 
 **Goal:** Compose multiple skills into unified workflows
 
 **Detailed Plan:** [./plans/phase-9-plan.md](./plans/phase-9-plan.md)
+
+### Progress
+- ✅ Task 1: Specification document — skill handoff schemas, composition templates, conflict detection
+- ✅ Task 2: Brand naming and aesthetic fit (Harmonia confirmed)
+- ✅ Task 3: SKILL.md authoring: /harmonia compose, sequence, conflict, status
+- ✅ Task 4: Skill packaging and testing
+- ✅ Task 5: docs/skills.md updated
+- ✅ Task 6: CONSTITUTION.md extended; constitution-keeper review
+
+### Skills Delivered
+- **Harmonia** — Skill composition architecture with 4 commands
 
 ---
 

@@ -16,6 +16,8 @@ This directory contains modular constitution fragments. Load the one that matche
 | `constitution-agon.md` | Universal + Agon | 8 | Structured adversarial reasoning |
 | `constitution-aletheia.md` | Universal + Aletheia | 7 | Epistemic calibration, ground-truth tracking |
 | `constitution-mnemosyne.md` | Universal + Mnemosyne | 7 | Cross-session memory |
+| `constitution-ethos.md` | Universal + Ethos | 5 | Voice preservation, stylistic fingerprint |
+| `constitution-krisis.md` | Universal + Krisis | 6 | Multi-framework ethical deliberation |
 
 ---
 
@@ -24,7 +26,7 @@ This directory contains modular constitution fragments. Load the one that matche
 | File | Systems | Commands | Description |
 |:---|:---|:---|:---|
 | `constitution-core.md` | Universal + Honest + Janus + Oneironautics | 58 | Core four systems |
-| `constitution-all.md` | All six systems | 80 | Complete constitution |
+| `constitution-all.md` | All systems | 95 | Complete constitution |
 
 ---
 
@@ -39,7 +41,7 @@ This directory contains modular constitution fragments. Load the one that matche
 - Or use: `constitution-core.md`
 
 ### Full Abraxas
-- All six systems: `constitution-all.md`
+- All systems (10 subsystems): `constitution-all.md`
 
 ---
 
@@ -68,7 +70,7 @@ When skill files change, run the constitution-keeper agent to update all fragmen
 ```
 constitution/
 ├── constitution-index.md          # This file
-├── constitution-all.md            # Full (all 6 systems)
+├── constitution-all.md            # Full (all systems)
 ├── constitution-universal.md     # Base layer only
 ├── constitution-honest.md       # Honest
 ├── constitution-janus.md         # Janus
@@ -76,6 +78,8 @@ constitution/
 ├── constitution-agon.md           # Agon
 ├── constitution-aletheia.md      # Aletheia
 ├── constitution-mnemosyne.md     # Mnemosyne
+├── constitution-ethos.md         # Ethos
+├── constitution-krisis.md        # Krisis
 ├── constitution-core.md           # Honest + Janus + Oneironautics
 └── constitution-honest-janus.md  # (reference to core subset)
 ```
