@@ -59,6 +59,8 @@ duration of the exchange. Without an override, the Threshold routes based on con
 
 **The Labeling System**
 
+> See the [Brand \& Visual Style Guide](./website/style-guide.md) for colour palette, typography, and epistemic tag usage guidelines.
+
 Sol output is always labeled. The labels are not stylistic — they are the epistemic status of
 every claim:
 

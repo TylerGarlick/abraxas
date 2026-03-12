@@ -1,5 +1,9 @@
 # Skills Reference
 
+> **Tagline** – *"All forces united: Sol ↔ Nox."*
+
+This document is the system reference for all fourteen skills that make up the Abraxas project:
+
 This document is the system reference for all fourteen skills that make up the Abraxas project:
 **Honest**, the **Janus System**, **Agon**, **Aletheia**, **Abraxas Oneironautics**, **Retrieval Grounding**, **Scribe**, **Research Assistant**, **Citation Checker**, **Synthesis**, **Logos**, **Mnemon**, **Kairos**, and **Mnemosyne**. It describes what each system
 is, how it is structured, and every command it provides.
