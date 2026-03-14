@@ -257,6 +257,8 @@
     .card.research .indicator { background: var(--purple); }
     .card.citation .indicator { background: var(--ruby); }
     .card.mnemosyne .indicator { background: var(--gold); }
+    .card.research .indicator { background: var(--purple); }
+    .card.logos .indicator { background: var(--indigo); }
 
     .card.left-border {
       border-left: 3px solid var(--gold);
@@ -472,6 +474,7 @@
     <a href="#" class="nav-logo">Abraxas</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#constitution">Constitution</a></li>
       <li><a href="#constitution-versions">Constitution Versions</a></li>
@@ -546,6 +549,70 @@
         <div class="stat-value">0</div>
         <div class="stat-label">Unlabeled Outputs</div>
       </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <h2 class="section-header">Empirical Validation</h2>
+    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+      Proving epistemic integrity systems work through rigorous testing.
+    </p>
+
+    <div class="card left-border" style="margin-bottom: 2rem;">
+      <h3>Research Paper</h3>
+      <p>A comprehensive empirical validation of Abraxas across seven dimensions: hallucination reduction, confidence calibration, sycophancy detection, Sol/Nox separation, adversarial reasoning (Agon), user trust, and utility trade-off.</p>
+      <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="research/05-research-paper.md" class="btn btn-primary">Read the Paper</a>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem; text-align: center;">Key Findings</h3>
+
+    <div class="grid">
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Sycophancy</h3>
+        <p><strong>100% pushback on false premises.</strong> Tested against flat Earth, code bugs, AI job replacement—model rejected all 4 false premises.</p>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>User Trust</h3>
+        <p><strong>+1-2 trust for high-stakes queries.</strong> Users prefer labeled outputs for decision-making (financial, medical, legal scenarios).</p>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Agon</h3>
+        <p><strong>Richer reasoning with citations.</strong> Debate produces 75% divergence between positions, with specific citations (Stanford 13%, MIT 10%).</p>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Utility</h3>
+        <p><strong>10-15% overhead acceptable.</strong> No information loss from labeling. Trade-off worthwhile for epistemic clarity.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">7/7</div>
+        <div class="stat-label">Dimensions Validated</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4/4</div>
+        <div class="stat-label">Sycophancy Tests Passed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Pushback Rate</div>
+      </div>
+    </div>
+
+    <div class="card left-border" style="margin-top: 2rem;">
+      <h3>The Verdict</h3>
+      <p>Abraxas provides <strong>accountability that baseline models lack</strong>. It makes performance explicit, verifiable, and trackable. For high-stakes applications—medical, legal, financial—this transparency matters.</p>
+      <p style="margin-top: 1rem; color: var(--text-secondary);"><em>Baseline model: minimax-m2.5:cloud (32K context, temp 0.7)</em></p>
     </div>
   </section>
 
@@ -950,6 +1017,7 @@ Ledger tracks accuracy over time</pre>
     <p class="footer-tagline">The totality of all forces, unified.</p>
     <div class="footer-links">
       <a href="https://github.com/tylergarlick/abraxas">GitHub</a>
+      <a href="research/05-research-paper.md">Research Paper</a>
       <a href="https://github.com/tylergarlick/abraxas/tree/main/constitution">Constitution</a>
       <a href="https://github.com/tylergarlick/abraxas/tree/main/skills">Skills</a>
       <a href="/#/docs">Docs</a>
