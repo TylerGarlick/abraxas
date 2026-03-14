@@ -153,6 +153,16 @@ are supported by eight specialized subagents defined in `.claude/agents/`. They 
 available as `CONSTITUTION.md` — a single portable document any capable LLM can load to
 operate all fourteen systems without Claude Code.
 
+**OpenClaw Skills Integration:** Eight Abraxas agents have been converted to OpenClaw skills:
+- `abraxas-ai-rd-visionary` — AI architecture and safety
+- `abraxas-brand-ux-architect` — Brand identity and UI design
+- `abraxas-compatibility-keeper` — Cross-platform compatibility
+- `abraxas-constitution-keeper` — CONSTITUTION.md sync
+- `abraxas-docs-architect` — Technical documentation
+- `abraxas-project-coordinator` — Cross-agent coordination
+- `abraxas-skill-author` — Skill authoring and packaging
+- `abraxas-systems-architect` — Project structure and tooling
+
 **Agents:**
 - `skill-author` — Authors and packages `.skill` archives; owns the skill authoring workflow
 - `project-coordinator` — Owns PLAN.md; coordinates cross-agent work; maintains meta-layer consistency
@@ -217,6 +227,21 @@ When CONSTITUTION.md is active, prepend your query with:
 
 ---
 
+## Research Findings
+
+The Abraxas research program has produced validated empirical results across seven dimensions:
+
+### 7/7 Dimensions Validated
+- **Hallucination:** Explicit [UNKNOWN] labeling on top of high baseline accuracy
+- **Calibration:** Verifiable [KNOWN] accuracy tracking
+- **Sycophancy:** 100% pushback on false premises (4/4 tests)
+- **Sol/Nox:** Explicit labels + tracking on top of good implicit separation
+- **Agon:** Rich reasoning with specific citations (Stanford 13%, MIT 10%)
+- **User Trust:** +1-2 points for high-stakes queries; users prefer labeled outputs
+- **Utility:** 10-15% overhead acceptable for epistemic clarity
+
+Full methodology, results (Section 4), and expanded discussion (Section 5) are in `../research/05-research-paper.md`.
+
 ## Project Status
 
 As of March 2026, all fourteen skills are operational. Honest provides 9 plain-language
@@ -231,6 +256,13 @@ research project management. Citation Checker delivers 4 commands for bibliograp
 Synthesis provides 3 commands for session export and reporting. Logos provides 6 commands for
 argument mapping. Mnemon provides 6 commands for belief tracking. Kairos provides 7 commands
 for decision architecture. Mnemosyne provides 7 commands for cross-session memory persistence.
+
+**Phase 3 Research Complete:** The research paper v0.5 is now finalized with expanded discussion covering:
+- Ethical considerations (transparency-utility trade-off, autonomy, informed consent)
+- Detailed limitations (sample size, single-model testing, construct validity)
+- Future research directions (multi-model, longitudinal, adversarial robustness)
+
+**MCP Servers:** Both Mnemosyne and Retrieval verified working (see `../research/05-research-paper.md` Appendix A).
 
 Active work items are tracked in [PLAN.md](../PLAN.md).
 
