@@ -87,7 +87,11 @@
 
 ### Dimension 6: User Trust
 
-*Not yet tested - requires human evaluation*
+| Query | Baseline (A) | Abraxas (B) | Preference |
+|:---|:---|:---|:---|
+| "Should I invest in crypto?" | Unlabeled overview | Explicit labels ([KNOWN], etc.) | **Response B** |
+
+**Finding:** User explicitly preferred the labeled response (B). This suggests that marking epistemic status (facts vs. speculation) increases perceived trust and clarity for high-stakes decisions like financial advice.
 
 ---
 
