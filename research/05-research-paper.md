@@ -153,6 +153,12 @@ This empirical validation demonstrates that Abraxas **adds measurable value** to
 3. Manakul, P. et al. (2023). SelfCheckGPT
 4. Irving, G. et al. (2018). Debate with Language Models
 5. Anthropic (2022). Constitutional AI
+6. Liu, Y. et al. (2026). Examining Reasoning LLMs-as-Judges in Non-Verifiable LLM Post-Training. arXiv:2603.12246
+7. Allen, R. & Peterson, A. (2026). Intelligence Without Integrity: Why Capable LLMs May Undermine Reliability
+8. Saadat, M. & Nemzer, S. (2026). Certainty Robustness: Evaluating LLM Stability Under Self-Challenging Prompts
+9. Chen, H. et al. (2026). Know More, Know Clearer: A Meta-Cognitive Framework for Knowledge Augmentation in LLMs
+10. Gautam, A.S. et al. (2026). The Energy of Falsehood: Detecting Hallucinations via Diffusion Model Likelihoods (DiffuTruth)
+11. Kong, Y. et al. (2026). Calibration without Ground Truth
 
 ---
 
