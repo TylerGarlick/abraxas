@@ -1,50 +1,57 @@
-# Latest AI Research — March 15, 2026
+# Latest AI Research - March 15, 2026
+
+> Compiled: 2026-03-15
 
 ## Summary of Recent arXiv Papers
 
-### 1. LABSHIELD: Safety-Critical Reasoning Benchmark (arXiv:2603.11987)
-**A Multimodal Benchmark for Safety-Critical Reasoning and Planning in Scientific Laboratories**
+### 1. LABSHIELD: Safety-Critical Reasoning in Scientific Laboratories
+**arXiv:2603.11987** | [link](https://arxiv.org/abs/2603.11987)
 
-Evaluates 20+ MLLMs on hazard identification and safety-aware planning in lab environments. Key finding: models exhibit a **32% average performance drop** between general-domain accuracy and professional laboratory safety reasoning. Highlights the gap between general capability and epistemic reliability in high-stakes domains.
+A multimodal benchmark (LABSHIELD) for evaluating MLLMs in hazard identification and safety-critical reasoning in lab environments. Tests 20 proprietary + 9 open-source models.
 
-→ *Relevance: Epistemic integrity under uncertainty; calibration in safety-critical contexts.*
+**Key Finding:** 32% average accuracy drop in professional laboratory scenarios vs general-domain MCQ — highlights safety-aware planning gap.
 
----
-
-### 2. Pruning Weights but Not Truth (arXiv:2509.01241)
-**Safeguarding Truthfulness While Pruning LLMs**
-
-First work to reveal that neural network pruning disrupts LLM truthfulness. Shows that even efficient pruned models can lose alignment on factual recall tasks. Proposes methods to preserve epistemic reliability during model compression.
-
-→ *Relevance: Truthfulness preservation under resource constraints; model reliability.*
+**Relevance to Abraxas:** Shows the need for explicit uncertainty/safety labeling in high-stakes AI applications. The safety taxonomy (OSHA/GHS standards) could inform epistemic labeling frameworks.
 
 ---
 
-### 3. The Energy of Falsehood (arXiv:2602.08823)
-**Detecting Hallucinations via Diffusion Model Likelihoods**
+### 2. Conditional Imputation and Noisy Data Integrity (CINDI)
+**arXiv:2603.11745** | [link](https://arxiv.org/abs/2603.11745)
 
-Novel approach using diffusion model likelihoods to detect hallucinations in LLMs. Explores whether internal model representations encode epistemic uncertainty in ways detectable without external verification.
+Unsupervised probabilistic framework for anomaly detection + imputation in multivariate time series (power grid data).
 
-→ *Relevance: Hallucination detection; intrinsic uncertainty estimation.*
+**Approach:** Conditional normalizing flows to model exact conditional likelihood, identify low-probability segments.
 
----
-
-### 4. Hunt Globally: Wide Search AI Agents for Drug Asset Scouting (arXiv:2602.07199)
-**Benchmarking AI Agents for Discovery Without Hallucination**
-
-Proposes benchmarking methodology for AI-driven scientific discovery. Addresses the gap between human experts and AI in multi-source factual recall. Introduces a "Bioptic Agent" aimed at reducing hallucination in drug discovery workflows.
-
-→ *Relevance: Reducing epistemic failure in real-world knowledge work; grounded inference.*
+**Relevance to Abraxas:** The "data integrity" concept maps to epistemic integrity — modeling uncertainty explicitly rather than fragmenting detection vs. imputation.
 
 ---
 
-### 5. Estimating Problem Difficulty via LLM Comparisons (arXiv:2512.13482)
-**Without Ground Truth Using Large Language Model Comparisons**
+### 3. Chemotherapy Outcome Prediction with LLMs + Survival Analysis
+**arXiv:2603.11594** | [link](https://arxiv.org/abs/2603.11594)
 
-Addresses the challenge of estimating problem difficulty for synthetic data generation without ground truth. Uses comparative LLM judgments to evaluate task complexity — relevant to building better epistemic benchmarks.
+LLMs + ontology-based extraction for early prediction of chemotherapy outcomes. Uses calibration curves to validate reliability.
 
-→ *Relevance: Benchmark design for evaluating model uncertainty and calibration.*
+**Key Finding:** C-index of 73%, accuracy/F1 >70%, validated via calibration curves.
+
+**Relevance to Abraxas:** Explicit calibration validation using calibration curves — directly relevant to Aletheia tracking work.
 
 ---
 
-*Note: The search terms (epistemic integrity, calibration, hallucination, truthfulness) yielded limited direct matches this week. Papers 2-4 were from Feb 2026 but remain the most relevant recent work. The field is increasingly focusing on safety-aware reasoning and hallucination mitigation.*
+### 4. VisiFold: Long-Term Traffic Forecasting
+**arXiv:2603.11816** | [link](https://arxiv.org/abs/2603.11816)
+
+Temporal folding graph approach for long-term forecasting. ICDE 2026.
+
+**Relevance:** Lower resource consumption with higher accuracy — efficiency vs. rigor trade-off similar to epistemic overhead.
+
+---
+
+## Notes
+
+- No direct papers on "hallucination detection" or "epistemic integrity" in this week's batch
+- Safety-awareness and calibration are recurring themes in recent work
+- The field is moving toward explicit uncertainty quantification (normalizing flows, calibration curves)
+
+---
+
+*To update: run daily cron or manually fetch from arXiv cs.AI*
