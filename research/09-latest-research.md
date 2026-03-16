@@ -1,57 +1,30 @@
-# Latest AI Research - March 15, 2026
+# Latest AI Research - Epistemic Integrity, Calibration, Hallucination, Truthfulness
 
-> Compiled: 2026-03-15
+**Date:** March 16, 2026
 
-## Summary of Recent arXiv Papers
+## Selected Papers
 
-### 1. LABSHIELD: Safety-Critical Reasoning in Scientific Laboratories
-**arXiv:2603.11987** | [link](https://arxiv.org/abs/2603.11987)
+### 1. LLM Constitutional Multi-Agent Governance (arXiv:2603.13189)
+- **Topic:** Epistemic integrity in multi-agent systems
+- **Summary:** Introduces Constitutional Multi-Agent Governance (CMAG) framework that balances cooperation against manipulation risk and autonomy erosion. Proposes the Ethical Cooperation Score (ECS) — a composite of cooperation, autonomy, integrity, and fairness. CMAG preserves autonomy (0.985) and integrity (0.995) while achieving ECS of 0.741 vs 0.645 for unconstrained optimization.
+- **Relevance:** Directly addresses epistemic integrity in LLM-mediated multi-agent populations.
 
-A multimodal benchmark (LABSHIELD) for evaluating MLLMs in hazard identification and safety-critical reasoning in lab environments. Tests 20 proprietary + 9 open-source models.
+### 2. When Your Model Stops Working: Anytime-Valid Calibration Monitoring (arXiv:2603.13156)
+- **Topic:** Model calibration monitoring
+- **Summary:** Presents PITMonitor — an anytime-valid calibration-specific monitor that detects distributional shifts in probability integral transforms via a mixture e-process. Provides Type I error control over unbounded monitoring horizons with Bayesian changepoint estimation.
+- **Relevance:** Critical for deployed models requiring reliable calibration guarantees over time.
 
-**Key Finding:** 32% average accuracy drop in professional laboratory scenarios vs general-domain MCQ — highlights safety-aware planning gap.
+### 3. ESG-Bench: Benchmarking Long-Context ESG Reports for Hallucination Mitigation (arXiv:2603.13154)
+- **Topic:** Hallucination mitigation
+- **Summary:** Benchmark for ESG report understanding with human-annotated QA pairs and fine-grained hallucination labels. Chain-of-Thought prompting strategies substantially outperform standard prompting in reducing hallucinations.
+- **Relevance:** Practical framework for mitigating hallucinations in compliance-critical settings.
 
-**Relevance to Abraxas:** Shows the need for explicit uncertainty/safety labeling in high-stakes AI applications. The safety taxonomy (OSHA/GHS standards) could inform epistemic labeling frameworks.
+### 4. Semantic Invariance in Agentic AI (arXiv:2603.13173)
+- **Topic:** LLM reasoning stability
+- **Summary:** Introduces semantic invariance — property that LLM reasoning remains stable under semantically equivalent input variations. Uses metamorphic testing with 8 semantic-preserving transformations. Finds that model scale doesn't predict robustness: Qwen3-30B-A3B achieves highest stability (79.6% invariant).
+- **Relevance:** Critical for deploying LLM agents in consequential applications.
 
----
-
-### 2. Conditional Imputation and Noisy Data Integrity (CINDI)
-**arXiv:2603.11745** | [link](https://arxiv.org/abs/2603.11745)
-
-Unsupervised probabilistic framework for anomaly detection + imputation in multivariate time series (power grid data).
-
-**Approach:** Conditional normalizing flows to model exact conditional likelihood, identify low-probability segments.
-
-**Relevance to Abraxas:** The "data integrity" concept maps to epistemic integrity — modeling uncertainty explicitly rather than fragmenting detection vs. imputation.
-
----
-
-### 3. Chemotherapy Outcome Prediction with LLMs + Survival Analysis
-**arXiv:2603.11594** | [link](https://arxiv.org/abs/2603.11594)
-
-LLMs + ontology-based extraction for early prediction of chemotherapy outcomes. Uses calibration curves to validate reliability.
-
-**Key Finding:** C-index of 73%, accuracy/F1 >70%, validated via calibration curves.
-
-**Relevance to Abraxas:** Explicit calibration validation using calibration curves — directly relevant to Aletheia tracking work.
-
----
-
-### 4. VisiFold: Long-Term Traffic Forecasting
-**arXiv:2603.11816** | [link](https://arxiv.org/abs/2603.11816)
-
-Temporal folding graph approach for long-term forecasting. ICDE 2026.
-
-**Relevance:** Lower resource consumption with higher accuracy — efficiency vs. rigor trade-off similar to epistemic overhead.
-
----
-
-## Notes
-
-- No direct papers on "hallucination detection" or "epistemic integrity" in this week's batch
-- Safety-awareness and calibration are recurring themes in recent work
-- The field is moving toward explicit uncertainty quantification (normalizing flows, calibration curves)
-
----
-
-*To update: run daily cron or manually fetch from arXiv cs.AI*
+### 5. When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO (arXiv:2603.13134)
+- **Topic:** Reinforcement learning calibration
+- **Summary:** Proposes Bilateral Context Conditioning (BICC) enabling models to cross-reference successful and failed reasoning traces during optimization. Introduces Reward-Confidence Correction (RCC) to stabilize training via reward-confidence covariance. Consistent improvements on math reasoning benchmarks.
+- **Relevance:** Improves reliability and confidence calibration in reasoning models.
