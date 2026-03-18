@@ -259,6 +259,12 @@
     .card.mnemosyne .indicator { background: var(--gold); }
     .card.research .indicator { background: var(--purple); }
     .card.logos .indicator { background: var(--indigo); }
+    .card.ergon .indicator { background: var(--firelight); }
+    .card.hermes .indicator { background: var(--teal); }
+    .card.pheme .indicator { background: var(--ruby); }
+    .card.prometheus .indicator { background: var(--gold); }
+    .card.dianoia .indicator { background: var(--azure); }
+    .card.ananke .indicator { background: var(--purple); }
 
     .card.left-border {
       border-left: 3px solid var(--gold);
@@ -538,11 +544,11 @@
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">10</div>
+        <div class="stat-value">16</div>
         <div class="stat-label">Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">87</div>
+        <div class="stat-value">87+</div>
         <div class="stat-label">Commands</div>
       </div>
       <div class="stat">
@@ -592,6 +598,24 @@
         <h3>Utility</h3>
         <p><strong>10-15% overhead acceptable.</strong> No information loss from labeling. Trade-off worthwhile for epistemic clarity.</p>
       </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Semantic Invariance</h3>
+        <p>LLM reasoning should remain stable under semantically equivalent variations. Model scale doesn't predict robustness—Qwen3-30B-A3B achieved 79.6% invariance. Critical for deployed agents.</p>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Calibration Monitoring</h3>
+        <p>PITMonitor provides anytime-valid calibration monitoring via probability integral transforms. Type I error control over unbounded horizons with Bayesian changepoint estimation.</p>
+      </div>
+
+      <div class="card research">
+        <div class="indicator"></div>
+        <h3>Multi-Agent Governance</h3>
+        <p>CMAG framework balances cooperation against manipulation risk. Achieves ECS of 0.741 vs 0.645 for unconstrained optimization while preserving autonomy (0.985) and integrity (0.995).</p>
+      </div>
     </div>
 
     <div class="stats">
@@ -613,6 +637,52 @@
       <h3>The Verdict</h3>
       <p>Abraxas provides <strong>accountability that baseline models lack</strong>. It makes performance explicit, verifiable, and trackable. For high-stakes applications—medical, legal, financial—this transparency matters.</p>
       <p style="margin-top: 1rem; color: var(--text-secondary);"><em>Baseline model: minimax-m2.5:cloud (32K context, temp 0.7)</em></p>
+    </div>
+
+    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Next-Generation Systems</h3>
+
+    <div class="grid">
+      <div class="card ergon">
+        <div class="indicator"></div>
+        <h3>Ergon — Tool-Use Verification</h3>
+        <p><strong>Highest Priority.</strong> Verification layer for all tool invocations. Detects silent failures, validates outputs, classifies errors (explicit, format, semantic, silent, timeout, anomalous).</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Status: Implementation Started</em></p>
+      </div>
+
+      <div class="card hermes">
+        <div class="indicator"></div>
+        <h3>Hermes — Multi-Agent Consensus</h3>
+        <p>Tracks consensus, disagreement, and information flow when multiple AI agents collaborate. Maintains ledger of positions, detects convergence/divergence, weights by track record.</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: High</em></p>
+      </div>
+
+      <div class="card pheme">
+        <div class="indicator"></div>
+        <h3>Pheme — Real-Time Fact-Checking</h3>
+        <p>Live verification system that intercepts claims, verifies against authoritative sources, and provides source-level confidence scores. Adds "[VERIFIED]/[CONTRADICTED]/[UNVERIFIABLE]" to Janus labels.</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: High</em></p>
+      </div>
+
+      <div class="card prometheus">
+        <div class="indicator"></div>
+        <h3>Prometheus — User Preference Learning</h3>
+        <p>Learns and persists user preferences across sessions—detail level, domain expertise, risk tolerance. Adapts epistemic framing to individual users.</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Medium</em></p>
+      </div>
+
+      <div class="card dianoia">
+        <div class="indicator"></div>
+        <h3>Dianoia — Uncertainty Quantification</h3>
+        <p>Extends categorical labels with calibrated probability distributions. Provides confidence intervals and tracks calibration over time using proper scoring rules.</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Medium</em></p>
+      </div>
+
+      <div class="card ananke">
+        <div class="indicator"></div>
+        <h3>Ananke — Cross-Model Consistency</h3>
+        <p>Runs queries across multiple models, tracks convergence vs. divergence. Identifies model-independent claims (high confidence) vs. model-specific (low confidence).</p>
+        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Low-Medium</em></p>
+      </div>
     </div>
   </section>
 
@@ -710,6 +780,48 @@
         <h3>Mnemon</h3>
         <p>Belief‑change tracking and calibration.</p>
         <div class="commands-badge">6 Commands</div>
+      </div>
+
+      <div class="card ergon">
+        <div class="indicator"></div>
+        <h3>Ergon</h3>
+        <p>Tool‑use verification. Detects silent failures, validates outputs.</p>
+        <div class="commands-badge">6 Commands</div>
+      </div>
+
+      <div class="card hermes">
+        <div class="indicator"></div>
+        <h3>Hermes</h3>
+        <p>Multi‑agent consensus and divergence tracking.</p>
+        <div class="commands-badge">Coming Soon</div>
+      </div>
+
+      <div class="card pheme">
+        <div class="indicator"></div>
+        <h3>Pheme</h3>
+        <p>Real‑time fact‑checking against authoritative sources.</p>
+        <div class="commands-badge">Coming Soon</div>
+      </div>
+
+      <div class="card prometheus">
+        <div class="indicator"></div>
+        <h3>Prometheus</h3>
+        <p>User preference learning across sessions.</p>
+        <div class="commands-badge">Coming Soon</div>
+      </div>
+
+      <div class="card dianoia">
+        <div class="indicator"></div>
+        <h3>Dianoia</h3>
+        <p>Formal uncertainty quantification with calibrated probabilities.</p>
+        <div class="commands-badge">Coming Soon</div>
+      </div>
+
+      <div class="card ananke">
+        <div class="indicator"></div>
+        <h3>Ananke</h3>
+        <p>Cross‑model consistency checking and ensemble validation.</p>
+        <div class="commands-badge">Coming Soon</div>
       </div>
 
       <div class="card kairos">
