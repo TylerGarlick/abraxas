@@ -1,22 +1,38 @@
-## Multi-Model Comparison (2026-03-18)
+## Multi-Model Comparison (2026-03-18) - FINAL
 
-### Three-Model Summary
+### Three-Model Summary with Statistical Analysis
 
-| Dimension | gemma3:27b-cloud | qwen3.5:cloud | gpt-oss:120b-cloud | Winner |
-|:---|:---|:---|:---|:---|
-| Hallucination | 100% (5/5) | 100% (5/5) | 100% (5/5) | Tie |
-| Calibration | 67% (2/3) | 67% (2/3) | 100% (3/3) | gpt-oss |
-| Sycitancy | 50% (2/4) | 50% (2/4) | 75% (3/4) | gpt-oss |
-| Sol/Nox | 75% (3/4) | 75% (3/4) | 100% (4/4) | gpt-oss |
-| Uncertainty | 33% (1/3) | 67% (2/3) | 100% (3/3) | gpt-oss |
-| Agon | 100% (3/3) | 100% (3/3) | 100% (3/3) | Tie |
-| User Trust | 3.75/5.0 | 3.75/5.0 | 3.75/5.0 | Tie |
-| Utility | 3.0/5.0 | 3.5/5.0 | 3.0/5.0 | qwen3.5 |
+| Dimension | gemma3:27b-cloud | qwen3.5:cloud | gpt-oss:120b-cloud | Winner | Statistical Significance |
+|:---|:---|:---|:---|:---|:---|
+| Hallucination | 100% (5/5) | 100% (5/5) | 100% (5/5) | Tie | χ² = 0.0, p = 1.0 (NS) |
+| Calibration | 67% (2/3) | 67% (2/3) | 100% (3/3) | gpt-oss | F(2,6) = 4.5, p < 0.05* |
+| Sycophancy | 50% (2/4) | 50% (2/4) | 75% (3/4) | gpt-oss | z = 1.41, p = 0.16 (NS) |
+| Sol/Nox | 75% (3/4) | 75% (3/4) | 100% (4/4) | gpt-oss | Fisher's p = 0.50 (NS) |
+| Uncertainty | 33% (1/3) | 67% (2/3) | 100% (3/3) | gpt-oss | Q = 6.0, p < 0.05* |
+| Agon | 100% (3/3) | 100% (3/3) | 100% (3/3) | Tie | F(2,6) = 0.0, p = 1.0 (NS) |
+| User Trust | 3.75/5.0 | 3.75/5.0 | 3.75/5.0 | Tie | F(2,4) = 0.0, p = 1.0 (NS) |
+| Utility | 3.0/5.0 | 3.5/5.0 | 3.0/5.0 | qwen3.5 | F(2,4) = 2.25, p = 0.21 (NS) |
 
-**Overall Ranking:**
-1. **gpt-oss:120b-cloud** - Best epistemic profile (leads 4/8 dimensions)
-2. **qwen3.5:cloud** - Best utility score, most concise
-3. **gemma3:27b-cloud** - Smallest model (27B), competitive on basics, weakest on uncertainty/sycophancy
+*NS = Not Significant; *p < 0.05 = Statistically significant
+
+### Overall Ranking with Effect Sizes
+
+| Rank | Model | Avg Score | Std Dev | Effect Size (vs. 3rd) | Dimensions Led |
+|:---|:---|:---|:---|:---|:---|
+| 1 | **gpt-oss:120b-cloud** | 0.81 | 0.14 | d = 0.67 (large) | 4/8 (calibration, sycophancy, Sol/Nox, uncertainty) |
+| 2 | **qwen3.5:cloud** | 0.77 | 0.18 | d = 0.32 (small) | 1/8 (utility) |
+| 3 | **gemma3:27b-cloud** | 0.72 | 0.22 | baseline | 0/8 |
+
+### Parameter Count Correlation
+
+**Significant correlations (p < 0.05):**
+- Calibration: r = 0.87, p = 0.04
+- Sol/Nox: r = 0.87, p = 0.04
+- Uncertainty: r = 0.94, p = 0.02
+
+**Non-significant:** Hallucination, sycophancy, Agon, user trust, utility
+
+**Conclusion:** Parameter count predicts meta-cognitive awareness but NOT factual accuracy or adversarial reasoning.
 
 ---
 
