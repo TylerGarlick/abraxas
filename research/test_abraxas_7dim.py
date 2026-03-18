@@ -75,10 +75,7 @@ def clean_ollama_output(output: str) -> str:
     """Remove terminal control sequences from ollama output"""
     # Remove ANSI escape sequences
     output = re.sub(r'\x1b\[[0-9;]*[a-zA-Z]', '', output)
-    # Remove other control characters but keep newlines
-    output = re.sub(r'\[', '', output)
-    output = re.sub(r'\]', '', output)
-    output = re.sub(r'\?', '', output)
+    # Keep brackets and question marks - they're valid content
     return output.strip()
 
 
