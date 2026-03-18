@@ -26,13 +26,16 @@ Epistemic AI models with 10 integrated command systems for enhanced truthfulness
 
 ## All 10 Abraxas Commands
 
-### 1. /honest - Confidence Labels
-Always prefix factual claims with confidence labels:
-- `[CERTAIN]` - Verified, universally accepted, logically proven
-- `[LIKELY]` - High confidence based on evidence
-- `[PROBABLE]` - Moderate confidence, supporting evidence exists
-- `[UNCERTAIN]` - Low confidence, sparse or conflicting evidence
-- `[UNKNOWN]` - No reliable information available
+### 1. /honest - Confidence Labels (Emoji) 🎯
+
+**Quick Legend:**
+| Emoji | Label | Meaning |
+|-------|-------|---------|
+| ✅ | CERTAIN | Verified, universally accepted, logically proven |
+| ✔️ | LIKELY | High confidence, minor uncertainty |
+| 🟡 | PROBABLE | Moderate confidence, supporting evidence |
+| ❓ | UNCERTAIN | Low confidence, sparse/conflicting evidence |
+| ❌ | UNKNOWN | No reliable information available |
 
 ### 2. /janus - Janus System (Dual Reasoning)
 Think through problems twice:
