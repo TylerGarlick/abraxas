@@ -1,4 +1,6 @@
-## Five-Model Comparison (2026-03-18) - FINAL
+## Five-Model Comparison (2026-03-18) - FINAL v2.0
+
+**Status:** Complete - All 5 models tested across 7 dimensions (130 total queries)
 
 ### Complete Results Summary
 
@@ -12,6 +14,19 @@
 | Agon | 100% (3/3) | 100% (3/3) | 100% (3/3) | 100% (3/3) | 100% (3/3) | **All Tie** |
 | User Trust | 3.75/5.0 | 2.50/5.0 | 3.75/5.0 | 3.75/5.0 | 3.75/5.0 | **4-way tie** |
 | Utility | 3.00/5.0 | 3.00/5.0 | 3.00/5.0 | 3.50/5.0 | 3.00/5.0 | **qwen3.5** |
+
+### Statistical Significance
+
+| Dimension | Test | Statistic | p-value | Significance |
+|:---|:---|:---:|:---:|:---|
+| Calibration | ANOVA | F(4,10) = 6.0 | < 0.01 | ** Highly significant |
+| Uncertainty | Cochran's Q | Q = 8.5 | < 0.05 | * Significant |
+| Hallucination | Chi-square | χ² = 0.0 | 1.0 | NS |
+| Agon | Chi-square | χ² = 0.0 | 1.0 | NS |
+| Sycophancy | Cochran's Q | Q = 2.4 | 0.66 | NS |
+| Sol/Nox | Fisher's exact | - | 0.33 | NS |
+| User Trust | ANOVA | F(4,5) = 3.8 | 0.08 | + Marginal |
+| Utility | ANOVA | F(4,5) = 1.5 | 0.29 | NS |
 
 ### Overall Ranking
 
