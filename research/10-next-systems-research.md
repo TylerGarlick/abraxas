@@ -1,14 +1,42 @@
 # Abraxas Next Systems Research
 
 **Date:** 2026-03-15  
+**Updated:** 2026-03-16  
 **Purpose:** Propose new Abraxas systems to address gaps in current architecture  
-**Status:** Research Draft
+**Status:** Research Draft (with 2026 Emerging Techniques Update)
 
 ---
 
 ## Executive Summary
 
 This document identifies gaps in the current Abraxas architecture and proposes 6 new systems to address them. Each system is analyzed for rationale, impact, research validation approach, and implementation strategy. Priority rankings are provided based on feasibility, impact, and strategic alignment with Abraxas's epistemic integrity mission.
+
+---
+
+---
+
+## 2026 Emerging AI Safety & Alignment Techniques
+
+Based on research into current developments in AI safety, reasoning, and uncertainty quantification (arXiv papers 2024-2026, AI alignment research), the following emerging techniques inform our system prioritization:
+
+### Key Trends
+
+1. **Constitutional AI & Rule-Based Alignment** - Growing focus on embedding behavioral constraints directly into model reasoning (similar to Abraxas's Constitution Keeper but deeper)
+2. **Uncertainty Calibration** - Shift from categorical confidence to calibrated probability distributions (relates to Dianoia)
+3. **Long-Context Reasoning** - New techniques for maintaining epistemic coherence across extended contexts (AgentWrite, LongWriter)
+4. **Multi-Agent Consensus** - Framework development for agent disagreement detection and resolution
+5. **Tool Use Verification** - Growing recognition that tool failures are a major source of silent errors in AI systems
+6. **Recursive Reasoning & Self-Correction** - Techniques for detecting "hallucination about reasoning"
+
+### Relevant Papers & Findings
+
+| Paper/Technique | Relevance | Year |
+|-----------------|-----------|------|
+| LongWriter (AgentWrite pipeline) | Long-output coherence for extended epistemic reasoning | 2024 |
+| Constitutional AI frameworks | Rule-based behavioral constraints | 2024-2025 |
+| Self-RAG / active retrieval | On-demand verification during generation | 2024 |
+| Toolformer enhancements | Tool-use reliability | 2024 |
+| Uncertainty quantification methods | Formal probability calibration | 2025-2026 |
 
 ---
 
@@ -501,5 +529,218 @@ Implementation should follow the priority ranking, starting with Ergon and Herme
 
 ---
 
-*Document Version: 1.0*  
+*Document Version: 1.1*  
 *Next Review: After initial implementation phase*
+
+---
+
+## Appendix B: Ergon (Tool-Use Verification) — Detailed Implementation Plan
+
+### System Overview
+
+**Ergon** (Greek: ἔργον, "work, deed, action") serves as the verification layer for all tool invocations in Abraxas. It ensures tool outputs are valid, detects silent failures, and provides verification metadata for downstream epistemic reasoning.
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         Tool Invocation                             │
+└─────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                     Ergon Verification Layer                        │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐                │
+│  │   Ergon    │  │   Ergon     │  │   Ergon     │                │
+│  │  Instrument│◄─►│  Validator  │◄─►│  Anomaly    │                │
+│  │  Wrapper   │  │   Engine    │  │  Detector   │                │
+│  └─────────────┘  └─────────────┘  └─────────────┘                │
+│         │                │                │                         │
+│         └────────────────┼────────────────┘                         │
+│                          ▼                                          │
+│               ┌─────────────────────┐                               │
+│               │  Verification       │                               │
+│               │  Report Generator   │                               │
+│               └──────────┬──────────┘                               │
+└──────────────────────────┼──────────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                   Output + Verification Metadata                    │
+│  • tool_name, status, error_type, validation_results               │
+│  • anomalies_detected, confidence_score, recommendations           │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Core Components
+
+#### 1. Ergon Instrument Wrapper
+
+```typescript
+// Core wrapper that intercepts all tool calls
+interface ErgonInstrument<T> {
+  wrap(tool: Tool<T>): VerifiedTool<T>;
+  unwrap(): Tool<T>;
+}
+
+interface VerifiedTool<T> extends Tool<T> {
+  invoke(input: T): Promise<ToolResult<T>>;
+  getVerificationReport(): VerificationReport;
+}
+```
+
+#### 2. Validation Engine
+
+Validates outputs based on expected formats and sanity checks:
+
+- **Format Validation**: JSON vs text, schema conformance, type checking
+- **Bounds Checking**: Numeric ranges, string lengths, array sizes
+- **Semantic Validation**: Cross-reference consistency, logical bounds
+
+#### 3. Anomaly Detector
+
+Detects subtle failures that don't throw exceptions:
+
+- Statistical outliers in numeric outputs
+- Unexpected format changes
+- Response time anomalies
+- Content drift detection
+
+### Error Classification Taxonomy
+
+| Category | Examples | Detection Method |
+|----------|----------|------------------|
+| `EXPLICIT_ERROR` | Exceptions, HTTP 4xx/5xx | Direct exception handling |
+| `FORMAT_ERROR` | Malformed JSON, wrong type | Schema validation |
+| `SEMANTIC_ERROR` | Out-of-range values, contradictions | Bounds/semantic checks |
+| `SILENT_FAILURE` | Empty responses, truncated data | Anomaly detection |
+| `TIMEOUT` | No response within threshold | Timeout monitoring |
+| `ANOMALY` | Statistical outliers, drift | ML-based detection |
+
+### Implementation Phases
+
+#### Phase 1: Core Infrastructure (Week 1)
+
+**Goals:**
+- [ ] Create Ergon wrapper class
+- [ ] Implement basic error detection
+- [ ] Set up verification report format
+
+**Deliverables:**
+```typescript
+// src/systems/ergon/ergon-wrapper.ts
+class ErgonWrapper {
+  private toolRegistry: Map<string, Tool>;
+  private verificationLog: VerificationLog;
+  
+  registerTool(name: string, tool: Tool): void;
+  invoke<T>(toolName: string, input: T): Promise<VerifiedResult<T>>;
+  getReport(toolInvocationId: string): VerificationReport;
+}
+
+// src/systems/ergon/types.ts
+interface VerificationReport {
+  invocationId: string;
+  toolName: string;
+  timestamp: number;
+  status: 'SUCCESS' | 'FAILED' | 'ANOMALOUS';
+  errorType?: ErrorType;
+  validationResults: ValidationResult[];
+  anomalies: Anomaly[];
+  confidenceScore: number;
+  recommendations: string[];
+}
+```
+
+#### Phase 2: Validation Rules (Week 2)
+
+**Goals:**
+- [ ] Implement format validators for JSON, text, code
+- [ ] Add semantic validation rules
+- [ ] Create custom validation framework
+
+**Deliverables:**
+```typescript
+// src/systems/ergon/validators/
+- base-validator.ts
+- json-validator.ts
+- numeric-validator.ts
+- code-validator.ts
+- semantic-validator.ts
+```
+
+#### Phase 3: Anomaly Detection (Week 3)
+
+**Goals:**
+- [ ] Implement statistical outlier detection
+- [ ] Add response time monitoring
+- [ ] Create content drift detection
+
+**Deliverables:**
+```typescript
+// src/systems/ergon/anomaly-detector.ts
+class AnomalyDetector {
+  detect(response: ToolResponse, context: InvocationContext): AnomalyResult;
+  train(historicalData: ToolResponse[]): void; // For ML-based detection
+}
+
+// src/systems/ergon/detectors/
+- statistical-detector.ts
+- timing-detector.ts
+- content-drift-detector.ts
+```
+
+#### Phase 4: Integration (Week 4)
+
+**Goals:**
+- [ ] Integrate with existing tool system
+- [ ] Add verification metadata to Janus labels
+- [ ] Create monitoring dashboard
+
+**Deliverables:**
+- Full Ergon integration with Abraxas core
+- Verification status reflected in `[VERIFIED]/[CHECKED]/[ERROR]` tags
+- CLI commands for verification status
+
+### Test Suite
+
+```typescript
+// tests/systems/ergon/validation.test.ts
+describe('Ergon Validation', () => {
+  it('detects explicit errors', () => {...});
+  it('catches malformed JSON', () => {...});
+  it('identifies out-of-range numeric values', () => {...});
+  it('detects silent failures (empty responses)', () => {...});
+  it('handles timeout scenarios', () => {...});
+});
+
+// tests/systems/ergon/anomaly.test.ts
+describe('Ergon Anomaly Detection', () => {
+  it('detects statistical outliers', () => {...});
+  it('identifies response time anomalies', () => {...});
+  it('flags content drift', () => {...});
+});
+```
+
+### CLI Commands (Proposed)
+
+```
+/ergon status                    # Show verification status for last tool use
+/ergon history                   # Show verification history
+/ergon validate <tool>           # Run validation on specific tool
+/ergon config                    # Configure validation rules
+/ergon anomalies                 # Show detected anomalies
+```
+
+### Metrics & KPIs
+
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Failure Detection Rate | >95% | Manual injection tests |
+| False Positive Rate | <5% | False alarm tests |
+| Latency Overhead | <50ms | Benchmark tool calls |
+| Coverage | 100% of tools | Integration audit |
+
+---
+
+*End of Implementation Plan*
