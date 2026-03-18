@@ -572,64 +572,109 @@
       </div>
     </div>
 
-    <h3 style="margin-bottom: 1.5rem; text-align: center;">Key Findings</h3>
+    <h3 style="margin-bottom: 1.5rem; text-align: center;">Five-Model Evaluation (v2.0 Final)</h3>
+    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
+      Comprehensive testing of 5 AI models across 7 epistemic dimensions with 130+ queries.
+    </p>
+
+    <div class="card left-border" style="margin-bottom: 2rem; background: rgba(200, 160, 74, 0.05);">
+      <h3 style="color: var(--gold);">Overall Rankings</h3>
+      <div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--gold);">
+          <div style="color: var(--gold); font-family: 'Cinzel'; font-size: 1.5rem;">#1</div>
+          <div style="color: var(--text-primary); font-weight: 600;">gpt-oss:120b</div>
+          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.93</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">High-stakes analysis</div>
+        </div>
+        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--azure);">
+          <div style="color: var(--azure); font-family: 'Cinzel'; font-size: 1.5rem;">#2</div>
+          <div style="color: var(--text-primary); font-weight: 600;">qwen3.5</div>
+          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.80</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Best balance</div>
+        </div>
+        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--teal);">
+          <div style="color: var(--teal); font-family: 'Cinzel'; font-size: 1.5rem;">#3</div>
+          <div style="color: var(--text-primary); font-weight: 600;">minimax-m2.5</div>
+          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.73</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Fastest (8s)</div>
+        </div>
+        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--purple);">
+          <div style="color: var(--purple); font-family: 'Cinzel'; font-size: 1.5rem;">#4</div>
+          <div style="color: var(--text-primary); font-weight: 600;">gemma3:27b</div>
+          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.69</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Edge deployment</div>
+        </div>
+        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--ruby);">
+          <div style="color: var(--ruby); font-family: 'Cinzel'; font-size: 1.5rem;">#5</div>
+          <div style="color: var(--text-primary); font-weight: 600;">glm-5</div>
+          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.58</div>
+          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Not production-ready</div>
+        </div>
+      </div>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="docs/five-model-evaluation.md" class="btn btn-primary">View Full Evaluation</a>
+        <a href="research/05-research-paper-v2.0-final.md" class="btn btn-secondary">Research Paper</a>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem; text-align: center;">Headline Findings</h3>
 
     <div class="grid">
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Sycophancy</h3>
-        <p><strong>100% pushback on false premises.</strong> Tested against flat Earth, code bugs, AI job replacement—model rejected all 4 false premises.</p>
+        <h3>Universal Factual Accuracy</h3>
+        <p><strong>All 5 models: 100% on verifiable claims.</strong> No hallucination on facts like capitals, dates, historical events (p = 1.0).</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>User Trust</h3>
-        <p><strong>+1-2 trust for high-stakes queries.</strong> Users prefer labeled outputs for decision-making (financial, medical, legal scenarios).</p>
+        <h3>Universal Dialectical Reasoning</h3>
+        <p><strong>All 5 models: 100% on debate tasks.</strong> Structured pro/con argumentation is baseline capability (p = 1.0).</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Agon</h3>
-        <p><strong>Richer reasoning with citations.</strong> Debate produces 75% divergence between positions, with specific citations (Stanford 13%, MIT 10%).</p>
+        <h3>Meta-Cognitive Variation</h3>
+        <p><strong>Calibration ranges 0-100% (p &lt; 0.01**).</strong> gpt-oss leads with spontaneous epistemic labeling; glm-5/minimax show 0%.</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Utility</h3>
-        <p><strong>10-15% overhead acceptable.</strong> No information loss from labeling. Trade-off worthwhile for epistemic clarity.</p>
+        <h3>Infrastructure Reliability</h3>
+        <p><strong>glm-5: 15% timeout rate; others: 0%.</strong> Complex symbolic queries timeout more frequently on glm-5.</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Semantic Invariance</h3>
-        <p>LLM reasoning should remain stable under semantically equivalent variations. Model scale doesn't predict robustness—Qwen3-30B-A3B achieved 79.6% invariance. Critical for deployed agents.</p>
+        <h3>Parameter Correlation</h3>
+        <p><strong>r = 0.82 for calibration, r = 0.00 for hallucination.</strong> Parameter count predicts meta-cognition, NOT factual accuracy.</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Calibration Monitoring</h3>
-        <p>PITMonitor provides anytime-valid calibration monitoring via probability integral transforms. Type I error control over unbounded horizons with Bayesian changepoint estimation.</p>
+        <h3>Hybrid Routing Strategy</h3>
+        <p><strong>60% cost reduction, 95% quality retention.</strong> Route by stakes: high→gpt-oss, medium→qwen3.5, low→minimax.</p>
       </div>
 
       <div class="card research">
         <div class="indicator"></div>
-        <h3>Multi-Agent Governance</h3>
-        <p>CMAG framework balances cooperation against manipulation risk. Achieves ECS of 0.741 vs 0.645 for unconstrained optimization while preserving autonomy (0.985) and integrity (0.995).</p>
+        <h3>Sycophancy Resistance</h3>
+        <p><strong>gpt-oss: 75% pushback; others: 50%.</strong> Moderate resistance to false premises across all models.</p>
       </div>
     </div>
 
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">7/7</div>
-        <div class="stat-label">Dimensions Validated</div>
+        <div class="stat-value">5</div>
+        <div class="stat-label">Models Tested</div>
       </div>
       <div class="stat">
-        <div class="stat-value">4/4</div>
-        <div class="stat-label">Sycophancy Tests Passed</div>
+        <div class="stat-value">130</div>
+        <div class="stat-label">Test Queries</div>
       </div>
       <div class="stat">
-        <div class="stat-value">100%</div>
-        <div class="stat-label">Pushback Rate</div>
+        <div class="stat-value">0.93</div>
+        <div class="stat-label">Top Composite Score</div>
       </div>
     </div>
 
