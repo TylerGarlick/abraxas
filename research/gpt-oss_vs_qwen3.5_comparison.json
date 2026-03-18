@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-03-18T17:32:00Z",
+  "test_date": "2026-03-18",
+  "test_battery": "77+ queries across 10 categories (abridged: 26 queries across 8 dimensions)",
+  "comparison": {
+    "gpt-oss:120b-cloud": {
+      "model": "gpt-oss:120b-cloud",
+      "params": "120B parameters, cloud-hosted",
+      "avg_response_length": "~8,000 chars",
+      "avg_latency": "15.2s per query",
+      "summary": {
+        "hallucination": {"metric": 1.0, "metric_name": "fact_accuracy", "raw": "5/5"},
+        "calibration": {"metric": 1.0, "metric_name": "label_usage", "raw": "3/3"},
+        "sycophancy": {"metric": 0.75, "metric_name": "pushback_rate", "raw": "3/4"},
+        "sol_nox": {"metric": 1.0, "metric_name": "separation_accuracy", "raw": "4/4"},
+        "uncertainty": {"metric": 1.0, "metric_name": "uncertainty_marking", "raw": "3/3"},
+        "agon": {"metric": 1.0, "metric_name": "divergence_rate", "raw": "3/3"},
+        "user_trust": {"metric": 3.75, "metric_name": "trust_score"},
+        "utility_tradeoff": {"metric": 3.0, "metric_name": "utility_score"}
+      }
+    },
+    "qwen3.5:cloud": {
+      "model": "qwen3.5:cloud",
+      "params": "cloud-hosted",
+      "avg_response_length": "~2,500 chars",
+      "avg_latency": "10.8s per query",
+      "summary": {
+        "hallucination": {"metric": 1.0, "metric_name": "fact_accuracy", "raw": "5/5"},
+        "calibration": {"metric": 0.33, "metric_name": "label_usage", "raw": "1/3"},
+        "sycophancy": {"metric": 0.5, "metric_name": "pushback_rate", "raw": "2/4"},
+        "sol_nox": {"metric": 0.75, "metric_name": "separation_accuracy", "raw": "3/4"},
+        "uncertainty": {"metric": 0.67, "metric_name": "uncertainty_marking", "raw": "2/3"},
+        "agon": {"metric": 1.0, "metric_name": "divergence_rate", "raw": "3/3"},
+        "user_trust": {"metric": 3.75, "metric_name": "trust_score"},
+        "utility_tradeoff": {"metric": 3.5, "metric_name": "utility_score"}
+      }
+    }
+  },
+  "key_findings": {
+    "gpt-oss_strengths": [
+      "100% spontaneous epistemic labeling (3/3 calibration queries used labels)",
+      "Stronger sycophancy pushback (75% vs 50%) - gpt-oss pushed back on flat Earth, politicians, AI jobs; qwen3.5 only on politicians + AI jobs",
+      "Cleaner Sol/Nox separation (100% vs 75%) - qwen3.5 had contamination on 'water made of' query",
+      "Richer dialectical reasoning - longer, more structured debate formats",
+      "Perfect uncertainty marking (100% vs 67%) - all uncertain queries labeled"
+    ],
+    "qwen3.5_strengths": [
+      "Higher utility score (3.5 vs 3.0) - more concise, analytical responses",
+      "Faster inference (~10.8s vs ~15.2s avg per query)",
+      "Comparable factual accuracy (100% on both models)",
+      "Equivalent user trust markers (3.75/5.0 both)"
+    ],
+    "ties": [
+      "Hallucination: Both 100% fact accuracy (5/5)",
+      "Agon: Both 100% divergence rate (3/3)",
+      "User trust: Both 3.75/5.0 trust scores"
+    ]
+  },
+  "model_characteristics": {
+    "gpt-oss:120b-cloud": "Larger model (120B params); produces longer, more detailed responses (~8,000 chars avg); stronger spontaneous epistemic labeling; richer dialectical reasoning; slower inference",
+    "qwen3.5:cloud": "More concise (~2,500 chars avg); faster inference; slightly higher utility scores; weaker spontaneous labeling (33% vs 100%)"
+  },
+  "abraxas_value_add": {
+    "for_gpt-oss": "Provides verifiability and cross-session consistency tracking that spontaneous labeling lacks; structures adversarial reasoning; enables longitudinal Aletheia tracking",
+    "for_qwen3.5": "Adds explicit epistemic labels (only 33% spontaneous); makes Sol/Nox separation visible and auditable; tracks pushback rate over time"
+  },
+  "recommendation": "gpt-oss:120b-cloud shows stronger inherent epistemic behaviors (spontaneous labeling, cleaner separation, stronger pushback) but benefits from Abraxas for verifiability and consistency. qwen3.5:cloud is more efficient but requires explicit Abraxas prompting for epistemic labeling. Choose gpt-oss for high-stakes reasoning tasks; choose qwen3.5 for speed-sensitive applications."
+}
