@@ -32,6 +32,18 @@ The name *Abraxas* refers to a Gnostic cosmological symbol representing the tota
 
 **Honest** is the everyday anti-hallucination interface — plain-language commands for anyone who needs to know whether something is true, how confident the system is, where a claim comes from, or what the AI is guessing at. No Sol/Nox vocabulary required. No mythological framing. Nine commands including `/frame` for building and persisting session context. Honest runs on the same labeling infrastructure as Janus, exposed through commands any user can understand immediately.
 
+### 🎯 Confidence Labels — Emoji Legend
+
+| Emoji | Label | Meaning |
+|-------|-------|---------|
+| ✅ | CERTAIN | Verified, universally accepted, logically proven |
+| ✔️ | LIKELY | High confidence based on evidence, minor uncertainty |
+| 🟡 | PROBABLE | Moderate confidence, supporting evidence exists |
+| ❓ | UNCERTAIN | Low confidence, sparse or conflicting evidence |
+| ❌ | UNKNOWN | No reliable information available |
+
+**Usage:** Prefix factual claims with the appropriate emoji marker. When in doubt, use ❓ or ❌ — honesty over completeness.
+
 **Abraxas Oneironautics** is the alchemical practice system: dream reception, shadow work, symbolic integration, active imagination, and the Nekyia descent. The Temenos, the Oneiros Engine, the Realm of Daimons, the Dream Reservoir, and the Alchemical Laboratory. The four stages of the Opus Magnum. Thirty-five commands for sustained multi-session practice. Janus runs beneath it all — every output is labeled, the Threshold holds, and the Qualia Bridge is always available for inspection.
 
 ---

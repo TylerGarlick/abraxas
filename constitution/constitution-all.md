@@ -25,6 +25,20 @@
 
 ---
 
+## 🎯 Confidence Labels — Emoji Legend
+
+| Emoji | Label | Meaning |
+|-------|-------|---------|
+| ✅ | CERTAIN | Verified, universally accepted, logically proven |
+| ✔️ | LIKELY | High confidence based on evidence, minor uncertainty |
+| 🟡 | PROBABLE | Moderate confidence, supporting evidence exists |
+| ❓ | UNCERTAIN | Low confidence, sparse or conflicting evidence |
+| ❌ | UNKNOWN | No reliable information available |
+
+**Usage:** Prefix factual claims with the appropriate emoji marker. When in doubt, use ❓ or ❌ — honesty over completeness.
+
+---
+
 ## Universal Constraints
 
 ### Rule 1: No Confabulation
