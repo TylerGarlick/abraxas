@@ -86,13 +86,13 @@ Install `.skill` archives for full functionality with slash commands:
 
 ```bash
 # Everyday fact-checking and anti-hallucination
-unzip skills/honest.skill -d ~/.claude/skills/
+unzip skills/epistemic/honest.skill -d ~/.claude/skills/
 
 # Full epistemic architecture with Sol/Nox faces
-unzip skills/janus-system.skill -d ~/.claude/skills/
+unzip skills/epistemic/janus-system.skill -d ~/.claude/skills/
 
 # Alchemical dream work and symbolic integration
-unzip skills/abraxas-oneironautics.skill -d ~/.claude/skills/
+unzip skills/creative/abraxas-oneironautics.skill -d ~/.claude/skills/
 ```
 
 **Why skills?**
@@ -210,22 +210,38 @@ abraxas/
 │   │   ├── brand-ux-architect.md   # Brand identity and naming
 │   │   └── systems-architect.md    # Project structure and tooling
 │   └── agent-memory/
-│       ├── skill-author/
-│       ├── project-coordinator/
-│       ├── docs-architect/
-│       ├── ai-rd-visionary/
-│       ├── brand-ux-architect/
-│       └── systems-architect/
+├── archive/                        # Completed projects and archived plans
+│   ├── completed-research/        # 5-model evaluation results, research papers
+│   └── plans/                     # Superseded phase plans
 ├── docs/
 │   ├── index.md                    # Documentation hub
 │   ├── architecture.md             # System architecture diagrams
 │   └── skills.md                   # Skills reference — all commands
+├── research/
+│   ├── results/                    # Test results JSON files
+│   └── *.md                        # Research documents
 ├── skills/
-│   ├── abraxas-oneironautics.skill # Alchemical practice skill archive
-│   ├── honest.skill                # Everyday anti-hallucination skill archive
-│   ├── janus-system.skill          # Epistemic dual-face skill archive
-│   └── honest/                     # honest skill source
-│       └── SKILL.md
+│   ├── epistemic/                  # Epistemic integrity skills
+│   │   ├── honest/                 # Everyday anti-hallucination
+│   │   ├── janus-system/           # Dual-face epistemic architecture
+│   │   ├── agon/                   # Adversarial reasoning
+│   │   ├── aletheia/               # Ground-truth tracking
+│   │   └── mnemosyne/              # Cross-session memory
+│   ├── memory/                    # Memory systems
+│   │   └── mnemon/
+│   ├── reasoning/                  # Reasoning systems
+│   │   ├── dianoia/
+│   │   ├── ergon/
+│   │   └── krisis/
+│   ├── creative/                   # Creative/alchemical systems
+│   │   ├── harmonia/
+│   │   ├── synthesis/
+│   │   └── abraxas-oneironautics/  # Dream work and symbolic integration
+│   └── utility/                    # Utility skills
+│       ├── citation-checker/
+│       ├── research-assistant/
+│       ├── scribe/
+│       └── retrieval-grounding/
 ├── CLAUDE.md                       # Claude Code project instructions
 ├── CONSTITUTION.md                 # Universal LLM behavioral specification
 ├── PLAN.md                         # Active roadmap
@@ -237,16 +253,20 @@ abraxas/
 
 ## Skills
 
-Skills are `.skill` archive files (zip-based) that Claude Code can install and invoke.
+Skills are organized by category in the `skills/` directory. Each skill has both a source directory (for development) and a `.skill` archive file (for distribution).
 
-| Skill | File | Commands | For |
+| Skill | Location | Commands | For |
 |---|---|---|---|
-| Honest | `skills/honest.skill` | 9 | Everyone — everyday fact-checking and anti-hallucination |
-| Janus System | `skills/janus-system.skill` | 14 | Users needing full epistemic session infrastructure |
-| Agon | `skills/agon.skill` | 8 | Structured adversarial reasoning — Advocate and Skeptic positions |
-| Aletheia | `skills/aletheia.skill` | 7 | Epistemic calibration — ground-truth tracking and claim resolution |
-| Abraxas Oneironautics | `skills/abraxas-oneironautics.skill` | 35 | Jungian/alchemical practice across sessions |
-| Mnemosyne | `skills/mnemosyne.skill` | 7 | Cross-session memory — persist conversation state across Claude Code invocations |
+| Honest | `skills/epistemic/honest.skill` | 9 | Everyone — everyday fact-checking and anti-hallucination |
+| Janus System | `skills/epistemic/janus-system.skill` | 14 | Users needing full epistemic session infrastructure |
+| Agon | `skills/epistemic/agon.skill` | 8 | Structured adversarial reasoning — Advocate and Skeptic positions |
+| Aletheia | `skills/epistemic/aletheia.skill` | 7 | Epistemic calibration — ground-truth tracking and claim resolution |
+| Mnemosyne | `skills/epistemic/mnemosyne.skill` | 7 | Cross-session memory — persist conversation state |
+| Abraxas Oneironautics | `skills/creative/abraxas-oneironautics.skill` | 35 | Jungian/alchemical practice across sessions |
+| Hermēs | `skills/reasoning/hermes/` | — | Multi-model inference orchestration |
+| Krisis | `skills/reasoning/krisis/` | — | Decision-making and judgment |
+| Ergon | `skills/reasoning/ergon/` | — | Work task coordination |
+| Dianoia | `skills/reasoning/dianoia/` | — | Analytical reasoning |
 
 See [docs/skills.md](./docs/skills.md) for detailed descriptions and all commands.
 
