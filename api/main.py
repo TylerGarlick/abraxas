@@ -12,6 +12,9 @@ import urllib.request
 import urllib.error
 import json
 import re
+import sys
+sys.path.insert(0, '/home/ubuntu/.openclaw/workspace/abraxas')
+from memory.ledger import EpistemicLedger
 from typing import Dict, List, Any, Optional
 
 app = FastAPI(
@@ -21,8 +24,9 @@ app = FastAPI(
 )
 
 # Configuration
-MODEL = "minimax-m2.5:cloud"
+MODEL = "minimax-m2.7:cloud"
 OLLAMA_URL = "http://localhost:11434"
+LEDGER = EpistemicLedger()
 
 # Abraxas v2.1 System Prompt
 ABRAXAS_SYSTEM = """You are Abraxas v2.1. You MUST follow all rules below.
@@ -85,6 +89,18 @@ class QueryResponse(BaseModel):
     response: str
     labels: LabelStats
     model: str
+
+
+class LedgerClaim(BaseModel):
+    claim_text: str
+    label: str
+    session_id: str
+    query_context: Optional[str] = None
+
+
+class LedgerSearchRequest(BaseModel):
+    query: str
+    limit: int = 10
 
 
 @app.get("/")
@@ -161,6 +177,19 @@ def query(request: QueryRequest):
             resp_text = result.get("response", "")
             labels = extract_labels(resp_text)
             
+            # Extract [KNOWN] claims and check ledger
+            known_claims = re.findall(r'\[KNOWN\]\s*([^.]+)', resp_text)
+            for claim in known_claims:
+                ledger_result = LEDGER.add_claim(
+                    claim.strip(),
+                    "[KNOWN]",
+                    session_id="api-session",
+                    query_context=request.prompt
+                )
+                if ledger_result.get("contradictions"):
+                    # Contradiction found - could warn user or flag response
+                    pass
+            
             return QueryResponse(
                 response=resp_text,
                 labels=labels,
@@ -170,6 +199,40 @@ def query(request: QueryRequest):
         raise HTTPException(status_code=502, detail=f"Ollama error: {str(e)}")
     except json.JSONDecodeError as e:
         raise HTTPException(status_code=500, detail=f"Parse error: {str(e)}")
+
+
+# === LEDGER ENDPOINTS ===
+
+@app.get("/ledger/stats")
+def ledger_stats():
+    """Get epistemic ledger statistics."""
+    return LEDGER.get_stats()
+
+
+@app.post("/ledger/search")
+def ledger_search(request: LedgerSearchRequest):
+    """Search claims in the ledger."""
+    results = LEDGER.search(request.query, request.limit)
+    return {"results": results}
+
+
+@app.get("/ledger/contradictions")
+def ledger_contradictions(session_id: Optional[str] = None):
+    """Get contradictions from the ledger."""
+    results = LEDGER.get_contradictions(session_id)
+    return {"contradictions": results}
+
+
+@app.post("/ledger/add")
+def ledger_add_claim(request: LedgerClaim):
+    """Manually add a claim to the ledger."""
+    result = LEDGER.add_claim(
+        request.claim_text,
+        request.label,
+        request.session_id,
+        request.query_context or ""
+    )
+    return result
 
 
 if __name__ == "__main__":

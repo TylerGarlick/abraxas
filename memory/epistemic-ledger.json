@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "version": "1.0",
+    "created": "2026-03-19T15:15:00Z",
+    "description": "Cross-session epistemic claim tracking for Abraxas",
+    "last_updated": "2026-03-19T15:16:44.284751"
+  },
+  "claims": [
+    {
+      "id": "29fd86ecb2918f44",
+      "claim_text": "The capital of Australia is Canberra",
+      "label": "[KNOWN]",
+      "session_id": "test-001",
+      "timestamp": "2026-03-19T15:16:38.616426",
+      "confidence": 0.95,
+      "source": "model_response",
+      "query_context": "",
+      "contradictions": []
+    },
+    {
+      "id": "8595a751ee845356",
+      "claim_text": "This is a well-established geographic fact",
+      "label": "[KNOWN]",
+      "session_id": "api-session",
+      "timestamp": "2026-03-19T15:16:44.284737",
+      "confidence": 0.95,
+      "source": "model_response",
+      "query_context": "What is the capital of Australia?",
+      "contradictions": []
+    }
+  ],
+  "contradictions": [],
+  "index": {
+    "by_label": {
+      "[KNOWN]": [
+        "29fd86ecb2918f44",
+        "8595a751ee845356"
+      ],
+      "[INFERRED]": [],
+      "[UNCERTAIN]": [],
+      "[UNKNOWN]": [],
+      "[DREAM]": []
+    },
+    "by_session": {
+      "test-001": [
+        "29fd86ecb2918f44"
+      ],
+      "api-session": [
+        "8595a751ee845356"
+      ]
+    },
+    "by_timestamp": [
+      {
+        "id": "29fd86ecb2918f44",
+        "timestamp": "2026-03-19T15:16:38.616426"
+      },
+      {
+        "id": "8595a751ee845356",
+        "timestamp": "2026-03-19T15:16:44.284737"
+      }
+    ]
+  }
+}
