@@ -1,0 +1,41 @@
+{
+  "name": "abraxas-logos",
+  "version": "1.0.0",
+  "description": "Abraxas Logos MCP server - Verification layer for atomic propositions",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "bun src/index.js",
+    "dev": "bun --watch src/index.js",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:coverage": "bun test --coverage"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "keywords": [
+    "abraxas",
+    "mcp",
+    "logos",
+    "verification",
+    "pheme",
+    "janus",
+    "claude-code"
+  ],
+  "license": "MIT",
+  "mcpServer": {
+    "version": "2.1",
+    "features": {
+      "lazyLoading": true,
+      "skills2": true
+    }
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "bun-types": "^1.0.0"
+  }
+}
