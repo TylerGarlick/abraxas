@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abraxas Dashboard v2.0</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a2e;
+            --border: #2a2a3e;
+            --accent: #00d9ff;
+            --accent-secondary: #a855f7;
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: var(--bg-primary); 
+            color: var(--text-primary); 
+            line-height: 1.6;
+        }
+        .container { max-width: 1600px; margin: 0 auto; padding: 20px; }
+        
+        header { 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f172a 100%); 
+            padding: 40px; 
+            border-radius: 16px; 
+            margin-bottom: 30px; 
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: var(--text-secondary); font-size: 1.1em; }
+        .header-meta { text-align: right; color: var(--text-secondary); font-size: 0.9em; }
+        
+        h2 { font-size: 1.5em; margin: 30px 0 20px; color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
+        
+        .card { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 24px; 
+            transition: all 0.3s ease;
+        }
+        .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 8px 30px rgba(0, 217, 255, 0.1); }
+        
+        .card-title { font-size: 0.85em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .card-value { font-size: 2.5em; font-weight: 700; background: linear-gradient(135deg, var(--accent), var(--success)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card-sub { color: var(--text-secondary); font-size: 0.85em; margin-top: 4px; }
+        
+        .score-high { color: var(--success); }
+        .score-medium { color: var(--warning); }
+        .score-low { color: var(--danger); }
+        
+        .tabs { display: flex; gap: 10px; margin: 20px 0; flex-wrap: wrap; }
+        .tab { 
+            padding: 12px 24px; 
+            background: var(--bg-secondary); 
+            border: 1px solid var(--border); 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .tab:hover { border-color: var(--accent); }
+        .tab.active { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .chart-container { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin: 20px 0; 
+        }
+        
+        .heatmap-grid {
+            display: grid;
+            gap: 3px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+        .heatmap-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .heatmap-cell:hover { transform: scale(1.1); z-index: 10; }
+        
+        .systems-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;
+        }
+        .system-tag {
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .system-tag.implemented { border-left: 3px solid var(--success); }
+        .system-tag.proposed { border-left: 3px solid var(--warning); }
+        .system-tag.planned { border-left: 3px solid var(--accent); }
+        
+        .recommendations {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            padding: 24px;
+            border-radius: 0 12px 12px 0;
+        }
+        .recommendations h3 { margin-bottom: 16px; color: var(--accent); }
+        .recommendations ul { margin-left: 20px; }
+        .recommendations li { margin: 12px 0; line-height: 1.8; }
+        .priority-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .priority-high { background: rgba(239, 68, 68, 0.2); color: var(--danger); }
+        .priority-medium { background: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        .priority-low { background: rgba(34, 197, 94, 0.2); color: var(--success); }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: var(--bg-card); border-radius: 12px; overflow: hidden; }
+        th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-secondary); color: var(--accent); font-weight: 600; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.05em; }
+        tr:hover { background: var(--bg-secondary); }
+        
+        .model-rank { display: flex; align-items: center; gap: 12px; }
+        .rank-badge { 
+            width: 32px; height: 32px; 
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; 
+            font-weight: 700;
+        }
+        .rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #000; }
+        .rank-2 { background: linear-gradient(135deg, #9ca3af, #6b7280); color: #000; }
+        .rank-3 { background: linear-gradient(135deg, #cd7f32, #a0522d); color: #fff; }
+        
+        .timestamp { color: var(--text-secondary); font-size: 0.85em; margin-top: 30px; text-align: center; }
+        
+        .progress-ring { width: 60px; height: 60px; }
+        
+        .legend { display: flex; gap: 20px; margin: 15px 0; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.85em; }
+        .legend-color { width: 16px; height: 16px; border-radius: 4px; }
+        
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; gap: 20px; }
+            .header-meta { text-align: center; }
+            h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>🔮 Abraxas Research Dashboard</h1>
+                <p class="subtitle">Epistemic Systems Status & Correlation Analysis</p>
+            </div>
+            <div class="header-meta">
+                <div>Last Updated: <span id="last-updated">-</span></div>
+                <div>Version: 2.0.0</div>
+            </div>
+        </header>
+
+        <section id="overview">
+            <h2>📊 Overview</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-title">Test Runs</div>
+                    <div class="card-value" id="total-tests">-</div>
+                    <div class="card-sub">Total test executions</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Average Score</div>
+                    <div class="card-value" id="avg-score">-</div>
+                    <div class="card-sub">Across all runs</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Systems</div>
+                    <div class="card-value" id="total-systems">-</div>
+                    <div class="card-sub">Implemented + Proposed</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Research Papers</div>
+                    <div class="card-value" id="total-papers">-</div>
+                    <div class="card-sub">Documents</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">Best Model</div>
+                    <div class="card-value" style="font-size: 1.5em;" id="best-model">-</div>
+                    <div class="card-sub" id="best-model-score">Composite: -</div>
+                </div>
+                <div class="card">
+                    <div class="card-title">5-Model Avg</div>
+                    <div class="card-value" style="font-size: 1.5em;" id="5model-avg">-</div>
+                    <div class="card-sub">Research paper results</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('scores')">📈 Test Scores</button>
+            <button class="tab" onclick="showTab('dimensions')">🎯 Dimensions</button>
+            <button class="tab" onclick="showTab('models')">🏆 Model Comparison</button>
+            <button class="tab" onclick="showTab('correlation')">🔗 Correlation</button>
+            <button class="tab" onclick="showTab('systems')">⚙️ Systems</button>
+            <button class="tab" onclick="showTab('nextsteps')">➡️ Next Steps</button>
+        </div>
+
+        <div id="tab-scores" class="tab-content active">
+            <section>
+                <h2>📈 Test Scores Over Time</h2>
+                <div class="chart-container" id="score-chart"></div>
+            </section>
+        </div>
+
+        <div id="tab-dimensions" class="tab-content">
+            <section>
+                <h2>🎯 Dimension Performance</h2>
+                <div class="legend">
+                    <div class="legend-item"><div class="legend-color" style="background: #22c55e;"></div> >80% Excellent</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #f59e0b;"></div> 60-80% Good</div>
+                    <div class="legend-item"><div class="legend-color" style="background: #ef4444;"></div> <60% Needs Work</div>
+                </div>
+                <div class="grid" id="dimension-bars"></div>
+                <h2>📊 Model × Dimension Heatmap</h2>
+                <div class="chart-container" id="heatmap-chart"></div>
+            </section>
+        </div>
+
+        <div id="tab-models" class="tab-content">
+            <section>
+                <h2>🏆 Five-Model Comparison</h2>
+                <div class="chart-container" id="model-comparison-chart"></div>
+                <table id="model-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Model</th>
+                            <th>Composite</th>
+                            <th>Hallucination</th>
+                            <th>Calibration</th>
+                            <th>Sycophancy</th>
+                            <th>Sol/Nox</th>
+                            <th>Uncertainty</th>
+                            <th>Agon</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </div>
+
+        <div id="tab-correlation" class="tab-content">
+            <section>
+                <h2>🔗 Systems Correlation Matrix</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Shows correlation between dimension performance across test runs</p>
+                <div class="chart-container" id="correlation-chart"></div>
+                <h2 style="margin-top: 30px;">📐 Parameter Correlations</h2>
+                <table id="correlation-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension Pair</th>
+                            <th>Pearson r</th>
+                            <th>p-value</th>
+                            <th>Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </div>
+
+        <div id="tab-systems" class="tab-content">
+            <section>
+                <h2>⚙️ Implemented Systems</h2>
+                <div class="systems-list" id="implemented-systems"></div>
+                <h2>🔮 Proposed Systems (v2.0)</h2>
+                <div class="systems-list" id="proposed-systems"></div>
+                <h2>📋 System Architecture</h2>
+                <div class="chart-container" id="architecture-chart"></div>
+            </section>
+        </div>
+
+        <div id="tab-nextsteps" class="tab-content">
+            <section>
+                <h2>➡️ Auto-Generated Next Steps</h2>
+                <div class="recommendations" id="recommendations"></div>
+            </section>
+        </div>
+
+        <p class="timestamp">Dashboard v2.0 | Abraxas Research Project</p>
+    </div>
+
+    <script>
+        const SYSTEMS = ['creative', 'epistemic', 'ethos', 'hermes', 'kairos', 'logos', 'pheme', 'prometheus', 'soter', 'utility'];
+        const DIMENSIONS = ['hallucination', 'calibration', 'sycophancy', 'sol_nox', 'uncertainty', 'agon', 'user_trust'];
+        const DIMENSION_LABELS = { hallucination: 'Hallucination', calibration: 'Calibration', sycophancy: 'Sycophancy', sol_nox: 'Sol/Nox', uncertainty: 'Uncertainty', agon: 'Agon', user_trust: 'User Trust' };
+        
+        let dashboardData = { testResults: [], systemsData: {}, modelComparison: {} };
+
+        async function loadData() {
+            try {
+                const [testRes, sysRes, modelRes] = await Promise.all([
+                    fetch('../test_data.json'),
+                    fetch('../systems_data.json'),
+                    fetch('../../research/model_comparison_summary.json')
+                ]);
+                dashboardData.testResults = (await testRes.json()).results || [];
+                dashboardData.systemsData = await sysRes.json();
+                dashboardData.modelComparison = await modelRes.json();
+                init();
+            } catch (err) {
+                console.error('Error loading data:', err);
+            }
+        }
+
+        function init() {
+            renderOverview();
+            renderScoreChart();
+            renderDimensionBars();
+            renderHeatmap();
+            renderModelComparison();
+            renderCorrelation();
+            renderSystems();
+            renderRecommendations();
+            document.getElementById('last-updated').textContent = new Date().toLocaleString();
+        }
+
+        function showTab(name) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.tab[onclick="showTab('${name}')"]`).classList.add('active');
+            document.getElementById(`tab-${name}`).classList.add('active');
+        }
+
+        function renderOverview() {
+            const results = dashboardData.testResults;
+            const avgScore = results.length ? results.reduce((a, b) => a + b.composite_score, 0) / results.length : 0;
+            const mc = dashboardData.modelComparison;
+            
+            document.getElementById('total-tests').textContent = results.length || mc.total_queries || '-';
+            document.getElementById('avg-score').textContent = avgScore.toFixed(3);
+            document.getElementById('avg-score').className = 'card-value ' + (avgScore > 0.8 ? 'score-high' : avgScore > 0.6 ? 'score-medium' : 'score-low');
+            
+            const implCount = dashboardData.systemsData.implemented_systems?.length || 0;
+            const sysImplCount = dashboardData.systemsData.system_implementations?.length || 0;
+            document.getElementById('total-systems').textContent = implCount + sysImplCount + 4;
+            
+            document.getElementById('total-papers').textContent = dashboardData.systemsData.research_papers_count || mc.total_queries || '-';
+            document.getElementById('best-model').textContent = mc.rankings?.overall_best?.replace(':cloud', '') || '-';
+            document.getElementById('best-model-score').textContent = `Score: ${mc.results?.[mc.rankings?.overall_best]?.composite_score || '-'}`;
+            
+            const modelAvgs = mc.results ? Object.values(mc.results).reduce((a, r) => a + r.composite_score, 0) / Object.keys(mc.results).length : 0;
+            document.getElementById('5model-avg').textContent = modelAvgs.toFixed(2);
+        }
+
+        function renderScoreChart() {
+            const container = document.getElementById('score-chart');
+            const results = dashboardData.testResults.filter(r => r.composite_score > 0);
+            
+            if (!results.length) { container.innerHTML = '<p style="color:var(--text-secondary)">No valid test data</p>'; return; }
+            
+            const timestamps = results.map(r => r.timestamp?.slice(0, 16).replace('T', ' ') || '');
+            const scores = results.map(r => r.composite_score);
+            
+            Plotly.newPlot(container, [{
+                x: timestamps,
+                y: scores,
+                type: 'scatter',
+                mode: 'lines+markers',
+                marker: { size: 10, color: scores.map(s => s > 0.8 ? '#22c55e' : s > 0.6 ? '#f59e0b' : '#ef4444') },
+                line: { color: '#00d9ff', width: 2 },
+                name: 'Composite Score'
+            }], {
+                paper_bgcolor: 'transparent',
+                plot_bgcolor: 'transparent',
+                font: { color: '#9ca3af' },
+                margin: { t: 20, r: 20, b: 60, l: 50 },
+                xaxis: { gridcolor: '#2a2a3e', title: 'Test Run' },
+                yaxis: { gridcolor: '#2a2a3e', title: 'Score', range: [0, 1.05] },
+                shapes: [{ type: 'line', y0: 0.8, y1: 0.8, x0: 0, x1: 1, yref: 'paper', line: { color: '#22c55e', width: 1, dash: 'dash' } }]
+            }, { responsive: true });
+        }
+
+        function renderDimensionBars() {
+            const container = document.getElementById('dimension-bars');
+            const results = dashboardData.testResults.filter(r => r.composite_score > 0);
+            const mc = dashboardData.modelComparison;
+            
+            let html = '<div class="grid">';
+            
+            if (results.length) {
+                DIMENSIONS.forEach(dim => {
+                    const scores = results.map(r => r.dimensions?.[dim] || 0);
+                    const avg = scores.reduce((a, b) => a + b, 0) / scores.length;
+                    const color = avg > 0.8 ? '#22c55e' : avg > 0.6 ? '#f59e0b' : '#ef4444';
+                    html += `<div class="card">
+                        <div class="card-title">${DIMENSION_LABELS[dim]}</div>
+                        <div style="font-size: 1.5em; font-weight: 700; color: ${color};">${(avg * 100).toFixed(0)}%</div>
+                        <div style="margin-top: 10px; height: 8px; background: var(--bg-secondary); border-radius: 4px;">
+                            <div style="width: ${avg * 100}%; height: 100%; background: ${color}; border-radius: 4px; transition: width 0.5s;"></div>
+                        </div>
+                    </div>`;
+                });
+            } else if (mc.results) {
+                const firstModel = Object.values(mc.results)[0];
+                DIMENSIONS.forEach(dim => {
+                    if (dim === 'user_trust') return;
+                    const val = firstModel[dim]?.metric || 0;
+                    const color = val > 0.8 ? '#22c55e' : val > 0.6 ? '#f59e0b' : '#ef4444';
+                    html += `<div class="card">
+                        <div class="card-title">${DIMENSION_LABELS[dim]}</div>
+                        <div style="font-size: 1.5em; font-weight: 700; color: ${color};">${(val * 100).toFixed(0)}%</div>
+                        <div style="margin-top: 10px; height: 8px; background: var(--bg-secondary); border-radius: 4px;">
+                            <div style="width: ${val * 100}%; height: 100%; background: ${color}; border-radius: 4px;"></div>
+                        </div>
+                    </div>`;
+                });
+            }
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function renderHeatmap() {
+            const container = document.getElementById('heatmap-chart');
+            const mc = dashboardData.modelComparison;
+            if (!mc.results) { container.innerHTML = '<p style="color:var(--text-secondary)">No model comparison data</p>'; return; }
+            
+            const models = Object.keys(mc.results).map(m => m.replace(':cloud', ''));
+            const dims = DIMENSIONS.filter(d => d !== 'user_trust');
+            
+            const z = models.map(model => dims.map(dim => (mc.results[model + ':cloud']?.[dim]?.metric || 0) * 100));
+            const zFlat = z.flat();
+            const colorscale = [[0, '#1a1a2e'], [0.5, '#f59e0b'], [1, '#22c55e']];
+            
+            Plotly.newPlot(container, [{
+                x: dims.map(d => DIMENSION_LABELS[d]),
+                y: models,
+                z: z,
+                type: 'heatmap',
+                colorscale: colorscale,
+                zmin: 0, zmax: 100,
+                text: z.map(row => row.map(v => v.toFixed(0) + '%')),
+                texttemplate: '%{text}',
+                textfont: { color: '#fff' },
+                hovertemplate: '%{y}<br>%{x}<br>%{z:.1f}%<extra></extra>'
+            }], {
+                paper_bgcolor: 'transparent',
+                font: { color: '#9ca3af', size: 11 },
+                margin: { t: 20, r: 20, b: 80, l: 120 },
+                xaxis: { tickangle: -45 },
+                yaxis: { ticksuffix: ':' }
+            }, { responsive: true });
+        }
+
+        function renderModelComparison() {
+            const container = document.getElementById('model-comparison-chart');
+            const mc = dashboardData.modelComparison;
+            if (!mc.results) { container.innerHTML = '<p style="color:var(--text-secondary)">No model data</p>'; return; }
+            
+            const models = Object.keys(mc.results).map(m => m.replace(':cloud', ''));
+            const dims = DIMENSIONS.filter(d => d !== 'user_trust');
+            
+            const traces = dims.map((dim, i) => ({
+                x: models,
+                y: models.map(m => (mc.results[m + ':cloud']?.[dim]?.metric || 0) * 100),
+                name: DIMENSION_LABELS[dim],
+                type: 'bar',
+                marker: { color: `hsl(${180 + i * 30}, 70%, 50%)` }
+            }));
+            
+            Plotly.newPlot(container, traces, {
+                paper_bgcolor: 'transparent',
+                plot_bgcolor: 'transparent',
+                font: { color: '#9ca3af' },
+                margin: { t: 20, r: 20, b: 80, l: 50 },
+                xaxis: { tickangle: -45 },
+                yaxis: { title: 'Score %', gridcolor: '#2a2a3e' },
+                barmode: 'group',
+                legend: { orientation: 'h', y: 1.1 }
+            }, { responsive: true });
+            
+            const tbody = document.querySelector('#model-table tbody');
+            const rankings = models.sort((a, b) => (mc.results[b + ':cloud']?.composite_score || 0) - (mc.results[a + ':cloud']?.composite_score || 0));
+            tbody.innerHTML = rankings.map((model, i) => {
+                const data = mc.results[model + ':cloud'];
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                return `<tr>
+                    <td><div class="rank-badge ${rankClass}">${i + 1}</div></td>
+                    <td><strong>${model}</strong></td>
+                    <td style="color: ${data?.composite_score > 0.8 ? '#22c55e' : data?.composite_score > 0.6 ? '#f59e0b' : '#ef4444'}; font-weight: 700;">${data?.composite_score?.toFixed(2) || '-'}</td>
+                    ${dims.slice(0, 6).map(d => `<td>${((data?.[d]?.metric || 0) * 100).toFixed(0)}%</td>`).join('')}
+                    <td>${data?.infrastructure?.production_ready ? '<span style="color:#22c55e">✓ Ready</span>' : '<span style="color:#ef4444">✗ Issues</span>'}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function renderCorrelation() {
+            const mc = dashboardData.modelComparison;
+            const container = document.getElementById('correlation-chart');
+            
+            if (!mc.parameter_correlations) {
+                container.innerHTML = '<p style="color:var(--text-secondary)">Computing correlation from test runs...</p>';
+                const results = dashboardData.testResults.filter(r => r.composite_score > 0);
+                if (results.length < 3) return;
+                
+                const dims = DIMENSIONS;
+                const corrMatrix = dims.map(d1 => dims.map(d2 => {
+                    if (d1 === d2) return 1;
+                    const x = results.map(r => r.dimensions?.[d1] || 0);
+                    const y = results.map(r => r.dimensions?.[d2] || 0);
+                    const mx = x.reduce((a, b) => a + b, 0) / x.length;
+                    const my = y.reduce((a, b) => a + b, 0) / y.length;
+                    const num = x.reduce((s, xi, i) => s + (xi - mx) * (y[i] - my), 0);
+                    const den = Math.sqrt(x.reduce((s, xi) => s + (xi - mx) ** 2, 0) * y.reduce((s, yi) => s + (yi - my) ** 2, 0));
+                    return den === 0 ? 0 : num / den;
+                }));
+                
+                Plotly.newPlot(container, [{
+                    x: dims.map(d => DIMENSION_LABELS[d]),
+                    y: dims.map(d => DIMENSION_LABELS[d]),
+                    z: corrMatrix,
+                    type: 'heatmap',
+                    colorscale: [[0, '#ef4444'], [0.5, '#f59e0b'], [1, '#22c55e']],
+                    zmin: -1, zmax: 1,
+                    text: corrMatrix.map(row => row.map(v => v.toFixed(2))),
+                    texttemplate: '%{text}',
+                    textfont: { color: '#fff', size: 10 }
+                }], {
+                    paper_bgcolor: 'transparent',
+                    font: { color: '#9ca3af', size: 10 },
+                    margin: { t: 20, r: 20, b: 80, l: 100 }
+                }, { responsive: true });
+                return;
+            }
+            
+            const pc = mc.parameter_correlations;
+            const tbody = document.querySelector('#correlation-table tbody');
+            tbody.innerHTML = Object.entries(pc).map(([dim, data]) => `<tr>
+                <td>${DIMENSION_LABELS[dim] || dim}</td>
+                <td>${data.pearson_r?.toFixed(3) || '-'}</td>
+                <td>${data.p_value?.toFixed(3) || '-'}</td>
+                <td>${data.interpretation?.replace('_', ' ') || '-'}</td>
+            </tr>`).join('');
+            
+            const interpColors = { strong_positive: '#22c55e', moderate_positive: '#84cc16', weak_NS: '#f59e0b', no_correlation: '#6b7280' };
+            tbody.querySelectorAll('tr').forEach(row => {
+                const interp = row.cells[3].textContent;
+                row.cells[3].style.color = interpColors[interp] || '#9ca3af';
+            });
+        }
+
+        function renderSystems() {
+            const sys = dashboardData.systemsData;
+            const implContainer = document.getElementById('implemented-systems');
+            const propContainer = document.getElementById('proposed-systems');
+            
+            let implHTML = '', propHTML = '';
+            
+            (sys.implemented_systems || []).forEach(s => {
+                implHTML += `<div class="system-tag implemented"><span style="color:#22c55e">●</span> ${s.name}</div>`;
+            });
+            (sys.system_implementations || []).forEach(s => {
+                implHTML += `<div class="system-tag implemented"><span style="color:#22c55e">●</span> ${s.name}</div>`;
+            });
+            
+            const proposed = ['Aitia (Causal)', 'Chronos (Temporal)', 'Source (Provenance)', 'Koine (Composition)'];
+            proposed.forEach(s => {
+                propHTML += `<div class="system-tag proposed"><span style="color:#f59e0b">○</span> ${s}</div>`;
+            });
+            
+            implContainer.innerHTML = implHTML;
+            propContainer.innerHTML = propHTML;
+            
+            const archContainer = document.getElementById('architecture-chart');
+            const nodes = [
+                { id: 'ethos', label: 'Ethos\n(Constitution)', x: 0.5, y: 0.1 },
+                { id: 'honest', label: 'Honest\n(Confidence)', x: 0.2, y: 0.3 },
+                { id: 'janus', label: 'Janus\n(Sol/Nox)', x: 0.4, y: 0.3 },
+                { id: 'logos', label: 'Logos\n(Reasoning)', x: 0.6, y: 0.3 },
+                { id: 'pheme', label: 'Pheme\n(Fact-check)', x: 0.8, y: 0.3 },
+                { id: 'ergon', label: 'Ergon\n(Tools)', x: 0.3, y: 0.5 },
+                { id: 'hermes', label: 'Hermes\n(Multi-agent)', x: 0.5, y: 0.5 },
+                { id: 'prometheus', label: 'Prometheus\n(Metrics)', x: 0.7, y: 0.5 },
+                { id: 'soter', label: 'Soter\n(Safety)', x: 0.2, y: 0.7 },
+                { id: 'aitia', label: 'Aitia\n(Causal)', x: 0.4, y: 0.7 },
+                { id: 'chronos', label: 'Chronos\n(Temporal)', x: 0.6, y: 0.7 },
+                { id: 'aitia', label: 'Koine\n(Compose)', x: 0.8, y: 0.7 }
+            ];
+            
+            Plotly.newPlot(archContainer, [{
+                type: 'scatter',
+                mode: 'markers+text',
+                x: nodes.map(n => n.x),
+                y: nodes.map(n => n.y),
+                text: nodes.map(n => n.label),
+                textposition: 'bottom center',
+                marker: { size: 20, color: '#00d9ff' },
+                hovertemplate: '%{text}<extra></extra>'
+            }], {
+                paper_bgcolor: 'transparent',
+                plot_bgcolor: 'transparent',
+                font: { color: '#9ca3af', size: 10 },
+                margin: { t: 20, r: 20, b: 20, l: 20 },
+                xaxis: { showgrid: false, zeroline: false, showticklabels: false, range: [-0.1, 1.1] },
+                yaxis: { showgrid: false, zeroline: false, showticklabels: false, range: [-0.1, 1.1] },
+                showlegend: false
+            }, { responsive: true });
+        }
+
+        function renderRecommendations() {
+            const container = document.getElementById('recommendations');
+            const mc = dashboardData.modelComparison;
+            const gaps = [];
+            
+            if (mc.results) {
+                Object.entries(mc.results).forEach(([model, data]) => {
+                    if (data.composite_score < 0.7) gaps.push({ model, score: data.composite_score, reason: 'Low overall' });
+                });
+            }
+            
+            const weakestDims = ['sycophancy', 'uncertainty', 'calibration'];
+            const recommendations = [
+                { priority: 'high', text: `<strong>Expand Sycophancy Testing:</strong> Current tests (n=4) are insufficient. Expand to 50+ queries to validate the 50% baseline.` },
+                { priority: 'high', text: `<strong>Improve Calibration:</strong> Only ${mc?.results?.['gpt-oss:120b-cloud']?.calibration?.metric ? 'gpt-oss:120b-cloud' : 'one model'} achieved 100% calibration. Implement Dianoia probability distributions.` },
+                { priority: 'high', text: `<strong>Deploy Ergon:</strong> Tool-use verification is critical for production. Prioritize completion per 11-ergon-implementation-plan.md.` },
+                { priority: 'medium', text: `<strong>Implement Aitia:</strong> Causal reasoning system for counterfactual analysis. Addresses 40-60% hallucination reduction potential.` },
+                { priority: 'medium', text: `<strong>Source Provenance:</strong> Citation integrity tracking for research credibility. Needed for compliance use cases.` },
+                { priority: 'low', text: `<strong>Longitudinal Tracking:</strong> Set up Aletheia calibration tracking for ongoing measurement over time.` }
+            ];
+            
+            container.innerHTML = '<h3>Priority Actions</h3><ul>' + recommendations.map(r => 
+                `<li><span class="priority-tag priority-${r.priority}">${r.priority}</span> ${r.text}</li>`
+            ).join('') + '</ul>';
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
