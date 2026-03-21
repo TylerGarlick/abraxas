@@ -26,6 +26,51 @@ Hermes-Delphi is Abraxas's autonomous research and delivery layer. Six specializ
 
 ---
 
+## Autonomous Pipeline
+
+### How It Works
+
+The Hermes-Delphi pipeline runs autonomously via a cron-triggered system:
+
+1. **Cron Trigger** — Daily at 14:00 UTC (7AM MST), the pipeline automatically starts
+2. **Idempotent Runs** — If a pipeline is already running, subsequent triggers are skipped
+3. **Checkpoint/Resume** — Pipeline state is saved after each agent completes, enabling resume from interruption
+4. **Daily Report** — Upon completion, a research report is generated and delivered
+5. **Feedback Loop** — Kleitos feedback is incorporated into future pipeline runs
+
+### Running the Pipeline
+
+```bash
+# Run manually
+cd hermes-delphi/runner
+node pipeline-runner.js run
+
+# Check status
+node pipeline-runner.js status
+
+# Resume interrupted run
+node pipeline-runner.js resume
+
+# Cancel running pipeline
+node pipeline-runner.js cancel
+```
+
+### Cron Setup
+
+```bash
+# Install cron job (runs daily at 14:00 UTC)
+cd hermes-delphi/runner
+./setup-cron.sh --install
+
+# Check status
+./setup-cron.sh --status
+
+# Remove cron
+./setup-cron.sh --remove
+```
+
+---
+
 ## Global Commands
 
 ### System Control
@@ -274,6 +319,13 @@ due_date: date
 
 ## Data Storage
 
+### Run Management
+```
+data/runs/{run_id}.json          # Pipeline run state
+data/checkpoints/{run_id}-{stage}.json  # Agent checkpoints
+data/reports/{run_id}-report.md  # Daily reports
+```
+
 ### Research Findings
 ```
 data/research/active/{topic}_{timestamp}.yaml
@@ -308,6 +360,51 @@ data/feedback/reports/{year}_{month}.md
 data/billing/invoices/{invoice_id}.yaml
 data/billing/reports/{year}_{month}.md
 ```
+
+---
+
+## Idempotent Run Management
+
+The pipeline ensures only one run executes at a time:
+
+1. **Lock File** — `data/.pipeline_lock` contains running PID
+2. **Stale Detection** — Locks older than 2 hours are considered stale
+3. **Process Check** — Verifies lock PID is still running
+4. **Force Flag** — `--force` can override for manual runs
+
+---
+
+## Checkpoint/Resume
+
+Each agent saves a checkpoint after completion:
+
+```javascript
+// Checkpoint structure
+{
+  run_id: "run-2026-03-21-...",
+  stage: "mythos",
+  timestamp: "2026-03-21T14:30:00Z",
+  data: { /* agent output */ }
+}
+```
+
+Resume logic:
+1. Check for existing checkpoint
+2. Load checkpoint data
+3. Skip completed agents
+4. Resume from last incomplete agent
+
+---
+
+## Feedback Loop Closure
+
+Kleitos feedback is wired back into the pipeline:
+
+1. **Collect** — Feedback collected after deliveries
+2. **Analyze** — Sentiment and theme analysis
+3. **Adapt** — Client-specific adaptations generated
+4. **Store** — Adaptations saved to `data/feedback-adaptations.json`
+5. **Incorporate** — Next run loads and applies adaptations
 
 ---
 
@@ -360,12 +457,19 @@ data/billing/reports/{year}_{month}.md
 - **Janus:** Epistemic labeling for all research claims
 - **Mnemosyne:** Cross-session memory persistence
 - **Harmonia:** Skill composition for multi-step workflows
+- **Mission Control:** Backlog integration for autonomous scheduling
+
+### Mission-Control Integration
+The pipeline integrates with Abraxas Mission-Control via `integrations/mission-control.js`:
+- Syncs run status to backlog
+- Creates tasks for report delivery
+- Routes feedback adaptations to backlog
 
 ---
 
 ## Configuration
 
-### System Config (`config.yaml`)
+### System Config (`data/config/config.yaml`)
 ```yaml
 system:
   name: Hermes-Delphi
@@ -396,6 +500,12 @@ billing:
   default_currency: USD
   invoice_period_days: 30
   payment_terms_days: 14
+
+pipeline:
+  frequency: daily
+  feedback_loop_enabled: true
+  report_recipients:
+    - ""
 ```
 
 ### Client Profile Template
