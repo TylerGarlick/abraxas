@@ -8,7 +8,7 @@ import re
 from typing import Dict, Any, Optional, List, Union, Type
 from dataclasses import dataclass, field
 from enum import Enum
-from datetime import datetime
+from datetime import datetime, timezone
 import jsonschema
 from jsonschema import validate, ValidationError, Draft7Validator
 
@@ -420,7 +420,7 @@ class OutputValidationEngine:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        return datetime.utcnow().isoformat()
+        return datetime.now(timezone.utc).isoformat()
 
 
 # Example usage

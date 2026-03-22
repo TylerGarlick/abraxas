@@ -6,7 +6,7 @@ Auto-labels decomposed claims and integrates with existing Honest skill.
 import json
 from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 
 try:
     from .decomposition import ClaimDecompositionEngine, DecomposedClaim, AtomicProposition
@@ -108,7 +108,7 @@ class HonestSkillIntegration:
         Returns:
             HonestSkillResult with complete analysis
         """
-        start_time = datetime.utcnow()
+        start_time = datetime.now(timezone.utc)
         claim_id = claim_id or self._generate_claim_id(claim)
         
         # L1: Decompose claim
@@ -140,7 +140,7 @@ class HonestSkillIntegration:
             final_aggregated = None
         
         # Calculate processing time
-        end_time = datetime.utcnow()
+        end_time = datetime.now(timezone.utc)
         processing_time_ms = (end_time - start_time).total_seconds() * 1000
         
         result = HonestSkillResult(
@@ -163,7 +163,7 @@ class HonestSkillIntegration:
     def _generate_claim_id(self, claim: str) -> str:
         """Generate unique claim identifier."""
         import hashlib
-        timestamp = datetime.utcnow().isoformat()
+        timestamp = datetime.now(timezone.utc).isoformat()
         claim_hash = hashlib.md5(f"{claim}:{timestamp}".encode()).hexdigest()[:12]
         return f"CLM-{claim_hash}"
 
@@ -276,7 +276,7 @@ class HonestSkillIntegration:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        return datetime.utcnow().isoformat()
+        return datetime.now(timezone.utc).isoformat()
 
     def get_processing_history(self, limit: int = 10) -> List[HonestSkillResult]:
         """Get recent processing history."""

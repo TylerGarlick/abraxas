@@ -7,7 +7,7 @@ import traceback
 from typing import Dict, Any, Optional, List, Callable, Type
 from dataclasses import dataclass, field
 from enum import Enum
-from datetime import datetime
+from datetime import datetime, timezone
 import asyncio
 
 
@@ -460,7 +460,7 @@ class FailureDetectionEngine:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        return datetime.utcnow().isoformat()
+        return datetime.now(timezone.utc).isoformat()
 
 
 # Example usage

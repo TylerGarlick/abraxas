@@ -334,8 +334,8 @@ class ConfidenceAggregationEngine:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        from datetime import datetime
-        return datetime.utcnow().isoformat()
+        from datetime import datetime, timezone
+        return datetime.now(timezone.utc).isoformat()
 
     def get_aggregation_history(self, limit: int = 10) -> List[AggregatedConfidence]:
         """Get recent aggregation history."""

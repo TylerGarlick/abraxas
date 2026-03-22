@@ -265,8 +265,8 @@ class CrossSourceVerificationEngine:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        from datetime import datetime
-        return datetime.utcnow().isoformat()
+        from datetime import datetime, timezone
+        return datetime.now(timezone.utc).isoformat()
 
     def get_source_credibility(self, source_name: str) -> Optional[SourceCredibility]:
         """Get credibility score for a source."""

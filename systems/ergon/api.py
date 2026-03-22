@@ -7,7 +7,7 @@ import json
 from typing import Dict, Any, Optional, List, Callable
 from dataclasses import dataclass, field
 from enum import Enum
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 try:
@@ -141,7 +141,7 @@ class ToolUseAPI:
         Returns:
             ToolResponse with verified result
         """
-        start_time = datetime.utcnow()
+        start_time = datetime.now(timezone.utc)
         
         try:
             # Step 1: Execute in sandbox
@@ -164,7 +164,7 @@ class ToolUseAPI:
                 data = degradation_result.output if degradation_result else None
             
             # Calculate processing time
-            end_time = datetime.utcnow()
+            end_time = datetime.now(timezone.utc)
             processing_time_ms = (end_time - start_time).total_seconds() * 1000
             
             response = ToolResponse(
@@ -189,7 +189,7 @@ class ToolUseAPI:
             
         except Exception as e:
             # Handle unexpected errors
-            end_time = datetime.utcnow()
+            end_time = datetime.now(timezone.utc)
             processing_time_ms = (end_time - start_time).total_seconds() * 1000
             
             failure_context = self.failure_detector.detect_failure(
@@ -401,7 +401,7 @@ class ToolUseAPI:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        return datetime.utcnow().isoformat()
+        return datetime.now(timezone.utc).isoformat()
 
 
 # Example usage

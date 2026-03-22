@@ -235,8 +235,8 @@ class ClaimDecompositionEngine:
 
     def _get_timestamp(self) -> str:
         """Get current timestamp."""
-        from datetime import datetime
-        return datetime.utcnow().isoformat()
+        from datetime import datetime, timezone
+        return datetime.now(timezone.utc).isoformat()
 
     def add_dependency(self, prop_id: str, depends_on: str) -> None:
         """Add dependency between propositions."""
