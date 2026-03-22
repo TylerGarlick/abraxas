@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  arangodb:
+    image: arangodb:latest
+    environment:
+      ARANGO_ROOT_PASSWORD: password
+    ports:
+      - "8529:8529"
+    volumes:
+      - arangodb_data:/var/lib/arangodb3
+    healthcheck:
+      test: ["CMD", "arangosh", "--server.password=", "-e", "return true"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mcp-server:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      ARANGO_HOST: http://arangodb:8529
+      ARANGO_PASSWORD: password
+      TRANSPORT: http
+    depends_on:
+      arangodb:
+        condition: service_healthy
+    volumes:
+      - ./src:/app/src
+
+volumes:
+  arangodb_data:
