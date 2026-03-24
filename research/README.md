@@ -10,14 +10,29 @@ This folder contains research materials for testing whether Abraxas actually imp
 
 ---
 
-## Documents
+## Folder Structure
 
-| Document | Purpose | Status |
-|:---|:---|:---|
-| [01-testing-framework.md](01-testing-framework.md) | Research design with 7 testing dimensions | ✅ Complete |
-| [02-test-query-bank.md](02-test-query-bank.md) | 77+ test queries across categories | 🔄 Expanding |
-| [03-results-tracker.md](03-results-tracker.md) | Template for tracking experimental results | ✅ Ready |
-| [04-literature-review.md](04-literature-review.md) | Context within existing AI safety research | 🔄 Expanding |
+```
+research/
+├── 2026/03/                    # Dated research (daily notes/reports)
+│   ├── 13/
+│   ├── 16/
+│   ├── 17/
+│   ├── 18/
+│   ├── 20/
+│   ├── 21/
+│   ├── 22/
+│   └── 23/
+├── reports/                    # Model evaluation reports
+├── results/                    # Test results (JSON)
+├── memory/                     # Model testing logs
+├── 01-testing-framework.md     # Research design
+├── 02-test-query-bank.md       # 77+ test queries
+├── 03-results-tracker.md       # Experiment tracking
+├── 04-literature-review.md     # AI safety context
+├── Modelfile-*                 # Model configurations
+└── *.md                        # Various research documents
+```
 
 ---
 
@@ -32,7 +47,7 @@ python research/test_runner.py --count 10
 
 ### Track Results
 
-Edit `03-results-tracker.md` with experimental results.
+Edit `03-results-tracker.md` or add dated notes to `2026/03/YY/`.
 
 ---
 
@@ -64,8 +79,9 @@ Edit `03-results-tracker.md` with experimental results.
 
 1. Add test queries to `02-test-query-bank.md`
 2. Run experiments and update `03-results-tracker.md`
-3. Update literature review as new papers appear
+3. Add dated notes to `2026/03/YY/` folder structure
+4. Update literature review as new papers appear
 
 ---
 
-*Last Updated: 2026-03-13*
+*Last Updated: 2026-03-24*
