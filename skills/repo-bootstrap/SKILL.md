@@ -1,12 +1,21 @@
 ---
 name: repo-bootstrap
 description: |
-  Analyzes any repository and adds a bootstrap system (bootstrap.sh, setup scripts, README instructions) to make it clone-and-setup ready. Use when T says "bootstrap this repo", "make it clone-and-setup", "add setup to this repo", or "repo-ify this project". Handles Node.js, Python, Go, and shell projects. Also used automatically by Mission Control when setting up new project repos.
+  Analyzes any repository and adds a bootstrap system (bootstrap.sh, setup scripts, README instructions) to make it clone-and-setup ready. Also handles team onboarding — setting up new developer environments, providing codebase tours, and assigning first tasks. Use when T says "bootstrap this repo", "make it clone-and-setup", "add setup to this repo", "onboard a dev", "new team member", or "add setup to this repo". Handles Node.js, Python, Go, and shell projects. Also used automatically by Mission Control when setting up new project repos or onboarding new team members.
 ---
 
-# SKILL.md — Repo Bootstrap
+# SKILL.md — Repo Bootstrap + Team Onboarding
 
-## Purpose
+This skill handles two related workflows:
+
+1. **Repo Bootstrap** — Make any repository clone-and-setup ready
+2. **Team Onboarding** — Get new developers set up and productive fast
+
+---
+
+## Part 1: Repo Bootstrap
+
+### Purpose
 
 Take any existing repository and add a complete bootstrap system that allows anyone to:
 1. Clone the repo
@@ -15,7 +24,7 @@ Take any existing repository and add a complete bootstrap system that allows any
 
 This skill "repo-ifies" projects—making them self-contained, reproducible, and beginner-friendly.
 
-## When to Use
+### When to Use
 
 **Explicit triggers:**
 - "MJ, bootstrap this repo"
@@ -29,15 +38,15 @@ This skill "repo-ifies" projects—making them self-contained, reproducible, and
 - After creating a new repository with initial code
 - When a project lacks setup documentation
 
-## Prerequisites
+### Prerequisites
 
 1. Target repository exists on GitHub
 2. Repository has some code/content (this skill adds infrastructure, not the project itself)
 3. GitHub token available (from MEMORY.md or secrets-manager)
 
-## What This Skill Produces
+### What This Skill Produces
 
-### 1. `bootstrap.sh` (required)
+#### 1. `bootstrap.sh` (required)
 Executable shell script that:
 - Auto-detects project type (Node.js, Python, Go, shell)
 - Installs all dependencies
@@ -45,7 +54,7 @@ Executable shell script that:
 - Validates setup succeeded
 - Prints clear next steps
 
-### 2. `README.md` (updated or created)
+#### 2. `README.md` (updated or created)
 Contains:
 ```markdown
 ## Quick Start
@@ -61,23 +70,23 @@ cd <repo-name>
 [appropriate commands for the project type]
 ```
 
-### 3. `setup/` directory (optional, for complex projects)
+#### 3. `setup/` directory (optional, for complex projects)
 Contains:
 - `setup-node.sh` — Node.js-specific setup
 - `setup-python.sh` — Python-specific setup
 - `setup-go.sh` — Go-specific setup
 - Template config files to be copied during bootstrap
 
-### 4. `.bootstrap/` metadata (optional)
+#### 4. `.bootstrap/` metadata (optional)
 `bootstrap-meta.json` tracking:
 - Project type detected
 - Dependencies installed
 - Last bootstrap date
 - Expected environment (Node version, Python version, etc.)
 
-## Implementation Steps
+### Implementation Steps
 
-### Step 1 — Clone the Target Repo
+#### Step 1 — Clone the Target Repo
 
 ```bash
 TASK_ID=$(date +%s)
@@ -85,7 +94,7 @@ git clone https://github.com/<owner>/<repo>.git /tmp/repo-bootstrap-${TASK_ID}
 cd /tmp/repo-bootstrap-${TASK_ID}
 ```
 
-### Step 2 — Analyze the Repo
+#### Step 2 — Analyze the Repo
 
 Detect project type by checking for these files in order:
 
@@ -103,7 +112,7 @@ Also check for:
 - `docker-compose.yml` (may need Docker setup)
 - `.node-version`, `.python-version`, `go.mod` (version requirements)
 
-### Step 3 — Create `bootstrap.sh`
+#### Step 3 — Create `bootstrap.sh`
 
 Write the script using templates below. Key requirements:
 - Start with `#!/usr/bin/env bash`
@@ -113,7 +122,7 @@ Write the script using templates below. Key requirements:
 - Handle errors gracefully
 - Make it idempotent (safe to run twice)
 
-### Step 4 — Create `setup/` Directory (if needed)
+#### Step 4 — Create `setup/` Directory (if needed)
 
 For simple projects, put everything in `bootstrap.sh`. For complex projects, create:
 ```
@@ -125,7 +134,7 @@ setup/
     └── .env.example
 ```
 
-### Step 5 — Update README.md
+#### Step 5 — Update README.md
 
 If README exists:
 - Add "Quick Start" section at top if missing
@@ -139,7 +148,7 @@ If no README:
   - Development commands
   - License (if applicable)
 
-### Step 6 — Commit and Push
+#### Step 6 — Commit and Push
 
 ```bash
 git checkout -b chore/bootstrap-setup
@@ -156,6 +165,228 @@ Then create a PR:
 ```bash
 gh pr create --title "Add bootstrap setup system" --body "Adds clone-and-setup capability" --base main
 ```
+
+---
+
+## Part 2: Team Onboarding
+
+### Purpose
+
+Onboard new team members to a project quickly and consistently. Covers:
+- Development environment setup
+- Codebase tour and architecture overview
+- Team contact information
+- First task assignment
+
+### When to Use
+
+**Explicit triggers:**
+- "MJ, onboard a new developer"
+- "new team member setup"
+- "get <name> started on this project"
+- "help <name> set up their environment"
+- "onboarding for <project>"
+- "add onboarding to this repo"
+
+**Automatic triggers:**
+- Mission Control assigning a new person to a project
+- When a project grows beyond 2 people
+
+### What This Skill Produces
+
+#### 1. `ONBOARDING.md`
+Comprehensive onboarding guide containing:
+- Welcome message and project overview
+- Environment setup checklist
+- Codebase architecture tour
+- Team contacts and communication channels
+- First-week tasks and expectations
+- Resources and documentation links
+
+#### 2. `CONTRIBUTING.md`
+How to contribute:
+- Fork/branch workflow
+- Commit message conventions
+- PR process and review expectations
+- Code style guidelines
+
+#### 3. `team/` directory (optional, for larger teams)
+```
+team/
+├── contacts.md        # Who to contact for what
+├── roles.md           # Team member roles and responsibilities
+└── rituals.md         # Regular meetings and sync points
+```
+
+#### 4. `.github/ISSUE_TEMPLATES/` (optional)
+Onboarding-friendly issue templates:
+- `first-task.md` — Template for first contribution
+- `setup-help.md` — Template for environment issues
+
+### Implementation Steps
+
+#### Step 1 — Clone the Target Repo
+
+```bash
+TASK_ID=$(date +%s)
+git clone https://github.com/<owner>/<repo>.git /tmp/team-onboard-${TASK_ID}
+cd /tmp/team-onboard-${TASK_ID}
+```
+
+#### Step 2 — Analyze the Repo
+
+Check for:
+- Existing documentation (README, CONTRIBUTING)
+- Project structure (src/, lib/, services/)
+- Tech stack (from package.json, requirements.txt, etc.)
+- CI/CD configuration (.github/workflows/)
+- Team size and existing members
+
+#### Step 3 — Create `ONBOARDING.md`
+
+```markdown
+# Welcome to [Project Name]! 🎉
+
+We're excited to have you on the team. This guide will get you from zero to productive in your first week.
+
+## Day 1: Environment Setup
+
+### Required Setup
+- [ ] Clone the repository
+- [ ] Run `./bootstrap.sh`
+- [ ] Verify your editor/IDE is configured correctly
+- [ ] Run the test suite: `npm test` (or your project's test command)
+
+### Account Setup
+- [ ] GitHub access (request from [manager])
+- [ ] [Slack/Discord] workspace invitation
+- [ ] [Any other tools specific to project]
+
+### Meet the Team
+| Name | Role | Contact | Best for |
+|------|------|---------|----------|
+| [Name] | [Role] | @handle | [What they're good for] |
+
+## Day 2-3: Codebase Tour
+
+### Project Architecture
+[Provide a brief overview of how the codebase is structured]
+
+### Key Files
+| File/Dir | Purpose |
+|----------|---------|
+| `src/` | Main application code |
+| `tests/` | Test files |
+| `scripts/` | Automation and build scripts |
+
+### Tech Stack
+- **Language:** [e.g., Node.js, Python]
+- **Framework:** [e.g., Express, FastAPI]
+- **Database:** [if applicable]
+- **Cloud:** [if applicable]
+
+## Day 4-5: First Task
+
+Your first task is to [specific task description]. This will help you:
+1. Understand our development workflow
+2. Make a meaningful contribution
+3. Get code reviewed and merged
+
+### Task Steps
+1. Create a branch: `git checkout -b feature/your-name-first-task`
+2. Make your changes
+3. Write a test (if applicable)
+4. Push and open a PR
+5. Request review from [team member]
+
+## Communication
+
+- **Daily standup:** [time, location]
+- **Questions channel:** [#team-name-dev]
+- **Urgent issues:** [#team-name-alerts]
+
+## Resources
+
+- [Project Documentation](link)
+- [Architecture Decision Records](link)
+- [Previous Onboarding Issues](link)
+
+---
+
+Questions? Ask in [#team-name-dev] or reach out to [mentor name] directly.
+```
+
+#### Step 4 — Create/Update `CONTRIBUTING.md`
+
+```markdown
+# Contributing to [Project Name]
+
+Thank you for contributing! Here's how we work.
+
+## Development Workflow
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature-name`
+3. Make your changes
+4. Add tests (if applicable)
+5. Commit using conventional commits: `git commit -m "feat: add new feature"`
+6. Push: `git push origin feature/your-feature-name`
+7. Open a Pull Request
+
+## Commit Message Format
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+## Pull Request Process
+
+1. Fill out the PR template completely
+2. Ensure all tests pass
+3. Request review from [team members]
+4. Address review feedback
+5. Squash and merge when approved
+
+## Code Style
+
+[Insert project-specific style guidelines]
+
+## Testing
+
+[Insert testing requirements]
+
+## Questions?
+
+Reach out on [#team-name-dev] or open an issue.
+```
+
+#### Step 5 — Commit and Push
+
+```bash
+git checkout -b chore/team-onboarding
+git add ONBOARDING.md CONTRIBUTING.md team/ 2>/dev/null || true
+git commit -m "Add team onboarding system
+
+- ONBOARDING.md with day-by-day setup guide
+- CONTRIBUTING.md with development workflow
+- First-task templates for new developers"
+git push -u origin chore/team-onboarding
+```
+
+Then create a PR:
+```bash
+gh pr create --title "Add team onboarding system" --body "Onboarding guide for new team members" --base main
+```
+
+---
 
 ## Bootstrap Script Templates
 
@@ -457,6 +688,7 @@ MIT
 
 ## Definition of Done
 
+### Repo Bootstrap
 - [ ] `bootstrap.sh` exists and is executable (`chmod +x`)
 - [ ] `bootstrap.sh` successfully installs all dependencies
 - [ ] `bootstrap.sh` handles errors gracefully (doesn't fail silently)
@@ -465,6 +697,15 @@ MIT
 - [ ] Changes committed to a feature branch (`chore/bootstrap-setup`)
 - [ ] PR created or branch pushed to origin
 - [ ] Bootstrap tested in clean environment (or explicitly documented if not)
+
+### Team Onboarding
+- [ ] `ONBOARDING.md` exists with day-by-day setup guide
+- [ ] `ONBOARDING.md` includes team contacts section
+- [ ] `ONBOARDING.md` includes first task assignment
+- [ ] `CONTRIBUTING.md` exists with development workflow
+- [ ] Commit conventions documented
+- [ ] Changes committed to a feature branch (`chore/team-onboarding`)
+- [ ] PR created or branch pushed to origin
 
 ## Repo Type Detection Reference
 
@@ -533,8 +774,16 @@ else
 fi
 ```
 
+## Sister Skills
+
+| Skill | Purpose |
+|-------|---------|
+| **github** | GitHub operations: PRs, issues, CI/CD, code review |
+| **gh-issues** | Fetch issues, implement fixes, open PRs, monitor reviews |
+| **skill-creator** | Create and improve AgentSkills |
+
 ## Skill Location
 
 - **Primary:** `/home/ubuntu/.openclaw/skills/repo-bootstrap/SKILL.md`
-- **Distribution:** Committed to `tylergarlick/mission-control` bootstrap repo
+- **Distribution:** Committed to `tylergarlick/mary-jane` bootstrap repo
 - **Last Updated:** 2026-03-24
