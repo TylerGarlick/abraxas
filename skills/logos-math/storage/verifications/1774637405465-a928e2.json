@@ -1,0 +1,17 @@
+{
+  "id": "lm-1774637405465-d4ffca",
+  "timestamp": "2026-03-27T18:50:05.465Z",
+  "type": "verification",
+  "claim": "mean of [2,4,6,8] = 5",
+  "steps": [],
+  "result": "INCONCLUSIVE",
+  "confidence": "UNVERIFIED",
+  "computed_value": null,
+  "claimed_value": null,
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [
+    "Unsupported algebraic form"
+  ],
+  "notes": "Flags: Unsupported algebraic form"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "lm-1774637394011-28fb42",
+  "timestamp": "2026-03-27T18:49:54.011Z",
+  "type": "verification",
+  "claim": "derivative of x^2 is 2x",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Identify function f(x) = x^2",
+      "transformation": "Definition of function",
+      "intermediate_result": "f(x) = x^2",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Apply power rule: d/dx[x^n] = n*x^(n-1)",
+      "transformation": "Differentiation axiom (power rule)",
+      "intermediate_result": "f'(x) = 2*x^(2-1) = 2*x^1",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compute: d/dx[x^2] = 2*x^(2-1) = 2x^1",
+      "transformation": "Power rule application",
+      "intermediate_result": "f'(x) = 2x^1",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 4,
+      "description": "Compare: computed = 2x^1, claimed = 2x",
+      "transformation": "Symbolic comparison",
+      "intermediate_result": "MISMATCH (symbolic)",
+      "result": "DERIVED"
+    }
+  ],
+  "result": "VERIFIED",
+  "confidence": "VERIFIED",
+  "computed_value": "2x^1",
+  "claimed_value": "2x",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [],
+  "notes": null
+}

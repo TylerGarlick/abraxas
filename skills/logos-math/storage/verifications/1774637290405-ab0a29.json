@@ -1,0 +1,58 @@
+{
+  "id": "lm-1774637290405-37d60b",
+  "timestamp": "2026-03-27T18:48:10.405Z",
+  "type": "verification",
+  "claim": "Solve for x: 3x + 7 = 22",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Parse equation: 3x + 7 = 22",
+      "transformation": "Equation parsing",
+      "intermediate_result": "3x + 7 = 22",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Apply inverse operation to isolate x",
+      "transformation": "Addition/subtraction axiom (additive inverse)",
+      "intermediate_result": "If 3x + 7 = 22, then 3x = 22 - 7",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compute right-hand side: 22 - 7 = 15",
+      "transformation": "Arithmetic evaluation",
+      "intermediate_result": "3x = 15",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 4,
+      "description": "Divide by coefficient: x = 15 / 3 = 5",
+      "transformation": "Division axiom (multiplicative inverse)",
+      "intermediate_result": "x = 5",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 5,
+      "description": "Solution derived: x = 5",
+      "transformation": "Algebraic derivation complete",
+      "intermediate_result": "Verifying: 3(5) + 7 = 22?",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 6,
+      "description": "Verify: 3(5) + 7 = 22 = 22?",
+      "transformation": "Back-substitution check",
+      "intermediate_result": "CHECK PASSED ✓",
+      "result": "VERIFIED"
+    }
+  ],
+  "result": "VERIFIED",
+  "confidence": "VERIFIED",
+  "computed_value": "5",
+  "claimed_value": "x (to be derived)",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [],
+  "notes": null
+}

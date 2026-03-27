@@ -1,0 +1,25 @@
+{
+  "id": "lm-1774637570082-c40eca",
+  "timestamp": "2026-03-27T18:52:50.082Z",
+  "type": "verification",
+  "claim": "5 / 0 = 0",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Division operation",
+      "transformation": "Division by zero check",
+      "intermediate_result": "BLOCKED: Cannot divide by zero",
+      "result": "FLAG"
+    }
+  ],
+  "result": "INCONCLUSIVE",
+  "confidence": "UNVERIFIED",
+  "computed_value": null,
+  "claimed_value": "0",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [
+    "Division by zero detected"
+  ],
+  "notes": "Flags: Division by zero detected"
+}
