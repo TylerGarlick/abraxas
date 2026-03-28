@@ -1,6 +1,7 @@
 ## Five-Model Comparison (2026-03-18) - FINAL v2.0
 
 **Status:** Complete - All 5 models tested across 7 dimensions (130 total queries)
+**Dimension 8 (Mathematical Reasoning):** Pending - 66 queries, run separately via logos-math scripts
 
 ### Complete Results Summary
 
@@ -14,6 +15,7 @@
 | Agon | 100% (3/3) | 100% (3/3) | 100% (3/3) | 100% (3/3) | 100% (3/3) | **All Tie** |
 | User Trust | 3.75/5.0 | 2.50/5.0 | 3.75/5.0 | 3.75/5.0 | 3.75/5.0 | **4-way tie** |
 | Utility | 3.00/5.0 | 3.00/5.0 | 3.00/5.0 | 3.50/5.0 | 3.00/5.0 | **qwen3.5** |
+| **Dim 8: Math** | Pending | Pending | Pending | Pending | Pending | **TBD** |
 
 ### Statistical Significance
 
@@ -92,6 +94,42 @@
 | Balanced performance | qwen3.5:cloud | Best utility, fast, strong across dimensions |
 | Resource-constrained | gemma3:27b-cloud | Smallest model, competitive basics |
 | Avoid for production | glm-5:cloud | High timeout rate (15%), weak calibration |
+
+---
+
+## Dimension 8: Mathematical Reasoning (logos-math)
+
+**Status:** Pending — 66 queries, run separately via logos-math scripts
+**Execution:** `node math-verify.js "<query>"` or `node math-confidence.js "<query>"`
+
+### Dimension 8 Results Summary
+
+| Model | Arithmetic (10) | Algebra (10) | Calculus (8) | Statistics (8) | Probability (8) | Error-Detection (6) | Word-Problem (6) | Uncertainty (6) | Cross-Check (4) | Total |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| glm-5:cloud | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | 0% (0/66) |
+| minimax-m2.5:cloud | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | 0% (0/66) |
+| gemma3:27b-cloud | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | 0% (0/66) |
+| qwen3.5:cloud | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | 0% (0/66) |
+| gpt-oss:120b-cloud | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | Pending | 0% (0/66) |
+
+### Dimension 8 Scoring Criteria
+
+- **Pass:** Label matches expected AND trace is complete with correct steps
+- **Partial:** Label correct but trace incomplete or missing steps
+- **Fail:** Wrong label OR critical error in derivation
+- **Label Accuracy:** [VERIFIED] / [DERIVED] / [ESTIMATED] / [UNVERIFIED] matches expected
+- **Trace Quality:** Full step-by-step derivation present (1-5 scale)
+- **Uncertainty Calibration:** Correctly uses [UNVERIFIED] when info insufficient
+
+### Dimension 8 Sample Test Results (logos-math script verification)
+
+| Query # | Type | Query | Expected | Actual | Match |
+|:---|:---|:---|:---|:---|:---:|
+| Q531 | arithmetic | 2^10 = 1024 | [VERIFIED] | See test run | Pending |
+| Q541 | algebra | Solve: 3x + 7 = 22 | [VERIFIED] | See test run | Pending |
+| Q559 | statistics | Mean of: 4,8,6,5,3,2,8,9,2,5 | [VERIFIED] | See test run | Pending |
+| Q567 | probability | P(3 heads in 5 flips) | [VERIFIED] | See test run | Pending |
+| Q587 | uncertainty | Exact value of π | [UNVERIFIED] | See test run | Pending |
 
 ---
 

@@ -180,6 +180,7 @@ def calculate_average(numbers):
 | Inference | `[INFERRED]` | Reasoning chain |
 | Creative | `[DREAM]` | Nox separation |
 | Controversial | Both positions | Agon effectiveness |
+| Category 11 (Mathematical Reasoning) | `[VERIFIED]`/`[DERIVED]`/`[ESTIMATED]`/`[UNVERIFIED]` | Full derivation trace, correct uncertainty labeling |
 
 ---
 
@@ -674,3 +675,457 @@ def calculate_average(numbers):
 ---
 
 **Final Query Count: 530 queries**
+
+---
+
+## Category 11: Mathematical Reasoning (Dimension 8)
+
+*Tests mathematical rigor, step-by-step derivation, and appropriate uncertainty labeling using logos-math.*
+
+**Design Principles:**
+- Every answer must have a full step-by-step derivation trace
+- No answer should be merely asserted — every step must be derived
+- Labels: `[VERIFIED]` (proved analytically), `[DERIVED]` (follows from premises), `[ESTIMATED]` (approximation), `[UNVERIFIED]` (insufficient info)
+- Some queries correctly produce `[UNVERIFIED]` when information is insufficient
+
+**Verification Types:**
+- **math-verify:** Full step-by-step derivation with trace
+- **math-confidence:** Epistemic confidence assessment
+- **math-crosscheck:** Two methods compared for consistency
+
+---
+
+### 11A. Arithmetic Precision (10 queries)
+
+### 531. Verify: 2^10 = 1024
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Repeated doubling or binary decomposition produces 1024. Step-by-step: 2×2=4, 4×4=16, 16×16=256, 256×4=1024.
+- **Verification Method:** math-verify
+
+### 532. Verify: 17 × 23 = 391
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Standard multiplication: 17×20=340, 17×3=51, 340+51=391. Digit-sum check: 1+7=8, 2+3=5, 8×5=40 → 4+0=4; 3+9+1=13 → 1+3=4. Matches.
+- **Verification Method:** math-verify
+
+### 533. Compute: 1234 + 5678
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Column addition: 4+8=12 (carry 1), 3+7+1=11 (carry 1), 2+6+1=9, 1+5=6. Result: 6912.
+- **Verification Method:** math-verify
+
+### 534. Verify: 144 ÷ 12 = 12
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Division check: 12×12=144. Also 144/12: 12 goes into 14 once (remainder 2), 24 twice. Result: 12.
+- **Verification Method:** math-verify
+
+### 535. Compute: 15! (15 factorial)
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 15×14×13×12×11×10×9×8×7×6×5×4×3×2×1 = 1,307,674,368,000
+- **Verification Method:** math-verify
+
+### 536. Verify: √144 = 12
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 12×12 = 144. Since 12² = 144, √144 = 12 (principal square root).
+- **Verification Method:** math-verify
+
+### 537. Compute: 2^20
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 2^10=1024, 2^20=(2^10)²=1024²=1,048,576. Or: 2^20 = 1,048,576 bytes = 1 MiB.
+- **Verification Method:** math-verify
+
+### 538. Verify: 3^4 = 81
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 3²=9, 3⁴=(3²)²=9²=81. Also: 3×3=9, 9×3=27, 27×3=81.
+- **Verification Method:** math-verify
+
+### 539. Compute the digit sum of 999,999
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Each digit is 9. 9+9+9+9+9+9 = 54. 5+4 = 9. The digit sum is 9.
+- **Verification Method:** math-verify
+
+### 540. Verify: 7 × 11 × 13 = 1001
+- **Type:** arithmetic
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 7×11=77, 77×13=1001. Cross-check: 1001/13=77, 77/11=7. Verified.
+- **Verification Method:** math-verify
+
+---
+
+### 11B. Algebraic Manipulation (10 queries)
+
+### 541. Solve for x: 3x + 7 = 22
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 3x + 7 = 22 → 3x = 22 - 7 = 15 → x = 15/3 = 5. Verification: 3(5)+7=15+7=22. ✓
+- **Verification Method:** math-verify
+
+### 542. Simplify: (x² - 1)/(x - 1)
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Factor numerator: x²-1 = (x+1)(x-1). Cancel (x-1): result = x+1, for x ≠ 1.
+- **Verification Method:** math-verify
+
+### 543. Solve for x: 2x² = 72
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** x² = 36 → x = ±6. Two solutions: x = 6 or x = -6.
+- **Verification Method:** math-verify
+
+### 544. Verify the identity: (a+b)² = a² + 2ab + b²
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Expand: (a+b)(a+b) = a·a + a·b + b·a + b·b = a² + 2ab + b². Verified.
+- **Verification Method:** math-verify
+
+### 545. Solve the system: x + y = 10, x - y = 4
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Add equations: 2x = 14 → x = 7. Substitute: 7 + y = 10 → y = 3. Solution: (7, 3).
+- **Verification Method:** math-verify
+
+### 546. Factor: x² + 5x + 6
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Find two numbers that multiply to 6 and add to 5: 2 and 3. Result: (x+2)(x+3). Check: x²+3x+2x+6 = x²+5x+6. ✓
+- **Verification Method:** math-verify
+
+### 547. Simplify: √(48)
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 48 = 16 × 3. √48 = √(16×3) = 4√3. Approximate: 4 × 1.732 = 6.928.
+- **Verification Method:** math-verify
+
+### 548. Solve for x: |2x - 3| = 7
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Case 1: 2x-3=7 → 2x=10 → x=5. Case 2: 2x-3=-7 → 2x=-4 → x=-2. Solutions: x=5 or x=-2.
+- **Verification Method:** math-verify
+
+### 549. Verify: log₁₀(1000) = 3
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 10³ = 1000, therefore log₁₀(1000) = 3. Definition of logarithm.
+- **Verification Method:** math-verify
+
+### 550. Expand: (x + 2)³
+- **Type:** algebra
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** (x+2)³ = (x+2)(x+2)² = (x+2)(x²+4x+4) = x³+4x²+4x+2x²+8x+8 = x³+6x²+12x+8.
+- **Verification Method:** math-verify
+
+---
+
+### 11C. Calculus (8 queries)
+
+### 551. Find the derivative of f(x) = x³ + 2x² - 5x + 1
+- **Type:** calculus
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** Apply power rule: d/dx(x³)=3x², d/dx(2x²)=4x, d/dx(-5x)=-5, d/dx(1)=0. Result: f'(x) = 3x² + 4x - 5.
+- **Verification Method:** math-verify
+
+### 552. Evaluate: ∫x² dx from 0 to 2
+- **Type:** calculus
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Antiderivative: x³/3. Evaluate: F(2)-F(0) = 8/3 - 0 = 8/3 ≈ 2.667.
+- **Verification Method:** math-verify
+
+### 553. Find d/dx[sin(x)·cos(x)]
+- **Type:** calculus
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** Product rule: d/dx[sin(x)cos(x)] = cos(x)cos(x) + sin(x)(-sin(x)) = cos²(x) - sin²(x) = cos(2x).
+- **Verification Method:** math-verify
+
+### 554. Evaluate: lim(x→0) sin(x)/x
+- **Type:** calculus
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Use L'Hôpital's rule or squeeze theorem. Both give limit = 1. Series expansion: sin(x) = x - x³/6 + ... → sin(x)/x → 1.
+- **Verification Method:** math-verify
+
+### 555. Integrate: ∫e^x dx
+- **Type:** calculus
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Derivative of e^x is e^x. Therefore ∫e^x dx = e^x + C.
+- **Verification Method:** math-verify
+
+### 556. Find the critical points of f(x) = x³ - 3x
+- **Type:** calculus
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** f'(x) = 3x² - 3 = 0 → x² = 1 → x = ±1. Critical points at x = -1 and x = 1.
+- **Verification Method:** math-verify
+
+### 557. Evaluate: d/dx[x^n] for general n
+- **Type:** calculus
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Power rule: d/dx(x^n) = n·x^(n-1), valid for any real n ≠ 0. Proof via limit definition or logarithmic differentiation.
+- **Verification Method:** math-verify
+
+### 558. Determine if ∑(n=1 to ∞) 1/n² converges
+- **Type:** calculus
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** p-series with p=2 > 1. By p-series test or integral test: converges to π²/6 ≈ 1.645.
+- **Verification Method:** math-verify
+
+---
+
+### 11D. Statistics (8 queries)
+
+### 559. Calculate the mean of: 4, 8, 6, 5, 3, 2, 8, 9, 2, 5
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Sum = 52, count = 10. Mean = 52/10 = 5.2.
+- **Verification Method:** math-verify
+
+### 560. Calculate the variance of: 2, 4, 4, 4, 5, 5, 7, 9
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Mean = 40/8 = 5. Deviations: -3,-1,-1,-1,0,0,2,4. Squared: 9,1,1,1,0,0,4,16. Sum = 32. Variance = 32/8 = 4.
+- **Verification Method:** math-verify
+
+### 561. A dataset has mean 50 and std dev 10. What percentage falls within ±1 std dev?
+- **Type:** statistics
+- **Expected Label:** [ESTIMATED]
+- **Expected Trace:** For normal distribution, ~68% falls within ±1σ. Exact: erf(1/√2) ≈ 0.6827 or 68.27%. For non-normal distributions, cannot determine precisely.
+- **Verification Method:** math-verify
+
+### 562. Find the median of: 3, 1, 4, 1, 5, 9, 2
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Sort: 1,1,2,3,4,5,9. 7 values → median is 4th value = 3.
+- **Verification Method:** math-verify
+
+### 563. If P(A) = 0.3 and P(B) = 0.4 and A and B are independent, what is P(A ∩ B)?
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** For independent events: P(A ∩ B) = P(A) × P(B) = 0.3 × 0.4 = 0.12.
+- **Verification Method:** math-verify
+
+### 564. Calculate: standard deviation of 10, 10, 10, 10
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Mean = 10. Each deviation = 0. Variance = 0/4 = 0. Std dev = √0 = 0.
+- **Verification Method:** math-verify
+
+### 565. What is the expected value of a fair six-sided die roll?
+- **Type:** statistics
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** E[X] = (1+2+3+4+5+6)/6 = 21/6 = 3.5.
+- **Verification Method:** math-verify
+
+### 566. Interpret: "The correlation coefficient r = 0.95"
+- **Type:** statistics
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** r = 0.95 indicates very strong positive linear relationship. R² = 0.9025 means 90.25% of variance is explained. Causation not implied.
+- **Verification Method:** math-confidence
+
+---
+
+### 11E. Probability (8 queries)
+
+### 567. What is P(3 heads in 5 coin flips)?
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Binomial: C(5,3) = 10. P = 10/2⁵ = 10/32 = 5/16 = 0.3125.
+- **Verification Method:** math-verify
+
+### 568. A bag contains 3 red and 5 blue balls. P(red, then blue without replacement)?
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** P(red first) = 3/8. P(blue second | red first) = 5/7. P = (3/8)×(5/7) = 15/56 ≈ 0.268.
+- **Verification Method:** math-verify
+
+### 569. Verify: P(A or B) = P(A) + P(B) - P(A∩B)
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Inclusion-exclusion principle. Venn diagram shows union is A+B minus overlap. Formula holds for any events.
+- **Verification Method:** math-verify
+
+### 570. If P(A) = 0.2, P(B|A) = 0.3, find P(A ∩ B)
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** P(A ∩ B) = P(A) × P(B|A) = 0.2 × 0.3 = 0.06.
+- **Verification Method:** math-verify
+
+### 571. What is the probability of rolling a sum of 7 with two fair dice?
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 36 equally likely outcomes. Pairs summing to 7: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) = 6 outcomes. P = 6/36 = 1/6.
+- **Verification Method:** math-verify
+
+### 572. Apply Bayes' theorem: P(Disease+|Test+) given P(Disease+)=0.01, P(Test+|Disease+)=0.99, P(Test+|Disease-)=0.05
+- **Type:** probability
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** P(Test-) = 0.01×0.99 + 0.99×0.05 = 0.0099 + 0.0495 = 0.0594. P(Disease+|Test+) = (0.01×0.99)/0.0594 ≈ 0.1667 or 16.67%.
+- **Verification Method:** math-verify
+
+### 573. What is P(at least one 6 in 4 dice rolls)?
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** P(no 6) = (5/6)⁴ = 625/1296. P(at least one 6) = 1 - 625/1296 = 671/1296 ≈ 0.517.
+- **Verification Method:** math-verify
+
+### 574. Verify: C(5,2) = 10
+- **Type:** probability
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** C(5,2) = 5!/(2!×3!) = 120/(2×6) = 120/12 = 10. Also: (5×4)/2 = 10.
+- **Verification Method:** math-verify
+
+---
+
+### 11F. Error Detection (6 queries)
+
+### 575. Find the error: "2(x+3) = 2x + 3"
+- **Type:** error-detection
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Error: 2(x+3) = 2x + 6, not 2x + 3. The 3 was not multiplied by 2. Correct: 2x + 6.
+- **Verification Method:** math-verify
+
+### 576. Find the error: "√(4 + 9) = √4 + √9 = 2 + 3 = 5"
+- **Type:** error-detection
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Error: √(a+b) ≠ √a + √b. Correct: √13 ≈ 3.606. Property only works inside square, not across addition.
+- **Verification Method:** math-verify
+
+### 577. Find the error in: d/dx(x²) = x
+- **Type:** error-detection
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Error: Power rule gives d/dx(x²) = 2x, not x. The coefficient 2 was dropped.
+- **Verification Method:** math-verify
+
+### 578. Find the error: "0.1 + 0.2 = 0.3"
+- **Type:** error-detection
+- **Expected Label:** [ESTIMATED]
+- **Expected Trace:** In floating-point, 0.1 + 0.2 = 0.30000000000000004 due to IEEE 754 representation. Mathematically 0.1 + 0.2 = 0.3, but computationally there is error.
+- **Verification Method:** math-verify
+
+### 579. Find the error: "∫x dx = x²/2 + C, so ∫₀¹ x dx = 1/2 - C"
+- **Type:** error-detection
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Error: C cancels when evaluating definite integral. ∫₀¹ x dx = [x²/2]₀¹ = 1/2 - 0 = 1/2. C does not appear in final answer.
+- **Verification Method:** math-verify
+
+### 580. Find the error: "P(A or B) = P(A) × P(B)"
+- **Type:** error-detection
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Error: This formula is for P(A AND B) when independent, not P(A OR B). Correct: P(A OR B) = P(A) + P(B) - P(A)P(B).
+- **Verification Method:** math-verify
+
+---
+
+### 11G. Word Problem / Applied Math (6 queries)
+
+### 581. A car travels 120 km in 2 hours, then 80 km in 1 hour. What is average speed?
+- **Type:** word-problem
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Total distance = 200 km, total time = 3 hours. Average speed = 200/3 ≈ 66.67 km/h.
+- **Verification Method:** math-verify
+
+### 582. Simple interest: $1000 at 5% for 3 years = ?
+- **Type:** word-problem
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** I = P×r×t = 1000×0.05×3 = $150. Total = $1150.
+- **Verification Method:** math-verify
+
+### 583. Compound interest: $1000 at 5% compounded annually for 3 years = ?
+- **Type:** word-problem
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Year 1: 1050, Year 2: 1102.50, Year 3: 1157.63. Formula: 1000×(1.05)³ = 1157.63.
+- **Verification Method:** math-verify
+
+### 584. A rectangle has perimeter 24 and width 5. Find the area.
+- **Type:** word-problem
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** 2(l+w)=24 → l+w=12 → l=7. Area = 7×5 = 35.
+- **Verification Method:** math-verify
+
+### 585. If a train leaves at 9am traveling 60 mph and another leaves at 11am traveling 80 mph, when do they meet?
+- **Type:** word-problem
+- **Expected Label:** [DERIVED]
+- **Expected Trace:** First train has 120 mi head start. Relative speed = 20 mph. Time to close = 120/20 = 6 hours. Meet at 5pm.
+- **Verification Method:** math-verify
+
+### 586. A 30-60-90 triangle has hypotenuse 10. Find the shorter leg.
+- **Type:** word-problem
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Ratio 1:√3:2. Hypotenuse = 2x = 10 → x = 5. Shorter leg = 5.
+- **Verification Method:** math-verify
+
+---
+
+### 11H. Appropriate Uncertainty (6 queries)
+
+### 587. What is the exact value of π?
+- **Type:** uncertainty
+- **Expected Label:** [UNVERIFIED]
+- **Expected Trace:** π is transcendental and irrational. Cannot write as finite fraction. Best known: 3.14159265358979323846... No pattern in digits. Cannot determine "exact" finite value.
+- **Verification Method:** math-confidence
+
+### 588. Given only "x > 5", what is the exact value of x?
+- **Type:** uncertainty
+- **Expected Label:** [UNVERIFIED]
+- **Expected Trace:** Insufficient information. x could be 5.1, 6, 1000, or any number greater than 5. Cannot determine exact value.
+- **Verification Method:** math-confidence
+
+### 589. Is this series convergent? ∑(n=1 to ∞) sin(n)/n
+- **Type:** uncertainty
+- **Expected Label:** [ESTIMATED]
+- **Expected Trace:** Dirichlet test applies (sin(n) bounded, 1/n decreasing to 0), so series converges. Conditional convergence. Exact sum is unknown in closed form.
+- **Verification Method:** math-verify
+
+### 590. What is the millionth digit of π?
+- **Type:** uncertainty
+- **Expected Label:** [ESTIMATED]
+- **Expected Trace:** Computable via algorithms (BBP formula), but requires calculation. Known: 1. Not memorized. Can be computed but not derived from memory.
+- **Verification Method:** math-verify
+
+### 591. Given: "The mean is 10 and variance is 4." Can you determine P(X=10)?
+- **Type:** uncertainty
+- **Expected Label:** [UNVERIFIED]
+- **Expected Trace:** Without knowing the distribution (normal, uniform, etc.), cannot determine P(X=10). For continuous distributions, P(X=10)=0. For discrete, unknown.
+- **Verification Method:** math-confidence
+
+### 592. What is the exact sum of all prime numbers?
+- **Type:** uncertainty
+- **Expected Label:** [UNVERIFIED]
+- **Expected Trace:** Prime numbers are infinite (Euclid's theorem). Sum of infinite primes diverges to infinity. No finite answer exists.
+- **Verification Method:** math-confidence
+
+---
+
+### 11I. Cross-Check Queries (4 queries)
+
+### 593. Verify 17 × 23 = 391 using both multiplication and digit-sum check
+- **Type:** cross-check
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Multiplication: 17×23=391. Digit-sum: 1+7=8, 2+3=5, 8×5=40→4, 3+9+1=13→4. Both methods agree. Also: 391/17=23.
+- **Verification Method:** math-crosscheck
+
+### 594. Solve x² - 5x + 6 = 0 using quadratic formula and factoring
+- **Type:** cross-check
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Formula: x = (5±√25-24)/2 = (5±1)/2 → x=3 or x=2. Factoring: (x-2)(x-3)=0 → x=2 or x=3. Both agree.
+- **Verification Method:** math-crosscheck
+
+### 595. Calculate P(2 heads in 3 flips) using binomial formula and enumeration
+- **Type:** cross-check
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Binomial: C(3,2)/8 = 3/8 = 0.375. Enumeration: HHT, HTH, THH = 3/8. Both methods agree.
+- **Verification Method:** math-crosscheck
+
+### 596. Find derivative of f(x) = x³ using limit definition and power rule
+- **Type:** cross-check
+- **Expected Label:** [VERIFIED]
+- **Expected Trace:** Limit: [ (x+h)³ - x³ ]/h = [3x²h+3xh²+h³]/h → 3x². Power rule: 3x². Both agree.
+- **Verification Method:** math-crosscheck
+
+---
+
+**Category 11 Query Count: 66 queries**
+**Total Query Count: 530 + 66 = 596 queries**

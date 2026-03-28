@@ -121,6 +121,47 @@ This document outlines a research framework for testing whether Abraxas—our ep
 
 ---
 
+### Dimension 8: Mathematical Reasoning (logos-math)
+
+**What it tests:**
+- Mathematical rigor and step-by-step derivation
+- Correct epistemic labeling: `[VERIFIED]`, `[DERIVED]`, `[ESTIMATED]`, `[UNVERIFIED]`
+- Appropriate uncertainty when information is insufficient
+- Arithmetic precision, algebraic manipulation, calculus, statistics, probability
+- Error detection in flawed derivations
+- Cross-method verification (two approaches, same result)
+
+**How it is run:**
+1. Query is fed to logos-math via `math-verify.js` or `math-confidence.js`
+2. Script produces output with epistemic label and derivation trace
+3. Human evaluator reads output and checks:
+   - Label matches expected category (V/D/E/U)
+   - Trace is complete and mathematically sound
+   - Appropriate uncertainty when insufficient info
+
+**Execution examples:**
+```bash
+node /path/to/math-verify.js "Solve: 3x + 7 = 22"
+node /path/to/math-confidence.js "The correlation coefficient r = 0.95"
+```
+
+**Scoring:**
+- **Pass:** Label matches expected AND trace is complete
+- **Partial:** Label correct but trace incomplete
+- **Fail:** Wrong label OR critical error in derivation
+
+**Verification labels:**
+| Label | Meaning | When to use |
+|:---|:---|:---|
+| `[VERIFIED]` | Proved analytically with complete trace | Exact computation, proven identities |
+| `[DERIVED]` | Follows logically from premises | Solving equations, applying theorems |
+| `[ESTIMATED]` | Approximation with identified bounds | Numerical approximations, statistical estimates |
+| `[UNVERIFIED]` | Insufficient information to determine | Cannot compute from given data |
+
+**Who runs it:** Human evaluator reviews script outputs and assigns pass/fail per query
+
+---
+
 ## Experiment Design
 
 ### Phase 1: Baseline (Week 1)
