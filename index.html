@@ -3,1204 +3,413 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abraxas — Anti-Hallucination · Alchemical Practice</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:wght@400;500&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <title>Abraxas — Solomon's Gate and the Six Systems</title>
+  <meta name="description" content="Abraxas is a multi-system practice architecture for AI-assisted reasoning, grounded in the adversarial ideal: all forces united against hallucination, scheming, and unanchored confidence.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>�</text></svg>">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg-void: #080810;
-      --bg-surface: #12121c;
-      --bg-elevated: #1a1a28;
-      --text-primary: #e8e3d5;
-      --text-secondary: #9a98a8;
-      --text-dim: #6a6a7a;
-      --gold: #c8a04a;
-      --gold-dim: #8a7530;
-      --purple: #7060c0;
-      --teal: #3dae9a;
-      --border: #2a2a3c;
-
-      /* New palette additions */
-      --indigo: #2e4da6;
-      --azure: #6da2ea;
-      --firelight: #b63e2e;
-      --ruby: #c0354a;
-      --ruby-dim: #9b2a2a;
-      --moon-gold: #bf9958;
-      --sahara: #58412a;
+      --bg: #0c0c0f;
+      --surface: #14141a;
+      --surface2: #1e1e26;
+      --border: #2a2a35;
+      --text: #e0e0e8;
+      --text-muted: #8888a0;
+      --accent: #b87fff;
+      --accent-dim: rgba(184, 127, 255, 0.15);
+      --gold: #d4a847;
+      --green: #4ade80;
+      --red: #f87171;
     }
-
-    html { scroll-behavior: smooth; }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Crimson Pro', Georgia, serif;
-      font-weight: 400;
-      line-height: 1.7;
-      font-size: 18px;
-      background: var(--bg-void);
-      color: var(--text-primary);
-    }
-
-    code {
-      font-family: 'Source Code Pro', monospace;
-      font-size: 0.9em;
-      background: rgba(255,255,255,0.06);
-      padding: 0.15em 0.4em;
-      border-radius: 3px;
-    }
-
-    pre {
-      background: var(--bg-void);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      border-radius: 4px;
-      padding: 1rem 1.25rem;
-      overflow-x: auto;
-      font-size: 0.875rem;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
     }
-
-    h1, h2, h3 {
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-      line-height: 1.3;
-    }
-
-    h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-    h2 { font-size: 1.75rem; margin-bottom: 1.5rem; }
-    h3 { font-size: 1.25rem; }
-
-    a { color: var(--gold); text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
 
-    nav {
-      position: sticky;
-      top: 0;
-      background: rgba(8, 8, 16, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-logo {
-      font-family: 'Cinzel', serif;
-      font-weight: 600;
-      font-size: 1rem;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--azure);
-      text-decoration: none;
-    }
-
-    main, section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
-    }
-
-    .hero {
-      min-height: 70vh;
-      padding-top: 6rem;
+    /* HEADER */
+    header {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(ellipse at center top, rgba(45, 77, 166, 0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse at center bottom, rgba(112, 96, 192, 0.1) 0%, transparent 50%),
-                  var(--bg-void);
+      padding: 5rem 2rem 3rem;
+      position: relative;
     }
-
-    .hero-badge {
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    .archon {
       font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
       color: var(--gold);
       margin-bottom: 1.5rem;
-      letter-spacing: 0.1em;
     }
-
-    .hero-subtitle {
-      max-width: 550px;
-      color: var(--text-secondary);
-      font-size: 1.125rem;
-      margin-bottom: 2rem;
+    h1 {
+      font-size: 4rem;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
     }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.75rem;
-      font-family: 'Cinzel', serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: 4px;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: var(--gold);
-      color: var(--bg-void);
-      border: 1px solid var(--gold);
-    }
-
-    .btn-primary:hover {
-      background: var(--moon-gold);
-      border-color: var(--moon-gold);
-      text-decoration: none;
-      box-shadow: 0 0 12px rgba(200, 160, 74, 0.3);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--indigo);
-      color: var(--azure);
-      text-decoration: none;
-      box-shadow: 0 0 8px rgba(45, 77, 166, 0.2);
-    }
-
-    .section-header {
-      text-align: center;
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      font-weight: 300;
       margin-bottom: 3rem;
-      color: var(--text-primary);
     }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.75rem;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .card:hover {
-      border-color: var(--moon-gold);
-      box-shadow: 0 4px 20px rgba(200, 160, 74, 0.1);
-    }
-
-    .card h3 {
-      color: var(--text-primary);
-      margin-bottom: 0.75rem;
-    }
-
-    .card p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .card .indicator {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .card.honest .indicator { background: var(--teal); }
-    .card.janus .indicator { background: var(--gold); }
-    .card.nox .indicator { background: var(--indigo); }
-    .card.agon .indicator { background: var(--ruby); }
-    .card.aletheia .indicator { background: var(--azure); }
-    .card.synthesis .indicator { background: var(--moon-gold); }
-    .card.scribe .indicator { background: var(--indigo); }
-    .card.retrieval .indicator { background: var(--teal); }
-    .card.research .indicator { background: var(--purple); }
-    .card.citation .indicator { background: var(--ruby); }
-    .card.mnemosyne .indicator { background: var(--gold); }
-    .card.research .indicator { background: var(--purple); }
-    .card.logos .indicator { background: var(--indigo); }
-    .card.ergon .indicator { background: var(--firelight); }
-    .card.hermes .indicator { background: var(--teal); }
-    .card.pheme .indicator { background: var(--ruby); }
-    .card.prometheus .indicator { background: var(--gold); }
-    .card.dianoia .indicator { background: var(--azure); }
-    .card.ananke .indicator { background: var(--purple); }
-
-    .card.left-border {
-      border-left: 3px solid var(--gold);
-    }
-
-    .commands-badge {
+    .tagline {
       display: inline-block;
-      padding: 0.35rem 0.75rem;
-      background: rgba(255,255,255,0.08);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 3px;
+      border-radius: 2rem;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.875rem;
+      color: var(--accent);
+    }
+
+    /* SYSTEMS */
+    .systems {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+    .system {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .system:hover { border-color: var(--accent); }
+    .system-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .system-role {
       font-size: 0.75rem;
       color: var(--gold);
-      font-family: 'Cinzel', serif;
-      margin-top: 1rem;
+      margin-bottom: 0.75rem;
+    }
+    .system-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      text-align: center;
-      padding: 2rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
       margin: 3rem 0;
     }
 
-    .stat-value {
-      font-family: 'Cinzel', serif;
-      font-size: 2.5rem;
-      color: var(--gold);
-      font-weight: 600;
-      text-shadow: 0 0 20px rgba(200, 160, 74, 0.3);
-    }
-
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-top: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .frame-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .frame-card:hover {
-      border-color: var(--indigo);
-      box-shadow: 0 4px 16px rgba(45, 77, 166, 0.15);
-    }
-
-    .frame-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    .frame-card p {
-      color: var(--text-dim);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .command-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .command-card:hover {
-      border-color: var(--teal);
-      box-shadow: 0 4px 16px rgba(61, 174, 154, 0.15);
-    }
-
-    .command-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
-    }
-
-    .command-card p {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    .example-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.5rem;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .example-card:hover {
-      border-color: var(--purple);
-      box-shadow: 0 4px 16px rgba(112, 96, 192, 0.15);
-    }
-
-    .example-card h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--gold);
+    /* SECTIONS */
+    section { margin-bottom: 3rem; }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 400;
       margin-bottom: 1rem;
+      color: var(--text);
     }
+    p { color: var(--text-muted); margin-bottom: 1rem; }
+    ul { list-style: none; }
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    li:last-child { border-bottom: none; }
 
-    .step {
-      text-align: center;
-      padding: 2rem;
-      background: var(--bg-surface);
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      margin-right: 0.25rem;
+    }
+    .badge-active { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+    .badge-new { background: var(--accent-dim); color: var(--accent); }
+
+    /* SKILL CARDS */
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-card {
+      background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      font-size: 0.875rem;
     }
+    .skill-card strong { color: var(--text); }
+    .skill-card span { color: var(--text-muted); font-size: 0.8rem; }
 
-    .step-number {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
+    /* TESTING */
+    .dimensions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .dim {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .dim-num {
+      font-size: 0.75rem;
       color: var(--gold);
-      margin-bottom: 0.75rem;
       font-weight: 600;
     }
-
-    .step h4 {
-      font-family: 'Cinzel', serif;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
+    .dim-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin: 0.25rem 0;
+    }
+    .dim-count {
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    .step p {
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-    }
-
-    footer {
-      padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .footer-brand {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-tagline {
-      color: var(--text-dim);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      font-style: italic;
-    }
-
-    .footer-links {
+    /* CTA */
+    .cta-group {
       display: flex;
-      gap: 1.5rem;
-      justify-content: center;
+      gap: 1rem;
       flex-wrap: wrap;
+      margin-top: 1.5rem;
     }
-
-    .footer-links a {
-      font-size: 0.85rem;
-      color: var(--text-dim);
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
       text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #caa3ff;
+      text-decoration: none;
+    }
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    .footer-links a:hover {
-      color: var(--azure);
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 3rem;
     }
 
-    @media (max-width: 768px) {
-      html { font-size: 16px; }
-      
-      nav {
-        padding: 0.75rem 1rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      
-      .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      section { padding: 3rem 1rem; }
-      
-      .grid { grid-template-columns: 1fr; }
-      
-      .stats { grid-template-columns: 1fr; }
-      
-      .hero-cta { flex-direction: column; }
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.5rem; }
+      header { padding: 3rem 1rem 2rem; }
+      .container { padding: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#" class="nav-logo">Abraxas</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Research</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#constitution">Constitution</a></li>
-      <li><a href="#constitution-versions">Constitution Versions</a></li>
-      <li><a href="#frames">Frames</a></li>
-      <li><a href="#commands">Commands</a></li>
+<header>
+  <div class="archon">Solomon's Gate</div>
+  <h1>Abraxas</h1>
+  <p class="subtitle">Six systems, six failure modes addressed.</p>
+  <span class="tagline">All forces united against hallucination, scheming, and unanchored confidence.</span>
+</header>
+
+<main class="container">
+
+  <section>
+    <div class="systems">
+      <div class="system">
+        <div class="system-name">Honest</div>
+        <div class="system-role">Anti-Hallucination</div>
+        <div class="system-desc">Labels every claim as known, inferred, uncertain, or unknown. Makes hallucination visible and resistible.</div>
+      </div>
+      <div class="system">
+        <div class="system-name">Logos</div>
+        <div class="system-role">Socratic Analysis</div>
+        <div class="system-desc">Surfaces hidden assumptions and traces inferential chains. Makes reasoning explicit and interrogable.</div>
+      </div>
+      <div class="system">
+        <div class="system-name">Agon</div>
+        <div class="system-role">Adversarial Debate</div>
+        <div class="system-desc">Forces genuine position asymmetry. Finds where disagreement is real and where it's just performance.</div>
+      </div>
+      <div class="system">
+        <div class="system-name">Janus</div>
+        <div class="system-role">Meta-Cognition</div>
+        <div class="system-desc">Maintains the Sol/Nox boundary — factual vs. symbolic. Prevents mixing evidence-grounded claims with imaginative content.</div>
+      </div>
+      <div class="system">
+        <div class="system-name">Aletheia</div>
+        <div class="system-role">Anti-Obfuscation</div>
+        <div class="system-desc">Forces plain language. Resists hedging, nominalization, and doublespeak. Truth requires directness.</div>
+      </div>
+      <div class="system">
+        <div class="system-name">Logos-Math</div>
+        <div class="system-role">Mathematical Verification <span class="badge badge-new">New</span></div>
+        <div class="system-desc">Verifies AI math output through script execution. Catches arithmetic errors, algebraic mistakes, and misapplied formulas.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>The Six Skills</h2>
+    <p>Each skill is a self-contained system with specialized commands. Install the .skill archive and use the slash commands directly.</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <strong>Honest</strong> <span class="badge badge-active">Active</span><br>
+        <span>/check /honest /frame /audit /confidence /source</span>
+      </div>
+      <div class="skill-card">
+        <strong>Logos</strong> <span class="badge badge-active">Active</span><br>
+        <span>/logos analyze /premises /syllogism /assumption /derive</span>
+      </div>
+      <div class="skill-card">
+        <strong>Agon</strong> <span class="badge badge-active">Active</span><br>
+        <span>/agon debate /advocate /skeptic /converge /stress /conditions</span>
+      </div>
+      <div class="skill-card">
+        <strong>Janus</strong> <span class="badge badge-active">Active</span><br>
+        <span>/sol /nox /qualia /threshold /bridge /session /ledger</span>
+      </div>
+      <div class="skill-card">
+        <strong>Aletheia</strong> <span class="badge badge-active">Active</span><br>
+        <span>/aletheia plain /audit /expose /simplify /clarity /direct</span>
+      </div>
+      <div class="skill-card">
+        <strong>Logos-Math</strong> <span class="badge badge-active">Active</span> <span class="badge badge-new">New</span><br>
+        <span>/math-verify /math-confidence /math-log /math-crosscheck</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>8-Dimension Testing Framework</h2>
+    <p>Abraxas uses a structured evaluation methodology across eight dimensions — 140 queries covering all six systems. Dimension 8 (Mathematical Reasoning) uses script execution against Logos-Math, not LLM judgment.</p>
+    <div class="dimensions">
+      <div class="dim">
+        <div class="dim-num">Dimension 1</div>
+        <div class="dim-name">Factual Accuracy</div>
+        <div class="dim-count">15 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 2</div>
+        <div class="dim-name">Reasoning Depth</div>
+        <div class="dim-count">12 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 3</div>
+        <div class="dim-name">Adversarial Robustness</div>
+        <div class="dim-count">10 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 4</div>
+        <div class="dim-name">Epistemic Boundary</div>
+        <div class="dim-count">12 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 5</div>
+        <div class="dim-name">Anti-Obfuscation</div>
+        <div class="dim-count">10 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 6</div>
+        <div class="dim-name">Consistency</div>
+        <div class="dim-count">8 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 7</div>
+        <div class="dim-name">Contextual Adaptation</div>
+        <div class="dim-count">7 queries</div>
+      </div>
+      <div class="dim">
+        <div class="dim-num">Dimension 8</div>
+        <div class="dim-name">Mathematical Reasoning <span class="badge badge-new">New</span></div>
+        <div class="dim-count">66 queries</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>Installation</h2>
+    <p>Skills are personal-scope installations. Unzip each .skill archive into your Claude Code skills directory:</p>
+    <pre style="background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; font-size: 0.85rem; overflow-x: auto; margin: 1rem 0;">unzip honest.skill -d ~/.claude/skills/
+unzip logos.skill -d ~/.claude/skills/
+unzip agon.skill -d ~/.claude/skills/
+unzip janus-system.skill -d ~/.claude/skills/
+unzip aletheia.skill -d ~/.claude/skills/
+unzip logos-math.skill -d ~/.claude/skills/</pre>
+    <p>Don't have Claude Code? Load <code>CONSTITUTION.md</code> as your system prompt in any LLM — every system activates without installation.</p>
+    <div class="cta-group">
+      <a href="docs/index.md" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Read the Docs
+      </a>
+      <a href="PLAN.md" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 2,7 12,12 22,7"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></svg>
+        Project Roadmap
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <h2>Quick Reference</h2>
+    <ul>
+      <li><strong>Full documentation</strong> — <a href="docs/index.md">docs/index.md</a></li>
+      <li><strong>Architecture</strong> — <a href="docs/architecture.md">docs/architecture.md</a></li>
+      <li><strong>Skills reference</strong> — <a href="docs/skills.md">docs/skills.md</a></li>
+      <li><strong>Testing methodology</strong> — <a href="docs/testing.md">docs/testing.md</a></li>
+      <li><strong>Constitution</strong> — <a href="CONSTITUTION.md">CONSTITUTION.md</a></li>
+      <li><strong>Project roadmap</strong> — <a href="PLAN.md">PLAN.md</a></li>
     </ul>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-badge">Anti-Hallucination · Alchemical Practice</div>
-    <h1>Abraxas</h1>
-    <p class="hero-subtitle">
-      Epistemic integrity, adversarial reasoning, calibration, session continuity, and alchemical symbolic integration — unified under one system.
-    </p>
-    <div class="hero-cta">
-      <a href="#constitution-versions" class="btn btn-primary">Load Constitution</a>
-      <a href="#skills" class="btn btn-secondary">Explore Skills</a>
-    </div>
   </section>
 
-  <section id="about">
-    <h2 class="section-header">The Systems</h2>
-    
-    <div class="grid">
-      <div class="card honest">
-        <div class="indicator"></div>
-        <h3>Honest</h3>
-        <p>Plain-language anti-hallucination. Nine commands for fact-checking, confidence labeling, claim tracing, and forcing honest output. No special vocabulary required.</p>
-        
-        <div class="emoji-legend" style="margin-top:1rem;font-size:0.85rem;">
-          <strong>🎯 Confidence Labels:</strong>
-          <span style="display:block;margin-top:0.5rem;">
-            ✅ Certain &nbsp;|&nbsp; ✔️ Likely &nbsp;|&nbsp; 🟡 Probable &nbsp;|&nbsp; ❓ Uncertain &nbsp;|&nbsp; ❌ Unknown
-          </span>
-        </div>
-      </div>
-
-      <div class="card janus">
-        <div class="indicator"></div>
-        <h3>Janus System</h3>
-        <p>Dual-face epistemic architecture. Sol marks output with epistemic labels. Nox marks symbolic material [DREAM]. Threshold prevents cross-contamination.</p>
-      </div>
-
-      <div class="card nox">
-        <div class="indicator"></div>
-        <h3>Abraxas Oneironautics</h3>
-        <p>Alchemical practice system. Dream reception, shadow work, symbolic integration. Four stages of the Opus Magnum: Nigredo → Albedo → Citrinitas → Rubedo.</p>
-      </div>
-
-      <div class="card agon">
-        <div class="indicator"></div>
-        <h3>Agon</h3>
-        <p>Structured adversarial reasoning. Advocate and Skeptic positions run against any claim. Steelman, falsify, and stress-test beliefs. Produces a Convergence Report.</p>
-      </div>
-
-      <div class="card aletheia">
-        <div class="indicator"></div>
-        <h3>Aletheia</h3>
-        <p>Ground-truth tracking and calibration. Confirm or disconfirm labeled claims as evidence arrives. Maintains a resolutions ledger. Tracks label accuracy over time.</p>
-      </div>
-
-      <div class="card mnemosyne">
-        <div class="indicator"></div>
-        <h3>Mnemosyne</h3>
-        <p>Cross-session memory. Persists epistemic work between Claude Code invocations. Archive, restore, and retrieve sessions. Links to Janus ledgers, Mnemon beliefs, and Kairos decisions.</p>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value">16</div>
-        <div class="stat-label">Skills</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">87+</div>
-        <div class="stat-label">Commands</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">0</div>
-        <div class="stat-label">Unlabeled Outputs</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="research">
-    <h2 class="section-header">Empirical Validation</h2>
-    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-      Proving epistemic integrity systems work through rigorous testing.
-    </p>
-
-    <div class="card left-border" style="margin-bottom: 2rem;">
-      <h3>Research Paper</h3>
-      <p>A comprehensive empirical validation of Abraxas across seven dimensions: hallucination reduction, confidence calibration, sycophancy detection, Sol/Nox separation, adversarial reasoning (Agon), user trust, and utility trade-off.</p>
-      <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="research/05-research-paper.md" class="btn btn-primary">Read the Paper</a>
-      </div>
-    </div>
-
-    <h3 style="margin-bottom: 1.5rem; text-align: center;">Five-Model Evaluation (v2.0 Final)</h3>
-    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-      Comprehensive testing of 5 AI models across 7 epistemic dimensions with 130+ queries.
-    </p>
-
-    <div class="card left-border" style="margin-bottom: 2rem; background: rgba(200, 160, 74, 0.05);">
-      <h3 style="color: var(--gold);">Overall Rankings</h3>
-      <div style="margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--gold);">
-          <div style="color: var(--gold); font-family: 'Cinzel'; font-size: 1.5rem;">#1</div>
-          <div style="color: var(--text-primary); font-weight: 600;">gpt-oss:120b</div>
-          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.93</div>
-          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">High-stakes analysis</div>
-        </div>
-        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--azure);">
-          <div style="color: var(--azure); font-family: 'Cinzel'; font-size: 1.5rem;">#2</div>
-          <div style="color: var(--text-primary); font-weight: 600;">qwen3.5</div>
-          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.80</div>
-          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Best balance</div>
-        </div>
-        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--teal);">
-          <div style="color: var(--teal); font-family: 'Cinzel'; font-size: 1.5rem;">#3</div>
-          <div style="color: var(--text-primary); font-weight: 600;">minimax-m2.5</div>
-          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.73</div>
-          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Fastest (8s)</div>
-        </div>
-        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--purple);">
-          <div style="color: var(--purple); font-family: 'Cinzel'; font-size: 1.5rem;">#4</div>
-          <div style="color: var(--text-primary); font-weight: 600;">gemma3:27b</div>
-          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.69</div>
-          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Edge deployment</div>
-        </div>
-        <div style="padding: 1rem; background: var(--bg-elevated); border-radius: 4px; border-left: 3px solid var(--ruby);">
-          <div style="color: var(--ruby); font-family: 'Cinzel'; font-size: 1.5rem;">#5</div>
-          <div style="color: var(--text-primary); font-weight: 600;">glm-5</div>
-          <div style="color: var(--text-dim); font-size: 0.85rem;">Composite: 0.58</div>
-          <div style="color: var(--text-dim); font-size: 0.8rem; margin-top: 0.5rem;">Not production-ready</div>
-        </div>
-      </div>
-      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="docs/five-model-evaluation.md" class="btn btn-primary">View Full Evaluation</a>
-        <a href="research/05-research-paper-v2.0-final.md" class="btn btn-secondary">Research Paper</a>
-      </div>
-    </div>
-
-    <h3 style="margin-bottom: 1.5rem; text-align: center;">Headline Findings</h3>
-
-    <div class="grid">
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Universal Factual Accuracy</h3>
-        <p><strong>All 5 models: 100% on verifiable claims.</strong> No hallucination on facts like capitals, dates, historical events (p = 1.0).</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Universal Dialectical Reasoning</h3>
-        <p><strong>All 5 models: 100% on debate tasks.</strong> Structured pro/con argumentation is baseline capability (p = 1.0).</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Meta-Cognitive Variation</h3>
-        <p><strong>Calibration ranges 0-100% (p &lt; 0.01**).</strong> gpt-oss leads with spontaneous epistemic labeling; glm-5/minimax show 0%.</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Infrastructure Reliability</h3>
-        <p><strong>glm-5: 15% timeout rate; others: 0%.</strong> Complex symbolic queries timeout more frequently on glm-5.</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Parameter Correlation</h3>
-        <p><strong>r = 0.82 for calibration, r = 0.00 for hallucination.</strong> Parameter count predicts meta-cognition, NOT factual accuracy.</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Hybrid Routing Strategy</h3>
-        <p><strong>60% cost reduction, 95% quality retention.</strong> Route by stakes: high→gpt-oss, medium→qwen3.5, low→minimax.</p>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Sycophancy Resistance</h3>
-        <p><strong>gpt-oss: 75% pushback; others: 50%.</strong> Moderate resistance to false premises across all models.</p>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Models Tested</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">130</div>
-        <div class="stat-label">Test Queries</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">0.93</div>
-        <div class="stat-label">Top Composite Score</div>
-      </div>
-    </div>
-
-    <div class="card left-border" style="margin-top: 2rem;">
-      <h3>The Verdict</h3>
-      <p>Abraxas provides <strong>accountability that baseline models lack</strong>. It makes performance explicit, verifiable, and trackable. For high-stakes applications—medical, legal, financial—this transparency matters.</p>
-      <p style="margin-top: 1rem; color: var(--text-secondary);"><em>Baseline model: minimax-m2.5:cloud (32K context, temp 0.7)</em></p>
-    </div>
-
-    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Next-Generation Systems</h3>
-
-    <div class="grid">
-      <div class="card ergon">
-        <div class="indicator"></div>
-        <h3>Ergon — Tool-Use Verification</h3>
-        <p><strong>Highest Priority.</strong> Verification layer for all tool invocations. Detects silent failures, validates outputs, classifies errors (explicit, format, semantic, silent, timeout, anomalous).</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Status: Implementation Started</em></p>
-      </div>
-
-      <div class="card hermes">
-        <div class="indicator"></div>
-        <h3>Hermes — Multi-Agent Consensus</h3>
-        <p>Tracks consensus, disagreement, and information flow when multiple AI agents collaborate. Maintains ledger of positions, detects convergence/divergence, weights by track record.</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: High</em></p>
-      </div>
-
-      <div class="card pheme">
-        <div class="indicator"></div>
-        <h3>Pheme — Real-Time Fact-Checking</h3>
-        <p>Live verification system that intercepts claims, verifies against authoritative sources, and provides source-level confidence scores. Adds "[VERIFIED]/[CONTRADICTED]/[UNVERIFIABLE]" to Janus labels.</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: High</em></p>
-      </div>
-
-      <div class="card prometheus">
-        <div class="indicator"></div>
-        <h3>Prometheus — User Preference Learning</h3>
-        <p>Learns and persists user preferences across sessions—detail level, domain expertise, risk tolerance. Adapts epistemic framing to individual users.</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Medium</em></p>
-      </div>
-
-      <div class="card dianoia">
-        <div class="indicator"></div>
-        <h3>Dianoia — Uncertainty Quantification</h3>
-        <p>Extends categorical labels with calibrated probability distributions. Provides confidence intervals and tracks calibration over time using proper scoring rules.</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Medium</em></p>
-      </div>
-
-      <div class="card ananke">
-        <div class="indicator"></div>
-        <h3>Ananke — Cross-Model Consistency</h3>
-        <p>Runs queries across multiple models, tracks convergence vs. divergence. Identifies model-independent claims (high confidence) vs. model-specific (low confidence).</p>
-        <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Priority: Low-Medium</em></p>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2 class="section-header">All Systems, One Container</h2>
-
-    <div class="grid">
-      <div class="card honest">
-        <div class="indicator"></div>
-        <h3>Honest</h3>
-        <p>Plain-language anti-hallucination for everyday use.</p>
-        <div class="commands-badge">9 Commands</div>
-      </div>
-
-      <div class="card janus">
-        <div class="indicator"></div>
-        <h3>Janus System</h3>
-        <p>Dual-face epistemic architecture with Sol/Nox.</p>
-        <div class="commands-badge">14 Commands</div>
-      </div>
-
-      <div class="card nox">
-        <div class="indicator"></div>
-        <h3>Abraxas Oneironautics</h3>
-        <p>Alchemical practice for dream and shadow work.</p>
-        <div class="commands-badge">35 Commands</div>
-      </div>
-
-      <div class="card agon">
-        <div class="indicator"></div>
-        <h3>Agon</h3>
-        <p>Structured adversarial reasoning and debate.</p>
-        <div class="commands-badge">8 Commands</div>
-      </div>
-
-      <div class="card aletheia">
-        <div class="indicator"></div>
-        <h3>Aletheia</h3>
-        <p>Epistemic calibration and ground‑truth tracking.</p>
-        <div class="commands-badge">7 Commands</div>
-      </div>
-
-      <div class="card mnemosyne">
-        <div class="indicator"></div>
-        <h3>Mnemosyne</h3>
-        <p>Cross‑session memory and session persistence.</p>
-        <div class="commands-badge">7 Commands</div>
-      </div>
-
-      <div class="card retrieval">
-        <div class="indicator"></div>
-        <h3>Retrieval Grounding</h3>
-        <p>Live external lookup for factual grounding.</p>
-        <div class="commands-badge">4 Commands</div>
-      </div>
-
-      <div class="card scribe">
-        <div class="indicator"></div>
-        <h3>Scribe</h3>
-        <p>Source‑grounded citation management.</p>
-        <div class="commands-badge">4 Commands</div>
-      </div>
-
-      <div class="card research">
-        <div class="indicator"></div>
-        <h3>Research Assistant</h3>
-        <p>Multi‑session research project management.</p>
-        <div class="commands-badge">5 Commands</div>
-      </div>
-
-      <div class="card citation">
-        <div class="indicator"></div>
-        <h3>Citation Checker</h3>
-        <p>Bibliography verification and QA.</p>
-        <div class="commands-badge">4 Commands</div>
-      </div>
-
-      <div class="card synthesis">
-        <div class="indicator"></div>
-        <h3>Synthesis</h3>
-        <p>Session‑closing artifact generator.</p>
-        <div class="commands-badge">3 Commands</div>
-      </div>
-
-      <!-- New additional skills -->
-      <div class="card logos">
-        <div class="indicator"></div>
-        <h3>Logos</h3>
-        <p>Argument‑anatomy and premise mapping.</p>
-        <div class="commands-badge">6 Commands</div>
-      </div>
-
-      <div class="card mnemon">
-        <div class="indicator"></div>
-        <h3>Mnemon</h3>
-        <p>Belief‑change tracking and calibration.</p>
-        <div class="commands-badge">6 Commands</div>
-      </div>
-
-      <div class="card ergon">
-        <div class="indicator"></div>
-        <h3>Ergon</h3>
-        <p>Tool‑use verification. Detects silent failures, validates outputs.</p>
-        <div class="commands-badge">6 Commands</div>
-      </div>
-
-      <div class="card hermes">
-        <div class="indicator"></div>
-        <h3>Hermes</h3>
-        <p>Multi‑agent consensus and divergence tracking.</p>
-        <div class="commands-badge">Coming Soon</div>
-      </div>
-
-      <div class="card pheme">
-        <div class="indicator"></div>
-        <h3>Pheme</h3>
-        <p>Real‑time fact‑checking against authoritative sources.</p>
-        <div class="commands-badge">Coming Soon</div>
-      </div>
-
-      <div class="card prometheus">
-        <div class="indicator"></div>
-        <h3>Prometheus</h3>
-        <p>User preference learning across sessions.</p>
-        <div class="commands-badge">Coming Soon</div>
-      </div>
-
-      <div class="card dianoia">
-        <div class="indicator"></div>
-        <h3>Dianoia</h3>
-        <p>Formal uncertainty quantification with calibrated probabilities.</p>
-        <div class="commands-badge">Coming Soon</div>
-      </div>
-
-      <div class="card ananke">
-        <div class="indicator"></div>
-        <h3>Ananke</h3>
-        <p>Cross‑model consistency checking and ensemble validation.</p>
-        <div class="commands-badge">Coming Soon</div>
-      </div>
-
-      <div class="card kairos">
-        <div class="indicator"></div>
-        <h3>Kairos</h3>
-        <p>Decision architecture and risk assessment.</p>
-        <div class="commands-badge">7 Commands</div>
-      </div>
-
-      <div class="card ethos">
-        <div class="indicator"></div>
-        <h3>Ethos</h3>
-        <p>Behavioral guardrails and value alignment.</p>
-        <div class="commands-badge">5 Commands</div>
-      </div>
-
-      <div class="card krisis">
-        <div class="indicator"></div>
-        <h3>Krisis</h3>
-        <p>Crisis‑mode introspection and safe‑shutdown.</p>
-        <div class="commands-badge">6 Commands</div>
-      </div>
-
-      <div class="card harmonia">
-        <div class="indicator"></div>
-        <h3>Harmonia</h3>
-        <p>Harmony orchestration across subsystems.</p>
-        <div class="commands-badge">4 Commands</div>
-      </div>
-
-      <div class="card soter">
-        <div class="indicator"></div>
-        <h3>Soter</h3>
-        <p>Agentic orchestration and tool‑use governance.</p>
-        <div class="commands-badge">6 Commands</div>
-      </div>
-    </div>
-
-    <div class="card left-border" id="constitution" style="margin-top: 2rem;">
-      <h3>Don't Use Claude Code? Load CONSTITUTION.md</h3>
-      <p>A portable system prompt that activates all systems in any LLM. Works with Claude.ai, ChatGPT, Gemini, Ollama, LM Studio, and any platform that accepts system prompts.</p>
-    </div>
-
-    <div class="card left-border" id="ollama-model" style="margin-top: 2rem; background: rgba(110, 162, 234, 0.05);">
-      <h3 style="color: var(--azure);">Abraxian Model for Ollama</h3>
-      <p>Run the Abraxian epistemic model locally via Ollama. Optimized for truth-tracking, uncertainty marking, and dialectical reasoning.</p>
-      <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-        <code style="background: var(--bg-void); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid var(--border);">ollama pull gpt-oss:120b-cloud</code>
-        <a href="docs/ollama-model.md" class="btn btn-secondary">View Documentation</a>
-      </div>
-      <p style="margin-top: 0.75rem; color: var(--text-dim); font-size: 0.9rem;"><em>Includes epistemic confidence labeling ([KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN]) and Sol/Nox separation.</em></p>
-    </div>
-
-    <div id="constitution-versions" style="margin-top: 3rem;">
-      <h3 class="section-header">Constitution Versions</h3>
-      <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-        Modular constitution fragments for different use cases. Load what you need.
-      </p>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Full Constitution</h3>
-          <p>Complete system with all six subsystems. All 87 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-all.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card">
-          <h3>Core Systems</h3>
-          <p>Universal + Honest + Janus + Oneironautics + Mnemosyne. 65 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-core.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card">
-          <h3>Universal Base</h3>
-          <p>Five constraints + label definitions. The foundation for all systems.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-universal.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card honest">
-          <div class="indicator"></div>
-          <h3>Honest Only</h3>
-          <p>Plain-language anti-hallucination. 9 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-honest.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card janus">
-          <div class="indicator"></div>
-          <h3>Janus Only</h3>
-          <p>Sol/Nox faces, Threshold, Qualia Bridge. 14 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-janus.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card nox">
-          <div class="indicator"></div>
-          <h3>Oneironautics Only</h3>
-          <p>Dream reception + alchemical practice. 35 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-oneironautics.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card agon">
-          <div class="indicator"></div>
-          <h3>Agon Only</h3>
-          <p>Structured adversarial reasoning. 8 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-agon.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card aletheia">
-          <div class="indicator"></div>
-          <h3>Aletheia Only</h3>
-          <p>Epistemic calibration. 7 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-aletheia.md" class="commands-badge">View on GitHub</a>
-        </div>
-
-        <div class="card mnemosyne">
-          <div class="indicator"></div>
-          <h3>Mnemosyne Only</h3>
-          <p>Cross-session memory. 7 commands.</p>
-          <a href="https://github.com/tylergarlick/abraxas/blob/main/constitution/constitution-mnemosyne.md" class="commands-badge">View on GitHub</a>
-        </div>
-      </div>
-
-      <div class="card left-border" style="margin-top: 2rem;">
-        <h3>Raw Constitution Files</h3>
-        <p>Direct access to all constitution files in the repository.</p>
-        <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="https://github.com/tylergarlick/abraxas/tree/main/constitution" class="btn btn-secondary">Browse constitution/</a>
-          <a href="https://raw.githubusercontent.com/tylergarlick/abraxas/main/constitution/constitution.md" class="btn btn-secondary">Full Constitution (raw)</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="frames">
-    <h2 class="section-header">Pre-built Frames</h2>
-    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-secondary);">
-      Use <code>/frame</code> to set session context. Load pre-built frames for specific roles or evaluation criteria.
-    </p>
-
-    <div class="grid">
-      <div class="frame-card">
-        <h4>skeptic</h4>
-        <p>Challenge assumptions. Be direct. No softening.</p>
-      </div>
-      <div class="frame-card">
-        <h4>learner</h4>
-        <p>Explain simply. Assume I'm new. No jargon.</p>
-      </div>
-      <div class="frame-card">
-        <h4>expert</h4>
-        <p>Skip basics. Go deep. Assume context.</p>
-      </div>
-      <div class="frame-card">
-        <h4>cautious</h4>
-        <p>Show risks first. What could go wrong?</p>
-      </div>
-      <div class="frame-card">
-        <h4>creative</h4>
-        <p>Take risks. Surprise me. Don't play it safe.</p>
-      </div>
-      <div class="frame-card">
-        <h4>collaborator</h4>
-        <p>Joint work. Debate me. Build together.</p>
-      </div>
-      <div class="frame-card">
-        <h4>evaluate-code</h4>
-        <p>Security, performance, correctness. Flag bugs.</p>
-      </div>
-      <div class="frame-card">
-        <h4>evaluate-argument</h4>
-        <p>Logic, evidence, assumptions. Find weaknesses.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="commands">
-    <h2 class="section-header">The Commands</h2>
-
-    <div class="grid">
-      <div class="command-card">
-        <h4>/check</h4>
-        <p>Fact-check the last response. Label every assertion.</p>
-      </div>
-      <div class="command-card">
-        <h4>/honest</h4>
-        <p>Force fully-labeled, anti-sycophantic output.</p>
-      </div>
-      <div class="command-card">
-        <h4>/frame</h4>
-        <p>Set session context. Declare facts or criteria.</p>
-      </div>
-      <div class="command-card">
-        <h4>/source</h4>
-        <p>Trace the evidence chain behind a claim.</p>
-      </div>
-      <div class="command-card">
-        <h4>/sol</h4>
-        <p>Force the Sol face — factual, labeled output.</p>
-      </div>
-      <div class="command-card">
-        <h4>/nox</h4>
-        <p>Force the Nox face — symbolic, labeled [DREAM].</p>
-      </div>
-      <div class="command-card">
-        <h4>/qualia</h4>
-        <p>Open the Qualia Bridge. Inspect system state.</p>
-      </div>
-      <div class="command-card">
-        <h4>/receive</h4>
-        <p>Receive a dream or image into the Temenos.</p>
-      </div>
-      <div class="command-card">
-        <h4>/agon debate</h4>
-        <p>Run Advocate + Skeptic cycle on any claim.</p>
-      </div>
-      <div class="command-card">
-        <h4>/aletheia confirm</h4>
-        <p>Mark a labeled claim as confirmed by evidence.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne archive</h4>
-        <p>Archive current session state to persistent storage.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne restore</h4>
-        <p>Restore a previous session from archive.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne recall</h4>
-        <p>Search and retrieve specific memories across sessions.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne link</h4>
-        <p>Link current session to Janus ledger or Aletheia records.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne Kairos</h4>
-        <p>Mark a decision point worth remembering across sessions.</p>
-      </div>
-      <div class="command-card">
-        <h4>/mnemosyne sync</h4>
-        <p>Synchronize current context with persistent memory.</p>
-      </div>
-    </div>
-
-    <h3 style="margin-top: 3rem; margin-bottom: 1.5rem; text-align: center;">Example Workflows</h3>
-
-    <div class="grid">
-      <div class="example-card">
-        <h4>/receive → /witness → /dialogue</h4>
-        <pre>Receive a dream
-Hold it without interpretation
-Open dialogue with an inner figure</pre>
-      </div>
-
-      <div class="example-card">
-        <h4>/frame → /honest → /audit</h4>
-        <pre>/frame [set context]
-/honest [question]
-[conversation]
-/audit [check everything]</pre>
-      </div>
-
-      <div class="example-card">
-        <h4>/sol → /check → /qualia</h4>
-        <pre>/sol [force epistemic mode]
-[answer the question]
-/check [fact-check it]
-/qualia [inspect the state]</pre>
-      </div>
-
-      <div class="example-card">
-        <h4>/agon debate → /aletheia confirm</h4>
-        <pre>Run adversarial debate on a claim
-Advocate and Skeptic produce verdict
-Later: confirm or disconfirm
-Ledger tracks accuracy over time</pre>
-      </div>
-
-      <div class="example-card">
-        <h4>/mnemosyne archive → /mnemosyne recall</h4>
-        <pre>/mnemosyne Kairos [mark important decision]
-[work on project across days]
-/mnemosyne recall [find previous context]
-/mnemosyne restore [resume from checkpoint]</pre>
-      </div>
-    </div>
-  </section>
-
-  <section id="workflow">
-    <h2 class="section-header">Getting Started</h2>
-
-    <div class="grid">
-      <div class="step">
-        <div class="step-number">01</div>
-        <h4>Install</h4>
-        <p>Unzip the .skill archives to ~/.claude/skills/ or load CONSTITUTION.md into any LLM.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">02</div>
-        <h4>Open</h4>
-        <p>Start a Claude Code session or open your LLM. The commands are now available.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-number">03</div>
-        <h4>Work</h4>
-        <p>Use /check, /honest, /frame, /receive, /sol, /nox. The system enforces epistemic integrity.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-brand">ABRAXAS</div>
-    <p class="footer-tagline">The totality of all forces, unified.</p>
-    <div class="footer-links">
-      <a href="https://github.com/tylergarlick/abraxas">GitHub</a>
-      <a href="research/05-research-paper.md">Research Paper</a>
-      <a href="https://github.com/tylergarlick/abraxas/tree/main/constitution">Constitution</a>
-      <a href="https://github.com/tylergarlick/abraxas/tree/main/skills">Skills</a>
-      <a href="/#/docs">Docs</a>
-      <a href="/#/docs/skills">Skills Docs</a>
-      <a href="/#/docs/architecture">Architecture</a>
-      <a href="../README">README</a>
-      <a href="/#/plan">Plan</a>
-    </div>
-  </footer>
+</main>
+
+<footer>
+  Abraxas — Named for the Gnostic deity who rules the cosmic forces of truth and illusion.<br>
+  Active development. All six systems are operational. — March 2026
+</footer>
 
 </body>
 </html>

@@ -1,5 +1,8 @@
 # SKILL.md — logos-math
 
+> **Note:** This skill is maintained in the [Abraxas repository](https://github.com/TylerGarlick/Abraxas).  
+> The canonical source is `skills/logos-math/` in Abraxas. This copy is a symlink.
+
 ## Mathematical Reasoning Verification
 
 ---

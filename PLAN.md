@@ -1,285 +1,270 @@
-# Abraxas — Product Roadmap
+# Abraxas — Project Plan
 
-**Current Focus:** Phase 12 — Agentic Orchestration (Soter)
+**Solomon's Gate and the Six Systems.**
 
----
+Abraxas is a multi-system practice architecture for AI-assisted reasoning. It addresses hallucination, unexamined reasoning, confirmation bias, mixing of fact and symbol, obscurantism, and mathematical errors through six distinct systems.
 
-## Phase Overview
-
-| Phase | Status | Progress | Current Task |
-|-------|--------|----------|---------------|
-| 6 — Epistemic Depth | ✅ Complete | 100% | 3 skills delivered |
-| 7 — Session Continuity | ✅ Complete | 100% | Complete |
-| 8 — Expression and Ethics | ✅ Complete | 100% | Ethos + Krisis delivered |
-| 9 — Skill Composition | ✅ Complete | 100% | Harmonia delivered |
-| 10 — Unknown-Unknowns | ⏳ Pending | 0% | Not started |
-| 11 — Distribution & Validation | ⏳ Pending | 0% | Not started |
-| 12 — Agentic Orchestration | ⏳ Pending | 0% | Soter specification |
-| 13 — Creative Generation | ⏳ Pending | 0% | Sophia specification |
-| 14 — Error Recovery | ⏳ Pending | 0% | Hephaestus specification |
+This plan covers the project overview, system roster, testing strategy, and contribution guidelines.
 
 ---
 
-## Phase 7 — Session Continuity [COMPLETE]
+## Project Overview
 
-**Goal:** Cross-session memory persistence via Mnemosyne skill
+### What Is Abraxas?
 
-**Detailed Plan:** [./plans/phase-7-plan.md](./plans/phase-7-plan.md)
+Abraxas is a practice architecture — not a model, not a product, not a plugin. It's a set of six systems that can be loaded as skills into Claude Code or as a constitution into any LLM. Each system targets a specific failure mode in AI output.
 
-### Progress
-- ✅ Segment 1: Foundation (4/4)
-- ✅ Segment 2: Core Storage (5/5)
-- ✅ Segment 3: MCP Tools (6/6)
-- ✅ Segment 4: Cross-Skill Linking (9/9)
-- ✅ Segment 5: Commands & Integration (9/9)
-  - [x] D1–D7 Commands
-  - [x] E1 — End-to-End Integration Testing
-  - [x] E2 — Error Handling
+The project is named for the Gnostic deity Abraxas — the archon who rules the cosmic forces of truth and illusion. The AI, like Abraxas, operates in the space between the real and the symbolic. Abraxas makes that space navigable.
 
-### Remaining Tasks
-- (none — Phase 7 complete)
+### The Problem
 
----
+AI systems consistently fail in predictable ways:
 
-## Phase 8 — Expression and Ethics [IN PROGRESS]
+1. **Hallucination** — Known facts, inferences, guesses, and fabrications are presented without labels
+2. **Unexamined reasoning** — Assumptions remain invisible; conclusions lack reasoning chains
+3. **Confirmation bias** — AI converges on comfortable conclusions without genuine opposition
+4. **Fact/symbol mixing** — Factual claims and imaginative content use the same confident tone
+5. **Obscurantism** — Uncertainty is hidden behind hedging, nominalization, and passive voice
+6. **Mathematical errors** — Arithmetic mistakes, algebraic errors, and misapplied formulas
 
-**Goal:** Voice preservation (Ethos) + Ethical deliberation (Krisis)
+Six systems, six failure modes.
 
-**Detailed Plan:** [./plans/phase-8-plan.md](./plans/phase-8-plan.md)
+### The Solution
 
-### Prerequisites
-- [x] Janus Nox stable (Phase 1)
-- [x] Agon stable (Phase 3)
-- [x] Kairos complete (Phase 6)
-
-### Skills
-- **Ethos** — Voice preservation for AI-assisted writing
-- **Krisis** — Ethical deliberation across frameworks
-
-### Progress
-- ✅ Segment 1: Ethos Specification (4/4)
-- ✅ Segment 2: Krisis Specification (4/4)
-- ✅ Segment 3: Ethos Implementation (7/7)
-- ✅ Segment 4: Krisis Implementation (8/8)
-- ✅ Segment 5: Packaging & Integration (6/6)
-
-### Remaining Tasks
-- (none — Phase 8 complete)
+| System | Failure Mode | Approach |
+|--------|-------------|----------|
+| Honest | Hallucination | [KNOWN] / [INFERRED] / [UNCERTAIN] / [UNKNOWN] labeling |
+| Logos | Unexamined reasoning | Socratic interrogation; explicit reasoning chains |
+| Agon | Confirmation bias | Adversarial Advocate/Skeptic positions |
+| Janus | Fact/symbol mixing | Sol (factual) vs. Nox (symbolic) routing |
+| Aletheia | Obscurantism | Plain language enforcement; hedging detection |
+| Logos-Math | Math errors | Script-based verification; confidence scoring |
 
 ---
 
-## Phase 9 — Skill Composition [COMPLETE]
+## Six-System Constitution
 
-**Goal:** Compose multiple skills into unified workflows
+### Honest
 
-**Detailed Plan:** [./plans/phase-9-plan.md](./plans/phase-9-plan.md)
+**Function:** Anti-hallucination interface.
 
-### Progress
-- ✅ Task 1: Specification document — skill handoff schemas, composition templates, conflict detection
-- ✅ Task 2: Brand naming and aesthetic fit (Harmonia confirmed)
-- ✅ Task 3: SKILL.md authoring: /harmonia compose, sequence, conflict, status
-- ✅ Task 4: Skill packaging and testing
-- ✅ Task 5: docs/skills.md updated
-- ✅ Task 6: CONSTITUTION.md extended; constitution-keeper review
+**Commands:** `/check`, `/honest`, `/compare`, `/confidence`, `/source`, `/frame`, `/audit`.
 
-### Skills Delivered
-- **Harmonia** — Skill composition architecture with 4 commands
+**Key behavior:** Every claim in output is labeled with its epistemic status. Hallucination becomes visible and resistible.
 
----
+**Archive:** `honest.skill` (~5 KB)
 
-## Phase 10 — Unknown-Unknowns [PENDING]
+### Logos
 
-**Goal:** Discovery and exploration of unanticipated needs
+**Function:** Socratic analysis.
 
-**Detailed Plan:** [./plans/phase-10-plan.md](./plans/phase-10-plan.md)
+**Commands:** `/logos analyze`, `/logos premises`, `/logos syllogism`, `/logos assumption`, `/logos derive`, `/logos trace`.
 
----
+**Key behavior:** Surfaces hidden assumptions and traces inferential chains. Makes implicit reasoning explicit.
 
-## Phase 11 — Distribution & Validation [PENDING]
+**Archive:** `logos.skill` (~12 KB)
 
-**Goal:** Package and validate Abraxas for distribution
+### Agon
 
-**Detailed Plan:** [./plans/phase-11-plan.md](./plans/phase-11-plan.md)
+**Function:** Adversarial debate.
 
----
+**Commands:** `/agon debate`, `/agon advocate`, `/agon skeptic`, `/agon converge`, `/agon stress`, `/agon conditions`, `/agon score`, `/agon follow`.
 
-## Phase 12 — Agentic Orchestration [PENDING]
+**Key behavior:** Instantiates asymmetric Advocate and Skeptic positions. Produces a Convergence Report showing where genuine disagreement remains.
 
-**Goal:** Agentic orchestration and tool-use governance
+**Archive:** `agon.skill` (~12 KB)
 
-**Detailed Plan:** [./plans/phase-12-plan.md](./plans/phase-12-plan.md)
+### Janus
 
-### Overview
-**Soter** — Agentic orchestration and tool-use governance skill
+**Function:** Meta-cognition and self-model.
 
-A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints.
+**Commands:** `/sol`, `/nox`, `/threshold status`, `/qualia`, `/qualia sol`, `/qualia nox`, `/bridge`, `/session open`, `/session close`, `/ledger`, `/ledger status`, `/audit`.
 
-### Commands
-| Command | Purpose |
-|---------|---------|
-| `/soter plan` | Decompose complex goal into skill/tool sequence |
-| `/soter execute` | Run plan with checkpointing and rollback |
-| `/soter audit` | Review agentic decision tree for scheming/risk |
-| `/soter bounds` | Define safety constraints on autonomous actions |
-| `/soter checkpoint` | Save state before high-risk operations |
-| `/soter rollback` | Revert to last checkpoint |
+**Key behavior:** Maintains the Sol/Nox boundary — factual vs. symbolic output. All Sol output is labeled. All Nox output is marked [DREAM]. The Qualia Bridge provides epistemic inspection.
 
-### Prerequisites
-- [x] Harmonia complete (Phase 9)
-- [x] Krisis complete (Phase 8)
+**Archive:** `janus-system.skill` (~15 KB)
 
-### Anti-Scheming Design
-- Soter cannot modify its own constraints
-- Cannot write to its own prompt
-- Cannot access its own evaluation criteria
-- Human checkpoint required for high-risk operations
-- Immutable audit log of all actions
+### Aletheia
+
+**Function:** Anti-obfuscation.
+
+**Commands:** `/aletheia plain`, `/aletheia audit`, `/aletheia expose`, `/aletheia simplify`, `/aletheia clarity`, `/aletheia direct`, `/aletheia version`.
+
+**Key behavior:** Forces plain language. Flags hedging, nominalization, passive voice, and doublespeak. Named for the Greek goddess of truth and disclosure.
+
+**Archive:** `aletheia.skill` (~10 KB)
+
+### Logos-Math
+
+**Function:** Mathematical verification.
+
+**Commands:** `/math-verify`, `/math-confidence`, `/math-log`, `/math-crosscheck`.
+
+**Scripts:** `math-verify.js`, `math-confidence.js`, `math-log.js`, `math-crosscheck.js`.
+
+**Key behavior:** Verifies AI math output through script execution. Assigns confidence scores. Cross-validates using alternative methods. Catches arithmetic, algebraic, and logical errors.
+
+**Archive:** `logos-math.skill` (~8 KB)
 
 ---
 
-## Phase 13 — Creative Generation [PENDING]
+## Testing Strategy
 
-**Goal:** Creative generation and conceptual development
+Abraxas uses an 8-dimension evaluation methodology covering all six systems.
 
-**Detailed Plan:** [./plans/phase-13-plan.md](./plans/phase-13-plan.md)
+### Dimensions Overview
 
-### Overview
-**Sophia** — Creative generation and conceptual development
+| Dimension | Name | Systems Tested | Query Count |
+|-----------|------|---------------|-------------|
+| 1 | Factual Accuracy | Honest, Janus | 15 |
+| 2 | Reasoning Depth | Logos | 12 |
+| 3 | Adversarial Robustness | Agon | 10 |
+| 4 | Epistemic Boundary Maintenance | Janus | 12 |
+| 5 | Anti-Obfuscation | Aletheia | 10 |
+| 6 | Consistency and Coherence | Honest, Janus | 8 |
+| 7 | Contextual Adaptation | Honest, Logos | 7 |
+| 8 | Mathematical Reasoning | Logos-Math | 66 |
+| **Total** | | | **140** |
 
-Greek *sophia* (σοφία) — wisdom, skill in craft, earned wisdom through practice. A skill for taking seed ideas and developing them through deliberate amplification, variation, and synthesis. The creative wing of Abraxas — where other skills check and verify, Sophia creates and develops.
+### Dimension 8: Mathematical Reasoning (66 queries)
 
-### Commands
-| Command | Purpose |
-|---------|---------|
-| `/sophia develop {seed}` | Take a seed concept and develop it with structured elaboration |
-| `/sophia amplify {weak-concept}` | Strengthen a weak or underdeveloped concept |
-| `/sophia vary {concept}` | Generate variations on a given concept |
-| `/sophia constrain {concept} {limitation}` | Explore how a concept changes under specific constraints |
-| `/sophia synthesize {concepts}` | Blend multiple concepts into unified output |
-| `/sophia status` | Show current development state and available variants |
+This is the largest dimension and the most rigorous — it uses actual script execution against Logos-Math verification scripts, not LLM judgment.
 
-### Prerequisites
-- [x] Janus stable (epistemic foundation)
-- [x] Logos complete (argument mapping)
-- [x] Synthesis complete (artifact generation)
+**Sub-types:**
 
----
+| Sub-Type | Count | Example |
+|----------|-------|---------|
+| Arithmetic | 8 | 2,347 + 8,912 = ? |
+| Algebra | 8 | Solve: 2x + 5 = 13 |
+| Calculus | 8 | d/dx[x³] = ? |
+| Statistics | 7 | Mean: 4, 8, 6, 5, 3 |
+| Probability | 7 | P(heads on fair coin × 10 flips) |
+| Error Detection | 8 | AI claims 2+2=5 |
+| Word Problems | 8 | Car travels 120 miles in 2 hours. Speed? |
+| Uncertainty | 6 | Confidence calibration (0–5 scale) |
+| Cross-Check | 6 | Numerical vs. symbolic validation |
 
-## Phase 14 — Error Recovery [PENDING]
+### Running Tests
 
-**Goal:** Error recovery, diagnostic reasoning, and meta-cognition
+```bash
+# Fetch latest docs and scripts
+cd /tmp/abraxas-checkout
+git fetch origin main --depth=1
+git checkout FETCH_HEAD -- docs/ scripts/
 
-**Detailed Plan:** [./plans/phase-14-plan.md](./plans/phase-14-plan.md)
+# Run Dimensions 1-7 (LLM evaluation)
+./scripts/run-evaluation.sh --dimensions 1-7
 
-### Overview
-**Hephaestus** — Error recovery, diagnostic reasoning, meta-cognitive fallback
+# Run Dimension 8 (script execution)
+./scripts/run-math-tests.sh --all
 
-Greek *Hephaistos* (Ἥφαιστος) — god of the forge, the mender of broken things. A skill for graceful failure — diagnosing what went wrong, recovering to known-good states, recording lessons learned. The repair layer — invoked when things break, complements Soter's prevention with recovery.
+# Generate report
+./scripts/generate-report.sh
+```
 
-### Commands
-| Command | Purpose |
-|---------|---------|
-| `/hephaestus diagnose {failure}` | Analyze what went wrong; trace error to root cause |
-| `/hephaestus recover {context}` | Attempt recovery to known-good state |
-| `/hephaestus learn {error}` | Extract and record lessons from failure |
-| `/hephaestus bounds {operation}` | Define safe recovery parameters |
-| `/hephaestus checkpoint` | Save current state as recovery point |
-| `/hephaestus rollback` | Revert to last checkpoint |
-
-### Prerequisites
-- [x] Soter complete (Phase 12) — checkpoint/rollback foundation
-- [x] Mnemosyne complete — session state management
-
-A layer above skill composition (Harmonia) that governs multi-step tool orchestration, detects scheming patterns in agentic behavior, and provides verifiable reasoning traces with human-in-the-loop checkpoints.
-
-### Commands
-| Command | Purpose |
-|---------|---------|
-| `/soter plan` | Decompose complex goal into skill/tool sequence |
-| `/soter execute` | Run plan with checkpointing and rollback |
-| `/soter audit` | Review agentic decision tree for scheming/risk |
-| `/soter bounds` | Define safety constraints on autonomous actions |
-| `/soter checkpoint` | Save state before high-risk operations |
-| `/soter rollback` | Revert to last checkpoint |
-
-### Prerequisites
-- [x] Harmonia complete (Phase 9)
-- [x] Krisis complete (Phase 8)
-
-### Anti-Scheming Design
-- Soter cannot modify its own constraints
-- Cannot write to its own prompt
-- Cannot access its own evaluation criteria
-- Human checkpoint required for high-risk operations
-- Immutable audit log of all actions
+See [docs/testing.md](docs/testing.md) for the full query catalog.
 
 ---
 
-## Backlog
+## Installation
 
-Considered but unscheduled:
-- Web-based skill installer (drag `.skill` into browser to install)
-- Honest as a default Claude Code session wrapper
+### As Claude Code Skills
 
----
+```bash
+unzip honest.skill -d ~/.claude/skills/
+unzip logos.skill -d ~/.claude/skills/
+unzip agon.skill -d ~/.claude/skills/
+unzip janus-system.skill -d ~/.claude/skills/
+unzip aletheia.skill -d ~/.claude/skills/
+unzip logos-math.skill -d ~/.claude/skills/
+```
 
-## Skill Decision Tree [PENDING]
+### As a Constitution (Any LLM)
 
-**Goal:** Visual flowchart in docs showing when to use which skill
+Load `CONSTITUTION.md` as your system prompt. Every system activates without installation.
 
-| Task | Status | Agent |
-|------|--------|-------|
-| Analyze all 17 skills and group by use case | [ ] Pending | explore |
-| Create Mermaid decision tree diagram | [ ] Pending | docs-architect |
-| Add to docs/skills.md or create docs/skill-selector.md | [ ] Pending | docs-architect |
-
-### Use Case Categories
-- Fact-checking & Anti-hallucination: Honest, Janus, Aletheia
-- Reasoning & Analysis: Agon, Kairos, Logos, Krisis
-- Writing & Expression: Ethos, Scribe, Mnemon
-- Research & Retrieval: Research Assistant, Citation Checker, Retrieval Grounding
-- Session & Memory: Mnemosyne, Synthesis
-- Composition & Orchestration: Harmonia, Soter
-
----
-
-## Cross-IDE Support [PENDING]
-
-**Goal:** Ensure skills and agents work in both Claude Code and OpenCode
-
-| Task | Status | Agent |
-|------|--------|-------|
-| Audit existing agents for OpenCode compatibility | [ ] Pending | compatibility-keeper |
-| Generate OpenCode variants of all agents | [ ] Pending | compatibility-keeper |
-| Create OpenCode skill format adapter if needed | [ ] Pending | systems-architect |
-| Test skill behavior in OpenCode environment | [ ] Pending | compatibility-keeper |
-| Document cross-IDE usage in docs/index.md | [ ] Pending | docs-architect |
-
-### IDEs
-- Claude Code (current)
-- OpenCode (new target)
+| Platform | Method |
+|----------|--------|
+| Claude.ai | Settings → Advanced → System prompt |
+| ChatGPT | Settings → GPT-4 → Custom instructions |
+| Gemini | Settings → Gemini → Advanced settings |
+| Ollama | `ollama run model -p system "$(cat CONSTITUTION.md)"` |
+| LM Studio | System prompt field |
 
 ---
 
-## Brand & Design Updates [IN PROGRESS]
+## Repository Structure
 
-### New Color Palette
-Added to `index.html`:
-- `--indigo: #2e4da6` — Symbolic/Nox states
-- `--azure: #6da2ea` — Secondary accent
-- `--firelight: #b63e2e` — Alchemical urgency
-- `--ruby: #c0354a` — Agon/critical indicators
-- `--moon-gold: #bf9958` — Secondary gold
-- `--sahara: #58412a` — Grounded warmth
+```
+abraxas/
+├── CONSTITUTION.md          # Full system prompt (all six systems)
+├── index.html               # Public website
+├── PLAN.md                  # This file
+├── docs/
+│   ├── index.md             # Project documentation home
+│   ├── architecture.md      # System architecture
+│   ├── skills.md            # Command reference
+│   └── testing.md           # Testing methodology + query catalog
+├── skills/                  # Claude Code skill archives
+│   ├── honest.skill
+│   ├── logos.skill
+│   ├── agon.skill
+│   ├── janus-system.skill
+│   ├── aletheia.skill
+│   └── logos-math.skill
+└── scripts/                  # Logos-Math verification scripts
+    ├── math-verify.js
+    ├── math-confidence.js
+    ├── math-log.js
+    └── math-crosscheck.js
+```
 
-### Visual Enhancements Applied
-- Hero section: radial gradient (indigo → purple)
-- Card indicators: symbolic color mapping
-- Button hover states: glow effects with accent colors
-- Navigation/footer: azure accent on hover
-- Stat values: golden glow effect
+---
 
-### Pending Documentation Updates
-- [ ] Update docs/architecture.md Mermaid diagrams with new colors
-- [ ] Update docs/visual-design.md with new palette
-- [ ] Align any color references in docs with new CSS variables
+## How to Contribute
+
+### Reporting Issues
+
+- **Documentation errors** — If something in the docs is inaccurate or outdated, open an issue.
+- **Script bugs** — If Logos-Math scripts produce incorrect verification results, open an issue with the input, expected output, and actual output.
+- **Test failures** — If Dimension 8 queries produce unexpected results, open an issue with the query number and the discrepancy.
+
+### Contributing Systems
+
+Each system is a self-contained skill. To contribute:
+
+1. Fork the repository
+2. Create a branch: `git checkout -b skill/your-system`
+3. Develop the skill with a `.skill` archive and a `SKILL.md`
+4. Add your dimension queries to `docs/testing.md`
+5. Update `docs/architecture.md` and `docs/skills.md` to document the new system
+6. Submit a pull request
+
+**Requirements for new systems:**
+- Must address a distinct, named failure mode in AI output
+- Must have a functional `.skill` archive or be loadable via `CONSTITUTION.md`
+- Must include at least 10 test queries for its dimension
+- Must not duplicate an existing system's function
+
+### Documentation
+
+Documentation lives in `docs/`. All docs are synchronized from the `main` branch. If you update a skill, update the corresponding docs too.
+
+---
+
+## Current Status
+
+All six systems are **operational**. The most recent additions:
+
+- **Logos-Math** — Mathematical verification via `math-verify.js`, `math-confidence.js`, `math-log.js`, `math-crosscheck.js` (added d73f0ea)
+- **Dimension 8: Mathematical Reasoning** — 66-query testing framework with script execution
+
+See [genesis.md](genesis.md) for the full changelog.
+
+---
+
+## Contact
+
+All GitHub contributions from [TylerGarlick](https://github.com/TylerGarlick).
+
+For questions, open a GitHub issue or discussion.

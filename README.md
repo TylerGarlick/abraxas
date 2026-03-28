@@ -2,7 +2,25 @@
 
 **Phase 1: Logos + Ergon Systems**
 
-Abraxas v3 provides empirical verification for claims through compositional analysis and tool-use verification.
+Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
+
+## Skills
+
+| Skill | Purpose |
+|-------|---------|
+| **logos** | Argument anatomy: map structure, find gaps, surface assumptions |
+| **logos-math** | Verify quantitative claims: step-by-step derivation, confidence labeling, cross-checking |
+| **logos-verification** | Claim verification against sources |
+| **janus** | Epistemic labeling: [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN] |
+| **agon** | Adversarial stress-testing of claims |
+| **aletheia** | Truth tracking and ledger |
+| **ethos** | Source credibility assessment |
+| **hermes** | Interpretation and ambiguity resolution |
+| **kairos** | Timing and relevance judgment |
+| **pheme** | Rumor and claim tracking |
+| **soter** | Safety and risk evaluation |
+| **mnemosyne** | Memory and context management |
+| **ergon** | Tool-use verification and execution |
 
 ## Architecture
 
@@ -18,7 +36,32 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 │ L3: Aggregation         │ E3: Failure Detection             │
 │ L4: Honest Integration  │ E4: API                           │
 └─────────────────────────┴───────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│              logos-math (Mathematical Verification)        │
+├─────────────────────────┬───────────────────────────────────┤
+│ math-verify             │ Full step-by-step derivation      │
+│ math-confidence         │ Lightweight epistemic assessment  │
+│ math-crosscheck         │ Multi-method verification          │
+│ math-log                │ Persistent audit trail             │
+└─────────────────────────┴───────────────────────────────────┘
 ```
+
+### logos-math in the Pipeline
+
+logos-math integrates with the Abraxas pipeline as follows:
+
+```
+Claim → Logos (map structure) → logos-math (verify quantitative nodes)
+         → Janus (propagate labels) → Aletheia (truth record)
+         → Agon (adversarial stress-testing)
+```
+
+- **Logos** identifies quantitative claims as argument nodes
+- **logos-math** verifies each node: [VERIFIED] / [DERIVED] / [ESTIMATED] / [UNVERIFIED]
+- **Janus** propagates labels across the argument graph
+- **Aletheia** writes verification records to the truth ledger
+- **Agon** challenges quantitative weaknesses; logos-math responds with derivation
 
 ## Quick Start
 
