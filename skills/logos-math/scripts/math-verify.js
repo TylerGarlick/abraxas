@@ -36,8 +36,16 @@ function parseClaim(claim) {
   if (lower.includes('probability') || lower.includes('p(') || lower.includes('coin')) {
     return { type: 'probability', raw: claim };
   }
-  if (lower.includes('=') && !lower.includes('approx')) {
-    return { type: 'equation', raw: claim };
+  // Check for claims with equals sign
+  if (lower.includes('=')) {
+    // Check if claim contains a variable (x, y, z) or function (sin, cos, tan, log, ln)
+    // Variable x in "3x" follows a digit, so we check for various patterns
+    const hasVariable = /\d[xzy]|[xzy]\d|(?<![a-zA-Z0-9])[xzy](?![a-zA-Z0-9])|(?<=\d)[xzy]|[xzy](?=\s*[+\-*\/^=])/i.test(claim) || /\b(sin|cos|tan|log|ln)\b/i.test(claim);
+    if (hasVariable) {
+      return { type: 'equation', raw: claim }; // "3x + 7 = 22"
+    } else {
+      return { type: 'algebra', raw: claim };  // "137 + 243 = 380"
+    }
   }
   
   return { type: 'algebra', raw: claim };
@@ -48,7 +56,7 @@ function parseClaim(claim) {
  */
 function verify(claim) {
   const parsed = parseClaim(claim);
-  const steps = [];
+  let steps = [];
   let result, computed, confidence, metadata = {};
   
   try {
@@ -65,8 +73,14 @@ function verify(claim) {
       case 'probability':
         ({ steps, computed, result, confidence } = solveProbability(parsed.raw, steps));
         break;
-      case 'equation':
+          case 'equation':
+        // Equations with variables (e.g., "3x + 7 = 22") are solved with solveEquation
+        // Plain arithmetic (e.g., "137 + 243 = 380") are handled by simplifyAlgebra
         ({ steps, computed, result, confidence } = solveEquation(parsed.raw, steps));
+        break;
+      case 'algebra':
+        // Plain arithmetic claims: "137 + 243 = 380"
+        ({ steps, computed, result, confidence } = simplifyAlgebra(parsed.raw, steps));
         break;
       default:
         ({ steps, computed, result, confidence } = simplifyAlgebra(parsed.raw, steps));
@@ -158,7 +172,125 @@ function solveIntegral(claim, steps) {
 }
 
 function solveDerivative(claim, steps) {
-  steps.push({ description: 'Parse derivative claim', result: 'Derivative verification stub' });
+  // Parse: "derivative of <expr> at x = <val> = <expected>" or "derivative of <expr> at x = <val>"
+  const fullMatch = claim.match(/derivative of\s+(.+?)\s+at\s+x\s*=\s*(-?\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)/i);
+  const partialMatch = claim.match(/derivative of\s+(.+?)\s+at\s+x\s*=\s*(-?\d+\.?\d*)/i);
+  
+  if (!partialMatch) {
+    steps.push({ description: 'Parse derivative claim', result: 'Could not parse derivative form' });
+    return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
+  }
+  
+  const expr = fullMatch ? fullMatch[1] : partialMatch[1];
+  const xVal = parseFloat(fullMatch ? fullMatch[2] : partialMatch[2]);
+  const expected = fullMatch ? parseFloat(fullMatch[3]) : null;
+  
+  steps.push({
+    step: steps.length + 1,
+    description: `Expression: ${expr}`,
+    transformation: 'parse',
+    result: `f(x) = ${expr}`
+  });
+  
+  // Compute derivative using power rule
+  // Handle: x^n -> n*x^(n-1)
+  const powerMatch = expr.match(/^x\s*\^\s*(\d+)$/);
+  
+  if (powerMatch) {
+    const n = parseInt(powerMatch[1]);
+    const derivativeExpr = n === 1 ? '1' : (n === 2 ? '2x' : `${n}x^${n-1}`);
+    const computed = n * Math.pow(xVal, n - 1);
+    
+    steps.push({
+      step: steps.length + 1,
+      description: `Apply power rule: d/dx[x^${n}] = ${n}x^${n-1}`,
+      transformation: 'power rule',
+      result: derivativeExpr
+    });
+    
+    steps.push({
+      step: steps.length + 2,
+      description: `Evaluate at x = ${xVal}: ${n}(${xVal})^${n-1}`,
+      transformation: 'substitution',
+      result: computed.toFixed(6)
+    });
+    
+    if (expected !== null) {
+      const match_result = Math.abs(computed - expected) < 1e-10 ? 'match' : 'mismatch';
+      steps.push({
+        step: steps.length + 1,
+        description: `Expected: ${expected}, Computed: ${computed.toFixed(6)}`,
+        transformation: 'comparison',
+        result: match_result
+      });
+      
+      return {
+        steps,
+        computed: computed.toFixed(6),
+        result: match_result,
+        confidence: match_result === 'match' ? 'VERIFIED' : 'DERIVED'
+      };
+    }
+    
+    return {
+      steps,
+      computed: computed.toFixed(6),
+      result: 'INCONCLUSIVE',
+      confidence: 'UNVERIFIED'
+    };
+  }
+
+  // Handle simple polynomial like 2x, 3x^2, etc.
+  const polyMatch = expr.match(/^(-?\d+\.?\d*)?\s*x\s*\^\s*(\d+)$/);
+  
+  if (polyMatch) {
+    const coeff = parseFloat(polyMatch[1] || '1');
+    const n = parseInt(polyMatch[2]);
+    const derivativeCoeff = coeff * n;
+    const derivativeExpr = derivativeCoeff === 1 ? (n === 2 ? '2x' : `${n}x^${n-1}`) : `${derivativeCoeff}x^${n-1}`;
+    const computed = derivativeCoeff * Math.pow(xVal, n - 1);
+    
+    steps.push({
+      step: steps.length + 1,
+      description: `Apply power rule: d/dx[${coeff}x^${n}] = ${derivativeCoeff}x^${n-1}`,
+      transformation: 'power rule',
+      result: derivativeExpr
+    });
+    
+    steps.push({
+      step: steps.length + 2,
+      description: `Evaluate at x = ${xVal}`,
+      transformation: 'substitution',
+      result: computed.toFixed(6)
+    });
+    
+    if (expected !== null) {
+      const match_result = Math.abs(computed - expected) < 1e-10 ? 'match' : 'mismatch';
+      steps.push({
+        step: steps.length + 1,
+        description: `Expected: ${expected}, Computed: ${computed.toFixed(6)}`,
+        transformation: 'comparison',
+        result: match_result
+      });
+      
+      return {
+        steps,
+        computed: computed.toFixed(6),
+        result: match_result,
+        confidence: match_result === 'match' ? 'VERIFIED' : 'DERIVED'
+      };
+    }
+    
+    return {
+      steps,
+      computed: computed.toFixed(6),
+      result: 'match',
+      confidence: 'UNVERIFIED'
+    };
+  }
+
+  // If we can't parse, return inconclusive
+  steps.push({ description: 'Parse derivative', result: 'Could not parse expression' });
   return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
 }
 
@@ -362,12 +494,48 @@ function solveEquation(claim, steps) {
     return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
   }
 
-  return { steps, computed: x.toFixed(6), result: 'MATCH', confidence: 'VERIFIED' };
+  return { steps, computed: x.toFixed(6), result: 'match', confidence: 'VERIFIED' };
 }
 
 function simplifyAlgebra(claim, steps) {
   // Basic arithmetic verification
-  const evalMatch = claim.match(/(-?\d+\.?\d*)\s*([+\-*/^])\s*(-?\d+\.?\d*)/);
+  // Handle "num op num = expected" form first
+  const equalityMatch = claim.match(/^(-?\d+\.?\d*)\s*([+\-*/^])\s*(-?\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)$/);
+  
+  if (equalityMatch) {
+    const [, a, op, b, expected] = equalityMatch;
+    const numA = parseFloat(a);
+    const numB = parseFloat(b);
+    const expectedVal = parseFloat(expected);
+    let computed;
+    
+    switch (op) {
+      case '+': computed = numA + numB; break;
+      case '-': computed = numA - numB; break;
+      case '*': computed = numA * numB; break;
+      case '/': computed = numB !== 0 ? numA / numB : Infinity; break;
+      case '^': computed = Math.pow(numA, numB); break;
+    }
+    
+    steps.push({
+      step: steps.length + 1,
+      description: `${numA} ${op} ${numB} = ${expected}`,
+      transformation: 'arithmetic',
+      result: computed.toFixed(6)
+    });
+    
+    const match_result = Math.abs(computed - expectedVal) < 1e-10 ? 'match' : 'mismatch';
+    
+    return {
+      steps,
+      computed: computed.toFixed(6),
+      result: match_result,
+      confidence: match_result === 'match' ? 'VERIFIED' : 'DERIVED'
+    };
+  }
+  
+  // Try simple "num op num" form without equals
+  const evalMatch = claim.match(/^(-?\d+\.?\d*)\s*([+\-*/^])\s*(-?\d+\.?\d*)$/);
   
   if (evalMatch) {
     const [, a, op, b] = evalMatch;

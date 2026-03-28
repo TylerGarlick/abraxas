@@ -18,9 +18,26 @@ function runScript(scriptName, args = []) {
       encoding: 'utf8',
       timeout: 10000
     });
-    return { success: true, output };
+    // Parse result from output
+    let result = null;
+    const lines = output.split('\n');
+    for (const line of lines) {
+      // Match [STATUS] format: [VERIFIED] MATCH
+      const bracketMatch = line.match(/^\[([A-Z]+)\]\s+(\w+)/);
+      if (bracketMatch) {
+        result = bracketMatch[2].toLowerCase();
+        break;
+      }
+      // Match JSON with result field
+      const jsonMatch = line.match(/"result"\s*:\s*"([^"]+)"/);
+      if (jsonMatch) {
+        result = jsonMatch[1];
+        break;
+      }
+    }
+    return { success: true, output, result };
   } catch (e) {
-    return { success: false, output: e.stdout || '', error: e.stderr || e.message };
+    return { success: false, output: e.stdout || e.stderr || '', error: e.stderr || e.message, result: null, exitCode: e.status };
   }
 }
 
@@ -30,6 +47,20 @@ function parseOutput(output) {
     const jsonMatch = output.match(/\{[\s\S]*"claim"[\s\S]*\}/);
     if (jsonMatch) {
       return JSON.parse(jsonMatch[0]);
+    }
+    // Parse bracket format: [CONFIDENCE] RESULT
+    const bracketMatches = [...output.matchAll(/\[([A-Z]+)\]/g)];
+    if (bracketMatches.length >= 2) {
+      return {
+        confidence: bracketMatches[0][1],
+        result: bracketMatches[1][1].toLowerCase()
+      };
+    }
+    if (bracketMatches.length === 1) {
+      // Single tag could be [CONFIDENCE] format with no result
+      return {
+        confidence: bracketMatches[0][1]
+      };
     }
     return null;
   } catch (e) {
