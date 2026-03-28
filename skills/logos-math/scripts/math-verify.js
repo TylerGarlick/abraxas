@@ -103,14 +103,14 @@ function solveIntegral(claim, steps) {
   }
   
   const [, integrand, a, b] = match;
-  const lower = parseFloat(a);
+  const lowerInt = parseFloat(a);
   const upper = parseFloat(b);
   
   steps.push({
     step: steps.length + 1,
     description: `Identify integrand: ${integrand}`,
     transformation: 'pattern match',
-    result: `∫${integrand} dx from ${lower} to ${upper}`
+    result: `∫${integrand} dx from ${lowerInt} to ${upper}`
   });
   
   // Simple power rule integration
@@ -135,12 +135,13 @@ function solveIntegral(claim, steps) {
     }
     
     // Evaluate definite integral
-    const antiderivative = n === 1 ? [upper**2/2, lower**2/2] : [upper**3/3, lower**3/3];
-    const result = antiderivative[0] - antiderivative[1];
+    const antiderivative = n === 1 ? [upper**2/2, lowerInt**2/2] : [upper**3/3, lowerInt**3/3];
+    const nPlus1 = n + 1;
+    const result = upper**nPlus1/(nPlus1) - lowerInt**nPlus1/(nPlus1);
     
     steps.push({
       step: steps.length + 1,
-      description: `Evaluate definite integral: F(${upper}) - F(${lower})`,
+      description: `Evaluate definite integral: F(${upper}) - F(${lowerInt})`,
       transformation: 'F(b) - F(a)',
       result: result.toFixed(6)
     });
@@ -322,47 +323,46 @@ function solveProbability(claim, steps) {
 }
 
 function solveEquation(claim, steps) {
-  // Parse: "Solve for x: 3x + 7 = 22" or "3x + 7 = 22"
+  // Parse: "3x + 7 = 22" or "solve for x: 3x + 7 = 22"
+  // Forms: ax + b = c, ax = c, x + b = c
   const match = claim.match(/(?:solve for x:?\s*)?(-?\d+\.?\d*)\s*x\s*([+-])\s*(\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)/i)
-             || claim.match(/(?:solve for x:?\s*)?(\d+\.?\d*)\s*x\s*=\s*(-?\d+\.?\d*)/i);
-  
-  if (match) {
-    if (match.length === 3) {
-      // ax = b
-      const a = parseFloat(match[1]);
-      const b = parseFloat(match[2]);
-      const x = b / a;
-      
-      steps.push({
-        step: steps.length + 1,
-        description: `${a}x = ${b}`,
-        transformation: 'isolate x',
-        result: `x = ${x.toFixed(6)}`
-      });
-      
-      return { steps, computed: x.toFixed(6), result: 'match', confidence: 'VERIFIED' };
-    } else if (match.length === 4) {
-      // ax + b = c
-      const a = parseFloat(match[1]);
-      const op = match[2];
-      const b = parseFloat(match[3]);
-      const c = parseFloat(match[4]);
-      const bVal = op === '+' ? b : -b;
-      const x = (c - bVal) / a;
-      
-      steps.push({
-        step: steps.length + 1,
-        description: `${a}x ${op} ${b} = ${c}`,
-        transformation: 'isolate x',
-        result: `x = ${x.toFixed(6)}`
-      });
-      
-      return { steps, computed: x.toFixed(6), result: 'match', confidence: 'VERIFIED' };
-    }
+             || claim.match(/(?:solve for x:?\s*)?(-?\d+\.?\d*)\s*x\s*=\s*(-?\d+\.?\d*)/i)
+             || claim.match(/(?:solve for x:?\s*)?x\s*([+-])\s*(\d+\.?\d*)\s*=\s*(-?\d+\.?\d*)/i);
+
+  if (!match) {
+    steps.push({ description: 'Parse equation', result: 'Could not parse linear form' });
+    return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
   }
-  
-  steps.push({ description: 'Parse equation', result: 'Could not parse' });
-  return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
+
+  let x, a, bVal, c;
+
+  if (match.length === 4 && match[1] === '') {
+    // x + b = c form
+    const op = match[2];
+    bVal = op === '+' ? parseFloat(match[3]) : -parseFloat(match[3]);
+    c = parseFloat(match[4]);
+    x = c - bVal;
+    steps.push({ step: steps.length + 1, description: `x ${op} ${Math.abs(bVal)} = ${c}`, transformation: 'x = c - b', result: `x = ${x.toFixed(6)}` });
+  } else if (match.length === 3) {
+    // ax = c
+    a = parseFloat(match[1]);
+    c = parseFloat(match[2]);
+    x = c / a;
+    steps.push({ step: steps.length + 1, description: `${a}x = ${c}`, transformation: 'x = c / a', result: `x = ${x.toFixed(6)}` });
+  } else if (match.length === 5) {
+    // ax + b = c
+    a = parseFloat(match[1]);
+    const op = match[2];
+    bVal = op === '+' ? parseFloat(match[3]) : -parseFloat(match[3]);
+    c = parseFloat(match[4]);
+    x = (c - bVal) / a;
+    steps.push({ step: steps.length + 1, description: `${a}x ${op} ${Math.abs(bVal)} = ${c}`, transformation: 'x = (c - b) / a', result: `x = ${x.toFixed(6)}` });
+  } else {
+    steps.push({ description: 'Parse equation', result: 'Could not parse' });
+    return { steps, computed: null, result: 'INCONCLUSIVE', confidence: 'UNVERIFIED' };
+  }
+
+  return { steps, computed: x.toFixed(6), result: 'MATCH', confidence: 'VERIFIED' };
 }
 
 function simplifyAlgebra(claim, steps) {
