@@ -4,7 +4,7 @@
 
 set -e
 
-REPO="/home/ubuntu/.openclaw/workspace/outerspace/research"
+REPO="/home/ubuntu/.openclaw/projects/outerspace/research"
 DATE=$(date +%Y-%m-%d)
 YEAR=$(date +%Y)
 MONTH=$(date +%m)

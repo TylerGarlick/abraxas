@@ -33,7 +33,7 @@ Generates a morning (6AM MST) and evening (5PM MST) briefing saved to the resear
 ```
 
 ## Repository
-- Path: `/home/ubuntu/.openclaw/workspace/outerspace/research/{YYYY}/{MM}/{DD}/`
+- Path: `/home/ubuntu/.openclaw/projects/outerspace/research/{YYYY}/{MM}/{DD}/`
 - Files: `morning-briefing.md`, `evening-briefing.md`
 - Created if they don't exist
 
