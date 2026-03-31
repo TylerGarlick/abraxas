@@ -1,0 +1,5 @@
+[2026-03-28 13:44 UTC] CRON FAILURE: mission-control overdue poll - status.js not found (exit code 1). Alert script also not found.
+[2026-03-29 02:14 UTC] Mission Control - Overdue Poll FAILED: status.js not found at /home/ubuntu/.openclaw/workspace/mission-control/scripts/status.js
+[2026-03-29 16:14 UTC] Mission Control - Overdue Poll FAILED: status.js not found at /home/ubuntu/.openclaw/workspace/mission-control/scripts/status.js (exit code 1). Alert script also not found.
+[2026-03-30 06:00 UTC] CRON FAILURE: Abraxas Morning Research - 6AM UTC - abraxas-research/research.js not found. Alert script also not found.
+[2026-03-30 06:00 UTC] CRON FAILURE: Abraxas Morning Research failed - research.js not found at /home/ubuntu/.openclaw/skills/abraxas-research/research.js. Also, cron-failure-alert.js not found. This cron job appears misconfigured - it references paths that don't exist.
