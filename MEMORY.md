@@ -95,9 +95,33 @@ Full task orchestration system with factories, subagents, cron jobs, retrospecti
 ## Skills on GitHub
 All skills pushed to `tylergarlick/mary-jane` private repo.
 
+## Task Commands (Critical — Must Remember)
+
+T uses a `Task:` command syntax for all project work:
+
+**Syntax:**
+- `Task: <prompt>` — spawns isolated subagent for background work
+- `Task: Project: <prompt>` — spawns subagent, infers repo from Project name
+- `Task: Abraxas: <prompt>` — work done in Abraxas repo (`/tmp/abraxas-checkout/`)
+- `Task: curiosity-hour: <prompt>` — work done in curiosity-hour repo
+- `Task: outerspace: <prompt>` — work done in outerspace repo
+
+**Behavior:**
+- ALWAYS spawns isolated subagent (mode="run") — never runs in main session
+- If project qualifier is ambiguous/unrecognized, ASK T to clarify
+- Task + subtasks created in Mission Control (`tasks.json`)
+- Subagent killed when work is done
+- Mission Control has subagent control mechanism (list, kill, inspect)
+
+**Project repo mapping:**
+- `Abraxas` → `/tmp/abraxas-checkout/` (git clone --depth 1 each session)
+- `curiosity-hour` → clone on demand
+- `outerspace` → clone on demand
+- Unknown → ask T
+
 ## Critical Rules (Must Remember Every Session)
 1. **All GitHub contributions from TylerGarlick** — always use his username
-2. **ALWAYS spawn isolated subagent for every task** — never do factory work in main session
+2. **ALWAYS spawn isolated subagent for every `Task:` command** — never do factory work in main session
 3. **Task pipeline:** Task → define done criteria → spawn subagent → retrospective-enforcer → task-verifier → report to T
 4. **Retrospective-enforcer runs after EVERY subagent completes** — log to lessons-learned.json
 5. **Definition of done written FIRST** — before spawning any subagent
@@ -105,6 +129,7 @@ All skills pushed to `tylergarlick/mary-jane` private repo.
 7. **Don't make things up** — verify before declaring done
 8. **task-preflight fires before every task** — ask all clarifying questions, write definition of done, confirm before spawning
 9. **project-router infers the repo from task context** — if ambiguous, ask T to specify before proceeding
+10. **Remember the Task: command pattern** — see "Task Commands" section above
 
 ## Lesson Log (2026-03-24)
 - Direct HTTPS to Brave API is blocked in this environment — web_search tool works through OpenClaw
