@@ -4,10 +4,10 @@ Note: Some tests may fail due to API mismatches discovered during testing.
 These are documented issues in the codebase, not test bugs.
 """
 import pytest
-from systems.aitia.causal_graph import (
+from skills.aitia_system.causal_graph import (
     CausalDAG, CausalNode, CausalEdge, CausalRelationType, CausalGraphBuilder
 )
-from systems.aitia.counterfactual import CounterfactualEngine
+from skills.aitia_system.counterfactual import CounterfactualEngine
 
 
 class TestCausalGraphBuilder:

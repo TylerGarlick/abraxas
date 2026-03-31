@@ -121,7 +121,7 @@
     "system_implementations": [
       {
         "name": "dianoia",
-        "path": "systems/dianoia",
+        "path": "skills/reasoning/dianoia",
         "implementation_files": [
           "index.ts"
         ],
@@ -129,7 +129,7 @@
       },
       {
         "name": "ergon",
-        "path": "systems/ergon",
+        "path": "skills/reasoning/ergon",
         "implementation_files": [
           "demo.ts",
           "demo-inline.ts"
@@ -138,7 +138,7 @@
       },
       {
         "name": "hermes",
-        "path": "systems/hermes",
+        "path": "skills/hermes",
         "implementation_files": [
           "index.ts"
         ],
@@ -146,7 +146,7 @@
       },
       {
         "name": "pheme",
-        "path": "systems/pheme",
+        "path": "skills/pheme",
         "implementation_files": [
           "index.ts"
         ],
@@ -154,7 +154,7 @@
       },
       {
         "name": "prometheus",
-        "path": "systems/prometheus",
+        "path": "skills/prometheus",
         "implementation_files": [
           "index.ts"
         ],

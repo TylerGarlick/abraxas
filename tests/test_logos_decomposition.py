@@ -6,7 +6,7 @@ import unittest
 import sys
 sys.path.insert(0, '/home/ubuntu/.openclaw/workspace/abraxas')
 
-from systems.logos.decomposition import ClaimDecompositionEngine, AtomicProposition, PropositionType, DecomposedClaim
+from skills.logos.decomposition import ClaimDecompositionEngine, AtomicProposition, PropositionType, DecomposedClaim
 
 
 class TestClaimDecompositionEngine(unittest.TestCase):

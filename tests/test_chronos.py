@@ -3,8 +3,8 @@ Tests for the Chronos temporal reasoning and drift detection system.
 """
 import pytest
 from datetime import datetime, timezone, timedelta
-from systems.chronos.temporal_index import TemporalIndex, ClaimRecord
-from systems.chronos.drift_detection import DriftDetector, DriftType
+from skills.chronos.temporal_index import TemporalIndex, ClaimRecord
+from skills.chronos.drift_detection import DriftDetector, DriftType
 
 
 class TestTemporalIndex:

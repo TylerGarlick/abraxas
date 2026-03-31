@@ -4,8 +4,8 @@ Tests for the Scribe provenance tracking system.
 import pytest
 from datetime import datetime, timezone
 from unittest.mock import Mock
-from systems.scribe.source_capture import SourceCapture, SourceMetadata
-from systems.scribe.reliability_scorer import ReliabilityScorer, ReliabilityFactor
+from skills.scribe.source_capture import SourceCapture, SourceMetadata
+from skills.scribe.reliability_scorer import ReliabilityScorer, ReliabilityFactor
 
 
 class TestSourceCapture:

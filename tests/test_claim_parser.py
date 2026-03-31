@@ -23,8 +23,8 @@ import os
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from src.logos.parser import ClaimParser
-from src.logos.models import LogicalOperator, AtomicProposition, Confidence
+from skills.logos.parser import ClaimParser
+from skills.logos.models import LogicalOperator, AtomicProposition, Confidence
 
 
 # Test claims - 50+ complex claims for testing

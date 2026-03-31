@@ -6,7 +6,7 @@ import unittest
 import sys
 sys.path.insert(0, '/home/ubuntu/.openclaw/workspace/abraxas')
 
-from systems.ergon.sandbox import ToolExecutionSandbox, ResourceLimits, ExecutionResult, SandboxStatus
+from skills.reasoning.ergon.sandbox import ToolExecutionSandbox, ResourceLimits, ExecutionResult, SandboxStatus
 
 
 class TestToolExecutionSandbox(unittest.TestCase):

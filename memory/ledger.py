@@ -11,7 +11,10 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from difflib import SequenceMatcher
 
-LEDGER_PATH = "/home/ubuntu/.openclaw/workspace/abraxas/memory/epistemic-ledger.json"
+LEDGER_PATH = os.environ.get(
+    "ABRAXAS_HOME",
+    os.path.join(os.path.expanduser("~"), ".abraxas")
+) + "/memory/epistemic-ledger.json"
 
 # Confidence scores by label type
 LABEL_CONFIDENCE = {
