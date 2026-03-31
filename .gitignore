@@ -1,0 +1,12 @@
+# Project repos — each has its own .git, don't track inside mary-jane
+projects/
+
+# Local secrets and credentials
+.credentials/
+
+# OpenClaw runtime files
+.openclaw/
+
+# Temp and logs
+logs/
+tmp/
