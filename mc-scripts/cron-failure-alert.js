@@ -16,7 +16,7 @@ const mcPathArg = process.argv.find((a, i) =>
 );
 const MC_PATH = mcPathArg
   ? path.resolve(process.cwd(), process.argv[process.argv.indexOf(mcPathArg) + 1])
-  : path.resolve(__dirname, '..');
+  : (process.cwd().includes('mission-control') ? process.cwd() : path.resolve(__dirname, '..'));
 
 const jobName = process.argv[2];
 const errorMessage = process.argv[3];

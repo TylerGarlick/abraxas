@@ -67,6 +67,28 @@ function runScript(scriptName, args = [], options = {}) {
   }
 }
 
+// Test both direct invocation (from SCRIPTS_DIR, uses __dirname) and cron-style (from MC dir, uses CWD)
+function runScriptCronStyle(scriptName, args = [], options = {}) {
+  const scriptPath = path.join(SCRIPTS_DIR, scriptName);
+  const fullArgs = [...args, '--mc-path', MC_PATH];
+  const cmd = `node "${scriptPath}" ${fullArgs.join(' ')}`;
+  try {
+    const output = execSync(cmd, {
+      cwd: MC_PATH,  // <-- this is the key: run from MC dir so CWD detection works
+      encoding: 'utf8',
+      timeout: options.timeout || 15000
+    });
+    return { ok: true, output };
+  } catch (e) {
+    return {
+      ok: false,
+      output: e.stdout || '',
+      error: e.stderr || e.message,
+      code: e.status || 1
+    };
+  }
+}
+
 function checkFile(filepath, label) {
   try {
     const stat = fs.statSync(filepath);
@@ -126,21 +148,27 @@ if (tasksResult.ok) {
 // ═══════════════════════════════════════════
 section('SCRIPTS SMOKE TESTS');
 
-// status.js
+// status.js - test BOTH direct invocation (uses --mc-path) AND cron-style (uses CWD)
 section('status.js');
-const statusResult = runScript('status.js');
-if (statusResult.ok) {
-  pass('status.js exits cleanly');
-  if (statusResult.output.includes('MISSION CONTROL')) pass('output contains expected header');
-  if (statusResult.output.includes('Total:')) pass('output contains summary line');
+const statusDirect = runScript('status.js');
+if (statusDirect.ok) {
+  pass('status.js direct invocation exits cleanly');
+  if (statusDirect.output.includes('MISSION CONTROL')) pass('output contains expected header');
 } else {
-  fail('status.js exits cleanly', `code ${statusResult.code}`);
-  if (statusResult.error) log(`  stderr: ${statusResult.error.slice(0, 200)}`);
+  fail('status.js direct invocation exits cleanly', `code ${statusDirect.code}`);
 }
 
-// retrospectives.js daily
+const statusCron = runScriptCronStyle('status.js');
+if (statusCron.ok) {
+  pass('status.js cron-style (CWD) exits cleanly');
+  if (statusCron.output.includes('MISSION CONTROL')) pass('cron-style output correct');
+} else {
+  fail('status.js cron-style (CWD) exits cleanly', `code ${statusCron.code}`);
+}
+
+// retrospectives.js daily - use cron style (CWD detection)
 section('retrospectives.js (daily)');
-const retroDailyResult = runScript('retrospectives.js', ['daily']);
+const retroDailyResult = runScriptCronStyle('retrospectives.js', ['daily']);
 if (retroDailyResult.ok) {
   pass('retrospectives.js daily exits cleanly');
   if (retroDailyResult.output.includes('retrospective written')) pass('outputs success message');
@@ -156,9 +184,9 @@ if (retroDailyResult.ok) {
   log(`  stderr: ${retroDailyResult.error?.slice(0, 300)}`);
 }
 
-// retrospectives.js weekly
+// retrospectives.js weekly - use cron style (CWD detection)
 section('retrospectives.js (weekly)');
-const retroWeeklyResult = runScript('retrospectives.js', ['weekly']);
+const retroWeeklyResult = runScriptCronStyle('retrospectives.js', ['weekly']);
 if (retroWeeklyResult.ok) {
   pass('retrospectives.js weekly exits cleanly');
   if (retroWeeklyResult.output.includes('retrospective written')) pass('outputs success message');

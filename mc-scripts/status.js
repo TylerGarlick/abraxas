@@ -11,12 +11,13 @@ const fs = require('fs');
 const path = require('path');
 
 // --- Argument parsing ---
+// Prefer --mc-path flag, then CWD (for cron job reliability), then __dirname as last resort
 const mcPathArg = process.argv.find((a, i) =>
   (a === '--mc-path' || a === '-p') && process.argv[i + 1]
 );
 const MC_PATH = mcPathArg
   ? path.resolve(process.cwd(), process.argv[process.argv.indexOf(mcPathArg) + 1])
-  : path.resolve(__dirname, '..');
+  : (process.cwd().includes('mission-control') ? process.cwd() : path.resolve(__dirname, '..'));
 
 // If run from a different cwd and no --mc-path, fall back to __dirname parent
 const TASKS_FILE = path.join(MC_PATH, 'tasks.json');
