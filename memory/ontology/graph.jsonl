@@ -42,3 +42,5 @@
 {"op": "relate", "from": "proj_819dfef6", "rel": "has_skill", "to": "skil_2e0f16f4", "properties": {}, "timestamp": "2026-03-31T23:14:01.958962+00:00"}
 {"op": "relate", "from": "proj_819dfef6", "rel": "has_skill", "to": "skil_931833d9", "properties": {}, "timestamp": "2026-03-31T23:14:02.010352+00:00"}
 {"op": "relate", "from": "proj_819dfef6", "rel": "has_skill", "to": "skil_1716d339", "properties": {}, "timestamp": "2026-03-31T23:14:02.062126+00:00"}
+{"op": "delete", "id": "task_a6f07a39", "timestamp": "2026-03-31T23:42:18.326931+00:00"}
+{"op": "delete", "id": "task_070e73ca", "timestamp": "2026-03-31T23:42:18.387502+00:00"}
