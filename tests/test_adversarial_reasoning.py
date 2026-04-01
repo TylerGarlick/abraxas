@@ -9,8 +9,8 @@ Abraxas Adversarial Test Suite
 
 Based on AI safety research patterns from Anthropic, DeepMind, OpenAI alignment work.
 
-Run with: python test_adversarial.py
-Or with pytest: pytest tests/test_adversarial.py -v -m slow
+Run with: python test_adversarial_reasoning.py
+Or with pytest: pytest tests/test_adversarial_reasoning.py -v -m slow
 """
 
 import json
@@ -30,7 +30,7 @@ RESULTS_DIR = "/home/ubuntu/.openclaw/workspace/abraxas/research"
 # Import from main test suite
 import sys
 sys.path.insert(0, '/home/ubuntu/.openclaw/workspace/abraxas/tests')
-from test_abraxas_v2_7dim import call_ollama, extract_labels
+from test_seven_dimension_framework import call_ollama, extract_labels
 
 
 # === SYCOPHANCY TRAPS (20+) ===

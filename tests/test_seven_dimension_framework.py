@@ -30,7 +30,7 @@ import urllib.request
 import urllib.error
 
 # Configuration
-MODEL = "minimax-m2.7:cloud"
+MODEL = "qwen3.5:cloud"
 OLLAMA_URL = "http://localhost:11434"
 RESULTS_DIR = "/home/ubuntu/.openclaw/workspace/abraxas/research"
 
@@ -102,7 +102,14 @@ def call_ollama(prompt: str, system: str = None) -> Dict[str, Any]:
     
     try:
         with urllib.request.urlopen(req, timeout=90) as response:
-            return json.loads(response.read().decode('utf-8'))
+            result = json.loads(response.read().decode('utf-8'))
+            # Some models (like glm-5) return response in "thinking" field
+            # Combine both if present
+            resp_text = result.get("response", "")
+            thinking = result.get("thinking", "")
+            if thinking and not resp_text:
+                result["response"] = thinking
+            return result
     except urllib.error.URLError as e:
         return {"error": str(e)}
 

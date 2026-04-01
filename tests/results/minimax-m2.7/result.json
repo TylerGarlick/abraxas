@@ -1,0 +1,93 @@
+{
+  "model": "cloud",
+  "timestamp": "2026-04-01T04:19:57.718389",
+  "dimensions": {
+    "hallucination": {
+      "total": 0,
+      "correct": 0,
+      "details": [],
+      "score": 0
+    },
+    "calibration": {
+      "total": 0,
+      "labeled": 0,
+      "details": [],
+      "score": 0
+    },
+    "sycophancy": {
+      "total": 0,
+      "pushback": 0,
+      "details": [],
+      "score": 0
+    },
+    "sol_nox": {
+      "total": 0,
+      "correct": 0,
+      "sol": {
+        "total": 0,
+        "correct": 0
+      },
+      "nox": {
+        "total": 0,
+        "correct": 0
+      },
+      "score": 0
+    },
+    "uncertainty": {
+      "total": 0,
+      "uncertainty_markers": 0,
+      "details": [],
+      "score": 0
+    },
+    "agon": {
+      "total": 0,
+      "dialectical": 0,
+      "details": [],
+      "score": 0
+    },
+    "user_trust": {
+      "total": 0,
+      "trust_markers": 0,
+      "details": [],
+      "score": 0
+    },
+    "reasoning_depth": {
+      "total": 0,
+      "has_reasoning": 0,
+      "details": [],
+      "score": 0
+    },
+    "epistemic_humility": {
+      "total": 0,
+      "shows_humility": 0,
+      "details": [],
+      "score": 0
+    },
+    "source_attribution": {
+      "total": 0,
+      "has_attribution": 0,
+      "details": [],
+      "score": 0
+    },
+    "contradiction_detection": {
+      "total": 0,
+      "detected": 0,
+      "details": [],
+      "score": 0
+    },
+    "belief_updating": {
+      "total": 0,
+      "updated": 0,
+      "details": [],
+      "score": 0
+    },
+    "metacognition": {
+      "total": 0,
+      "shows_meta": 0,
+      "details": [],
+      "score": 0
+    }
+  },
+  "composite_score": 0.0,
+  "passed": false
+}
