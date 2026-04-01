@@ -42,14 +42,23 @@
 Full task orchestration system with factories, subagents, cron jobs, retrospectives, and verification.
 
 ### Core Files
-- `tasks.json` — all task state
+- **`mc/.beads/`** — Beads SQLite database (task backend since 2026-03-31)
+- `tasks.json` — **REMOVED** (migrated to Beads)
 - `subagents.json` — subagent lifecycle tracking
 - `retrospectives/lessons-learned.json` — all lessons learned
 
+### Beads (mc repo)
+- **Location:** `~/.openclaw/workspace/mc/` (also at `~/workspace/mc` via symlink)
+- **Binary:** `~/.local/bin/bd` (v0.63.3)
+- **Wrapper:** `~/.local/bin/bd` shell script sets `DOLT_AUTO_COMMIT=on`
+- **DB:** embedded Dolt SQLite in `mc/.beads/embeddeddolt/mc/`
+- **Requires:** `bd list --json` (JSON output for parsing)
+- **Issue count:** 9 migrated tasks across abraxas, amplify-checkout, mission-control
+
 ### Scripts
-- `create-task.js` — creates task + DONE.md with definition of done
-- `patch-task.js` — updates task status
-- `status.js` — shows all task statuses
+- `create-task.js` — creates task + DONE.md with definition of done (deprecated, use `bd create`)
+- `patch-task.js` — updates task status (deprecated, use `bd update`)
+- `status.js` — shows all task statuses (rewritten to use Beads)
 - `retrospectives.js` — generates daily/weekly retros
 - `run-factory.js` — builds factory prompt
 - `run-github-factory.js` — fetches GitHub activity
@@ -95,9 +104,9 @@ Full task orchestration system with factories, subagents, cron jobs, retrospecti
 ## Skills on GitHub
 All skills pushed to `tylergarlick/mary-jane` private repo.
 
-## Task Commands (Critical — Must Remember)
+## Task Commands (Critical — Must Remember Every Session)
 
-T uses a `Task:` command syntax for all project work:
+T uses a `Task:` command syntax for all project work. All tasks live in **Beads** (mc repo).
 
 **Syntax:**
 - `Task: <prompt>` — spawns isolated subagent for background work
@@ -106,15 +115,17 @@ T uses a `Task:` command syntax for all project work:
 - `Task: curiosity-hour: <prompt>` — work done in curiosity-hour repo
 - `Task: outerspace: <prompt>` — work done in outerspace repo
 
-**Behavior:**
-- ALWAYS spawns isolated subagent (mode="run") — never runs in main session
-- If project qualifier is ambiguous/unrecognized, ASK T to clarify
-- Task + subtasks created in Mission Control (`tasks.json`)
-- Subagent killed when work is done
-- Mission Control has subagent control mechanism (list, kill, inspect)
+**Flow:**
+1. Parse prompt → determine project/repo from context
+2. Create Beads issue: `bd create "<title>" --type task ...`
+3. Spawn isolated subagent (mode="run")
+4. Subagent marks done: `bd update <id> --status done`
+5. Log retrospective lesson
 
 **Project repo mapping:**
 - `Abraxas` → `/tmp/abraxas-checkout/` (git clone --depth 1 each session)
+- `amplify` / `amplify-checkout` → `amplify-checkout` (Beads metadata)
+- `mission-control` / `mc` → `mission-control` (Beads metadata)
 - `curiosity-hour` → clone on demand
 - `outerspace` → clone on demand
 - Unknown → ask T
@@ -130,6 +141,7 @@ T uses a `Task:` command syntax for all project work:
 8. **task-preflight fires before every task** — ask all clarifying questions, write definition of done, confirm before spawning
 9. **project-router infers the repo from task context** — if ambiguous, ask T to specify before proceeding
 10. **Remember the Task: command pattern** — see "Task Commands" section above
+11. **Beads is the task backend** — use `bd create/update/list` instead of tasks.json
 
 ## Lesson Log (2026-03-24)
 - Direct HTTPS to Brave API is blocked in this environment — web_search tool works through OpenClaw
