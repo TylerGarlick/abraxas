@@ -13,30 +13,44 @@ const path = require('path');
 
 // Find mc directory (where Beads is initialized)
 function findMcDir() {
-  const workspace = path.resolve(__dirname, '..');
-  const mcPath = path.join(workspace, 'mc');
-  try {
-    execSync('ls .beads', { cwd: mcPath, stdio: 'ignore' });
-    return mcPath;
-  } catch {
-    let dir = __dirname;
-    for (let i = 0; i < 4; i++) {
-      dir = path.dirname(dir);
-      try {
-        execSync('ls .beads', { cwd: dir, stdio: 'ignore' });
-        return dir;
-      } catch {}
-    }
-    return mcPath;
+  // Try common locations
+  const candidates = [
+    '/home/ubuntu/.openclaw/workspace/mc',
+    '/home/ubuntu/workspace/mc',
+    path.resolve(__dirname, '../mc'),
+  ];
+  for (const mcPath of candidates) {
+    try {
+      execSync('ls .beads', { cwd: mcPath, stdio: 'ignore' });
+      return mcPath;
+    } catch {}
   }
+  // Search upward from __dirname
+  let dir = __dirname;
+  for (let i = 0; i < 5; i++) {
+    dir = path.dirname(dir);
+    try {
+      execSync('ls .beads', { cwd: dir, stdio: 'ignore' });
+      const mcCandidate = path.join(dir, 'mc');
+      try {
+        execSync('ls .beads', { cwd: mcCandidate, stdio: 'ignore' });
+        return mcCandidate;
+      } catch {}
+      return dir;
+    } catch {}
+  }
+  return '/home/ubuntu/.openclaw/workspace/mc';
 }
 
-const BD = '~/.local/bin/bd';
+const BD = '/home/ubuntu/.local/bin/bd';
 const mcDir = findMcDir();
 
 function runBd(args) {
   try {
-    const out = execSync(`${BD} ${args} --json`, { cwd: mcDir });
+    const out = execSync(`${BD} ${args} --json`, {
+      cwd: mcDir,
+      env: { ...process.env, HOME: '/home/ubuntu', DOLT_DIR: mcDir }
+    });
     return JSON.parse(out.toString());
   } catch {
     return [];
