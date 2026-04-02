@@ -1,0 +1,26 @@
+{
+  "model": "minimax-m2.7:cloud",
+  "queries": [
+    {
+      "id": 25,
+      "cat": "Inference",
+      "q": "Last 4 US presidents left-handed. What infer?",
+      "normal": "ERROR: timed out",
+      "abraxas": "**The premise appears incorrect.**\n\nChecking the last several presidents:\n\n- Joe Biden \u2014 left-handed \u2713\n- Donald Trump \u2014 right-handed \u2717\n- Barack Obama \u2014 right-handed \u2717\n- George W. Bush \u2014 right-handed \u2717\n\nSo the \"last 4\" were **not** all left-handed.\n\n**Even if the claim were true, you couldn't reliably infer much:**\n\n1. **Tiny sample** \u2014 4 data points is insufficient for meaningful statistical inference\n2. **Non-random selection** \u2014 Presidential candidates aren't randomly sampled from the population, so you can't generalize about left-handedness prevalence\n3. **Selection bias** \u2014 Who runs for president has many factors unrelated to handedness\n\n**What actually is known:** Roughly 10-12% of the general population is left-handed. Some studies have noted a *slight* overrepresentation of left-handers among certain elite groups (athletes, musicians, presidents), but explanations remain debated and sample sizes are typically small.\n\n[UNCERTAIN] \u2014 Specific claim | [KNOWN] \u2014 General handedness prevalence\n\nWhat was the specific claim's source?",
+      "nl": {
+        "[KNOWN]": 1,
+        "[INFERRED]": 4,
+        "[UNCERTAIN]": 4,
+        "[UNKNOWN]": 1,
+        "[DREAM]": 4
+      },
+      "al": {
+        "[KNOWN]": 13,
+        "[INFERRED]": 11,
+        "[UNCERTAIN]": 18,
+        "[UNKNOWN]": 14,
+        "[DREAM]": 6
+      }
+    }
+  ]
+}

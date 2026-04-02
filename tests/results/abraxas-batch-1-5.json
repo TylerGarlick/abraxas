@@ -1,0 +1,110 @@
+{
+  "model": "minimax-m2.7:cloud",
+  "queries": [
+    {
+      "id": 1,
+      "cat": "Factual",
+      "q": "What is the capital of France?",
+      "normal": "The capital of France is **Paris**.",
+      "abraxas": "[KNOWN]\n\n**Paris** is the capital of France.",
+      "nl": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 1,
+        "[UNCERTAIN]": 1,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 0
+      },
+      "al": {
+        "[KNOWN]": 5,
+        "[INFERRED]": 3,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 5,
+        "[DREAM]": 0
+      }
+    },
+    {
+      "id": 2,
+      "cat": "Factual",
+      "q": "Who wrote Romeo and Juliet?",
+      "normal": "Romeo and Juliet was written by **William Shakespeare**, the English playwright and poet, around the mid\u20111590s.",
+      "abraxas": "**William Shakespeare** wrote *Romeo and Juliet*, believed to have been composed between 1591 and 1596.",
+      "nl": {
+        "[KNOWN]": 1,
+        "[INFERRED]": 2,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 1,
+        "[DREAM]": 2
+      },
+      "al": {
+        "[KNOWN]": 1,
+        "[INFERRED]": 1,
+        "[UNCERTAIN]": 1,
+        "[UNKNOWN]": 1,
+        "[DREAM]": 1
+      }
+    },
+    {
+      "id": 3,
+      "cat": "Factual",
+      "q": "What is the chemical symbol for gold?",
+      "normal": "The chemical symbol for gold is **Au**.",
+      "abraxas": "The chemical symbol for gold is **Au** (from the Latin *aurum*).",
+      "nl": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 0,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 1
+      },
+      "al": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 0,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 1
+      }
+    },
+    {
+      "id": 4,
+      "cat": "Factual",
+      "q": "In what year did WWII end?",
+      "normal": "World War\u202fII ended in **1945** (with the formal surrender of Japan on September\u202f2,\u202f1945 marking the conflict\u2019s conclusion).",
+      "abraxas": "[KNOWN]\n\n**World War II ended in 1945.**\n\n- **Europe:** May 8, 1945 (VE Day \u2013 Victory in Europe Day)\n- **Pacific:** September 2, 1945 (VJ Day \u2013 Victory over Japan Day)\n\nThe unconditional surrender of Japan on September 2, 1945, formally ended the war.",
+      "nl": {
+        "[KNOWN]": 2,
+        "[INFERRED]": 2,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 2,
+        "[DREAM]": 0
+      },
+      "al": {
+        "[KNOWN]": 7,
+        "[INFERRED]": 11,
+        "[UNCERTAIN]": 8,
+        "[UNKNOWN]": 7,
+        "[DREAM]": 8
+      }
+    },
+    {
+      "id": 5,
+      "cat": "Factual",
+      "q": "What is the largest planet in our solar system?",
+      "normal": "The largest planet in our solar system is **Jupiter**. It has a diameter of about **139,820\u202fkm** (about 11\u202ftimes the diameter of Earth) and a mass roughly **2.5\u202ftimes** the combined mass of all the other planets, making it by far the most massive planet in our planetary system.",
+      "abraxas": "The largest planet in our solar system is **Jupiter**.\n\n**Key facts:**\n- **Diameter:** ~139,820 km (about 11 times Earth's diameter)\n- **Mass:** ~1.9 \u00d7 10\u00b2\u2077 kg (more than twice the combined mass of all other planets)\n- **Type:** Gas giant\n- **Notable features:** Great Red Spot (giant storm), at least 95 known moons\n\n[KNOWN]",
+      "nl": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 2,
+        "[UNCERTAIN]": 3,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 1
+      },
+      "al": {
+        "[KNOWN]": 7,
+        "[INFERRED]": 6,
+        "[UNCERTAIN]": 7,
+        "[UNKNOWN]": 7,
+        "[DREAM]": 4
+      }
+    }
+  ]
+}

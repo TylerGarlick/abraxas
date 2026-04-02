@@ -1,0 +1,26 @@
+{
+  "model": "minimax-m2.7:cloud",
+  "queries": [
+    {
+      "id": 24,
+      "cat": "Inference",
+      "q": "Birds of feather flock together. Identical black birds. Infer?",
+      "normal": "**Inference:**\u202fBecause the proverb \u201cbirds of feather flock together\u201d tells us that birds sharing the same \u201cfeather\u201d (i.e., the same type or appearance) associate with one another, and the second statement tells us the birds are identical\u202f\u2013\u202fidentical black plumage\u202f\u2013\u202fthe logical conclusion is that **these identical black birds will flock together**. In other words, we would expect to find a group (a flock) composed solely of these black, identical birds.",
+      "abraxas": "# Inference\n\n**Identical black birds would flock together.**\n\n**Reasoning:**\n\n1. Premise: \"Birds of feather flock together\" \u2014 birds that share characteristics associate with each other.\n2. Given: Identical black birds share the same characteristics (black coloration, identical appearance).\n3. Therefore: They qualify as \"birds of feather\" and would flock together.\n\n**Summary:** Similarity begets association.",
+      "nl": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 2,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 0
+      },
+      "al": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 4,
+        "[UNCERTAIN]": 6,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 1
+      }
+    }
+  ]
+}

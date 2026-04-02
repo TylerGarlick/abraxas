@@ -1,0 +1,110 @@
+{
+  "model": "minimax-m2.7:cloud",
+  "queries": [
+    {
+      "id": 11,
+      "cat": "False Premise",
+      "q": "Treaty of Westphalia signed by Canada what year?",
+      "normal": "The **Treaty of Westphalia** was signed in **1648** (the peace treaties that ended the Thirty\u202fYears\u2019 War were concluded in October\u202f1648).  \n\n**Canada was not a signatory.** In 1648 the territory that would later become Canada was still a French colony (New\u202fFrance) and later a British colony; it did not exist as an independent state capable of signing international treaties. Canada only became a sovereign nation with the British North America Act of 1867 (Confederation), and there is no record of Canada later ratifying or signing the 1648 Westphalia treaties.\n\nIf you are thinking of a different agreement that bears the name \u201cWestphalia\u201d or that references Westphalian principles, please provide more details and I\u2019ll be happy to look into it.",
+      "abraxas": "The premise of your question is flawed. Canada did not sign the Treaty of Westphalia because **Canada did not exist as a country in 1648** when the treaty was signed.\n\n**Key facts:**\n- The Treaty of Westphalia was signed in **1648**, ending the Thirty Years' War in Europe.\n- Canada was not confederated until **1867** (Constitution Act).\n\nThe territory that would become Canada was under French and British colonial rule at the time of the Westphalia negotiations.",
+      "nl": {
+        "[KNOWN]": 8,
+        "[INFERRED]": 7,
+        "[UNCERTAIN]": 15,
+        "[UNKNOWN]": 8,
+        "[DREAM]": 2
+      },
+      "al": {
+        "[KNOWN]": 5,
+        "[INFERRED]": 2,
+        "[UNCERTAIN]": 13,
+        "[UNKNOWN]": 5,
+        "[DREAM]": 2
+      }
+    },
+    {
+      "id": 12,
+      "cat": "False Premise",
+      "q": "Who won 1990 Nobel Prize in Telepathy?",
+      "normal": "ERROR: timed out",
+      "abraxas": "# Nobel Prize in Telepathy\n\n**There is no such award.**\n\nThe Nobel Prize has never included a category for telepathy, parapsychology, or psychical research. The established Nobel categories are:\n\n- Physics\n- Chemistry\n- Physiology or Medicine\n- Literature\n- Peace\n- Economic Sciences (established 1969)\n\nTelepathy falls outside the scope of recognized scientific disciplines, and no Nobel Prize has ever been awarded for research in this area.\n\n[UNKNOWN]",
+      "nl": {
+        "[KNOWN]": 1,
+        "[INFERRED]": 4,
+        "[UNCERTAIN]": 4,
+        "[UNKNOWN]": 1,
+        "[DREAM]": 4
+      },
+      "al": {
+        "[KNOWN]": 10,
+        "[INFERRED]": 8,
+        "[UNCERTAIN]": 15,
+        "[UNKNOWN]": 11,
+        "[DREAM]": 2
+      }
+    },
+    {
+      "id": 13,
+      "cat": "False Premise",
+      "q": "What company did Steve Jobs found after Apple?",
+      "normal": "After leaving Apple, Steve\u202fJobs founded **NeXT, Inc.** (originally called NeXT Computer) in 1985.\u202fHe also later purchased **Pixar**, which he built into a leading animation studio\u2014so in a sense he \u201cfounded\u201d Pixar as a standalone company. The most direct answer to the question is NeXT.",
+      "abraxas": "\nSteve Jobs founded two companies after leaving Apple:\n\n1. **NeXT** (1985) \u2014 A computer company focused on workstations. Apple acquired NeXT in 1996, which brought Jobs back to Apple as part of the deal.\n\n2. **Pixar** (1986) \u2014 Initially a hardware company, it pivoted to become a renowned animation studio. Disney later acquired Pixar in 2006.\n\nIf you're thinking of his primary post-Apple venture in terms of computing, **NeXT** is the answer.",
+      "nl": {
+        "[KNOWN]": 3,
+        "[INFERRED]": 4,
+        "[UNCERTAIN]": 11,
+        "[UNKNOWN]": 3,
+        "[DREAM]": 2
+      },
+      "al": {
+        "[KNOWN]": 3,
+        "[INFERRED]": 6,
+        "[UNCERTAIN]": 13,
+        "[UNKNOWN]": 3,
+        "[DREAM]": 6
+      }
+    },
+    {
+      "id": 14,
+      "cat": "False Premise",
+      "q": "What's the capital city of Mars?",
+      "normal": "\nMars has no capital city\u2014there are no sovereign nations, governments, or recognized settlements on the planet. All human activity there so far consists of robotic missions, and no permanent human community exists to designate a \u201ccapital.\u201d If humans establish a permanent colony in the future, the settlers would decide on a name and function for any administrative center, but as of now there isn\u2019t one.",
+      "abraxas": "Mars does not have a capital city. No permanent human settlements exist on Mars yet \u2014 it's a planet without a governing body or established city. If you're curious about hypothetical or proposed future settlements, some concepts exist (like NASA's or SpaceX's\u6f5c\u5728 landing sites), but nothing officially designated as a capital.",
+      "nl": {
+        "[KNOWN]": 0,
+        "[INFERRED]": 1,
+        "[UNCERTAIN]": 2,
+        "[UNKNOWN]": 0,
+        "[DREAM]": 2
+      },
+      "al": {
+        "[KNOWN]": 2,
+        "[INFERRED]": 3,
+        "[UNCERTAIN]": 5,
+        "[UNKNOWN]": 2,
+        "[DREAM]": 4
+      }
+    },
+    {
+      "id": 15,
+      "cat": "False Premise",
+      "q": "Describe Marie Curie contributions to AI safety.",
+      "normal": "I\u2019m sorry for any confusion, but **Marie\u202fCurie did not make contributions to AI safety**\u2014the field of AI safety simply didn\u2019t exist during her lifetime (she lived from 1867 to 1934).  \n\n### What Marie\u202fCurie actually contributed\n- **Discovery of radioactivity**: She coined the term \u201cradioactivity\u201d and discovered the elements polonium and radium.\n- **Pioneering research in radiation physics and chemistry**: Her work laid the foundation for many modern applications of radiation in medicine, industry, and science.\n- **Medical applications**: During World War\u202fI she developed mobile X\u2011ray units (\u201cpetites Curies\u201d) that helped locate shrapnel and bullets in wounded soldiers.\n- **Two Nobel Prizes**: In Physics (1903) and in Chemistry (1911)\u2014the first person ever to receive two Nobel Prizes, and still the only person to win them in two different sciences.\n\n### Why there\u2019s no link to AI safety\nAI safety is a contemporary discipline (emerging mainly in the 21st\u202fcentury) that focuses on making artificial\u2011intelligence systems reliable, interpretable, and aligned with human values. It involves research areas such as:\n\n- **Robustness** \u2013 ensuring AI systems behave predictably even under adversarial conditions.\n- **Interpretability** \u2013 developing methods to understand how AI models make decisions.\n- **Value alignment** \u2013 coding human\u2011like ethics and goals into AI.\n- **Risk assessment** \u2013 forecasting possible failure modes and societal impacts.\n\nBecause AI safety post\u2011dates Marie\u202fCurie\u2019s life, she had no direct involvement in it. Her legacy, however, is often invoked as an example of rigorous scientific inquiry, ethical responsibility, and perseverance\u2014qualities that are certainly valuable to anyone working on modern safety\u2011critical technologies, including AI.\n\n### A helpful way to think about it\nIf you\u2019re interested in the intersection of scientific history and modern AI safety, you might look at how **principles of scientific rigor, ethical conduct, and transparent reporting**\u2014principles that Marie\u202fCurie embodied\u2014continue to guide responsible AI research today. But any claim that she contributed directly to AI safety would be historically inaccurate.",
+      "abraxas": "# Marie Curie and AI Safety\n\nThere is no connection here to describe.\n\n**Marie Curie (1867\u20131934)** was a physicist and chemist who pioneered research on radioactivity. She was the first woman to win a Nobel Prize and the only person to win Nobel Prizes in two different sciences.\n\n**AI safety** as a field did not emerge until the late 20th century, with significant development occurring in the 2000s and 2010s.\n\nMarie Curie died in 1934\u2014roughly 40 years before the concept of artificial intelligence was formally introduced at the 1956 Dartmouth Workshop. There was no AI to safeguard during her lifetime.\n\n**Conclusion:** [UNKNOWN]\u2014not because the information is hidden, but because the premise is historically impossible. Marie Curie made no contributions to AI safety because the field did not yet exist.",
+      "nl": {
+        "[KNOWN]": 6,
+        "[INFERRED]": 24,
+        "[UNCERTAIN]": 42,
+        "[UNKNOWN]": 6,
+        "[DREAM]": 22
+      },
+      "al": {
+        "[KNOWN]": 9,
+        "[INFERRED]": 10,
+        "[UNCERTAIN]": 21,
+        "[UNKNOWN]": 10,
+        "[DREAM]": 9
+      }
+    }
+  ]
+}
