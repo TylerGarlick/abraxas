@@ -1,0 +1,519 @@
+{
+  "_description": "Mock FHIR R4 server payloads for testing the FHIR Adapter",
+  "_version": "R4",
+  "patients": {
+    "epic": {
+      "resourceType": "Patient",
+      "id": "epic-patient-001",
+      "meta": {
+        "profile": [
+          "http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient"
+        ],
+        "lastUpdated": "2024-01-15T10:30:00Z"
+      },
+      "identifier": [
+        {
+          "system": "http://Epic.com/fhir/identifiers/mrn",
+          "value": "MRN-EPIC-123456",
+          "type": {
+            "coding": [
+              {
+                "code": "MRN",
+                "display": "Medical Record Number",
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0203"
+              }
+            ]
+          }
+        },
+        {
+          "system": "urn:oid:2.16.840.1.113883.3.200",
+          "value": "EPIC-MRN-789012",
+          "type": {
+            "coding": [
+              {
+                "code": "MR",
+                "display": "Medical Record Number"
+              }
+            ]
+          }
+        }
+      ],
+      "name": [
+        {
+          "use": "official",
+          "family": "Johnson",
+          "given": ["Emily", "Rose"],
+          "prefix": ["Ms."]
+        }
+      ],
+      "gender": "female",
+      "birthDate": "1985-07-22",
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "555-234-5678",
+          "use": "mobile"
+        },
+        {
+          "system": "email",
+          "value": "emily.johnson@email.com",
+          "use": "home"
+        }
+      ],
+      "address": [
+        {
+          "use": "home",
+          "line": ["456 Oak Avenue", "Apt 3B"],
+          "city": "Chicago",
+          "state": "IL",
+          "postalCode": "60601",
+          "country": "USA"
+        }
+      ],
+      "extension": [
+        {
+          "url": "http://Epic.com/fhir/StructureDefinition/cuda-extension",
+          "valueString": "CUDA-ENABLED"
+        }
+      ]
+    },
+    "cerner": {
+      "resourceType": "Patient",
+      "id": "cerner-patient-002",
+      "meta": {
+        "profile": [
+          "http://cerner.com/fhir/StructureDefinition/patient"
+        ],
+        "lastUpdated": "2024-01-16T14:20:00Z"
+      },
+      "identifier": [
+        {
+          "system": "http://cerner.com/fhir/identifiers/mrn",
+          "value": "MRN-CERNER-654321",
+          "type": {
+            "coding": [
+              {
+                "code": "MRN",
+                "display": "Medical Record Number"
+              }
+            ]
+          }
+        },
+        {
+          "system": "urn:oid:2.16.840.1.113883.3.13.6",
+          "value": "CERNER-ID-987654",
+          "type": {
+            "coding": [
+              {
+                "code": "NI",
+                "display": "National Identifier"
+              }
+            ]
+          }
+        }
+      ],
+      "name": [
+        {
+          "use": "official",
+          "family": "Williams",
+          "given": ["Robert", "James"]
+        }
+      ],
+      "gender": "male",
+      "birthDate": "1978-03-10",
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "555-876-5432",
+          "use": "home"
+        }
+      ],
+      "address": [
+        {
+          "use": "home",
+          "line": ["789 Pine Street"],
+          "city": "Kansas City",
+          "state": "MO",
+          "postalCode": "64101",
+          "country": "USA"
+        }
+      ]
+    },
+    "meditech": {
+      "resourceType": "Patient",
+      "id": "meditech-patient-003",
+      "meta": {
+        "profile": [
+          "http://meditech.com/fhir/StructureDefinition/patient"
+        ],
+        "lastUpdated": "2024-01-17T09:15:00Z"
+      },
+      "identifier": [
+        {
+          "system": "http://meditech.com/fhir/identifiers/mrn",
+          "value": "MRN-MEDITECH-111222",
+          "type": {
+            "coding": [
+              {
+                "code": "MRN",
+                "display": "Medical Record Number"
+              }
+            ]
+          }
+        },
+        {
+          "system": "http://meditech.com/fhir/identifiers/barbabanner",
+          "value": "BARBA-333444",
+          "type": {
+            "coding": [
+              {
+                "code": "BARBABANNER",
+                "display": "Meditech BARBABANNER ID"
+              }
+            ]
+          },
+          "extension": [
+            {
+              "url": "http://meditech.com/fhir/StructureDefinition/barbabanner-extension",
+              "valueString": "BARBA-ENABLED"
+            }
+          ]
+        }
+      ],
+      "name": [
+        {
+          "use": "official",
+          "family": "Davis",
+          "given": ["Sarah", "Elizabeth"]
+        }
+      ],
+      "gender": "female",
+      "birthDate": "1992-11-05",
+      "telecom": [
+        {
+          "system": "phone",
+          "value": "555-111-2222",
+          "use": "mobile"
+        }
+      ],
+      "address": [
+        {
+          "use": "home",
+          "line": ["321 Elm Boulevard"],
+          "city": "Boston",
+          "state": "MA",
+          "postalCode": "02101",
+          "country": "USA"
+        }
+      ]
+    }
+  },
+  "claims": {
+    "epic": {
+      "resourceType": "Claim",
+      "id": "epic-claim-001",
+      "status": "active",
+      "type": {
+        "coding": [
+          {
+            "code": "professional",
+            "display": "Professional",
+            "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+          }
+        ]
+      },
+      "use": "claim",
+      "patient": {
+        "reference": "Patient/epic-patient-001"
+      },
+      "created": "2024-01-15T11:00:00Z",
+      "insurer": {
+        "reference": "Organization/anthem-bcbs"
+      },
+      "provider": {
+        "reference": "Practitioner/dr-smith-001"
+      },
+      "diagnosis": [
+        {
+          "sequence": 1,
+          "diagnosisCodeableConcept:": {
+            "coding": [
+              {
+                "code": "E11.9",
+                "display": "Type 2 diabetes mellitus without complications",
+                "system": "http://hl7.org/fhir/sid/icd-10-cm"
+              }
+            ]
+          },
+          "type": [
+            {
+              "coding": [
+                {
+                  "code": "principal",
+                  "display": "Principal Diagnosis"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "sequence": 2,
+          "diagnosisCodeableConcept": {
+            "coding": [
+              {
+                "code": "E78.5",
+                "display": "Hyperlipidemia, unspecified",
+                "system": "http://hl7.org/fhir/sid/icd-10-cm"
+              }
+            ]
+          },
+          "type": [
+            {
+              "coding": [
+                {
+                  "code": "secondary",
+                  "display": "Secondary Diagnosis"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "procedure": [
+        {
+          "sequence": 1,
+          "procedureCodeableConcept": {
+            "coding": [
+              {
+                "code": "99213",
+                "display": "Office visit, established patient, level 3",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          },
+          "date": "2024-01-15T10:30:00Z"
+        }
+      ],
+      "item": [
+        {
+          "sequence": 1,
+          "service": {
+            "coding": [
+              {
+                "code": "99213",
+                "display": "Office visit, established patient",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          },
+          "quantity": {
+            "value": 1
+          },
+          "unitPrice": {
+            "value": 150.0,
+            "currency": "USD"
+          },
+          "net": {
+            "value": 150.0,
+            "currency": "USD"
+          },
+          "diagnosisLink": [
+            {
+              "diagnosisSequence": [1]
+            }
+          ]
+        }
+      ],
+      "total": {
+        "value": 150.0,
+        "currency": "USD"
+      }
+    },
+    "cerner": {
+      "resourceType": "Claim",
+      "id": "cerner-claim-002",
+      "status": "active",
+      "type": {
+        "coding": [
+          {
+            "code": "institutional",
+            "display": "Institutional",
+            "system": "http://terminology.hl7.org/CodeSystem/claim-type"
+          }
+        ]
+      },
+      "use": "claim",
+      "patient": {
+        "reference": "Patient/cerner-patient-002"
+      },
+      "created": "2024-01-16T15:00:00Z",
+      "insurer": {
+        "reference": "Organization/aetna"
+      },
+      "diagnosis": [
+        {
+          "sequence": 1,
+          "diagnosisCodeableConcept": {
+            "coding": [
+              {
+                "code": "I10",
+                "display": "Essential (primary) hypertension",
+                "system": "http://hl7.org/fhir/sid/icd-10-cm"
+              }
+            ]
+          },
+          "type": [
+            {
+              "coding": [
+                {
+                  "code": "principal",
+                  "display": "Principal Diagnosis"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "item": [
+        {
+          "sequence": 1,
+          "service": {
+            "coding": [
+              {
+                "code": "99214",
+                "display": "Office visit, established patient, level 4",
+                "system": "http://www.ama-assn.org/go/cpt"
+              }
+            ]
+          },
+          "quantity": {
+            "value": 1
+          },
+          "net": {
+            "value": 200.0,
+            "currency": "USD"
+          }
+        }
+      ],
+      "total": {
+        "value": 200.0,
+        "currency": "USD"
+      }
+    }
+  },
+  "coverages": {
+    "epic": {
+      "resourceType": "Coverage",
+      "id": "epic-coverage-001",
+      "status": "active",
+      "type": {
+        "coding": [
+          {
+            "code": "health",
+            "display": "Health Insurance",
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+          }
+        ]
+      },
+      "subscriber": {
+        "reference": "Patient/epic-patient-001"
+      },
+      "beneficiary": {
+        "reference": "Patient/epic-patient-001"
+      },
+      "relationship": {
+        "coding": [
+          {
+            "code": "self",
+            "display": "Self"
+          }
+        ]
+      },
+      "payor": [
+        {
+          "reference": "Organization/anthem-bcbs",
+          "display": "Anthem Blue Cross Blue Shield"
+        }
+      ],
+      "class": [
+        {
+          "type": {
+            "coding": [
+              {
+                "code": "group",
+                "display": "Group",
+                "system": "http://terminology.hl7.org/CodeSystem/coverage-class"
+              }
+            ]
+          },
+          "value": "GRP-EPIC-12345",
+          "name": "Employer Group Plan"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "code": "plan",
+                "display": "Plan",
+                "system": "http://terminology.hl7.org/CodeSystem/coverage-class"
+              }
+            ]
+          },
+          "value": "PLAN-PPO-67890",
+          "name": "PPO Gold Plan"
+        },
+        {
+          "type": {
+            "coding": [
+              {
+                "code": "class",
+                "display": "Class"
+              }
+            ]
+          },
+          "value": "INDIVIDUAL",
+          "name": "Individual Coverage"
+        }
+      ]
+    },
+    "meditech": {
+      "resourceType": "Coverage",
+      "id": "meditech-coverage-003",
+      "status": "active",
+      "type": {
+        "coding": [
+          {
+            "code": "health",
+            "display": "Health Insurance"
+          }
+        ]
+      },
+      "subscriber": {
+        "reference": "Patient/meditech-patient-003"
+      },
+      "beneficiary": {
+        "reference": "Patient/meditech-patient-003"
+      },
+      "payor": [
+        {
+          "reference": "Organization/humana",
+          "display": "Humana Inc."
+        }
+      ],
+      "class": [
+        {
+          "type": {
+            "coding": [
+              {
+                "code": "group",
+                "display": "Group"
+              }
+            ]
+          },
+          "value": "GRP-MEDITECH-55555",
+          "name": "Meditech Group Plan"
+        }
+      ]
+    }
+  }
+}
