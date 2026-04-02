@@ -15,10 +15,12 @@ import {
   NormalizedPatient,
   NormalizedClaim,
   NormalizedCoverage,
+  NormalizedAllergyIntolerance,
   ParseResult,
   normalizePatient,
   normalizeClaim,
   normalizeCoverage,
+  normalizeAllergyIntolerance,
 } from "../fhir-normalizer";
 
 export interface CernerAdapterOptions {
@@ -168,11 +170,19 @@ export class CernerFHIRAdapter {
   }
 
   /**
+   * Parse a FHIR AllergyIntolerance resource with Cerner-specific handling.
+   */
+  public parseAllergyIntolerance(resource: FhirResource): ParseResult<NormalizedAllergyIntolerance> {
+    const result = normalizeAllergyIntolerance(resource, this.ehrSystem);
+    return result;
+  }
+
+  /**
    * Parse any FHIR resource.
-   * 
+   *
    * Detects resource type and delegates to appropriate parser.
    */
-  public parse(resource: FhirResource): ParseResult<NormalizedPatient | NormalizedClaim | NormalizedCoverage> {
+  public parse(resource: FhirResource): ParseResult<NormalizedPatient | NormalizedClaim | NormalizedCoverage | NormalizedAllergyIntolerance> {
     const resourceType = resource.resourceType;
 
     switch (resourceType) {
@@ -182,6 +192,8 @@ export class CernerFHIRAdapter {
         return this.parseClaim(resource);
       case "Coverage":
         return this.parseCoverage(resource);
+      case "AllergyIntolerance":
+        return this.parseAllergyIntolerance(resource);
       default:
         return {
           success: false,

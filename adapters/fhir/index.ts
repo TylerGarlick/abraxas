@@ -41,6 +41,9 @@ export {
   NormalizedPatient,
   NormalizedClaim,
   NormalizedCoverage,
+  NormalizedAllergyIntolerance,
+  NormalizedAllergyReaction,
+  NormalizedCodeableConcept,
   NormalizedIdentifier,
   NormalizedHumanName,
   NormalizedAddress,
@@ -52,11 +55,12 @@ export {
   NormalizedCoverageClass,
   ParseResult,
   ParseWarnings,
-  
+
   // Normalizer utilities
   normalizePatient,
   normalizeClaim,
   normalizeCoverage,
+  normalizeAllergyIntolerance,
   getCode,
   getDisplay,
   getReference,

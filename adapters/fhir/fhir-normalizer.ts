@@ -55,6 +55,52 @@ export interface NormalizedCoverage {
   rawResource: FhirResource;
 }
 
+/**
+ * Normalized AllergyIntolerance
+ * 
+ * FHIR AllergyIntolerance resource normalized for cross-EHR compatibility.
+ * Covers allergy/ADR data: substance, reactions, criticality, clinical status.
+ */
+export interface NormalizedAllergyIntolerance {
+  allergyId: string;
+  clinicalStatus: string;
+  verificationStatus: string;
+  allergyType: string;
+  category: string[];
+  criticality: string;
+  code?: NormalizedCodeableConcept;
+  patientRef?: string;
+  onsetDate?: string;
+  recordedDate?: string;
+  recorderRef?: string;
+  reactions: NormalizedAllergyReaction[];
+  notes?: string;
+  ehrSystem: string;
+  rawResource: FhirResource;
+}
+
+/**
+ * Normalized AllergyIntolerance Reaction
+ */
+export interface NormalizedAllergyReaction {
+  substance?: NormalizedCodeableConcept;
+  manifestation: NormalizedCodeableConcept[];
+  description?: string;
+  onset?: string;
+  severity?: string;
+  routeOfAdministration?: NormalizedCodeableConcept;
+  note?: string;
+}
+
+/**
+ * Normalized CodeableConcept (reusable)
+ */
+export interface NormalizedCodeableConcept {
+  code?: string;
+  display?: string;
+  system?: string;
+}
+
 export interface NormalizedIdentifier {
   system?: string;
   value?: string;
@@ -441,3 +487,138 @@ export function normalizeCoverage(
     warnings,
   };
 }
+
+/**
+ * Parse a CodeableConcept to NormalizedCodeableConcept
+ */
+function parseCodeableConcept(cc: Record<string, unknown>): NormalizedCodeableConcept {
+  const coding = (cc.coding as Array<Record<string, unknown>>) || [];
+  return {
+    code: getCode(cc),
+    display: getDisplay(cc),
+    system: coding[0]?.system as string,
+  };
+}
+
+/**
+ * Extract note text from annotation array
+ */
+function getNotes(notes: Array<Record<string, unknown>> | undefined): string | undefined {
+  if (!notes || notes.length === 0) return undefined;
+  const texts = notes
+    .map((n) => n.text as string)
+    .filter(Boolean);
+  return texts.length > 0 ? texts.join(" ") : undefined;
+}
+
+/**
+ * Normalize a FHIR AllergyIntolerance resource
+ */
+export function normalizeAllergyIntolerance(
+  resource: FhirResource,
+  ehrSystem: string
+): ParseResult<NormalizedAllergyIntolerance> {
+  const warnings: string[] = [];
+
+  if (resource.resourceType !== "AllergyIntolerance") {
+    return {
+      success: false,
+      resourceType: resource.resourceType,
+      ehrSystem,
+      errors: [`Expected AllergyIntolerance resource, got ${resource.resourceType}`],
+    };
+  }
+
+  // clinicalStatus: active | inactive | resolved | null
+  const clinicalStatus = (resource.clinicalStatus as Record<string, unknown>) || {};
+  const verificationStatus = (resource.verificationStatus as Record<string, unknown>) || {};
+  const type = (resource.type as Record<string, unknown>) || {};
+  const categories = (resource.category as string[]) || [];
+  const criticality = (resource.criticality as string) || "unknown";
+  const code = parseCodeableConcept(resource.code as Record<string, unknown>);
+  const patientRef = getReference((resource.patient as Record<string, unknown>) || {});
+
+  // Onset can be a string, DateTime, Age, Period, Range, or null
+  const onset = resource.onset;
+  let onsetDate: string | undefined;
+  if (typeof onset === "string") {
+    onsetDate = onset;
+  } else if (onset && typeof onset === "object") {
+    onsetDate = (onset as Record<string, unknown>).dateTime as string
+      || (onset as Record<string, unknown>).start as string
+      || undefined;
+  }
+
+  const recordedDate = resource.recordedDate as string;
+  const recorderRef = getReference((resource.recorder as Record<string, unknown>) || {});
+
+  // Parse reactions
+  const reactions: NormalizedAllergyReaction[] = [];
+  const reactionArray = (resource.reaction as Array<Record<string, unknown>>) || [];
+  for (const reaction of reactionArray) {
+    const substance = parseCodeableConcept(reaction.substance as Record<string, unknown>);
+    const manifestations = (reaction.manifestation as Array<Record<string, unknown>>) || [];
+    const manifestationList: NormalizedCodeableConcept[] = [];
+    for (const m of manifestations) {
+      manifestationList.push(parseCodeableConcept(m));
+    }
+
+    // Onset within reaction
+    let reactionOnset: string | undefined;
+    const rOnset = reaction.onset;
+    if (typeof rOnset === "string") {
+      reactionOnset = rOnset;
+    } else if (rOnset && typeof rOnset === "object") {
+      reactionOnset = (rOnset as Record<string, unknown>).dateTime as string
+        || (rOnset as Record<string, unknown>).start as string
+        || undefined;
+    }
+
+    reactions.push({
+      substance,
+      manifestation: manifestationList,
+      description: reaction.description as string,
+      onset: reactionOnset,
+      severity: (reaction.severity as string) || undefined,
+      routeOfAdministration: parseCodeableConcept(
+        reaction.route as Record<string, unknown>
+      ),
+      note: getNotes(reaction.note as Array<Record<string, unknown>>),
+    });
+  }
+
+  // Aggregate notes
+  const note = getNotes(resource.note as Array<Record<string, unknown>>);
+
+  // Warn on unhandled fields
+  if (resource.recorder) {
+    warnings.push("Encounter (recorder) reference present — not yet normalized");
+  }
+
+  const allergy: NormalizedAllergyIntolerance = {
+    allergyId: resource.id || "",
+    clinicalStatus: getCode(clinicalStatus) || "unknown",
+    verificationStatus: getCode(verificationStatus) || "unknown",
+    allergyType: getCode(type) || "unknown",
+    category: categories,
+    criticality,
+    code,
+    patientRef,
+    onsetDate,
+    recordedDate,
+    recorderRef,
+    reactions,
+    notes: note,
+    ehrSystem,
+    rawResource: resource,
+  };
+
+  return {
+    success: true,
+    resourceType: "AllergyIntolerance",
+    data: allergy,
+    ehrSystem,
+    warnings,
+  };
+}
+

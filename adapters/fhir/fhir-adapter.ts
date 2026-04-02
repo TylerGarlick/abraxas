@@ -12,6 +12,7 @@ import {
   NormalizedPatient,
   NormalizedClaim,
   NormalizedCoverage,
+  NormalizedAllergyIntolerance,
   ParseResult,
   ParseWarnings,
 } from "./fhir-normalizer";
@@ -72,6 +73,7 @@ export interface ParseStats {
     Patient: number;
     Claim: number;
     Coverage: number;
+    AllergyIntolerance: number;
     [key: string]: number;
   };
   byEhrSystem: {
@@ -287,18 +289,51 @@ export class FHIRAdapter {
   }
 
   /**
+   * Parse a FHIR AllergyIntolerance resource
+   */
+  public parseAllergyIntolerance(
+    resource: FhirResource,
+    ehrSystem?: EHRSystem
+  ): ParseResult<NormalizedAllergyIntolerance> {
+    const system = ehrSystem || this.detectEhrSystem(resource);
+    const adapter = this.getAdapter(system);
+
+    this.stats.totalParsed++;
+    this.stats.byResourceType.AllergyIntolerance = (this.stats.byResourceType.AllergyIntolerance || 0) + 1;
+    this.stats.byEhrSystem[system] = (this.stats.byEhrSystem[system] || 0) + 1;
+
+    const result = adapter.parseAllergyIntolerance(resource);
+
+    if (result.success) {
+      this.stats.successfulParses++;
+    } else {
+      this.stats.failedParses++;
+    }
+
+    if (result.warnings && result.warnings.length > 0) {
+      this.stats.warningsCount += result.warnings.length;
+    }
+
+    if (this.config.verbose && result.warnings && result.warnings.length > 0) {
+      console.log(`[FHIR Adapter] Warnings: ${result.warnings.join(", ")}`);
+    }
+
+    return result;
+  }
+
+  /**
    * Parse any FHIR resource.
-   * 
+   *
    * Automatically detects resource type and delegates to appropriate parser.
-   * 
-   * @param resource - FHIR R4 resource (Patient, Claim, or Coverage)
+   *
+   * @param resource - FHIR R4 resource (Patient, Claim, Coverage, or AllergyIntolerance)
    * @param ehrSystem - Optional EHR system (auto-detected if not provided)
    * @returns Parse result with normalized data
    */
   public parse(
     resource: FhirResource,
     ehrSystem?: EHRSystem
-  ): ParseResult<NormalizedPatient | NormalizedClaim | NormalizedCoverage> {
+  ): ParseResult<NormalizedPatient | NormalizedClaim | NormalizedCoverage | NormalizedAllergyIntolerance> {
     const resourceType = resource.resourceType;
 
     switch (resourceType) {
@@ -308,6 +343,8 @@ export class FHIRAdapter {
         return this.parseClaim(resource, ehrSystem);
       case "Coverage":
         return this.parseCoverage(resource, ehrSystem);
+      case "AllergyIntolerance":
+        return this.parseAllergyIntolerance(resource, ehrSystem);
       default:
         this.stats.totalParsed++;
         this.stats.failedParses++;
@@ -384,6 +421,9 @@ export {
   NormalizedPatient,
   NormalizedClaim,
   NormalizedCoverage,
+  NormalizedAllergyIntolerance,
+  NormalizedAllergyReaction,
+  NormalizedCodeableConcept,
   NormalizedIdentifier,
   NormalizedHumanName,
   NormalizedAddress,
@@ -395,6 +435,16 @@ export {
   NormalizedCoverageClass,
   ParseResult,
   ParseWarnings,
+  normalizePatient,
+  normalizeClaim,
+  normalizeCoverage,
+  normalizeAllergyIntolerance,
+  getCode,
+  getDisplay,
+  getReference,
+  parseHumanName,
+  parseAddress,
+  parseContact,
 } from "./fhir-normalizer";
 
 export { EpicFHIRAdapter, createEpicAdapter } from "./providers/epic";
