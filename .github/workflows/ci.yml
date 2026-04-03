@@ -16,7 +16,7 @@ jobs:
           node-version: '22'
           cache: 'npm'
       - run: npm install
-      - run: npx tsc --noEmit --project /tmp/abraxas-checkout/tsconfig.json
+      - run: npx tsc --noEmit
 
   test-python:
     runs-on: ubuntu-latest
