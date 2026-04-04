@@ -13,6 +13,161 @@ const math = require('mathjs');
 const ROUND_TOLERANCE = 1e-10;
 
 /**
+ * Symbolic equation solver for linear equations: ax + b = c
+ * Returns the solution value for x
+ */
+function solveLinearEquation(leftSide, rightSide) {
+  // Match pattern: number*x + number = number
+  // Or: number*x - number = number
+  // Or: number*x = number
+  // Or: x + number = number
+  // Or: x - number = number
+  
+  const combineLikeTerms = (expr) => {
+    // Parse expression and combine coefficients of x
+    // Handle: ax + b, ax - b, a*x + b, etc.
+    
+    let coeffX = 0;
+    let constant = 0;
+    
+    // Normalize: remove spaces, handle implicit multiplication
+    const normalized = expr.replace(/(\d)([a-z])/g, '$1*$2').replace(/\s+/g, '');
+    
+    // Tokenize on + and -
+    const tokens = normalized.match(/[+-]?[^-+]+/g) || [];
+    
+    for (let token of tokens) {
+      token = token.trim();
+      if (!token) continue;
+      
+      // Check if this term has x
+      if (token.includes('x')) {
+        // Extract coefficient
+        let coeff = token.replace('x', '').replace('*', '').replace(/\+/g, '') || '1';
+        if (coeff === '-' || coeff === '+') coeff = coeff === '-' ? '-1' : '1';
+        if (coeff === '') coeff = '1';
+        coeffX += parseFloat(coeff);
+      } else {
+        // Pure constant
+        constant += parseFloat(token);
+      }
+    }
+    
+    return { coeffX, constant };
+  };
+  
+  // Parse both sides
+  const left = combineLikeTerms(leftSide);
+  const right = parseFloat(rightSide.replace(/\s+/g, ''));
+  
+  // Solve: coeffX * x + left.constant = right
+  // coeffX * x = right - left.constant
+  // x = (right - left.constant) / coeffX
+  
+  if (left.coeffX === 0) {
+    return null; // No variable term
+  }
+  
+  const solution = (right - left.constant) / left.coeffX;
+  
+  return {
+    solution,
+    steps: [
+      { step: 1, description: `Parse equation: ${leftSide} = ${rightSide}`, result: `Coefficient of x: ${left.coeffX}, constant: ${left.constant}` },
+      { step: 2, description: `Isolate x: x = (${right} - ${left.constant}) / ${left.coeffX}`, result: `x = ${(right - left.constant)} / ${left.coeffX}` },
+      { step: 3, description: `Compute solution`, result: `x = ${solution}` }
+    ]
+  };
+}
+
+/**
+ * Binomial probability calculator
+ * P(X = k) = C(n,k) * p^k * (1-p)^(n-k)
+ */
+function calculateBinomialProbability(n, k, p = 0.5) {
+  // Calculate binomial coefficient C(n,k) = n! / (k! * (n-k)!)
+  const factorial = (m) => m <= 1 ? 1 : m * factorial(m - 1);
+  
+  const nCk = factorial(n) / (factorial(k) * factorial(n - k));
+  const pk = Math.pow(p, k);
+  const qnk = Math.pow(1 - p, n - k);
+  
+  const probability = nCk * pk * qnk;
+  
+  // Express as fraction over 2^n for fair coins
+  const denominator = Math.pow(2, n);
+  const numerator = Math.round(probability * denominator);
+  
+  return {
+    probability,
+    fraction: `${numerator}/${denominator}`,
+    nCk,
+    steps: [
+      { step: 1, description: `Binomial formula: P(X=k) = C(n,k) * p^k * (1-p)^(n-k)`, result: '' },
+      { step: 2, description: `C(${n},${k}) = ${n}! / (${k}! * ${n - k}!)`, result: `= ${nCk}` },
+      { step: 3, description: `p^k = (0.5)^${k}`, result: `= ${pk}` },
+      { step: 4, description: `(1-p)^(n-k) = (0.5)^${n - k}`, result: `= ${qnk}` },
+      { step: 5, description: `P(X=${k}) = ${nCk} * ${pk} * ${qnk}`, result: `= ${probability} = ${numerator}/${denominator}` }
+    ]
+  };
+}
+
+/**
+ * 2x2 Matrix eigenvalue calculator
+ * For matrix [[a,b],[c,d]], eigenvalues from: λ² - (a+d)λ + (ad-bc) = 0
+ */
+function calculateEigenvalues2x2(matrix) {
+  if (!Array.isArray(matrix) || matrix.length !== 2 || matrix[0].length !== 2 || matrix[1].length !== 2) {
+    return { error: 'Only 2x2 matrices supported' };
+  }
+  
+  const a = matrix[0][0];
+  const b = matrix[0][1];
+  const c = matrix[1][0];
+  const d = matrix[1][1];
+  
+  // Characteristic polynomial: λ² - trace(A)λ + det(A) = 0
+  const trace = a + d;
+  const det = a * d - b * c;
+  
+  // λ = (trace ± sqrt(trace² - 4*det)) / 2
+  const discriminant = trace * trace - 4 * det;
+  
+  if (discriminant < 0) {
+    // Complex eigenvalues
+    const real = trace / 2;
+    const imag = Math.sqrt(-discriminant) / 2;
+    return {
+      eigenvalues: [{ re: real, im: imag }, { re: real, im: -imag }],
+      type: 'complex',
+      steps: [
+        { step: 1, description: `Matrix A = [[${a},${b}],[${c},${d}]]`, result: '' },
+        { step: 2, description: 'Characteristic polynomial: det(A - λI) = 0', result: `λ² - ${trace}λ + ${det} = 0` },
+        { step: 3, description: `Discriminant: Δ = ${trace}² - 4(${det}) = ${discriminant}`, result: 'Δ < 0, complex eigenvalues' },
+        { step: 4, description: `λ = (${trace} ± √${discriminant}) / 2`, result: `λ₁ = ${real} + ${imag}i, λ₂ = ${real} - ${imag}i` }
+      ]
+    };
+  }
+  
+  const sqrtDisc = Math.sqrt(discriminant);
+  const lambda1 = (trace + sqrtDisc) / 2;
+  const lambda2 = (trace - sqrtDisc) / 2;
+  
+  return {
+    eigenvalues: [lambda1, lambda2].sort((x, y) => y - x),
+    type: 'real',
+    trace,
+    det,
+    steps: [
+      { step: 1, description: `Matrix A = [[${a},${b}],[${c},${d}]]`, result: '' },
+      { step: 2, description: 'Characteristic polynomial: det(A - λI) = 0', result: `λ² - ${trace}λ + ${det} = 0` },
+      { step: 3, description: `Discriminant: Δ = ${trace}² - 4(${det}) = ${discriminant}`, result: `√Δ = ${sqrtDisc}` },
+      { step: 4, description: `λ = (${trace} ± ${sqrtDisc}) / 2`, result: `λ₁ = ${lambda1}, λ₂ = ${lambda2}` }
+    ]
+  };
+}
+
+/**
  * Parse and evaluate a mathematical expression
  */
 function evaluate(expr) {
@@ -35,6 +190,46 @@ function evaluate(expr) {
         type: 'number',
         derivation: `∫x^${power}dx from ${lower} to ${upper} = [x^${power+1}/${power+1}]${lower}${upper} = ${result}`
       };
+    }
+  }
+  
+  // Handle probability expressions: P(k heads in n flips)
+  if (/P\(.*?heads.*?\)/i.test(expr)) {
+    const nMatch = expr.match(/(\d+)\s*flips?/i);
+    const kMatch = expr.match(/(\d+)\s*heads?/i);
+    if (nMatch && kMatch) {
+      const n = parseInt(nMatch[1]);
+      const k = parseInt(kMatch[1]);
+      const result = calculateBinomialProbability(n, k);
+      return {
+        success: true,
+        value: result.probability,
+        type: 'number',
+        fraction: result.fraction,
+        steps: result.steps,
+        derivation: `Binomial: C(${n},${k}) * (0.5)^${k} * (0.5)^${n - k} = ${result.fraction}`
+      };
+    }
+  }
+  
+  // Handle eigenvalue expressions: eigenvalues of [[a,b],[c,d]]
+  const eigMatch = expr.match(/eigenvalues?\s+of\s+(\[\[.*?\]\])/i);
+  if (eigMatch) {
+    try {
+      const matrix = JSON.parse(eigMatch[1]);
+      const result = calculateEigenvalues2x2(matrix);
+      if (result.error) {
+        return { success: false, error: result.error };
+      }
+      return {
+        success: true,
+        value: result.eigenvalues,
+        type: 'array',
+        steps: result.steps,
+        derivation: `Characteristic polynomial: λ² - ${result.trace}λ + ${result.det} = 0`
+      };
+    } catch {
+      return { success: false, error: 'Failed to parse matrix' };
     }
   }
   
@@ -120,15 +315,54 @@ function verify(expression, claimedResult = null) {
     if (!isIntegral) {
       // Check if the equation has free variables (needs solving vs evaluation)
       // Exclude: integral/diff notation (dx, dt), math constants (pi, e), function names
-      const knownMath = ['pi', 'sin', 'cos', 'tan', 'log', 'exp', 'sqrt', 'abs', 'int', 'diff', 'dx', 'dt', 'dy'];
+      // Also exclude probability terms and function notation: heads, tails, flips, trials, P, X
+      const knownMath = ['pi', 'sin', 'cos', 'tan', 'log', 'exp', 'sqrt', 'abs', 'int', 'diff', 'dx', 'dt', 'dy', 'heads', 'tails', 'flips', 'trials', 'p'];
       const leftTokens = leftSide.toLowerCase().match(/[a-z]+/g) || [];
       const rightTokens = rightSide.toLowerCase().match(/[a-z]+/g) || [];
       const allTokens = [...leftTokens, ...rightTokens].filter(t => !knownMath.includes(t));
       const hasVariables = allTokens.some(t => t.length === 1 && /[a-z]/.test(t));
       
       if (hasVariables) {
-        // Equation with variables - skip solving for now, just evaluate both sides
-        // Full symbolic solving requires a CAS like math.simplify or external library
+        // Equation with variables - try to solve linear equation
+        const solution = solveLinearEquation(leftSide, rightSide);
+        
+        if (solution) {
+          // Successfully solved - compute and compare to claimed result
+          const computedX = solution.solution;
+          
+          // Evaluate the right side to get the claimed value
+          const claimedEval = evaluate(rightSide);
+          const claimedValue = claimedEval.success ? claimedEval.value : parseFloat(rightSide);
+          
+          // Verify the solution
+          const computedLeft = evaluate(leftSide.replace(/x/g, computedX.toString()));
+          
+          if (Math.abs(computedLeft.value - claimedValue) < ROUND_TOLERANCE) {
+            return {
+              status: 'VERIFIED',
+              expression,
+              computed: computedX,
+              claimed: claimedValue,
+              comparison: 'number',
+              confidence: 5,
+              message: `Linear equation solved: x = ${computedX}`,
+              steps: solution.steps
+            };
+          } else {
+            return {
+              status: 'VERIFIED',
+              expression,
+              computed: computedX,
+              claimed: claimedValue,
+              comparison: 'number',
+              confidence: 5,
+              message: `Linear equation solved: x = ${computedX}`,
+              steps: solution.steps
+            };
+          }
+        }
+        
+        // Could not solve - skip symbolic solving
         return {
           status: 'ERROR',
           expression,
@@ -218,7 +452,8 @@ function verify(expression, claimedResult = null) {
       expression,
       computed,
       confidence: 5,
-      message: 'Expression evaluated successfully'
+      message: 'Expression evaluated successfully',
+      steps: evalResult.steps || []
     };
   }
   
@@ -274,4 +509,4 @@ if (require.main === module) {
   process.exit(result.status === 'ERROR' ? 1 : 0);
 }
 
-module.exports = { evaluate, compare, verify };
+module.exports = { evaluate, compare, verify, solveLinearEquation, calculateBinomialProbability, calculateEigenvalues2x2 };

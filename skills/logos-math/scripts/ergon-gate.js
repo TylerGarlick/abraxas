@@ -90,9 +90,9 @@ function checkGate(claim, options = {}) {
   let status = 'BLOCKED';
   let blockReason = null;
   
-  if (verification.result === 'INCONCLUSIVE' || verification.confidence === 'UNVERIFIED') {
+  if (verification.status === 'ERROR' || verification.status === 'BLOCKED') {
     blockReason = BLOCK_REASONS.UNVERIFIABLE;
-  } else if (verification.result === 'mismatch') {
+  } else if (verification.status === 'CONFLICT') {
     blockReason = BLOCK_REASONS.MISMATCH;
   } else if (requireDerivation && verification.steps?.length === 0) {
     blockReason = BLOCK_REASONS.NO_DERIVATION;
