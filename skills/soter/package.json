@@ -1,0 +1,22 @@
+{
+  "name": "@abraxas/soter",
+  "version": "1.0.0",
+  "description": "Safety & Risk Evaluation System for Abraxas",
+  "main": "scripts/soter-assess.js",
+  "scripts": {
+    "assess": "node scripts/soter-assess.js",
+    "patterns": "node scripts/soter-patterns.js",
+    "ledger": "node scripts/soter-ledger.js",
+    "test": "node tests/test.js"
+  },
+  "keywords": [
+    "abraxas",
+    "safety",
+    "risk",
+    "instrumental-convergence",
+    "ai-safety"
+  ],
+  "author": "Abraxas Team",
+  "license": "MIT",
+  "dependencies": {}
+}
