@@ -444,7 +444,20 @@ Comparison summaries:
 
 ---
 
-## 10. References
+## 10. Companion Documents
+
+This research paper is part of a two-document set:
+
+| Document | Type | Focus | Location |
+|:---|:---|:---|:---|
+| **This Paper** | Empirical/Technical | Model evaluation data, statistical analysis, deployment recommendations | `research/05-research-paper-v2.0-final.md` |
+| **Collusion Prevention Whitepaper** | Theoretical/Policy | AI deception problem, Abraxas as structural defense, intervention design | `research/papers/collusion-prevention-whitepaper.md` |
+
+**Together:** The empirical results in this paper validate the theoretical framework in the whitepaper. See the whitepaper for detailed analysis of how Abraxas systems prevent multi-agent deception.
+
+---
+
+## 11. References
 
 1. Abraxas Testing Framework v1.0 (`01-testing-framework.md`)
 2. Test Query Bank (`02-test-query-bank.md`)
@@ -455,7 +468,7 @@ Comparison summaries:
 ---
 
 **Report Version:** 2.0 (Final)  
-**Date:** 2026-03-18 19:16 UTC  
+**Date:** 2026-04-06  
 **Test Suite:** Abraxas 7-Dimension Framework v1.0  
 **Models:** 5 (gemma3:27b-cloud, qwen3.5:cloud, gpt-oss:120b-cloud, glm-5:cloud, minimax-m2.5:cloud)  
 **Queries:** 130 total (26 per model)  
@@ -464,3 +477,5 @@ Comparison summaries:
 ---
 
 *This report is committed to the abraxas GitHub repository for version control and reproducibility.*
+
+*Companion document: "Preventing AI Collusion Through Epistemic Verification" (collusion-prevention-whitepaper.md)*
