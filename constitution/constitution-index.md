@@ -1,85 +1,40 @@
-# constitution-index.md
-## Abraxas Constitution Index
+# Constitution Index
 
-This directory contains modular constitution fragments. Load the one that matches your needs.
-
----
-
-## Individual System Fragments
-
-| File | Systems | Commands | Description |
-|:---|:---|:---|:---|
-| `constitution-universal.md` | Universal Constraints + Labels | — | Base layer: 5 rules + label definitions |
-| `constitution-honest.md` | Universal + Honest | 9 | Plain-language anti-hallucination |
-| `constitution-janus.md` | Universal + Janus | 14 | Sol/Nox faces, Threshold, Qualia Bridge |
-| `constitution-oneironautics.md` | Universal + Janus + Oneironautics | 35 | Dream reception, alchemical practice |
-| `constitution-agon.md` | Universal + Agon | 8 | Structured adversarial reasoning |
-| `constitution-aletheia.md` | Universal + Aletheia | 7 | Epistemic calibration, ground-truth tracking |
-| `constitution-mnemosyne.md` | Universal + Mnemosyne | 7 | Cross-session memory |
-| `constitution-ethos.md` | Universal + Ethos | 5 | Voice preservation, stylistic fingerprint |
-| `constitution-krisis.md` | Universal + Krisis | 6 | Multi-framework ethical deliberation |
+**Auto-generated:** 2026-04-06T17:07:52.284Z
+**Total Systems:** 12
+**Total Commands:** 188
 
 ---
 
-## Combination Fragments
+## System Roster
 
-| File | Systems | Commands | Description |
-|:---|:---|:---|:---|
-| `constitution-core.md` | Universal + Honest + Janus + Oneironautics | 58 | Core four systems |
-| `constitution-all.md` | All systems | 95 | Complete constitution |
-
----
-
-## Quick Reference
-
-### Minimal Setup
-- Just anti-hallucination: `constitution-honest.md`
-- Just epistemic labeling: `constitution-janus.md`
-
-### Full Epistemic Stack
-- Honest + Janus: `constitution-honest.md` + `constitution-janus.md`
-- Or use: `constitution-core.md`
-
-### Full Abraxas
-- All systems (10 subsystems): `constitution-all.md`
+| System | File | Commands | Description |
+|--------|------|----------|-------------|
+| constitution-agon.md | constitution-agon.md | 8 | constitution-agon.md constitution |
+| constitution-aletheia.md | constitution-aletheia.md | 7 | constitution-aletheia.md constitution |
+| constitution-core.md | constitution-core.md | 50 | constitution-core.md constitution |
+| constitution-ethos.md | constitution-ethos.md | 5 | constitution-ethos.md constitution |
+| constitution-honest.md | constitution-honest.md | 17 | constitution-honest.md constitution |
+| constitution-janus.md | constitution-janus.md | 18 | constitution-janus.md constitution |
+| constitution-krisis.md | constitution-krisis.md | 6 | constitution-krisis.md constitution |
+| constitution-mnemosyne.md | constitution-mnemosyne.md | 7 | constitution-mnemosyne.md constitution |
+| constitution-oneironautics.md | constitution-oneironautics.md | 52 | constitution-oneironautics.md constitution |
+| constitution-soter.md | constitution-soter.md | 10 | constitution-soter.md constitution |
+| constitution-universal.md | constitution-universal.md | 0 | constitution-universal.md constitution |
+| CONSTITUTION.md | constitution.md | 8 | CONSTITUTION.md constitution |
 
 ---
 
-## Loading
+## Quick Links
 
-Load as system prompt or first user message. The AI will initialize with the specified systems active.
-
----
-
-## Updates
-
-When skill files change, run the constitution-keeper agent to update all fragments:
-
-```bash
-# The agent will update:
-# - constitution-all.md (full version)
-# - constitution-universal.md (base layer)
-# - Each system-specific fragment
-# - Each combination fragment
-```
+- [Full Constitution](constitution-all.md) — All systems combined
+- [Genesis](genesis.md) — Initialization instructions
+- [Individual Systems](./) — System-specific constitutions
 
 ---
 
-## File Structure
+## Sync Status
 
-```
-constitution/
-├── constitution-index.md          # This file
-├── constitution-all.md            # Full (all systems)
-├── constitution-universal.md     # Base layer only
-├── constitution-honest.md       # Honest
-├── constitution-janus.md         # Janus
-├── constitution-oneironautics.md # Oneironautics
-├── constitution-agon.md           # Agon
-├── constitution-aletheia.md      # Aletheia
-├── constitution-mnemosyne.md     # Mnemosyne
-├── constitution-ethos.md         # Ethos
-├── constitution-krisis.md        # Krisis
-├── constitution-core.md           # Honest + Janus + Oneironautics
-└── constitution-honest-janus.md  # (reference to core subset)
-```
+Last synced: 2026-04-06T17:07:52.284Z
+Sync script: scripts/sync-constitutions.js
+
