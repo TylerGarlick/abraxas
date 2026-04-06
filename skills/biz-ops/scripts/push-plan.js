@@ -11,7 +11,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const TOKEN = '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';
+const TOKEN = 'ghp_REDACTED_OLD_TOKEN';
 const REPO = 'tylergarlick/biz-plans';
 const CLONE_DIR = '/tmp/biz-plans-repo';
 const PLANS_SRC = '/home/ubuntu/.openclaw/workspace/mission-control/biz-plans';

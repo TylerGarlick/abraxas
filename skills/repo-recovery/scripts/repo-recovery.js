@@ -13,7 +13,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const TOKEN = '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';
+const TOKEN = 'ghp_REDACTED_OLD_TOKEN';
 const WORKSPACE = '/home/ubuntu/.openclaw/workspace';
 
 function gitClone(repo) {

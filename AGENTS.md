@@ -207,6 +207,53 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## Task Pipeline (Task: → Beads → /task)
+
+T's full task lifecycle has three layers:
+
+1. **Authoring** — `Task: <prompt>` or `Task: Project: <prompt>` — you define the problem, I figure out execution
+2. **Staging/Ready Gate** — Beads (`mc/.beads/`) — tasks live here until `bd ready` confirms they're ready
+3. **Execution** — Native OpenClaw `/task` system (v2026.4.1) — actual work happens here
+
+### How it works
+
+- `Task:` spawns an **isolated subagent** (never the main session)
+- Subagent works in the Beads staging layer
+- `bd ready` (Dolt CLI) confirms when a task is truly ready to execute
+- Only then does the task enter the `/task` execution layer
+- `task-clarity` skill fires before every spawn — use it to gate "is this ready?"
+
+### Beads state machine
+
+```
+detected → planned → in_progress → delivered
+                  → qa_blocked    → (retry → delivered)
+                  → stale         → (reset → detected)
+```
+
+### /task system (v2026.4.1)
+
+- Native OpenClaw task runner — durable, persistent
+- SQLite backend: `~/.openclaw/tasks/runs.sqlite`
+- Source of truth for active/executed tasks
+- Use `/task` commands directly for execution-layer operations
+
+### Key files
+
+| File | Purpose |
+|------|---------|
+| `mission-control/tasks.json` | Consolidated task definitions (EHR, Abraxas, etc.) |
+| `mc/planning/backlog.json` | Full backlog with delivery state |
+| `mc/.beads/` | Beads staging layer (Dolt-backed) |
+
+### Red lines for tasks
+
+- **Never** use `done` — use `closed` for terminal Beads status
+- **Always** spawn isolated subagents for `Task:` work
+- **Always** use `BEADS_DIR=/home/ubuntu/.openclaw/workspace/mc/.beads` in subagent environment
+
+---
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.

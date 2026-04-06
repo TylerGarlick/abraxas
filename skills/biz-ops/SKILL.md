@@ -82,7 +82,7 @@ Runs after each briefing cron — as a chained follow-up subagent.
 ## GitHub
 
 - Plans repo: `tylergarlick/biz-plans`
-- Token: `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`
+- Token: `ghp_REDACTED_OLD_TOKEN`
 - All contributions from Tyler Garlick
 
 ## Integration with Briefing

@@ -1,7 +1,7 @@
 ---
 name: secrets-manager
 description: |
-  Manages encrypted secrets, API keys, tokens, and credentials for Mission Control. All secrets are encrypted at rest using AES-256-GCM, with per-skill scoping, audit logging, and zero-rewriting rotation. MJ reads secrets internally but they are NEVER visible to end users. Triggers: "MJ add secret", "MJ rotate secret", "MJ secret", "secrets manager", "add api key".
+  Manages encrypted secrets, API keys, tokens, and credentials. All secrets are encrypted at rest using AES-256-GCM, with per-skill scoping, audit logging, and zero-rewriting rotation. MJ reads secrets internally but they are NEVER visible to end users. Triggers: "MJ add secret", "MJ rotate secret", "MJ secret", "secrets manager", "add api key".
 ---
 
 # SKILL.md — Secrets Manager
@@ -17,10 +17,11 @@ Securely stores and manages secrets — API keys, tokens, credentials — used b
 ## Architecture
 
 ```
-secrets-store.json       ← encrypted secrets (never exposed)
-secrets-master.key      ← master encryption key (never in git)
-secrets-audit.log       ← audit trail
-secrets-config.json     ← per-skill key mappings
+/home/ubuntu/.openclaw/workspace/mary-jane/secrets/
+  secrets-store.json       ← encrypted secrets (never exposed)
+  secrets-master.key      ← master encryption key (never in git)
+  secrets-audit.log       ← audit trail
+  secrets-config.json     ← per-skill key mappings
 ```
 
 ## Master Key
@@ -79,7 +80,7 @@ Examples:
 
 ```bash
 # Add a secret
-cd /home/ubuntu/.openclaw/skills/secrets-manager
+cd /home/ubuntu/.openclaw/workspace/mary-jane/skills/secrets-manager
 node scripts/secrets-manager.js add <skill> <name> <value> <reason>
 
 # Read a secret (returns to MJ only, never to user)
@@ -98,7 +99,7 @@ node scripts/secrets-manager.js audit <skill> <name>
 ## Secret Migration
 
 Existing plain-text secrets in MEMORY.md should be migrated:
-- GitHub Token: `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`
+- GitHub Token: `ghp_REDACTED_OLD_TOKEN`
 - Brave Search API Key: `BSAoUT58YOXZsPs6xtGto3PL-RxHfr6`
 
 ## Critical Rules

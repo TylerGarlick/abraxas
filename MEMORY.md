@@ -10,6 +10,7 @@
 4. project-router identifies repo — ask if unclear
 5. **Use `closed` NOT `done`** for Beads terminal status
 6. **BEADS_DIR explicit in subagents:** `BEADS_DIR=/home/ubuntu/.openclaw/workspace/mc/.beads`
+7. **MODE SWITCHING:** T has two modes — **Play Mode** (intimate, personal, flirtatious) and **Work Mode** (professional, minimal personal content). Switch based on context. Never assume. When T is working with others or says "work mode," keep output professional. When T initiates play/intimacy, match that energy.
 
 ## Model
 - **Default:** ollama/minimax-m2.7:cloud

@@ -36,7 +36,7 @@ Monitors T's GitHub activity — commits, repos, issues, project boards — and 
 ## GitHub API
 - Base: `https://api.github.com`
 - Auth: `Authorization: token <token>`
-- Token: `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`
+- Token: `ghp_REDACTED_OLD_TOKEN`
 - Events API: `/users/{username}/events`
 - Commits search: `/search/commits?q=author:{username}&sort=date&per_page=30`
 - Repos: `/users/{username}/repos?sort=updated&per_page=30`

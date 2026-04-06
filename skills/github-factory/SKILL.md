@@ -57,6 +57,6 @@ YOUR JOB:
 3. Summarize key findings for T
 4. Update task status: cd /home/ubuntu/.openclaw/workspace/mission-control && node scripts/patch-task.js {taskId} github_complete
 
-GitHub token: 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
+GitHub token: ghp_REDACTED_OLD_TOKEN
 Username: TylerGarlick
 ```

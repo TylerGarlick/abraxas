@@ -12,7 +12,7 @@ const path = require('path');
 const https = require('https');
 
 const TASKS_FILE = path.join(__dirname, '../../tasks.json');
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = 'ghp_REDACTED_OLD_TOKEN';
 const USERNAME = 'TylerGarlick';
 
 function loadTasks() {

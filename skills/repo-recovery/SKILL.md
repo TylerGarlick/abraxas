@@ -53,7 +53,7 @@ curl -s -H "Authorization: token <token>" \
 
 ## GitHub Token
 
-Stored in MEMORY.md: `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`
+Stored in MEMORY.md: `ghp_REDACTED_OLD_TOKEN`
 
 ## Important Rules
 
