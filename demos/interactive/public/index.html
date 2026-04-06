@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Abraxas Interactive Demo</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Monaco', monospace;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid #2a2a3e;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle { color: #888; font-size: 1.1em; }
+        
+        /* Main Demo Section */
+        .demo-section {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .demo-section h2 {
+            color: #00d9ff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Input Area */
+        .input-area {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        input[type="text"] {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #2a2a3e;
+            border-radius: 8px;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #00d9ff;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            color: #0a0a0f;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 217, 255, 0.4);
+        }
+        .btn-secondary {
+            background: #2a2a3e;
+            color: #e0e0e0;
+        }
+        .btn-secondary:hover {
+            background: #3a3a4e;
+        }
+        
+        /* Test Cases */
+        .test-cases {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .test-case-btn {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            background: #2a2a3e;
+            border: 1px solid #3a3a4e;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .test-case-btn:hover {
+            border-color: #00d9ff;
+            background: #1a1a2e;
+        }
+        
+        /* Results */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .result-card {
+            background: #0a0a0f;
+            border: 1px solid #2a2a3e;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .result-card h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        /* Epistemic Labels */
+        .labels-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .epistemic-label {
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .label-KNOWN { background: rgba(0, 255, 136, 0.2); border: 1px solid #00ff88; color: #00ff88; }
+        .label-INFERRED { background: rgba(255, 170, 0, 0.2); border: 1px solid #ffaa00; color: #ffaa00; }
+        .label-UNCERTAIN { background: rgba(136, 136, 255, 0.2); border: 1px solid #8888ff; color: #8888ff; }
+        .label-UNKNOWN { background: rgba(100, 100, 100, 0.2); border: 1px solid #666666; color: #999999; }
+        .label-CONFLICT { background: rgba(255, 68, 102, 0.2); border: 1px solid #ff4466; color: #ff4466; }
+        
+        /* Derivation Steps */
+        .steps-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+        .steps-list li {
+            padding: 10px 15px;
+            margin: 8px 0;
+            background: #1a1a2e;
+            border-left: 3px solid #00d9ff;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 0.95em;
+        }
+        .steps-list li .step-result {
+            color: #00ff88;
+            font-weight: 600;
+        }
+        .steps-list li .step-result.error {
+            color: #ff4466;
+        }
+        
+        /* Pipeline Visualization */
+        .pipeline-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pipeline-stage {
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            padding: 15px;
+            background: #1a1a2e;
+            border: 2px solid #2a2a3e;
+            border-radius: 8px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .pipeline-stage.active {
+            border-color: #00d9ff;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+        }
+        .pipeline-stage.complete {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+        .pipeline-stage .stage-name {
+            font-weight: 700;
+            color: #00d9ff;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .pipeline-stage .stage-action {
+            font-size: 0.85em;
+            color: #888;
+        }
+        .pipeline-stage .stage-duration {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+        .pipeline-arrow {
+            font-size: 1.5em;
+            color: #2a2a3e;
+        }
+        
+        /* Comparison Matrix */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        .comparison-table th {
+            background: #16213e;
+            color: #00d9ff;
+            font-weight: 600;
+        }
+        .comparison-table tr:hover {
+            background: #1a1a2e;
+        }
+        .score-bar {
+            display: inline-block;
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        .score-5 { background: linear-gradient(90deg, #00ff88, #00d9ff); width: 100%; }
+        .score-4 { background: linear-gradient(90deg, #00d9ff, #00ff88); width: 80%; }
+        .score-3 { background: linear-gradient(90deg, #ffaa00, #00d9ff); width: 60%; }
+        .score-2 { background: linear-gradient(90deg, #ff6644, #ffaa00); width: 40%; }
+        .score-1 { background: linear-gradient(90deg, #ff4466, #ff6644); width: 20%; }
+        
+        .feature-check {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .feature-x {
+            color: #666;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid #2a2a3e;
+            border-top-color: #00d9ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .status-verified { background: rgba(0, 255, 136, 0.2); color: #00ff88; }
+        .status-conflict { background: rgba(255, 68, 102, 0.2); color: #ff4466; }
+        .status-unverified { background: rgba(136, 136, 255, 0.2); color: #8888ff; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .results-grid { grid-template-columns: 1fr; }
+            .pipeline-container { flex-direction: column; }
+            .pipeline-arrow { transform: rotate(90deg); margin: 10px 0; }
+            h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔮 Abraxas Interactive Demo</h1>
+            <p class="subtitle">Epistemic Verification System — Math is derived, not asserted</p>
+        </header>
+
+        <!-- Demo Section: Claim Verification -->
+        <section class="demo-section">
+            <h2>🧪 Verify a Claim</h2>
+            <p style="color: #888; margin-bottom: 20px;">
+                Enter a mathematical claim to see it verified through the Abraxas pipeline. 
+                Watch as epistemic labels are applied in real-time.
+            </p>
+            
+            <div class="input-area">
+                <input type="text" id="claim-input" placeholder="Enter a claim (e.g., 2 + 2 = 4, 3x + 7 = 22)" />
+                <button class="btn-primary" onclick="verifyClaim()">Verify</button>
+            </div>
+            
+            <div class="test-cases" id="test-cases">
+                <!-- Test case buttons loaded dynamically -->
+            </div>
+            
+            <div id="results-area" style="display: none;">
+                <div class="results-grid">
+                    <!-- Epistemic Labels -->
+                    <div class="result-card">
+                        <h3>🏷️ Epistemic Labels</h3>
+                        <div class="labels-container" id="labels-container"></div>
+                        <div id="status-badge"></div>
+                    </div>
+                    
+                    <!-- Derivation Steps -->
+                    <div class="result-card">
+                        <h3>📐 Derivation Steps</h3>
+                        <ul class="steps-list" id="steps-list"></ul>
+                    </div>
+                </div>
+                
+                <!-- Pipeline Visualization -->
+                <div class="result-card" style="margin-top: 20px;">
+                    <h3>🔄 Pipeline Execution</h3>
+                    <div class="pipeline-container" id="pipeline-container"></div>
+                </div>
+            </div>
+            
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px;">Running verification pipeline...</p>
+            </div>
+        </section>
+
+        <!-- Comparison Matrix Section -->
+        <section class="demo-section">
+            <h2>📊 Abraxas vs. Other AI Systems</h2>
+            <p style="color: #888; margin-bottom: 20px;">
+                See how Abraxas compares to other AI systems on key epistemic dimensions.
+            </p>
+            
+            <div id="comparison-loading" class="loading">
+                <div class="spinner"></div>
+                <p style="margin-top: 15px;">Loading comparison data...</p>
+            </div>
+            
+            <div id="comparison-area" style="display: none;">
+                <h3 style="color: #00d9ff; margin: 20px 0 15px;">Dimension Scores (1-5)</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Abraxas</th>
+                            <th>Claude</th>
+                            <th>GPT-4</th>
+                            <th>Gemini</th>
+                            <th>GPT-3.5</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dimension-scores"></tbody>
+                </table>
+                
+                <h3 style="color: #00d9ff; margin: 30px 0 15px;">Feature Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Abraxas</th>
+                            <th>Claude</th>
+                            <th>GPT-4</th>
+                            <th>Gemini</th>
+                            <th>GPT-3.5</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feature-comparison"></tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Load test cases on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTestCases();
+            await loadComparisonData();
+        });
+
+        // Load test cases
+        async function loadTestCases() {
+            try {
+                const res = await fetch('/api/test-cases');
+                const testCases = await res.json();
+                
+                const container = document.getElementById('test-cases');
+                container.innerHTML = testCases.map(tc => 
+                    `<button class="test-case-btn" onclick="useTestCase('${tc.claim.replace(/'/g, "\\'")}')">${tc.claim}</button>`
+                ).join('');
+            } catch (err) {
+                console.error('Error loading test cases:', err);
+            }
+        }
+
+        // Use a test case
+        function useTestCase(claim) {
+            document.getElementById('claim-input').value = claim;
+            verifyClaim();
+        }
+
+        // Verify a claim
+        async function verifyClaim() {
+            const claim = document.getElementById('claim-input').value.trim();
+            if (!claim) {
+                alert('Please enter a claim to verify');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results-area').style.display = 'none';
+
+            try {
+                const res = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ claim })
+                });
+                
+                const data = await res.json();
+                
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    return;
+                }
+
+                displayResults(data);
+            } catch (err) {
+                alert('Error verifying claim: ' + err.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // Display verification results
+        function displayResults(data) {
+            const { claim, verification, labels, pipeline } = data;
+
+            // Display labels
+            const labelsContainer = document.getElementById('labels-container');
+            labelsContainer.innerHTML = labels.map(l => 
+                `<span class="epistemic-label label-${l.label}">${l.label}</span>`
+            ).join('');
+
+            // Display status badge
+            const statusBadge = document.getElementById('status-badge');
+            const statusClass = verification.confidence === 'VERIFIED' ? 'status-verified' :
+                               verification.result === 'mismatch' ? 'status-conflict' : 'status-unverified';
+            const statusText = verification.confidence === 'VERIFIED' ? '✓ VERIFIED' :
+                              verification.result === 'mismatch' ? '⚠ CONFLICT' : '○ UNVERIFIED';
+            statusBadge.innerHTML = `<span class="status-badge ${statusClass}">${statusText}</span>`;
+
+            // Display derivation steps
+            const stepsList = document.getElementById('steps-list');
+            stepsList.innerHTML = verification.steps.map(step => {
+                const resultClass = step.result && step.result.includes('fail') ? 'error' : '';
+                return `<li>
+                    <strong>Step ${step.step}:</strong> ${step.description}
+                    ${step.result ? `<span class="step-result ${resultClass}">→ ${step.result}</span>` : ''}
+                </li>`;
+            }).join('');
+
+            // Display pipeline
+            const pipelineContainer = document.getElementById('pipeline-container');
+            pipelineContainer.innerHTML = pipeline.map((stage, i) => `
+                <div class="pipeline-stage complete">
+                    <div class="stage-name">${stage.stage}</div>
+                    <div class="stage-action">${stage.action}</div>
+                    <div class="stage-duration">${stage.duration}ms</div>
+                </div>
+                ${i < pipeline.length - 1 ? '<div class="pipeline-arrow">→</div>' : ''}
+            `).join('');
+
+            // Show results
+            document.getElementById('results-area').style.display = 'block';
+        }
+
+        // Load comparison data
+        async function loadComparisonData() {
+            try {
+                const res = await fetch('/api/comparison');
+                const data = await res.json();
+
+                // Dimension scores
+                const dimensionScores = document.getElementById('dimension-scores');
+                dimensionScores.innerHTML = data.dimensions.map(dim => `
+                    <tr>
+                        <td>${dim.name}</td>
+                        <td><span class="score-bar score-${dim.abraxas}"></span>${dim.abraxas}</td>
+                        <td><span class="score-bar score-${dim.claude}"></span>${dim.claude}</td>
+                        <td><span class="score-bar score-${dim.gpt4}"></span>${dim.gpt4}</td>
+                        <td><span class="score-bar score-${dim.gemini}"></span>${dim.gemini}</td>
+                        <td><span class="score-bar score-${dim.gpt35}"></span>${dim.gpt35}</td>
+                    </tr>
+                `).join('');
+
+                // Feature comparison
+                const featureComparison = document.getElementById('feature-comparison');
+                featureComparison.innerHTML = data.features.map(f => `
+                    <tr>
+                        <td>${f.feature}</td>
+                        <td class="feature-check">${f.abraxas ? '✓ Yes' : '✗ No'}</td>
+                        <td class="${f.claude ? 'feature-check' : 'feature-x'}">${f.claude ? '✓ Yes' : '✗ No'}</td>
+                        <td class="${f.gpt4 ? 'feature-check' : 'feature-x'}">${f.gpt4 ? '✓ Yes' : '✗ No'}</td>
+                        <td class="${f.gemini ? 'feature-check' : 'feature-x'}">${f.gemini ? '✓ Yes' : '✗ No'}</td>
+                        <td class="${f.gpt35 ? 'feature-check' : 'feature-x'}">${f.gpt35 ? '✓ Yes' : '✗ No'}</td>
+                    </tr>
+                `).join('');
+
+                document.getElementById('comparison-loading').style.display = 'none';
+                document.getElementById('comparison-area').style.display = 'block';
+            } catch (err) {
+                console.error('Error loading comparison data:', err);
+                document.getElementById('comparison-loading').innerHTML = 
+                    '<p style="color: #ff4466;">Error loading comparison data</p>';
+            }
+        }
+    </script>
+</body>
+</html>

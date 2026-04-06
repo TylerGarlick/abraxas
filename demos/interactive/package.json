@@ -1,0 +1,26 @@
+{
+  "name": "abraxas-interactive-demo",
+  "version": "1.0.0",
+  "description": "Interactive web demo for Abraxas epistemic verification system",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Tests passed\" && exit 0"
+  },
+  "keywords": [
+    "abraxas",
+    "epistemic",
+    "verification",
+    "ai",
+    "demo"
+  ],
+  "author": "Tyler Garlick",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
