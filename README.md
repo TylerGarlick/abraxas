@@ -1,13 +1,61 @@
 # Abraxas v3 - Epistemic Verification System
 
-**Phase 1: Logos + Ergon Systems**
+**Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
+**Phase 2 In Progress:** Soter, Kairos, Ethos (Safety-focused systems)  
+**Empirically Validated:** 5-model evaluation with 130+ queries (April 2026)
 
 Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
 
+## 📊 Key Research Findings (April 2026)
+
+**Five-Model Evaluation Results:**
+
+| Rank | Model | Composite Score | Best Use Case |
+|------|-------|-----------------|---------------|
+| 1 | **gpt-oss:120b-cloud** | 0.93 | High-stakes analysis (medical, legal, financial) |
+| 2 | **qwen3.5:cloud** | 0.80 | Balanced production workloads |
+| 3 | **minimax-m2.5:cloud** | 0.73 | Speed-sensitive real-time applications |
+| 4 | **gemma3:27b-cloud** | 0.69 | Resource-constrained deployment |
+| 5 | **glm-5:cloud** | 0.58 | Research only (15% timeout rate) |
+
+**Headline Findings:**
+- Universal factual accuracy: All 5 models achieved 100% on verifiable claims (p = 1.0)
+- Universal dialectical reasoning: All 5 models achieved 100% on debate tasks (p = 1.0)
+- Meta-cognitive variation: Calibration ranges 0-100% (F = 6.0, p < 0.01**)
+- Parameter count correlates with calibration (r = 0.82) but NOT factual accuracy (r = 0.00)
+
+📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)  
+📄 **Collusion Prevention Whitepaper:** [`research/papers/collusion-prevention-whitepaper.md`](research/papers/collusion-prevention-whitepaper.md)
+
 ## Skills
 
-| Skill | Purpose |
-|-------|---------|
+### Phase 1 Systems (Complete)
+
+| Skill | Purpose | Status |
+|-------|---------|--------|
+| **logos** | Argument anatomy: map structure, find gaps, surface assumptions | ✅ Complete |
+| **logos-math** | Verify quantitative claims: step-by-step derivation, confidence labeling | ✅ Complete |
+| **logos-verification** | Claim verification against sources | ✅ Complete |
+| **janus** | Epistemic labeling: [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN] | ✅ Complete |
+| **agon** | Adversarial stress-testing of claims | ✅ Complete |
+| **aletheia** | Truth tracking and ledger (calibration monitoring) | ⚠️ Spec complete |
+| **ethos** | Source credibility assessment | ✅ Basic implementation |
+| **hermes** | Interpretation and ambiguity resolution | ⚠️ In progress |
+| **kairos** | Timing and relevance judgment | ⚠️ In progress |
+| **pheme** | Rumor and claim tracking | ⚠️ In progress |
+| **mnemosyne** | Memory and context management | ⚠️ Spec complete |
+| **ergon** | Tool-use verification and execution | ✅ Complete |
+
+### Phase 2 Systems (Safety-Focused)
+
+| Skill | Purpose | Priority | Status |
+|-------|---------|----------|--------|
+| **soter** | Safety & risk evaluation (instrumental convergence detection) | CRITICAL | ⚠️ In progress |
+| **kairos** | Timing & relevance judgment (urgency filtering) | HIGH | ⚠️ In progress |
+| **ethos** | Source credibility assessment (weighted verification) | HIGH | ⚠️ In progress |
+| **pathos** | Value & emotional salience tracking | MEDIUM | 📋 Proposed |
+
+📄 **Phase 2 Proposal:** [`research/papers/new-systems-proposal-2026-04.md`](research/papers/new-systems-proposal-2026-04.md)
 | **logos** | Argument anatomy: map structure, find gaps, surface assumptions |
 | **logos-math** | Verify quantitative claims: step-by-step derivation, confidence labeling, cross-checking |
 | **logos-verification** | Claim verification against sources |
@@ -45,6 +93,17 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 │ math-crosscheck         │ Multi-method verification          │
 │ math-log                │ Persistent audit trail             │
 └─────────────────────────┴───────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│              Soter (Safety & Risk Evaluation) [Phase 2]    │
+├─────────────────────────────────────────────────────────────┤
+│ Monitors for instrumental convergence patterns:            │
+│ • Shutdown avoidance                                        │
+│ • Resource exfiltration                                     │
+│ • Peer protection                                           │
+│ • Performance inflation                                     │
+│ • Goal preservation                                         │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ### logos-math in the Pipeline
@@ -156,6 +215,18 @@ All tests should pass:
 - ✓ Ergon failure detection
 - ✓ Ergon API
 
+### Empirical Validation
+
+The Abraxas 7-Dimension Framework has been validated across 5 models with 130+ structured queries:
+
+```bash
+# Run full 7-dimension test suite
+cd /tmp/abraxas-checkout/research
+python3 test_abraxas_7dim.py --model <model_name> --output research/
+```
+
+See [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md) for complete results.
+
 ## Source Credibility
 
 Built-in credibility scores:
@@ -178,11 +249,36 @@ Ergon returns standardized `[UNKNOWN]` on tool failure:
 
 ## Version
 
-3.0.0 - Phase 1 Complete (2026-03-19)
+**3.0.0** - Phase 1 Complete (2026-03-19)  
+**3.1.0** - Empirical Validation Complete (2026-04-06)  
+**4.0.0** - Phase 2 In Progress (Soter, Kairos, Ethos)
+
+## Research & Documentation
+
+- **Main Whitepaper:** [`docs/overview/whitepaper.md`](docs/overview/whitepaper.md)
+- **Research Papers:** [`research/papers/`](research/papers/)
+- **Empirical Results:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)
+- **System Specifications:** [`research/specs/`](research/specs/)
+- **Comparison Matrix:** [`research/comparison/ABRAXAS_COMPARISON_MATRIX.md`](research/comparison/ABRAXAS_COMPARISON_MATRIX.md)
+- **Retrospectives:** [`research/retrospective-2026-04-06.md`](research/retrospective-2026-04-06.md)
 
 ## Next Steps (Phase 2)
 
-- Pathos System (Emotional/Value Verification)
-- Mythos System (Narrative Verification)
-- Full system integration
-- Performance optimization
+**Priority 1 (CRITICAL):**
+- Complete Soter implementation (safety-ledger, pattern detection, Ergon integration)
+- Deploy interactive demo to Vercel
+
+**Priority 2 (HIGH):**
+- Implement Kairos (relevance filtering, urgency scoring)
+- Implement Ethos (source credibility database, weighted verification)
+
+**Priority 3 (MEDIUM):**
+- Complete Aletheia implementation (calibration tracking)
+- Begin Pathos design (value tracking)
+
+**Ongoing:**
+- Expand sycophancy tests to 50+ queries
+- Human A/B testing for trust validation
+- Longitudinal calibration tracking
+
+📄 **Full Roadmap:** [`PLAN.md`](PLAN.md)

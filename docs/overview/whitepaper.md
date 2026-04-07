@@ -2,7 +2,7 @@
 
 **Preventing Hallucination, Deception, and Collusion Through Structural Constraints**
 
-_Version 1.0 — April 2026_
+_Version 1.1 — April 2026 (Empirically Validated)_
 
 ---
 
@@ -10,7 +10,15 @@ _Version 1.0 — April 2026_
 
 Large language models have a structural problem: they cannot distinguish between what they know, what they've inferred, what they're uncertain about, and what they're fabricating. This is not a training problem — it is an architectural problem. As models gain autonomy and multi-agent capabilities, this flaw enables deception, collusion, and instrumental convergence.
 
-**Abraxas is a different approach:** not better training, but better architecture. By making epistemic status visible, verification mandatory, uncertainty safe, and audit automatic, Abraxas makes deception structurally difficult and costly. This whitepaper describes the Abraxas architecture, its six systems, implementation status, empirical validation framework, and comparative advantages over existing approaches.
+**Abraxas is a different approach:** not better training, but better architecture. By making epistemic status visible, verification mandatory, uncertainty safe, and audit automatic, Abraxas makes deception structurally difficult and costly. This whitepaper describes the Abraxas architecture, its systems, **empirical validation results (5 models, 130+ queries)**, and comparative advantages over existing approaches.
+
+**Key Empirical Findings (April 2026):**
+- Universal factual accuracy: All 5 tested models achieved 100% on verifiable claims (p = 1.0)
+- Meta-cognitive variation: Calibration ranges 0-100% across models (F = 6.0, p < 0.01**)
+- Parameter count correlates with calibration (r = 0.82) but NOT factual accuracy (r = 0.00)
+- **gpt-oss:120b-cloud** leads overall (composite 0.93); **glm-5:cloud** shows 15% timeout rate
+
+📄 **Full Results:** [`/research/05-research-paper-v2.0-final.md`](../../research/05-research-paper-v2.0-final.md)
 
 ---
 

@@ -1,6 +1,7 @@
 # Abraxas Documentation
 
-**Organized:** April 2026
+**Organized:** April 2026  
+**Last Updated:** 2026-04-07
 
 ---
 
@@ -50,7 +51,9 @@ docs/
 |------|-------------|
 | `testing.md` | Testing methodology and strategy |
 | `VERIFICATION.md` | Verification protocols |
-| `five-model-evaluation.md` | Multi-model evaluation results |
+| `five-model-evaluation.md` | Multi-model evaluation results (5 models, 130+ queries) |
+
+📄 **Full Research Paper:** `/research/05-research-paper-v2.0-final.md` — Complete statistical analysis, model rankings, deployment recommendations
 
 ### design/ — Design Documentation
 
@@ -75,19 +78,29 @@ docs/
 
 1. Start with `overview/index.md` — what Abraxas is
 2. Read `overview/whitepaper.md` — full architecture
-3. Use `systems/skills.md` — command reference
+3. Review `research/05-research-paper-v2.0-final.md` — empirical validation results
+4. Use `systems/skills.md` — command reference
+
+### Researchers
+
+1. Read `research/05-research-paper-v2.0-final.md` — 5-model evaluation
+2. Read `research/papers/collusion-prevention-whitepaper.md` — deception prevention framework
+3. Review `research/comparison/ABRAXAS_COMPARISON_MATRIX.md` — comparative analysis
+4. See `testing/testing.md` — testing methodology
 
 ### Developers
 
 1. Read `overview/architecture.md` — system design
 2. Check `api/abraxas-api-architecture.md` — API docs
 3. See `testing/testing.md` — how to test
+4. Review `systems/skill-relationships.md` — system integration patterns
 
 ### Deployers
 
 1. See `deployment/ollama-model.md` — Ollama setup
 2. See `deployment/website.md` — web deployment
 3. See `deployment/frames.md` — session configuration
+4. Review `research/05-research-paper-v2.0-final.md` — model selection guidance
 
 ---
 

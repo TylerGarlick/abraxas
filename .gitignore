@@ -358,3 +358,53 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,macos,intellij+all,node,webstorm+all,yarn
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Backup and temp files
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+
+# Storage and runtime
+skills/storage/
+memory/*.json
+!memory/.gitkeep
+
+# Verification logs
+skills/logos-math/storage/
+
+# IDE and editor files
+*.log
