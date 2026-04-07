@@ -1,0 +1,59 @@
+{
+  "sessionId": "mnnuy0oe",
+  "request": "Build an avalanche dashboard",
+  "startedAt": "2026-04-07T00:05:01.551Z",
+  "unknowns": [
+    {
+      "id": 1,
+      "category": "GOAL",
+      "question": "What exactly should this do / achieve?",
+      "leverage": 5,
+      "status": "unknown",
+      "source": "initial"
+    },
+    {
+      "id": 2,
+      "category": "AUDIENCE",
+      "question": "Who is the primary user / audience?",
+      "leverage": 4,
+      "status": "unknown",
+      "source": "initial"
+    },
+    {
+      "id": 3,
+      "category": "FORMAT",
+      "question": "What format / platform / output is expected?",
+      "leverage": 3,
+      "status": "unknown",
+      "source": "initial"
+    },
+    {
+      "id": 4,
+      "category": "SUCCESS",
+      "question": "How will we know when this is complete / successful?",
+      "leverage": 5,
+      "status": "unknown",
+      "source": "initial"
+    },
+    {
+      "id": 5,
+      "category": "TIMELINE",
+      "question": "What is the timeline / deadline?",
+      "leverage": 3,
+      "status": "unknown",
+      "source": "initial"
+    },
+    {
+      "id": 6,
+      "category": "DATA",
+      "question": "What data / content is needed?",
+      "leverage": 3,
+      "status": "unknown",
+      "source": "initial"
+    }
+  ],
+  "knowns": [],
+  "skipped": [],
+  "status": "in_progress",
+  "iterations": 0
+}
