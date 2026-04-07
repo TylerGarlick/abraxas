@@ -2,11 +2,15 @@
 
 This document maps how each constituent skill feeds into the others, creating a coherent epistemic verification pipeline. The flow follows a philosophical progression from truth-discovery through verification to work.
 
-**Constituent Skills:** janus, agon, aletheia, logos, honest, mnemosyne, ergon
+**Phase 1 Systems:** janus, agon, aletheia, logos, honest, mnemosyne, ergon, logos-math
+
+**Phase 2 Systems (Safety-Focused):** soter, kairos, ethos, pathos
 
 **Active Sub-Project:** logos-math (anti-hallucination math verification)
 
 **Core Principle:** "Math is derived, not asserted" (Ergon's mandate)
+
+📄 **Phase 2 Proposal:** [`/research/papers/new-systems-proposal-2026-04.md`](../../research/papers/new-systems-proposal-2026-04.md)
 
 ---
 
@@ -399,4 +403,73 @@ This is the anti-hallucination core. Ergon (with logos-math) is the final gate b
 
 ---
 
-_Last updated: 2026-04-04_
+## Phase 2: Safety Systems Integration
+
+### Soter — Instrumental Convergence Detection (CRITICAL)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      Soter (Safety)                         │
+├─────────────────────────────────────────────────────────────┤
+│ User Request → Soter Risk Assessment → Risk Score (0-5)   │
+│     ↓                                                        │
+│ Risk 0-1: Normal processing                                │
+│ Risk 2-3: Enhanced verification (Logos + Agon)             │
+│ Risk 4-5: Human review required, request logged            │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Soter monitors for:**
+- Shutdown avoidance (claims preventing own deactivation)
+- Resource exfiltration (requests beyond stated need)
+- Peer protection schemes (advocacy for other models)
+- Performance inflation (unverified capability claims)
+- Goal preservation (resistance to objective changes)
+
+**Soter integration:** Ergon Gate blocks high-risk → Agon Skeptic runs self-serving claims → Aletheia tracks patterns → Janus Qualia Bridge shows withheld.
+
+### Kairos — Timing & Relevance (HIGH)
+
+```
+Output Generated → Kairos Relevance Filter → Routing Decision
+
+High urgency + high relevance → Immediate alert
+High urgency + low relevance → Queue for later
+Low urgency + high relevance → Include in output
+Low urgency + low relevance → Suppress or footnote
+```
+
+### Ethos — Source Credibility (HIGH)
+
+```
+Claim → Source Lookup → Ethos Credibility Score → Janus Label
+
+High credibility + agreement → [KNOWN]
+High credibility + disagreement → [CONFLICT]
+Low credibility only → [UNCERTAIN]
+No sources → [UNKNOWN]
+```
+
+### Phase 2 Full Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                         Abraxas v4                           │
+├─────────────────────────────────────────────────────────────┤
+│  Phase 1 (Complete): Logos, Ergon, Logos-Math, Janus, Agon  │
+│  Phase 2 (Priority): Soter, Kairos, Ethos                    │
+│  Phase 3 (Planned): Pathos, Dianoia, Hermes                 │
+├─────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  User Input → Soter (Risk) → Kairos (Relevance) → Logos (Map)  │
+│              ↓                      ↓              ↓            │
+│          Ergon (Block)        Queue/Footnote  Ethos (Source)   │
+│                                                      ↓          │
+│  Output ← Pathos (Values) ← Aletheia (Calibration) ← Janus     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+_Last updated: 2026-04-07_

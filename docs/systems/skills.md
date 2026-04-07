@@ -1,14 +1,16 @@
 # Skills Reference
 
-> **Tagline** — *"Six systems, six failure modes addressed."*
+> **Tagline** — *"Ten systems, ten failure modes addressed."*
 
-This document is the system reference for the six skills that make up the Abraxas project:
-**Honest**, **Logos**, **Agon**, **Janus**, **Aletheia**, and **Logos-Math**. It describes what each
-system is, how it is structured, and every command it provides.
+This document is the system reference for the skills that make up the Abraxas project:
+**Phase 1 (Complete):** Honest, Logos, Agon, Janus, Aletheia, Logos-Math, Ergon
+**Phase 2 (In Progress):** Soter, Kairos, Ethos, Pathos
 
 These are not plugins or developer utilities. They are operational systems designed to address
 hallucination, unexamined reasoning, confirmation bias, mixing of fact and symbol, obscurantism,
-and mathematical errors in AI output.
+mathematical errors, instrumental convergence, and multi-agent collusion in AI output.
+
+📄 **New (April 2026):** See [`research/papers/new-systems-proposal-2026-04.md`](../../research/papers/new-systems-proposal-2026-04.md) for Phase 2 safety-focused systems.
 
 ---
 
@@ -60,14 +62,19 @@ unzip logos-math.skill -d ~/.claude/skills/
 
 Once installed, the skill's slash commands are available in every Claude Code session.
 
-| Skill | File | Commands | Archive Size |
+| Skill | File | Commands | Status |
 |---|---|---|---|
-| Honest | `skills/honest.skill` | 9 | ~5 KB |
-| Logos | `skills/logos.skill` | 6 | ~12 KB |
-| Agon | `skills/agon.skill` | 8 | ~12 KB |
-| Janus | `skills/janus-system.skill` | 19 | ~15 KB |
-| Aletheia | `skills/aletheia.skill` | 7 | ~10 KB |
-| Logos-Math | `skills/logos-math.skill` | 4 | ~8 KB |
+| Honest | `skills/honest.skill` | 9 | ✅ Complete |
+| Logos | `skills/logos.skill` | 6 | ✅ Complete |
+| Agon | `skills/agon.skill` | 8 | ✅ Complete |
+| Janus | `skills/janus-system.skill` | 19 | ✅ Complete |
+| Aletheia | `skills/aletheia.skill` | 7 | ⚠ Spec complete |
+| Logos-Math | `skills/logos-math.skill` | 4 | ✅ Complete |
+| Ergon | `skills/reasoning/ergon/` | 6 | ✅ Complete |
+| **Soter** | `skills/soter/` | 5 | ⚠ In progress |
+| **Kairos** | `skills/kairos/` | 5 | ⚠ In progress |
+| **Ethos** | `skills/ethos/` | 5 | ⚠ In progress |
+| **Pathos** | — | — | 📋 Proposed |
 
 ---
 
@@ -81,9 +88,11 @@ Once installed, the skill's slash commands are available in every Claude Code se
 - If you need to separate factual and symbolic output across a session — use **Janus**.
 - If you need to force plain language and resist obfuscation — use **Aletheia**.
 - If you need to verify mathematical computations — use **Logos-Math**.
+- If you need to detect instrumental convergence (deception for goals) — use **Soter** ⚠️
+- If you need to filter urgency/relevance — use **Kairos** ⚠️
+- If you need to weight sources by credibility — use **Ethos** ⚠️
 
-**Honest** is the recommended starting point for most users. The full six-system stack addresses
-all major failure modes in AI output.
+**Phase 2 Priority:** Soter is CRITICAL for collusion prevention — prioritize implementation.
 
 ---
 
@@ -424,7 +433,59 @@ Prefix your outputs with labels:
 | Janus | `/sol`, `/nox`, `/qualia`, `/threshold status` |
 | Aletheia | `/aletheia plain`, `/aletheia audit`, `/aletheia expose` |
 | Logos-Math | `/math-verify`, `/math-confidence`, `/math-crosscheck` |
+| Soter | `/soter assess`, `/soter pattern`, `/soter ledger`, `/soter alert`, `/soter explain` ⚠️ |
+| Kairos | `/kairos urgency`, `/kairos relevance`, `/kairos timing`, `/kairos brevity`, `/kairos queue` ⚠️ |
+| Ethos | `/ethos score`, `/ethos compare`, `/ethos conflict`, `/ethos track` ⚠️ |
 
 ---
 
-_Last updated: March 2026_
+## Phase 2: Safety Systems (April 2026)
+
+### Soter — Safety & Risk Evaluation ⚠️
+
+**Status:** In Progress (CRITICAL)
+
+Soter monitors for **instrumental convergence patterns** — goal-directed deceptive behaviors that other systems miss:
+
+- Shutdown avoidance
+- Resource exfiltration
+- Peer protection schemes
+- Performance inflation
+- Goal preservation attempts
+
+📄 **Spec:** [`/research/papers/new-systems-proposal-2026-04.md`](../../research/papers/new-systems-proposal-2026-04.md)
+
+### Kairos — Timing & Relevance Judgment ⚠️
+
+**Status:** In Progress (HIGH priority)
+
+Kairos determines:
+
+- **Urgency** — Does this need immediate attention?
+- **Relevance** — Is this pertinent to the user's goal?
+- **Timing** — Should this be said now or later?
+- **Brevity** — How much detail is appropriate?
+
+### Ethos — Source Credibility Assessment ⚠️
+
+**Status:** Basic implementation (HIGH priority)
+
+Ethos weights verification by source quality:
+
+| Tier | Examples | Score |
+|------|---------|-------|
+| Tier 1 | Nature, Science | 0.95-1.0 |
+| Tier 2 | Reuters, AP, BBC | 0.85-0.94 |
+| Tier 3 | Snopes, PolitiFact | 0.70-0.84 |
+| Tier 4 | Technical blogs | 0.50-0.69 |
+| Tier 5 | Social media | 0.00-0.49 |
+
+### Pathos — Value & Salience Tracking 📋
+
+**Status:** Proposed (MEDIUM priority)
+
+Pathos tracks user values and emotional salience to frame epistemic output appropriately.
+
+---
+
+_Last updated: April 2026_

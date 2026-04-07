@@ -1,8 +1,11 @@
 # Five-Model Evaluation: Abraxas 7-Dimension Framework
 
-**Date:** March 18, 2026  
-**Version:** 2.0 (Final)  
+**Date:** March 18, 2026 (Test Date) / April 6, 2026 (Final Report)
+**Version:** 2.0 (Final)
 **Status:** Publication-ready
+
+📄 **Full Research Paper:** [`/research/05-research-paper-v2.0-final.md`](../../research/05-research-paper-v2.0-final.md) — Complete statistical analysis, all test queries, and deployment recommendations.
+📄 **Collusion Prevention Whitepaper:** [`/research/papers/collusion-prevention-whitepaper.md`](../../research/papers/collusion-prevention-whitepaper.md) — Empirical validation framework.
 
 ---
 

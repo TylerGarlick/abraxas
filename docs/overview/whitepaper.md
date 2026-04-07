@@ -426,15 +426,23 @@ Cross-Agent Ledger:
 
 | System | Status | Priority |
 |--------|--------|----------|
+| **Phase 1 Complete** | | |
 | Honest | ✅ Complete | — |
 | Janus | ✅ Complete | — |
 | Logos | ✅ Complete | — |
 | Agon | ✅ Complete | — |
 | Logos-Math | ✅ Complete (derivatives stubbed) | Medium |
+| Ergon | ✅ Complete | — |
+| **Phase 2 In Progress** | | |
+| Soter | ⚠ In progress | **CRITICAL** |
+| Kairos | ⚠ In progress | HIGH |
+| Ethos | ⚠ Basic impl | HIGH |
+| Pathos | 📋 Proposed | MEDIUM |
+| **Pending** | | |
 | Aletheia | ⚠ Spec complete | **High** |
 | Mnemosyne | ⚠ Spec complete | Medium |
 
-**Priority:** Complete Aletheia implementation to close the calibration loop.
+**Priority:** Complete Soter (CRITICAL for collusion prevention) → Kairos → Ethos → Aletheia
 
 ---
 
