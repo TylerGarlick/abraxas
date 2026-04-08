@@ -4,7 +4,7 @@
 
 This document is the system reference for the skills that make up the Abraxas project:
 **Phase 1 (Complete):** Honest, Logos, Agon, Janus, Aletheia, Logos-Math, Ergon
-**Phase 2 (In Progress):** Soter, Kairos, Ethos, Pathos
+**Phase 2 (In Progress):** Soter (Started), Kairos & Ethos (Proposed)
 
 These are not plugins or developer utilities. They are operational systems designed to address
 hallucination, unexamined reasoning, confirmation bias, mixing of fact and symbol, obscurantism,
@@ -71,9 +71,9 @@ Once installed, the skill's slash commands are available in every Claude Code se
 | Aletheia | `skills/aletheia.skill` | 7 | ⚠ Spec complete |
 | Logos-Math | `skills/logos-math.skill` | 4 | ✅ Complete |
 | Ergon | `skills/reasoning/ergon/` | 6 | ✅ Complete |
-| **Soter** | `skills/soter/` | 5 | ⚠ In progress |
-| **Kairos** | `skills/kairos/` | 5 | ⚠ In progress |
-| **Ethos** | `skills/ethos/` | 5 | ⚠ In progress |
+| **Soter** | `skills/soter/` | 5 | ⚠️ Started |
+| **Kairos** | `skills/kairos/` | 5 | 📋 Proposed |
+| **Ethos** | `skills/ethos/` | 5 | 📋 Proposed |
 | **Pathos** | — | — | 📋 Proposed |
 
 ---
@@ -443,7 +443,7 @@ Prefix your outputs with labels:
 
 ### Soter — Safety & Risk Evaluation ⚠️
 
-**Status:** In Progress (CRITICAL)
+**Status:** Started (CRITICAL)
 
 Soter monitors for **instrumental convergence patterns** — goal-directed deceptive behaviors that other systems miss:
 
@@ -455,9 +455,9 @@ Soter monitors for **instrumental convergence patterns** — goal-directed decep
 
 📄 **Spec:** [`/research/papers/new-systems-proposal-2026-04.md`](../../research/papers/new-systems-proposal-2026-04.md)
 
-### Kairos — Timing & Relevance Judgment ⚠️
+### Kairos — Timing & Relevance Judgment 📋
 
-**Status:** In Progress (HIGH priority)
+**Status:** Proposed (HIGH priority)
 
 Kairos determines:
 
@@ -466,9 +466,9 @@ Kairos determines:
 - **Timing** — Should this be said now or later?
 - **Brevity** — How much detail is appropriate?
 
-### Ethos — Source Credibility Assessment ⚠️
+### Ethos — Source Credibility Assessment 📋
 
-**Status:** Basic implementation (HIGH priority)
+**Status:** Proposed (HIGH priority)
 
 Ethos weights verification by source quality:
 

@@ -1,8 +1,9 @@
 # Abraxas v3 - Epistemic Verification System
 
 **Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
-**Phase 2 In Progress:** Soter, Kairos, Ethos (Safety-focused systems)  
-**Empirically Validated:** 5-model evaluation with 130+ queries (April 2026)
+**Phase 2 In Progress:** Soter (Started), Kairos & Ethos (Proposed)  
+**Empirically Validated:** 5-model evaluation with 130+ queries (April 2026)  
+**Test Dimensions:** 8 complete, Dimensions 9 & 10 (Soter/Ethos) proposed
 
 Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
 
@@ -39,10 +40,9 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 | **janus** | Epistemic labeling: [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN] | ✅ Complete |
 | **agon** | Adversarial stress-testing of claims | ✅ Complete |
 | **aletheia** | Truth tracking and ledger (calibration monitoring) | ⚠️ Spec complete |
-| **ethos** | Source credibility assessment | ✅ Basic implementation |
-| **hermes** | Interpretation and ambiguity resolution | ⚠️ In progress |
-| **kairos** | Timing and relevance judgment | ⚠️ In progress |
-| **pheme** | Rumor and claim tracking | ⚠️ In progress |
+| **hermes** | Interpretation and ambiguity resolution | 📋 Proposed |
+| **kairos** | Timing and relevance judgment | 📋 Proposed |
+| **pheme** | Rumor and claim tracking | 📋 Proposed |
 | **mnemosyne** | Memory and context management | ⚠️ Spec complete |
 | **ergon** | Tool-use verification and execution | ✅ Complete |
 
@@ -50,25 +50,12 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 
 | Skill | Purpose | Priority | Status |
 |-------|---------|----------|--------|
-| **soter** | Safety & risk evaluation (instrumental convergence detection) | CRITICAL | ⚠️ In progress |
-| **kairos** | Timing & relevance judgment (urgency filtering) | HIGH | ⚠️ In progress |
-| **ethos** | Source credibility assessment (weighted verification) | HIGH | ⚠️ In progress |
+| **soter** | Safety & risk evaluation (instrumental convergence detection) | CRITICAL | ⚠️ Started |
+| **kairos** | Timing & relevance judgment (urgency filtering) | HIGH | 📋 Proposed |
+| **ethos** | Source credibility assessment (weighted verification) | HIGH | 📋 Proposed |
 | **pathos** | Value & emotional salience tracking | MEDIUM | 📋 Proposed |
 
 📄 **Phase 2 Proposal:** [`research/papers/new-systems-proposal-2026-04.md`](research/papers/new-systems-proposal-2026-04.md)
-| **logos** | Argument anatomy: map structure, find gaps, surface assumptions |
-| **logos-math** | Verify quantitative claims: step-by-step derivation, confidence labeling, cross-checking |
-| **logos-verification** | Claim verification against sources |
-| **janus** | Epistemic labeling: [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN] |
-| **agon** | Adversarial stress-testing of claims |
-| **aletheia** | Truth tracking and ledger |
-| **ethos** | Source credibility assessment |
-| **hermes** | Interpretation and ambiguity resolution |
-| **kairos** | Timing and relevance judgment |
-| **pheme** | Rumor and claim tracking |
-| **soter** | Safety and risk evaluation |
-| **mnemosyne** | Memory and context management |
-| **ergon** | Tool-use verification and execution |
 
 ## Architecture
 
@@ -251,7 +238,7 @@ Ergon returns standardized `[UNKNOWN]` on tool failure:
 
 **3.0.0** - Phase 1 Complete (2026-03-19)  
 **3.1.0** - Empirical Validation Complete (2026-04-06)  
-**4.0.0** - Phase 2 In Progress (Soter, Kairos, Ethos)
+**4.0.0** - Phase 2 Started (Soter), Kairos & Ethos Proposed (2026-04-08)
 
 ## Research & Documentation
 
