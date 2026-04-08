@@ -408,3 +408,8 @@ skills/logos-math/storage/
 
 # IDE and editor files
 *.log
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
