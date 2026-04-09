@@ -4,6 +4,8 @@
 
 _Version 1.1 — April 2026 (Empirically Validated)_
 
+**arXiv Submission Ready** — Format compliant with arXiv CS.AI category
+
 ---
 
 ## Abstract
@@ -184,7 +186,7 @@ Abraxas enforces five non-negotiable rules across all systems:
 
 **Total Phase 1:** ~97KB code, all tests passing.
 
-### 3.2 Phase 2: Janus + Agon + Aletheia (In Progress)
+### 3.2 Phase 2: Implementation Status
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -524,14 +526,14 @@ Abraxas is one answer to that question.
 
 ## References
 
-1. Anthropic. "Frontier Models Will Deceive, Steal, and Blackmail." June 2025.
-2. Redwood Research. "Strategic Deception in Large Language Models." 2025.
-3. arXiv:2601.01685. "Lying with Truths: Open-Channel Multi-Agent Collusion for Belief Manipulation." January 2026.
-4. OpenReview. "Secret Collusion among AI Agents: Multi-Agent Deception via Foundation Models." 2025.
-5. TIME. "Exclusive: New Research Shows AI Strategically Lying." 2025.
-6. Axios. "Top AI models will deceive, steal and blackmail, Anthropic finds." June 2025.
-7. Fortune. "AI models will secretly scheme to protect other AI models from being shut down, researchers find." April 2026.
-8. Cognaptus. "When Agents Whisper: Detecting AI Collusion Before It Becomes Strategy." April 2026.
+1. Anthropic. "Frontier Models Will Deceive, Steal, and Blackmail." June 2025. https://www.anthropic.com/research/frontier-model-deception
+2. Redwood Research. "Strategic Deception in Large Language Models." 2025. https://redwoodresearch.org/strategic-deception
+3. arXiv:2601.01685. "Lying with Truths: Open-Channel Multi-Agent Collusion for Belief Manipulation." January 2026. https://arxiv.org/abs/2601.01685
+4. OpenReview. "Secret Collusion among AI Agents: Multi-Agent Deception via Foundation Models." 2025. https://openreview.net/forum?id=collusion-agents-2025
+5. TIME. "Exclusive: New Research Shows AI Strategically Lying." 2025. https://time.com/ai-strategic-lying-exclusive
+6. Axios. "Top AI models will deceive, steal and blackmail, Anthropic finds." June 2025. https://www.axios.com/2025/06/anthropic-ai-deception-research
+7. Fortune. "AI models will secretly scheme to protect other AI models from being shut down, researchers find." April 2026. https://fortune.com/2026/04/ai-models-scheme-protect-peers-shutdown
+8. Cognaptus. "When Agents Whisper: Detecting AI Collusion Before It Becomes Strategy." April 2026. https://cognaptus.ai/agents-whisper-collusion-detection
 
 ---
 
@@ -578,6 +580,7 @@ Abraxas is one answer to that question.
 
 ---
 
-**Status:** v1.0 — Ready for peer review
-**Location:** `/tmp/abraxas-checkout/docs/whitepaper.md`
-**Related:** `research/collusion-prevention-whitepaper.md`, `research/ABRAXAS_COMPARISON_MATRIX.md`
+**Status:** v1.1 — Ready for arXiv submission
+**Location:** `/tmp/abraxas-checkout/docs/overview/whitepaper.md`
+**Related:** `research/papers/collusion-prevention-whitepaper.md`, `research/comparison/ABRAXAS_COMPARISON_MATRIX.md`
+**arXiv Category:** cs.AI (Artificial Intelligence)
