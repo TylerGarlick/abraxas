@@ -9,7 +9,6 @@
 | `mission-control` | `github-token` | ⚠️ REVOKED — T needs to generate new PAT |
 | `mission-control` | `vercel-token` | ✅ Active |
 | `briefing` | `brave-api-key` | ✅ Active |
-| `huggingface-image-gen` | `hf-token` | ✅ Active (stored in skill .env) |
 
 ## Master Key
 

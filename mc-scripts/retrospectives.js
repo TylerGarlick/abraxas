@@ -1,161 +1,269 @@
 #!/usr/bin/env node
+/**
+ * retrospectives.js
+ * Generates daily and weekly retrospectives for Mission Control.
+ *
+ * Usage: node retrospectives.js <type> [--mc-path <path>]
+ *   type:  daily | weekly
+ *   --mc-path  Path to mission-control directory (default: derived from script location)
+ */
+
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
-const repoDir = path.resolve(__dirname, '..');
-const mcDir = path.join(repoDir, 'mission-control');
-const retrosDir = path.join(mcDir, 'retros');
-const tasksDb = path.join(repoDir, '..', '.openclaw', 'tasks', 'runs.sqlite');
+// --- Argument parsing ---
+const mcPathArg = process.argv.find((a, i) =>
+  (a === '--mc-path' || a === '-p') && process.argv[i + 1]
+);
+const MC_PATH = mcPathArg
+  ? path.resolve(process.cwd(), process.argv[process.argv.indexOf(mcPathArg) + 1])
+  : (process.cwd().includes('mission-control') ? process.cwd() : path.resolve(__dirname, '..'));
 
-// Ensure retros directory exists
-if (!fs.existsSync(retrosDir)) fs.mkdirSync(retrosDir, { recursive: true });
+const TASKS_FILE = path.join(MC_PATH, 'tasks.json');
+const LESSONS_FILE = path.join(MC_PATH, 'retrospectives', 'lessons-learned.json');
+const DAILY_DIR = path.join(MC_PATH, 'retrospectives', 'daily');
+const WEEKLY_DIR = path.join(MC_PATH, 'retrospectives', 'weekly');
 
-const mode = process.argv[2] || 'daily';
-const now = new Date();
-const dateStr = now.toISOString().split('T')[0];
-
-console.log(`Running ${mode} retrospective for ${dateStr}`);
-
-// Read tasks from SQLite database
-function getTasksFromDB() {
+function loadJSON(filepath) {
   try {
-    // Use node to read SQLite since sqlite3 CLI may not be available
-    const dbReader = `
-      const Database = require('better-sqlite3');
-      const db = new Database('${tasksDb.replace(/'/g, "''")}');
-      const tasks = db.prepare('SELECT * FROM runs WHERE status = "completed"').all();
-      console.log(JSON.stringify(tasks));
-      db.close();
-    `;
-    const result = execSync(`node -e "${dbReader.replace(/"/g, '\\"')}"`, { encoding: 'utf8' });
-    return JSON.parse(result);
+    return JSON.parse(fs.readFileSync(filepath, 'utf8'));
   } catch (e) {
-    console.error('Failed to read tasks from database:', e.message);
-    return [];
-  }
-}
-
-// Fallback: check for JSON task files
-function getTasksFromFiles() {
-  const tasksDir = path.join(mcDir, 'tasks');
-  if (!fs.existsSync(tasksDir)) return [];
-  
-  const taskFiles = fs.readdirSync(tasksDir).filter(f => f.endsWith('.json'));
-  const tasks = [];
-  
-  for (const tf of taskFiles) {
-    try {
-      const task = JSON.parse(fs.readFileSync(path.join(tasksDir, tf), 'utf8'));
-      tasks.push({ ...task, id: path.basename(tf, '.json') });
-    } catch (e) {
-      console.error(`Failed to read ${tf}:`, e.message);
+    if (e.code === 'ENOENT') {
+      console.error(`ERROR: File not found: ${filepath}`);
+      console.error(`  MC path: ${MC_PATH}`);
+      process.exit(1);
     }
+    throw e;
   }
-  return tasks;
 }
 
-// Get day start timestamp
-const dayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-// Fetch tasks
-let tasks = getTasksFromDB();
-if (tasks.length === 0) {
-  tasks = getTasksFromFiles();
+function saveJSON(filepath, data) {
+  const dir = path.dirname(filepath);
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(filepath, JSON.stringify(data, null, 2));
 }
 
-console.log(`Found ${tasks.length} total tasks`);
+function getDateStr() {
+  const now = new Date();
+  return now.toISOString().split('T')[0];
+}
 
-// Filter for completed today
-const completedToday = tasks.filter(task => {
-  if (task.status !== 'completed' && task.state !== 'completed') return false;
-  const ts = new Date(task.completed_at || task.completedOn || task.completedOnUTC || task.updatedAt || now);
-  return ts >= dayStart;
-});
+function getWeekStr() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const startOfYear = new Date(year, 0, 1);
+  const weekNum = Math.ceil(((now - startOfYear) / 86400000 + startOfYear.getDay() + 1) / 7);
+  return `${year}-W${String(weekNum).padStart(2, '0')}`;
+}
 
-console.log(`Completed today: ${completedToday.length}`);
+function captureLessons(lessonsArray, date) {
+  const recent = lessonsArray.filter(l => l.date === date);
+  if (recent.length === 0) return null;
+  return recent.map(l => `- ${l.text}`).join('\n');
+}
 
-// Generate task retrospectives
-const taskRetros = [];
-for (const task of completedToday) {
-  const taskId = task.id || task.taskId || 'unknown';
-  const title = task.title || task.name || taskId;
-  const markdown = `# Retrospective for ${title}
+function generateWowComparison(allTasks, weekStart) {
+  const lastWeekStart = new Date(weekStart);
+  lastWeekStart.setUTCDate(lastWeekStart.getUTCDate() - 7);
 
-**Task ID:** ${taskId}
-**Status:** ${task.status || task.state}
-**Completed**: ${new Date(task.completed_at || task.completedOn || task.completedOnUTC || task.updatedAt || now).toISOString()}
+  const thisWeekTasks = allTasks.filter(t => new Date(t.createdAt) >= weekStart);
+  const lastWeekTasks = allTasks.filter(t => {
+    const created = new Date(t.createdAt);
+    return created >= lastWeekStart && created < weekStart;
+  });
 
----
+  const thisWeekDone = thisWeekTasks.filter(t => t.status === 'done').length;
+  const lastWeekDone = lastWeekTasks.filter(t => t.status === 'done').length;
 
-## What went well
-* TODO
+  const diff = thisWeekDone - lastWeekDone;
+  const arrow = diff > 0 ? '↑' : diff < 0 ? '↓' : '→';
 
-## What didn't go well
-* TODO
-
-## Action Items
-1. TODO
+  return `| Metric | This Week | Last Week | Change |
+|--------|-----------|-----------|--------|
+| Tasks Created | ${thisWeekTasks.length} | ${lastWeekTasks.length} | ${thisWeekTasks.length - lastWeekTasks.length >= 0 ? '+' : ''}${thisWeekTasks.length - lastWeekTasks.length} |
+| Tasks Completed | ${thisWeekDone} | ${lastWeekDone} | ${arrow} |
 `;
-  const outFile = path.join(retrosDir, `task-${taskId}-${dateStr}.md`);
-  fs.writeFileSync(outFile, markdown);
-  taskRetros.push({ id: taskId, title, outFile });
-  console.log(`  - Created retrospective for: ${title}`);
 }
 
-// Generate daily retrospective
-const dailyFile = path.join(retrosDir, `daily-retro-${dateStr}.md`);
-let dailyContent = `# Daily Retrospective – ${dateStr}
+function generateDailyRetro() {
+  const today = getDateStr();
+  const todayStart = new Date(today + 'T00:00:00Z');
 
-Generated at: ${now.toISOString()}
+  const allTasks = loadJSON(TASKS_FILE).tasks;
+  const todayTasks = allTasks.filter(t => {
+    const created = new Date(t.createdAt);
+    const updated = new Date(t.updatedAt);
+    return created >= todayStart || updated >= todayStart;
+  });
+
+  const completed = todayTasks.filter(t => t.status === 'done');
+  const active = todayTasks.filter(t => t.status.startsWith('running'));
+  const created = todayTasks.filter(t => t.status === 'created');
+
+  let lessons = { lessonsLearned: [], systemImprovements: [], suggestedTasks: [] };
+  try {
+    lessons = loadJSON(LESSONS_FILE);
+  } catch (e) {
+    // Lessons file may not exist yet — that's ok
+  }
+
+  const md = `# Daily Retrospective — ${today}
 
 ## Summary
-- **Total tasks completed today:** ${completedToday.length}
+- Tasks created today: ${created.length}
+- Tasks completed today: ${completed.length}
+- Tasks still active: ${active.length}
+
+## Tasks Worked On
+
+${todayTasks.length === 0 ? '_No activity today._' : todayTasks.map(t => {
+  return `### [${t.id}] ${t.title}
+- **Status:** ${t.status}
+- **Type:** ${t.type}
+- **Factories:** ${t.factories.join(' → ')}
+- **Created:** ${new Date(t.createdAt).toISOString()}
+- **Updated:** ${new Date(t.updatedAt).toISOString()}
+${t.subtasks.length ? `  - Subtasks: ${t.subtasks.length}` : ''}`;
+}).join('\n')}
+
+## What Went Well
+
+_${ captureLessons(lessons.lessonsLearned || [], today) || '_Add observations_' }_
+
+## What Could Be Improved
+
+_${ captureLessons(lessons.systemImprovements || [], today) || '_Add observations_' }_
+
+## Suggested System Improvements
+
+${(lessons.suggestedTasks || []).slice(-3).map(s => `- ${s.text || s}`).join('\n') || '_No suggestions yet_' }
+
+## Notes
+
+_Add retrospective notes here._
 
 ---
-
-## Tasks Completed Today
-
+*Generated by Mission Control — ${new Date().toISOString()}*
 `;
 
-if (taskRetros.length > 0) {
-  for (const tr of taskRetros) {
-    dailyContent += `- [${tr.title}](${path.basename(tr.outFile)})\n`;
-  }
-} else {
-  dailyContent += '*No tasks completed today.*\n';
+  const filepath = path.join(DAILY_DIR, `${today}.md`);
+  if (!fs.existsSync(DAILY_DIR)) fs.mkdirSync(DAILY_DIR, { recursive: true });
+  fs.writeFileSync(filepath, md);
+
+  return { type: 'daily', date: today, filepath, stats: { created: created.length, completed: completed.length, active: active.length } };
 }
 
-dailyContent += `
----
+function generateWeeklyRetro() {
+  const weekStr = getWeekStr();
+  const now = new Date();
 
-## Reflections
-*TODO: Add overall reflections on the day's work*
+  const dayOfWeek = now.getUTCDay();
+  const daysToMon = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+  const weekStart = new Date(now);
+  weekStart.setUTCDate(now.getUTCDate() - daysToMon);
+  weekStart.setUTCHours(0, 0, 0, 0);
 
-## Blockers/Issues
-*TODO: Note any systemic issues or blockers*
+  const weekStartStr = weekStart.toISOString().split('T')[0];
 
-## Tomorrow's Focus
-*TODO: Key priorities for tomorrow*
-`;
-
-fs.writeFileSync(dailyFile, dailyContent);
-console.log(`\nDaily retrospective written to: ${dailyFile}`);
-
-// If mission-control is a git repo, commit and push
-const gitDir = path.join(mcDir, '.git');
-if (fs.existsSync(gitDir)) {
+  let dailyFiles = [];
   try {
-    execSync('git add .', { cwd: mcDir, stdio: 'pipe' });
-    execSync(`git commit -m "[retro] Daily retrospective for ${dateStr}"`, { cwd: mcDir, stdio: 'pipe' });
-    execSync('git push', { cwd: mcDir, stdio: 'pipe' });
-    console.log('Committed and pushed to git');
+    dailyFiles = fs.readdirSync(DAILY_DIR)
+      .filter(f => f.endsWith('.md') && f >= weekStartStr)
+      .sort();
   } catch (e) {
-    console.log('Git operations skipped (not a repo or no changes)');
+    if (e.code !== 'ENOENT') throw e;
   }
-} else {
-  console.log('Skipping git operations (mission-control is not a git repository)');
+
+  const dailyContent = dailyFiles.map(f => {
+    const content = fs.readFileSync(path.join(DAILY_DIR, f), 'utf8');
+    return { file: f, content };
+  });
+
+  const allTasks = loadJSON(TASKS_FILE).tasks;
+  const weekTasks = allTasks.filter(t => {
+    const created = new Date(t.createdAt);
+    return created >= weekStart;
+  });
+
+  const completed = weekTasks.filter(t => t.status === 'done');
+  const byType = {};
+  weekTasks.forEach(t => {
+    if (!byType[t.type]) byType[t.type] = 0;
+    byType[t.type]++;
+  });
+
+  let lessons = { lessonsLearned: [], systemImprovements: [], suggestedTasks: [] };
+  try {
+    lessons = loadJSON(LESSONS_FILE);
+  } catch (e) {
+    // Lessons file may not exist yet
+  }
+
+  const md = `# Weekly Retrospective — ${weekStr}
+
+## Summary
+- Week of: ${weekStartStr}
+- Total tasks created this week: ${weekTasks.length}
+- Tasks completed this week: ${completed.length}
+- Completion rate: ${weekTasks.length > 0 ? Math.round((completed.length / weekTasks.length) * 100) : 0}%
+
+## Tasks by Type
+${Object.entries(byType).map(([type, count]) => `- **${type}:** ${count}`).join('\n') || '_No tasks_'}
+
+## Daily Breakdown
+
+${dailyContent.length === 0 ? '_No daily retrospectives for this week._' : dailyContent.map(d => {
+  const stats = d.content.match(/- Tasks created today: (\d+)\n- Tasks completed today: (\d+)\n- Tasks still active: (\d+)/);
+  return `### ${d.file}
+- Created: ${stats ? stats[1] : '?'} | Completed: ${stats ? stats[2] : '?'} | Active: ${stats ? stats[3] : '?'}`;
+}).join('\n')}
+
+## Cross-Cutting Lessons
+
+${(lessons.lessonsLearned || []).slice(-5).map(l => `- ${l.text} *(added ${l.date})*`).join('\n') || '_No lessons yet_'}
+
+## System Improvements Made
+
+${(lessons.systemImprovements || []).slice(-5).map(s => `- ${s.text || s} *(added ${s.date || weekStr})*`).join('\n') || '_No improvements yet_'}
+
+## Suggested Improvements
+
+${(lessons.suggestedTasks || []).slice(-5).map(s => `- ${s.text || s}`).join('\n') || '_No suggestions yet_'}
+
+## Week-Over-Week Comparison
+
+${generateWowComparison(allTasks, weekStart)}
+
+## Action Items for Next Week
+
+- [ ] _Add action items_
+
+---
+*Generated by Mission Control — ${new Date().toISOString()}*
+`;
+
+  const filepath = path.join(WEEKLY_DIR, `${weekStr}.md`);
+  if (!fs.existsSync(WEEKLY_DIR)) fs.mkdirSync(WEEKLY_DIR, { recursive: true });
+  fs.writeFileSync(filepath, md);
+
+  return { type: 'weekly', week: weekStr, filepath, stats: { total: weekTasks.length, completed: completed.length } };
 }
 
-console.log('\nRetro funnel executed successfully.');
-process.exit(0);
+// --- Main ---
+const positionalArgs = process.argv.slice(2).filter(a => !a.startsWith('--'));
+const type = positionalArgs[0];
+
+if (!type || !['daily', 'weekly'].includes(type)) {
+  console.error('Usage: node retrospectives.js <daily|weekly> [--mc-path <path>]');
+  process.exit(1);
+}
+
+let result;
+if (type === 'daily') {
+  result = generateDailyRetro();
+} else {
+  result = generateWeeklyRetro();
+}
+
+console.log(`✓ ${type} retrospective written to:\n  ${result.filepath}`);
+console.log(`  Stats: ${JSON.stringify(result.stats)}`);

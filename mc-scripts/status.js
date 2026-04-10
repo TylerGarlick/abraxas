@@ -1,89 +1,113 @@
 #!/usr/bin/env node
-
 /**
- * Mission Control Status Check
- * Checks for overdue tasks in the Beads system
+ * status.js — Mission Control status via Beads
+ * Shows issue counts by status and priority for each repo.
+ * 
+ * Usage: node status.js [--repo <name>] [--format brief|verbose]
+ *   --repo    Filter by repo (default: all)
+ *   --format  brief (default) or verbose
  */
 
 const { execSync } = require('child_process');
 const path = require('path');
-const fs = require('fs');
 
-const BEADS_DIR = process.env.BEADS_DIR || '/home/ubuntu/.openclaw/workspace/mc/.beads';
-const OVERDUE_SUMMARY_PATH = '/tmp/overdue-summary.txt';
+// Find mc directory (where Beads is initialized)
+function findMcDir() {
+  // Try common locations
+  const candidates = [
+    '/home/ubuntu/.openclaw/workspace/mc',
+    '/home/ubuntu/workspace/mc',
+    path.resolve(__dirname, '../mc'),
+  ];
+  for (const mcPath of candidates) {
+    try {
+      execSync('ls .beads', { cwd: mcPath, stdio: 'ignore' });
+      return mcPath;
+    } catch {}
+  }
+  // Search upward from __dirname
+  let dir = __dirname;
+  for (let i = 0; i < 5; i++) {
+    dir = path.dirname(dir);
+    try {
+      execSync('ls .beads', { cwd: dir, stdio: 'ignore' });
+      const mcCandidate = path.join(dir, 'mc');
+      try {
+        execSync('ls .beads', { cwd: mcCandidate, stdio: 'ignore' });
+        return mcCandidate;
+      } catch {}
+      return dir;
+    } catch {}
+  }
+  return '/home/ubuntu/.openclaw/workspace/mc';
+}
 
-function main() {
+const BD = '/home/ubuntu/.local/bin/bd';
+const mcDir = findMcDir();
+
+function runBd(args) {
   try {
-    // Run bd list to get all tasks
-    const output = execSync(`cd ${BEADS_DIR} && bd list --json`, {
-      encoding: 'utf-8',
-      stdio: ['pipe', 'pipe', 'pipe']
+    const out = execSync(`${BD} ${args} --json`, {
+      cwd: mcDir,
+      env: { ...process.env, HOME: '/home/ubuntu', DOLT_DIR: mcDir }
     });
-
-    const tasks = JSON.parse(output);
-    const now = new Date();
-    const overdueTasks = [];
-
-    // Check for overdue tasks (tasks created more than 7 days ago and still open)
-    // In a real implementation, this would check against a due_date field
-    // For now, we'll consider P1 tasks created more than 24 hours ago as potentially overdue
-    tasks.forEach(task => {
-      if (task.status === 'open' || task.status === 'blocked') {
-        const createdAt = new Date(task.created_at);
-        const ageInHours = (now - createdAt) / (1000 * 60 * 60);
-        
-        // P1 tasks older than 24 hours are considered overdue
-        // P2 tasks older than 7 days are considered overdue
-        if ((task.priority === 1 && ageInHours > 24) || 
-            (task.priority === 2 && ageInHours > 168)) {
-          overdueTasks.push({
-            ...task,
-            ageInHours: Math.round(ageInHours * 10) / 10
-          });
-        }
-      }
-    });
-
-    // Generate summary if there are overdue tasks
-    if (overdueTasks.length > 0) {
-      const summary = `OVERDUE TASKS SUMMARY
-Generated: ${now.toISOString()}
-Total overdue: ${overdueTasks.length}
-
-${overdueTasks.map(task => `
-ID: ${task.id}
-Title: ${task.title}
-Priority: P${task.priority}
-Status: ${task.status}
-Created: ${task.created_at}
-Age: ${task.ageInHours} hours
-Owner: ${task.owner || 'Unassigned'}
-`).join('\n---\n')}
-
-ACTION REQUIRED: Review and prioritize these tasks.
-`;
-      
-      fs.writeFileSync(OVERDUE_SUMMARY_PATH, summary);
-      console.log(`Found ${overdueTasks.length} overdue task(s). Summary written to ${OVERDUE_SUMMARY_PATH}`);
-    } else {
-      console.log('No overdue tasks found.');
-    }
-
-    // Output status
-    console.log(`\nTotal tasks: ${tasks.length}`);
-    console.log(`Open: ${tasks.filter(t => t.status === 'open').length}`);
-    console.log(`Blocked: ${tasks.filter(t => t.status === 'blocked').length}`);
-    console.log(`In Progress: ${tasks.filter(t => t.status === 'in_progress').length}`);
-
-    process.exit(0);
-
-  } catch (error) {
-    console.error('Error checking task status:', error.message);
-    if (error.stderr) {
-      console.error('stderr:', error.stderr.toString());
-    }
-    process.exit(1);
+    return JSON.parse(out.toString());
+  } catch {
+    return [];
   }
 }
 
-main();
+const issues = runBd('list --all');
+const repoFilter = process.argv.includes('--repo')
+  ? process.argv[process.argv.indexOf('--repo') + 1]
+  : null;
+const verbose = process.argv.includes('--format') && 
+  process.argv[process.argv.indexOf('--format') + 1] === 'verbose';
+
+const filtered = repoFilter
+  ? issues.filter(i => i.metadata?.repo === repoFilter)
+  : issues;
+
+const byStatus = {};
+const byRepo = {};
+const byPriority = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+filtered.forEach(i => {
+  const s = i.status || 'open';
+  byStatus[s] = (byStatus[s] || 0) + 1;
+  
+  const r = i.metadata?.repo || 'unknown';
+  byRepo[r] = (byRepo[r] || 0) + 1;
+  
+  const p = typeof i.priority === 'number' ? i.priority : 3;
+  byPriority[p] = (byPriority[p] || 0) + 1;
+});
+
+const total = filtered.length;
+const openCount = (byStatus.open || 0) + (byStatus['in-progress'] || 0) + (byStatus.blocked || 0);
+
+console.log('\n  Mission Control — Beads Status\n');
+console.log(`  Total issues: ${total}`);
+console.log(`  Open work:    ${openCount}  (${byStatus.open || 0} open, ${byStatus['in-progress'] || 0} in-progress, ${byStatus.blocked || 0} blocked)`);
+console.log(`  Done:         ${byStatus.done || 0}`);
+
+console.log('\n  By repo:');
+Object.entries(byRepo).sort(([a], [b]) => a.localeCompare(b)).forEach(([repo, count]) => {
+  console.log(`    ${repo}: ${count}`);
+});
+
+console.log('\n  By priority:');
+console.log(`    P1 (urgent):  ${byPriority[1]}`);
+console.log(`    P2 (normal):  ${byPriority[2]}`);
+console.log(`    P3 (low):     ${byPriority[3]}`);
+
+if (verbose) {
+  console.log('\n  Open issues:');
+  filtered.filter(i => !['done', 'archived'].includes(i.status)).forEach(i => {
+    const repo = i.metadata?.repo || '—';
+    const p = typeof i.priority === 'number' ? `p${i.priority}` : '';
+    console.log(`    [${i.status || 'open'}] ${i.id} — ${i.title} (${repo}) ${p}`);
+  });
+}
+
+console.log('');
