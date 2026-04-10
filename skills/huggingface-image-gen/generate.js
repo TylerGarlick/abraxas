@@ -2,15 +2,16 @@
 
 /**
  * Hugging Face Image Generation
- * Generates images from text prompts using the free Inference API
+ * Uses the official Hugging Face Inference API
  */
 
 const fs = require('fs');
 const path = require('path');
 
-// Default model - Stable Diffusion XL for high quality
-const DEFAULT_MODEL = 'stabilityai/stable-diffusion-xl-base-1.0';
-const API_BASE = 'https://router.huggingface.co/hf-inference/models';
+// Default model - Flux.1 Dev for high quality (works with Pro + Fal-AI provider)
+const DEFAULT_MODEL = 'black-forest-labs/FLUX.1-dev';
+// HF Router with Fal-AI provider (Pro accounts)
+const API_BASE = 'https://router.huggingface.co/fal-ai';
 
 /**
  * Generate an image from a text prompt
@@ -20,7 +21,7 @@ const API_BASE = 'https://router.huggingface.co/hf-inference/models';
  * @param {number} [options.width=1024] - Image width
  * @param {number} [options.height=1024] - Image height
  * @param {string} [options.output] - Output file path
- * @param {string} [options.token] - Hugging Face API token (optional, increases rate limits)
+ * @param {string} [options.token] - Hugging Face API token
  * @returns {Promise<string>} Path to generated image
  */
 async function generateImage({
@@ -38,18 +39,21 @@ async function generateImage({
   // Use token from env if not provided
   const hfToken = token || process.env.HF_TOKEN;
 
+  if (!hfToken) {
+    throw new Error('HF_TOKEN environment variable is required');
+  }
+
+  // Use the HF Router with Fal-AI provider
   const apiUrl = `${API_BASE}/${model}`;
   
   const headers = {
-    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${hfToken}`,
+    'Content-Type': 'application/json'
   };
 
-  if (hfToken) {
-    headers['Authorization'] = `Bearer ${hfToken}`;
-  }
-
   const body = {
-    inputs: prompt,
+    prompt: prompt,
+    image_size: { width: width, height: height }
   };
 
   console.error(`🎨 Generating image with model: ${model}`);
@@ -67,6 +71,10 @@ async function generateImage({
     
     if (response.status === 503) {
       throw new Error(`Model ${model} is loading. Try again in a moment. (503 Service Unavailable)`);
+    }
+    
+    if (response.status === 401) {
+      throw new Error(`Invalid HF token. Check your HF_TOKEN is correct and has proper permissions.`);
     }
     
     throw new Error(`API error (${response.status}): ${errorText}`);
@@ -115,7 +123,7 @@ Options:
 
 Examples:
   node generate.js "A cyberpunk city at night"
-  node generate.js "Portrait of a warrior" --model runwayml/stable-diffusion-v1-5
+  node generate.js "Portrait of a warrior" --model black-forest-labs/FLUX.1-dev
   node generate.js "Fantasy landscape" --width 1024 --height 768 --output ./art.png
 `);
     process.exit(0);

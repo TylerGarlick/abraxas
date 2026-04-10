@@ -12,7 +12,27 @@ node /home/ubuntu/.openclaw/skills/skill-router/scripts/router.js "morning brief
 node /home/ubuntu/.openclaw/skills/skill-router/scripts/router.js "MJ github" --dispatch
 ```
 
-## Architecture
+## Architecture Diagram
+
+![Skill Router Architecture](images/architecture.png "Skill Router Architecture Flow")
+
+## Image Gallery
+
+<div align="center">
+
+![Architecture Flow](images/architecture.png "Architecture") | ![Scoring Engine](images/scoring.png "Scoring") | ![Dispatcher](images/dispatcher.png "Dispatcher")
+:----------------:|:----------------:|:----------------:
+**Architecture** | **Scoring** | **Dispatcher**
+
+</div>
+
+### How to Add Images
+
+1. Place images in the `images/` directory
+2. Use Markdown syntax: `![Alt Text](images/filename.png "Tooltip")`
+3. For gallery layout, use HTML table format as shown above
+
+## Architecture Overview
 
 ```
 User Intent
