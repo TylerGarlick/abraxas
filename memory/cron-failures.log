@@ -1,0 +1,7 @@
+2026-04-08 00:02 UTC | Mission Control - Overdue Poll | FAILED | Infrastructure missing: mc-scripts/, tasks.json, .beads/ not found
+2026-04-08 01:04 UTC | Mission Control - Post-Completion Pipeline | FAILED | Infrastructure missing: post-completion-pipeline.js not found, mc-scripts/ directory does not exist
+2026-04-08 03:04 UTC | Mission Control - Post-Completion Pipeline | FAILED | Infrastructure missing: post-completion-pipeline.js not found, mc-scripts/ directory does not exist
+[2026-04-08T05:04:50+00:00] Mission Control - Post-Completion Pipeline: FAILED - post-completion-pipeline.js not found
+[2026-04-08T06:06:15+00:00] Mission Control - Overdue Poll: FAILED - Script not found. MC migrated to Beads. Old path: /home/ubuntu/.openclaw/workspace/mc-scripts/status.js
+[2026-04-08T06:06:56+00:00] Mission Control - Post-Completion Pipeline: DISABLED - Infrastructure missing (post-completion-pipeline.js, mc-scripts/). Migration to Beads incomplete. Cron job disabled.
+[2026-04-08T11:04:27+00:00] Mission Control - Overdue Poll: FAILED - Script not found. MC migrated to Beads. Old path: /home/ubuntu/.openclaw/workspace/mc-scripts/status.js does not exist. Use 'bd' CLI instead.
