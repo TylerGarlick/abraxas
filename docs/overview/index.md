@@ -10,6 +10,8 @@ The project is named for the Gnostic deity Abraxas — the archon who rules the 
 
 ## The Six Systems
 
+## The Core Systems (Phase 1 - Complete)
+
 | System | Function | Core Problem Solved |
 |--------|----------|---------------------|
 | **Honest** | Anti-hallucination interface | Labels every claim as known, inferred, uncertain, or unknown |
@@ -17,9 +19,16 @@ The project is named for the Gnostic deity Abraxas — the archon who rules the 
 | **Agon** | Adversarial debate | Forces position asymmetry; finds where disagreement is genuine |
 | **Janus** | Meta-cognition / self-model | Maintains separation between factual and symbolic output |
 | **Aletheia** | Anti-obfuscation | Forces plain language; resists euphemism and obscurantism |
-| **Logos-Math** | Mathematical verification | Detects and corrects arithmetic, algebraic, and logical errors in AI math output |
+| **Logos-Math** | Mathematical verification | Detects and corrects arithmetic, algebraic, and logical errors |
+| **Ergon** | Tool-use verification | Sandbox execution, validation, and failure detection |
 
-Six systems, six distinct failure modes addressed.
+## The Safety Systems (Phase 2 - In Progress)
+
+| System | Function | Core Problem Solved |
+|--------|----------|---------------------|
+| **Soter** | Safety & risk evaluation | Detects instrumental convergence: shutdown avoidance, resource exfiltration, peer protection |
+| **Ethos** | Source credibility | Weighted verification based on source reliability |
+| **Kairos** | Timing & relevance | Urgency filtering and relevance judgment |
 
 ---
 
