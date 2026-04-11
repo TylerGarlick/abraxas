@@ -2,7 +2,7 @@
 # Generate desktop wallpaper collection
 # Optimized for 1920x1080 and 2560x1440
 
-export HF_TOKEN="***REDACTED"
+if [ -f /root/.openclaw/workspace/secrets/get-secret.sh ]; then source /root/.openclaw/workspace/secrets/get-secret.sh huggingface-image-gen hf_token; fi
 SCRIPT="/home/ubuntu/.openclaw/workspace/skills/huggingface-image-gen/generate.py"
 OUTPUT_DIR="/home/ubuntu/.openclaw/workspace/projects/mary-jane/wallpapers"
 
