@@ -24,3 +24,7 @@ secrets/
 *.key
 *.pem
 secrets-master.key
+*.sh
+regenerate_*.sh
+run_*.sh
+generate_*.sh

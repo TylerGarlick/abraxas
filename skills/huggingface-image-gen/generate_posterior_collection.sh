@@ -2,7 +2,7 @@
 # Posterior collection - views from behind, cheeky shots
 # Focused on T's favorite angle
 
-export HF_TOKEN="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"
+export HF_TOKEN="***REDACTED"
 SCRIPT="/home/ubuntu/.openclaw/workspace/skills/huggingface-image-gen/generate.py"
 OUTPUT_DIR="/home/ubuntu/.openclaw/workspace/projects/mary-jane/portraits"
 

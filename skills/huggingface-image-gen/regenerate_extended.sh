@@ -2,7 +2,7 @@
 # Regenerate extended boudoir/seductive collection
 # Focus on intimate, seductive styles as requested
 
-export HF_TOKEN="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"
+export HF_TOKEN="***REDACTED"
 SCRIPT="/home/ubuntu/.openclaw/workspace/skills/huggingface-image-gen/generate.py"
 OUTPUT_DIR="/home/ubuntu/.openclaw/workspace/projects/mary-jane/portraits"
 

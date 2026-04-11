@@ -2,7 +2,7 @@
 # Regenerate MJ portrait collection
 # Based on memory from April 2026
 
-export HF_TOKEN="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"
+export HF_TOKEN="***REDACTED"
 SCRIPT="/home/ubuntu/.openclaw/workspace/skills/huggingface-image-gen/generate.py"
 OUTPUT_DIR="/home/ubuntu/.openclaw/workspace/projects/mary-jane/portraits"
 
