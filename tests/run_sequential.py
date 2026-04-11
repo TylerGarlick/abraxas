@@ -24,9 +24,9 @@ MODELS = [
     ("minimax-m2.7", "minimax-m2.7:cloud"),
 ]
 
-RESULTS_BASE = "/tmp/abraxas-checkout/tests/results"
-TEST_FILE = "/tmp/abraxas-checkout/tests/test_seven_dimension_framework.py"
-RESEARCH_DIR = "/home/ubuntu/.openclaw/workspace/abraxas/research"
+RESULTS_BASE = "/root/.openclaw/workspace/abraxas/tests/results"
+TEST_FILE = "/root/.openclaw/workspace/abraxas/tests/test_seven_dimension_framework.py"
+RESEARCH_DIR = "/root/.openclaw/workspace/abraxas/research"
 
 
 def update_model(model_name: str) -> bool:
@@ -252,4 +252,4 @@ if __name__ == "__main__":
     for i, (model_id, score, elapsed) in enumerate(ranked, 1):
         print(f"  {i}. {model_id}: {score:.1%} ({elapsed:.1f}s)")
     
-    print(f"\nSummary: /tmp/abraxas-checkout/tests/results/SUMMARY.md")
+    print(f"\nSummary: /root/.openclaw/workspace/abraxas/tests/results/SUMMARY.md")

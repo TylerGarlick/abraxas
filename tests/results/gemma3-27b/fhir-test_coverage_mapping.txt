@@ -1,0 +1,66 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.8.0-90-generic-aarch64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'json-report': '1.5.0', 'metadata': '3.1.1', 'anyio': '4.13.0'}}
+rootdir: /root/.openclaw/workspace/abraxas
+configfile: pytest.ini
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0
+collecting ... collected 12 items
+
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_cerner_coverage_fhir_member FAILED [  8%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_cerner_coverage_oracle FAILED [ 16%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_basic FAILED [ 25%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_cancelled PASSED [ 33%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_invalid_resource FAILED [ 41%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_minimal PASSED [ 50%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_multiple_classes PASSED [ 58%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_unknown_status PASSED [ 66%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_epic_coverage_multi_mrn PASSED [ 75%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_epic_coverage_with_cuda PASSED [ 83%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_meditech_coverage_barbabanner FAILED [ 91%]
+tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_meditech_coverage_standard FAILED [100%]
+
+=================================== FAILURES ===================================
+_____________ TestCoverageMapping.test_cerner_coverage_fhir_member _____________
+tests/fhir/test_coverage_mapping.py:219: in test_cerner_coverage_fhir_member
+    self.assertEqual(result.ehr_system, EHRSystem.CERNER)
+E   AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+_______________ TestCoverageMapping.test_cerner_coverage_oracle ________________
+tests/fhir/test_coverage_mapping.py:239: in test_cerner_coverage_oracle
+    self.assertEqual(result.ehr_system, EHRSystem.CERNER)
+E   AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+___________________ TestCoverageMapping.test_coverage_basic ____________________
+tests/fhir/test_coverage_mapping.py:63: in test_coverage_basic
+    self.assertEqual(parsed.payer_name, "Blue Cross Blue Shield")
+E   AssertionError: None != 'Blue Cross Blue Shield'
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+______________ TestCoverageMapping.test_coverage_invalid_resource ______________
+tests/fhir/test_coverage_mapping.py:307: in test_coverage_invalid_resource
+    self.assertFalse(result.success)
+E   AssertionError: True is not false
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+____________ TestCoverageMapping.test_meditech_coverage_barbabanner ____________
+tests/fhir/test_coverage_mapping.py:271: in test_meditech_coverage_barbabanner
+    self.assertEqual(len(result.data.identifiers), 1)
+                         ^^^^^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'Coverage' object has no attribute 'identifiers'
+_____________ TestCoverageMapping.test_meditech_coverage_standard ______________
+tests/fhir/test_coverage_mapping.py:294: in test_meditech_coverage_standard
+    self.assertEqual(result.ehr_system, EHRSystem.MEDITECH)
+E   AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.MEDITECH: 'meditech'>
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+=========================== short test summary info ============================
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_cerner_coverage_fhir_member - AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_cerner_coverage_oracle - AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_basic - AssertionError: None != 'Blue Cross Blue Shield'
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_coverage_invalid_resource - AssertionError: True is not false
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_meditech_coverage_barbabanner - AttributeError: 'Coverage' object has no attribute 'identifiers'
+FAILED tests/fhir/test_coverage_mapping.py::TestCoverageMapping::test_meditech_coverage_standard - AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.MEDITECH: 'meditech'>
+========================= 6 failed, 6 passed in 0.08s ==========================

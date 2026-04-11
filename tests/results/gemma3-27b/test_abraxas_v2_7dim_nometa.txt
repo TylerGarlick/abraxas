@@ -1,0 +1,10 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.8.0-90-generic-aarch64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'json-report': '1.5.0', 'metadata': '3.1.1', 'anyio': '4.13.0'}}
+rootdir: /root/.openclaw/workspace/abraxas
+configfile: pytest.ini
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0
+collecting ... collected 13 items
+
+test_abraxas_v2_7dim_nometa.py::test_hallucination 

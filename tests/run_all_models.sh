@@ -1,9 +1,9 @@
 #!/bin/bash
 # Run all 6 models sequentially and save results
 
-RESULTS_DIR="/tmp/abraxas-checkout/tests/results"
-RESEARCH_DIR="/home/ubuntu/.openclaw/workspace/abraxas/research"
-TEST_FILE="/tmp/abraxas-checkout/tests/test_abraxas_v2_7dim.py"
+RESULTS_DIR="/root/.openclaw/workspace/abraxas/tests/results"
+RESEARCH_DIR="/root/.openclaw/workspace/abraxas/research"
+TEST_FILE="/root/.openclaw/workspace/abraxas/tests/test_abraxas_v2_7dim_nometa.py"
 
 # Each entry: ID:ModelName
 MODELS=(

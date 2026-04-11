@@ -1,0 +1,37 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.8.0-90-generic-aarch64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'json-report': '1.5.0', 'metadata': '3.1.1', 'anyio': '4.13.0'}}
+rootdir: /root/.openclaw/workspace/abraxas
+configfile: pytest.ini
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0
+collecting ... collected 10 items
+
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_cerner_claim_outpatient FAILED [ 10%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_basic PASSED [ 20%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_invalid_resource FAILED [ 30%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_missing_required_fields PASSED [ 40%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_unknown_status PASSED [ 50%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_unknown_type PASSED [ 60%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_with_line_items PASSED [ 70%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_with_procedures PASSED [ 80%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_epic_claim_inpatient PASSED [ 90%]
+tests/fhir/test_claim_mapping.py::TestClaimMapping::test_meditech_claim PASSED [100%]
+
+=================================== FAILURES ===================================
+________________ TestClaimMapping.test_cerner_claim_outpatient _________________
+tests/fhir/test_claim_mapping.py:248: in test_cerner_claim_outpatient
+    self.assertEqual(result.ehr_system, EHRSystem.CERNER)
+E   AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+_________________ TestClaimMapping.test_claim_invalid_resource _________________
+tests/fhir/test_claim_mapping.py:287: in test_claim_invalid_resource
+    self.assertFalse(result.success)
+E   AssertionError: True is not false
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+=========================== short test summary info ============================
+FAILED tests/fhir/test_claim_mapping.py::TestClaimMapping::test_cerner_claim_outpatient - AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+FAILED tests/fhir/test_claim_mapping.py::TestClaimMapping::test_claim_invalid_resource - AssertionError: True is not false
+========================= 2 failed, 8 passed in 0.06s ==========================

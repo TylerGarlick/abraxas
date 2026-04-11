@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.3, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.3', 'Platform': 'Linux-6.8.0-90-generic-aarch64-with-glibc2.39', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'json-report': '1.5.0', 'metadata': '3.1.1', 'anyio': '4.13.0'}}
+rootdir: /root/.openclaw/workspace/abraxas
+configfile: pytest.ini
+plugins: json-report-1.5.0, metadata-3.1.1, anyio-4.13.0
+collecting ... collected 9 items
+
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_cerner_patient_basic PASSED [ 11%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_cerner_patient_oracle_profile FAILED [ 22%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_epic_patient_basic PASSED [ 33%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_epic_patient_multiple_mrns PASSED [ 44%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_meditech_patient_barbabanner PASSED [ 55%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_meditech_patient_basic PASSED [ 66%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_patient_invalid_resource_type PASSED [ 77%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_patient_name_formats PASSED [ 88%]
+tests/fhir/test_patient_mapping.py::TestPatientMapping::test_patient_unknown_ehr PASSED [100%]
+
+=================================== FAILURES ===================================
+____________ TestPatientMapping.test_cerner_patient_oracle_profile _____________
+tests/fhir/test_patient_mapping.py:174: in test_cerner_patient_oracle_profile
+    self.assertEqual(result.ehr_system, EHRSystem.CERNER)
+E   AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+------------------------------ Captured log call -------------------------------
+WARNING  skills.fhir_adapter:__init__.py:84 Unknown EHR system EHRSystem.UNKNOWN, defaulting to Epic
+=========================== short test summary info ============================
+FAILED tests/fhir/test_patient_mapping.py::TestPatientMapping::test_cerner_patient_oracle_profile - AssertionError: <EHRSystem.EPIC: 'epic'> != <EHRSystem.CERNER: 'cerner'>
+========================= 1 failed, 8 passed in 0.05s ==========================

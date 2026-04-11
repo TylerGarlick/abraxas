@@ -1,0 +1,97 @@
+{
+  "model": "gemma3:27b-cloud",
+  "model_id": "gemma3-27b-cloud",
+  "timestamp": "2026-04-11T07:15:32.818651",
+  "tests": {
+    "test_abraxas_v2_7dim_nometa": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_adversarial_reasoning": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_anti_confabulation": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_seven_dimension_framework": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_integration": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_logos_decomposition": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_claim_parser": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_ergon_sandbox": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_scribe": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_causal_analysis": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_temporal_reasoning": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_claim_mapping": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_coverage_mapping": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    },
+    "test_patient_mapping": {
+      "passed": false,
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "/usr/bin/python3: No module named pytest\n"
+    }
+  },
+  "summary": {
+    "total": 15,
+    "passed": 0,
+    "failed": 15,
+    "errors": 0
+  }
+}

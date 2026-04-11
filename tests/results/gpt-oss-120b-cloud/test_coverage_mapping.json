@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "returncode": 1,
+  "stdout": "",
+  "stderr": "/usr/bin/python3: No module named pytest\n"
+}
