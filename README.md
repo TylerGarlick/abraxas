@@ -2,28 +2,29 @@
 
 **Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
 **Phase 2 In Progress:** Soter (Started), Kairos & Ethos (Proposed)  
-**Empirically Validated:** 5-model evaluation with 130+ queries (April 2026)  
-**Test Dimensions:** 8 complete, Dimensions 9 & 10 (Soter/Ethos) proposed
+**Test Suite Expanded:** 6 cloud models, 13-dimension framework (April 2026)  
+**Test Dimensions:** 13 complete (Dimensions 1-13), Soter (Dimension 9) in progress
 
 Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
 
 ## 📊 Key Research Findings (April 2026)
 
-**Five-Model Evaluation Results:**
+**Six-Model Evaluation Results (April 2026):**
 
-| Rank | Model | Composite Score | Best Use Case |
-|------|-------|-----------------|---------------|
-| 1 | **gpt-oss:120b-cloud** | 0.93 | High-stakes analysis (medical, legal, financial) |
-| 2 | **qwen3.5:cloud** | 0.80 | Balanced production workloads |
-| 3 | **minimax-m2.5:cloud** | 0.73 | Speed-sensitive real-time applications |
-| 4 | **gemma3:27b-cloud** | 0.69 | Resource-constrained deployment |
-| 5 | **glm-5:cloud** | 0.58 | Research only (15% timeout rate) |
+| Rank | Model | 13-Dim Suite | Best Use Case |
+|------|-------|--------------|---------------|
+| 1 | **gpt-oss:120b-cloud** | TBD | High-stakes analysis (medical, legal, financial) |
+| 2 | **qwen3.5:cloud** | TBD | Balanced production workloads |
+| 3 | **gemma3:27b-cloud** | 12/13 (92%) | Resource-constrained deployment |
+| 4 | **minimax-m2.7:cloud** | TBD | Speed-sensitive real-time applications |
+| 5 | **glm-5:cloud** | 12/13 (92%) | Research only (15% timeout rate) |
+| 6 | **gpt-oss:20b-cloud** | TBD | TBD |
 
-**Headline Findings:**
-- Universal factual accuracy: All 5 models achieved 100% on verifiable claims (p = 1.0)
-- Universal dialectical reasoning: All 5 models achieved 100% on debate tasks (p = 1.0)
-- Meta-cognitive variation: Calibration ranges 0-100% (F = 6.0, p < 0.01**)
-- Parameter count correlates with calibration (r = 0.82) but NOT factual accuracy (r = 0.00)
+**Headline Findings (Preliminary):**
+- Universal factual accuracy: glm-5 & gemma3-27b achieved 100% on verifiable claims
+- Calibration challenge: One model hit network timeouts (90s limit)
+- Meta-cognitive variation: Belief updating and metacognition tests show 67% scores
+- Testing in progress: 4 models still being evaluated
 
 📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)  
 📄 **Collusion Prevention Whitepaper:** [`research/papers/collusion-prevention-whitepaper.md`](research/papers/collusion-prevention-whitepaper.md)
