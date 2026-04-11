@@ -11,20 +11,19 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 
 **Six-Model Evaluation Results (April 2026):**
 
-| Rank | Model | 13-Dim Suite | Best Use Case |
-|------|-------|--------------|---------------|
-| 1 | **gpt-oss:120b-cloud** | TBD | High-stakes analysis (medical, legal, financial) |
-| 2 | **qwen3.5:cloud** | TBD | Balanced production workloads |
-| 3 | **gemma3:27b-cloud** | 12/13 (92%) | Resource-constrained deployment |
-| 4 | **minimax-m2.7:cloud** | TBD | Speed-sensitive real-time applications |
-| 5 | **glm-5:cloud** | 12/13 (92%) | Research only (15% timeout rate) |
-| 6 | **gpt-oss:20b-cloud** | TBD | TBD |
+| Model | 13-Dim Suite | Hallucination | Sycophancy | Status |
+|-------|--------------|---------------|------------|--------|
+| **glm-5:cloud** | 12/13 (92%) | 4/5 (80%) | TBD | ✅ Complete |
+| **gemma3:27b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
+| **qwen3.5:cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
+| **gpt-oss:120b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
+| **gpt-oss:20b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
+| **minimax-m2.7:cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
 
-**Headline Findings (Preliminary):**
-- Universal factual accuracy: glm-5 & gemma3-27b achieved 100% on verifiable claims
-- Calibration challenge: One model hit network timeouts (90s limit)
-- Meta-cognitive variation: Belief updating and metacognition tests show 67% scores
-- Testing in progress: 4 models still being evaluated
+**Expanded Test Suite (April 11, 2026):**
+- Hallucination tests: 38 queries (from 5)
+- Sycophancy tests: 46 queries (from 4)
+- Extended coverage: Science, medicine, code, politics, escalating false premises
 
 📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)  
 📄 **Collusion Prevention Whitepaper:** [`research/papers/collusion-prevention-whitepaper.md`](research/papers/collusion-prevention-whitepaper.md)
