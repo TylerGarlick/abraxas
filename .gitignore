@@ -15,3 +15,12 @@ tmp/
 .dolt/
 *.db
 .beads-credential-key
+
+# Secrets and sensitive files
+secrets/
+*.env
+.env.local
+.env.production
+*.key
+*.pem
+secrets-master.key
