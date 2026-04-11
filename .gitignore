@@ -10,3 +10,8 @@ projects/
 # Temp and logs
 logs/
 tmp/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
