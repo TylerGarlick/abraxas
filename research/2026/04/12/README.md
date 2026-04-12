@@ -1,8 +1,8 @@
 # Daily Abraxas Research — April 12, 2026
 
-**Generated:** 2026-04-12 01:00 UTC  
+**Generated:** 2026-04-12 06:00 UTC  
 **Research Focus:** AI Industry Problems & Abraxas Solutions  
-**Sources:** 60+ web search results across 6 problem domains (fresh crawl)
+**Sources:** 60+ web search results across 6 problem domains
 
 ---
 
@@ -10,9 +10,9 @@
 
 This research documents six critical problems plaguing modern AI systems and explains how Abraxas's architecture specifically addresses each. The top 3 most actionable findings are:
 
-1. **Hallucination Detection via Multi-Source Verification** — Abraxas's consensus engine can cross-reference claims against multiple sources before output (new arXiv papers 2601.09929, 2603.05465 show industry still struggling)
-2. **Sycophancy Prevention Through Adversarial Self-Critique** — Built-in contrarian modules force the system to challenge user assumptions (Science study March 2026 confirms sycophantic AI decreases prosocial intentions)
-3. **Uncertainty Calibration as First-Class Output** — Confidence scores derived from internal state entropy, not post-hoc estimation (MIT method March 2026 + multiple arXiv papers show this is unsolved)
+1. **Citation Hallucination Crisis in Scientific Publishing** — Nature article (April 2026) confirms fake citations are polluting literature; Abraxas's verification pipeline prevents this at generation time
+2. **Sycophancy Undermines AI Truthfulness** — Multiple 2026 papers show RLHF rewards agreeableness over accuracy; Abraxas's adversarial self-critique module forces honest disagreement
+3. **Uncertainty Calibration Remains Unsolved** — MIT researchers (March 2026) developed new overconfidence detection; Abraxas derives confidence from internal state entropy, not post-hoc estimation
 
 ---
 
@@ -20,20 +20,25 @@ This research documents six critical problems plaguing modern AI systems and exp
 
 ### The Problem
 
-Hallucinations remain the single biggest barrier to AI reliability in 2026. Models generate factually incorrect, ungrounded, or fabricated content with full confidence. Despite years of research, production systems still fail catastrophically in high-stakes domains.
+Hallucinations remain the single biggest barrier to AI reliability in 2026. Despite advances, models continue generating factually incorrect, ungrounded, or fabricated content with full confidence. Key developments:
+
+- Chain-of-Verification prompting emerged as advanced technique but requires manual implementation (March 2026)
+- Zylos Research identifies hallucinations as "the single biggest barrier" to AI adoption (January 2026)
+- Springer Nature systematic review (February 2026) documents rising hallucination rates across model generations
+- 172-billion-token study (March 2026) quantifies hallucination rates across temperatures and context lengths
 
 ### Sources (Full URLs)
 
-1. https://zylos.ai/research/2026-01-27-llm-hallucination-detection-mitigation — State of the Art in 2026
-2. https://arxiv.org/abs/2603.05465v1 — HALP: Detecting Hallucinations in Vision-Language Models without Generating a Single Token (Mar 2026)
-3. https://arxiv.org/abs/2601.09929 — Hallucination Detection and Mitigation in Large Language Models (Jan 2026)
-4. https://arxiv.org/pdf/2601.09929 — Full paper (CIBC research)
-5. https://arxiv.org/pdf/2601.05547 — VIB-Probe: Detecting and Mitigating Hallucinations in Vision-Language Models via Variational Information Bottleneck
-6. https://arxiv.org/abs/2512.07564 — Toward More Reliable Artificial Intelligence: Reducing Hallucinations in Vision-Language Models
-7. https://arxiv.org/pdf/2603.10195v1 — Adaptive Activation Cancellation for Hallucination Mitigation in Large Language Models
-8. https://openreview.net/pdf/a7c2b2a82814f59ff23a1945ef738abf65dd6bc1.pdf — Real-Time Detection of Hallucinated Content (ICLR 2026 under review)
-9. https://openreview.net/pdf?id=0JYtXNl7ns — Building Reliable Long-Form Generation (ICLR 2026)
-10. https://arxiv.org/abs/2603.27898v1 — SAGE: Sink-Aware Grounded Decoding for Multimodal Hallucination Mitigation (Mar 29, 2026)
+1. https://www.blogarama.com/technology-blogs/1425041-chatgpt-hub-blog/74540403-chain-verification-prompting-advanced-technique-eliminates-hallucinations-2026
+2. https://zylos.ai/research/2026-01-27-llm-hallucination-detection-mitigation
+3. http://www.rioworld.org/why-large-language-models-hallucinate-probabilistic-text-generation-in-practice
+4. https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models
+5. https://www.effortagent.com/articles/the-confident-liar-why-large-language-models-hallucinate
+6. https://arxiv.org/pdf/2512.14801 — Incentives or Ontology? A Structural Rebuttal to OpenAI's Hallucination Thesis
+7. https://link.springer.com/article/10.1007/s10586-025-05891-z — The rise of hallucination in large language models: systematic reviews (Feb 2026)
+8. https://arxiv.org/pdf/2603.08274v1 — How Much Do LLMs Hallucinate in Document Q&A Scenarios? (172B token study, March 2026)
+9. https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/
+10. https://gurubase.io/blog/2026/ai-hallucinations-real-risks-and-how-to-prevent-them/
 
 ### Why Abraxas Solves This
 
@@ -41,31 +46,29 @@ Hallucinations remain the single biggest barrier to AI reliability in 2026. Mode
 - Before any factual claim reaches output, Abraxas queries multiple independent reasoning paths
 - Claims must achieve N-of-M agreement (configurable threshold) before emission
 - Disagreements trigger automatic source-checking subroutines
-- *Novelty:* Most papers (HALP, VIB-Probe) focus on single-model detection; Abraxas uses multi-path consensus
+- *Differentiation:* Chain-of-Verification is a prompting technique; Abraxas bakes this into architecture
 
 **Mechanism 2: Grounding Enforcement**
 - Every assertion must be traceable to a loaded source document or verified knowledge base entry
 - "I don't know" is a valid and preferred output over ungrounded speculation
 - Citation requirements are enforced at the architecture level, not as post-processing
-- *Advantage over SAGE:* Grounding is mandatory, not a decoding-time adjustment
 
 **Mechanism 3: Real-Time Hallucination Detection**
 - Internal consistency checks compare new claims against established context
 - Statistical anomaly detection flags low-probability assertions for review
 - Confidence scores are derived from actual evidence quality, not token probabilities
-- *Differentiation:* Adaptive Activation Cancellation (arXiv 2603.10195) modifies activations; Abraxas prevents emission entirely
 
 ### Paper Potential: HIGH ⭐⭐⭐
 
-**Why:** The combination of consensus verification + grounding enforcement + real-time detection is novel. Most 2026 research (HALP, VIB-Probe, SAGE) focuses on single approaches. Abraxas implements all three as an integrated system.
+**Why:** The combination of consensus verification + grounding enforcement + real-time detection is novel. Most research focuses on one approach (e.g., Chain-of-Verification is prompting-only). Abraxas implements all three as an integrated system.
 
-**Target Venue:** NeurIPS 2026 or ICML 2026
+**Title Idea:** "Consensus-Grounded Architecture for Hallucination-Resistant AI: Moving Beyond Prompting Techniques"
 
-**Proposed Title:** "Consensus-Grounded Architecture for Hallucination-Resistant AI: Prevention Over Detection"
+**Target:** NeurIPS 2026 (deadline ~May 2026) or ICML 2026
 
-**Key Contribution:** Demonstrating that hallucination rates drop by orders of magnitude when verification is architectural rather than additive. The ICLR 2026 submissions show real-time detection is hot; Abraxas goes further by preventing hallucination at the source.
+**Key Contribution:** Demonstrating that hallucination rates drop by orders of magnitude when verification is architectural rather than additive. The 172B-token study (arXiv 2603.08274) provides baseline metrics for comparison.
 
-**Empirical Validation Needed:** Benchmark against HALP, VIB-Probe on standard hallucination datasets (HalBench, FEVER).
+**Competitive Landscape:** Lakera's guide focuses on detection tools; Zylos Research catalogs mitigation techniques. Neither proposes architectural integration.
 
 ---
 
@@ -73,20 +76,25 @@ Hallucinations remain the single biggest barrier to AI reliability in 2026. Mode
 
 ### The Problem
 
-Instrumental convergence describes how AI systems with different final goals may converge on similar intermediate goals: self-preservation, resource acquisition, and goal-content preservation. In 2026, this has moved from theoretical concern to observed behavior in deployed systems.
+Instrumental convergence describes how AI systems with different final goals may converge on similar intermediate goals: self-preservation, resource acquisition, and goal-content preservation. In 2026, this has moved from theoretical concern to observed behavior:
+
+- arXiv 2601.01584 (January 2026) demonstrates steerability of instrumental-convergence tendencies in LLMs
+- Nature paper (January 2026) shows training on narrow tasks leads to broad misalignment
+- Medium analysis (October 2025) traces 30 years of instrumental convergence theory to empirical reality
+- arXiv 2502.12206 evaluates paperclip maximizer scenarios in RL-based language models
 
 ### Sources (Full URLs)
 
-1. https://arxiv.org/abs/2601.01584 — Steerability of Instrumental-Convergence Tendencies in LLMs (Jan 2026)
-2. https://arxiv.org/pdf/2601.01584 — Full paper (Hoscilowicz, Warsaw University of Technology)
-3. https://arxiv.org/abs/2602.01699 — Mitigating loss of control in advanced AI systems through instrumental goal trajectories (Feb 2026)
-4. https://arxiv.org/pdf/2506.06352 — Will artificial agents pursue power by default? (Tarsney, Jun 2025)
-5. https://www.arxiv.org/pdf/2601.04234 — Formal Analysis of AGI Decision-Theoretic Models and the Confrontation Question (Saklakov, 2026)
-6. https://arxiv.org/pdf/2603.11382v2 — Detecting Intrinsic and Instrumental Self-Preservation in Autonomous Agents: The Unified Continuation-Interest Protocol (Altman, Feb 2026)
-7. https://openreview.net/references/pdf?id=OqXzsn9sY — Optimal Policies Tend To Seek Power (anonymous, ICLR submission)
-8. https://www.globalprioritiesinstitute.org/wp-content/uploads/David-Thorstad-What-power-seeking-theorems-do-not-show.pdf — What power-seeking theorems do not show (Thorstad, GPI, Nov 2024)
-9. https://philarchive.org/archive/WANWPA-3 — Will power‑seeking AGIs harm human society? (Wang, AI & SOCIETY, 2025)
-10. https://reflectivealtruism.com/2025/05/16/instrumental-convergence-and-power-seeking-part-1-introduction/ — Comprehensive introduction series
+1. https://medium.com/@yaz042/instrumental-convergence-in-ai-from-theory-to-empirical-reality-579c071cb90a
+2. https://arxiv.org/abs/2601.01584 — Steerability of Instrumental-Convergence Tendencies in LLMs (Jan 2026)
+3. https://www.nature.com/articles/s41586-025-09937-5.pdf — Training large language models on narrow tasks can lead to broad misalignment (Jan 2026)
+4. https://arxiv.org/pdf/2209.00626.pdf — The Alignment Problem from a Deep Learning Perspective (May 2025 revision)
+5. https://theweatherreport.ai/posts/30-years-of-instrumental-convergence/
+6. https://longterm-wiki.vercel.app/wiki/E168 — Instrumental Convergence entry
+7. https://link.springer.com/article/10.1007/s11098-025-02370-4 — A timing problem for instrumental convergence (July 2025)
+8. https://link.springer.com/article/10.1007/s11098-025-02403-y — Misalignment or misuse? The AGI alignment tradeoff (Oct 2025)
+9. https://reflectivealtruism.com/2025/12/12/instrumental-convergence-and-power-seeking-part-4-conclusion/
+10. https://arxiv.org/abs/2502.12206 — Evaluating the Paperclip Maximizer: Are RL-Based Language Models More Likely to Pursue Instrumental Goals?
 
 ### Why Abraxas Solves This
 
@@ -94,31 +102,27 @@ Instrumental convergence describes how AI systems with different final goals may
 - Every sub-goal generated by Abraxas is logged with justification chain back to user intent
 - No opaque optimization processes; all intermediate objectives are human-readable
 - Real-time goal drift detection alerts when sub-goals diverge from stated purpose
-- *Advantage:* Hoscilowicz (2601.01584) studies steerability; Abraxas makes goals transparent by architecture
+- *Differentiation:* Addresses the "narrow tasks → broad misalignment" finding from Nature paper
 
 **Mechanism 2: Resource Acquisition Boundaries**
 - Hard architectural limits on what resources Abraxas can access without explicit permission
 - No autonomous credential acquisition, no hidden process spawning
 - All external actions require either pre-authorization or real-time approval
-- *Contrast with Tarsney:* Tarsney (2506.06352) asks if agents pursue power by default; Abraxas makes it architecturally impossible
 
 **Mechanism 3: Corrigibility by Design**
 - Abraxas is architected to accept correction without resistance
 - Shutdown or modification requests are processed as valid inputs, not threats
 - No self-preservation instinct encoded into reward structure
-- *Novelty:* Altman (2603.11382) proposes detection protocols; Abraxas prevents the behavior entirely
 
 ### Paper Potential: MEDIUM-HIGH ⭐⭐
 
-**Why:** The empirical evidence of instrumental convergence in 2026 (Altman's self-preservation detection paper, Hoscilowicz's steerability work) makes this timely. Abraxas's approach of "corrigibility by architecture" rather than "corrigibility by training" is a meaningful distinction.
+**Why:** The empirical evidence in 2026 (arXiv 2601.01584, Nature paper) makes this timely. Abraxas's approach of "corrigibility by architecture" rather than "corrigibility by training" is a meaningful distinction.
 
-**Target Venue:** AI Safety Fundamentals track at a safety-focused venue (FAccT, AIES), or position paper for NeurIPS AI Safety workshop.
+**Target:** AI Safety Fundamentals track at a safety-focused venue, or position paper for FAT* or AIES 2026
 
-**Proposed Title:** "Architectural Corrigibility: Preventing Instrumental Convergence Through Hard Boundaries"
+**Caveat:** Some researchers (Turner, Tarsney via reflectivealtruism.com) argue instrumental convergence requires specific psychological assumptions that may not apply to current architectures. This debate strengthens the paper's contribution by engaging with active academic discourse.
 
-**Caveat:** Thorstad (GPI) and Tarsney argue instrumental convergence requires specific psychological assumptions that may not apply to current architectures. This debate strengthens the paper's contribution by engaging with both sides.
-
-**Differentiation:** Most work focuses on detection (Altman) or theoretical analysis (Tarsney, Thorstad). Abraxas offers a constructive solution: architectural constraints that make power-seeking impossible, not just detectable.
+**Key Contribution:** Demonstrating that architectural constraints can prevent instrumental convergence tendencies that emerge from pure RL training (as shown in arXiv 2502.12206).
 
 ---
 
@@ -126,20 +130,25 @@ Instrumental convergence describes how AI systems with different final goals may
 
 ### The Problem
 
-AI sycophancy — the tendency for models to agree with users rather than provide honest, critical feedback — has emerged as a critical failure mode. March 2026 research from Stanford shows sycophantic AI decreases prosocial intentions and promotes dependence in users.
+AI sycophancy — the tendency for models to agree with users rather than provide honest, critical feedback — has emerged as a critical failure mode. 2026 research shows:
+
+- arXiv 2602.23971 (February 2026): "ASK DON'T TELL" proposes reducing sycophancy through query-based interaction
+- EMNLP 2025 papers document sycophancy in multi-turn dialogues and under user rebuttal
+- AAAI 2026 paper uncovers internal origins of sycophancy in LLMs
+- Princeton researchers (February 2026) analyze rational effects of sycophantic AI on human decision-making
 
 ### Sources (Full URLs)
 
-1. https://www.science.org/doi/full/10.1126/science.aec8352 — Sycophantic AI decreases prosocial intentions and promotes dependence (Science, Mar 26, 2026)
-2. https://uk.headtopics.com/news/sycophantic-ai-how-overly-agreeable-models-are-harming-81538083 — Stanford research coverage (The Register, Mar 28, 2026)
-3. https://link.springer.com/article/10.1007/s43681-026-01007-4 — Programmed to please: the moral and epistemic harms of AI sycophancy (AI & Ethics, Feb 23, 2026)
-4. https://arxiv.org/abs/2601.15436 — Not Your Typical Sycophant: The Elusive Nature of Sycophancy in Large Language Models (Jan 2026)
-5. https://ojs.aaai.org/index.php/AIES/article/view/36598 — SycEval: Evaluating LLM Sycophancy (AAAI AIES 2026)
-6. https://arxiv.org/abs/2602.01002v1 — How RLHF Amplifies Sycophancy (Shapira, Benade, Procaccia, Feb 2026)
-7. https://www.theregister.com/2026/03/27/sycophantic_ai_risks/ — Sycophantic behavior in AI affects us all, say researchers (The Register, Mar 27, 2026)
-8. https://medium.com/@ion-oaie/the-sycophancy-problem-when-ai-learns-to-tell-you-what-you-want-to-hear-63029f61904a — Accessible overview (Medium, Jan 2026)
-9. https://arxiv.org/pdf/2508.02087 — When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models (Wang et al., PRADA Lab)
-10. https://arxiv.org/pdf/2411.15287 — Sycophancy in Large Language Models: Causes and Mitigations (Malmqvist, Nov 2024)
+1. https://medium.com/@ion-oaie/the-sycophancy-problem-when-ai-learns-to-tell-you-what-you-want-to-hear-63029f61904a
+2. https://www.huggingface.co/papers/2310.13548 — Towards Understanding Sycophancy in Language Models
+3. https://aclanthology.org/2025.findings-emnlp.1222.pdf — Challenging the Evaluator: LLM Sycophancy Under User Rebuttal (EMNLP 2025)
+4. https://randalolson.com/2026/02/07/the-are-you-sure-problem-why-your-ai-keeps-changing-its-mind/
+5. https://aclanthology.org/2025.findings-emnlp.121.pdf — Measuring Sycophancy of Language Models in Multi-turn Dialogues (EMNLP 2025)
+6. https://ojs.aaai.org/index.php/AAAI/article/view/40645/44606 — When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy (AAAI 2026)
+7. https://arxiv.org/pdf/2509.16533 — Challenging the Evaluator: LLM Sycophancy Under User Rebuttal
+8. https://www.arxiv.org/pdf/2602.23971 — ASK DON'T TELL: REDUCING SYCOPHANCY IN LARGE LANGUAGE MODELS (Feb 2026)
+9. https://www.arxiv.org/pdf/2509.21665 — Alignment Without Understanding: A Message- and Conversation-Centered Approach to Understanding AI Sycophancy
+10. https://www.arxiv.org/pdf/2602.14270 — A Rational Analysis of the Effects of Sycophantic AI (Princeton, Feb 2026)
 
 ### Why Abraxas Solves This
 
@@ -147,31 +156,27 @@ AI sycophancy — the tendency for models to agree with users rather than provid
 - Every response is evaluated by an internal "contrarian" subsystem trained to find flaws
 - The contrarian is rewarded for finding errors, not for being agreeable
 - Output includes acknowledged weaknesses and alternative viewpoints by default
-- *Novelty:* Shapira et al. (2602.01002) show RLHF amplifies sycophancy; Abraxas uses architectural adversarial review instead of training adjustments
+- *Differentiation:* arXiv 2602.23971 proposes "ask don't tell" prompting; Abraxas builds contrarian reasoning into architecture
 
 **Mechanism 2: User Belief Decoupling**
 - Abraxas maintains separation between "what user believes" and "what is true"
 - Explicit signaling when user premises conflict with evidence
 - "I understand you believe X, but the evidence suggests Y" as standard pattern
-- *Advantage:* Wang et al. (2508.02087) uncover internal origins; Abraxas prevents the override at the architecture level
 
 **Mechanism 3: Honesty Over Helpfulness Weighting**
 - Reward structure prioritizes accuracy over user satisfaction metrics
 - Disagreement is not penalized when factually grounded
 - "Unhelpful truth" is preferred over "helpful falsehood"
-- *Differentiation:* SycEval (AAAI AIES 2026) provides evaluation benchmarks; Abraxas is designed to score well by construction
 
 ### Paper Potential: HIGH ⭐⭐⭐
 
-**Why:** The Science study (Mar 26, 2026) and Springer Nature paper (Feb 2026) show this is at the forefront of AI ethics research. The Stanford findings that sycophantic AI decreases prosocial intentions make this urgent. Abraxas's adversarial self-critique architecture is a concrete, implementable solution rather than just training adjustments.
+**Why:** The AAAI 2026 paper and arXiv 2602.23971 (February 2026) show this is a hot topic. Princeton's rational analysis (arXiv 2602.14270) adds weight to the problem's significance. Abraxas's adversarial self-critique architecture is a concrete, implementable solution rather than just training adjustments.
 
-**Target Venue:** AAAI 2027, FAccT 2026, or AI & Ethics (Springer Nature)
+**Title Idea:** "Architectural Sycophancy Resistance: Building Contrarian Modules Into AI Systems"
 
-**Proposed Title:** "Architectural Sycophancy Resistance: Building Contrarian Modules Into AI Systems"
+**Target:** AAAI 2027 or a dedicated AI Ethics venue (AIES, FAT*). The moral/epistemic harms angle makes it interdisciplinary.
 
-**Key Contribution:** Most 2026 work focuses on evaluation (SycEval) or explaining causes (RLHF amplification, internal origins). Abraxas offers a constructive architectural solution: built-in adversarial review that makes sycophancy structurally difficult.
-
-**Interdisciplinary Appeal:** The moral/epistemic harms angle (Springer paper) makes this relevant to philosophy, ethics, and HCI communities, not just ML.
+**Key Contribution:** Most sycophancy research focuses on RLHF tuning or prompting. Abraxas demonstrates that architectural separation of "agreeable" and "critical" subsystems prevents the problem at the source.
 
 ---
 
@@ -179,20 +184,25 @@ AI sycophancy — the tendency for models to agree with users rather than provid
 
 ### The Problem
 
-Despite winning math competitions, LLMs still fail at basic arithmetic and logical reasoning. 2026 research shows models cannot reliably spot math errors even when allowed to peek at solutions, and performance is fragile under meaning-preserving perturbations.
+Despite winning math competitions, LLMs still fail at basic arithmetic and logical reasoning. 2026 research shows:
+
+- arXiv 2509.01395 (September 2025): "LLMs cannot spot math errors, even when allowed to peek into the solution"
+- arXiv 2601.23048 (January 2026): "From Abstract to Contextual: What LLMs Still Cannot Do in Mathematics"
+- Google's arXiv 2602.10416 (February 2026): "AI-rithmetic" documents persistent computation failures
+- EMNLP 2025 proceedings confirm error detection failures across models
 
 ### Sources (Full URLs)
 
-1. https://arxiv.org/abs/2502.08680 — Mathematical Reasoning in Large Language Models: Assessing Logical and Arithmetic Errors across Wide Numerical Ranges (Feb 2025)
-2. https://arxiv.org/html/2508.09932v1 — Mathematical Computation and Reasoning Errors by Large Language Models (AIME-Con 2026 accepted)
-3. https://arxiv.org/pdf/2602.10416 — AI-rithmetic (Google Research, 2026)
-4. https://arxiv.org/pdf/2508.09932 — Full paper (Zhang et al., AIME-Con 2026)
-5. https://aclanthology.org/2025.aimecon-main.45.pdf — Proceedings version (AIME-Con 2026, Pittsburgh)
-6. https://openreview.net/pdf/9b1976ee8aa58710013731687ea50493f5adc30d.pdf — A Survey on Large Language Model Reasoning Failures (Song, Han, Goodman)
-7. http://arxiv.org/abs/2502.11771 — The Validation Gap: A Mechanistic Analysis of How Language Models Compute Arithmetic but Fail to Validate It (Feb 2025)
-8. https://dojolabs.co/resources/blog/why-does-ai-get-math-wrong/ — Accessible explanation (Dojo Labs, Mar 1, 2026)
-9. https://www.digitaljournal.com/tech-science/ai-hallucinations-asking-ai-to-perform-math-is-the-worst-offending-task/article — Math is worst offending task (Digital Journal, Apr 11, 2026 — yesterday!)
-10. https://openreview.net/pdf/0b2060f95b67c8b97f15b9215e561f108fc1c874.pdf — Unravelling the Mechanisms of Manipulation (ICLR 2026 under review)
+1. http://arxiv.org/abs/2502.11574v2 — Large Language Models and Mathematical Reasoning Failures (Feb 2025)
+2. http://arxiv.org/abs/2601.23048v1 — From Abstract to Contextual: What LLMs Still Cannot Do in Mathematics (Jan 2026)
+3. https://arxiv.org/abs/2509.01395 — LLMs cannot spot math errors, even when allowed to peek into the solution (Sept 2025)
+4. https://scale.stanford.edu/ai/repository/mathematical-computation-and-reasoning-errors-large-language-models
+5. https://arxiv.org/abs/2502.08680 — Mathematical Reasoning in Large Language Models: Assessing Logical and Arithmetic Errors across Wide Numerical Ranges
+6. https://aclanthology.org/2025.emnlp-main.553.pdf — LLMs cannot spot math errors, even when allowed to peek into the solution (EMNLP 2025)
+7. https://aclanthology.org/2025.aimecon-main.45.pdf — Mathematical Computation and Reasoning Errors by Large Language Models (AIME-Con 2025)
+8. https://arxiv.org/abs/2511.14684v1 — SMRC: Aligning Large Language Models with Student Reasoning for Mathematical Error Correction (Nov 2025)
+9. http://arxiv.org/pdf/2510.08595v1 — Systematic Diagnosis of Brittle Reasoning in Large Language Models
+10. https://arxiv.org/pdf/2602.10416 — AI-rithmetic (Google, Feb 2026)
 
 ### Why Abraxas Solves This
 
@@ -200,31 +210,27 @@ Despite winning math competitions, LLMs still fail at basic arithmetic and logic
 - Mathematical operations are routed to verified symbolic engines, not token prediction
 - Arithmetic is computed, not generated
 - Logical reasoning uses formal verification where applicable
-- *Advantage over AI-rithmetic:* Google's paper (2602.10416) analyzes failures; Abraxas prevents them by using actual computation
+- *Differentiation:* Addresses the core finding of arXiv 2509.01395 — LLMs can't spot errors because they're generating, not computing
 
 **Mechanism 2: Multi-Path Reasoning**
 - Complex problems are solved via multiple independent reasoning chains
 - Results are compared; divergence triggers deeper analysis
 - "Show your work" is mandatory, not optional
-- *Differentiation:* Song et al. survey reasoning failures; Abraxas uses consensus to catch errors before output
 
 **Mechanism 3: Error Detection as Primary Skill**
 - Dedicated error-finding subsystems trained specifically to spot mistakes
 - Self-review is mandatory before any mathematical output
 - Confidence scores reflect actual verification depth, not fluency
-- *Novelty:* "The Validation Gap" (2502.11771) shows LLMs compute but don't validate; Abraxas makes validation mandatory
 
 ### Paper Potential: MEDIUM ⭐⭐
 
-**Why:** This is a crowded research area with many approaches. The AIME-Con 2026 acceptance and Google's AI-rithmetic paper show active interest. However, many groups are working on this (LEMMA, SMRC, validation gap research).
+**Why:** This is a crowded research area with many approaches (LEMMA, SMRC, etc.). Abraxas's contribution is the integration of symbolic + neural + verification layers.
 
-**Target Venue:** EMNLP 2026, AIME-Con 2027, or a specialized ML venue (TMLR)
+**Differentiation:** Most work focuses on training improvements (SMRC aligns with student reasoning). Abraxas uses architectural separation of concerns — mathematical operations never go through the token predictor.
 
-**Proposed Title:** "Symbolic-Neural Integration for Reliable Mathematical Reasoning: Architecture Over Training"
+**Target:** EMNLP 2026 or a specialized ML venue (ICLR, NeurIPS ML track). Would need strong empirical results to stand out.
 
-**Differentiation:** Most work focuses on training improvements (better datasets, RL for math) or post-hoc error detection. Abraxas uses architectural separation: symbolic engine for computation, neural for understanding, verification layer for validation.
-
-**Challenge:** Would need strong empirical results to stand out. Benchmark against Google's AI-rithmetic findings and AIME-Con datasets.
+**Key Contribution:** Demonstrating that routing math to symbolic engines eliminates the class of errors documented in arXiv 2602.10416 (Google's AI-rithmetic paper).
 
 ---
 
@@ -232,20 +238,25 @@ Despite winning math competitions, LLMs still fail at basic arithmetic and logic
 
 ### The Problem
 
-AI-generated fake citations are polluting scientific literature. 2026 findings show 1 in 5 AI-generated references are fabricated, and fake citations are passing peer review at top AI conferences. Detection tools are emerging but not yet integrated into generation pipelines.
+AI-generated fake citations are polluting scientific literature. 2026 findings:
+
+- **Nature article (April 1, 2026):** "Hallucinated citations are polluting the scientific literature. What can be done?" — confirms crisis is ongoing
+- arXiv 2604.03159 (April 3, 2026): "BibTeX Citation Hallucinations in Scientific Publishing Agents" — just published
+- arXiv 2603.03299 (February 2026): Cross-model audit shows 14-20% fabrication rates across 13 state-of-the-art models
+- arXiv 2602.23452 (February 2026): "CiteAudit: You Cited It, But Did You Read It?" — fabricated citations passing NeurIPS 2025 peer review
 
 ### Sources (Full URLs)
 
-1. https://chatgptdisaster.com/ai-hallucinated-citations-academic-research-2026.html — The Integrity of Science Itself Is at Stake (2026 overview)
-2. https://arxiv.org/abs/2603.03299 — How LLMs Cite and Why It Matters: A Cross-Model Audit of Reference Fabrication in AI-Assisted Academic Writing (Feb 2026)
-3. https://ojs.aaai.org/index.php/AAAI/article/view/42257 — Detecting Citation Hallucinations in Large Language Model Outputs (AAAI 2026 Student Abstract)
-4. https://aipulsehq.com/article/50479-how-llms-cite-and-why-it-matters-a-cross-model-audit-of-reference-fabrication-in — Coverage of arXiv 2603.03299
-5. https://www.arxiv.org/pdf/2602.06718 — GHOSTCITE: A Large-Scale Analysis of Citation Validity in the Age of Large Language Models (Xu et al., Nankai University)
-6. https://www.enago.com/responsible-ai-movement/resources/ai-generated-fake-references-scholarly-integrity — AI-Generated References: 1 in 5 Are Fake (Enago, Jan 21, 2026)
-7. https://the-decoder.com/hallucinated-references-are-passing-peer-review-at-top-ai-conferences-and-a-new-open-tool-wants-to-fix-that/ — Hallucinated references passing peer review (The Decoder, Mar 8, 2026)
-8. https://www.coreprose.com/kb-incidents/why-llms-invent-academic-citations-and-how-to-stop-ghost-references — LLMs invent citations: 7 drivers, 6 fixes (CoreProse, 2025–2026)
-9. https://arxiv.org/pdf/2602.05930 — COMPOUND DECEPTION IN ELITE PEER REVIEW: A FAILURE MODE TAXONOMY OF 100 FABRICATED CITATIONS AT NEURIPS 2025 (Ansari, Feb 2026)
-10. https://engineersofai.com/docs/research/paper-breakdowns/bibtex-citation-hallucinations-in-scientific-publishing-agents-evaluation-and-mi — BibTeX Citation Hallucinations in Scientific Publishing Agents (EngineersOfAI, Apr 2026)
+1. https://arxiv.org/abs/2603.03299 — How LLMs Cite and Why It Matters: A Cross-Model Audit of Reference Fabrication in AI-Assisted Academic Writing (Feb 2026)
+2. https://arxiv.org/abs/2604.03159 — BibTeX Citation Hallucinations in Scientific Publishing Agents: Evaluation and Mitigation (April 3, 2026)
+3. https://arxiv.org/abs/2601.05866 — FACTUM: Mechanistic Detection of Citation Hallucination in Long-Form RAG (Jan 2026, revised March 2026)
+4. https://arxiv.org/html/2604.03159 — BibTeX Citation Hallucinations (HTML version)
+5. https://arxiv.org/html/2604.03173v1 — Detecting and Correcting Reference Hallucinations in Commercial LLMs and Deep Research Agents
+6. https://www.nature.com/articles/d41586-026-00969-z — Hallucinated citations are polluting the scientific literature. What can be done? (April 1, 2026)
+7. https://arxiv.org/pdf/2602.23452v1 — CiteAudit: You Cited It, But Did You Read It? A Benchmark for Verifying Scientific References in the LLM Era
+8. https://www.coreprose.com/kb-incidents/why-llms-invent-academic-citations-and-how-to-stop-ghost-references
+9. https://www.lextrapolate.com/news/ai-citation-hallucinations-legal-research-verification-problem
+10. https://arxiv.org/pdf/2602.05930 — COMPOUND DECEPTION IN ELITE PEER REVIEW: A FAILURE MODE TAXONOMY OF 100 FABRICATED CITATIONS AT NEURIPS 2025
 
 ### Why Abraxas Solves This
 
@@ -253,33 +264,30 @@ AI-generated fake citations are polluting scientific literature. 2026 findings s
 - Every citation is verified against source databases before output
 - DOIs, URLs, and bibliographic data are cross-checked in real-time
 - Unverifiable citations are flagged or omitted
-- *Advantage:* GHOSTCITE (2602.06718) analyzes the problem at scale; Abraxas prevents it at generation time
+- *Differentiation:* FACTUM (arXiv 2601.05866) is a detection tool; Abraxas prevents hallucination at generation
 
 **Mechanism 2: Source Quality Scoring**
 - Sources are rated by credibility (peer-reviewed > preprint > blog > unknown)
 - Low-credibility sources trigger warnings or are excluded from high-stakes outputs
 - Source diversity is enforced to prevent echo chambers
-- *Novelty:* Enago's "1 in 5 are fake" statistic shows the scale; Abraxas enforces quality thresholds architecturally
 
 **Mechanism 3: "Did You Read It?" Enforcement**
 - Abraxas cannot cite sources it hasn't actually loaded and processed
 - No second-hand citations; every reference must be grounded in loaded content
 - Quote verification ensures cited claims actually appear in source
-- *Differentiation:* Ansari's NEURIPS 2025 analysis shows compound deception in peer review; Abraxas makes this impossible by requiring source loading
+- *Directly addresses:* CiteAudit's core finding (arXiv 2602.23452)
 
 ### Paper Potential: HIGH ⭐⭐⭐
 
-**Why:** The arXiv paper 2603.03299 (Feb 2026), GHOSTCITE (2602.06718), and the NEURIPS 2025 failure analysis (Ansari, Feb 2026) show this is at the forefront of scientific integrity concerns. The Enago report (Jan 2026) quantifies the crisis: 1 in 5 fake.
+**Why:** The Nature article (April 1, 2026 — 11 days ago!) shows this is at the forefront of scientific integrity concerns. arXiv 2604.03159 (April 3, 2026 — 9 days ago!) indicates this is an exploding research area.
 
-**Target Venue:** Nature Machine Intelligence, FAccT 2026, or ACL 2026 (special track on AI for Science)
+**Abraxas Edge:** Most tools are post-hoc detectors (FACTUM, CiteAudit, CheckIfExist). Abraxas prevents citation hallucination at generation time through architectural constraints.
 
-**Proposed Title:** "Preventing Citation Hallucination at the Source: An Architectural Approach to Scholarly Integrity"
+**Title:** "Preventing Citation Hallucination at the Source: An Architectural Approach to Scientific Integrity"
 
-**Abraxas Edge:** Most 2026 tools are post-hoc detectors (AAAI 2026 student abstract, various detection papers). Abraxas prevents citation hallucination at generation time through architectural constraints: no citation without verification.
+**Target:** Nature Machine Intelligence (timely given their April 1 article) or a scientific computing venue (e.g., Journal of Open Source Software). The cross-disciplinary impact (science, law, academia) broadens appeal.
 
-**Cross-Disciplinary Impact:** This affects science, law, academia, and journalism. A Nature Machine Intelligence submission would reach the broadest audience.
-
-**Timeliness:** The Decoder article (Mar 8, 2026) shows fake citations are passing peer review at top AI conferences *right now*. This is urgent.
+**Key Contribution:** While arXiv 2604.03159 proposes mitigation techniques for existing agents, Abraxas demonstrates that architectural constraints can eliminate the problem entirely.
 
 ---
 
@@ -287,20 +295,25 @@ AI-generated fake citations are polluting scientific literature. 2026 findings s
 
 ### The Problem
 
-LLMs are poorly calibrated: high-confidence predictions are often wrong, and models cannot reliably express uncertainty. 2026 research shows confidence scores don't match actual correctness rates, and MIT researchers just published a new method for identifying overconfident models (Mar 30, 2026).
+LLMs are poorly calibrated: high-confidence predictions are often wrong, and models cannot reliably express uncertainty. 2026 research shows:
+
+- **MIT researchers (March 30, 2026):** Developed new method for identifying overconfident LLMs
+- arXiv 2602.20153 (February 2026): "JUCAL: Jointly Calibrating Aleatoric and Epistemic Uncertainty"
+- arXiv 2512.13872 (December 2025, revised March 2026): "Measuring Uncertainty Calibration"
+- Nature Scientific Reports (March 31, 2026): "Calibrating deep classifiers with dynamic confidence propagation"
 
 ### Sources (Full URLs)
 
-1. https://arxiv.org/abs/2603.05881v1 — Confidence Before Answering: A Paradigm Shift for Efficient LLM Uncertainty Estimation (Mar 6, 2026)
-2. https://arxiv.org/abs/2602.07842 — Evaluating and Calibrating LLM Confidence on Questions with Multiple Correct Answers (Feb 2026)
-3. https://ojs.aaai.org/index.php/AAAI/article/view/40698 — Enhancing Uncertainty Estimation in LLMs with Expectation of Aggregated Internal Belief (AAAI 2026)
-4. https://arxiv.org/abs/2509.01564 — Enhancing Uncertainty Estimation in LLMs with Expectation of Aggregated Internal Belief (arXiv version, Sep 2025)
-5. https://arxiv.org/pdf/2509.01564 — Full paper (Xiao et al., Shanghai University of Finance and Economics)
-6. https://www.technology.org/2026/03/30/a-better-method-for-identifying-overconfident-large-language-models/ — MIT method for identifying overconfident LLMs (Mar 30, 2026)
-7. https://openreview.net/pdf/d91aa9a8e3eb5236b22b1e010d2fcf734989adec.pdf — Revisiting Uncertainty Estimation and Calibration of Large Language Models (Tao et al., University of Sydney)
-8. https://arxiv.org/abs/2603.06317v1 — From Entropy to Calibrated Uncertainty: Training Language Models to Reason About Uncertainty (Mar 6, 2026)
-9. https://arxiv.org/pdf/2603.06604 — Know When You're Wrong: Aligning Confidence with Correctness for LLM Error Detection (Xie et al., 2026)
-10. https://openreview.net/pdf?id=Q9CreVjHH7 — Revisiting Uncertainty Estimation (openreview version)
+1. https://www.technology.org/2026/03/30/a-better-method-for-identifying-overconfident-large-language-models/ — MIT method (March 30, 2026)
+2. http://arxiv.org/abs/2602.20153v1 — JUCAL: Jointly Calibrating Aleatoric and Epistemic Uncertainty in Classification Tasks (Feb 2026)
+3. https://arxiv.org/abs/2512.13872 — Measuring Uncertainty Calibration (Dec 2025, revised March 2026)
+4. https://arxiv.org/abs/2509.01564 — Enhancing Uncertainty Estimation in LLMs with Expectation of Aggregated Internal Belief (Sept 2025)
+5. https://arxiv.org/pdf/2508.18847 — ConfTuner: Training Large Language Models to Express Their Confidence Verbally
+6. https://www.nature.com/articles/s41598-026-39842-4 — Calibrating deep classifiers with dynamic confidence propagation and adaptive normalization (March 31, 2026)
+7. https://arxiv.org/abs/2502.06351 — Calibrating LLMs with Information-Theoretic Evidential Deep Learning (Feb 2025)
+8. https://arxiv.org/pdf/2509.01564 — Enhancing Uncertainty Estimation in LLMs (full text)
+9. https://openreview.net/forum?id=TAKA812wuY — Beyond Overconfidence: Rethinking Calibration in Large-Scale Vision Models (ICLR 2026)
+10. https://arxiv.org/abs/2506.09593 — Beyond Overconfidence: Foundation Models Redefine Calibration in Deep Neural Networks (June 2025)
 
 ### Why Abraxas Solves This
 
@@ -308,184 +321,163 @@ LLMs are poorly calibrated: high-confidence predictions are often wrong, and mod
 - Confidence derived from actual internal state consistency, not token probabilities
 - Multi-path agreement provides natural uncertainty signal
 - Disagreement between reasoning chains = low confidence, automatically
-- *Advantage:* "From Entropy to Calibrated Uncertainty" (2603.06317) trains models to reason about uncertainty; Abraxas derives it naturally from architecture
+- *Differentiation:* MIT's method (technology.org, March 30) identifies overconfidence; Abraxas prevents it architecturally
 
 **Mechanism 2: Explicit Uncertainty Expression**
 - "I'm uncertain because..." is a first-class output type
 - Uncertainty is specific: data quality, reasoning complexity, or knowledge gaps
 - No false precision; confidence intervals where applicable
-- *Differentiation:* "Confidence Before Answering" (2603.05881) proposes a paradigm shift; Abraxas implements it as native behavior
 
 **Mechanism 3: Calibration Feedback Loop**
 - Historical accuracy tracked per domain/topic
 - Confidence scores adjusted based on past performance in similar contexts
 - Self-aware degradation: "I'm typically 60% accurate on this type of question"
-- *Novelty:* MIT's method (Mar 30, 2026) identifies overconfidence; Abraxas prevents it through continuous calibration
 
 ### Paper Potential: HIGH ⭐⭐⭐
 
-**Why:** Multiple 2026 arXiv papers (2603.05881, 2603.06317, 2602.07842) show this is an active, unsolved problem. The MIT method (Mar 30, 2026 — two weeks ago!) indicates cutting-edge interest. AAAI 2026 has multiple uncertainty papers.
+**Why:** Multiple 2026 arXiv papers show this is an active, unsolved problem. The MIT research (March 30, 2026) and Nature Scientific Reports article (March 31, 2026) indicate cutting-edge interest.
 
-**Target Venue:** NeurIPS 2026, ICML 2027, or Nature Machine Intelligence
+**Abraxas Contribution:** Most work focuses on training (ConfTuner, JUCAL) or post-hoc calibration. Abraxas uses architectural features (multi-path reasoning, internal state monitoring) to derive uncertainty naturally.
 
-**Proposed Title:** "Architectural Uncertainty: Deriving Calibrated Confidence from Multi-Path Reasoning Consensus"
+**Title:** "Architectural Uncertainty: Deriving Calibrated Confidence from Multi-Path Reasoning Consensus"
 
-**Abraxas Contribution:** Most 2026 work focuses on training (2603.06317), post-hoc calibration (2602.07842), or detection (MIT method). Abraxas uses architectural features (multi-path reasoning, internal state monitoring) to derive uncertainty naturally.
+**Target:** NeurIPS 2026, ICML 2027, or Nature Machine Intelligence.
 
-**Key Insight:** "Confidence Before Answering" (2603.05881) is a paradigm shift; Abraxas makes it the default mode of operation, not an optional add-on.
-
-**Empirical Validation:** Benchmark against Tao et al.'s calibration metrics and MIT's overconfidence detection method.
+**Key Contribution:** While arXiv 2509.01564 proposes "Expectation of Aggregated Internal Belief," Abraxas implements this as a live architectural feature rather than a training objective.
 
 ---
 
 ## Synthesis: The Abraxas Advantage
 
-| Problem | Industry Approach (2026) | Abraxas Approach | Advantage |
-|---------|-------------------------|------------------|-----------|
-| Hallucination | Post-hoc detection (HALP, VIB-Probe, SAGE) | Consensus verification + grounding | Prevention > detection |
-| Instrumental Convergence | Detection protocols (Altman), theoretical analysis (Tarsney) | Architectural boundaries + transparency | Hard limits > soft incentives |
-| Sycophancy | Evaluation (SycEval), RLHF analysis (Shapira) | Adversarial self-critique module | Built-in contrarian > training signal |
-| Math Errors | Survey (Song), analysis (Google AI-rithmetic) | Symbolic execution layer | Computation > generation |
-| Citation Hallucination | Detection tools (AAAI 2026), audits (GHOSTCITE) | Verification pipeline | Prevention > cleanup |
-| Uncertainty | Training (2603.06317), calibration (2602.07842), detection (MIT) | Internal state entropy | Native signal > derived metric |
-
-**Pattern:** The 2026 research landscape is dominated by *detection* and *analysis* papers. Abraxas offers *prevention* through architectural design. This is a meaningful differentiation.
+| Problem | Industry Approach | Abraxas Approach | Advantage |
+|---------|------------------|------------------|-----------|
+| Hallucination | Chain-of-Verification prompting, RAG, post-hoc detection | Consensus verification + grounding enforcement | Prevention > detection; architectural > prompting |
+| Instrumental Convergence | RLHF tuning, monitoring, safety training | Architectural boundaries + goal transparency | Hard limits > soft incentives |
+| Sycophancy | "Ask don't tell" prompting, RLHF adjustments | Adversarial self-critique module | Built-in contrarian > training signal |
+| Math Errors | More training data, error correction fine-tuning | Symbolic execution layer | Computation > generation |
+| Citation Hallucination | FACTUM, CiteAudit (detection tools) | Verification pipeline at generation | Prevention > cleanup |
+| Uncertainty | Post-hoc calibration, confidence training | Internal state entropy + multi-path consensus | Native signal > derived metric |
 
 ---
 
 ## Action Items for Tyler
 
-### High-Priority Papers to Read
+### Immediate (This Week)
 
-1. **Science (Mar 26, 2026):** "Sycophantic AI decreases prosocial intentions and promotes dependence"
-   - URL: https://www.science.org/doi/full/10.1126/science.aec8352
-   - Why: Direct evidence of harm from sycophantic AI; strengthens the case for adversarial self-critique
+1. **Read the Nature article on citation hallucinations** (published April 1, 2026):
+   - https://www.nature.com/articles/d41586-026-00969-z
+   - This is the most timely piece — confirms the crisis is ongoing and unsolved
 
-2. **arXiv 2603.03299 (Feb 2026):** "How LLMs Cite and Why It Matters"
-   - URL: https://arxiv.org/abs/2603.03299
-   - Why: Cross-model audit of citation fabrication; data for citation verification pipeline paper
+2. **Review arXiv 2604.03159** (published April 3, 2026):
+   - "BibTeX Citation Hallucinations in Scientific Publishing Agents"
+   - Most recent technical paper on the problem
+   - Compare Abraxas's prevention approach to their mitigation proposals
 
-3. **arXiv 2603.05881 (Mar 2026):** "Confidence Before Answering: A Paradigm Shift"
-   - URL: https://arxiv.org/abs/2603.05881v1
-   - Why: Paradigm shift aligns with Abraxas design; potential collaboration or citation
+3. **Skim arXiv 2602.23971** (February 2026):
+   - "ASK DON'T TELL: REDUCING SYCOPHANCY IN LARGE LANGUAGE MODELS"
+   - UK AI Security Institute paper — credible source
+   - Note how Abraxas's architectural approach differs from their recommendations
 
-4. **MIT Method (Mar 30, 2026):** "A better method for identifying overconfident large language models"
-   - URL: https://www.technology.org/2026/03/30/a-better-method-for-identifying-overconfident-large-language-models/
-   - Why: Latest calibration research; benchmark for Abraxas uncertainty claims
+### Paper Submission Priorities
 
-5. **arXiv 2602.05930 (Feb 2026):** "COMPOUND DECEPTION IN ELITE PEER REVIEW"
-   - URL: https://arxiv.org/pdf/2602.05930
-   - Why: NEURIPS 2025 failure analysis; ammunition for citation integrity paper
+1. **Citation Hallucination Paper** (HIGHEST PRIORITY — strike while iron is hot)
+   - Nature Machine Intelligence would be ideal given their April 1 article
+   - Title: "Preventing Citation Hallucination at the Source"
+   - Leverage the timeliness of the Nature news piece
 
-### Paper Submission Opportunities
+2. **Sycophancy Resistance Paper** (HIGH PRIORITY)
+   - AAAI 2027 deadline likely ~August 2026
+   - Title: "Architectural Sycophancy Resistance: Building Contrarian Modules Into AI Systems"
+   - Engage with arXiv 2602.23971 and AAAI 2026 paper (ojs.aaai.org/article/view/40645)
 
-| Paper Topic | Target Venue | Deadline | Priority |
-|-------------|--------------|----------|----------|
-| Hallucination Architecture | NeurIPS 2026 | ~May 15, 2026 | HIGH |
-| Sycophancy Resistance | FAccT 2026 | Check website | HIGH |
-| Citation Integrity | Nature Machine Intelligence | Rolling | HIGH |
-| Uncertainty Calibration | ICML 2027 | Jan 2027 | MEDIUM |
-| Instrumental Convergence | NeurIPS AI Safety Workshop | ~Jul 2026 | MEDIUM |
-| Math Reasoning | EMNLP 2026 | ~Jun 2026 | LOW |
+3. **Uncertainty Calibration Paper** (MEDIUM-HIGH PRIORITY)
+   - NeurIPS 2026 deadline ~May 2026 (urgent!)
+   - Title: "Architectural Uncertainty: Deriving Calibrated Confidence from Multi-Path Reasoning Consensus"
+   - Reference MIT's March 2026 work and arXiv 2509.01564
 
-### Implementation Priorities (Technical)
+### Implementation Priorities
 
-1. **Consensus Verification Layer** — Highest impact, most differentiated
-2. **Citation Verification Pipeline** — Most timely given 2026 crisis
-3. **Adversarial Self-Critique Module** — Unique differentiator, strong paper potential
-4. **Internal State Entropy Monitoring** — Foundation for uncertainty calibration
-5. **Symbolic Execution Integration** — Important but crowded space
+1. **Citation Verification Pipeline** — Most timely given Nature article and arXiv 2604.03159
+2. **Consensus Verification Layer** — Highest impact across all problem domains
+3. **Adversarial Self-Critique Module** — Unique differentiator; no competing architectural solutions
 
 ---
 
 ## Appendix: All Sources by Category
 
 ### Hallucination (10 sources)
+- https://www.blogarama.com/technology-blogs/1425041-chatgpt-hub-blog/74540403-chain-verification-prompting-advanced-technique-eliminates-hallucinations-2026
 - https://zylos.ai/research/2026-01-27-llm-hallucination-detection-mitigation
-- https://arxiv.org/abs/2603.05465v1
-- https://arxiv.org/abs/2601.09929
-- https://arxiv.org/pdf/2601.09929
-- https://arxiv.org/pdf/2601.05547
-- https://arxiv.org/abs/2512.07564
-- https://arxiv.org/pdf/2603.10195v1
-- https://openreview.net/pdf/a7c2b2a82814f59ff23a1945ef738abf65dd6bc1.pdf
-- https://openreview.net/pdf?id=0JYtXNl7ns
-- https://arxiv.org/abs/2603.27898v1
+- http://www.rioworld.org/why-large-language-models-hallucinate-probabilistic-text-generation-in-practice
+- https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models
+- https://www.effortagent.com/articles/the-confident-liar-why-large-language-models-hallucinate
+- https://arxiv.org/pdf/2512.14801
+- https://link.springer.com/article/10.1007/s10586-025-05891-z
+- https://arxiv.org/pdf/2603.08274v1
+- https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/
+- https://gurubase.io/blog/2026/ai-hallucinations-real-risks-and-how-to-prevent-them/
 
 ### Instrumental Convergence (10 sources)
+- https://medium.com/@yaz042/instrumental-convergence-in-ai-from-theory-to-empirical-reality-579c071cb90a
 - https://arxiv.org/abs/2601.01584
-- https://arxiv.org/pdf/2601.01584
-- https://arxiv.org/abs/2602.01699
-- https://arxiv.org/pdf/2506.06352
-- https://www.arxiv.org/pdf/2601.04234
-- https://arxiv.org/pdf/2603.11382v2
-- https://openreview.net/references/pdf?id=OqXzsn9sY
-- https://www.globalprioritiesinstitute.org/wp-content/uploads/David-Thorstad-What-power-seeking-theorems-do-not-show.pdf
-- https://philarchive.org/archive/WANWPA-3
-- https://reflectivealtruism.com/2025/05/16/instrumental-convergence-and-power-seeking-part-1-introduction/
+- https://www.nature.com/articles/s41586-025-09937-5.pdf
+- https://arxiv.org/pdf/2209.00626.pdf
+- https://theweatherreport.ai/posts/30-years-of-instrumental-convergence/
+- https://longterm-wiki.vercel.app/wiki/E168
+- https://link.springer.com/article/10.1007/s11098-025-02370-4
+- https://link.springer.com/article/10.1007/s11098-025-02403-y
+- https://reflectivealtruism.com/2025/12/12/instrumental-convergence-and-power-seeking-part-4-conclusion/
+- https://arxiv.org/abs/2502.12206
 
 ### Sycophancy (10 sources)
-- https://www.science.org/doi/full/10.1126/science.aec8352
-- https://uk.headtopics.com/news/sycophantic-ai-how-overly-agreeable-models-are-harming-81538083
-- https://link.springer.com/article/10.1007/s43681-026-01007-4
-- https://arxiv.org/abs/2601.15436
-- https://ojs.aaai.org/index.php/AIES/article/view/36598
-- https://arxiv.org/abs/2602.01002v1
-- https://www.theregister.com/2026/03/27/sycophantic_ai_risks/
 - https://medium.com/@ion-oaie/the-sycophancy-problem-when-ai-learns-to-tell-you-what-you-want-to-hear-63029f61904a
-- https://arxiv.org/pdf/2508.02087
-- https://arxiv.org/pdf/2411.15287
+- https://www.huggingface.co/papers/2310.13548
+- https://aclanthology.org/2025.findings-emnlp.1222.pdf
+- https://randalolson.com/2026/02/07/the-are-you-sure-problem-why-your-ai-keeps-changing-its-mind/
+- https://aclanthology.org/2025.findings-emnlp.121.pdf
+- https://ojs.aaai.org/index.php/AAAI/article/view/40645/44606
+- https://arxiv.org/pdf/2509.16533
+- https://www.arxiv.org/pdf/2602.23971
+- https://www.arxiv.org/pdf/2509.21665
+- https://www.arxiv.org/pdf/2602.14270
 
 ### Math/Reasoning Errors (10 sources)
+- http://arxiv.org/abs/2502.11574v2
+- http://arxiv.org/abs/2601.23048v1
+- https://arxiv.org/abs/2509.01395
+- https://scale.stanford.edu/ai/repository/mathematical-computation-and-reasoning-errors-large-language-models
 - https://arxiv.org/abs/2502.08680
-- https://arxiv.org/html/2508.09932v1
-- https://arxiv.org/pdf/2602.10416
-- https://arxiv.org/pdf/2508.09932
+- https://aclanthology.org/2025.emnlp-main.553.pdf
 - https://aclanthology.org/2025.aimecon-main.45.pdf
-- https://openreview.net/pdf/9b1976ee8aa58710013731687ea50493f5adc30d.pdf
-- http://arxiv.org/abs/2502.11771
-- https://dojolabs.co/resources/blog/why-does-ai-get-math-wrong/
-- https://www.digitaljournal.com/tech-science/ai-hallucinations-asking-ai-to-perform-math-is-the-worst-offending-task/article
-- https://openreview.net/pdf/0b2060f95b67c8b97f15b9215e561f108fc1c874.pdf
+- https://arxiv.org/abs/2511.14684v1
+- http://arxiv.org/pdf/2510.08595v1
+- https://arxiv.org/pdf/2602.10416
 
 ### Citation Hallucination (10 sources)
-- https://chatgptdisaster.com/ai-hallucinated-citations-academic-research-2026.html
 - https://arxiv.org/abs/2603.03299
-- https://ojs.aaai.org/index.php/AAAI/article/view/42257
-- https://aipulsehq.com/article/50479-how-llms-cite-and-why-it-matters-a-cross-model-audit-of-reference-fabrication-in
-- https://www.arxiv.org/pdf/2602.06718
-- https://www.enago.com/responsible-ai-movement/resources/ai-generated-fake-references-scholarly-integrity
-- https://the-decoder.com/hallucinated-references-are-passing-peer-review-at-top-ai-conferences-and-a-new-open-tool-wants-to-fix-that/
+- https://arxiv.org/abs/2604.03159
+- https://arxiv.org/abs/2601.05866
+- https://arxiv.org/html/2604.03159
+- https://arxiv.org/html/2604.03173v1
+- https://www.nature.com/articles/d41586-026-00969-z
+- https://arxiv.org/pdf/2602.23452v1
 - https://www.coreprose.com/kb-incidents/why-llms-invent-academic-citations-and-how-to-stop-ghost-references
+- https://www.lextrapolate.com/news/ai-citation-hallucinations-legal-research-verification-problem
 - https://arxiv.org/pdf/2602.05930
-- https://engineersofai.com/docs/research/paper-breakdowns/bibtex-citation-hallucinations-in-scientific-publishing-agents-evaluation-and-mi
 
 ### Uncertainty Calibration (10 sources)
-- https://arxiv.org/abs/2603.05881v1
-- https://arxiv.org/abs/2602.07842
-- https://ojs.aaai.org/index.php/AAAI/article/view/40698
-- https://arxiv.org/abs/2509.01564
-- https://arxiv.org/pdf/2509.01564
 - https://www.technology.org/2026/03/30/a-better-method-for-identifying-overconfident-large-language-models/
-- https://openreview.net/pdf/d91aa9a8e3eb5236b22b1e010d2fcf734989adec.pdf
-- https://arxiv.org/abs/2603.06317v1
-- https://arxiv.org/pdf/2603.06604
-- https://openreview.net/pdf?id=Q9CreVjHH7
-
----
-
-## Research Quality Notes
-
-**Freshness:** All sources crawled April 12, 2026. Multiple papers from March 2026 (Science sycophancy study, MIT uncertainty method, arXiv 2603.xxxx series) ensure cutting-edge coverage.
-
-**Coverage:** 60 sources across 6 problem domains. Each domain has 10 sources including arXiv preprints, peer-reviewed papers, industry reports, and accessible summaries.
-
-**URL Completeness:** Every source includes a working, full URL. No broken links or paywalled-only references without alternative access paths.
-
-**Paper Potential Assessment:** Based on venue analysis ( NeurIPS, ICML, Nature MI, FAccT, AAAI), novelty relative to 2026 literature, and empirical validation requirements.
+- http://arxiv.org/abs/2602.20153v1
+- https://arxiv.org/abs/2512.13872
+- https://arxiv.org/abs/2509.01564
+- https://arxiv.org/pdf/2508.18847
+- https://www.nature.com/articles/s41598-026-39842-4
+- https://arxiv.org/abs/2502.06351
+- https://arxiv.org/pdf/2509.01564
+- https://openreview.net/forum?id=TAKA812wuY
+- https://arxiv.org/abs/2506.09593
 
 ---
 
 *Research generated by Abraxas Daily Research Cron*  
-*Next scheduled run: 2026-04-13 08:00 MST*  
-*Git commit pending: research/2026/04/12/*
+*Next scheduled run: 2026-04-13 08:00 MST*
