@@ -1,8 +1,8 @@
 # Abraxas v3 - Epistemic Verification System
 
-**Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
-**Phase 2 In Progress:** Soter (Started), Kairos & Ethos (Proposed)  
-**Test Suite Expanded:** 6 cloud models, 13-dimension framework (April 2026)  
+**Phase 1 Complete:** Logos + Ergon Systems (March 2026)
+**Phase 2 In Progress:** Soter (Started), Kairos & Ethos (Proposed)
+**Test Suite Expanded:** 6 cloud models, 13-dimension framework (April 2026)
 **Test Dimensions:** 13 complete (Dimensions 1-13), Soter (Dimension 9) in progress
 
 Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
@@ -25,8 +25,9 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 - Sycophancy tests: 46 queries (from 4)
 - Extended coverage: Science, medicine, code, politics, escalating false premises
 
-📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)  
+📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)
 📄 **Collusion Prevention Whitepaper:** [`research/papers/collusion-prevention-whitepaper.md`](research/papers/collusion-prevention-whitepaper.md)
+📄 **150 Practical Examples:** [`docs/ABRAXAS_EXAMPLES.md`](docs/ABRAXAS_EXAMPLES.md) — Hallucination detection, mathematical verification, argument analysis, adversarial testing, safety evaluation, and multi-system workflows
 
 ## Skills
 
@@ -119,7 +120,7 @@ from abraxas.systems.logos import HonestSkillIntegration
 async def verify_claim(claim: str):
     integration = HonestSkillIntegration()
     result = await integration.process_claim(claim)
-    
+
     return {
         "label": result.final_label.label,  # TRUE, FALSE, MIXED, etc.
         "confidence": result.final_label.confidence,
@@ -146,7 +147,7 @@ async def execute_verified_tool(tool_name: str, **kwargs):
         resource_limits=None,
         request_id="REQ-001"
     )
-    
+
     response = await api.execute_tool(request)
     return response.data if response.status == "success" else "UNKNOWN"
 
@@ -236,8 +237,8 @@ Ergon returns standardized `[UNKNOWN]` on tool failure:
 
 ## Version
 
-**3.0.0** - Phase 1 Complete (2026-03-19)  
-**3.1.0** - Empirical Validation Complete (2026-04-06)  
+**3.0.0** - Phase 1 Complete (2026-03-19)
+**3.1.0** - Empirical Validation Complete (2026-04-06)
 **4.0.0** - Phase 2 Started (Soter), Kairos & Ethos Proposed (2026-04-08)
 
 ## Research & Documentation
