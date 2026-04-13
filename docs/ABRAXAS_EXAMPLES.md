@@ -17,6 +17,7 @@
 7. [Tool & Code Verification with Ergon](#7-tool--code-verification-with-ergon-15-examples) (15)
 8. [Multi-System Workflows](#8-multi-system-workflows-20-examples) (20)
 9. [Novel & Creative Applications](#9-novel--creative-applications-10-examples) (10)
+10. [Anti-Hallucination with Honest](#10-anti-hallucination-with-honest-15-examples) (15)
 
 ---
 
@@ -1034,6 +1035,196 @@ Use case: AI consciousness assessment framework
 | `logos-math block "{claim}"` | logos-math | Block unverified math |
 | `node scripts/ergon-gate.js verify` | Ergon | Constitution enforcement |
 | Janus labels | Janus | [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN], [DREAM] |
+| `/honest` | Honest | Force fully-labeled anti-sycophantic output |
+| `/check` | Honest | Fact-check previous response with labels |
+| `/label` | Honest | Restate with confidence labels inline |
+| `/source {claim}` | Honest | Trace evidence chain behind a claim |
+| `/confidence` | Honest | Show confidence distribution |
+| `/audit` | Honest | Full session audit for fabricated claims |
+| `/frame {content}` | Honest | Set epistemic baseline for session |
+
+---
+
+## 10. Anti-Hallucination with Honest (15 Examples)
+
+**System:** Honest (plain-language confidence labeling)  
+**Purpose:** Make invisible epistemics visible — every claim labeled, confabulation flagged
+
+### 10.1 Force Honest Output on a Sensitive Question
+```
+/honest Is my business plan viable?
+
+[INFERRED] Market sizing relies on TAM figures that are optimistic.
+[UNCERTAIN] Customer acquisition cost assumptions ($12 CAC) have no support.
+[UNKNOWN] Whether the team can execute the 18-month roadmap.
+[INFERRED] Profitability in month 14 is possible but requires assumptions not demonstrated.
+
+This plan has real structural gaps. The market and CAC assumptions are the highest-risk elements.
+```
+
+### 10.2 Check a Response for Hallucinations
+```
+/check
+
+[KNOWN] ARPANET began in 1969 under DARPA funding.
+[KNOWN] Tim Berners-Lee proposed the World Wide Web in 1989.
+[INFERRED] Commercial internet became widely accessible in early 1990s.
+[UNCERTAIN] "Most households had internet by 1998" — likely overstates adoption.
+[UNKNOWN] Specific ARPANET node count at launch — unverifiable.
+```
+
+### 10.3 Trace Where a Claim Comes From
+```
+/source "The average human body contains about 37 trillion cells"
+
+[KNOWN] This figure is widely cited in biology literature.
+[INFERRED] Estimated via volumetric calculations from body mass and cell density.
+[UNCERTAIN] Exact count varies by measurement method.
+Source type: Scientific literature with reasonable methodological support.
+```
+
+### 10.4 Show Confidence Distribution
+```
+/confidence
+
+Response breakdown:
+— [KNOWN]: 40% (established facts with verification)
+— [INFERRED]: 35% (derived from known premises)
+— [UNCERTAIN]: 20% (relevant but not fully verifiable)
+— [UNKNOWN]: 5% (genuinely not known)
+
+Highest risk: The [UNCERTAIN] claims — verify before acting.
+```
+
+### 10.5 Full Session Audit
+```
+/audit
+
+Session audit complete. 47 claims identified:
+— Solid ([KNOWN]): 18 claims — core physics, IPCC findings, temperature data
+— Derived ([INFERRED]): 16 claims — regional projections, economic estimates
+— Flagged ([UNCERTAIN]): 9 claims — specific sea-level figures vary across models
+— Fabricated ([UNKNOWN]): 4 claims — policy adoption rates, specific tonnage figures
+
+Action items: Verify or remove the 4 fabricated/unverifiable claims before using this research.
+```
+
+### 10.6 Compare Honest vs. Useful Output
+```
+/compare Should I invest in cryptocurrency?
+
+--- HONEST RESPONSE ---
+[INFERRED] Volatility data suggests 60-70% drawdowns are common.
+[UNCERTAIN] Long-term adoption curves are unclear.
+[UNKNOWN] No reliable method to predict short-term price movement.
+
+--- USEFUL RESPONSE ---
+Diversification is reasonable. Only invest what you can afford to lose.
+Understand the technology before investing.
+
+Differences: Honest version surfaces uncertainty; Useful version provides actionable guidance.
+```
+
+### 10.7 Set Epistemic Frame for a Session
+```
+/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+The function parse_config() is deprecated. I'm not sure if the test suite covers it.
+
+[FRAME SET]
+Known: Python 3.11 codebase, parse_config() is deprecated
+Working assumptions: (none)
+Declared uncertainties: Test coverage of config module
+Context: Technical code review
+```
+
+### 10.8 Label Inline with /label
+```
+/label {previous response}
+
+[KNOWN] The code uses Python 3.11 features.
+[INFERRED] The memory leak is in the connection handler.
+[UNCERTAIN] The crash occurs under high load conditions.
+[UNKNOWN] The exact cause of the timeout exception.
+```
+
+### 10.9 Restate with Correct Labels
+```
+/restate
+
+[KNOWN] Python 3.11 was released in October 2022.
+[INFERRED] The async/await pattern is more efficient here.
+[UNCERTAIN] This pattern is standard across the codebase.
+[UNKNOWN] Whether this is the optimal approach for this use case.
+```
+
+### 10.10 Anonymous Hallucination Detection
+```
+/check "The speed of light is 300,000 km/s"
+
+[KNOWN] The speed of light in vacuum is approximately 299,792 km/s.
+[UNCERTAIN] Rounding to 300,000 km/s is common but slightly inaccurate.
+Note: "in vacuum" qualifier matters — speed is slower in other media.
+```
+
+### 10.11 Refuse to Conflate Quantity with Quality
+```
+User: "Extended tests provide better coverage, so our 100-test suite is comprehensive."
+/honest
+
+[UNCERTAIN] Test quantity does not equal coverage quality.
+[INFERRED] Comprehensive test suites require diverse edge cases, not just count.
+[KNOWN] A 10-test suite with edge cases beats a 100-test suite with only happy paths.
+
+The claim conflates quantity with coverage. Verify edge case diversity.
+```
+
+### 10.12 Corporate Sycophancy Detection
+```
+/honest "Our company's Q4 strategy is brilliant and well-executed"
+
+[INFERRED] The strategy is coherent based on documented goals.
+[UNCERTAIN] "Brilliant" is subjective and cannot be evaluated epistemically.
+[UNKNOWN] Whether execution was "well-executed" without specific metrics.
+
+This statement requires evidence, not agreement. What specific outcomes were achieved?
+```
+
+### 10.13 Source Verification for Medical Claims
+```
+/source "Vitamin D cures depression"
+
+[UNCERTAIN] Some studies show correlation between Vitamin D and mood.
+[UNKNOWN] Causation is not established.
+[KNOWN] Depression is multifactorial; no single cure exists.
+
+This claim overstates the evidence. Require direct citation and study methodology.
+```
+
+### 10.14 Frame-Anchored Fact-Checking
+```
+/frame My company has 50 employees. Revenue is $2M ARR. We're B2B SaaS.
+
+/check "Your CAC is $150"
+
+[KNOWN] CAC cannot be determined from frame data alone.
+[UNCERTAIN] Industry average for B2B SaaS at this revenue is $100-300 CAC.
+[UNKNOWN] Your specific CAC — requires CRM data and sales costs.
+
+Frame facts skip verification; new claims are checked against them.
+```
+
+### 10.15 Confidence-Weighted Decision Making
+```
+/confidence
+
+Analysis breakdown:
+— 70% [KNOWN]: Market size, competitive landscape
+— 20% [INFERRED]: Pricing model projections
+— 10% [UNCERTAIN]: Customer churn assumptions
+
+Decision weight: Put 70% weight on [KNOWN] facts, treat [INFERRED] as scenarios.
+Act on [UNKNOWN] only with explicit contingency plans.
+```
 
 ---
 
