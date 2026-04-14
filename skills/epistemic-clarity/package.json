@@ -1,0 +1,14 @@
+{
+  "name": "epistemic-clarity",
+  "version": "1.0.0",
+  "description": "Convert unknowns to knowns via Socratic questioning",
+  "main": "scripts/clarity-engine.js",
+  "scripts": {
+    "start": "node scripts/clarity-engine.js start",
+    "status": "node scripts/clarity-engine.js status",
+    "test": "node scripts/test.js"
+  },
+  "keywords": ["epistemics", "clarity", "questioning", "abraxas"],
+  "author": "Tyler Garlick",
+  "license": "MIT"
+}

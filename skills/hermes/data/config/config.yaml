@@ -1,0 +1,116 @@
+# Hermes-Delphi Configuration
+
+## System Settings
+system:
+  name: Hermes-Delphi
+  mode: autonomous
+  log_level: info
+
+## Pipeline Settings
+pipeline:
+  # Frequency: daily, weekly, monthly
+  frequency: daily
+  
+  # Whether to enable feedback loop
+  feedback_loop_enabled: true
+  
+  # Report recipients (email addresses)
+  # Add recipients separated by commas
+  report_recipients:
+    - ""
+
+## Research Agent (Keres)
+research:
+  # Default scan frequency for monitors
+  default_frequency: daily
+  
+  # Maximum concurrent monitors
+  max_concurrent_monitors: 10
+  
+  # Stale data threshold (hours)
+  stale_threshold_hours: 48
+  
+  # Topics to monitor by default
+  default_topics:
+    - "AI agents"
+    - "market research"
+    - "competitor intelligence"
+
+## Briefing Agent (Mythos)
+briefing:
+  # Default template type
+  default_template: executive
+  
+  # Auto-finalize briefs after generation
+  auto_finalize: true
+
+## Outreach Agent (Prodos)
+outreach:
+  # Sequence timing (days)
+  sequence_days:
+    - 0
+    - 3
+    - 7
+    - 14
+  
+  # Rate limiting
+  max_retries: 3
+  rate_limit_per_day: 50
+
+## Delivery Agent (Dromos)
+delivery:
+  # Default format
+  default_format: markdown
+  
+  # Retry settings
+  retry_attempts: 3
+  retry_backoff_minutes:
+    - 5
+    - 15
+    - 60
+
+## Feedback Agent (Kleitos)
+feedback:
+  # Analysis window (days)
+  analysis_window_days: 30
+  
+  # Sentiment thresholds
+  sentiment_threshold_positive: 0.7
+  sentiment_threshold_negative: 0.4
+  
+  # Auto-adapt based on feedback
+  auto_adapt: true
+
+## Billing Agent (Logismos)
+billing:
+  default_currency: USD
+  invoice_period_days: 30
+  payment_terms_days: 14
+
+## Notifications
+notifications:
+  # Enable/disable notifications
+  enabled: false
+  
+  # Email settings (if enabled)
+  email:
+    smtp_host: ""
+    smtp_port: 587
+    smtp_user: ""
+    smtp_from: "hermes-delphi@abraxas.local"
+  
+  # Slack integration (if enabled)
+  slack:
+    webhook_url: ""
+    channel: "#research"
+
+## Mission Control Integration
+mission_control:
+  # Whether to sync with mission-control backlog
+  sync_enabled: true
+  
+  # Create backlog tasks for reports
+  create_report_tasks: true
+  
+  # Route feedback to backlog
+  route_feedback_to_backlog: true

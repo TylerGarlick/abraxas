@@ -1,0 +1,127 @@
+{
+  "sessionId": "mnnktavt",
+  "request": "Simple task",
+  "startedAt": "2026-04-06T19:21:25.337Z",
+  "unknowns": [
+    {
+      "id": 1,
+      "category": "GOAL",
+      "question": "What exactly should this do / achieve?",
+      "leverage": 5,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    },
+    {
+      "id": 2,
+      "category": "AUDIENCE",
+      "question": "Who is the primary user / audience?",
+      "leverage": 4,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    },
+    {
+      "id": 3,
+      "category": "FORMAT",
+      "question": "What format / platform / output is expected?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    },
+    {
+      "id": 4,
+      "category": "SUCCESS",
+      "question": "How will we know when this is complete / successful?",
+      "leverage": 5,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    },
+    {
+      "id": 5,
+      "category": "TIMELINE",
+      "question": "What is the timeline / deadline?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    },
+    {
+      "id": 6,
+      "category": "DATA",
+      "question": "What data / content is needed?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test"
+    }
+  ],
+  "knowns": [],
+  "skipped": [
+    {
+      "id": 1,
+      "category": "GOAL",
+      "question": "What exactly should this do / achieve?",
+      "leverage": 5,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.337Z"
+    },
+    {
+      "id": 4,
+      "category": "SUCCESS",
+      "question": "How will we know when this is complete / successful?",
+      "leverage": 5,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.338Z"
+    },
+    {
+      "id": 2,
+      "category": "AUDIENCE",
+      "question": "Who is the primary user / audience?",
+      "leverage": 4,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.338Z"
+    },
+    {
+      "id": 3,
+      "category": "FORMAT",
+      "question": "What format / platform / output is expected?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.339Z"
+    },
+    {
+      "id": 5,
+      "category": "TIMELINE",
+      "question": "What is the timeline / deadline?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.339Z"
+    },
+    {
+      "id": 6,
+      "category": "DATA",
+      "question": "What data / content is needed?",
+      "leverage": 3,
+      "status": "skipped",
+      "source": "initial",
+      "skipReason": "Skipping for test",
+      "skippedAt": "2026-04-06T19:21:25.340Z"
+    }
+  ],
+  "status": "complete",
+  "iterations": 0,
+  "completedAt": "2026-04-06T19:21:25.340Z"
+}

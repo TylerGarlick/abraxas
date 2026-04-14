@@ -19,8 +19,8 @@ All task operations go through the `bd` CLI via Python subprocess (bypasses exec
 ```python
 import subprocess, os
 
-BEADS = "/home/ubuntu/.local/bin/bd"
-CWD   = "/home/ubuntu/.openclaw/workspace/mc"
+BEADS = "/usr/local/bin/bd"
+CWD   = "/root/.openclaw/workspace/projects/mary-jane"
 ENV   = {**os.environ, "DOLT_AUTO_COMMIT": "on"}
 
 def bd(args):
@@ -61,10 +61,50 @@ Use `bd update <id> --status <new_status>` to transition.
 
 When spawning a subagent for a Task, set:
 ```
-BEADS_DIR=/home/ubuntu/.openclaw/workspace/mc/.beads
+BEADS_DIR=/root/.openclaw/workspace/projects/mary-jane/.beads
+CWD=/root/.openclaw/workspace/projects/mary-jane
 ```
 
 This lets the subagent run `bd` commands in the correct repo context.
+
+## Intelligent Subagent Spawning (Auto-Decide)
+
+**Spawn subagents when:**
+- Batch creating 3+ tasks at once
+- Parallel research/verification of multiple tasks
+- Complex workflows with 3+ dependent steps
+- Long-running operations that would block main session
+
+**Keep in main session:**
+- Single task creation/queries
+- Quick status checks
+- Task updates (unless part of batch)
+- Simple searches
+
+**Spawning Logic:**
+
+```python
+# Decision tree for task creation
+if len(tasks) >= 3:
+    # Spawn parallel subagents for batch work
+    spawn_n_subagents(n=min(len(tasks), 5), each_handles_subset=True)
+elif task.requires_research:
+    # Spawn research subagent
+    spawn_subagent(task="research <task>", timeout=600)
+elif task.complexity == "high":
+    # Spawn dedicated worker
+    spawn_subagent(task=<task>, timeout=900)
+else:
+    # Handle in main session
+    run_inline()
+```
+
+**Timeout Selection:**
+- Batch creation (3-5 tasks): 300s (5 min)
+- Batch creation (6-10 tasks): 600s (10 min)
+- Research tasks: 600s (10 min)
+- Complex workflows: 900s (15 min)
+- Quick single task: 120s (2 min)
 
 ## Tips
 
@@ -72,4 +112,4 @@ This lets the subagent run `bd` commands in the correct repo context.
 - Set `DOLT_AUTO_COMMIT=on` for auto-commit after writes
 - Use `--long` for detailed multi-line output
 - Use `--json` for machine-readable output
-- Beads SQLite backend: `mc/.beads/embeddeddolt/mc/`
+- Beads SQLite backend: `mary-jane/.beads/embeddeddolt/mary_jane/`
