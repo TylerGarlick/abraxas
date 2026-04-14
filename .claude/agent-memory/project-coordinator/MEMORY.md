@@ -76,6 +76,7 @@
 ```markdown
 ## [Category Name]
 
+<!-- Template - actual tasks tracked in beads -->
 - [ ] [Specific actionable task] — **Agent:** agent-name — **Status:** pending
 - [ ] [Blocked task] — **Agent:** agent-name — **Blocked:** reason
 - [x] [Completed task] — **Agent:** agent-name

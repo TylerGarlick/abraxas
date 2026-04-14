@@ -282,14 +282,14 @@ It can operate standalone or as a component within extended Abraxas sessions.
 
 ## Implementation Checklist
 
-When these skills move to implementation:
+**Status:** COMPLETED (Agon and Aletheia skills implemented April 2026)
 
-- [ ] Create `skills/agon/SKILL.md` with full command reference
-- [ ] Create `skills/aletheia/SKILL.md` with full command reference
-- [ ] Package: `cd skills && zip -r agon.skill agon/ && zip -r aletheia.skill aletheia/`
-- [ ] Update `docs/skills.md` with Agon and Aletheia command tables
-- [ ] Update `README.md` skills table
-- [ ] Update `docs/index.md` navigation
-- [ ] Add Agon and Aletheia to CLAUDE.md skill roster
-- [ ] Update CONSTITUTION.md if either skill introduces new label types or commands
+- [x] Create `skills/agon/SKILL.md` with full command reference
+- [x] Create `skills/aletheia/SKILL.md` with full command reference
+- [x] Package: `cd skills && zip -r agon.skill agon/ && zip -r aletheia.skill aletheia/`
+- [x] Update `docs/skills.md` with Agon and Aletheia command tables
+- [x] Update `README.md` skills table
+- [x] Update `docs/index.md` navigation
+- [x] Add Agon and Aletheia to CLAUDE.md skill roster
+- [x] Update CONSTITUTION.md if either skill introduces new label types or commands
 
