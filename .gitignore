@@ -15,19 +15,3 @@ tmp/
 .dolt/
 *.db
 .beads-credential-key
-
-# Secrets and sensitive files
-secrets/
-*.env
-.env.local
-.env.production
-*.key
-*.pem
-secrets-master.key
-*.sh
-regenerate_*.sh
-run_*.sh
-generate_*.sh
-
-# Ignore cloned projects (already under source control)
-projects/

@@ -1,6 +1,14 @@
 #!/usr/bin/env sh
 # --- BEGIN BEADS INTEGRATION v1.0.0 ---
 # This section is managed by beads. Do not remove these markers.
+
+# Step 1: Auto-commit .beads/ schema changes before main commit
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -x "$HOOK_DIR/pre-commit-beads-auto" ]; then
+    "$HOOK_DIR/pre-commit-beads-auto"
+fi
+
+# Step 2: Run standard beads pre-commit hooks
 if command -v bd >/dev/null 2>&1; then
   export BD_GIT_HOOK=1
   _bd_timeout=${BEADS_HOOK_TIMEOUT:-300}
