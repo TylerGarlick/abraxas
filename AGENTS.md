@@ -303,4 +303,38 @@ bd close <id>         # Complete work
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push
 - If push fails, resolve and retry until it succeeds
+
 <!-- END BEADS INTEGRATION -->
+
+## 🔧 Common Issues & Solutions
+
+### Subagent Timeout / Gateway Health Monitor
+
+**Problem:** Subagents keep dying after ~7-8 minutes
+
+**Solution:** In `openclaw.json`:
+```json
+{
+  "llm": { "idleTimeoutSeconds": 0 },
+  "gateway": { "channelHealthCheckMinutes": 0 }
+}
+```
+
+### Exposed Secrets in Git
+
+**Solution:**
+1. Rotate the exposed token immediately
+2. Remove from history: `git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <file>' --prune-empty --tag-name-filter cat -- --all`
+3. Force push: `git push --force origin main`
+
+**Prevention:** Use pre-commit hook and secrets manager
+
+## 🤖 Pre-commit Hook
+
+A secrets-scanning pre-commit hook is installed at `.git/hooks/pre-commit`. It detects:
+- GitHub tokens (`ghp_*`)
+- OpenAI keys (`sk-*`)
+- HuggingFace tokens (`hf_*`)
+- .env files being committed
+
+To bypass in emergencies: `git commit --no-verify -m "emergency fix"`
