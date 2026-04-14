@@ -28,3 +28,6 @@ secrets-master.key
 regenerate_*.sh
 run_*.sh
 generate_*.sh
+
+# Ignore cloned projects (already under source control)
+projects/
