@@ -163,24 +163,21 @@ def generate_civitai_image(
     api_token = get_civitai_token()
     
     # Build additional networks (LoRA support)
+    # New API format: keyed by URN, with 'strength' for Lora/LoCon, 'triggerWord' for TextualInversion
     additional_networks = {}
     if lora_ids:
         for i, lora_id in enumerate(lora_ids):
             strength = lora_strengths[i] if lora_strengths and i < len(lora_strengths) else 1.0
             # Determine type from URN
-            if ':lora:' in lora_id:
-                network_type = "Lora"
+            if ':lora:' in lora_id or ':locon:' in lora_id:
+                additional_networks[lora_id] = {"strength": strength}
             elif ':textualinversion:' in lora_id:
-                network_type = "TextualInversion"
+                # Extract trigger word from URN or use provided
+                additional_networks[lora_id] = {"triggerWord": ""}  # Will be filled by model's trained words
             elif ':hypernetwork:' in lora_id:
-                network_type = "Hypernetwork"
+                additional_networks[lora_id] = {"strength": strength}
             else:
-                network_type = "Lora"  # Default
-            
-            additional_networks[lora_id] = {
-                "type": network_type,
-                "strength": strength
-            }
+                additional_networks[lora_id] = {"strength": strength}  # Default to Lora
     
     # Build input payload
     input_payload = {
@@ -209,11 +206,23 @@ def generate_civitai_image(
     if additional_networks:
         print(f"🔗 LoRA/Networks: {len(additional_networks)}", file=sys.stderr)
     
-    # API endpoint
-    url = "https://api.civitai.com/v1/generations"
+    # API endpoint - Using official Civitai orchestration API
+    # Based on: https://github.com/civitai/civitai-python
+    base_url = "https://orchestration.civitai.com"
+    create_url = f"{base_url}/v1/consumer/jobs"
+    poll_url = f"{base_url}/v1/consumer/jobs"
+    
     headers = {
         "Authorization": f"Bearer {api_token}",
         "Content-Type": "application/json"
+    }
+    
+    # Wrap payload for new API format
+    base_model = "SDXL" if "sdxl" in model.lower() else "SD_1_5"
+    job_payload = {
+        "$type": "textToImage",
+        "baseModel": base_model,
+        **input_payload
     }
     
     generated_paths = []
@@ -238,16 +247,22 @@ def generate_civitai_image(
                 input_payload["params"]["seed"] = random.randint(0, 2147483647)
             
             # Create generation job
-            response = requests.post(url, json=input_payload, headers=headers, timeout=30)
+            response = requests.post(create_url, json=job_payload, headers=headers, timeout=30)
             
-            if response.status_code not in [200, 201]:
-                raise ValueError(f"API error {response.status_code}: {response.text}")
+            if response.status_code == 403:
+                error_data = response.json() if response.text else {}
+                error_msg = error_data.get('error', 'Insufficient Buzz credits')
+                raise ValueError(f"API error 403: {error_msg} - Add Buzz credits at civitai.com/user/account")
+            
+            if response.status_code not in [200, 202]:
+                raise ValueError(f"API error {response.status_code}: {response.text[:500]}")
             
             job_data = response.json()
-            job_id = job_data.get('id')
             job_token = job_data.get('token')
+            jobs_list = job_data.get('jobs', [])
+            job_id = jobs_list[0].get('jobId') if jobs_list else None
             
-            if not job_id and not job_token:
+            if not job_token:
                 raise ValueError(f"Invalid response from API: {job_data}")
             
             print(f"📋 Job created: {job_id or job_token}", file=sys.stderr)
@@ -256,50 +271,64 @@ def generate_civitai_image(
             if wait_for_completion:
                 result = poll_job_completion(job_id, job_token, api_token, timeout_seconds)
                 
-                if not result or 'outputs' not in result:
+                if not result:
                     raise ValueError(f"Job failed or timed out: {result}")
                 
-                # Download generated images
-                outputs = result.get('outputs', [])
-                for output in outputs:
-                    if 'image' in output:
-                        image_url = output['image']
-                        
-                        # Generate output filename
-                        timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
-                        if count > 1:
-                            output_path = output_base / f"civitai-{timestamp}-{i+1}.png"
-                        else:
-                            output_path = output_base / f"civitai-{timestamp}.png"
-                        
-                        # Download image
-                        download_image(image_url, output_path)
-                        
-                        # Save metadata
-                        metadata = {
-                            "prompt": prompt,
-                            "model": model,
-                            "width": width,
-                            "height": height,
-                            "steps": steps,
-                            "cfgScale": cfg_scale,
-                            "scheduler": scheduler,
-                            "seed": input_payload["params"]["seed"],
-                            "clipSkip": clip_skip,
-                            "negativePrompt": negative_prompt,
-                            "generated": datetime.now().isoformat(),
-                            "jobId": job_id,
-                            "source": "civitai"
-                        }
-                        if additional_networks:
-                            metadata["additionalNetworks"] = additional_networks
-                        
-                        meta_path = output_path.with_suffix('.meta.json')
-                        with open(meta_path, 'w') as f:
-                            json.dump(metadata, f, indent=2)
-                        
-                        print(f"✅ Image saved to: {output_path}", file=sys.stderr)
-                        generated_paths.append(str(output_path))
+                # Extract image URL from result (new API structure)
+                # Result can have: blobUrl, imageUrls (array), or outputs (legacy)
+                result_data = result.get('result', {})
+                image_url = None
+                
+                if 'blobUrl' in result_data:
+                    image_url = result_data['blobUrl']
+                elif 'imageUrls' in result_data and isinstance(result_data['imageUrls'], list) and result_data['imageUrls']:
+                    image_url = result_data['imageUrls'][0]
+                elif 'outputs' in result:
+                    outputs = result.get('outputs', [])
+                    for output in outputs:
+                        if 'image' in output:
+                            image_url = output['image']
+                            break
+                
+                if not image_url:
+                    raise ValueError(f"Job succeeded but no image URL found. Result: {json.dumps(result_data, indent=2)}")
+                
+                # Generate output filename
+                timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')
+                if count > 1:
+                    output_path = output_base / f"civitai-{timestamp}-{i+1}.png"
+                else:
+                    output_path = output_base / f"civitai-{timestamp}.png"
+                
+                # Download image
+                download_image(image_url, output_path)
+                
+                # Save metadata
+                metadata = {
+                    "prompt": prompt,
+                    "model": model,
+                    "width": width,
+                    "height": height,
+                    "steps": steps,
+                    "cfgScale": cfg_scale,
+                    "scheduler": scheduler,
+                    "seed": input_payload["params"]["seed"],
+                    "clipSkip": clip_skip,
+                    "negativePrompt": negative_prompt,
+                    "generated": datetime.now().isoformat(),
+                    "jobId": job_id,
+                    "jobToken": job_token,
+                    "source": "civitai"
+                }
+                if additional_networks:
+                    metadata["additionalNetworks"] = additional_networks
+                
+                meta_path = output_path.with_suffix('.meta.json')
+                with open(meta_path, 'w') as f:
+                    json.dump(metadata, f, indent=2)
+                
+                print(f"✅ Image saved to: {output_path}", file=sys.stderr)
+                generated_paths.append(str(output_path))
             
         except Exception as e:
             print(f"❌ Error generating image {i+1}: {e}", file=sys.stderr)
@@ -310,42 +339,52 @@ def generate_civitai_image(
 
 
 def poll_job_completion(job_id: str, job_token: str, api_token: str, timeout: int = 300) -> dict:
-    """Poll Civitai API for job completion."""
+    """Poll Civitai API for job completion.
     
-    url = "https://api.civitai.com/v1/generations"
+    Uses the official orchestration API endpoint: GET /v1/consumer/jobs?token=<token>
+    """
+    
+    base_url = "https://orchestration.civitai.com"
+    url = f"{base_url}/v1/consumer/jobs"
     headers = {"Authorization": f"Bearer {api_token}"}
     
     start_time = time.time()
-    poll_interval = 2  # Start with 2 seconds
+    poll_interval = 3  # Start with 3 seconds
     
     while time.time() - start_time < timeout:
         try:
-            # Use token if available, otherwise use job_id
-            if job_token:
-                params = {"token": job_token}
-            else:
-                params = {"id": job_id}
+            # Use token (required for orchestration API)
+            params = {"token": job_token} if job_token else {}
             
             response = requests.get(url, params=params, headers=headers, timeout=30)
+            
+            if response.status_code == 403:
+                raise ValueError("API error 403: Insufficient Buzz credits during polling")
             
             if response.status_code == 200:
                 data = response.json()
                 
-                # Handle both single job and list responses
-                if isinstance(data, dict):
-                    job = data
-                elif isinstance(data, list) and len(data) > 0:
-                    job = data[0]
-                else:
-                    job = {}
+                # Response is JobStatusCollection with 'jobs' array
+                jobs_list = data.get('jobs', []) if isinstance(data, dict) else []
                 
-                status = job.get('status')
+                if not jobs_list:
+                    print(f"⚠️  No jobs found for token, continuing...", file=sys.stderr)
+                    time.sleep(poll_interval)
+                    continue
+                
+                job = jobs_list[0]
+                status = job.get('status', 'unknown')
                 
                 if status == 'succeeded':
+                    print(f"✅ Job completed successfully", file=sys.stderr)
                     return job
-                elif status in ['failed', 'cancelled']:
-                    raise ValueError(f"Job {status}: {job.get('error', 'Unknown error')}")
-                # else: status is 'pending' or 'running', continue polling
+                elif status == 'failed':
+                    error = job.get('error', job.get('result', {}).get('error', 'Unknown error'))
+                    raise ValueError(f"Job failed: {error}")
+                elif status == 'cancelled':
+                    raise ValueError("Job was cancelled")
+                # else: status is 'pending', 'running', or 'processing', continue polling
+                print(f"⏳ Job status: {status}", file=sys.stderr)
             
             time.sleep(poll_interval)
             # Increase poll interval gradually (max 10 seconds)
