@@ -1,7 +1,7 @@
 # Constitution Index
 
-**Auto-generated:** 2026-04-06T17:07:52.284Z
-**Total Systems:** 12
+**Auto-generated:** 2026-04-16T03:30:31.010Z
+**Total Systems:** 13
 **Total Commands:** 188
 
 ---
@@ -13,6 +13,7 @@
 | constitution-agon.md | constitution-agon.md | 8 | constitution-agon.md constitution |
 | constitution-aletheia.md | constitution-aletheia.md | 7 | constitution-aletheia.md constitution |
 | constitution-core.md | constitution-core.md | 50 | constitution-core.md constitution |
+| constitution-episteme.md | constitution-episteme.md | 0 | constitution-episteme.md constitution |
 | constitution-ethos.md | constitution-ethos.md | 5 | constitution-ethos.md constitution |
 | constitution-honest.md | constitution-honest.md | 17 | constitution-honest.md constitution |
 | constitution-janus.md | constitution-janus.md | 18 | constitution-janus.md constitution |
@@ -35,6 +36,6 @@
 
 ## Sync Status
 
-Last synced: 2026-04-06T17:07:52.284Z
+Last synced: 2026-04-16T03:30:31.010Z
 Sync script: scripts/sync-constitutions.js
 
