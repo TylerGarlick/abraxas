@@ -12,8 +12,8 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const TASKS_FILE = path.join(__dirname, '../../mission-control/tasks.json');
-const WORKSPACE = '/home/ubuntu/.openclaw/workspace/mission-control/tasks';
+const TASKS_FILE = path.join(__dirname, '../..//tasks.json');
+const WORKSPACE = '/home/ubuntu/.openclaw/workspace//tasks';
 
 function loadTasks() {
   return JSON.parse(fs.readFileSync(TASKS_FILE, 'utf8'));

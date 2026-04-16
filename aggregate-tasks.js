@@ -4,7 +4,7 @@ const path=require('path');
 
 const workspace='/home/ubuntu/.openclaw/workspace';
 const repos=[
-  'the-red-book','curiosity-hour','outerspace','satchel','mission-control','mary-jane','asclepius','biz-plans','amplify','find-Guarana'
+  'the-red-book','curiosity-hour','outerspace','satchel','','mary-jane','asclepius','biz-plans','amplify','find-Guarana'
 ];
 let all=[];
 repos.forEach(r=>{

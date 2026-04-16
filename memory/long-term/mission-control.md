@@ -19,7 +19,7 @@
 |---------|------|
 | Abraxas | `/tmp/abraxas-checkout/` (git clone --depth 1 each session) |
 | amplify / amplify-checkout | `amplify-checkout` |
-| mission-control / mc | `mission-control` |
+|  / mc | `` |
 | curiosity-hour | clone on demand |
 | outerspace | clone on demand |
 | avalanche | `/home/ubuntu/.openclaw/workspace/avalanche/` |
@@ -38,7 +38,7 @@
 ## Skills (stable locations)
 | Skill | Location |
 |-------|----------|
-| mission-control | `/home/ubuntu/.openclaw/skills/mission-control/` |
+|  | `/home/ubuntu/.openclaw/skills//` |
 | github-factory | `/home/ubuntu/.openclaw/skills/github-factory/` |
 | subagent-manager | `/home/ubuntu/.openclaw/skills/subagent-manager/` |
 | retrospective-enforcer | `/home/ubuntu/.openclaw/skills/retrospective-enforcer/` |

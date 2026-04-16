@@ -45,7 +45,7 @@ Every task should produce something verifiable — a file, a code change, a repo
 ## Verification Script
 
 ```bash
-cd /home/ubuntu/.openclaw/workspace/mission-control
+cd /home/ubuntu/.openclaw/workspace/
 node scripts/verify-task.js <taskId>
 ```
 

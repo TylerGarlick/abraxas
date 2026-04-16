@@ -15,7 +15,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const LESSONS_FILE = path.join(__dirname, '../../mission-control/retrospectives/lessons-learned.json');
+const LESSONS_FILE = path.join(__dirname, '../..//retrospectives/lessons-learned.json');
 
 function loadLessons() {
   try {

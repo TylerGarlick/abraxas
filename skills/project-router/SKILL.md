@@ -10,16 +10,16 @@ Triggered whenever T asks to create a task, add a task, or start implementing so
 
 ### Step 1 — Parse the Task Description
 Look for these signals in the task text:
-- **Explicit repo mention** — "in Abraxas", "on the mission-control repo", "in curiosity-hour"
+- **Explicit repo mention** — "in Abraxas", "on the  repo", "in curiosity-hour"
 - **Project keywords** — certain names map to repos:
   - `abraxas` → tylergarlick/abraxas
   - `axiom` → tylergarlick/axiom
-  - `mission-control` → tylergarlick/mission-control
+  - `` → tylergarlick/
   - `curiosity-hour` → tylergarlick/curiosity-hour
   - `outerspace` → tylergarlick/outerspace
   - `research` → tylergarlick/research
   - `biz-plans` → tylergarlick/biz-plans
-- **Tech stack hints** — Python/ML → Abraxas, Node.js scripts → mission-control, etc.
+- **Tech stack hints** — Python/ML → Abraxas, Node.js scripts → , etc.
 - **Existing task context** — if previous tasks referenced a repo, likely same project
 
 ### Step 2 — Check Recent Memory
@@ -45,7 +45,7 @@ Once confirmed, write the `repo` field in the task's `context.json`:
 ```
 tylergarlick/abraxas       → Abraxas (Python, ML, logos system)
 tylergarlick/axiom         → Axiom (old version of MJ, archived)
-tylergarlick/mission-control → Mission Control (OpenClaw task orchestration)
+tylergarlick/ → Mission Control (OpenClaw task orchestration)
 tylergarlick/curiosity-hour → Curiosity Hour (video/podcast project)
 tylergarlick/outerspace    → Outerspace (project name)
 tylergarlick/research      → Research (daily briefings repo)
@@ -55,7 +55,7 @@ tylergarlick/mary-jane     → MJ's own config/skills backup
 
 ## Skill Placement
 - Primary: `/home/ubuntu/.openclaw/skills/project-router/SKILL.md`
-- Also committed to: `tylergarlick/mission-control` (via bootstrap repo)
+- Also committed to: `tylergarlick/` (via bootstrap repo)
 
 ## Memory Note
 After creating the skill, update MEMORY.md to note its existence and purpose.

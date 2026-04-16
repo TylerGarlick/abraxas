@@ -4,7 +4,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const repoDir = path.resolve(__dirname, '..'); // workspace root assumed
-const mcDir = path.join(repoDir, 'mission-control');
+const mcDir = path.join(repoDir, '');
 const retrosDir = path.join(mcDir, 'retros');
 
 // Ensure retros directory exists

@@ -10,7 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const OUTPUT_DIR = '/home/ubuntu/.openclaw/workspace/mission-control/biz-plans';
+const OUTPUT_DIR = '/home/ubuntu/.openclaw/workspace//biz-plans';
 
 function getDatePaths() {
   const now = new Date();

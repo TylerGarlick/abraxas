@@ -12,7 +12,7 @@ Triggered:
 ## Repositories Under Management
 
 | `tylergarlick/mary-jane` | All skills (SKILL.md files), MEMORY.md, workspace config | **Auto** on skill change |
-| `tylergarlick/mission-control` | Scripts, skills, bootstrap files, cron-setup | **Auto** on skill/script change |
+| `tylergarlick/` | Scripts, skills, bootstrap files, cron-setup | **Auto** on skill/script change |
 | `tylergarlick/research` | Daily briefings (YYYY/MM/DD/*.md) | **Auto** after briefing generation |
 | `tylergarlick/biz-plans` | Business plans (YYYY/MM/DD/*.md) | **Auto** after biz-ops analysis |
 | `tylergarlick/outerspace` | Outerspace-specific content | **Manual** (project-specific) |
@@ -23,7 +23,7 @@ Triggered:
 
 ## Configuration File
 
-**Location:** `/home/ubuntu/.openclaw/workspace/mission-control/repo-sync-config.json`
+**Location:** `/home/ubuntu/.openclaw/workspace//repo-sync-config.json`
 
 ```json
 {
@@ -33,8 +33,8 @@ Triggered:
       "pushStrategy": "auto",
       "includes": ["skills/**/*", "MEMORY.md", "AGENTS.md", "SOUL.md"]
     },
-    "mission-control": {
-      "path": "/home/ubuntu/.openclaw/workspace/mission-control",
+    "": {
+      "path": "/home/ubuntu/.openclaw/workspace/",
       "pushStrategy": "auto",
       "includes": ["scripts/**/*", "skills/**/*", "cron-setup/**/*", "bootstrap.sh", "README.md"]
     },
@@ -74,12 +74,12 @@ Use file modification timestamps and/or git diff:
 ```bash
 # Find recently modified files
 find /home/ubuntu/.openclaw/skills -name "*.md" -mtime -1
-find /home/ubuntu/.openclaw/workspace/mission-control/scripts -name "*.js" -mtime -1
+find /home/ubuntu/.openclaw/workspace//scripts -name "*.js" -mtime -1
 ```
 
 ### Per-Repo Sync Logic
 
-#### Skills Sync (→ mary-jane + mission-control)
+#### Skills Sync (→ mary-jane + )
 When any skill is created or updated:
 ```bash
 SKILL_PATH="/home/ubuntu/.openclaw/skills/<skill-name>/SKILL.md"
@@ -108,7 +108,7 @@ done
 
 ## The Sync Script
 
-**Location:** `/home/ubuntu/.openclaw/workspace/mission-control/scripts/sync-repos.js`
+**Location:** `/home/ubuntu/.openclaw/workspace//scripts/sync-repos.js`
 
 ```javascript
 #!/usr/bin/env node
@@ -128,7 +128,7 @@ const { execSync } = require('child_process');
 
 const CONFIG_PATH = path.join(__dirname, '../repo-sync-config.json');
 const SKILLS_DIR = '/home/ubuntu/.openclaw/skills';
-const MC_DIR = '/home/ubuntu/.openclaw/workspace/mission-control';
+const MC_DIR = '/home/ubuntu/.openclaw/workspace/';
 
 function loadConfig() {
   return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
@@ -172,10 +172,10 @@ function syncSkills(config) {
 }
 
 function syncMissionControl(config) {
-  const mcCloneDir = '/tmp/sync-mission-control';
+  const mcCloneDir = '/tmp/sync-';
   // Clone or pull
   if (!fs.existsSync(mcCloneDir)) {
-    execSync(`git clone https://github.com/TylerGarlick/mission-control.git ${mcCloneDir}`, { stdio: 'pipe' });
+    execSync(`git clone https://github.com/TylerGarlick/.git ${mcCloneDir}`, { stdio: 'pipe' });
   }
   
   // Copy scripts
@@ -201,9 +201,9 @@ function syncMissionControl(config) {
     }
   }
   
-  const pushed = gitAddCommitPush(mcCloneDir, `sync: update mission-control ${new Date().toISOString().split('T')[0]}`);
-  if (pushed === true) console.log('✅ mission-control synced');
-  else if (pushed === null) console.log('ℹ️  mission-control: nothing to sync');
+  const pushed = gitAddCommitPush(mcCloneDir, `sync: update  ${new Date().toISOString().split('T')[0]}`);
+  if (pushed === true) console.log('✅  synced');
+  else if (pushed === null) console.log('ℹ️  : nothing to sync');
 }
 
 function syncRepo(repoName, config) {
@@ -220,7 +220,7 @@ function syncRepo(repoName, config) {
   }
   
   if (repoName === 'mary-jane') syncSkills(config);
-  else if (repoName === 'mission-control') syncMissionControl(config);
+  else if (repoName === '') syncMissionControl(config);
   else console.log(`Repo ${repoName} sync not yet implemented`);
 }
 
@@ -239,7 +239,7 @@ syncRepo(repoName || 'all', config);
 ### After skill-creator creates a skill:
 1. skill-creator saves SKILL.md to `/home/ubuntu/.openclaw/skills/<skill-name>/SKILL.md`
 2. skill-creator runs `node sync-repos.js mary-jane` to push to GitHub
-3. skill-creator runs `node sync-repos.js mission-control` to update bootstrap repo
+3. skill-creator runs `node sync-repos.js ` to update bootstrap repo
 
 ### After briefing generates:
 1. briefing skill saves output to `YYYY/MM/DD/` directory
@@ -253,7 +253,7 @@ syncRepo(repoName || 'all', config);
 - [ ] `repo-sync-config.json` created with all managed repos
 - [ ] `scripts/sync-repos.js` created and working
 - [ ] At least one repo successfully synced via the script
-- [ ] Skill committed to mission-control bootstrap repo
+- [ ] Skill committed to  bootstrap repo
 - [ ] Skill documented in MEMORY.md
 
 ## Memory Note

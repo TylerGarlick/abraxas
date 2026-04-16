@@ -37,7 +37,7 @@ created → running → <factory>_complete → done
 
 ### Check All Subagents
 ```bash
-cd /home/ubuntu/.openclaw/workspace/mission-control && node scripts/status.js
+cd /home/ubuntu/.openclaw/workspace/ && node scripts/status.js
 ```
 
 ### List Active Sessions
@@ -48,14 +48,14 @@ Use `subagents(action=kill, target=<sessionId or taskId>)`
 
 ### Recover a Task
 ```bash
-cd /home/ubuntu/.openclaw/workspace/mission-control
+cd /home/ubuntu/.openclaw/workspace/
 node scripts/patch-task.js <taskId> created  # Reset to created
 node scripts/run-factory.js <taskId> <factory>  # Re-spawn
 ```
 
 ## Subagent State File
 
-`mission-control/subagents.json` — tracks all subagent history:
+`/subagents.json` — tracks all subagent history:
 
 ```json
 {

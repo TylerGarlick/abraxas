@@ -6,7 +6,7 @@
  * 
  * Usage: node repo-recovery.js <owner/repo> [files...]
  * 
- * Example: node repo-recovery.js TylerGarlick/mission-control src/ SPEC.md README.md
+ * Example: node repo-recovery.js TylerGarlick/ src/ SPEC.md README.md
  */
 
 const fs = require('fs');

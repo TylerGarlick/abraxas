@@ -12,7 +12,7 @@ T wants to migrate from Beads-based Mission Control to OpenClaw v2026.4.1 native
 6. **Infra resolution**: Project first → mary-jane fallback
 7. **MC tasks**: Migrate from Beads to `/tasks`
 8. **Infra target**: `mary-jane` repo (project management layer)
-9. **MC cleanup**: Remove `mission-control/` dir + AGENTS.md refs after decouple (do NOT delete GH repo)
+9. **MC cleanup**: Remove `/` dir + AGENTS.md refs after decouple (do NOT delete GH repo)
 
 ## Session End State
 - Awaiting T confirmation to spawn migration subagent

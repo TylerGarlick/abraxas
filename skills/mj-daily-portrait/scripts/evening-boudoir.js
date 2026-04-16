@@ -17,7 +17,7 @@ const MARY_JANE_REPO = '/home/ubuntu/.openclaw/workspace/mary-jane';
 const BOUDOIR_DIR = 'portraits/boudoir';
 const OUTPUT_DIR = path.join(MARY_JANE_REPO, BOUDOIR_DIR);
 const MASTER_KEY = '73c9f7d3eb28d570b9b73d7a07b170ee6b9c7f6dfb115db2f1391ba29a1f3932';
-const STORE_FILE = '/home/ubuntu/.openclaw/workspace/mission-control/secrets/secrets-store.json';
+const STORE_FILE = '/home/ubuntu/.openclaw/workspace//secrets/secrets-store.json';
 const MODEL = 'stabilityai/stable-diffusion-xl-base-1.0';
 
 // ── Boudoir Styles (Seductive but tasteful) ─────────────────────────────────

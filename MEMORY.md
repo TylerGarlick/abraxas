@@ -18,10 +18,10 @@
 ## Secrets Manager
 AES-256-GCM encrypted. Skill at `workspace/skills/secrets-manager/`. Never print secret values.
 - **Master key env var:** `MJ_MASTER_KEY`
-- **Store location:** `/home/ubuntu/.openclaw/workspace/mission-control/secrets/`
+- **Store location:** `/home/ubuntu/.openclaw/workspace//secrets/`
 - **Current secrets stored:**
-  - `mission-control:github-token` — GH PAT (REVOKED — needs refresh)
-  - `mission-control:vercel-token` — Vercel deploy token
+  - `:github-token` — GH PAT (REVOKED — needs refresh)
+  - `:vercel-token` — Vercel deploy token
   - `briefing:brave-api-key` — Brave Search
 
 ## Today's Session (2026-04-02)

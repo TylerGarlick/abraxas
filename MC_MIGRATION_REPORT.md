@@ -74,7 +74,7 @@ mc/
 ├── planning/
 │   └── backlog.json        # Primary task backlog (22 tasks)
 ├── skills/
-│   ├── mission-control/SKILL.md
+│   ├── /SKILL.md
 │   ├── task-preflight/SKILL.md
 │   ├── task-verifier/SKILL.md
 │   └── subagent-manager/SKILL.md
@@ -89,10 +89,10 @@ mc/
     └── error-logger/ (hook)
 ```
 
-### `/home/ubuntu/.openclaw/workspace/mission-control/`
+### `/home/ubuntu/.openclaw/workspace//`
 
 ```
-mission-control/
+/
 ├── tasks.json              # Native task definitions (EHR, Abraxas, etc.)
 ├── subagents.json          # Subagent tracking
 ├── factories/
@@ -123,7 +123,7 @@ mission-control/
 
 | Skill | Purpose |
 |-------|---------|
-| mission-control | Task orchestration, factory spawning, cron management |
+|  | Task orchestration, factory spawning, cron management |
 | task-preflight | Clarifying questions before spawning subagents |
 | task-verifier | Post-completion verification against definition of done |
 | subagent-manager | Stale detection, orphan recovery, session tracking |
@@ -148,7 +148,7 @@ mission-control/
 
 ### Phase 4: Clean Up
 1. Disable Beads cron jobs (`.beads/` commits, stale task reset, etc.)
-2. Remove Beads dependencies from mission-control runner
+2. Remove Beads dependencies from  runner
 3. Update skills to use /tasks commands instead of Beads scripts
 
 ### Phase 5: Verify
@@ -162,11 +162,11 @@ mission-control/
 
 | File | Action |
 |------|--------|
-| `mission-control/scripts/create-task.js` | Update to use /tasks API |
-| `mission-control/scripts/patch-task.js` | Update to use /tasks API |
-| `mission-control/scripts/status.js` | Query /tasks instead of Beads |
-| `mission-control/skills/mission-control/SKILL.md` | Document /tasks as source of truth |
-| `~/.openclaw/skills/mission-control/SKILL.md` | Same update |
+| `/scripts/create-task.js` | Update to use /tasks API |
+| `/scripts/patch-task.js` | Update to use /tasks API |
+| `/scripts/status.js` | Query /tasks instead of Beads |
+| `/skills//SKILL.md` | Document /tasks as source of truth |
+| `~/.openclaw/skills//SKILL.md` | Same update |
 | `~/.openclaw/skills/task-preflight/SKILL.md` | Update references |
 | `~/.openclaw/skills/task-verifier/SKILL.md` | Update references |
 | `~/.openclaw/skills/subagent-manager/SKILL.md` | Update references |

@@ -6,7 +6,7 @@ This skill runs automatically via cron. It pulls the latest state of the *Missio
 1. Place this script under `skills/retro-funnel/` in your workspace.
 2. Add a cron entry like:
    ```bash
-   */10 * * * * cd /home/ubuntu/.openclaw/workspace/mission-control && node ../../skills/retro-funnel/retro-funnel.js
+   */10 * * * * cd /home/ubuntu/.openclaw/workspace/ && node ../../skills/retro-funnel/retro-funnel.js
    ```
 3. Ensure `GITHUB_TOKEN` is available for authentication.
 

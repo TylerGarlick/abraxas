@@ -14,7 +14,7 @@ const { execSync } = require('child_process');
 const TOKEN = 'ghp_REDACTED_OLD_TOKEN';
 const REPO = 'tylergarlick/biz-plans';
 const CLONE_DIR = '/tmp/biz-plans-repo';
-const PLANS_SRC = '/home/ubuntu/.openclaw/workspace/mission-control/biz-plans';
+const PLANS_SRC = '/home/ubuntu/.openclaw/workspace//biz-plans';
 
 function cleanDir(dir) {
   try { execSync(`rm -rf ${dir}`, { stdio: 'pipe' }); } catch { /* ignore */ }

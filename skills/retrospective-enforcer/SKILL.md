@@ -79,12 +79,12 @@ Use the template:
 ### Step 5 — Update Formal Retro
 After logging per-task retros, regenerate the formal daily retrospective document:
 ```bash
-cd /home/ubuntu/.openclaw/workspace/mission-control
+cd /home/ubuntu/.openclaw/workspace/
 node scripts/retrospectives.js daily
 ```
 
 ## The Log-Lesson Script
-**Location:** `/home/ubuntu/.openclaw/workspace/mission-control/scripts/log-lesson.js`
+**Location:** `/home/ubuntu/.openclaw/workspace//scripts/log-lesson.js`
 
 **Usage:**
 ```bash

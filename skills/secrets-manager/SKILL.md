@@ -54,7 +54,7 @@ Format: `skill-name:secret-name`
 Examples:
 - `github-factory:token`
 - `briefing:brave-api-key`
-- `mission-control:github-token`
+- `:github-token`
 
 ## Audit Log Schema
 

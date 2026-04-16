@@ -118,7 +118,7 @@ const REGISTRY = {
 | biz-ops | MJ analyze opportunities, MJ biz plan, opportunity analysis |
 | github-factory | check github, MJ github, github activity, check my repos |
 | market-research | market research, research market, MJ market, competitor analysis |
-| mission-control | MJ build, MJ, research, MJ, write, MJ, retro, mission control |
+|  | MJ build, MJ, research, MJ, write, MJ, retro, mission control |
 | healthcheck | security audit, harden, health check, host security |
 | node-connect | connect phone, pairing failed, node connect |
 | weather | weather, temperature, forecast |

@@ -11,8 +11,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const TASKS_FILE = path.join(__dirname, '../../mission-control/tasks.json');
-const SUBAGENTS_FILE = path.join(__dirname, '../../mission-control/subagents.json');
+const TASKS_FILE = path.join(__dirname, '../..//tasks.json');
+const SUBAGENTS_FILE = path.join(__dirname, '../..//subagents.json');
 
 function loadJSON(filepath) {
   return JSON.parse(fs.readFileSync(filepath, 'utf8'));

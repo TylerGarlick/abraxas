@@ -33,7 +33,7 @@ T is a builder and researcher — lots of projects running in parallel, all of t
 **biz-plans** (private)
 - Business opportunity plans generated from research briefings
 
-**mission-control** (`/home/ubuntu/.openclaw/workspace/mission-control/`)
+**** (`/home/ubuntu/.openclaw/workspace//`)
 - T's full task orchestration system
 - Contains tasks, subagent tracking, retrospectives, factories (research, writing, software, github)
 

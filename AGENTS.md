@@ -242,7 +242,7 @@ detected → planned → in_progress → delivered
 
 | File | Purpose |
 |------|---------|
-| `mission-control/tasks.json` | Consolidated task definitions (EHR, Abraxas, etc.) |
+| `/tasks.json` | Consolidated task definitions (EHR, Abraxas, etc.) |
 | `mc/planning/backlog.json` | Full backlog with delivery state |
 | `mc/.beads/` | Beads staging layer (Dolt-backed) |
 

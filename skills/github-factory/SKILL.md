@@ -13,14 +13,14 @@ When T asks about GitHub activity, create a task and spawn a subagent:
 1. Create task: `node scripts/create-task.js "<objective>" github`
 2. Spawn subagent with GitHub Factory prompt
 3. Subagent runs `run-github-factory.js` to generate `report.md`
-4. Report is written to `mission-control/tasks/{taskId}/github/report.md`
+4. Report is written to `/tasks/{taskId}/github/report.md`
 
 ## Scripts
 
-- `mission-control/scripts/create-task.js` — create task
-- `mission-control/scripts/run-github-factory.js` — fetch GitHub data and write report
-- `mission-control/scripts/patch-task.js` — update task status
-- `mission-control/scripts/status.js` — show all tasks
+- `/scripts/create-task.js` — create task
+- `/scripts/run-github-factory.js` — fetch GitHub data and write report
+- `/scripts/patch-task.js` — update task status
+- `/scripts/status.js` — show all tasks
 
 ## Known Active Repos (2026-03-24)
 
@@ -49,13 +49,13 @@ When T asks about GitHub activity, create a task and spawn a subagent:
 ```
 You are running the GITHUB FACTORY for task [{taskId}]: "{objective}"
 
-Working directory: mission-control/tasks/{taskId}/github/
+Working directory: /tasks/{taskId}/github/
 
 YOUR JOB:
-1. Run: cd /home/ubuntu/.openclaw/workspace/mission-control && node scripts/run-github-factory.js {taskId}
+1. Run: cd /home/ubuntu/.openclaw/workspace/ && node scripts/run-github-factory.js {taskId}
 2. Read the generated report.md
 3. Summarize key findings for T
-4. Update task status: cd /home/ubuntu/.openclaw/workspace/mission-control && node scripts/patch-task.js {taskId} github_complete
+4. Update task status: cd /home/ubuntu/.openclaw/workspace/ && node scripts/patch-task.js {taskId} github_complete
 
 GitHub token: ghp_REDACTED_OLD_TOKEN
 Username: TylerGarlick

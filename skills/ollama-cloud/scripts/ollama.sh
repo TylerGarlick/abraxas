@@ -130,8 +130,8 @@ get_api_key() {
   local key=""
 
   # Try secrets-manager first
-  if [ -f "$HOME/.openclaw/workspace/mission-control/scripts/secrets-manager.js" ]; then
-    key=$(node "$HOME/.openclaw/workspace/mission-control/scripts/secrets-manager.js" get "ollama-cloud:${provider}-api-key" 2>/dev/null || echo "")
+  if [ -f "$HOME/.openclaw/workspace//scripts/secrets-manager.js" ]; then
+    key=$(node "$HOME/.openclaw/workspace//scripts/secrets-manager.js" get "ollama-cloud:${provider}-api-key" 2>/dev/null || echo "")
   fi
 
   # Fallback to env var

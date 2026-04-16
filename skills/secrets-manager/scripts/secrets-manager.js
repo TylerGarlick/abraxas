@@ -3,24 +3,16 @@
 /**
  * secrets-manager.js
  * Main CLI for secrets management.
- * 
- * Usage:
- *   node secrets-manager.js add <skill> <name> <value> <reason>
- *   node secrets-manager.js get <skill> <name> [reason]
- *   node secrets-manager.js rotate <skill> <name> <newValue>
- *   node secrets-manager.js delete <skill> <name> <reason>
- *   node secrets-manager.js list [skill]
- *   node secrets-manager.js audit [skill] [name]
  */
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const STORE_FILE = '/home/ubuntu/.openclaw/workspace/mary-jane/secrets/secrets-store.json';
-const MASTER_KEY_FILE = '/home/ubuntu/.openclaw/workspace/mary-jane/secrets/secrets-master.key';
-const AUDIT_FILE = '/home/ubuntu/.openclaw/workspace/mary-jane/secrets/secrets-audit.log';
-const CONFIG_FILE = '/home/ubuntu/.openclaw/workspace/mary-jane/secrets/secrets-config.json';
+const STORE_FILE = '/root/.openclaw/workspace/projects/mary-jane/secrets/secrets-store.json';
+const MASTER_KEY_FILE = '/root/.openclaw/workspace/projects/mary-jane/secrets/secrets-master.key';
+const AUDIT_FILE = '/root/.openclaw/workspace/projects/mary-jane/secrets/secrets-audit.log';
+const CONFIG_FILE = '/root/.openclaw/workspace/projects/mary-jane/secrets/secrets-config.json';
 const STORE_DIR = path.dirname(STORE_FILE);
 
 // ── Init ────────────────────────────────────────────────────────────────────
@@ -58,12 +50,16 @@ function appendAudit(entry) {
 }
 
 function getMasterKey() {
-  // Master key from environment variable
   const key = process.env.MJ_MASTER_KEY;
   if (!key) {
     throw new Error('MJ_MASTER_KEY environment variable not set. Cannot access secrets.');
   }
-  return Buffer.from(key, 'hex');
+  // We support both hex and base64 keys. 
+  // If it's 64 chars and looks like hex, use hex. Otherwise, assume base64.
+  if (key.length === 64 && /^[0-9a-fA-F]+$/.test(key)) {
+    return Buffer.from(key, 'hex');
+  }
+  return Buffer.from(key, 'base64');
 }
 
 // ── Crypto ──────────────────────────────────────────────────────────────────
@@ -121,7 +117,6 @@ function cmdGet(skill, name, reason) {
   const plaintext = decrypt(secret.ciphertext, secret.iv, secret.tag, key);
   appendAudit({ action: 'read', skill, secret: name, caller: process.env.SESSION_ID || 'cli', reason: reason || 'internal-use' });
   
-  // Return plaintext — caller (MJ) uses this internally, never prints it
   return plaintext;
 }
 
@@ -217,7 +212,6 @@ const COMMANDS = {
   get: () => {
     if (args.length < 2) throw new Error('Usage: get <skill> <name> [reason]');
     const val = cmdGet(args[0], args[1], args[2]);
-    // Print only to stderr so it doesn't leak — MJ reads it via return
     console.error('__SECRET_VALUE__' + val + '__SECRET_VALUE__');
   },
   rotate: () => { if (args.length < 3) throw new Error('Usage: rotate <skill> <name> <newValue>'); cmdRotate(args[0], args[1], args[2]); },

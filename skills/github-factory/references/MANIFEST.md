@@ -27,7 +27,7 @@ Monitors T's GitHub activity — commits, repos, issues, project boards — and 
 - video-frame
 
 ## Factory Behavior
-1. Creates working directory: `mission-control/tasks/{taskId}/github/`
+1. Creates working directory: `/tasks/{taskId}/github/`
 2. Uses GitHub API with token from MEMORY.md
 3. Fetches recent commits, repo activity, issues
 4. Writes findings to `report.md`

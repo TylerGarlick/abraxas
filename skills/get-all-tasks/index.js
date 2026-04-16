@@ -4,7 +4,7 @@ const path=require('path');
 const {execSync}=require('child_process');
 
 const repoList=[
-  'the-red-book','curiosity-hour','outerspace','satchel','mission-control','mary-jane','asclepius','biz-plans','amplify','find-Guarana'
+  'the-red-book','curiosity-hour','outerspace','satchel','','mary-jane','asclepius','biz-plans','amplify','find-Guarana'
 ];
 const workspace='/home/ubuntu/.openclaw/workspace';
 let all=[];
@@ -28,11 +28,11 @@ repoList.forEach(r=>{
     });
   }
 });
-const outPath=path.join(workspace,'mission-control','tasks.json');
+const outPath=path.join(workspace,'','tasks.json');
 fs.writeFileSync(outPath,JSON.stringify({tasks:all},null,2),'utf8');
 const date=new Date().toISOString().split('T')[0];
-try{execSync('git pull --rebase mission-control master', {cwd:workspace, stdio:'inherit'});}catch(e){}
-execSync('git add mission-control/tasks.json', {cwd:workspace, stdio:'inherit'});
+try{execSync('git pull --rebase  master', {cwd:workspace, stdio:'inherit'});}catch(e){}
+execSync('git add /tasks.json', {cwd:workspace, stdio:'inherit'});
 execSync(`git commit -m "Aggregate tasks ${date}"`, {cwd:workspace, stdio:'inherit'});
-execSync('git push mission-control master', {cwd:workspace, stdio:'inherit'});
-console.log('Aggregated and pushed to mission-control tasks.json');
+execSync('git push  master', {cwd:workspace, stdio:'inherit'});
+console.log('Aggregated and pushed to  tasks.json');

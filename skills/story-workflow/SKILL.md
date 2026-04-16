@@ -120,7 +120,7 @@ bd update <id> --set-metadata '{"phase":"archived","story_file":"<path>"}'
 | amplify-checkout | `/tmp/amplify-checkout/` |
 | outerspace | `/tmp/outerspace/outerspace/` |
 | curiosity-hour | clone on demand |
-| mission-control | `/home/ubuntu/.openclaw/workspace/mc/` |
+|  | `/home/ubuntu/.openclaw/workspace/mc/` |
 
 ## Bootstrap
 

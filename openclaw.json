@@ -47,7 +47,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "ollama/minimax-m2.7:cloud"
+        "primary": "ollama/gemma4:31b:cloud"
       }
     },
     "list": [

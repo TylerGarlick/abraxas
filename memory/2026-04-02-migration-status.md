@@ -1,7 +1,7 @@
 # 2026-04-02 — Migration Day
 
 ## Session Goal
-Migrate Mission Control from Beads to native `/tasks` system, then decommission `mission-control/` directory.
+Migrate Mission Control from Beads to native `/tasks` system, then decommission `/` directory.
 
 ## Current Status (as of session start)
 
@@ -29,7 +29,7 @@ Migrate Mission Control from Beads to native `/tasks` system, then decommission 
 - `/tmp/abraxas-checkout/adapters/claim-translation/` — 3 files
 - `/tmp/abraxas-checkout/designs/FHIR_ADAPTER.md`
 - `/tmp/abraxas-checkout/designs/CLAIM_TRANSLATION.md`
-- `/home/ubuntu/.openclaw/workspace/mission-control/MIGRATION_STATUS.md`
+- `/home/ubuntu/.openclaw/workspace//MIGRATION_STATUS.md`
 
 ### What Needs T's Intervention
 1. **Fix exec allowlist** — add `dolt`, `bd`, `git`, `node` to exec allowlist patterns

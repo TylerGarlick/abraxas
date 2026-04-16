@@ -58,7 +58,7 @@ const REGISTRY = {
     location: "/home/ubuntu/.openclaw/skills/market-research/"
   },
 
-  "mission-control": {
+  "": {
     phrases: [
       "MJ build",
       "MJ, research",
@@ -68,7 +68,7 @@ const REGISTRY = {
       "mission control"
     ],
     description: "Task orchestration and subagent factory system",
-    location: "/home/ubuntu/.openclaw/skills/mission-control/"
+    location: "/home/ubuntu/.openclaw/skills//"
   },
 
   healthcheck: {

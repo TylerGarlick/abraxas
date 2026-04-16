@@ -6,14 +6,14 @@
 
 | Skill | Secret | Status |
 |-------|--------|--------|
-| `mission-control` | `github-token` | ⚠️ REVOKED — T needs to generate new PAT |
-| `mission-control` | `vercel-token` | ✅ Active |
+| `` | `github-token` | ⚠️ REVOKED — T needs to generate new PAT |
+| `` | `vercel-token` | ✅ Active |
 | `briefing` | `brave-api-key` | ✅ Active |
 
 ## Master Key
 
 - **Env var:** `MJ_MASTER_KEY`
-- **Location:** `/home/ubuntu/.openclaw/workspace/mission-control/secrets/secrets-master.key`
+- **Location:** `/home/ubuntu/.openclaw/workspace//secrets/secrets-master.key`
 - **Set in:** `~/.bashrc`, `~/.profile`
 - **Generated:** 2026-04-01
 

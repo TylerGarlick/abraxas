@@ -13,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SUBAGENTS_FILE = path.join(__dirname, '../../mission-control/subagents.json');
+const SUBAGENTS_FILE = path.join(__dirname, '../..//subagents.json');
 
 function loadSubagents() {
   try {
