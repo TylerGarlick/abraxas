@@ -146,11 +146,11 @@ type Query {
 }
 
 type Mutation {
-  startDreamCycle(prompt: String!, seedConcepts: [String!]): DreamSession!
-  createHypothesis(sessionId: ID!, rawPatternRepresentation: String!, metadata: HypothesisMetadataInput!): Hypothesis!
-  translateHypothesisToConcept(hypothesisId: ID!, name: String!, description: String!): Concept!
-  archiveHypothesis(hypothesisId: ID!, isValuable: Boolean!): Hypothesis
-  groundConcept(conceptId: ID!, plan: ActionablePlanInput!): ActionablePlan
+  startDreamCycle(prompt: String!, seedConcepts: [String!], channelId: String!): DreamSession!
+  createHypothesis(sessionId: ID!, rawPatternRepresentation: String!, metadata: HypothesisMetadataInput!, channelId: String!): Hypothesis!
+  translateHypothesisToConcept(hypothesisId: ID!, name: String!, description: String!, channelId: String!): Concept!
+  archiveHypothesis(hypothesisId: ID!, isValuable: Boolean!, channelId: String!): Hypothesis
+  groundConcept(conceptId: ID!, plan: ActionablePlanInput!, channelId: String!): ActionablePlan
 }
 
 input HypothesisMetadataInput {

@@ -2,6 +2,9 @@ import { ApolloServer, gql } from 'apollo-server';
 import { Database, aql } from 'arangojs';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config({ path: path.join(__dirname, '../../.env.sovereign') });
 
 // --- Database Configuration ---
 const db = new Database({
@@ -13,6 +16,35 @@ const db = new Database({
     password: '5orange5'
   }
 });
+
+// --- Sovereign Channels Configuration ---
+function loadSovereignChannels(): Set<string> {
+  const envChannels = process.env.SOVEREIGN_CHANNELS;
+  if (envChannels) {
+    return new Set(envChannels.split(',').map(id => id.trim()).filter(Boolean));
+  }
+  
+  // Fallback to config file
+  try {
+    const configPath = path.join(__dirname, '../../config/sovereign-channels.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    return new Set(config.sovereignChannels || []);
+  } catch (e) {
+    console.warn('Warning: Could not load sovereign channels config, defaulting to empty whitelist');
+    return new Set();
+  }
+}
+
+const SOVEREIGN_CHANNELS = loadSovereignChannels();
+
+function validateSovereignChannel(channelId: string | undefined): void {
+  if (!channelId) {
+    throw new Error('Unauthorized: channelId is required for write operations');
+  }
+  if (!SOVEREIGN_CHANNELS.has(channelId)) {
+    throw new Error(`Unauthorized: Channel ${channelId} is not authorized for write operations`);
+  }
+}
 
 const ROOT_PASS = '5orange5';
 
@@ -68,12 +100,15 @@ const resolvers = {
     },
   },
   Mutation: {
-    startDreamCycle: async (_: any, { prompt, seedConcepts }: { prompt: string, seedConcepts: string[] }) => {
+    startDreamCycle: async (_: any, { prompt, seedConcepts, channelId }: { prompt: string, seedConcepts: string[], channelId: string }) => {
+      validateSovereignChannel(channelId);
+      
       const sessionColl = db.collection('dream_sessions');
       const session = {
         timestamp: new Date().toISOString(),
         userPrompt: prompt,
         seedConcepts,
+        channelId,
       };
       const result = await sessionColl.save(session);
       return { _id: result._id, _key: result._key, ...session };
@@ -81,12 +116,16 @@ const resolvers = {
     createHypothesis: async (_: any, { 
       sessionId, 
       rawPatternRepresentation, 
-      metadata 
+      metadata,
+      channelId
     }: { 
       sessionId: string, 
       rawPatternRepresentation: string,
-      metadata: any 
+      metadata: any,
+      channelId: string
     }) => {
+      validateSovereignChannel(channelId);
+      
       const hypoColl = db.collection('hypotheses');
       const edgeColl = db.collection('SESS_TO_HYPO');
       
@@ -95,6 +134,7 @@ const resolvers = {
         rawPatternRepresentation,
         metadata,
         isValuable: false,
+        channelId,
       };
       const hypoResult = await hypoColl.save(hypoData);
       
@@ -114,12 +154,16 @@ const resolvers = {
     translateHypothesisToConcept: async (_: any, {
       hypothesisId,
       name,
-      description
+      description,
+      channelId
     }: {
       hypothesisId: string,
       name: string,
-      description: string
+      description: string,
+      channelId: string
     }) => {
+      validateSovereignChannel(channelId);
+      
       const conceptColl = db.collection('concepts');
       const edgeColl = db.collection('HYPO_TO_CONCEPT');
       
@@ -132,6 +176,7 @@ const resolvers = {
       const conceptData = {
         name,
         description,
+        channelId,
       };
       const conceptResult = await conceptColl.save(conceptData);
       
@@ -144,7 +189,9 @@ const resolvers = {
       
       return { _id: conceptResult._id, _key: conceptResult._key, ...conceptData };
     },
-    archiveHypothesis: async (_: any, { hypothesisId, isValuable }: { hypothesisId: string, isValuable: boolean }) => {
+    archiveHypothesis: async (_: any, { hypothesisId, isValuable, channelId }: { hypothesisId: string, isValuable: boolean, channelId: string }) => {
+      validateSovereignChannel(channelId);
+      
       const coll = db.collection('hypotheses');
       const doc = await coll.document(hypothesisId);
       if (!doc) throw new Error('Hypothesis not found');
@@ -153,7 +200,9 @@ const resolvers = {
       await coll.update(hypothesisId, doc);
       return { _id: doc._id, _key: doc._key, ...doc };
     },
-    groundConcept: async (_: any, { conceptId, plan }: { conceptId: string, plan: any }) => {
+    groundConcept: async (_: any, { conceptId, plan, channelId }: { conceptId: string, plan: any, channelId: string }) => {
+      validateSovereignChannel(channelId);
+      
       const planColl = db.collection('actionable_plans');
       const conceptColl = db.collection('concepts');
       const edgeColl = db.collection('CONCEPT_TO_PLAN');
@@ -166,7 +215,8 @@ const resolvers = {
       const planData = {
         ...plan,
         groundingStatus: 'ANCHORED',
-        guardrailChecks: []
+        guardrailChecks: [],
+        channelId,
       };
       const planResult = await planColl.save(planData);
       

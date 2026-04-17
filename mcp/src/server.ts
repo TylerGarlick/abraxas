@@ -10,7 +10,10 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { Database, aql } from "arangojs";
 import dotenv from "dotenv";
+import path from "path";
+import fs from "fs";
 
+dotenv.config({ path: path.join(__dirname, '../../.env.sovereign') });
 dotenv.config();
 
 // ArangoDB connection
@@ -20,6 +23,35 @@ const ARANGO_USER = process.env.ARANGO_USER || "root";
 const ARANGO_PASSWORD = process.env.ARANGO_PASSWORD || "";
 
 let db: Database;
+
+// --- Sovereign Channels Configuration ---
+function loadSovereignChannels(): Set<string> {
+  const envChannels = process.env.SOVEREIGN_CHANNELS;
+  if (envChannels) {
+    return new Set(envChannels.split(',').map(id => id.trim()).filter(Boolean));
+  }
+  
+  // Fallback to config file
+  try {
+    const configPath = path.join(__dirname, '../../config/sovereign-channels.json');
+    const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    return new Set(config.sovereignChannels || []);
+  } catch (e) {
+    console.warn('Warning: Could not load sovereign channels config, defaulting to empty whitelist');
+    return new Set();
+  }
+}
+
+const SOVEREIGN_CHANNELS = loadSovereignChannels();
+
+function validateSovereignChannel(channelId: string | undefined): void {
+  if (!channelId) {
+    throw new Error('Unauthorized: channelId is required for write operations');
+  }
+  if (!SOVEREIGN_CHANNELS.has(channelId)) {
+    throw new Error(`Unauthorized: Channel ${channelId} is not authorized for write operations`);
+  }
+}
 
 async function initDatabase() {
   db = new Database({
@@ -147,6 +179,130 @@ async function traverseGraph(args: {
   
   const result = await db.query(query);
   return result.all();
+}
+
+// --- Write Operations with Sovereign Channel Validation ---
+
+async function startDreamCycle(args: { prompt: string; seedConcepts: string[]; channelId: string }) {
+  const { prompt, seedConcepts, channelId } = args;
+  validateSovereignChannel(channelId);
+  
+  const sessionColl = db.collection('dream_sessions');
+  const session = {
+    timestamp: new Date().toISOString(),
+    userPrompt: prompt,
+    seedConcepts,
+    channelId,
+  };
+  const result = await sessionColl.save(session);
+  return { _id: result._id, _key: result._key, ...session };
+}
+
+async function createHypothesis(args: {
+  sessionId: string;
+  rawPatternRepresentation: string;
+  noveltyScore: number;
+  coherenceScore: number;
+  creativeDrivers: string[];
+  channelId: string;
+}) {
+  const { sessionId, rawPatternRepresentation, noveltyScore, coherenceScore, creativeDrivers, channelId } = args;
+  validateSovereignChannel(channelId);
+  
+  const hypoColl = db.collection('hypotheses');
+  const edgeColl = db.collection('SESS_TO_HYPO');
+  
+  const hypoData = {
+    rawPatternRepresentation,
+    metadata: {
+      noveltyScore,
+      coherenceScore,
+      creativeDrivers,
+    },
+    isValuable: false,
+    channelId,
+  };
+  const hypoResult = await hypoColl.save(hypoData);
+  
+  const sessionColl = db.collection('dream_sessions');
+  const session = await sessionColl.document(sessionId);
+  if (!session) throw new Error('Session not found');
+  
+  await edgeColl.save({
+    _from: `dream_sessions/${sessionId}`,
+    _to: `hypotheses/${hypoResult._key}`,
+    createdAt: new Date().toISOString(),
+  });
+  
+  return { _id: hypoResult._id, _key: hypoResult._key, ...hypoData };
+}
+
+async function translateHypothesisToConcept(args: {
+  hypothesisId: string;
+  name: string;
+  description: string;
+  channelId: string;
+}) {
+  const { hypothesisId, name, description, channelId } = args;
+  validateSovereignChannel(channelId);
+  
+  const conceptColl = db.collection('concepts');
+  const edgeColl = db.collection('HYPO_TO_CONCEPT');
+  
+  const hypoColl = db.collection('hypotheses');
+  const hypothesis = await hypoColl.document(hypothesisId);
+  if (!hypothesis) throw new Error('Hypothesis not found');
+  
+  const conceptData = {
+    name,
+    description,
+    channelId,
+  };
+  const conceptResult = await conceptColl.save(conceptData);
+  
+  await edgeColl.save({
+    _from: `hypotheses/${hypothesisId}`,
+    _to: `concepts/${conceptResult._key}`,
+    createdAt: new Date().toISOString(),
+  });
+  
+  return { _id: conceptResult._id, _key: conceptResult._key, ...conceptData };
+}
+
+async function groundConcept(args: {
+  conceptId: string;
+  summary: string;
+  steps: string[];
+  riskAssessment: string;
+  channelId: string;
+}) {
+  const { conceptId, summary, steps, riskAssessment, channelId } = args;
+  validateSovereignChannel(channelId);
+  
+  const planColl = db.collection('actionable_plans');
+  const conceptColl = db.collection('concepts');
+  const edgeColl = db.collection('CONCEPT_TO_PLAN');
+  
+  const concept = await conceptColl.document(conceptId);
+  if (!concept) throw new Error('Concept not found');
+  
+  const planData = {
+    summary,
+    steps,
+    riskAssessment,
+    groundingStatus: 'ANCHORED',
+    guardrailChecks: [],
+    channelId,
+  };
+  const planResult = await planColl.save(planData);
+  
+  await edgeColl.save({
+    _from: `concepts/${conceptId}`,
+    _to: `actionable_plans/${planResult._key}`,
+    createdAt: new Date().toISOString(),
+  });
+  
+  return { _id: planResult._id, _key: planResult._key, ...planData };
 }
 
 // Resource handlers
@@ -380,6 +536,121 @@ async function main() {
             required: ["startVertex", "direction", "minDepth", "maxDepth"],
           },
         },
+        {
+          name: "start_dream_cycle",
+          description: "Start a new dream cycle session (requires sovereign channel)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              prompt: {
+                type: "string",
+                description: "User prompt to initiate the dream cycle",
+              },
+              seedConcepts: {
+                type: "array",
+                items: { type: "string" },
+                description: "Seed concepts for the dream cycle",
+              },
+              channelId: {
+                type: "string",
+                description: "Discord channel ID (must be in sovereign whitelist)",
+              },
+            },
+            required: ["prompt", "channelId"],
+          },
+        },
+        {
+          name: "create_hypothesis",
+          description: "Create a new hypothesis from a dream session (requires sovereign channel)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              sessionId: {
+                type: "string",
+                description: "The dream session ID",
+              },
+              rawPatternRepresentation: {
+                type: "string",
+                description: "Raw pattern representation of the hypothesis",
+              },
+              noveltyScore: {
+                type: "number",
+                description: "Novelty score (0-1)",
+              },
+              coherenceScore: {
+                type: "number",
+                description: "Coherence score (0-1)",
+              },
+              creativeDrivers: {
+                type: "array",
+                items: { type: "string" },
+                description: "Creative drivers used",
+              },
+              channelId: {
+                type: "string",
+                description: "Discord channel ID (must be in sovereign whitelist)",
+              },
+            },
+            required: ["sessionId", "rawPatternRepresentation", "noveltyScore", "coherenceScore", "creativeDrivers", "channelId"],
+          },
+        },
+        {
+          name: "translate_hypothesis_to_concept",
+          description: "Translate a hypothesis to a concept (requires sovereign channel)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              hypothesisId: {
+                type: "string",
+                description: "The hypothesis ID to translate",
+              },
+              name: {
+                type: "string",
+                description: "Name of the concept",
+              },
+              description: {
+                type: "string",
+                description: "Description of the concept",
+              },
+              channelId: {
+                type: "string",
+                description: "Discord channel ID (must be in sovereign whitelist)",
+              },
+            },
+            required: ["hypothesisId", "name", "description", "channelId"],
+          },
+        },
+        {
+          name: "ground_concept",
+          description: "Ground a concept as an actionable plan (requires sovereign channel)",
+          inputSchema: {
+            type: "object",
+            properties: {
+              conceptId: {
+                type: "string",
+                description: "The concept ID to ground",
+              },
+              summary: {
+                type: "string",
+                description: "Summary of the action plan",
+              },
+              steps: {
+                type: "array",
+                items: { type: "string" },
+                description: "Steps in the action plan",
+              },
+              riskAssessment: {
+                type: "string",
+                description: "Risk assessment of the plan",
+              },
+              channelId: {
+                type: "string",
+                description: "Discord channel ID (must be in sovereign whitelist)",
+              },
+            },
+            required: ["conceptId", "summary", "steps", "riskAssessment", "channelId"],
+          },
+        },
       ],
     };
   });
@@ -402,6 +673,18 @@ async function main() {
           break;
         case "traverse_graph":
           result = await traverseGraph(args as any);
+          break;
+        case "start_dream_cycle":
+          result = await startDreamCycle(args as { prompt: string; seedConcepts: string[]; channelId: string });
+          break;
+        case "create_hypothesis":
+          result = await createHypothesis(args as any);
+          break;
+        case "translate_hypothesis_to_concept":
+          result = await translateHypothesisToConcept(args as any);
+          break;
+        case "ground_concept":
+          result = await groundConcept(args as any);
           break;
         default:
           throw new Error(`Unknown tool: ${name}`);
