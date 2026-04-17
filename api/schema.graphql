@@ -67,6 +67,7 @@ type Hypothesis {
   dreamSession: DreamSession!
   translatedTo: Concept
   inspiredDreams: [DreamSession!]
+  inspiredBy: [Hypothesis!]
 }
 
 """
@@ -102,6 +103,30 @@ type ActionablePlan {
   groundingStatus: GroundingStatus!
   sourceConcept: Concept!
   guardrailChecks: [GuardrailCheck!]!
+  provenanceChain: ProvenanceChain
+}
+
+"""
+Represents the full provenance chain from a plan back to its originating dream session.
+"""
+type ProvenanceChain {
+  plan: ActionablePlan!
+  planToConceptEdge: EdgeInfo!
+  concept: Concept!
+  conceptToHypothesisEdge: EdgeInfo!
+  hypothesis: Hypothesis!
+  hypothesisToSessionEdge: EdgeInfo!
+  session: DreamSession!
+}
+
+"""
+Metadata about an edge document in the knowledge graph.
+"""
+type EdgeInfo {
+  id: ID!
+  from: String!
+  to: String!
+  createdAt: String!
 }
 
 """
@@ -122,8 +147,16 @@ type Query {
 
 type Mutation {
   startDreamCycle(prompt: String!, seedConcepts: [String!]): DreamSession!
+  createHypothesis(sessionId: ID!, rawPatternRepresentation: String!, metadata: HypothesisMetadataInput!): Hypothesis!
+  translateHypothesisToConcept(hypothesisId: ID!, name: String!, description: String!): Concept!
   archiveHypothesis(hypothesisId: ID!, isValuable: Boolean!): Hypothesis
   groundConcept(conceptId: ID!, plan: ActionablePlanInput!): ActionablePlan
+}
+
+input HypothesisMetadataInput {
+  noveltyScore: Float!
+  coherenceScore: Float!
+  creativeDrivers: [CreativeDriver!]!
 }
 
 input ActionablePlanInput {
