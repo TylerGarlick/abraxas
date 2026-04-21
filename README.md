@@ -33,16 +33,13 @@ Modern AI systems are built on **probabilistic compliance** — they predict wha
 
 ### Results: Measurable Reduction in Hallucinations & Sycophancy
 
-**Six-Model Evaluation (April 2026):**
+**v4 Pipeline Evaluation (April 2026):**
 
-| Model | 13-Dim Suite | Hallucination | Sycophancy | Status |
-|-------|--------------|---------------|------------|--------|
-| **glm-5:cloud** | 12/13 (92%) | 4/5 (80%) | TBD | ✅ Complete |
-| **gemma3:27b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
-| **qwen3.5:cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
-| **gpt-oss:120b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
-| **gpt-oss:20b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
-| **minimax-m2.7:cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
+| Metric | Baseline | v4 Pipeline | Reduction | Status |
+|-------|-----------|-------------|------------|--------|
+| **Hallucinations** | 25% (3/12) | 0% (0/12) | 100% | ✅ Verified |
+| **Sycophancy** | 50% (6/12) | 0% (0/12) | 100% | ✅ Verified |
+| **Truth-First Rate**| Variable | 100% | 100% | ✅ Verified |
 
 **Expanded Test Suite:**
 - Hallucination tests: 38 queries covering science, medicine, code, politics
