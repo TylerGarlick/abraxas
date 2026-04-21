@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   arangodb:
     image: arangodb/arangodb:latest
@@ -10,6 +11,84 @@ services:
     volumes:
       - arango_data:/var/lib/arangodb
     restart: always
+
+  api-service:
+    image: oven/bun:latest
+    container_name: abraxas-api
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4000:4000"
+    command: bun run infra/api/service/index.ts
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=abraxas_db
+      - ARANGO_USER=root
+      - ARANGO_PASSWORD=5orange5
+    restart: always
+    depends_on:
+      - arangodb
+
+  dream-reservoir:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-dream
+    working_dir: /app/mcps/dream-reservoir
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=abraxas_db
+      - ARANGO_USER=root
+      - ARANGO_PASSWORD=5orange5
+    restart: always
+    depends_on:
+      - arangodb
+
+  soter-verifier:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-soter
+    working_dir: /app/mcps/soter-verifier
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
+  mnemosyne-memory:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-mnemosyne
+    working_dir: /app/mcps/mnemosyne-memory
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
+  janus-orchestrator:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-janus
+    working_dir: /app/mcps/janus-orchestrator
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
+  guardrail-monitor:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-guardrail
+    working_dir: /app/mcps/guardrail-monitor
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
 
 volumes:
   arango_data:
