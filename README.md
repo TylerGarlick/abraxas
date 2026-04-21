@@ -159,8 +159,9 @@ abraxas/
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/tylergarlick/abraxas.git
+# 1. Fork the repository on GitHub to create your own Sovereign Instance
+# 2. Clone your fork
+git clone https://github.com/YOUR_USERNAME/abraxas.git
 cd abraxas
 
 # Install dependencies (all MCPs)
