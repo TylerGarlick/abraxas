@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  arangodb:
+    image: arangodb/arangodb:latest
+    container_name: abraxas-arangodb
+    ports:
+      - "8529:8529"
+    environment:
+      - ARANGO_ROOT_PASSWORD=5orange5
+    volumes:
+      - arango_data:/var/lib/arangodb
+    restart: always
+
+volumes:
+  arango_data:

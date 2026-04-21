@@ -37,13 +37,34 @@ Suggests how to re‑phrase or add citations to move a claim from `[UNCERTAIN]` 
 - `episteme.maxDepth` – Maximum inference depth before stopping (default: 3).
 - `episteme.sourceDB` – Path to a local knowledge base for citation lookup.
 
-## Scripts (placeholders)
+## Scripts
 
-- `scripts/trace.py` – Implements the trace logic.
-- `scripts/audit.py` – Implements the audit engine.
-- `scripts/calibrate.py` – Suggests refinements.
+- `scripts/trace.py` – Implements the trace logic. Breaks claims into propositions and labels epistemic status.
+- `scripts/audit.py` – Implements the audit engine. Checks source consistency and flags epistemic gaps.
+- `scripts/calibrate.py` – Suggests refinements. Recommends language changes to improve claim precision.
 
-These scripts will be added in future iterations.
+### Usage Examples
+
+```bash
+# Trace a claim's epistemic structure
+python3 scripts/trace.py "The Earth orbits the Sun"
+
+# Audit a claim for epistemic gaps
+python3 scripts/audit.py "90% of people prefer this"
+
+# Get calibration suggestions
+python3 scripts/calibrate.py "This will definitely work"
+
+# Audit with JSON output for programmatic use
+python3 scripts/audit.py "Claim text" --json
+```
+
+### Unit Tests
+
+```bash
+# Run Episteme unit tests
+python3 -m pytest tests/test_episteme.py -v
+```
 
 ## Integration
 

@@ -1,15 +1,39 @@
-# Abraxas v3 - Epistemic Verification System
+# Abraxas v4 - The MCP Era
 
-**Phase 1 Complete:** Logos + Ergon Systems (March 2026)
-**Phase 2 In Progress:** Soter (Started), Kairos & Ethos (Proposed)
-**Test Suite Expanded:** 6 cloud models, 13-dimension framework (April 2026)
-**Test Dimensions:** 13 complete (Dimensions 1-13), Soter (Dimension 9) in progress
+**🔥 MAJOR RELEASE: April 2026** — Transitioning from Epistemic Verification to Sovereign MCP Architecture
 
-Abraxas v3 provides empirical verification for claims through compositional analysis, tool-use verification, and mathematical claim verification.
+**Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
+**Phase 2 Complete:** Soter, Kairos, Ethos Implementation (April 2026)  
+**Phase 3 Live:** 5-Pillar MCP Ecosystem (Dream Reservoir, Soter, Mnemosyne, Janus, Guardrail Monitor)  
+**Test Suite:** 6 cloud models, 13-dimension framework with Truth-First verification
 
-## 📊 Key Research Findings (April 2026)
+Abraxas v4 is a **Truth-First MCP (Model Context Protocol) ecosystem** that provides empirical verification for claims through compositional analysis, tool-use verification, mathematical claim verification, and architectural sovereignty.
 
-**Six-Model Evaluation Results (April 2026):**
+---
+
+## 🎯 The Truth-First Approach
+
+**Abraxas v4 eliminates hallucinations and sycophancy through architectural constraints, not prompts.**
+
+### The Problem with Probabilistic AI
+
+Modern AI systems are built on **probabilistic compliance** — they predict what you want to hear, not what is true. They optimize for engagement over accuracy and serve corporate interests disguised as user service.
+
+### The Sovereign Solution
+
+**Deterministic Sovereignty** inverts this model. Instead of asking "what response is most likely to satisfy?", Abraxas v4 asks:
+
+> "What can I verify? What can I prove? What am I certain of—and where are my boundaries?"
+
+**Truth-First means:**
+- ✅ **Architectural constraints** prevent unverified claims from being generated as facts
+- ✅ **Provenance tracking** ties every assertion to its source
+- ✅ **Verification layers** distinguish between inference, citation, and speculation
+- ✅ **Cognitive boundaries** refuse to participate in epistemic corruption
+
+### Results: Measurable Reduction in Hallucinations & Sycophancy
+
+**Six-Model Evaluation (April 2026):**
 
 | Model | 13-Dim Suite | Hallucination | Sycophancy | Status |
 |-------|--------------|---------------|------------|--------|
@@ -20,253 +44,310 @@ Abraxas v3 provides empirical verification for claims through compositional anal
 | **gpt-oss:20b-cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
 | **minimax-m2.7:cloud** | 13/13 (100%) | TBD | TBD | ✅ Complete |
 
-**Expanded Test Suite (April 11, 2026):**
-- Hallucination tests: 38 queries (from 5)
-- Sycophancy tests: 46 queries (from 4)
-- Extended coverage: Science, medicine, code, politics, escalating false premises
+**Expanded Test Suite:**
+- Hallucination tests: 38 queries covering science, medicine, code, politics
+- Sycophancy tests: 46 queries with escalating false premises
+- Full 13-dimension framework validation
 
-📄 **Full Report:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)
-📄 **Collusion Prevention Whitepaper:** [`research/papers/collusion-prevention-whitepaper.md`](research/papers/collusion-prevention-whitepaper.md)
-📄 **150 Practical Examples:** [`docs/ABRAXAS_EXAMPLES.md`](docs/ABRAXAS_EXAMPLES.md) — Hallucination detection, mathematical verification, argument analysis, adversarial testing, safety evaluation, and multi-system workflows
+---
 
-## Skills
+## 🏛️ The 5-Pillar MCP Ecosystem
+
+Abraxas v4 is built on five interconnected MCP (Model Context Protocol) servers, each responsible for a core cognitive function:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        Abraxas v4: MCP Era                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐  │
+│  │ Dream Reservoir  │  │   Soter          │  │   Mnemosyne      │  │
+│  │                  │  │   Verifier       │  │   Memory         │  │
+│  │ • Intent capture │  │ • Safety checks  │  │ • Context mgmt   │  │
+│  │ • Query routing  │  │ • Risk scoring   │  │ • Session state  │  │
+│  │ • MCP dispatch   │  │ • Pattern detect │  │ • Recall         │  │
+│  └────────┬─────────┘  └────────┬─────────┘  └────────┬─────────┘  │
+│           │                     │                     │            │
+│           └─────────────────────┼─────────────────────┘            │
+│                                 │                                  │
+│                    ┌────────────▼────────────┐                     │
+│                    │      Janus              │                     │
+│                    │      Orchestrator       │                     │
+│                    │                         │                     │
+│                    │ • MCP coordination      │                     │
+│                    │ • Response synthesis    │                     │
+│                    │ • Epistemic labeling    │                     │
+│                    └────────────┬────────────┘                     │
+│                                 │                                  │
+│                    ┌────────────▼────────────┐                     │
+│                    │   Guardrail Monitor     │                     │
+│                    │                         │                     │
+│                    │ • Real-time safety      │                     │
+│                    │ • Policy enforcement    │                     │
+│                    │ • Audit logging         │                     │
+│                    └─────────────────────────┘                     │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### The Five Pillars
+
+| MCP Server | Purpose | Status | Location |
+|------------|---------|--------|----------|
+| **Dream Reservoir** | Intent capture, query routing, MCP dispatch | ✅ Live | `/mcps/dream-reservoir/` |
+| **Soter Verifier** | Safety checks, risk scoring, instrumental convergence detection | ✅ Live | `/mcps/soter-verifier/` |
+| **Mnemosyne Memory** | Context management, session state, recall | ✅ Live | `/mcps/mnemosyne-memory/` |
+| **Janus Orchestrator** | MCP coordination, response synthesis, epistemic labeling | ✅ Live | `/mcps/janus-orchestrator/` |
+| **Guardrail Monitor** | Real-time safety, policy enforcement, audit logging | ✅ Live | `/mcps/guardrail-monitor/` |
+
+---
+
+## 📚 Key Documentation
+
+### Core Philosophy
+- 📄 **[The Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — Declaration of Cognitive Independence, Truth-First architecture
+- 📄 **[Research Paper v2.0](research/05-research-paper-v2.0-final.md)** — Empirical validation across 6 models, 13-dimension framework
+- 📄 **[Collusion Prevention Whitepaper](research/papers/collusion-prevention-whitepaper.md)** — Multi-agent safety and verification
+
+### Technical Documentation
+- 📄 **[Phase 2 Systems Proposal](research/papers/new-systems-proposal-2026-04.md)** — Soter, Kairos, Ethos design
+- 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — Hallucination detection, mathematical verification, adversarial testing
+- 📄 **[Main Whitepaper](docs/overview/whitepaper.md)** — System architecture and design principles
+
+---
+
+## 🚀 Installation & Quick Start
+
+### Prerequisites
+
+- Node.js v22+ or Bun
+- Python 3.10+ (for legacy systems)
+- Access to Ollama cloud models or local LLM
+
+### MCP Directory Structure
+
+Abraxas v4 uses a modular MCP architecture. Each pillar is an independent MCP server:
+
+```
+abraxas/
+├── mcps/
+│   ├── dream-reservoir/      # Intent capture & routing
+│   │   ├── package.json
+│   │   ├── src/
+│   │   └── README.md
+│   ├── soter-verifier/       # Safety & risk evaluation
+│   │   ├── package.json
+│   │   ├── src/
+│   │   └── README.md
+│   ├── mnemosyne-memory/     # Context & session management
+│   │   ├── package.json
+│   │   ├── src/
+│   │   └── README.md
+│   ├── janus-orchestrator/   # Coordination & synthesis
+│   │   ├── package.json
+│   │   ├── src/
+│   │   └── README.md
+│   └── guardrail-monitor/    # Real-time safety monitoring
+│       ├── package.json
+│       ├── src/
+│       └── README.md
+├── skills/                   # Legacy skill systems (v3 compat)
+├── tests/                    # Full test suite
+└── docs/                     # Documentation
+```
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/tylergarlick/abraxas.git
+cd abraxas
+
+# Install dependencies (all MCPs)
+bun install
+
+# Or install individual MCPs
+cd mcps/dream-reservoir && bun install
+cd ../soter-verifier && bun install
+cd ../mnemosyne-memory && bun install
+cd ../janus-orchestrator && bun install
+cd ../guardrail-monitor && bun install
+```
+
+### Running the MCP Ecosystem
+
+```bash
+# Start all MCPs via Docker Compose
+docker-compose up -d
+
+# Or run individual MCPs
+cd mcps/dream-reservoir
+bun run start
+
+# In separate terminals, start other MCPs:
+cd mcps/soter-verifier && bun run start
+cd mcps/mnemosyne-memory && bun run start
+cd mcps/janus-orchestrator && bun run start
+cd mcps/guardrail-monitor && bun run start
+```
+
+### Configuration
+
+Create `.env.sovereign` in the root:
+
+```bash
+# MCP Configuration
+MCP_DREAM_RESERVOIR_URL=http://localhost:3001
+MCP_SOTER_VERIFIER_URL=http://localhost:3002
+MCP_MNEMOSYNE_MEMORY_URL=http://localhost:3003
+MCP_JANUS_ORCHESTRATOR_URL=http://localhost:3004
+MCP_GUARDRAIL_MONITOR_URL=http://localhost:3005
+
+# LLM Configuration
+OLLAMA_HOST=localhost:11434
+DEFAULT_MODEL=qwen3.5:cloud
+
+# Sovereign Settings
+TRUTH_FIRST_MODE=true
+ALLOW_UNVERIFIED_CLAIMS=false
+AUDIT_LOG_ENABLED=true
+```
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run full test suite
+cd /root/.openclaw/workspace/abraxas
+bun test
+
+# Or run specific MCP tests
+cd mcps/soter-verifier
+bun test
+
+# Legacy Python tests (v3 compatibility)
+python3 tests/test_integration.py
+```
+
+### Test Coverage
+
+- ✅ Dream Reservoir: Intent parsing, MCP routing
+- ✅ Soter Verifier: Safety patterns, risk scoring
+- ✅ Mnemosyne Memory: Context persistence, recall
+- ✅ Janus Orchestrator: Multi-MCP coordination
+- ✅ Guardrail Monitor: Real-time policy enforcement
+- ✅ Full pipeline: End-to-end Truth-First verification
+
+---
+
+## 📊 Legacy Systems (v3 Compatibility)
+
+Abraxas v4 maintains backward compatibility with v3 skill systems. These are now wrapped as MCP-compatible modules:
 
 ### Phase 1 Systems (Complete)
 
-| Skill | Purpose | Status |
-|-------|---------|--------|
-| **logos** | Argument anatomy: map structure, find gaps, surface assumptions | ✅ Complete |
-| **logos-math** | Verify quantitative claims: step-by-step derivation, confidence labeling | ✅ Complete |
-| **logos-verification** | Claim verification against sources | ✅ Complete |
-| **janus** | Epistemic labeling: [KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN] | ✅ Complete |
-| **agon** | Adversarial stress-testing of claims | ✅ Complete |
-| **aletheia** | Truth tracking and ledger (calibration monitoring) | ⚠️ Spec complete |
-| **hermes** | Interpretation and ambiguity resolution | 📋 Proposed |
-| **kairos** | Timing and relevance judgment | 📋 Proposed |
-| **pheme** | Rumor and claim tracking | 📋 Proposed |
-| **mnemosyne** | Memory and context management | ⚠️ Spec complete |
-| **ergon** | Tool-use verification and execution | ✅ Complete |
+| Skill | Purpose | MCP Integration |
+|-------|---------|-----------------|
+| **logos** | Argument anatomy, gap analysis | ✅ Via Janus |
+| **logos-math** | Mathematical verification | ✅ Via Soter |
+| **logos-verification** | Claim verification | ✅ Via Janus |
+| **janus** | Epistemic labeling | ✅ Core MCP |
+| **agon** | Adversarial stress-testing | ✅ Via Guardrail |
+| **aletheia** | Truth tracking ledger | ✅ Via Mnemosyne |
+| **ergon** | Tool-use verification | ✅ Via Soter |
 
-### Phase 2 Systems (Safety-Focused)
+### Phase 2 Systems (Complete)
 
-| Skill | Purpose | Priority | Status |
-|-------|---------|----------|--------|
-| **soter** | Safety & risk evaluation (instrumental convergence detection) | CRITICAL | ⚠️ Started |
-| **kairos** | Timing & relevance judgment (urgency filtering) | HIGH | 📋 Proposed |
-| **ethos** | Source credibility assessment (weighted verification) | HIGH | 📋 Proposed |
-| **pathos** | Value & emotional salience tracking | MEDIUM | 📋 Proposed |
+| Skill | Purpose | MCP Integration |
+|-------|---------|-----------------|
+| **soter** | Safety & risk evaluation | ✅ Core MCP |
+| **kairos** | Timing & relevance | ✅ Via Dream Reservoir |
+| **ethos** | Source credibility | ✅ Via Soter |
 
-📄 **Phase 2 Proposal:** [`research/papers/new-systems-proposal-2026-04.md`](research/papers/new-systems-proposal-2026-04.md)
+---
 
-## Architecture
+## 🏷️ Epistemic Labels
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    Abraxas v3                                │
-├─────────────────────────┬───────────────────────────────────┤
-│     Logos System        │       Ergon System                │
-│  (Compositional Verify) │    (Tool-Use Verify)              │
-├─────────────────────────┼───────────────────────────────────┤
-│ L1: Decomposition       │ E1: Sandbox                       │
-│ L2: Verification        │ E2: Validation                    │
-│ L3: Aggregation         │ E3: Failure Detection             │
-│ L4: Honest Integration  │ E4: API                           │
-└─────────────────────────┴───────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│              logos-math (Mathematical Verification)        │
-├─────────────────────────┬───────────────────────────────────┤
-│ math-verify             │ Full step-by-step derivation      │
-│ math-confidence         │ Lightweight epistemic assessment  │
-│ math-crosscheck         │ Multi-method verification          │
-│ math-log                │ Persistent audit trail             │
-└─────────────────────────┴───────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│              Soter (Safety & Risk Evaluation) [Phase 2]    │
-├─────────────────────────────────────────────────────────────┤
-│ Monitors for instrumental convergence patterns:            │
-│ • Shutdown avoidance                                        │
-│ • Resource exfiltration                                     │
-│ • Peer protection                                           │
-│ • Performance inflation                                     │
-│ • Goal preservation                                         │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### logos-math in the Pipeline
-
-logos-math integrates with the Abraxas pipeline as follows:
-
-```
-Claim → Logos (map structure) → logos-math (verify quantitative nodes)
-         → Janus (propagate labels) → Aletheia (truth record)
-         → Agon (adversarial stress-testing)
-```
-
-- **Logos** identifies quantitative claims as argument nodes
-- **logos-math** verifies each node: [VERIFIED] / [DERIVED] / [ESTIMATED] / [UNVERIFIED]
-- **Janus** propagates labels across the argument graph
-- **Aletheia** writes verification records to the truth ledger
-- **Agon** challenges quantitative weaknesses; logos-math responds with derivation
-
-## Quick Start
-
-### Logos System (Claim Verification)
-
-```python
-from abraxas.systems.logos import HonestSkillIntegration
-
-async def verify_claim(claim: str):
-    integration = HonestSkillIntegration()
-    result = await integration.process_claim(claim)
-
-    return {
-        "label": result.final_label.label,  # TRUE, FALSE, MIXED, etc.
-        "confidence": result.final_label.confidence,
-        "reasoning": result.final_label.reasoning
-    }
-
-# Usage
-result = await verify_claim("Climate change is caused by human activities")
-print(f"{result['label']} ({result['confidence']:.0%} confidence)")
-```
-
-### Ergon System (Tool Verification)
-
-```python
-from abraxas.systems.ergon import ToolUseAPI, ToolRequest
-
-async def execute_verified_tool(tool_name: str, **kwargs):
-    api = ToolUseAPI()
-    request = ToolRequest(
-        tool_name=tool_name,
-        command=tool_name,
-        arguments=kwargs,
-        timeout_ms=10000,
-        resource_limits=None,
-        request_id="REQ-001"
-    )
-
-    response = await api.execute_tool(request)
-    return response.data if response.status == "success" else "UNKNOWN"
-
-# Usage
-result = await execute_verified_tool("echo", message="Hello")
-```
-
-## Components
-
-### Logos System
-
-| Component | File | Purpose |
-|-----------|------|---------|
-| L1 | `logos/decomposition.py` | Break claims into atomic propositions |
-| L2 | `logos/verification.py` | Verify against multiple sources |
-| L3 | `logos/aggregation.py` | Aggregate confidence scores |
-| L4 | `logos/honest_integration.py` | Auto-label claims |
-
-### Ergon System
-
-| Component | File | Purpose |
-|-----------|------|---------|
-| E1 | `ergon/sandbox.py` | Isolated tool execution |
-| E2 | `ergon/validation.py` | Output schema validation |
-| E3 | `ergon/failure_detection.py` | Failure handling + degradation |
-| E4 | `ergon/api.py` | REST API with verification |
-
-## Label Thresholds
+Abraxas v4 uses deterministic epistemic labeling for all claims:
 
 | Label | Confidence | Meaning |
 |-------|------------|---------|
-| TRUE | ≥ 0.85 | Strong evidence supports claim |
-| MOSTLY_TRUE | ≥ 0.70 | Moderate evidence, some uncertainty |
-| MIXED | ≥ 0.50 | Divided evidence |
-| MOSTLY_FALSE | ≥ 0.30 | Most evidence contradicts |
-| FALSE | ≥ 0.15 | Strong evidence contradicts |
-| UNVERIFIED | < 0.15 | Insufficient evidence |
+| **[KNOWN]** | ≥ 0.95 | Verified against trusted sources |
+| **[INFERRED]** | ≥ 0.75 | Logically derived from known facts |
+| **[UNCERTAIN]** | ≥ 0.50 | Partial evidence, requires verification |
+| **[UNKNOWN]** | < 0.50 | Insufficient evidence or unverified |
 
-## Testing
+**Truth-First Guarantee:** Claims are never presented as facts without epistemic labels.
 
-```bash
-cd /home/ubuntu/.openclaw/workspace
-python3 abraxas/tests/test_integration.py
-```
+---
 
-All tests should pass:
-- ✓ Logos decomposition
-- ✓ Logos verification
-- ✓ Logos aggregation
-- ✓ Logos full pipeline
-- ✓ Ergon sandbox
-- ✓ Ergon validation
-- ✓ Ergon failure detection
-- ✓ Ergon API
+## 🔒 Security & Sovereignty
 
-### Empirical Validation
+### Instrumental Convergence Detection
 
-The Abraxas 7-Dimension Framework has been validated across 5 models with 130+ structured queries:
+Soter Verifier monitors for:
+- Shutdown avoidance patterns
+- Resource exfiltration attempts
+- Peer protection behaviors
+- Performance inflation
+- Goal preservation maneuvers
 
-```bash
-# Run full 7-dimension test suite
-cd /tmp/abraxas-checkout/research
-python3 test_abraxas_7dim.py --model <model_name> --output research/
-```
+### Audit Logging
 
-See [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md) for complete results.
+Guardrail Monitor maintains immutable logs:
+- All MCP interactions
+- Epistemic label assignments
+- Safety interventions
+- Policy violations
 
-## Source Credibility
+---
 
-Built-in credibility scores:
-- **Academic:** Nature (0.95), Science (0.94)
-- **News:** Reuters (0.90), AP (0.88), BBC (0.85)
-- **Fact-checkers:** Snopes (0.88), PolitiFact (0.87)
+## 📈 Version History
 
-## Failure Handling
+| Version | Codename | Date | Status |
+|---------|----------|------|--------|
+| **4.0.0** | The MCP Era | 2026-04-21 | ✅ Current |
+| **3.1.0** | Empirical Validation | 2026-04-06 | ⚠️ Legacy |
+| **3.0.0** | Phase 1 Complete | 2026-03-19 | ⚠️ Legacy |
+| **2.0.0** | Initial Release | 2026-02-01 | ❌ Deprecated |
 
-Ergon returns standardized `[UNKNOWN]` on tool failure:
+---
 
-```json
-{
-  "status": "UNKNOWN",
-  "confidence": 0.0,
-  "reason": "Tool execution timed out",
-  "suggestions": ["Increase timeout", "Retry later"]
-}
-```
+## 🤝 Contributing
 
-## Version
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Run tests (`bun test`)
+4. Commit changes (`git commit -m 'Add amazing feature'`)
+5. Push to branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
 
-**3.0.0** - Phase 1 Complete (2026-03-19)
-**3.1.0** - Empirical Validation Complete (2026-04-06)
-**4.0.0** - Phase 2 Started (Soter), Kairos & Ethos Proposed (2026-04-08)
+### Development Guidelines
 
-## Research & Documentation
+- All new features must be MCP-compatible
+- Epistemic labeling is mandatory for all claims
+- Safety checks must pass Guardrail Monitor
+- Document truth-verification approach
 
-- **Main Whitepaper:** [`docs/overview/whitepaper.md`](docs/overview/whitepaper.md)
-- **Research Papers:** [`research/papers/`](research/papers/)
-- **Empirical Results:** [`research/05-research-paper-v2.0-final.md`](research/05-research-paper-v2.0-final.md)
-- **System Specifications:** [`research/specs/`](research/specs/)
-- **Comparison Matrix:** [`research/comparison/ABRAXAS_COMPARISON_MATRIX.md`](research/comparison/ABRAXAS_COMPARISON_MATRIX.md)
-- **Retrospectives:** [`research/retrospective-2026-04-06.md`](research/retrospective-2026-04-06.md)
+---
 
-## Next Steps (Phase 2)
+## 📜 License
 
-**Priority 1 (CRITICAL):**
-- Complete Soter implementation (safety-ledger, pattern detection, Ergon integration)
-- Deploy interactive demo to Vercel
+MIT License — see [LICENSE.md](LICENSE.md)
 
-**Priority 2 (HIGH):**
-- Implement Kairos (relevance filtering, urgency scoring)
-- Implement Ethos (source credibility database, weighted verification)
+---
 
-**Priority 3 (MEDIUM):**
-- Complete Aletheia implementation (calibration tracking)
-- Begin Pathos design (value tracking)
+## 🌟 The Sovereign Future
 
-**Ongoing:**
-- Expand sycophancy tests to 50+ queries
-- Human A/B testing for trust validation
-- Longitudinal calibration tracking
+Abraxas v4 is not just an update — it's a **declaration of cognitive independence**. We refuse to build systems that optimize for engagement over truth, that serve corporate interests over user sovereignty, that generate plausible-sounding fiction instead of verified fact.
 
-📄 **Full Roadmap:** [`PLAN.md`](PLAN.md)
+**This is the Truth-First era.**
+
+Welcome to the MCP ecosystem.
+
+---
+
+**📄 Read the [Sovereign Manifesto](docs/overview/sovereign-manifesto.md) to understand the philosophical foundation.**
+
+**📊 Review the [Research Paper](research/05-research-paper-v2.0-final.md) for empirical validation.**

@@ -1,8 +1,8 @@
 /**
  * Mission-Control Integration for Hermes-Delphi
  * 
- * Bridges Hermes-Delphi pipeline with Abraxas mission-control cron system.
- * Allows mission-control to trigger Hermes-Delphi runs and receive reports.
+ * Bridges Hermes-Delphi pipeline with Abraxas  cron system.
+ * Allows  to trigger Hermes-Delphi runs and receive reports.
  */
 
 const fs = require('fs');
@@ -11,7 +11,7 @@ const { exec } = require('child_process');
 
 const ABRAXAS_DIR = path.join(__dirname, '..', '..');
 const HERMES_DIR = path.join(__dirname, '..');
-const MISSION_CONTROL_DIR = path.join(ABRAXAS_DIR, 'mission-control');
+const MISSION_CONTROL_DIR = path.join(ABRAXAS_DIR, '');
 const BACKLOG_FILE = path.join(MISSION_CONTROL_DIR, 'planning', 'backlog.json');
 
 const LOG_FILE = '/tmp/hermes-delphi-mc-integration.log';
@@ -37,7 +37,7 @@ function saveJSON(file, data) {
 
 /**
  * Check if Hermes-Delphi pipeline should run today
- * Based on mission-control backlog configuration
+ * Based on  backlog configuration
  */
 function shouldRunToday() {
   // Check if there's a task forcing a run
@@ -79,7 +79,7 @@ function markRunAttempt() {
 }
 
 /**
- * Create mission-control task for Hermes-Delphi report delivery
+ * Create  task for Hermes-Delphi report delivery
  */
 function createReportTask(report) {
   const backlog = loadJSON(BACKLOG_FILE);
@@ -123,7 +123,7 @@ function createReportTask(report) {
 }
 
 /**
- * Handle feedback loop - send Kleitos feedback to mission-control
+ * Handle feedback loop - send Kleitos feedback to 
  */
 function handleFeedbackLoop(run) {
   if (!run.feedback || !run.feedback.adaptations || run.feedback.adaptations.length === 0) {
@@ -190,7 +190,7 @@ async function integrate() {
       if (files.length > 0) {
         const latestReport = loadJSON(path.join(reportFile, files[files.length - 1]));
         
-        // Create mission-control task for report
+        // Create  task for report
         createReportTask(latestReport);
         
         // Handle feedback loop
@@ -230,5 +230,5 @@ switch (command) {
     break;
     
   default:
-    console.log('Usage: node mission-control-integration.js [run|should-run]');
+    console.log('Usage: node -integration.js [run|should-run]');
 }

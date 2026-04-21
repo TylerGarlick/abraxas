@@ -460,7 +460,7 @@ Kleitos feedback is wired back into the pipeline:
 - **Mission Control:** Backlog integration for autonomous scheduling
 
 ### Mission-Control Integration
-The pipeline integrates with Abraxas Mission-Control via `integrations/mission-control.js`:
+The pipeline integrates with Abraxas Mission-Control via `integrations/.js`:
 - Syncs run status to backlog
 - Creates tasks for report delivery
 - Routes feedback adaptations to backlog

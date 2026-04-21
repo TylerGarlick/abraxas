@@ -18,6 +18,7 @@
 8. [Multi-System Workflows](#8-multi-system-workflows-20-examples) (20)
 9. [Novel & Creative Applications](#9-novel--creative-applications-10-examples) (10)
 10. [Anti-Hallucination with Honest](#10-anti-hallucination-with-honest-15-examples) (15)
+11. [Knowledge Boundaries with Episteme](#11-knowledge-boundaries-with-episteme-10-examples) (10)
 
 ---
 
@@ -1225,6 +1226,155 @@ Analysis breakdown:
 Decision weight: Put 70% weight on [KNOWN] facts, treat [INFERRED] as scenarios.
 Act on [UNKNOWN] only with explicit contingency plans.
 ```
+
+---
+
+## 11. Knowledge Boundaries with Episteme (10 Examples)
+
+**System:** Episteme commands (`/episteme trace`, `/episteme audit`, `/episteme calibrate`)  
+**Purpose:** Map knowledge provenance, identify epistemic gaps, and refine claims
+
+### 11.1 Trace a Factual Claim
+```
+/episteme trace "The Earth orbits the Sun"
+
+Epistemic Trace for: The Earth orbits the Sun
+============================================================
+[KNOWN] Proposition 1: The Earth orbits the Sun
+  Confidence: 80%
+  Reason: Appears to be established fact
+  Inference Depth: 0
+```
+
+### 11.2 Audit a Statistical Claim
+```
+/episteme audit "90% of people prefer this product"
+
+Epistemic Audit for: 90% of people prefer this product
+============================================================
+Status: HIGH_RISK
+Risk Score: 3
+
+Epistemic Gaps:
+  ⚠ [HIGH] statistical_without_source
+     Statistical claim without cited source
+
+Recommendation: High risk of epistemic issues. Require source verification before use.
+```
+
+### 11.3 Calibrate an Absolute Claim
+```
+/episteme calibrate "This will definitely succeed"
+
+Episteme Calibration for: This will definitely succeed
+============================================================
+Claim Types: prediction, absolute
+
+Refinement Suggestions:
+  1. [QUALIFICATION]
+     Current: Absolute language (always/never/all)
+     Suggested: Use qualified language (often/sometimes/most)
+     Example: This often succeeds
+
+  2. [TEMPORAL_PRECISION]
+     Current: Definitive prediction
+     Suggested: Frame as projection with confidence interval
+     Example: This is projected to succeed
+
+Estimated Confidence: 50% → 70%
+```
+
+### 11.4 Trace Claims with Uncertainty Markers
+```
+/episteme trace "This might possibly work but I'm not sure"
+
+[UNCERTAIN] Proposition 1: This might possibly work but I'm not sure
+  Confidence: 60%
+  Reason: Contains uncertainty markers
+```
+
+### 11.5 Audit Causal Claims
+```
+/episteme audit "This feature causes increased user engagement"
+
+Epistemic Gaps:
+  ⚠ [MEDIUM] causal_without_mechanism
+     Causal claim without explained mechanism or citation
+
+Recommendation: Review identified gaps and add citations or qualifications.
+```
+
+### 11.6 Calibrate Subjective Claims
+```
+/episteme calibrate "This is the best approach"
+
+Claim Types: subjective
+
+Refinement Suggestions:
+  1. [ATTRIBUTION]
+     Current: Subjective claim without source
+     Suggested: Attribute to specific perspective or criteria
+     Example: according to [criteria], this is the best approach
+```
+
+### 11.7 Full Episteme Workflow
+```
+# Step 1: Trace the claim structure
+/episteme trace "AI will replace all jobs by 2035"
+
+# Step 2: Audit for epistemic gaps
+/episteme audit "AI will replace all jobs by 2035"
+
+# Step 3: Calibrate to improve precision
+/episteme calibrate "AI will replace all jobs by 2035"
+
+# Result: Refined claim with appropriate uncertainty markers
+"AI is projected to significantly impact employment by 2035 [UNCERTAIN]"
+```
+
+### 11.8 Detect Prediction Claims
+```
+/episteme calibrate "Market growth will accelerate next quarter"
+
+Claim Types: prediction
+
+Refinement Suggestions:
+  1. [TEMPORAL_PRECISION]
+     Suggested: Frame as projection with confidence interval
+     Example: Market growth is projected to potentially accelerate
+```
+
+### 11.9 Audit High-Risk Claims
+```
+/episteme audit "This investment is completely safe"
+
+Status: HIGH_RISK
+Risk Score: 3
+
+Epistemic Gaps:
+  ⚠ [HIGH] absolute_claim
+     Absolute claims require universal evidence
+
+Recommendation: High risk of epistemic issues. Require source verification before use.
+```
+
+### 11.10 Programmatic Usage
+```bash
+# Trace a claim
+python3 scripts/trace.py "Climate change is caused by human activity"
+
+# Audit with JSON output
+python3 scripts/audit.py "Vitamin C prevents colds" --json
+
+# Calibrate for refinement suggestions
+python3 scripts/calibrate.py "This algorithm is perfectly optimized"
+```
+
+**Integration Notes:**
+- **Logos** → provides argument structure which Episteme can label
+- **Janus** → consumes Episteme labels for epistemic tagging
+- **Agon** → uses Episteme output to prioritize debate points
+- **Honest** → uses Episteme audit results for confidence labeling
 
 ---
 

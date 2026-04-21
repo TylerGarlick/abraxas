@@ -106,7 +106,7 @@ notifications:
 
 ## Mission Control Integration
 mission_control:
-  # Whether to sync with mission-control backlog
+  # Whether to sync with  backlog
   sync_enabled: true
   
   # Create backlog tasks for reports
