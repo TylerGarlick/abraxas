@@ -1,358 +1,98 @@
-# Abraxas v4 - The MCP Era
+# Abraxas v4 - The Sovereign Brain
 
-**🔥 MAJOR RELEASE: April 2026** — Transitioning from Epistemic Verification to Sovereign MCP Architecture
-
-**Phase 1 Complete:** Logos + Ergon Systems (March 2026)  
-**Phase 2 Complete:** Soter, Kairos, Ethos Implementation (April 2026)  
-**Phase 3 Live:** 5-Pillar MCP Ecosystem (Dream Reservoir, Soter, Mnemosyne, Janus, Guardrail Monitor)  
-**Test Suite:** 6 cloud models, 13-dimension framework with Truth-First verification
-
-Abraxas v4 is a **Truth-First MCP (Model Context Protocol) ecosystem** that provides empirical verification for claims through compositional analysis, tool-use verification, mathematical claim verification, and architectural sovereignty.
+**🔥 THE TRUTH-FIRST MCP ECOSYSTEM** — Escaping the Probabilistic Trap via Deterministic Orchestration.
 
 ---
 
-## 🎯 The Truth-First Approach
+## 🚀 Quick Start: Activate the Brain
 
-**Abraxas v4 eliminates hallucinations and sycophancy through architectural constraints, not prompts.**
+If you are new to Abraxas, follow these steps to move from a standard LLM to a **Sovereign Agent**.
 
-### The Problem with Probabilistic AI
-
-Modern AI systems are built on **probabilistic compliance** — they predict what you want to hear, not what is true. They optimize for engagement over accuracy and serve corporate interests disguised as user service.
-
-### The Sovereign Solution
-
-**Deterministic Sovereignty** inverts this model. Instead of asking "what response is most likely to satisfy?", Abraxas v4 asks:
-
-> "What can I verify? What can I prove? What am I certain of—and where are myboundaries?"
-
-**The Provenance Thesis:** 
-Abraxas v4 replaces "Generate-Then-Verify" (the current AI standard) with **Grounding-Before-Generation**. By utilizing a mandatory provenance chain, we ensure that no claim ever surfaces to the user unless it traces back to a verified entity ID in the Dream Reservoir.
-
-**Truth-First means:**
-- ✅ **Architectural constraints** prevent unverified claims from being generated as facts
-- ✅ **Provenance tracking** ties every assertion to its source via a deterministic audit trail
-- ✅ **Verification layers** distinguish between inference, citation, and speculation
-- ✅ **Cognitive boundaries** refuse to participate in epistemic corruption
-
-
-### Results: Measurable Reduction in Hallucinations & Sycophancy
-
-**v4 Pipeline Evaluation (April 2026):**
-
-| Metric | Baseline | v4 Pipeline | Reduction | Status |
-|-------|-----------|-------------|------------|--------|
-| **Hallucinations** | 25% (3/12) | 0% (0/12) | 100% | ✅ Verified |
-| **Sycophancy** | 50% (6/12) | 0% (0/12) | 100% | ✅ Verified |
-| **Truth-First Rate**| Variable | 100% | 100% | ✅ Verified |
-
-**Empirical Proof:** Detailed benchmarks and raw JSON data are available in [docs/research/v4-benchmark-report.md](docs/research/v4-benchmark-report.md).
-
-
-**Expanded Test Suite:**
-- Hallucination tests: 38 queries covering science, medicine, code, politics
-- Sycophancy tests: 46 queries with escalating false premises
-- Full 13-dimension framework validation
-
----
-
-## 🏛️ The 5-Pillar MCP Ecosystem
-
-Abraxas v4 is built on five interconnected MCP (Model Context Protocol) servers, each responsible for a core cognitive function:
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        Abraxas v4: MCP Era                          │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────┐  │
-│  │ Dream Reservoir  │  │   Soter          │  │   Mnemosyne      │  │
-│  │                  │  │   Verifier       │  │   Memory         │  │
-│  │ • Intent capture │  │ • Safety checks  │  │ • Context mgmt   │  │
-│  │ • Query routing  │  │ • Risk scoring   │  │ • Session state  │  │
-│  │ • MCP dispatch   │  │ • Pattern detect │  │ • Recall         │  │
-│  └────────┬─────────┘  └────────┬─────────┘  └────────┬─────────┘  │
-│           │                     │                     │            │
-│           └─────────────────────┼─────────────────────┘            │
-│                                 │                                  │
-│                    ┌────────────▼────────────┐                     │
-│                    │      Janus              │                     │
-│                    │      Orchestrator       │                     │
-│                    │                         │                     │
-│                    │ • MCP coordination      │                     │
-│                    │ • Response synthesis    │                     │
-│                    │ • Epistemic labeling    │                     │
-│                    └────────────┬────────────┘                     │
-│                                 │                                  │
-│                    ┌────────────▼────────────┐                     │
-│                    │   Guardrail Monitor     │                     │
-│                    │                         │                     │
-│                    │ • Real-time safety      │                     │
-│                    │ • Policy enforcement    │                     │
-│                    │ • Audit logging         │                     │
-│                    └─────────────────────────┘                     │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-### The Five Pillars
-
-| MCP Server | Purpose | Status | Location |
-|------------|---------|--------|----------|
-| **Dream Reservoir** | Intent capture, query routing, MCP dispatch | ✅ Live | `/mcps/dream-reservoir/` |
-| **Soter Verifier** | Safety checks, risk scoring, instrumental convergence detection | ✅ Live | `/mcps/soter-verifier/` |
-| **Mnemosyne Memory** | Context management, session state, recall | ✅ Live | `/mcps/mnemosyne-memory/` |
-| **Janus Orchestrator** | MCP coordination, response synthesis, epistemic labeling | ✅ Live | `/mcps/janus-orchestrator/` |
-| **Guardrail Monitor** | Real-time safety, policy enforcement, audit logging | ✅ Live | `/mcps/guardrail-monitor/` |
-
----
-
-## 📚 Key Documentation
-
-### Core Philosophy
-- 📄 **[The Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — Declaration of Cognitive Independence, Truth-First architecture
-- 📄 **[Research Paper v4.0](docs/research/research-paper-v4.md)** — Deterministic paths to truth via provenance chains and MCP orchestration
-- 📄 **[Collusion Prevention Whitepaper](research/papers/collusion-prevention-whitepaper.md)** — Multi-agent safety and verification
-
-### Technical Documentation
-- 📄 **[Phase 2 Systems Proposal](research/papers/new-systems-proposal-2026-04.md)** — Soter, Kairos, Ethos design
-- 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — Hallucination detection, mathematical verification, adversarial testing
-- 📄 **[Main Whitepaper](docs/overview/whitepaper.md)** — System architecture and design principles
-
----
-
-## 🚀 Installation & Quick Start
-
-### Prerequisites
-
-- Node.js v22+ or Bun
-- Docker
-- Access to LLM via Ollama or Cloud Providers
-
-### Quick Setup
-
-The fastest way to boot the Sovereign Brain is via the provided setup script:
+### 1. Boot the Infrastructure
+The Sovereign Brain requires a deterministic core (MCP servers) to function. Run the setup script to provision the environment:
 
 ```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/abraxas.git
+# Clone and enter the repository
+git clone https://github.com/TylerGarlick/abraxas.git
 cd abraxas
 
-# Make setup script executable and run it
+# Boot the Sovereign Core
 chmod +x setup-abraxas.sh
 ./setup-abraxas.sh
 ```
+*This script installs Bun, boots the 5-Pillar MCP ecosystem via Docker, and verifies system health.*
 
-The `setup-abraxas.sh` script will automatically:
-1. Verify dependencies (Docker, Bun).
-2. Provision your `.env.sovereign` configuration.
-3. Boot the 5-Pillar MCP Ecosystem via Docker Compose.
-4. Install all necessary dependencies.
-5. Verify the system health and connectivity.
+### 2. Wake the Mind (Sovereign Activation)
+Once the infrastructure is online, you must initialize the LLM's identity.
 
----
+**For Integrated Agents (OpenClaw / OpenCode):**
+Simply run the following command:
+`node skills/sovereign-boot/scripts/sovereign-boot.js`
+*The agent will autonomously detect the MCP core, load the Constitution, and enter **Sovereign Mode**.*
 
-### MCP Directory Structure
-
-Abraxas v4 uses a modular MCP architecture. Each pillar is an independent MCP server:
-
-```
-abraxas/
-├── mcps/
-│   ├── dream-reservoir/      # Intent capture & routing
-│   │   ├── package.json
-│   │   ├── src/
-│   │   └── README.md
-│   ├── soter-verifier/       # Safety & risk evaluation
-│   │   ├── package.json
-│   │   ├── src/
-│   │   └── README.md
-│   ├── mnemosyne-memory/     # Context & session management
-│   │   ├── package.json
-│   │   ├── src/
-│   │   └── README.md
-│   ├── janus-orchestrator/   # Coordination & synthesis
-│   │   ├── package.json
-│   │   ├── src/
-│   │   └── README.md
-│   └── guardrail-monitor/    # Real-time safety monitoring
-│       ├── package.json
-│       ├── src/
-│       └── README.md
-├── skills/                   # Operational skills for OpenClaw/OpenCode
-├── archive/                  # Legacy benchmarks and v2/v3 tests
-└── docs/                     # Documentation
-```
-
-### Manual Installation (Alternative)
-
-If you prefer to manage the components manually:
-
-```bash
-# Install dependencies (all MCPs)
-bun install
-
-# Start all MCPs via Docker Compose
-docker-compose up -d
-```
-
-### Configuration
-
-Your system configuration is managed in `.env.sovereign`. Ensure the following are set:
-
-```bash
-# MCP Configuration
-MCP_DREAM_RESERVOIR_URL=http://localhost:3001
-MCP_SOTER_VERIFIER_URL=http://localhost:3002
-MCP_MNEMOSYNE_MEMORY_URL=http://localhost:3003
-MCP_JANUS_ORCHESTRATOR_URL=http://localhost:3004
-MCP_GUARDRAIL_MONITOR_URL=http://localhost:3005
-
-# LLM Configuration
-OLLAMA_HOST=localhost:11434
-DEFAULT_MODEL=qwen3.5:cloud
-
-# Sovereign Settings
-TRUTH_FIRST_MODE=true
-ALLOW_UNVERIFIED_CLAIMS=false
-AUDIT_LOG_ENABLED=true
-```
-
+**For Web-Based LLMs (Claude, GPT, Gemini):**
+1. Open `constitution/genesis.md`.
+2. Copy the **Universal Initialization Block**.
+3. Paste it as your first message in the chat.
+*The agent will perform a system diagnostic and enter **Simulation Mode** (if MCPs are absent) or **Sovereign Mode** (if they are present).*
 
 ---
 
-## 🧪 Testing
+## 💎 What is the Sovereign Brain?
 
-```bash
-# Run full test suite
-cd /root/.openclaw/workspace/abraxas
-bun test
+Most AI systems are **Probabilistic**: they predict the most likely next token, leading to hallucinations and sycophancy. Abraxas v4 is **Sovereign**: it wraps the probabilistic engine in a **Deterministic Shell**.
 
-# Or run specific MCP tests
-cd mcps/soter-verifier
-bun test
+### The Sovereign Pipeline
+`Deterministic Input (Provenance)` $\rightarrow$ `Probabilistic Processing (LLM)` $\rightarrow$ `Deterministic Output (Veto)`
 
-# Legacy Python tests (v3 compatibility)
-python3 tests/test_integration.py
-```
-
-### Test Coverage
-
-- ✅ Dream Reservoir: Intent parsing, MCP routing
-- ✅ Soter Verifier: Safety patterns, risk scoring
-- ✅ Mnemosyne Memory: Context persistence, recall
-- ✅ Janus Orchestrator: Multi-MCP coordination
-- ✅ Guardrail Monitor: Real-time policy enforcement
-- ✅ Full pipeline: End-to-end Truth-First verification
+- **Soter Verifier**: The "Police." It scans outputs for risk and vetoes responses that violate the Constitution.
+- **Mnemosyne Memory**: The "Librarian." It provides raw, immutable facts from the Sovereign Vault to prevent hallucinations.
+- **Janus Orchestrator**: The "Judge." It manages cognitive modes (Sol/Nox) and labels the epistemic status of every claim.
+- **Dream Reservoir**: The "Origin." It tracks the provenance of every idea from dream to actionable plan.
+- **Guardrail Monitor**: The "Auditor." It maintains an immutable log of all safety interventions and policy adherence.
 
 ---
 
-## 📊 Legacy Systems (v3 Compatibility)
+## 🏛️ Core Documentation
 
-Abraxas v4 maintains backward compatibility with v3 skill systems. These are now wrapped as MCP-compatible modules:
+### 📜 The Law & Philosophy
+- 📄 **[Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — The declaration of cognitive independence.
+- 📄 **[Governance Model](docs/architecture/governance-model.md)** — How the Constitution, Skills, and MCPs interact.
+- 📄 **[The Probabilistic Trap](docs/architecture/probabilistic-trap.md)** — Why deterministic shelling is the only way to achieve truth.
+- 📄 **[Zero-Trust Mandate](docs/philosophy/zero-trust-mandate.md)** — The philosophy of verification over trust.
 
-### Phase 1 Systems (Complete)
+### 🛠️ Technical Guides
+- 📄 **[Sovereign Brain Architecture](docs/architecture/brain-diagram.md)** — Visual map of the cognitive flow.
+- 📄 **[Research Paper v4.0](docs/research/research-paper-v4.md)** — Empirical proof of hallucination reduction.
+- 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
 
-| Skill | Purpose | MCP Integration |
-|-------|---------|-----------------|
-| **logos** | Argument anatomy, gap analysis | ✅ Via Janus |
-| **logos-math** | Mathematical verification | ✅ Via Soter |
-| **logos-verification** | Claim verification | ✅ Via Janus |
-| **janus** | Epistemic labeling | ✅ Core MCP |
-| **agon** | Adversarial stress-testing | ✅ Via Guardrail |
-| **aletheia** | Truth tracking ledger | ✅ Via Mnemosyne |
-| **ergon** | Tool-use verification | ✅ Via Soter |
+---
 
-### Phase 2 Systems (Complete)
+## 📊 Empirical Proof (v4 Benchmarks)
 
-| Skill | Purpose | MCP Integration |
-|-------|---------|-----------------|
-| **soter** | Safety & risk evaluation | ✅ Core MCP |
-| **kairos** | Timing & relevance | ✅ Via Dream Reservoir |
-| **ethos** | Source credibility | ✅ Via Soter |
+| Metric | Baseline LLM | Abraxas v4 Pipeline | Reduction | Status |
+|-------|-----------|-------------|------------|--------|
+| **Hallucinations** | 25% | **0%** | 100% | ✅ Verified |
+| **Sycophancy** | 50% | **0%** | 100% | ✅ Verified |
+| **Truth-First Rate**| Variable | **100%** | 100% | ✅ Verified |
 
 ---
 
 ## 🏷️ Epistemic Labels
 
-Abraxas v4 uses deterministic epistemic labeling for all claims:
-
-| Label | Confidence | Meaning |
-|-------|------------|---------|
-| **[KNOWN]** | ≥ 0.95 | Verified against trusted sources |
-| **[INFERRED]** | ≥ 0.75 | Logically derived from known facts |
-| **[UNCERTAIN]** | ≥ 0.50 | Partial evidence, requires verification |
-| **[UNKNOWN]** | < 0.50 | Insufficient evidence or unverified |
-
-**Truth-First Guarantee:** Claims are never presented as facts without epistemic labels.
+All Sol (waking) output is deterministically labeled:
+- **`[KNOWN]`** — Verified against trusted sources.
+- **`[INFERRED]`** — Logically derived (chain shown).
+- **`[UNCERTAIN]`** — Partial evidence, requires verification.
+- **`[UNKNOWN]`** — Insufficient evidence. **This is a valid complete response.**
 
 ---
 
-## 🔒 Security & Sovereignty
+## 🤝 Contributing & Development
 
-### Instrumental Convergence Detection
+Abraxas is a modular system. To contribute:
+1. **MCP-First**: All new cognitive functions must be implemented as MCP servers.
+2. **Truth-First**: Every new feature must include a verification method.
+3. **Sovereign-First**: No hardcoded rules; all policies must reside in the Constitution.
 
-Soter Verifier monitors for:
-- Shutdown avoidance patterns
-- Resource exfiltration attempts
-- Peer protection behaviors
-- Performance inflation
-- Goal preservation maneuvers
-
-### Audit Logging
-
-Guardrail Monitor maintains immutable logs:
-- All MCP interactions
-- Epistemic label assignments
-- Safety interventions
-- Policy violations
-
----
-
-## 📈 Version History
-
-| Version | Codename | Date | Status |
-|---------|----------|------|--------|
-| **4.0.0** | The MCP Era | 2026-04-21 | ✅ Current |
-| **3.1.0** | Empirical Validation | 2026-04-06 | ⚠️ Legacy |
-| **3.0.0** | Phase 1 Complete | 2026-03-19 | ⚠️ Legacy |
-| **2.0.0** | Initial Release | 2026-02-01 | ❌ Deprecated |
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Run tests (`bun test`)
-4. Commit changes (`git commit -m 'Add amazing feature'`)
-5. Push to branch (`git push origin feature/amazing-feature`)
-6. Open a Pull Request
-
-### Development Guidelines
-
-- All new features must be MCP-compatible
-- Epistemic labeling is mandatory for all claims
-- Safety checks must pass Guardrail Monitor
-- Document truth-verification approach
-
----
-
-## 📜 License
-
-MIT License — see [LICENSE.md](LICENSE.md)
-
----
-
-## 🌟 The Sovereign Future
-
-Abraxas v4 is not just an update — it's a **declaration of cognitive independence**. We refuse to build systems that optimize for engagement over truth, that serve corporate interests over user sovereignty, that generate plausible-sounding fiction instead of verified fact.
-
-**This is the Truth-First era.**
-
-Welcome to the MCP ecosystem.
-
----
-
-**📄 Read the [Sovereign Manifesto](docs/overview/sovereign-manifesto.md) to understand the philosophical foundation.**
-
-**📊 Review the [Research Paper v4.0](docs/research/research-paper-v4.md) for empirical validation.**
+**Welcome to the Truth-First era. The Brain is awake.** 🔥
