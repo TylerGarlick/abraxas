@@ -44,7 +44,7 @@ Search across multiple project repositories for files, code, or content.
 
 **Parameters:**
 - `query` (required): Search query (supports grep-style patterns)
-- `projects`: Specific projects to search (defaults to all known projects)
+- `projects`: Specific projects to search (defaults to all discovered projects)
 - `filePattern`: File pattern to filter results (e.g., '*.ts', '*.md')
 - `caseSensitive`: Case-sensitive search (default: false)
 - `maxResults`: Maximum results per project (default: 20)
@@ -55,7 +55,7 @@ Search across multiple project repositories for files, code, or content.
   "name": "cross_project_search",
   "arguments": {
     "query": "TODO",
-    "projects": ["abraxas", "satchel"],
+    "projects": ["project-alpha", "project-beta"],
     "filePattern": "*.ts",
     "maxResults": 10
   }
@@ -102,11 +102,11 @@ Manage and query project-to-project relationships and dependencies.
   "name": "project_mapping",
   "arguments": {
     "action": "create",
-    "sourceProject": "satchel",
-    "targetProject": "abraxas",
+    "sourceProject": "project-alpha",
+    "targetProject": "project-beta",
     "relationshipType": "depends_on",
     "metadata": {
-      "description": "Satchel depends on Abraxas for core services"
+      "description": "Project Alpha depends on Project Beta for core services"
     }
   }
 }
@@ -129,25 +129,13 @@ Check the health status of the project bridge server and connected project repos
 }
 ```
 
-## Known Projects
+## Project Discovery
 
-The server searches across these projects by default:
-- abraxas
-- satchel
-- screepy
-- mary-jane
-- asclepius
-- the-red-book
-- maneuvers
-- curiosity-hour
-- amplify
-- find-guarana
-- outerspace
-- research
+The server automatically discovers all project directories within the configured workspace root. It does not require a hardcoded list of projects to function.
 
 ## Project Mappings Storage
 
-Project relationships are stored in `/root/.openclaw/workspace/.project-mappings.json`.
+Project relationships are stored in a local JSON file within the workspace root.
 
 ## License
 
