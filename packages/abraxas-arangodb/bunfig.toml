@@ -1,6 +1,0 @@
-[install]
-auto = "fallback"
-production = false
-
-[run]
-bun = true
