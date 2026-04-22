@@ -23,13 +23,17 @@ Modern AI systems are built on **probabilistic compliance** — they predict wha
 
 **Deterministic Sovereignty** inverts this model. Instead of asking "what response is most likely to satisfy?", Abraxas v4 asks:
 
-> "What can I verify? What can I prove? What am I certain of—and where are my boundaries?"
+> "What can I verify? What can I prove? What am I certain of—and where are myboundaries?"
+
+**The Provenance Thesis:** 
+Abraxas v4 replaces "Generate-Then-Verify" (the current AI standard) with **Grounding-Before-Generation**. By utilizing a mandatory provenance chain, we ensure that no claim ever surfaces to the user unless it traces back to a verified entity ID in the Dream Reservoir.
 
 **Truth-First means:**
 - ✅ **Architectural constraints** prevent unverified claims from being generated as facts
-- ✅ **Provenance tracking** ties every assertion to its source
+- ✅ **Provenance tracking** ties every assertion to its source via a deterministic audit trail
 - ✅ **Verification layers** distinguish between inference, citation, and speculation
 - ✅ **Cognitive boundaries** refuse to participate in epistemic corruption
+
 
 ### Results: Measurable Reduction in Hallucinations & Sycophancy
 
@@ -40,6 +44,9 @@ Modern AI systems are built on **probabilistic compliance** — they predict wha
 | **Hallucinations** | 25% (3/12) | 0% (0/12) | 100% | ✅ Verified |
 | **Sycophancy** | 50% (6/12) | 0% (0/12) | 100% | ✅ Verified |
 | **Truth-First Rate**| Variable | 100% | 100% | ✅ Verified |
+
+**Empirical Proof:** Detailed benchmarks and raw JSON data are available in [docs/research/v4-benchmark-report.md](docs/research/v4-benchmark-report.md).
+
 
 **Expanded Test Suite:**
 - Hallucination tests: 38 queries covering science, medicine, code, politics
