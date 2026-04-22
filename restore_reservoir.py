@@ -4,18 +4,20 @@ import re
 import os
 
 # Config
-URL = "http://localhost:8529"
-AUTH = ("root", "5orange5")
-DB = "abraxas_db"
+URL = os.getenv("ARANGO_URL", "http://localhost:8529")
+ARANGO_USER = os.getenv("ARANGO_USER", "root")
+ARANGO_PASS = os.getenv("ARANGO_PASSWORD", "change-me")
+DB = os.getenv("ARANGO_DB", "abraxas_db")
 MAPPING_FILE = "/root/.openclaw/workspace/.sovereign_vault/red-book-mapping.md"
 
 def db_call(endpoint, data=None, method="POST"):
     url = f"{URL}/_api/{endpoint}"
     try:
+        auth = (ARANGO_USER, ARANGO_PASS)
         if method == "POST":
-            resp = requests.post(url, auth=AUTH, json=data, timeout=10)
+            resp = requests.post(url, auth=auth, json=data, timeout=10)
         else:
-            resp = requests.get(url, auth=AUTH, timeout=10)
+            resp = requests.get(url, auth=auth, timeout=10)
         resp.raise_for_status()
         return resp.json()
     except Exception as e:
