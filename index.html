@@ -7,6 +7,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:wght@400;500&family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <!-- Markdown Rendering Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -345,6 +347,49 @@
       color: var(--azure);
     }
 
+    /* Dynamic Content Styles */
+    #dynamic-content {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 2rem;
+      min-height: 300px;
+    }
+
+    .doc-nav {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+
+    .doc-link {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .doc-link:hover, .doc-link.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(200, 160, 74, 0.1);
+    }
+
+    .raw-file-link {
+      display: block;
+      text-align: right;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      color: var(--text-dim);
+    }
+
     @media (max-width: 768px) {
       html { font-size: 16px; }
       nav { padding: 0.75rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
@@ -364,6 +409,7 @@
       <li><a href="#architecture">Architecture</a></li>
       <li><a href="#evidence">Evidence</a></li>
       <li><a href="#mandate">Mandate</a></li>
+      <li><a href="#docs">Documentation</a></li>
       <li><a href="#setup">Setup</a></li>
     </ul>
   </nav>
@@ -464,6 +510,22 @@
     </div>
   </section>
 
+  <section id="docs">
+    <h2 class="section-header">Sovereign Documentation</h2>
+    <p style="text-align: center; margin-bottom: 3rem; color: var(--text-secondary);">
+      Explore the architectural and philosophical foundations of the Abraxas Brain.
+    </p>
+    
+    <div class="doc-nav" id="doc-menu">
+      <!-- Links will be injected here -->
+    </div>
+
+    <div id="dynamic-content">
+      <p style="text-align: center; color: var(--text-dim);">Select a document above to render its contents.</p>
+    </div>
+    <div class="raw-file-link" id="raw-link"></div>
+  </section>
+
   <section id="setup">
     <h2 class="section-header">Deploy Your Instance</h2>
     <p style="text-align: center; margin-bottom: 3rem; color: var(--text-secondary);">
@@ -486,7 +548,7 @@
       <div class="step">
         <div class="step-number">03</div>
         <h4>Boot the Brain</h4>
-        <p>Run <code>docker-compose up -d</code> to initialize the 5-Pillar MCP ecosystem.</p>
+        <p>Run <code>docker compose up -d</code> to initialize the 5-Pillar MCP ecosystem.</p>
       </div>
     </div>
   </section>
@@ -502,5 +564,54 @@
     </div>
   </footer>
 
+  <script>
+    const DOCS = [
+      { name: "Sovereign Manifesto", path: "docs/overview/sovereign-manifesto.md" },
+      { name: "Governance Model", path: "docs/architecture/governance-model.md" },
+      { name: "Probabilistic Trap", path: "docs/architecture/probabilistic-trap.md" },
+      { name: "Zero-Trust Mandate", path: "docs/philosophy/zero-trust-mandate.md" },
+      { name: "Sovereign Architecture", path: "docs/architecture/brain-diagram.md" },
+      { name: "Sovereign Brain Theory", path: "docs/philosophy/on-being-a-brain.md" },
+      { name: "Research Paper v4", path: "docs/research/research-paper-v4.md" },
+      { name: "v4 Benchmarks", path: "docs/research/v4-benchmark-report.md" }
+    ];
+
+    async function loadDoc(path) {
+      const contentArea = document.getElementById('dynamic-content');
+      const rawLinkArea = document.getElementById('raw-link');
+      
+      contentArea.innerHTML = '<p style="text-align: center; color: var(--gold);">Reading from vault...</p>';
+      rawLinkArea.innerHTML = '';
+
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error('File not found');
+        const text = await response.text();
+        
+        // Render Markdown
+        contentArea.innerHTML = marked.parse(text);
+        rawLinkArea.innerHTML = `<a href="${path}" target="_blank">View Raw Markdown Source →</a>`;
+      } catch (err) {
+        contentArea.innerHTML = `<p style="text-align: center; color: var(--ruby);">Error loading document: ${err.message}</p>`;
+      }
+    }
+
+    function initDocs() {
+      const menu = document.getElementById('doc-menu');
+      DOCS.forEach(doc => {
+        const link = document.createElement('a');
+        link.className = 'doc-link';
+        link.textContent = doc.name;
+        link.onclick = () => {
+          document.querySelectorAll('.doc-link').forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+          loadDoc(doc.path);
+        };
+        menu.appendChild(link);
+      });
+    }
+
+    window.onload = initDocs;
+  </script>
 </body>
 </html>
