@@ -13,10 +13,16 @@ import fs from "fs";
 dotenv.config({ path: path.join(__dirname, '../../.env.sovereign') });
 dotenv.config();
 
-const ARANGO_URL = process.env.ARANGO_URL || "http://localhost:8529";
-const ARANGO_DB = process.env.ARANGO_DB || "abraxas_db";
-const ARANGO_USER = process.env.ARANGO_USER || "root";
-const ARANGO_PASSWORD = process.env.ARANGO_PASSWORD || "";
+const ARANGO_URL = process.env.ARANGO_URL;
+const ARANGO_DB = process.env.ARANGO_DB;
+const ARANGO_USER = process.env.ARANGO_USER;
+const ARANGO_PASSWORD = process.env.ARANGO_PASSWORD;
+
+if (!ARANGO_URL || !ARANGO_DB || !ARANGO_USER) {
+  throw new Error(`CRITICAL: Missing required ArangoDB environment variables. ARANGO_URL=${ARANGO_URL}, ARANGO_DB=${ARANGO_DB}, ARANGO_USER=${ARANGO_USER}`);
+}
+
+console.error(`Connecting to ArangoDB at ${ARANGO_URL}...`);
 
 let db: Database;
 
