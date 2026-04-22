@@ -110,7 +110,7 @@ Abraxas v4 is built on five interconnected MCP (Model Context Protocol) servers,
 
 ### Core Philosophy
 - 📄 **[The Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — Declaration of Cognitive Independence, Truth-First architecture
-- 📄 **[Research Paper v2.0](research/05-research-paper-v2.0-final.md)** — Empirical validation across 6 models, 13-dimension framework
+- 📄 **[Research Paper v4.0](docs/research/research-paper-v4.md)** — Deterministic paths to truth via provenance chains and MCP orchestration
 - 📄 **[Collusion Prevention Whitepaper](research/papers/collusion-prevention-whitepaper.md)** — Multi-agent safety and verification
 
 ### Technical Documentation
@@ -355,4 +355,4 @@ Welcome to the MCP ecosystem.
 
 **📄 Read the [Sovereign Manifesto](docs/overview/sovereign-manifesto.md) to understand the philosophical foundation.**
 
-**📊 Review the [Research Paper](research/05-research-paper-v2.0-final.md) for empirical validation.**
+**📊 Review the [Research Paper v4.0](docs/research/research-paper-v4.md) for empirical validation.**
