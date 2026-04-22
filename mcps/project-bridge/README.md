@@ -4,10 +4,10 @@ Cross-project management MCP server for the Abraxas ecosystem. Provides unified 
 
 ## Features
 
-- **Cross-Project Search**: Search across abraxas, satchel, screepy, mary-jane, and other projects with grep-style queries
-- **Unified Retrospective Retrieval**: Fetch retrospectives from multiple projects in a unified format
-- **Project Mapping**: Create, manage, and query project-to-project relationships and dependencies
-- **Health Check**: Monitor server and project repository health
+- **Cross-Project Search**: Search across your project ecosystem using grep-style queries. The bridge automatically discovers projects within your workspace.
+- **Unified Retrospective Retrieval**: Fetch retrospectives from multiple projects in a unified format.
+- **Project Mapping**: Create, manage, and query project-to-project relationships and dependencies.
+- **Health Check**: Monitor server and project repository health.
 
 ## Installation
 

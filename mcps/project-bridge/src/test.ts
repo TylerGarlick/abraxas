@@ -32,7 +32,7 @@ console.log("-".repeat(40));
 
 const searchTest = async () => {
   try {
-    const result = await exec(`echo '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"cross_project_search","arguments":{"query":"README","projects":["abraxas","satchel"],"maxResults":5}}}' | bun run ${SERVER_PATH}`).text();
+    const result = await exec(`echo '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"cross_project_search","arguments":{"query":"README","maxResults":5}}}' | bun run ${SERVER_PATH}`).text();
     console.log("✅ Cross-project search passed");
     console.log(result.slice(0, 500) + "...\n");
   } catch (error) {

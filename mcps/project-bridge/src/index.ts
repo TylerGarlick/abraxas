@@ -28,21 +28,29 @@ const WORKSPACE_ROOT = "/root/.openclaw/workspace";
 const PROJECTS_DIR = join(WORKSPACE_ROOT, "projects");
 const ABRAXAS_DIR = join(WORKSPACE_ROOT, "abraxas");
 
-// Known projects to search across
-const PROJECTS = [
-  "abraxas",
-  "satchel",
-  "screepy",
-  "mary-jane",
-  "asclepius",
-  "the-red-book",
-  "maneuvers",
-  "curiosity-hour",
-  "amplify",
-  "find-guarana",
-  "outerspace",
-  "research",
-];
+let projectsCache: string[] | null = null;
+
+async function getProjects() {
+  if (projectsCache) return projectsCache;
+
+  try {
+    const entries = await readdir(PROJECTS_DIR, { withFileTypes: true });
+    const projects = entries
+      .filter(entry => entry.isDirectory())
+      .map(entry => entry.name);
+    
+    // Ensure abraxas is included
+    if (!projects.includes("abraxas")) {
+      projects.push("abraxas");
+    }
+    
+    projectsCache = projects;
+    return projects;
+  } catch (error) {
+    console.error("Error discovering projects:", error);
+    return ["abraxas"];
+  }
+}
 
 // ============================================================================
 // Tool Definitions

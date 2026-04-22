@@ -7,7 +7,7 @@ services:
     ports:
       - "8529:8529"
     environment:
-      - ARANGO_ROOT_PASSWORD=5orange5
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD:-5orange5}
     volumes:
       - arango_data:/var/lib/arangodb
     restart: always
@@ -24,8 +24,8 @@ services:
     environment:
       - ARANGO_URL=http://arangodb:8529
       - ARANGO_DB=abraxas_db
-      - ARANGO_USER=root
-      - ARANGO_PASSWORD=5orange5
+      - ARANGO_USER=${ARANGO_USER:-root}
+      - ARANGO_PASSWORD=${ARANGO_PASSWORD:-5orange5}
     restart: always
     depends_on:
       - arangodb
@@ -40,8 +40,8 @@ services:
     environment:
       - ARANGO_URL=http://arangodb:8529
       - ARANGO_DB=abraxas_db
-      - ARANGO_USER=root
-      - ARANGO_PASSWORD=5orange5
+      - ARANGO_USER=${ARANGO_USER:-root}
+      - ARANGO_PASSWORD=${ARANGO_PASSWORD:-5orange5}
     restart: always
     depends_on:
       - arangodb
