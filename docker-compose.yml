@@ -90,5 +90,38 @@ services:
     depends_on:
       - arangodb
 
+  research-engine:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-research
+    working_dir: /app/mcps/research-engine
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
+  project-bridge:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-bridge
+    working_dir: /app/mcps/project-bridge
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
+  sovereign-core:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-core
+    working_dir: /app/mcps/sovereign-core
+    volumes:
+      - .:/app
+    command: bun run src/server.ts
+    restart: always
+    depends_on:
+      - arangodb
+
 volumes:
   arango_data:
