@@ -1,7 +1,7 @@
 {
   "name": "abraxas",
   "version": "1.0.0",
-  "description": "Abraxas is the container for three AI systems — **Janus**, **Honest**, and **Abraxas Oneironautics** — packaged as Claude Code skills and supported by six specialized subagents. Each system addresses a distinct layer of the AI output problem: epistemic labeling, everyday fact-checking, and alchemical symbolic integration.",
+  "description": "Abraxas v4: The World's First Truth-First MCP Ecosystem. Replacing probabilistic AI guesswork with deterministic sovereignty. Grounding-Before-Generation. Truth is not predicted; it is proven.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
