@@ -1,0 +1,15 @@
+# 📌 Task State: {task_id}
+**Last Updated**: {timestamp}
+**Current Stage**: {stage}
+**Next Immediate Action**: {action}
+
+## 🛠️ Progress Detail
+- [x] Completed step A
+- [ ] Pending step B
+
+## ⚠️ Blockers/Nuances
+- Note any specific quirks or errors encountered here.
+
+## 🔗 References
+- Relevant files: {paths}
+- Memory keys: {keys}

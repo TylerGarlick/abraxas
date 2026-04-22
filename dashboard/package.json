@@ -1,0 +1,21 @@
+{
+  "name": "agent-monitor-dashboard",
+  "version": "1.0.0",
+  "description": "Phase 1: Real-time Agent Monitor Dashboard for OpenClaw",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "openclaw",
+    "agent",
+    "monitor",
+    "dashboard"
+  ],
+  "author": "Mary Jane",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
