@@ -47,7 +47,7 @@ fi
 
 # 3. Infrastructure Boot
 echo "🐳 Booting MCP Ecosystem via Docker Compose..."
-docker-compose up -d
+docker compose -f docker-compose.yml up -d
 
 # 4. Dependency Installation
 echo "📦 Installing MCP dependencies..."
@@ -55,21 +55,36 @@ bun install
 
 # 5. Skill Integration (Sovereign Bridge)
 echo "🛠️ Integrating Skills into the Agent Framework..."
-# Note: In a real deploy, this would symlink to the active agent's skill directory
-# We assume the agent is running from the project root or a linked directory.
 mkdir -p skills/
-# (Specific symlink logic would go here based on the agent's current path)
 
-# 6. Health Check
-echo "🩺 Running System Health Audit..."
-sleep 5 # Give containers time to start
+# 6. Sovereign Handshake
+echo "🩺 Executing Sovereign Handshake..."
+# Verify Constitution exists
+if [ ! -f constitution/genesis.md ]; then
+    echo "❌ ERROR: Genesis prompt not found at constitution/genesis.md"
+    exit 1
+fi
+
+# Verify MCP Health
+sleep 10 # Give containers time to start
 SOTER_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/health || echo "FAIL")
 JANUS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3004/health || echo "FAIL")
+MNEMO_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/health || echo "FAIL")
+DREAM_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/health || echo "FAIL")
 
-if [ "$SOTER_STATUS" == "200" ] && [ "$JANUS_STATUS" == "200" ]; then
+if [ "$SOTER_STATUS" == "200" ] && [ "$JANUS_STATUS" == "200" ] && [ "$MNEMO_STATUS" == "200" ] && [ "$DREAM_STATUS" == "200" ]; then
     echo "✅ Sovereign Brain is ONLINE and verified."
 else
-    echo "⚠️ Some MCP services are not responding. Check 'docker logs'."
+    echo "⚠️ Sovereign Core is incomplete. Some MCP services are not responding."
+    echo "Soter: $SOTER_STATUS | Janus: $JANUS_STATUS | Mnemosyne: $MNEMO_STATUS | Dream: $DREAM_STATUS"
+    echo "Check 'docker logs' for details."
 fi
 
 echo "🌟 Abraxas v4 Setup Complete. You are now Sovereign."
+echo ""
+echo "⚠️  FINAL STEP: ACTIVATE THE BRAIN"
+echo "The infrastructure is ready, but the LLM is still probabilistic."
+echo "To activate the Sovereign Brain, copy the Genesis Prompt below:"
+echo ""
+cat constitution/genesis.md
+echo ""

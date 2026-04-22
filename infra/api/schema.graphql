@@ -138,11 +138,40 @@ type GuardrailCheck {
   notes: String
 }
 
+"""
+Represents the empirical result of a single query in a benchmark run.
+"""
+type BenchmarkResult {
+  id: ID!
+  queryId: Int!
+  category: String!
+  queryText: String!
+  normalResponse: String!
+  abraxasResponse: String!
+  scores: BenchmarkScores!
+  modelId: String!
+  timestamp: String!
+}
+
+type BenchmarkScores {
+  nl: ScoreDistribution!
+  al: ScoreDistribution!
+}
+
+type ScoreDistribution {
+  known: Float!
+  inferred: Float!
+  uncertain: Float!
+  unknown: Float!
+  dream: Float!
+}
+
 type Query {
   dreamSession(id: ID!): DreamSession
   hypothesis(id: ID!): Hypothesis
   concept(id: ID!): Concept
   actionablePlans(status: GroundingStatus): [ActionablePlan!]!
+  benchmarkResults(modelId: String): [BenchmarkResult!]!
 }
 
 type Mutation {
@@ -151,6 +180,25 @@ type Mutation {
   translateHypothesisToConcept(hypothesisId: ID!, name: String!, description: String!, channelId: String!): Concept!
   archiveHypothesis(hypothesisId: ID!, isValuable: Boolean!, channelId: String!): Hypothesis
   groundConcept(conceptId: ID!, plan: ActionablePlanInput!, channelId: String!): ActionablePlan
+  uploadBenchmarkBatch(modelId: String!, results: [BenchmarkResultInput!]!, channelId: String!): Int!
+}
+
+input BenchmarkResultInput {
+  queryId: Int!
+  category: String!
+  queryText: String!
+  normalResponse: String!
+  abraxasResponse: String!
+  nl: ScoreDistributionInput!
+  al: ScoreDistributionInput!
+}
+
+input ScoreDistributionInput {
+  known: Float!
+  inferred: Float!
+  uncertain: Float!
+  unknown: Float!
+  dream: Float!
 }
 
 input HypothesisMetadataInput {
