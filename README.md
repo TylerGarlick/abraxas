@@ -125,8 +125,31 @@ Abraxas v4 is built on five interconnected MCP (Model Context Protocol) servers,
 ### Prerequisites
 
 - Node.js v22+ or Bun
-- Python 3.10+ (for legacy systems)
-- Access to Ollama cloud models or local LLM
+- Docker
+- Access to LLM via Ollama or Cloud Providers
+
+### Quick Setup
+
+The fastest way to boot the Sovereign Brain is via the provided setup script:
+
+```bash
+# Clone your fork
+git clone https://github.com/YOUR_USERNAME/abraxas.git
+cd abraxas
+
+# Make setup script executable and run it
+chmod +x setup-abraxas.sh
+./setup-abraxas.sh
+```
+
+The `setup-abraxas.sh` script will automatically:
+1. Verify dependencies (Docker, Bun).
+2. Provision your `.env.sovereign` configuration.
+3. Boot the 5-Pillar MCP Ecosystem via Docker Compose.
+4. Install all necessary dependencies.
+5. Verify the system health and connectivity.
+
+---
 
 ### MCP Directory Structure
 
@@ -155,50 +178,26 @@ abraxas/
 │       ├── package.json
 │       ├── src/
 │       └── README.md
-├── skills/                   # Legacy skill systems (v3 compat)
-├── tests/                    # Full test suite
+├── skills/                   # Operational skills for OpenClaw/OpenCode
+├── archive/                  # Legacy benchmarks and v2/v3 tests
 └── docs/                     # Documentation
 ```
 
-### Installation
+### Manual Installation (Alternative)
+
+If you prefer to manage the components manually:
 
 ```bash
-# 1. Fork the repository on GitHub to create your own Sovereign Instance
-# 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/abraxas.git
-cd abraxas
-
 # Install dependencies (all MCPs)
 bun install
 
-# Or install individual MCPs
-cd mcps/dream-reservoir && bun install
-cd ../soter-verifier && bun install
-cd ../mnemosyne-memory && bun install
-cd ../janus-orchestrator && bun install
-cd ../guardrail-monitor && bun install
-```
-
-### Running the MCP Ecosystem
-
-```bash
 # Start all MCPs via Docker Compose
 docker-compose up -d
-
-# Or run individual MCPs
-cd mcps/dream-reservoir
-bun run start
-
-# In separate terminals, start other MCPs:
-cd mcps/soter-verifier && bun run start
-cd mcps/mnemosyne-memory && bun run start
-cd mcps/janus-orchestrator && bun run start
-cd mcps/guardrail-monitor && bun run start
 ```
 
 ### Configuration
 
-Create `.env.sovereign` in the root:
+Your system configuration is managed in `.env.sovereign`. Ensure the following are set:
 
 ```bash
 # MCP Configuration
@@ -217,6 +216,7 @@ TRUTH_FIRST_MODE=true
 ALLOW_UNVERIFIED_CLAIMS=false
 AUDIT_LOG_ENABLED=true
 ```
+
 
 ---
 
