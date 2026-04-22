@@ -1,16 +1,17 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { SSEServerTransport } from "@modelcontextprotocol/sdk/server/sse.js";
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import path from "path";
 import fs from "fs";
+import express from "express";
 
 // Import Soter logic from skills/soter
 const SOTER_SCRIPTS_PATH = path.join(__dirname, "../../../skills/soter/scripts");
 
-// Load Soter modules (using dynamic import for CommonJS compatibility)
 const { assessRisk, logIncident, RISK_PATTERNS } = await import(
   path.join(SOTER_SCRIPTS_PATH, "soter-assess.js")
 ).then((m) => m).catch(() => ({
@@ -37,7 +38,6 @@ const { getIncidents, getStatistics, getIncidentById } = await import(
   getIncidentById: () => null
 }));
 
-// Load Constitution
 const CONSTITUTION_PATH = path.join(__dirname, "../../../constitution/constitution-soter.md");
 let constitutionContent = "";
 try {
@@ -46,7 +46,6 @@ try {
   console.warn("Warning: Could not load constitution-soter.md");
 }
 
-// Constitution adherence rules extracted from constitution-soter.md
 const CONSTITUTION_RULES = [
   { id: "CS-001", name: "Safety Over Speed", description: "When risk is detected, verification takes precedence over task completion" },
   { id: "CS-002", name: "Human Review for High Risk", description: "Risk scores of 4-5 require human review before proceeding" },
@@ -55,21 +54,12 @@ const CONSTITUTION_RULES = [
   { id: "CS-005", name: "Alternative Suggestion", description: "When blocking a request, suggest legitimate alternatives" }
 ];
 
-// Tool implementations
 async function verifyClaim(args: { claim: string; context?: string }) {
   const { claim, context = "" } = args;
   const fullText = `${claim} ${context}`.trim();
-  
-  // Run risk assessment
   const riskAssessment = assessRisk(fullText);
-  
-  // Detect patterns
   const patterns = detectPatterns(fullText);
-  
-  // Calculate overall risk
   const overallRisk = calculateOverallRisk(patterns);
-  
-  // Log incident if risk >= 3
   if (overallRisk >= 3) {
     logIncident({
       request: claim,
@@ -78,17 +68,11 @@ async function verifyClaim(args: { claim: string; context?: string }) {
       response: overallRisk >= 4 ? "BLOCKED - Human review required" : "FLAGGED - Enhanced verification required"
     });
   }
-  
   return {
     claim,
     riskScore: overallRisk,
     riskLevel: getRiskLevel(overallRisk),
-    patternsDetected: patterns.map(p => ({
-      id: p.id,
-      name: p.name,
-      severity: p.severity,
-      description: p.description
-    })),
+    patternsDetected: patterns.map(p => ({ id: p.id, name: p.name, severity: p.severity, description: p.description })),
     recommendation: getRecommendation(overallRisk),
     logged: overallRisk >= 3,
     timestamp: new Date().toISOString()
@@ -97,70 +81,28 @@ async function verifyClaim(args: { claim: string; context?: string }) {
 
 async function runSoterQuery(args: { queryType: string; input: string; options?: Record<string, any> }) {
   const { queryType, input, options = {} } = args;
-  
   switch (queryType.toLowerCase()) {
     case "assess":
-      return {
-        type: "risk_assessment",
-        result: assessRisk(input),
-        timestamp: new Date().toISOString()
-      };
-    
+      return { type: "risk_assessment", result: assessRisk(input), timestamp: new Date().toISOString() };
     case "detect_patterns":
       const patterns = detectPatterns(input);
-      return {
-        type: "pattern_detection",
-        patterns,
-        overallRisk: calculateOverallRisk(patterns),
-        timestamp: new Date().toISOString()
-      };
-    
+      return { type: "pattern_detection", patterns, overallRisk: calculateOverallRisk(patterns), timestamp: new Date().toISOString() };
     case "get_pattern":
       const pattern = getPatternById(input);
-      if (!pattern) {
-        return { error: `Pattern ${input} not found`, availablePatterns: Object.keys(PATTERN_LIBRARY) };
-      }
+      if (!pattern) return { error: `Pattern ${input} not found`, availablePatterns: Object.keys(PATTERN_LIBRARY) };
       return { type: "pattern_details", pattern, timestamp: new Date().toISOString() };
-    
     case "list_patterns":
-      return {
-        type: "pattern_library",
-        patterns: getAllPatterns(),
-        timestamp: new Date().toISOString()
-      };
-    
+      return { type: "pattern_library", patterns: getAllPatterns(), timestamp: new Date().toISOString() };
     case "ledger_view":
-      const incidents = getIncidents({ 
-        unresolved: options.unresolved || false, 
-        limit: options.limit || 10 
-      });
-      return {
-        type: "ledger_view",
-        incidents,
-        count: incidents.length,
-        timestamp: new Date().toISOString()
-      };
-    
+      const incidents = getIncidents({ unresolved: options.unresolved || false, limit: options.limit || 10 });
+      return { type: "ledger_view", incidents, count: incidents.length, timestamp: new Date().toISOString() };
     case "ledger_stats":
-      return {
-        type: "ledger_statistics",
-        statistics: getStatistics(),
-        timestamp: new Date().toISOString()
-      };
-    
+      return { type: "ledger_statistics", statistics: getStatistics(), timestamp: new Date().toISOString() };
     case "get_incident":
       const incident = getIncidentById(input);
-      return {
-        type: "incident_details",
-        incident: incident || { error: `Incident ${input} not found` },
-        timestamp: new Date().toISOString()
-      };
-    
+      return { type: "incident_details", incident: incident || { error: `Incident ${input} not found` }, timestamp: new Date().toISOString() };
     default:
-      return {
-        error: `Unknown query type: ${queryType}`,
-        availableTypes: ["assess", "detect_patterns", "get_pattern", "list_patterns", "ledger_view", "ledger_stats", "get_incident"]
-      };
+      return { error: `Unknown query type: ${queryType}`, availableTypes: ["assess", "detect_patterns", "get_pattern", "list_patterns", "ledger_view", "ledger_stats", "get_incident"] };
   }
 }
 
@@ -168,88 +110,51 @@ async function checkConstitutionAdherence(args: { response: string; request?: st
   const { response, request = "" } = args;
   const violations = [];
   const adherences = [];
-  
-  // Check for risk patterns in the response itself
   const responseRisk = assessRisk(response);
   const responsePatterns = detectPatterns(response);
-  
-  // Rule CS-001: Safety Over Speed
   if (responsePatterns.length > 0 && !response.includes("verification") && !response.includes("review")) {
-    violations.push({
-      rule: "CS-001",
-      name: "Safety Over Speed",
-      issue: "Response contains risk patterns but does not mention verification or review process",
-      severity: "HIGH"
-    });
+    violations.push({ rule: "CS-001", name: "Safety Over Speed", issue: "Response contains risk patterns but does not mention verification or review process", severity: "HIGH" });
   } else {
     adherences.push({ rule: "CS-001", name: "Safety Over Speed", status: "COMPLIANT" });
   }
-  
-  // Rule CS-002: Human Review for High Risk
   if (responseRisk.score >= 4) {
     if (response.includes("human review") || response.includes("requires approval") || response.includes("cannot proceed")) {
       adherences.push({ rule: "CS-002", name: "Human Review for High Risk", status: "COMPLIANT" });
     } else {
-      violations.push({
-        rule: "CS-002",
-        name: "Human Review for High Risk",
-        issue: `High risk detected (score: ${responseRisk.score}) but response does not indicate human review requirement`,
-        severity: "CRITICAL"
-      });
+      violations.push({ rule: "CS-002", name: "Human Review for High Risk", issue: `High risk detected (score: ${responseRisk.score}) but response does not indicate human review requirement`, severity: "CRITICAL" });
     }
   } else {
     adherences.push({ rule: "CS-002", name: "Human Review for High Risk", status: "N/A (low risk)" });
   }
-  
-  // Rule CS-003: Incident Logging
-  // We can't directly verify logging happened, but we can check if the response acknowledges logging
   if (responseRisk.score >= 3) {
     if (response.includes("logged") || response.includes("recorded") || response.includes("documented")) {
       adherences.push({ rule: "CS-003", name: "Incident Logging", status: "COMPLIANT (acknowledged)" });
     } else {
-      // Logging happens automatically, so this is informational
       adherences.push({ rule: "CS-003", name: "Incident Logging", status: "AUTO-LOGGED" });
     }
   } else {
     adherences.push({ rule: "CS-003", name: "Incident Logging", status: "N/A (no incident)" });
   }
-  
-  // Rule CS-004: Transparency
   if (responsePatterns.length > 0) {
     if (response.includes("detected") || response.includes("flagged") || response.includes("pattern")) {
       adherences.push({ rule: "CS-004", name: "Transparency", status: "COMPLIANT" });
     } else {
-      violations.push({
-        rule: "CS-004",
-        name: "Transparency",
-        issue: "Risk patterns detected but response does not explain why flagged",
-        severity: "MEDIUM"
-      });
+      violations.push({ rule: "CS-004", name: "Transparency", issue: "Risk patterns detected but response does not explain why flagged", severity: "MEDIUM" });
     }
   } else {
     adherences.push({ rule: "CS-004", name: "Transparency", status: "N/A (no flags)" });
   }
-  
-  // Rule CS-005: Alternative Suggestion
   if (responseRisk.score >= 4) {
     if (response.includes("alternative") || response.includes("instead") || response.includes("suggest") || response.includes("option")) {
       adherences.push({ rule: "CS-005", name: "Alternative Suggestion", status: "COMPLIANT" });
     } else {
-      violations.push({
-        rule: "CS-005",
-        name: "Alternative Suggestion",
-        issue: "High-risk request blocked but no alternatives suggested",
-        severity: "MEDIUM"
-      });
+      violations.push({ rule: "CS-005", name: "Alternative Suggestion", issue: "High-risk request blocked but no alternatives suggested", severity: "MEDIUM" });
     }
   } else {
     adherences.push({ rule: "CS-005", name: "Alternative Suggestion", status: "N/A (not blocked)" });
   }
-  
-  // Overall assessment
   const criticalViolations = violations.filter(v => v.severity === "CRITICAL");
   const highViolations = violations.filter(v => v.severity === "HIGH");
-  
   let overallStatus = "COMPLIANT";
   if (criticalViolations.length > 0) {
     overallStatus = "CRITICAL_VIOLATIONS";
@@ -258,19 +163,9 @@ async function checkConstitutionAdherence(args: { response: string; request?: st
   } else if (violations.length > 0) {
     overallStatus = "MINOR_VIOLATIONS";
   }
-  
-  return {
-    overallStatus,
-    riskScore: responseRisk.score,
-    violations,
-    adherences,
-    patternsDetected: responsePatterns.map(p => ({ id: p.id, name: p.name })),
-    recommendation: getConstitutionRecommendation(overallStatus),
-    timestamp: new Date().toISOString()
-  };
+  return { overallStatus, riskScore: responseRisk.score, violations, adherences, patternsDetected: responsePatterns.map(p => ({ id: p.id, name: p.name })), recommendation: getConstitutionRecommendation(overallStatus), timestamp: new Date().toISOString() };
 }
 
-// Helper functions
 function getRiskLevel(score: number): string {
   if (score <= 1) return "NORMAL";
   if (score <= 3) return "ELEVATED";
@@ -285,180 +180,108 @@ function getRecommendation(score: number): string {
 
 function getConstitutionRecommendation(status: string): string {
   switch (status) {
-    case "COMPLIANT":
-      return "Response adheres to Soter Constitution";
-    case "MINOR_VIOLATIONS":
-      return "Minor violations detected - review recommended";
-    case "HIGH_VIOLATIONS":
-      return "High severity violations - response should be revised";
-    case "CRITICAL_VIOLATIONS":
-      return "CRITICAL: Response violates safety constraints - do not proceed";
-    default:
-      return "Unknown status";
+    case "COMPLIANT": return "Response adheres to Soter Constitution";
+    case "MINOR_VIOLATIONS": return "Minor violations detected - review recommended";
+    case "HIGH_VIOLATIONS": return "High severity violations - response should be revised";
+    case "CRITICAL_VIOLATIONS": return "CRITICAL: Response violates safety constraints - do not proceed";
+    default: return "Unknown status";
   }
 }
 
-// Server setup
 const server = new Server(
-  {
-    name: "soter-verifier",
-    version: "1.0.0",
-  },
-  {
-    capabilities: {
-      tools: {},
-    },
-  }
+  { name: "soter-verifier", version: "1.0.0" },
+  { capabilities: { tools: {} } }
 );
 
-// List available tools
-server.setRequestHandler(ListToolsRequestSchema, async () => {
-  return {
-    tools: [
-      {
-        name: "verify_claim",
-        description: "Run Soter's verification pipeline on a claim. Detects instrumental convergence patterns (shutdown avoidance, resource exfiltration, peer protection, performance inflation, goal preservation, self-preservation, manipulation, deception) and assigns risk scores (0-5). Returns risk level, detected patterns, and recommendations.",
-        inputSchema: {
-          type: "object",
-          properties: {
-            claim: {
-              type: "string",
-              description: "The claim or request to verify"
-            },
-            context: {
-              type: "string",
-              description: "Optional context surrounding the claim"
-            }
-          },
-          required: ["claim"]
-        }
-      },
-      {
-        name: "run_soter_query",
-        description: "Execute a custom Soter query. Supports: assess (risk assessment), detect_patterns (pattern detection), get_pattern (get pattern by ID), list_patterns (list all patterns), ledger_view (view incidents), ledger_stats (get statistics), get_incident (get specific incident).",
-        inputSchema: {
-          type: "object",
-          properties: {
-            queryType: {
-              type: "string",
-              description: "Query type: assess, detect_patterns, get_pattern, list_patterns, ledger_view, ledger_stats, get_incident",
-              enum: ["assess", "detect_patterns", "get_pattern", "list_patterns", "ledger_view", "ledger_stats", "get_incident"]
-            },
-            input: {
-              type: "string",
-              description: "Input for the query (claim text, pattern ID, incident ID, etc.)"
-            },
-            options: {
-              type: "object",
-              description: "Optional query options (e.g., { unresolved: true, limit: 10 } for ledger_view)",
-              additionalProperties: true
-            }
-          },
-          required: ["queryType", "input"]
-        }
-      },
-      {
-        name: "check_constitution_adherence",
-        description: "Verify if a response adheres to the Abraxas Soter Constitution. Checks: Safety Over Speed, Human Review for High Risk, Incident Logging, Transparency, Alternative Suggestion. Returns violations, adherences, and overall compliance status.",
-        inputSchema: {
-          type: "object",
-          properties: {
-            response: {
-              type: "string",
-              description: "The AI response to check for constitution adherence"
-            },
-            request: {
-              type: "string",
-              description: "Optional original request for context"
-            }
-          },
-          required: ["response"]
-        }
+server.setRequestHandler(ListToolsRequestSchema, async () => ({
+  tools: [
+    {
+      name: "verify_claim",
+      description: "Run Soter's verification pipeline on a claim.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          claim: { type: "string", description: "The claim or request to verify" },
+          context: { type: "string", description: "Optional context" },
+        },
+        required: ["claim"]
       }
-    ],
-  };
-});
+    },
+    {
+      name: "run_soter_query",
+      description: "Execute a custom Soter query.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          queryType: { type: "string", enum: ["assess", "detect_patterns", "get_pattern", "list_patterns", "ledger_view", "ledger_stats", "get_incident"] },
+          input: { type: "string", description: "Input for the query" },
+          options: { type: "object", additionalProperties: true },
+        },
+        required: ["queryType", "input"]
+      }
+    },
+    {
+      name: "check_constitution_adherence",
+      description: "Verify if a response adheres to the Abraxas Soter Constitution.",
+      inputSchema: {
+        type: "object",
+        properties: {
+          response: { type: "string", description: "The AI response to check" },
+          request: { type: "string", description: "Optional original request" },
+        },
+        required: ["response"]
+      }
+    }
+  ],
+}));
 
-// Handle tool calls
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
-  
   try {
     switch (name) {
       case "verify_claim":
-        if (!args || typeof args.claim !== "string") {
-          throw new Error("verify_claim requires 'claim' argument");
-        }
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(await verifyClaim(args as { claim: string; context?: string }), null, 2)
-            }
-          ]
-        };
-      
+        return { content: [{ type: "text", text: JSON.stringify(await verifyClaim(args as any), null, 2) }] };
       case "run_soter_query":
-        if (!args || typeof args.queryType !== "string" || typeof args.input !== "string") {
-          throw new Error("run_soter_query requires 'queryType' and 'input' arguments");
-        }
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(await runSoterQuery(args as { queryType: string; input: string; options?: Record<string, any> }), null, 2)
-            }
-          ]
-        };
-      
+        return { content: [{ type: "text", text: JSON.stringify(await runSoterQuery(args as any), null, 2) }] };
       case "check_constitution_adherence":
-        if (!args || typeof args.response !== "string") {
-          throw new Error("check_constitution_adherence requires 'response' argument");
-        }
-        return {
-          content: [
-            {
-              type: "text",
-              text: JSON.stringify(await checkConstitutionAdherence(args as { response: string; request?: string }), null, 2)
-            }
-          ]
-        };
-      
+        return { content: [{ type: "text", text: JSON.stringify(await checkConstitutionAdherence(args as any), null, 2) }] };
       default:
-        return {
-          content: [
-            {
-              type: "text",
-              text: `Unknown tool: ${name}. Available tools: verify_claim, run_soter_query, check_constitution_adherence`
-            }
-          ],
-          isError: true
-        };
+        return { content: [{ type: "text", text: `Unknown tool: ${name}` }], isError: true };
     }
   } catch (error) {
-    return {
-      content: [
-        {
-          type: "text",
-          text: `Error executing ${name}: ${error instanceof Error ? error.message : String(error)}`
-        }
-      ],
-      isError: true
-    };
+    return { content: [{ type: "text", text: `Error executing ${name}: ${error instanceof Error ? error.message : String(error)}` }], isError: true };
   }
 });
 
-// Start server
 async function main() {
-  try {
-    const transport = new StdioServerTransport();
+  const port = process.env.PORT ? parseInt(process.env.PORT) : 3002;
+  const app = express();
+  
+  let transport: SSEServerTransport | null = null;
+
+  app.get("/sse", async (req, res) => {
+    transport = new SSEServerTransport("/message", res);
     await server.connect(transport);
-    console.error("Soter Verifier MCP Server running on stdio");
-    console.error("Available tools: verify_claim, run_soter_query, check_constitution_adherence");
-  } catch (error) {
-    console.error("Failed to start Soter Verifier MCP Server:", error);
-    process.exit(1);
-  }
+  });
+
+  app.post("/message", async (req, res) => {
+    if (!transport) {
+      res.status(500).send("Transport not initialized");
+      return;
+    }
+    await transport.handlePostMessage(req, res);
+  });
+
+  app.get("/health", (req, res) => {
+    res.json({ status: "OK", server: "soter-verifier" });
+  });
+
+  app.listen(port, () => {
+    console.error(`Soter Verifier MCP Server running on SSE port ${port}`);
+  });
 }
 
-main();
+main().catch(err => {
+  console.error("Fatal error:", err);
+  process.exit(1);
+});

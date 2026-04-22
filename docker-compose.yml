@@ -37,7 +37,10 @@ services:
     volumes:
       - .:/app
     command: bun run src/server.ts
+    ports:
+      - "3001:3001"
     environment:
+      - PORT=3001
       - ARANGO_URL=http://arangodb:8529
       - ARANGO_DB=abraxas_db
       - ARANGO_USER=${ARANGO_USER:-root}
@@ -53,6 +56,10 @@ services:
     volumes:
       - .:/app
     command: bun run src/server.ts
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
     restart: always
     depends_on:
       - arangodb
@@ -64,6 +71,10 @@ services:
     volumes:
       - .:/app
     command: bun run src/server.ts
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
     restart: always
     depends_on:
       - arangodb
@@ -75,6 +86,10 @@ services:
     volumes:
       - .:/app
     command: bun run src/server.ts
+    ports:
+      - "3004:3004"
+    environment:
+      - PORT=3004
     restart: always
     depends_on:
       - arangodb
@@ -86,6 +101,10 @@ services:
     volumes:
       - .:/app
     command: bun run src/server.ts
+    ports:
+      - "3005:3005"
+    environment:
+      - PORT=3005
     restart: always
     depends_on:
       - arangodb

@@ -3,7 +3,7 @@
  * Project Bridge MCP Server
  * 
  * Provides unified cross-project management tools:
- * - Cross-project search: Search across abraxas, satchel, screepy, and other projects
+ * - Cross-project search: Search across multiple projects in the workspace
  * - Unified retrospective retrieval: Fetch retros from different projects
  * - Project-to-Project mapping: Track relationships between projects
  * - Health check: Server health monitoring
