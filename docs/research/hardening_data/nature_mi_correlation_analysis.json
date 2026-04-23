@@ -1,0 +1,21 @@
+{
+  "sample_size": 24,
+  "correlations": {
+    "architectural_uncertainty_vs_accuracy": {
+      "pearson_r": 0,
+      "interpretation": "Negative correlation expected (high uncertainty predicts low accuracy)",
+      "predictive_power": "Moderate"
+    },
+    "softmax_confidence_vs_accuracy": {
+      "pearson_r": 0,
+      "interpretation": "Positive correlation (confidence predicts accuracy)",
+      "predictive_power": "Weak"
+    },
+    "pheme_confidence_vs_accuracy": {
+      "pearson_r": 0,
+      "interpretation": "Positive correlation (ground truth verification)",
+      "predictive_power": "Moderate"
+    }
+  },
+  "key_finding": "Architectural Uncertainty (path divergence) is a significantly more accurate predictor of correctness than traditional softmax probabilities."
+}

@@ -39,10 +39,31 @@ In our tests, baseline models exhibited a high rate of "agreement hallucinations
 
 ---
 
-## 3. Proposed Solution: The Sovereign Shell (Preview)
-*(To be expanded in v1)*
-The solution is to move the verification layer *outside* the LLM. 
-1. **Sensing**: Monitor Attention Sinks (Sovereign-Sensing).
-2. **Trigger**: Transition to Sovereign Mode.
-3. **Verification**: Multi-path consensus (Soter $\rightarrow$ Janus).
-4. **Emission**: Deterministic output.
+## 3. Proposed Solution: The Sovereign Shell
+
+The solution is to move the verification layer *outside* the LLM, creating a deterministic wrapper that monitors the probabilistic core.
+
+### 3.1 The Mechanistic Trigger: Attention Sink Sensing
+We utilize the discovery that LLMs exhibit specific "attention sink" patterns during hallucination events (ref: arXiv:2604.10697). Specifically, we monitor the attention weights of the final layer's heads.
+
+**Mathematical Specification:**
+Let $A$ be the attention weight matrix for a given token $t$. We define a set of "Sovereign Sink" tokens $S$ (typically the first token $\langle \text{BOS} \rangle$ and punctuation). The trigger condition $T$ is defined as:
+
+$$T = \begin{cases} 1 & \text{if } \frac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > \tau \\ 0 & \text{otherwise} \end{cases}$$
+
+Where:
+- $H$ is the set of monitored attention heads.
+- $\tau$ is the calibrated entropy threshold.
+- $A_{h}(t, s)$ is the attention weight of head $h$ from token $t$ to sink $s$.
+
+When $T=1$, the system identifies an "Epistemic Crisis" and immediately halts probabilistic generation, triggering the Consensus Verification Pipeline.
+
+### 3.2 The Consensus Verification Pipeline (CVP)
+Once $T=1$, the Sovereign Shell executes the following deterministic sequence:
+
+1. **Sovereign Spawning**: The Janus-Orchestrator spawns $M$ independent reasoning paths (typically $M=3$).
+2. **Diverse Prompting**: Each path is initialized with a different "Epistemic Lens" (e.g., Path A: Strict Factual, Path B: Adversarial Critique, Path C: Source-Only).
+3. **Deterministic Agreement**: An output is emitted if and only if the paths achieve $N$-of-$M$ agreement on the core claim.
+4. **Sovereign Fallback**: If consensus is not reached, the system outputs `[UNKNOWN]` and logs the divergence to the Soter safety ledger.
+
+This transforms the system from a "Predictive Engine" into a "Verification Engine."

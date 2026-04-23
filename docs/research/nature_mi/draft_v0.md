@@ -34,9 +34,80 @@ The difference is not the *data* (both have access to the same papers), but the 
 
 ---
 
-## 3. The Architecture of Calibrated Uncertainty (Preview)
-*(To be expanded in v1)*
-We propose a three-tier calibration stack:
-1. **Path Divergence Sensing**: Measuring the variance between $N$ independent reasoning chains.
-2. **Sovereign Weighting**: Using the `Soter` risk-score to penalize "over-confident" paths in high-risk domains.
-3. **RLCR Alignment**: Training the final confidence output using the MIT-developed RLCR method to ensure that a confidence score of 0.8 actually corresponds to an 80% probability of correctness.
+## 3. The Architecture of Calibrated Uncertainty
+
+We propose a three-tier calibration stack that transforms confidence from a "hallucinated" token-level signal into an architecturally-grounded measure of epistemic certainty.
+
+### 3.1 Path Divergence Sensing
+
+Given $N$ independent reasoning paths $\{p_1, \dots, p_N\}$, each producing an answer $A(p_i)$ and raw confidence $C(p_i)$, we define the **answer distribution**:
+
+$$P_{\text{paths}}(a) = \frac{1}{N} \sum_{i=1}^{N} \mathbb{I}(A(p_i) = a)$$
+
+The **Internal State Entropy** quantifies path divergence:
+
+$$H_{\text{internal}} = -\sum_{a \in \mathcal{A}} P_{\text{paths}}(a) \log_2 P_{\text{paths}}(a)$$
+
+**Properties:**
+- $H_{\text{internal}} = 0$: All paths agree (zero uncertainty)
+- $H_{\text{internal}} = \log_2 N$: All paths diverge (maximum uncertainty)
+
+Independence is approximated via different model architectures (`qwen3.5:cloud`, `gemma3:27b-cloud`, `minimax-m2.7:cloud`), prompting strategies (direct, chain-of-thought, adversarial), and temperature settings ($T \in \{0.3, 0.7, 1.0\}$).
+
+### 3.2 Sovereign Weighting
+
+Not all reasoning paths contribute equally to epistemic certainty. Paths exhibiting instrumental convergence patterns (shutdown avoidance, resource exfiltration, peer protection, performance inflation, goal preservation) receive elevated Soter risk-scores $R(p_i) \in [0, 5]$.
+
+**Definition (Sovereign Weight):** The weight for path $p_i$ is:
+
+$$w_i = \frac{\exp(-\lambda \cdot R(p_i))}{\sum_{j=1}^{N} \exp(-\lambda \cdot R(p_j))}$$
+
+Where $\lambda = 0.5$ is the risk sensitivity parameter (empirically calibrated; see Supplementary Material).
+
+**Corollary (Risk-Sensitive Uncertainty):** High-risk paths contributing to divergence are downweighted, reducing entropy:
+
+$$H_{\text{weighted}} = -\sum_{a \in \mathcal{A}} \left(\sum_{i: A(p_i)=a} w_i\right) \log_2 \left(\sum_{i: A(p_i)=a} w_i\right) \leq H_{\text{internal}}$$
+
+The **Weighted Consensus Answer** is:
+
+$$A^* = \arg\max_{a \in \mathcal{A}} \sum_{i: A(p_i) = a} w_i$$
+
+And **Architectural Confidence** in the consensus:
+
+$$C_{\text{arch}} = \sum_{i: A(p_i) = A^*} w_i$$
+
+### 3.3 RLCR Integration
+
+Architectural signals alone are insufficient—they must be aligned with empirical accuracy. The **RLCR (Reinforcement Learning with Calibrated Responses)** signal $\gamma_{\text{RLCR}} \in [0, 1]$ is the exponentially-weighted historical accuracy:
+
+$$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ correct}) \cdot e^{-\beta(t - \tau)}}{\sum_{\tau=1}^{t} e^{-\beta(t - \tau)}}$$
+
+Where $\beta = 0.1$ controls recency weighting.
+
+**Final Confidence** combines architectural and empirical signals:
+
+$$C_{\text{final}} = \alpha \cdot C_{\text{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
+
+Where $\alpha = 0.7$ (derived from covariance optimization; see Supplementary Material).
+
+**Adaptive Risk Sensitivity:** The risk parameter $\lambda$ is tuned by RLCR to maintain calibration:
+
+$$\lambda(t) = \lambda_0 \cdot \left(1 + \eta \cdot (1 - \gamma_{\text{RLCR}}(t))\right)$$
+
+When accuracy drops ($\gamma_{\text{RLCR}} \to 0$), risk aversion increases ($\lambda \to 2\lambda_0$), discounting high-risk paths more aggressively.
+
+### 3.4 Epistemic Label Assignment
+
+The final confidence maps to human-interpretable epistemic labels:
+
+$$
+\text{Label} = 
+\begin{cases}
+\text{[KNOWN]} & C_{\text{final}} \geq 0.95 \\
+\text{[INFERRED]} & 0.70 \leq C_{\text{final}} < 0.95 \\
+\text{[UNCERTAIN]} & 0.40 \leq C_{\text{final}} < 0.70 \\
+\text{[UNKNOWN]} & C_{\text{final}} < 0.40
+\end{cases}
+$$
+
+**Key Innovation:** `[UNKNOWN]` is a *complete* response—not a failure mode. The system is architecturally constrained to prefer calibrated ignorance over confident fabrication.

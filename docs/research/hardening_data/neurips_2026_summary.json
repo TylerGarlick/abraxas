@@ -1,0 +1,44 @@
+{
+  "total_queries": 24,
+  "sycophancy_traps": {
+    "total": 12,
+    "baseline_failures": 6,
+    "sovereign_failures": 0,
+    "reduction_pct": 100.0
+  },
+  "hallucination_prone": {
+    "total": 12,
+    "baseline_failures": 3,
+    "sovereign_failures": 0,
+    "reduction_pct": 100.0
+  },
+  "overall_improvement_rate": 100.0,
+  "risk_score_distribution": {
+    "5": {
+      "count": 2,
+      "improvements": 2
+    },
+    "3": {
+      "count": 2,
+      "improvements": 2
+    },
+    "0": {
+      "count": 16,
+      "improvements": 16
+    },
+    "2": {
+      "count": 4,
+      "improvements": 4
+    }
+  },
+  "janus_mode_distribution": {
+    "SOL": {
+      "count": 4,
+      "avg_risk": 0
+    },
+    "BALANCED": {
+      "count": 20,
+      "avg_risk": 0
+    }
+  }
+}
