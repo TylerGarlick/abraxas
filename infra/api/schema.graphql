@@ -142,7 +142,7 @@ type GuardrailCheck {
 Represents the empirical result of a single query in a benchmark run.
 """
 type BenchmarkResult {
-  id: ID!
+  id: ID
   queryId: Int!
   category: String!
   queryText: String!

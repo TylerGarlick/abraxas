@@ -18,7 +18,8 @@ const DOCUMENT_COLLECTIONS = [
   'dream_sessions',
   'hypotheses',
   'concepts',
-  'actionable_plans'
+  'actionable_plans',
+  'benchmark_results'
 ];
 
 // Edge Collections

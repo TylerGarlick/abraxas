@@ -8,12 +8,12 @@ dotenv.config({ path: path.join(__dirname, '../../.env.sovereign') });
 
 // --- Database Configuration ---
 const db = new Database({
-  url: 'http://localhost:8529',
-  databaseName: 'abraxas_db',
+  url: process.env.ARANGO_URL || 'http://arangodb:8529',
+  databaseName: process.env.ARANGO_DB || 'abraxas_db',
   auth: {
     type: 'basic',
-    username: 'root',
-    password: '5orange5'
+    username: process.env.ARANGO_USER || 'root',
+    password: process.env.ARANGO_PASSWORD || '5orange5'
   }
 });
 
@@ -26,11 +26,17 @@ function loadSovereignChannels(): Set<string> {
   
   // Fallback to config file
   try {
-    const configPath = path.join(__dirname, '../../config/sovereign-channels.json');
+    const configPath = path.join(__dirname, '../../../config/sovereign-channels.json');
+    if (!fs.existsSync(configPath)) {
+      console.warn(`Warning: Sovereign config file not found at ${configPath}`);
+      return new Set();
+    }
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    return new Set(config.sovereignChannels || []);
-  } catch (e) {
-    console.warn('Warning: Could not load sovereign channels config, defaulting to empty whitelist');
+    const channels = config.sovereignChannels || [];
+    console.log(`✅ Loaded ${channels.length} sovereign channels from config`);
+    return new Set(channels);
+  } catch (e: any) {
+    console.error(`❌ Error loading sovereign channels config: ${e.message}`);
     return new Set();
   }
 }
@@ -52,16 +58,16 @@ async function ensureDb() {
   try {
     // We must use the system database to create a new user database
     const sysDb = new Database({
-      url: 'http://localhost:8529',
+      url: process.env.ARANGO_URL || 'http://arangodb:8529',
       databaseName: '_system',
       auth: {
         type: 'basic',
-        username: 'root',
-        password: '5orange5'
+        username: process.env.ARANGO_USER || 'root',
+        password: process.env.ARANGO_PASSWORD || '5orange5'
       }
     });
     
-    await sysDb.createDatabase('abraxas_db');
+    await sysDb.createDatabase(process.env.ARANGO_DB || 'abraxas_db');
     console.log('Database abraxas_db created.');
   } catch (e: any) {
     if (e.errorCode === 1201) {
@@ -98,6 +104,13 @@ const resolvers = {
       const cursor = await db.query(query);
       return await cursor.all();
     },
+    benchmarkResults: async (_: any, { modelId }: { modelId?: string }) => {
+      const query = modelId 
+        ? aql`for r in benchmark_results filter r.modelId == ${modelId} return r`
+        : aql`for r in benchmark_results return r`;
+      const cursor = await db.query(query);
+      return await cursor.all();
+    },
   },
   Mutation: {
     startDreamCycle: async (_: any, { prompt, seedConcepts, channelId }: { prompt: string, seedConcepts: string[], channelId: string }) => {
@@ -112,6 +125,33 @@ const resolvers = {
       };
       const result = await sessionColl.save(session);
       return { _id: result._id, _key: result._key, ...session };
+    },
+    uploadBenchmarkBatch: async (_: any, { modelId, results, channelId }: { modelId: string, results: any[], channelId: string }) => {
+      validateSovereignChannel(channelId);
+      
+      const coll = db.collection('benchmark_results');
+      let count = 0;
+      
+      for (const res of results) {
+        const doc = {
+          queryId: res.queryId,
+          category: res.category,
+          queryText: res.queryText,
+          normalResponse: res.normalResponse,
+          abraxasResponse: res.abraxasResponse,
+          scores: {
+            nl: res.nl,
+            al: res.al
+          },
+          modelId,
+          channelId,
+          timestamp: new Date().toISOString()
+        };
+        await coll.save(doc);
+        count++;
+      }
+      
+      return count;
     },
     createHypothesis: async (_: any, { 
       sessionId, 
