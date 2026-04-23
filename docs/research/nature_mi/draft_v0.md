@@ -56,9 +56,9 @@ Where $\lambda = 0.5$ is the risk sensitivity parameter. This ensures that paths
 ### 2.3 RLCR Calibration
 To align architectural signals with empirical accuracy, we integrate a Reinforcement Learning with Calibrated Responses (RLCR) signal $\gamma_{\text{RLCR}}$:
 
-$$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ correct}) \cdot K(t - \tau)}{\sum_{\tau=1}^{t} K(t - \tau)}$$
+$$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ correct}) \cdot \exp(-\beta \cdot (t - \tau))}{\sum_{\tau=1}^{t} \exp(-\beta \cdot (t - \tau))}$$
 
-Where $K(t-\tau)$ is a decay kernel (default $\beta = 0.1$). The **Final Confidence** integrates structural and historical signals:
+Where $\beta = 0.1$ is the exponential decay rate. The **Final Confidence** integrates structural and historical signals:
 
 $$\text{Final\_Confidence} = \alpha \cdot C_{\text{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
 

@@ -126,8 +126,9 @@ If we expect a "True" answer to have all paths agreeing, but we see them splitti
 
 **Definition 6 (RLCR Calibration Signal):** $\gamma_{\text{RLCR}}$ is a "track record" score. It looks at the system's historical accuracy to see if it has been reliable lately.
 
-$$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ correct}) \cdot K(t - \tau)}{\sum_{\tau=1}^{t} K(t - \tau)}$$
+$$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ correct}) \cdot \exp(-\beta \cdot (t - \tau))}{\sum_{\tau=1}^{t} \exp(-\beta \cdot (t - \tau))}$$
 
+- $K(t-\tau) = \exp(-\beta \cdot (t - \tau))$ is the exponential decay kernel (default $\beta = 0.1$)
 - If the system has been 100% correct over the last 10 queries, $\gamma_{\text{RLCR}} \approx 1$.
 - If it has been failing, $\gamma_{\text{RLCR}} \approx 0$.
 
@@ -181,7 +182,7 @@ We find the best balance $\alpha$ by minimizing the "Brier Score" (the squared d
 |-----------|--------|---------|-----------------------|
 | Risk sensitivity | $\lambda$ | 0.5 | How much we punish a "risky" path. |
 | Balance | $\alpha$ | 0.7 | Structural vs. Historical confidence mix. |
-| Decay rate | $\beta$ | 0.1 | How fast we forget old accuracy data. |
+| Decay rate | $\beta$ | 0.1 | How fast we forget old accuracy data (exponential kernel). |
 | Adaptation | $\eta$ | 1.0 | How quickly we increase risk-aversion when failing. |
 
 ---

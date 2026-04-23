@@ -33,10 +33,10 @@ Standard Large Language Models (LLMs) are probabilistic. They predict the most l
 | $H$ | Monitored Heads | $\{h_1, \dots, h_k\}$ | The specific "sensors" we watch |
 | $S$ | Sovereign Sink Set | $\{\text{tokens}\}$ | The "anchor" tokens |
 | $t$ | Current Token | $\mathbb{N}$ | The word currently being generated |
-| $\tau$ | Calibrated Threshold | $\mathbb{R}^+$ | The "tripwire" value |
+| $\tau$ | Calibrated Threshold | $\mathbb{R}^+$ | The "tripwire" value (default: 0.15) |
 | $T$ | Trigger Condition | $\{0, 1\}$ | Binary switch: 0 (Safe) or 1 (Crisis) |
-| $M$ | Total Paths | $\mathbb{N}^+$ | How many independent AI paths we spawn |
-| $N$ | Agreement Threshold | $\mathbb{N}^+$ | How many paths must agree to be "True" |
+| $M$ | Total Paths | $\mathbb{N}^+$ | How many independent AI paths we spawn (default: 5) |
+| $N$ | Agreement Threshold | $\mathbb{N}^+$ | How many paths must agree to be "True" (default: 3) |
 
 ---
 
@@ -80,6 +80,8 @@ $$\text{count}(\{p_i : A(p_i) = C\}) \geq N$$
 
 **Proposition 1 (Hallucination Elimination):**
 Since the $M$ paths are architecturally independent and use diverse lenses, the probability of $N$ paths independently generating the *same* hallucination is exponentially lower than the probability of a single probabilistic path doing so.
+
+**Default Configuration:** In our experiments, we use $M=5$ total paths with an agreement threshold of $N=3$ (majority consensus).
 
 ---
 
