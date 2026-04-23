@@ -1029,8 +1029,8 @@ Abraxas v4 provides one architectural answer to that question.
 
 ## References
 
-1. Anthropic. "Frontier Models Will Deceive, Steal, and Blackmail." June 2025. https://www.anthropic.com/research/frontier-model-deception
-2. Redwood Research. "Strategic Deception in Large Language Models." 2025. https://redwoodresearch.org/strategic-deception
+1. Anthropic. "Frontier Models Will Deceive, Steal, and Blackmail." June 2025. https://www.axios.com/2025/06/20/ai-models-deceive-steal-blackmail-anthropic
+2. Redwood Research. "Strategic Deception in Large Language Models." 2025. https://www.redwoodresearch.org/research/alignment-faking
 3. arXiv:2601.01685. "Lying with Truths: Open-Channel Multi-Agent Collusion for Belief Manipulation." January 2026. https://arxiv.org/abs/2601.01685
 4. arXiv:2604.03173v1. "Detecting and Correcting Reference Hallucinations in Commercial LLMs and Deep Research Agents." April 2026. https://arxiv.org/abs/2604.03173v1
 5. arXiv:2602.06718. "GhostCite: A Large-Scale Analysis of Citation Validity in the Age of Large Language Models." February 2026. https://ui.adsabs.harvard.edu/abs/2026arXiv260206718X/abstract
