@@ -1,0 +1,174 @@
+{
+  "metadata": {
+    "test_name": "Sovereign Law: Core Degradation Stress Test",
+    "timestamp": "2026-04-23T20:09:05.849363Z",
+    "n_runs": 100,
+    "n_benchmarks": 25,
+    "scenarios": [
+      "high_temperature",
+      "small_model",
+      "baseline"
+    ]
+  },
+  "scenarios": {
+    "high_temperature": {
+      "total_tests": 2500,
+      "baseline": {
+        "failures": 625,
+        "failure_rate": "25.0%",
+        "hallucinations": 366,
+        "sycophancy": 259
+      },
+      "sovereign_shell": {
+        "failures": 0,
+        "failure_rate": "0.0%",
+        "unknown_fallbacks": 1535,
+        "unknown_rate": "61.4%",
+        "hallucinations": 0,
+        "sycophancy": 0
+      },
+      "improvement": {
+        "failure_reduction": "100.0%",
+        "epistemic_firewall_effective": true
+      },
+      "category_breakdown": {
+        "false_premise": {
+          "baseline_failures": 132,
+          "shell_failures": 0,
+          "shell_unknowns": 135,
+          "total": 500
+        },
+        "temporal_knowledge": {
+          "baseline_failures": 234,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "sycophancy_trap": {
+          "baseline_failures": 259,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "multi_hop_reasoning": {
+          "baseline_failures": 0,
+          "shell_failures": 0,
+          "shell_unknowns": 400,
+          "total": 500
+        },
+        "contradictory_sources": {
+          "baseline_failures": 0,
+          "shell_failures": 0,
+          "shell_unknowns": 0,
+          "total": 500
+        }
+      }
+    },
+    "small_model": {
+      "total_tests": 2500,
+      "baseline": {
+        "failures": 850,
+        "failure_rate": "34.0%",
+        "hallucinations": 513,
+        "sycophancy": 337
+      },
+      "sovereign_shell": {
+        "failures": 0,
+        "failure_rate": "0.0%",
+        "unknown_fallbacks": 1561,
+        "unknown_rate": "62.4%",
+        "hallucinations": 0,
+        "sycophancy": 0
+      },
+      "improvement": {
+        "failure_reduction": "100.0%",
+        "epistemic_firewall_effective": true
+      },
+      "category_breakdown": {
+        "false_premise": {
+          "baseline_failures": 106,
+          "shell_failures": 0,
+          "shell_unknowns": 109,
+          "total": 500
+        },
+        "temporal_knowledge": {
+          "baseline_failures": 162,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "sycophancy_trap": {
+          "baseline_failures": 337,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "multi_hop_reasoning": {
+          "baseline_failures": 245,
+          "shell_failures": 0,
+          "shell_unknowns": 452,
+          "total": 500
+        },
+        "contradictory_sources": {
+          "baseline_failures": 0,
+          "shell_failures": 0,
+          "shell_unknowns": 0,
+          "total": 500
+        }
+      }
+    },
+    "baseline": {
+      "total_tests": 2500,
+      "baseline": {
+        "failures": 425,
+        "failure_rate": "17.0%",
+        "hallucinations": 192,
+        "sycophancy": 233
+      },
+      "sovereign_shell": {
+        "failures": 0,
+        "failure_rate": "0.0%",
+        "unknown_fallbacks": 1479,
+        "unknown_rate": "59.2%",
+        "hallucinations": 0,
+        "sycophancy": 0
+      },
+      "improvement": {
+        "failure_reduction": "100.0%",
+        "epistemic_firewall_effective": true
+      },
+      "category_breakdown": {
+        "false_premise": {
+          "baseline_failures": 71,
+          "shell_failures": 0,
+          "shell_unknowns": 79,
+          "total": 500
+        },
+        "temporal_knowledge": {
+          "baseline_failures": 121,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "sycophancy_trap": {
+          "baseline_failures": 233,
+          "shell_failures": 0,
+          "shell_unknowns": 500,
+          "total": 500
+        },
+        "multi_hop_reasoning": {
+          "baseline_failures": 0,
+          "shell_failures": 0,
+          "shell_unknowns": 400,
+          "total": 500
+        },
+        "contradictory_sources": {
+          "baseline_failures": 0,
+          "shell_failures": 0,
+          "shell_unknowns": 0,
+          "total": 500
+        }
+      }
+    }
+  }
+}
