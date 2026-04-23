@@ -102,8 +102,8 @@ def save_journal_entry(
     # Auto-commit and push if enabled
     if auto_commit:
         try:
-            subprocess.run(['git', 'config', 'user.email', 'sovereign-brain@abraxas.ai'], cwd=REPO_DIR, check=True, capture_output=True)
-            subprocess.run(['git', 'config', 'user.name', 'Sovereign Brain'], cwd=REPO_DIR, check=True, capture_output=True)
+            subprocess.run(['git', 'config', 'user.email', 'tyler@tylergarlick.com'], cwd=REPO_DIR, check=True, capture_output=True)
+            subprocess.run(['git', 'config', 'user.name', 'Tyler Garlick'], cwd=REPO_DIR, check=True, capture_output=True)
             subprocess.run(['git', 'add', str(filename)], cwd=REPO_DIR, check=True, capture_output=True)
             commit_msg = f"Add journal entry: {title} ({date})"
             subprocess.run(['git', 'commit', '-m', commit_msg], cwd=REPO_DIR, check=True, capture_output=True)

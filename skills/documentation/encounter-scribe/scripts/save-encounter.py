@@ -101,8 +101,8 @@ session_frame: {frame}
     if auto_commit:
         try:
             repo_dir = Path("/root/.openclaw/workspace/projects/the-red-book")
-            subprocess.run(['git', 'config', 'user.email', 'sovereign-brain@abraxas.ai'], cwd=repo_dir, check=True, capture_output=True)
-            subprocess.run(['git', 'config', 'user.name', 'Sovereign Brain'], cwd=repo_dir, check=True, capture_output=True)
+            subprocess.run(['git', 'config', 'user.email', 'tyler@tylergarlick.com'], cwd=repo_dir, check=True, capture_output=True)
+            subprocess.run(['git', 'config', 'user.name', 'Tyler Garlick'], cwd=repo_dir, check=True, capture_output=True)
             subprocess.run(['git', 'add', str(filename)], cwd=repo_dir, check=True, capture_output=True)
             commit_msg = f"Add encounter: {participants} ({now.strftime('%Y-%m-%d')})"
             subprocess.run(['git', 'commit', '-m', commit_msg], cwd=repo_dir, check=True, capture_output=True)
