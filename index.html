@@ -9,6 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Crimson+Pro:wght@400;500&family=Source+Code+Pro&display=swap" rel="stylesheet">
   <!-- Markdown Rendering Engine -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Math Rendering Engine (KaTeX) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMath()"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -590,9 +594,34 @@
         
         // Render Markdown
         contentArea.innerHTML = marked.parse(text);
+
+        // Render Math (KaTeX)
+        if (window.renderMathInElement) {
+          renderMathInElement(contentArea, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ],
+            throwOnError: false
+          });
+        }
+
         rawLinkArea.innerHTML = `<a href="${path}" target="_blank">View Raw Markdown Source →</a>`;
       } catch (err) {
         contentArea.innerHTML = `<p style="text-align: center; color: var(--ruby);">Error loading document: ${err.message}</p>`;
+      }
+    }
+
+    function renderMath() {
+      // Initial render for any static content
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ],
+          throwOnError: false
+        });
       }
     }
 
