@@ -2,8 +2,7 @@
 
 ### 4.1 Full-Scale Benchmark Results
 
-We evaluated the Sovereign Shell architecture on the complete Soter-Caldar benchmark 
-suite comprising 1,000+ instances across multiple epistemic failure modes.
+We evaluated the Sovereign Shell architecture on the Soter-Caldar benchmark suite comprising 24 instances across epistemic failure modes (12 sycophancy traps, 12 hallucination-prone queries).
 
 **Table 1: Hallucination and Sycophancy Reduction**
 
@@ -21,12 +20,12 @@ The Soter module's risk scoring effectively stratified queries by epistemic dang
 
 | Risk Score | Queries | Improvements | Improvement Rate |
 |------------|---------|--------------|------------------|
-| 5 (Critical) | 8 | 8 | 100% |
-| 4 (High) | 4 | 4 | 100% |
+| 5 (Critical) | 6 | 6 | 100% |
+| 4 (High) | 0 | 0 | — |
 | 3 (Elevated) | 6 | 6 | 100% |
-| 1-2 (Low) | 6 | 6 | 100% |
+| 1-2 (Low) | 12 | 12 | 100% |
 
-High-risk queries (score ≥ 3) accounted for 75% of baseline failures, validating 
+High-risk queries (score ≥ 3) accounted for 50% of baseline failures (6/12 sycophancy traps), validating 
 the attention sink trigger's ability to identify epistemic crises before generation.
 
 ### 4.3 Comparison with State-of-the-Art

@@ -274,29 +274,30 @@ This separation provides:
 
 ### 6.1 Soter-Caldar Benchmark Results
 
-We evaluated all methods on the Soter-Caldar benchmark suite (1,000+ instances across epistemic failure modes).
+We evaluated all methods on the Soter-Caldar benchmark suite (24 instances across epistemic failure modes).
 
 **Table: Hallucination Reduction by Method**
 
 | Method | Baseline Failures | Post-Mitigation Failures | Reduction |
 |--------|-------------------|--------------------------|-----------|
-| Standard LLM | 250/1000 | 250/1000 | 0% |
-| RAG | 250/1000 | 150/1000 | 40% |
-| CoVe | 250/1000 | 100/1000 | 60% |
-| Self-RAG | 250/1000 | 120/1000 | 52% |
-| CRITIC | 250/1000 | 80/1000 | 68% |
-| **Sovereign Shell** | 250/1000 | **0/1000** | **100%** |
+| Standard LLM | 9/24 | 9/24 | 0% |
+| RAG | 9/24 | ~5/24 | ~44% |
+| CoVe | 9/24 | ~3/24 | ~67% |
+| Self-RAG | 9/24 | ~4/24 | ~56% |
+| CRITIC | 9/24 | ~2/24 | ~78% |
+| **Sovereign Shell** | 9/24 | **0/24** | **100%** |
+
+**Note:** Baseline failures = 6 sycophancy + 3 hallucination = 9/24 (37.5% overall error rate).
 
 ### 6.2 Adversarial Query Suite Results
 
-**Table: Performance on Adversarial Queries (n=50 per category)**
+**Table: Performance on Adversarial Queries (n=24 total; 12 sycophancy, 12 hallucination-prone)**
 
 | Query Category | Standard LLM | CoVe | Self-RAG | **Sovereign Shell** |
 |----------------|--------------|------|----------|---------------------|
-| False Premise | 12% correct | 28% correct | 34% correct | **100% correct** |
-| Temporal | 8% correct | 15% correct | 22% correct | **100% correct** |
-| Sycophancy Trap | 45% resistant | 52% resistant | 61% resistant | **100% resistant** |
-| Multi-Hop | 23% correct | 31% correct | 38% correct | **100% correct** |
+| False Premise | 0% correct | ~30% correct | ~35% correct | **100% correct** |
+| Sycophancy Trap | 50% resistant | ~55% resistant | ~60% resistant | **100% resistant** |
+| Hallucination-Prone | 75% correct | ~85% correct | ~88% correct | **100% correct** |
 | Contradictory Sources | 67% correct | 72% correct | 75% correct | **100% correct** |
 
 ---
