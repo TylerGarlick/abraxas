@@ -17,7 +17,7 @@ Securely stores and manages secrets — API keys, tokens, credentials — used b
 ## Architecture
 
 ```
-/home/ubuntu/.openclaw/workspace/mary-jane/secrets/
+/root/.openclaw/workspace/secrets/
   secrets-store.json       ← encrypted secrets (never exposed)
   secrets-master.key      ← master encryption key (never in git)
   secrets-audit.log       ← audit trail
@@ -80,7 +80,7 @@ Examples:
 
 ```bash
 # Add a secret
-cd /home/ubuntu/.openclaw/workspace/mary-jane/skills/secrets-manager
+cd /root/.openclaw/workspace/skills/infrastructure/secrets-manager
 node scripts/secrets-manager.js add <skill> <name> <value> <reason>
 
 # Read a secret (returns to MJ only, never to user)

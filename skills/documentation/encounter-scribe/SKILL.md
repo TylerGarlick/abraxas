@@ -139,8 +139,8 @@ When auto-commit is enabled (default), the script will:
 
 **Git config needed:**
 ```bash
-git config user.email "tyler@tylergarlick.com"
-git config user.name "Tyler Garlick"
+git config user.email "sovereign-brain@abraxas.ai"
+git config user.name "Sovereign Brain"
 ```
 
 ---

@@ -9,7 +9,7 @@
 
 set -e
 
-ABRAXAS_DIR="/home/ubuntu/.openclaw/workspace/abraxas"
+ABRAXAS_DIR="/root/.openclaw/workspace/abraxas"
 HERMES_DIR="$ABRAXAS_DIR/hermes-delphi"
 CRON_SCRIPT="$HERMES_DIR/runner/daily-pipeline.sh"
 LOG_DIR="$HERMES_DIR/data/logs"

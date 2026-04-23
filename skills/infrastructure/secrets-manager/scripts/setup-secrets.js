@@ -15,7 +15,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const STORE_DIR = '/home/ubuntu/.openclaw/workspace//secrets';
+const STORE_DIR = '/root/.openclaw/workspace/secrets';
 const KEY_FILE = path.join(STORE_DIR, 'secrets-master.key');
 
 function generateMasterKey() {

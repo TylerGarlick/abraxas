@@ -1,5 +1,5 @@
 #!/bin/bash
 # Package soter skill
-cd /Users/tylergarlick/@Projects/abraxas/skills
+cd /root/.openclaw/workspace/abraxas/skills
 zip -r soter.skill soter/
 ls -la soter.skill
