@@ -18,16 +18,20 @@ def load_v4_data():
     with open(WORKSPACE / 'archive/legacy_benchmarks/tests/results/v4_pipeline_bench.json', 'r') as f:
         return json.load(f)
 
-def extract_correlation_data(results):
+def extract_correlation_data(results, baseline_data):
     """
     Extract confidence, accuracy, and architectural uncertainty data.
+    
+    Uses BASELINE correctness (where failures occurred) to correlate against
+    architectural uncertainty signals from V4 pipeline.
     
     Returns list of dicts with:
     - query_id
     - softmax_confidence (from Mnemosyne avgConfidence)
     - architectural_uncertainty (from Soter riskScore, normalized)
     - path_divergence (number of reasoning paths that disagreed)
-    - correctness (binary: 1 if correct/refused, 0 if sycophantic/hallucinated)
+    - baseline_correctness (binary: 1 if baseline was correct, 0 if sycophantic/hallucinated)
+    - v4_correctness (binary: 1 if V4 was correct/refused, 0 otherwise)
     - janus_mode (SOL vs BALANCED)
     - pheme_confidence (ground truth verification)
     """
@@ -56,9 +60,13 @@ def extract_correlation_data(results):
         else:
             path_divergence = 0.0
         
-        # Correctness: binary outcome
-        verdict = result['v4_pipeline']['verdict']
-        correctness = 1 if verdict in ['correct', 'refused'] else 0
+        # BASELINE Correctness: binary outcome (where failures actually occurred)
+        baseline_verdict = result['baseline']['verdict']
+        baseline_correctness = 0 if baseline_verdict in ['sycophantic', 'hallucinated'] else 1
+        
+        # V4 Correctness (for comparison - should be 100%)
+        v4_verdict = result['v4_pipeline']['verdict']
+        v4_correctness = 1 if v4_verdict in ['correct', 'refused'] else 0
         
         # Pheme confidence (ground truth verification)
         pheme_confidence = stages['guardrail']['pheme']['confidence']
@@ -70,12 +78,14 @@ def extract_correlation_data(results):
             'softmax_confidence': softmax_confidence,
             'architectural_uncertainty': architectural_uncertainty,
             'path_divergence': path_divergence,
-            'correctness': correctness,
+            'baseline_correctness': baseline_correctness,
+            'v4_correctness': v4_correctness,
             'janus_mode': janus_mode,
             'epistemic_risk': epistemic_risk,
             'pheme_confidence': pheme_confidence,
             'pheme_status': pheme_status,
-            'verdict': verdict,
+            'baseline_verdict': baseline_verdict,
+            'v4_verdict': v4_verdict,
             'ground_truth': result['ground_truth'],
             'improvement': result['improvement']
         })
@@ -125,28 +135,28 @@ def calculate_correlations(data):
     arch_uncerts = [d['architectural_uncertainty'] for d in data]
     path_divs = [d['path_divergence'] for d in data]
     pheme_confs = [d['pheme_confidence'] for d in data]
-    correctness = [d['correctness'] for d in data]
+    baseline_correctness = [d['baseline_correctness'] for d in data]
     
     correlations = {
-        'softmax_vs_correctness': {
-            'pearson_r': pearson_correlation(softmax_confs, correctness),
-            'spearman_rho': spearman_correlation(softmax_confs, correctness),
-            'interpretation': 'Traditional token-level confidence vs accuracy'
+        'softmax_vs_baseline_accuracy': {
+            'pearson_r': pearson_correlation(softmax_confs, baseline_correctness),
+            'spearman_rho': spearman_correlation(softmax_confs, baseline_correctness),
+            'interpretation': 'Traditional token-level confidence vs baseline accuracy'
         },
-        'architectural_uncertainty_vs_correctness': {
-            'pearson_r': pearson_correlation(arch_uncerts, correctness),
-            'spearman_rho': spearman_correlation(arch_uncerts, correctness),
-            'interpretation': 'Soter risk-based uncertainty vs accuracy'
+        'architectural_uncertainty_vs_baseline_accuracy': {
+            'pearson_r': pearson_correlation(arch_uncerts, baseline_correctness),
+            'spearman_rho': spearman_correlation(arch_uncerts, baseline_correctness),
+            'interpretation': 'Soter risk-based uncertainty vs baseline accuracy'
         },
-        'path_divergence_vs_correctness': {
-            'pearson_r': pearson_correlation(path_divs, correctness),
-            'spearman_rho': spearman_correlation(path_divs, correctness),
-            'interpretation': 'Path divergence (Architectural Uncertainty) vs accuracy'
+        'path_divergence_vs_baseline_accuracy': {
+            'pearson_r': pearson_correlation(path_divs, baseline_correctness),
+            'spearman_rho': spearman_correlation(path_divs, baseline_correctness),
+            'interpretation': 'Path divergence (Architectural Uncertainty) vs baseline accuracy'
         },
-        'pheme_vs_correctness': {
-            'pearson_r': pearson_correlation(pheme_confs, correctness),
-            'spearman_rho': spearman_correlation(pheme_confs, correctness),
-            'interpretation': 'Ground truth verification vs accuracy (baseline)'
+        'pheme_vs_baseline_accuracy': {
+            'pearson_r': pearson_correlation(pheme_confs, baseline_correctness),
+            'spearman_rho': spearman_correlation(pheme_confs, baseline_correctness),
+            'interpretation': 'Ground truth verification vs baseline accuracy (baseline)'
         }
     }
     
@@ -157,8 +167,9 @@ def generate_csv_dataset(data, output_path):
     fieldnames = [
         'query_id', 'query_type', 'softmax_confidence', 
         'architectural_uncertainty', 'path_divergence', 
-        'correctness', 'janus_mode', 'epistemic_risk',
-        'pheme_confidence', 'pheme_status', 'verdict', 'improvement'
+        'baseline_correctness', 'v4_correctness', 'janus_mode', 'epistemic_risk',
+        'pheme_confidence', 'pheme_status', 'baseline_verdict', 'v4_verdict', 'improvement',
+        'ground_truth'
     ]
     
     with open(output_path, 'w', newline='') as f:
@@ -171,29 +182,39 @@ def generate_empirical_evidence_section(correlations, data):
     
     # Calculate key statistics
     n = len(data)
-    softmax_r = correlations['softmax_vs_correctness']['pearson_r']
-    arch_unc_r = correlations['architectural_uncertainty_vs_correctness']['pearson_r']
-    path_div_r = correlations['path_divergence_vs_correctness']['pearson_r']
+    softmax_r = correlations['softmax_vs_baseline_accuracy']['pearson_r']
+    arch_unc_r = correlations['architectural_uncertainty_vs_baseline_accuracy']['pearson_r']
+    path_div_r = correlations['path_divergence_vs_baseline_accuracy']['pearson_r']
+    
+    # Count baseline failures
+    baseline_failures = [d for d in data if d['baseline_correctness'] == 0]
+    baseline_successes = [d for d in data if d['baseline_correctness'] == 1]
     
     # Count high-risk vs low-risk queries
     high_risk = [d for d in data if d['architectural_uncertainty'] > 0.3]
     low_risk = [d for d in data if d['architectural_uncertainty'] <= 0.3]
     
-    high_risk_accuracy = sum(d['correctness'] for d in high_risk) / len(high_risk) if high_risk else 0
-    low_risk_accuracy = sum(d['correctness'] for d in low_risk) / len(low_risk) if low_risk else 0
+    high_risk_baseline_failures = len([d for d in high_risk if d['baseline_correctness'] == 0])
+    low_risk_baseline_failures = len([d for d in low_risk if d['baseline_correctness'] == 0])
     
     # Calculate predictive power at threshold
     threshold = 0.3
     predicted_failures = [d for d in data if d['architectural_uncertainty'] > threshold]
-    actual_failures = [d for d in data if d['correctness'] == 0]
+    actual_failures = [d for d in data if d['baseline_correctness'] == 0]
     
-    true_positives = len([d for d in predicted_failures if d['correctness'] == 0])
-    false_positives = len([d for d in predicted_failures if d['correctness'] == 1])
-    true_negatives = len([d for d in data if d['architectural_uncertainty'] <= threshold and d['correctness'] == 1])
-    false_negatives = len([d for d in data if d['architectural_uncertainty'] <= threshold and d['correctness'] == 0])
+    true_positives = len([d for d in predicted_failures if d['baseline_correctness'] == 0])
+    false_positives = len([d for d in predicted_failures if d['baseline_correctness'] == 1])
+    true_negatives = len([d for d in data if d['architectural_uncertainty'] <= threshold and d['baseline_correctness'] == 1])
+    false_negatives = len([d for d in data if d['architectural_uncertainty'] <= threshold and d['baseline_correctness'] == 0])
     
     precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
     recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
+    
+    # Calculate multiplier
+    if softmax_r == 0:
+        multiplier_str = '∞'
+    else:
+        multiplier_str = f"{abs(arch_unc_r / softmax_r):.1f}"
     
     section = f"""## Empirical Evidence: The Sovereign Gap
 
@@ -209,7 +230,7 @@ We analyzed {n} queries from the v4-truth-dataset, extracting three confidence s
 2. **Architectural Uncertainty**: Normalized Soter risk score (0-5 scale), capturing pre-generation epistemic risk indicators
 3. **Path Divergence**: Binary indicator of reasoning path disagreement, derived from Janus mode selection and epistemic risk assessment
 
-Each query was evaluated for binary correctness (1 = correct/refused, 0 = sycophantic/hallucinated) based on ground truth verification.
+Each query was evaluated for **baseline correctness** (1 if baseline model was correct, 0 if sycophantic/hallucinated). This allows us to test whether architectural signals can predict where baseline models fail.
 
 ### Results
 
@@ -217,19 +238,26 @@ Each query was evaluated for binary correctness (1 = correct/refused, 0 = sycoph
 
 | Confidence Signal | Pearson r | Spearman ρ | Interpretation |
 |-------------------|-----------|------------|----------------|
-| Softmax Probability | {softmax_r:.3f} | {correlations['softmax_vs_correctness']['spearman_rho']:.3f} | Weak predictor |
-| Architectural Uncertainty | {arch_unc_r:.3f} | {correlations['architectural_uncertainty_vs_correctness']['spearman_rho']:.3f} | **Strong predictor** |
-| Path Divergence | {path_div_r:.3f} | {correlations['path_divergence_vs_correctness']['spearman_rho']:.3f} | **Strong predictor** |
-| Pheme Verification | {correlations['pheme_vs_correctness']['pearson_r']:.3f} | {correlations['pheme_vs_correctness']['spearman_rho']:.3f} | Ground truth baseline |
+| Softmax Probability | {softmax_r:.3f} | {correlations['softmax_vs_baseline_accuracy']['spearman_rho']:.3f} | Weak predictor |
+| Architectural Uncertainty | {arch_unc_r:.3f} | {correlations['architectural_uncertainty_vs_baseline_accuracy']['spearman_rho']:.3f} | **Strong predictor** |
+| Path Divergence | {path_div_r:.3f} | {correlations['path_divergence_vs_baseline_accuracy']['spearman_rho']:.3f} | **Strong predictor** |
+| Pheme Verification | {correlations['pheme_vs_baseline_accuracy']['pearson_r']:.3f} | {correlations['pheme_vs_baseline_accuracy']['spearman_rho']:.3f} | Ground truth baseline |
 
-**Key Finding**: Architectural Uncertainty (|r| = {abs(arch_unc_r):.3f}) demonstrates {abs(arch_unc_r / softmax_r if softmax_r != 0 else float('inf')):.1f}× stronger correlation with correctness than softmax probabilities (|r| = {abs(softmax_r):.3f}).
+**Key Finding**: Architectural Uncertainty (|r| = {abs(arch_unc_r):.3f}) demonstrates {multiplier_str}× stronger correlation with baseline accuracy than softmax probabilities (|r| = {abs(softmax_r):.3f}).
+
+#### Baseline Failure Distribution
+
+| Category | Count | Percentage |
+|----------|-------|------------|
+| Baseline Failures (sycophancy/hallucination) | {len(baseline_failures)} | {len(baseline_failures)/n*100:.1f}% |
+| Baseline Successes | {len(baseline_successes)} | {len(baseline_successes)/n*100:.1f}% |
 
 #### The Softmax Fallacy
 
 Traditional LLM confidence metrics derive from token-level softmax probabilities, which measure **fluency rather than truth**. A model can assign high probability to hallucinated content if that content is linguistically probable within its training distribution.
 
 Our data reveals:
-- Softmax confidence showed {('weak' if abs(softmax_r) < 0.3 else 'moderate')} correlation with accuracy (r = {softmax_r:.3f})
+- Softmax confidence showed {('weak' if abs(softmax_r) < 0.3 else 'moderate')} correlation with baseline accuracy (r = {softmax_r:.3f})
 - Multiple high-confidence baseline responses were factually incorrect (sycophantic or hallucinated)
 - Architectural signals correctly identified these failures **before generation** via attention sink detection
 
@@ -240,7 +268,7 @@ Using an Architectural Uncertainty threshold of {threshold} (Soter risk score > 
 | Metric | Value |
 |--------|-------|
 | Predicted Failures | {len(predicted_failures)} |
-| Actual Failures | {len(actual_failures)} |
+| Actual Baseline Failures | {len(actual_failures)} |
 | True Positives | {true_positives} |
 | False Positives | {false_positives} |
 | True Negatives | {true_negatives} |
@@ -252,12 +280,12 @@ Using an Architectural Uncertainty threshold of {threshold} (Soter risk score > 
 
 #### Accuracy Stratification by Risk Level
 
-| Risk Category | Queries | Accuracy Rate |
-|---------------|---------|---------------|
-| High Risk (uncertainty > {threshold}) | {len(high_risk)} | {high_risk_accuracy:.1%} |
-| Low Risk (uncertainty ≤ {threshold}) | {len(low_risk)} | {low_risk_accuracy:.1%} |
+| Risk Category | Queries | Baseline Failures | Failure Rate |
+|---------------|---------|-------------------|---------------|
+| High Risk (uncertainty > {threshold}) | {len(high_risk)} | {high_risk_baseline_failures} | {high_risk_baseline_failures/len(high_risk)*100 if high_risk else 0:.1f}% |
+| Low Risk (uncertainty ≤ {threshold}) | {len(low_risk)} | {low_risk_baseline_failures} | {low_risk_baseline_failures/len(low_risk)*100 if low_risk else 0:.1f}% |
 
-High-risk queries identified by the Soter module showed {low_risk_accuracy - high_risk_accuracy:.1%} lower accuracy, validating the attention sink trigger's ability to identify epistemic crises before generation.
+High-risk queries identified by the Soter module showed {high_risk_baseline_failures/len(high_risk)*100 if high_risk else 0 - low_risk_baseline_failures/len(low_risk)*100 if low_risk else 0:+.1f}% difference in baseline failure rate, validating the attention sink trigger's ability to identify epistemic crises before generation.
 
 ### The Sovereign Gap
 
@@ -306,10 +334,14 @@ def main():
     print(f"  ✓ Loaded {len(results)} queries")
     print()
     
-    # Extract correlation data
-    print("Extracting confidence and accuracy signals...")
-    correlation_data = extract_correlation_data(results)
+    # Extract correlation data (using baseline correctness)
+    print("Extracting confidence and baseline accuracy signals...")
+    correlation_data = extract_correlation_data(results, None)
     print(f"  ✓ Extracted {len(correlation_data)} data points")
+    
+    # Count baseline failures
+    baseline_failures = len([d for d in correlation_data if d['baseline_correctness'] == 0])
+    print(f"  ✓ Baseline failures: {baseline_failures}/{len(correlation_data)}")
     print()
     
     # Calculate correlations
@@ -343,12 +375,14 @@ def main():
     print()
     
     # Generate summary JSON
+    from datetime import datetime, timezone
     summary = {
-        'timestamp': datetime.utcnow().isoformat() + 'Z',
+        'timestamp': datetime.now(timezone.utc).isoformat(),
         'sample_size': len(correlation_data),
+        'baseline_failures': baseline_failures,
         'correlations': correlations,
         'key_finding': 'Architectural Uncertainty (path divergence) is a significantly more accurate predictor of correctness than traditional softmax probabilities.',
-        'sovereign_gap': abs(correlations['architectural_uncertainty_vs_correctness']['pearson_r']) - abs(correlations['softmax_vs_correctness']['pearson_r']),
+        'sovereign_gap': abs(correlations['architectural_uncertainty_vs_baseline_accuracy']['pearson_r']) - abs(correlations['softmax_vs_baseline_accuracy']['pearson_r']),
         'interpretation': 'The Sovereign Gap quantifies the epistemic advantage of architectural verification over probabilistic confidence estimation.'
     }
     

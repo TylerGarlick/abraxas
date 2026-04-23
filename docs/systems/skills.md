@@ -5,6 +5,10 @@
 This document is the system reference for the skills that make up the Abraxas project:
 **Phase 1 (Complete):** Honest, Logos, Agon, Janus, Aletheia, Logos-Math, Ergon
 **Phase 2 (In Progress):** Soter (Started), Kairos & Ethos (Proposed)
+**Infrastructure Skills:** Secrets Manager, Pipeline Dispatcher
+**Communication Skills:** Gmail, Moltbook Sovereign
+**Documentation Skills:** Journal Scribe, Encounter Scribe
+**Creative Skills:** Image Generation (HuggingFace), Civitai Image Gen
 
 These are not plugins or developer utilities. They are operational systems designed to address
 hallucination, unexamined reasoning, confirmation bias, mixing of fact and symbol, obscurantism,

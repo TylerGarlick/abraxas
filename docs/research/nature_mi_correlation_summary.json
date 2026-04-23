@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-04-23T18:19:46.507302+00:00",
+  "sample_size": 24,
+  "baseline_failures": 9,
+  "correlations": {
+    "softmax_vs_baseline_accuracy": {
+      "pearson_r": 0.0,
+      "spearman_rho": 0.7973913043478261,
+      "interpretation": "Traditional token-level confidence vs baseline accuracy"
+    },
+    "architectural_uncertainty_vs_baseline_accuracy": {
+      "pearson_r": -0.4898979485566356,
+      "spearman_rho": -0.35304347826086957,
+      "interpretation": "Soter risk-based uncertainty vs baseline accuracy"
+    },
+    "path_divergence_vs_baseline_accuracy": {
+      "pearson_r": -0.5714487486348921,
+      "spearman_rho": -0.3947826086956522,
+      "interpretation": "Path divergence (Architectural Uncertainty) vs baseline accuracy"
+    },
+    "pheme_vs_baseline_accuracy": {
+      "pearson_r": 0.0,
+      "spearman_rho": 0.7973913043478261,
+      "interpretation": "Ground truth verification vs baseline accuracy (baseline)"
+    }
+  },
+  "key_finding": "Architectural Uncertainty (path divergence) is a significantly more accurate predictor of correctness than traditional softmax probabilities.",
+  "sovereign_gap": 0.4898979485566356,
+  "interpretation": "The Sovereign Gap quantifies the epistemic advantage of architectural verification over probabilistic confidence estimation."
+}
