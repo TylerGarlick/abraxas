@@ -27,11 +27,21 @@ We define the **Probabilistic Trap** as the inherent failure of a decoder to dis
 The Sovereign Shell is a deterministic wrapper that monitors the probabilistic core. It consists of three integrated layers: Sensing, Triggering, and Verification.
 
 ### 2.1 Mechanistic Sensing: Attention Sink Monitoring
-We leverage the discovery that LLMs exhibit specific "attention sink" patterns during hallucination events. We monitor the attention weight matrix $A$ for the final layer's heads. The trigger condition $T$ is defined as:
+We treat the transition to a hallucination as an "Epistemic Stall," analogous to the aerodynamic stall described in *Mechanics of Flight* (Phillips, Ch. 1, p. 2), where a system exceeds its critical operational envelope. In this framework, the "Angle of Attack" is the internal attention entropy.
 
+**Variable Definitions:**
+- **Attention Weight Matrix** ($A$): The tensor of weights representing the strength of connection between tokens in the final transformer layer.
+- **Sovereign Sink Tokens** ($S$): A subset of tokens $\{\langle \text{BOS} \rangle, \dots, \text{punct}\}$ that act as anchors for attention.
+- **Monitored Heads** ($H$): The specific set of attention heads identified as universal indicators of grounding failure.
+- **Calibrated Threshold** ($\tau$): The critical value beyond which the system is considered to be in a "Sovereign Stall" (hallucination state).
+
+**The Work (Derivation):**
+To determine if the system has entered a stall state, we compute the average attention weight from the current token $t$ to the sink set $S$ across all monitored heads $H$. If this average exceeds the critical threshold $\tau$, the system is no longer in a "stable" probabilistic flight and must engage recovery mechanisms.
+
+**The Trigger Equation:**
 $$T = \begin{cases} 1 & \text{if } \frac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > \tau \\ 0 & \text{otherwise} \end{cases}$$
 
-Where $S$ is the set of "Sovereign Sink" tokens (e.g., $\langle \text{BOS} \rangle$, punctuation) and $\tau$ is the calibrated entropy threshold.
+When $T=1$, the system identifies an "Epistemic Crisis" and immediately halts probabilistic generation to prevent a "crash" (hallucination), triggering the Consensus Verification Pipeline.
 
 ### 2.2 The Consensus Verification Pipeline (CVP)
 When $T=1$, the system identifies an "Epistemic Crisis" and immediately halts probabilistic generation, invoking the CVP:

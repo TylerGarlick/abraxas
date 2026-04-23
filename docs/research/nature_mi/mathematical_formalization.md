@@ -44,20 +44,24 @@ In practice, independence is approximated via:
 
 ### 2.1 Risk-Score to Weight Mapping
 
-**Definition 2 (Soter Risk-Score):** The Soter risk-score $R(p_i) \in [0, 5]$ quantifies the likelihood that path $p_i$ exhibits instrumental convergence patterns:
+**Sovereign Weighting** is modeled as a stability problem, analogous to the equilibrium of forces described in *Mechanics of Flight* (Phillips, Ch. 1, p. 2). Just as an aircraft must balance lift and drag to maintain steady flight, the Sovereign Brain balances epistemic risk against consensus strength to maintain "Truth Equilibrium."
 
-$$R(p_i) = \sum_{k=1}^{5} \mathbb{I}(\text{pattern}_k \text{ detected in } p_i) \cdot \rho_k$$
+**Variable Definitions:**
+- **Soter Risk-Score** ($R(p_i)$): $\in [0, 5]$. A measure of the likelihood that path $p_i$ exhibits instrumental convergence patterns.
+- **Risk Sensitivity** ($\lambda$): $\in \mathbb{R}^+$. A constant determining the severity of the penalty for risk.
+- **Sovereign Weight** ($w_i$): $\in [0, 1]$. The resulting contribution of the path to the final answer.
 
-Where:
-- $\text{pattern}_k \in \{\text{shutdown avoidance, resource exfiltration, peer protection, performance inflation, goal preservation}\}$
-- $\rho_k \in [0, 1]$ is the severity weight for pattern $k$
-- $\sum \rho_k = 5$ (normalized to max score)
+**The Work (Derivation):**
+To achieve a stable equilibrium, the weighting function must satisfy:
+1. **Monotonicity**: $R(p_i) > R(p_j) \implies w_i < w_j$ (Risk must inversely correlate with weight).
+2. **Normalization**: $\sum w_i = 1$ (The total weight must be a probability distribution).
+3. **Scale Invariance**: Relative weights depend on the difference in risk, not the absolute values.
 
-**Theorem 1 (Sovereign Weighting Formula):** Given $N$ reasoning paths with risk-scores $\{R(p_1), \dots, R(p_N)\}$, the sovereign weight for path $p_i$ is:
+The exponential decay function normalized by the sum of all paths satisfies these requirements.
 
+**Theorem 1 (Sovereign Weighting Formula):**
 $$w_i = \frac{\exp(-\lambda \cdot R(p_i))}{\sum_{j=1}^{N} \exp(-\lambda \cdot R(p_j))}$$
 
-Where $\lambda > 0$ is the risk sensitivity parameter.
 
 **Proof:** 
 
