@@ -63,7 +63,7 @@ Most AI systems are **Probabilistic**: they predict the most likely next token, 
 
 ### 🛠️ Technical Guides
 - 📄 **[Sovereign Brain Architecture](docs/architecture/brain-diagram.md)** — Visual map of the cognitive flow.
-- 📄 **[Research Paper v4.0](docs/research/research-paper-v4.md)** — Empirical proof of hallucination reduction.
+- 📄 **[Research Repository](research/README.md)** — Full access to the Epistemic Laboratory, benchmarks, and final manuscripts.
 - 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
 
 ---
