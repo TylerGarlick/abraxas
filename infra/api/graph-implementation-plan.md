@@ -39,6 +39,6 @@ Verify the "Qualia Bridge" flow:
 5. Query the final plan via GraphQL and verify the full chain of provenance is retrievable.
 
 ---
-**Root Password:** `5orange5`
+**Root Password:** `[REDACTED_Sovereign_Credential]`
 **Service Port:** `4000`
 **DB Host:** `localhost:8529`

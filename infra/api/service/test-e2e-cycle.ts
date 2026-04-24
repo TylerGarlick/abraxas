@@ -20,7 +20,7 @@ const DB_CONFIG = {
   auth: {
     type: 'basic',
     username: 'root',
-    password: '5orange5'
+    password: '[REDACTED_Sovereign_Credential]'
   }
 };
 

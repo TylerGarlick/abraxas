@@ -8,7 +8,7 @@ import time
 # Configuration
 ARANGO_HOST = "http://localhost:8529"
 ARANGO_USER = "root"
-ARANGO_PASS = "5orange5"
+ARANGO_PASS = "[REDACTED_Sovereign_Credential]"
 NODES_COLLECTION = "SovereignNodes"
 EDGES_COLLECTION = "SovereignEdges"
 

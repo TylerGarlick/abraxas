@@ -13,7 +13,7 @@ const db = new Database({
   auth: {
     type: 'basic',
     username: process.env.ARANGO_USER || 'root',
-    password: process.env.ARANGO_PASSWORD || '5orange5'
+    password: process.env.ARANGO_PASSWORD || '[REDACTED_Sovereign_Credential]'
   }
 });
 
@@ -52,7 +52,7 @@ function validateSovereignChannel(channelId: string | undefined): void {
   }
 }
 
-const ROOT_PASS = '5orange5';
+const ROOT_PASS = '[REDACTED_Sovereign_Credential]';
 
 async function ensureDb() {
   try {
@@ -63,7 +63,7 @@ async function ensureDb() {
       auth: {
         type: 'basic',
         username: process.env.ARANGO_USER || 'root',
-        password: process.env.ARANGO_PASSWORD || '5orange5'
+        password: process.env.ARANGO_PASSWORD || '[REDACTED_Sovereign_Credential]'
       }
     });
     

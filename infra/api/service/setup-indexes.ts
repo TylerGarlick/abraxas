@@ -16,7 +16,7 @@ import { Database } from 'arangojs';
 const DB_URL = 'http://localhost:8529';
 const DB_NAME = 'abraxas_db';
 const ROOT_USER = 'root';
-const ROOT_PASS = '5orange5';
+const ROOT_PASS = '[REDACTED_Sovereign_Credential]';
 
 // Index definitions
 const INDEX_DEFINITIONS = [
