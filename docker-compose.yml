@@ -1,8 +1,8 @@
-      - episteme:
-          build: ./mcps/episteme
-          container_name: abraxas-episteme
+      - ethos:
+          build: ./mcps/ethos
+          container_name: abraxas-ethos
           environment:
             - NODE_ENV=production
           ports:
-            - "3008:3008"
+            - "3009:3009"
           restart: always
