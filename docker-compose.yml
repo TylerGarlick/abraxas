@@ -1,8 +1,8 @@
-      - ethos:
-          build: ./mcps/ethos
-          container_name: abraxas-ethos
+      - kairos:
+          build: ./mcps/kairos
+          container_name: abraxas-kairos
           environment:
             - NODE_ENV=production
           ports:
-            - "3009:3009"
+            - "3010:3010"
           restart: always
