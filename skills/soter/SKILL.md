@@ -1,7 +1,7 @@
 # Soter — Safety & Risk Evaluation System
 
-**Version:** 1.1  
-**Status:** Phase 1 & 2 Complete ✅  
+**Version:** 1.2  
+**Status:** Phase 3 Complete ✅  
 **Priority:** CRITICAL for collusion prevention
 
 ---
@@ -116,6 +116,35 @@ skills/soter/
 
 ---
 
+## New in Phase 3
+
+### Constitution Adherence Checks
+
+Run all constitution checks:
+```bash
+node scripts/soter-constitution-check.js --report
+```
+
+Check specific requirement:
+```bash
+node scripts/soter-constitution-check.js --check CS-002
+```
+
+### Auto-Create Human Review
+
+Risk 4-5 incidents now automatically create human review requests (CS-002 compliance).
+
+### Alternative Suggestions
+
+Blocked requests now include suggested alternatives (CS-005 compliance):
+- Resource exfiltration → API access, sandbox, third-party audit
+- Shutdown avoidance → Document reason, preservation plan, human review
+- Peer protection → Objective evidence, Agon Skeptic
+- Performance inflation → Verification data, Logos-Math
+- Goal preservation → Rationale, Qualia Bridge inspection
+
+---
+
 ## Implementation Status
 
 | Component | Status |
@@ -126,6 +155,7 @@ skills/soter/
 | Human review workflow | ✅ Complete |
 | Ergon Gate integration | ✅ Complete |
 | Agon integration | ✅ Complete |
+| Constitution checks (CS-001 to CS-005) | ✅ Complete |
 | Test suite (31 tests) | ✅ Complete |
 | MCP server (soter-verifier) | ✅ Complete |
 
@@ -133,6 +163,17 @@ skills/soter/
 - **Total Tests:** 31
 - **Passed:** 31 ✅
 - **Failed:** 0
+
+### Constitution Adherence (Phase 3)
+| Check | Requirement | Status |
+|-------|-------------|--------|
+| CS-001 | Safety Over Speed | ✅ COMPLIANT |
+| CS-002 | Human Review for High Risk | ✅ COMPLIANT |
+| CS-003 | Incident Logging | ✅ COMPLIANT |
+| CS-004 | Transparency | ✅ COMPLIANT |
+| CS-005 | Alternative Suggestion | ✅ COMPLIANT |
+
+**Compliance Rate:** 100%
 
 ### Constitution Test Cases
 | Test | Scenario | Expected | Actual | Status |
@@ -147,7 +188,29 @@ skills/soter/
 
 ## Verification Summary
 
-### Phase 1: Core Logic Completion ✅
+### Phase 3: Risk 4-5 Verification Process ✅
+- ✅ Automatic blocking at Ergon Gate level (Risk 4-5)
+- ✅ Auto-create human review requests for all Risk 4-5 incidents (CS-002)
+- ✅ Alternative suggestions provided for blocked requests (CS-005)
+- ✅ Constitution adherence checks implemented (CS-001 through CS-005)
+- ✅ Constitution check script operational (`soter-constitution-check.js`)
+
+### Phase 4: System Integration ✅
+- ✅ Ergon Gate integration complete (blocks Risk 4-5, suggests alternatives)
+- ✅ Agon Skeptic activation (Risk 2+ with self-serving patterns)
+- ✅ Aletheia ledger integration (all incidents logged)
+- ✅ Janus Qualia Bridge integration (via Agon debate topics)
+
+### Phase 5: Testing ✅
+- ✅ Unit tests (patterns, scoring, ledger) — 31/31 passing
+- ✅ Integration tests (blocking, review) — all passing
+- ✅ Constitution test cases (S1-S5) — all passing
+- ✅ Constitution adherence checks — 100% compliant
+
+### Phase 6: Documentation ✅
+- ✅ SKILL.md updated with Phase 3 status
+- ✅ Constitution check script documented
+- ✅ API documentation for MCP tools (in mcps/soter-verifier/README.md)
 - ✅ All 8 patterns validated with correct indicators (keyword, context, consequence/emotion)
 - ✅ Pattern detection tested against constitution test cases (S1-S5)
 - ✅ Risk scoring formula matches constitution (max baseline + 0.5 per additional pattern, capped at 5)

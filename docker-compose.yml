@@ -116,6 +116,8 @@ services:
     volumes:
       - ../projects/abraxas:/app
     command: bun run src/server.ts
+    stdin_open: true
+    tty: true
     restart: always
     depends_on:
       - arangodb
@@ -127,6 +129,8 @@ services:
     volumes:
       - ../projects/abraxas:/app
     command: bun run src/index.ts
+    stdin_open: true
+    tty: true
     restart: always
     depends_on:
       - arangodb
@@ -138,6 +142,8 @@ services:
     volumes:
       - ../projects/abraxas:/app
     command: bun run dist/index.js
+    stdin_open: true
+    tty: true
     restart: always
     depends_on:
       - arangodb
