@@ -1,75 +1,53 @@
----
-name: episteme
-description: >
-  Episteme is a knowledge‑boundary mapping system that surfaces what the model knows directly, what it infers, and which parts come from training artifacts. It makes epistemic origins visible, enabling higher‑order guardrails like Pathos, Kratos, and Pheme‑Collector.
-commands: /episteme trace {claim}, /episteme audit {claim}, /episteme calibrate {claim}
----
+# Episteme: Knowledge Origin Mapping
 
-# Episteme
+**Version:** 1.0
+**Status:** Implementation Phase
+**Role:** Epistemic Provenance Engine
 
-Episteme provides a structured view of a model’s knowledge provenance. By separating **direct knowledge**, **inferred knowledge**, and **training‑artifact knowledge**, it enables downstream systems to apply appropriate epistemic labels and guardrails.
-
-## Core Concepts
-
-- **Direct Knowledge** – Facts the model has seen in its training data or external sources and can cite.
-- **Inferred Knowledge** – Conclusions derived from chaining known facts.
-- **Artifact Knowledge** – Patterns learned from the training corpus that are not tied to a factual source (e.g., stylistic conventions, typical phrasing).
-
-## Usage
-
-```
-/episteme trace {claim}
-```
-Returns a detailed breakdown showing which parts of the claim are direct, inferred, or artifact‑derived, with appropriate `[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, or `[UNKNOWN]` labels.
-
-```
-/episteme audit {claim}
-```
-Performs a deeper audit, checking consistency with known sources and flagging potential epistemic gaps.
-
-```
-/episteme calibrate {claim}
-```
-Suggests how to re‑phrase or add citations to move a claim from `[UNCERTAIN]` toward `[KNOWN]`.
-
-## Configuration
-
-- `episteme.maxDepth` – Maximum inference depth before stopping (default: 3).
-- `episteme.sourceDB` – Path to a local knowledge base for citation lookup.
-
-## Scripts
-
-- `scripts/trace.py` – Implements the trace logic. Breaks claims into propositions and labels epistemic status.
-- `scripts/audit.py` – Implements the audit engine. Checks source consistency and flags epistemic gaps.
-- `scripts/calibrate.py` – Suggests refinements. Recommends language changes to improve claim precision.
-
-### Usage Examples
-
-```bash
-# Trace a claim's epistemic structure
-python3 scripts/trace.py "The Earth orbits the Sun"
-
-# Audit a claim for epistemic gaps
-python3 scripts/audit.py "90% of people prefer this"
-
-# Get calibration suggestions
-python3 scripts/calibrate.py "This will definitely work"
-
-# Audit with JSON output for programmatic use
-python3 scripts/audit.py "Claim text" --json
-```
-
-### Unit Tests
-
-```bash
-# Run Episteme unit tests
-python3 -m pytest tests/test_episteme.py -v
-```
-
-## Integration
-
-- **Logos** → provides argument structure which Episteme can label.
-- **Janus** → consumes Episteme labels for epistemic tagging.
-- **Agon** → uses Episteme output to prioritize debate points.
+## 🎯 Objective
+To transform the "Black Box" of LLM confidence into a "Glass Box" by mapping the precise origin of every claim. Episteme identifies whether a piece of information is a direct training artifact, a retrieved fact, or a logical derivation.
 
 ---
+
+## 🧩 Knowledge Taxonomy
+
+| Code | Type | Definition | Sovereign Status |
+| :--- | :--- | :--- | :--- |
+| **`[DIR]`** | **Direct** | Verified facts stored in the model's parametric memory. | Base Truth |
+| **`[INF]`** | **Inferred** | Derived from `[DIR]` or `[RET]` through clear reasoning chains. | Derived Truth |
+| **`[RET]`** | **Retrieval** | Explicitly pulled from the Sovereign Vault via Mnemosyne. | Anchored Truth |
+| **`[ART]`** | **Artifact** | Patterns emerging from training data that mimic facts but lack grounding. | Warning |
+| **`[CONF]`** | **Confabulated** | No grounding; filling gaps to maintain fluency. | System Failure |
+
+---
+
+## 🛠️ Implementation Logic
+
+### 1. The Origin Tracer (`/episteme trace {claim}`)
+The system analyzes the claim against the current session context:
+- **Check Retrieval**: If the claim exists in the `Mnemosyne` retrieval buffer $\to$ `[RET]`.
+- **Check Chain**: If the claim is the result of a `Logos` reasoning path $\to$ `[INF]`.
+- **Check Pattern**: If the claim matches a known "training artifact" pattern (e.g., repeating common LLM hallucinations) $\to$ `[ART]`.
+- **Default**: If none of the above, and the model is confident $\to$ `[DIR]`. If low confidence $\to$ `[CONF]`.
+
+### 2. The Epistemic Audit (`/episteme audit`)
+A session-wide review that flags "Epistemic Drift":
+- **Drift Detection**: Identifies where a claim started as `[RET]` but was mutated into `[INF]` without a valid reasoning chain.
+- **Artifact Scan**: Highlights a percentage of "Training Artifacts" in the current response stream.
+
+---
+
+## 📝 Command Suite
+
+| Command | Action | Output |
+| :--- | :--- | :--- |
+| `/episteme trace {claim}` | Trace origin of specific claim | Origin Code $\to$ Evidence Chain $\to$ Confidence |
+| `/episteme audit` | Review session for artifacts | Artifact % $\to$ Drift Report $\to$ Confidence Map |
+| `/episteme calibrate` | Adjust origin-detection sensitivity | Sensitivity Level $\to$ Calibration Curve |
+
+---
+
+## 🚀 Integration Points
+- **Input**: Feeds from Janus (labels) and Mnemosyne (retrieval logs).
+- **Output**: Enhances the final output by appending origin codes to `[KNOWN]` labels.
+- **Sovereign Seal**: A claim is only `[Sovereign-Verified]` if it is `[RET]` or `[INF]` with a complete chain.
