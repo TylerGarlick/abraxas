@@ -63,6 +63,9 @@ Most AI systems are **Probabilistic**: they predict the most likely next token, 
 
 ### 🛠️ Technical Guides
 - 📄 **[Sovereign Brain Architecture](docs/architecture/brain-diagram.md)** — Visual map of the cognitive flow.
+- 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
+- 📄 **[Sovereign Security](docs/architecture/sovereign-security.md)** — Deterministic safety and instrumental convergence detection.
+- 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift to the MCP Era.
 - 📄 **[Research Repository](research/README.md)** — Full access to the Epistemic Laboratory, benchmarks, and final manuscripts.
 - 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
 
