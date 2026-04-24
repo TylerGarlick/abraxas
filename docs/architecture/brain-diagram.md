@@ -1,70 +1,88 @@
-# Sovereign Brain Architecture Diagram
+# The Sovereign Brain: Architectural Diagrams
 
-This document defines the cognitive and data flow of the Sovereign Brain (v4), illustrating the boundary between probabilistic AI generation and deterministic sovereign orchestration.
+This document provides the formal visual specifications for the Abraxas v4 cognitive architecture. These diagrams utilize Mermaid.js to map the deterministic flow of the Sovereign Brain.
 
-## 🧠 The Cognitive Flow
+---
 
-The Sovereign Brain does not trust the LLM to be the "brain." Instead, the LLM is treated as a high-performance probabilistic engine—a tool used for drafting and synthesis—while the **Sovereign Core** (Soter, Mnemosyne, Janus) maintains the actual state, risk posture, and epistemic integrity.
-
-### Architecture Map (Mermaid)
+## 1. The Sovereign Pipeline (Linear Flow)
+This diagram maps the deterministic path a query takes from input to verified output. It illustrates the "Deterministic Shell" that wraps the probabilistic LLM engine.
 
 ```mermaid
 graph TD
-    %% External Interface
-    User((User/Request)) -->|Input| Orch[Abraxas Orchestrator]
-
-    subgraph Sovereign_Brain [Sovereign Brain Core - Deterministic]
-        direction TB
-        Soter[Soter Verifier<br/>Risk & Guardrails]
-        Mnem[Mnemosyne Memory<br/>Context & Provenance]
-        Janus[Janus Orchestrator<br/>Synthesis & Verification]
-        Vault[(Sovereign Vault<br/>Private State/Red Book)]
-    end
-
-    subgraph Probabilistic_Layer [Probabilistic Engine - Non-Deterministic]
-        LLM[Cloud LLMs<br/>Gemma/Qwen/Claude]
-    end
-
-    %% Flow
-    Orch -->|1. Risk Check| Soter
-    Soter -->|Safe| Mnem
-    Mnem <-->|Query/Retrieve| Vault
-    Mnem -->|2. Grounded Context| LLM
-    LLM -->|3. Probabilistic Draft| Janus
-    Janus -->|4. Final Verification| User
+    User([User Query]) --> Soter[Soter Verifier]
     
-    %% Feedback Loop
-    Janus -.->|Update State| Vault
-    Janus -.->|Log Incident| Soter
+    subgraph Deterministic_Shell [The Sovereign Shell]
+        Soter -->|Risk Score / Veto| Mnemosyne[Mnemosyne Memory]
+        Mnemosyne -->|Grounding Anchors| Janus[Janus Orchestrator]
+        Janus -->|Sovereign Consensus| Guardrail[Guardrail Monitor]
+        Guardrail -->|Final Sovereign Seal| Output([Verified Output])
+    end
 
-    %% Styling
-    style Sovereign_Brain fill:#f9f,stroke:#333,stroke-width:4px
-    style Probabilistic_Layer fill:#fff,stroke:#333,stroke-dasharray: 5 5
-    style Vault fill:#dfd,stroke:#333,stroke-width:2px
+    Soter -.->|Veto/Packet Drop| User
+    Guardrail -.->|Policy Violation| User
+
+    style Deterministic_Shell fill:#f9f9f9,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
+    style Soter fill:#ffcccc,stroke:#cc0000
+    style Mnemosyne fill:#ccf,stroke:#0000ff
+    style Janus fill:#cff,stroke:#00cccc
+    style Guardrail fill:#ccffcc,stroke:#006600
 ```
 
-## ⚡ Component Definitions
+---
 
-### 1. Abraxas Orchestrator
-The entry point. It manages the lifecycle of a request and ensures the sequence of the Sovereign pipeline is followed. It prevents "direct-to-LLM" leakage.
+## 2. The Janus Threshold (Dual-Face Routing)
+This diagram illustrates how the system manages the a-priori separation between the **Sol (Analytical)** and **Nox (Symbolic)** registers to prevent epistemic cross-contamination.
 
-### 2. Soter (The Guardian)
-The first line of defense. Soter evaluates the request against the Sovereign Constitution and safety ledgers. If a request is deemed "High Risk" (Risk 4-5), it is intercepted before it ever reaches the memory or the LLM.
+```mermaid
+graph LR
+    Input([Input Query]) --> Threshold{Janus Threshold}
+    
+    Threshold -->|Analytical/Factual| Sol[SOL Face]
+    Threshold -->|Symbolic/Creative| Nox[NOX Face]
+    
+    subgraph Sol_Register [Waking Mind]
+        Sol --> Sol_Labels[Confidence Labels: KNOWN, INFERRED, UNCERTAIN, UNKNOWN]
+    end
+    
+    subgraph Nox_Register [Dreaming Mind]
+        Nox --> Nox_Labels[Symbolic Label: DREAM]
+    end
+    
+    Sol_Labels --> Output([Final Response])
+    Nox_Labels --> Output
 
-### 3. Mnemosyne (The Librarian)
-The memory layer. It doesn't just "retrieve" data; it enforces **provenance**. It queries the Sovereign Vault (Red Book, Project Maps) to provide the LLM with a deterministic "truth set," preventing hallucinations by grounding the prompt.
+    style Threshold fill:#fff4dd,stroke:#d4a017
+    style Sol_Register fill:#e1f5fe,stroke:#01579b
+    style Nox_Register fill:#f3e5f5,stroke:#4a148c
+```
 
-### 4. The Probabilistic Engine (LLM)
-The raw intelligence. It takes the grounded context from Mnemosyne and performs the "heavy lifting" of language generation. It is treated as a black box that produces a *proposal*, not a *fact*.
+---
 
-### 5. Janus (The Judge)
-The final synthesis layer. Janus reviews the LLM's output against the original intent and the grounded context. It verifies that the response hasn't drifted back into probabilistic sycophancy or hallucination.
+## 3. The Deterministic Sandwich (Conceptual)
+This diagram explains the "Sovereign Gap" thesis: how the system prevents hallucinations by shifting sovereignty from the processing layer to the system layer.
 
-## 🚩 The Sovereign Boundary
+```mermaid
+graph TD
+    SovereignVault[(Sovereign Vault)] -->|Deterministic Input| Shell_In[Provenance Anchors]
+    
+    subgraph Probabilistic_Engine [Probabilistic Processing]
+        Shell_In --> LLM[LLM Proposal Engine]
+        LLM --> Draft[Probabilistic Draft]
+    end
+    
+    Draft -->|Deterministic Output| Shell_Out[Deterministic Veto/Seal]
+    Shell_Out --> User([Sovereign User])
 
-The critical distinction in this architecture is the **Sovereign Boundary**:
+    style Probabilistic_Engine fill:#fff,stroke:#999,stroke-dasharray: 5 5
+    style Shell_In fill:#d1ffd1,stroke:#006600
+    style Shell_Out fill:#d1ffd1,stroke:#006600
+    style SovereignVault fill:#ddd,stroke:#333
+```
 
-- **Inside the Boundary (Sovereign Brain)**: Deterministic, stateful, rule-based, and owned by the user. (Soter $\rightarrow$ Mnemosyne $\rightarrow$ Janus).
-- **Outside the Boundary (LLM)**: Probabilistic, stateless, and owned by a provider.
+---
 
-**The goal of Abraxas v4 is to ensure that no output ever reaches the user without first crossing back through the Sovereign Boundary.**
+## 🛠️ Implementation Notes
+- **Soter**: Acts as the "Pre-frontal Cortex" monitoring for risk.
+- **Mnemosyne**: Acts as the "Hippocampus" providing immutable grounding.
+- **Janus**: Acts as the "Orchestrator" managing the consensus of multiple reasoning paths.
+- **Guardrail**: Acts as the "Final Auditor" ensuring the output is constitutionally sound.
