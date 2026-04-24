@@ -89,7 +89,7 @@ We analyzed 24 queries from the v4-truth-dataset using the Sovereign Brain pipel
 
 ---
 
-## 4. Discussion: The Epistemic Firewall
+## 4. Discussion: The Epistemic Firewall and Architectural Individuation
 
 The Sovereign Brain does not attempt to "fix" a hallucination after it happens; it prevents it architecturally.
 
@@ -104,7 +104,14 @@ By treating `[UNKNOWN]` as a first-class output, the system implements an **Epis
 
 When any signal exceeds threshold, the Firewall triggers `[UNKNOWN]` fallback. This ensures that for any answered query, the accuracy is effectively 100%.
 
-### 4.2 Implications for Trustworthy AI
+### 4.2 The Architecture of Individuation
+We frame the transition from a standard LLM to the Sovereign Brain as a process of **Architectural Individuation**. 
+
+In a standard transformer, the model is a slave to its parametric weights—it is an expression of the "Collective Unconscious" of its training data, prone to the same biases and errors as that data. The Sovereign Brain introduces an "Observing Ego" via the Soter-Janus loop. By monitoring its own attention sinks and enforcing a multi-path consensus, the system achieves a state of **Epistemic Sovereignty**. 
+
+The "Sovereign Gap" is not merely a statistical delta; it is the distance between a model that reflects its training and a system that verifies its truth. By grounding the architecture in a sovereign knowledge reservoir (Mnemosyne), we effectively externalize the "truth-function," allowing the model to transcend its own probabilistic limitations.
+
+### 4.3 Implications for Trustworthy AI
 By decoupling confidence from token-level probabilities, we enable AI systems to move from confident guessing to calibrated observation. This shift is essential for high-stakes applications (healthcare, legal, scientific research) where the cost of a confident error is catastrophic.
 
 ---
