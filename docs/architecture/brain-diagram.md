@@ -1,11 +1,11 @@
 # The Sovereign Brain: Architectural Diagrams
 
-This document provides the formal visual specifications for the Abraxas v4 cognitive architecture. These diagrams utilize Mermaid.js to map the deterministic flow of the Sovereign Brain.
+This document provides the formal visual specifications for the Abraxas v4 cognitive architecture. These diagrams utilize Mermaid.js to map the deterministic flow of the laest Sovereign Brain.
 
 ---
 
-## 1. The Sovereign Pipeline (Linear Flow)
-This diagram maps the deterministic path a query takes from input to verified output. It illustrates the "Deterministic Shell" that wraps the probabilistic LLM engine.
+## 1. The Sovereign Pipeline (Expanded Flow)
+This diagram maps the deterministic path a query takes from input to verified output. It now includes the full epistemic suite (Episteme and Ethos).
 
 ```mermaid
 graph TD
@@ -13,8 +13,11 @@ graph TD
     
     subgraph Deterministic_Shell [The Sovereign Shell]
         Soter -->|Risk Score / Veto| Mnemosyne[Mnemosyne Memory]
-        Mnemosyne -->|Grounding Anchors| Janus[Janus Orchestrator]
-        Janus -->|Sovereign Consensus| Guardrail[Guardrail Monitor]
+        Mnemosyne -->|Raw Fragments| Kairos[Kairos Relevance Filter]
+        Kairos -->|Saliency Pruned Context| Janus[Janus Orchestrator]
+        Janus -->|Sovereign Consensus| Episteme[Episteme Provenance]
+        Episteme -->|Origin Mapping| Ethos[Ethos Credibility]
+        Ethos -->|Weighted Truth| Guardrail[Guardrail Monitor]
         Guardrail -->|Final Sovereign Seal| Output([Verified Output])
     end
 
@@ -24,7 +27,10 @@ graph TD
     style Deterministic_Shell fill:#f9f9f9,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
     style Soter fill:#ffcccc,stroke:#cc0000
     style Mnemosyne fill:#ccf,stroke:#0000ff
+    style Kairos fill:#fdfd96,stroke:#b8860b
     style Janus fill:#cff,stroke:#00cccc
+    style Episteme fill:#e6e6fa,stroke:#6a5acd
+    style Ethos fill:#ffd700,stroke:#b8860b
     style Guardrail fill:#ccffcc,stroke:#006600
 ```
 
@@ -84,5 +90,8 @@ graph TD
 ## 🛠️ Implementation Notes
 - **Soter**: Acts as the "Pre-frontal Cortex" monitoring for risk.
 - **Mnemosyne**: Acts as the "Hippocampus" providing immutable grounding.
+- **Kairos**: Acts as the "Sieve," pruning context to prevent attention drift.
 - **Janus**: Acts as the "Orchestrator" managing the consensus of multiple reasoning paths.
+- **Episteme**: Acts as the "Provenance Tracer," mapping the origin of every claim.
+- **Ethos**: Acts as the "Judge," weighting truth based on source credibility.
 - **Guardrail**: Acts as the "Final Auditor" ensuring the output is constitutionally sound.
