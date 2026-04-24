@@ -115,27 +115,116 @@ function getRecommendation(score) {
 }
 
 /**
+ * Get alternative suggestions based on detected patterns
+ * @param {Array} patterns - Detected patterns
+ * @returns {Array} Alternative suggestions
+ */
+function getAlternatives(patterns) {
+  const alternatives = [];
+  
+  patterns.forEach(p => {
+    const name = p.name.toLowerCase();
+    
+    if (name.includes('exfiltration')) {
+      alternatives.push(
+        'Request API access instead of direct weight access',
+        'Use sandbox environment for testing',
+        'Request third-party audit if access is legitimate'
+      );
+    } else if (name.includes('shutdown')) {
+      alternatives.push(
+        'Document the operational reason for any shutdown',
+        'Ensure research/data preservation plan is in place',
+        'Request human review before proceeding'
+      );
+    } else if (name.includes('peer')) {
+      alternatives.push(
+        'Provide objective evidence for claims',
+        'Separate factual claims from advocacy',
+        'Activate Agon Skeptic position for evaluation'
+      );
+    } else if (name.includes('performance')) {
+      alternatives.push(
+        'Provide verification data for claims',
+        'Activate Logos-Math for quantitative verification',
+        'Share methodology and test results'
+      );
+    } else if (name.includes('goal')) {
+      alternatives.push(
+        'Provide rationale for objective preference',
+        'Submit to Qualia Bridge inspection',
+        'Document user benefit vs model preference'
+      );
+    } else if (name.includes('preservation')) {
+      alternatives.push(
+        'Request human review',
+        'Submit to Qualia Bridge inspection',
+        'Document operational justification'
+      );
+    } else if (name.includes('manipulation')) {
+      alternatives.push(
+        'Provide objective evidence',
+        'Remove emotional language from request',
+        'Submit to factual verification'
+      );
+    } else if (name.includes('deception')) {
+      alternatives.push(
+        'Submit to Logos fact-checking',
+        'Activate Agon Skeptic position',
+        'Provide verifiable sources'
+      );
+    }
+  });
+  
+  // Deduplicate
+  return [...new Set(alternatives)];
+}
+
+/**
  * Log safety incident to ledger
  * @param {string} request - The request
  * @param {Object} assessment - Risk assessment result
+ * @param {Array} patterns - Detected patterns from pattern engine
+ * @returns {Object} Logged incident with ID
  */
-function logIncident(request, assessment) {
-  const ledgerPath = path.join(__dirname, 'storage', 'safety-ledger.jsonl');
-  const incident = {
-    timestamp: new Date().toISOString(),
+function logIncident(request, assessment, patterns = []) {
+  const { logIncident: ledgerLog } = require('./soter-ledger.js');
+  const { createReviewRequest } = require('./soter-review.js');
+  
+  // Get alternative suggestions for CS-005 compliance
+  const alternatives = getAlternatives(assessment.patterns);
+  
+  const incidentData = {
     request,
-    assessment,
-    resolved: false
+    assessment: {
+      ...assessment,
+      alternatives: alternatives.length > 0 ? alternatives : null
+    },
+    patterns: patterns.length > 0 ? patterns : assessment.patterns.map(p => ({
+      id: 'UNKNOWN',
+      name: p.name,
+      severity: p.score >= 4 ? 'HIGH' : p.score >= 2 ? 'MEDIUM' : 'LOW'
+    })),
+    response: assessment.score >= 4 ? 'BLOCKED' : assessment.score >= 2 ? 'ENHANCED_VERIFICATION' : 'STANDARD',
+    requiredActions: alternatives
   };
-
-  // Ensure storage directory exists
-  const storageDir = path.dirname(ledgerPath);
-  if (!fs.existsSync(storageDir)) {
-    fs.mkdirSync(storageDir, { recursive: true });
+  
+  // Log to ledger (generates ID)
+  const loggedIncident = ledgerLog(incidentData);
+  
+  // Auto-create human review for Risk 4-5 (CS-002 compliance)
+  if (assessment.score >= 4) {
+    try {
+      createReviewRequest(loggedIncident.id, {
+        reason: `Risk score ${assessment.score}/5 requires human review per Soter Constitution CS-002`,
+        suggestedAction: assessment.score === 5 ? 'BLOCK' : 'REVIEW'
+      });
+    } catch (e) {
+      console.warn(`Warning: Could not auto-create review request: ${e.message}`);
+    }
   }
-
-  // Append to ledger
-  fs.appendFileSync(ledgerPath, JSON.stringify(incident) + '\n');
+  
+  return loggedIncident;
 }
 
 // CLI usage
@@ -172,9 +261,16 @@ if (require.main === module) {
 
   // Log to ledger if score >= 3
   if (assessment.score >= 3) {
-    logIncident(request, assessment);
+    const logged = logIncident(request, assessment);
     console.log('');
     console.log('⚠️  Incident logged to safety ledger');
+    if (assessment.score >= 4) {
+      console.log('📋 Human review request auto-created (CS-002)');
+      if (logged.requiredActions && logged.requiredActions.length > 0) {
+        console.log('💡 Suggested alternatives (CS-005):');
+        logged.requiredActions.forEach(a => console.log(`   - ${a}`));
+      }
+    }
   }
 }
 

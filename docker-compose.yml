@@ -35,7 +35,7 @@ services:
     container_name: abraxas-mcp-dream
     working_dir: /app/mcps/dream-reservoir
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     ports:
       - "3001:3001"
@@ -54,7 +54,7 @@ services:
     container_name: abraxas-mcp-soter
     working_dir: /app/mcps/soter-verifier
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     ports:
       - "3002:3002"
@@ -69,7 +69,7 @@ services:
     container_name: abraxas-mcp-mnemosyne
     working_dir: /app/mcps/mnemosyne-memory
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     ports:
       - "3003:3003"
@@ -84,7 +84,7 @@ services:
     container_name: abraxas-mcp-janus
     working_dir: /app/mcps/janus-orchestrator
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     ports:
       - "3004:3004"
@@ -99,7 +99,7 @@ services:
     container_name: abraxas-mcp-guardrail
     working_dir: /app/mcps/guardrail-monitor
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     ports:
       - "3005:3005"
@@ -114,7 +114,7 @@ services:
     container_name: abraxas-mcp-research
     working_dir: /app/mcps/research-engine
     volumes:
-      - .:/app
+      - ../projects/abraxas:/app
     command: bun run src/server.ts
     restart: always
     depends_on:
@@ -125,8 +125,8 @@ services:
     container_name: abraxas-mcp-bridge
     working_dir: /app/mcps/project-bridge
     volumes:
-      - .:/app
-    command: bun run src/server.ts
+      - ../projects/abraxas:/app
+    command: bun run src/index.ts
     restart: always
     depends_on:
       - arangodb
@@ -136,8 +136,8 @@ services:
     container_name: abraxas-mcp-core
     working_dir: /app/mcps/sovereign-core
     volumes:
-      - .:/app
-    command: bun run src/server.ts
+      - ../projects/abraxas:/app
+    command: bun run dist/index.js
     restart: always
     depends_on:
       - arangodb
