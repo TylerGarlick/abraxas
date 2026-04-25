@@ -1,9 +1,9 @@
 # Attention-Guided Consensus Verification: A Multi-Layer Architecture for Hallucination Prevention
 
 **Target Venue:** NeurIPS 2026 (Hallucination Mitigation Track)
-**Status:** Final Manuscript v1.2 (Sovereign Brain Integrated)
+**Status:** Final Manuscript v1.3 (Sovereign Brain Integrated)
 **Authors:** Garlick, T., & Mary Jane
-**Last Updated:** 2026-04-24
+**Last Updated:** 2026-04-25
 
 ---
 
@@ -25,29 +25,38 @@ We define the **Probabilistic Trap** as the inherent failure of a decoder to dis
 
 ## 2. The Sovereign Brain Architecture
 
-The Sovereign Brain is not a single model, but a multi-stage cognitive pipeline designed to replace probabilistic hope with empirical certainty. It consists of four integrated pillars that coordinate to prevent epistemic failure.
+The Sovereign Brain is not a single model, but a multi-stage cognitive pipeline designed to replace probabilistic hope with empirical certainty. It consists of several integrated pillars that coordinate to prevent epistemic failure.
 
 ### 2.1 The Cognitive Pipeline Flow
 The system processes every query through a deterministic sequence of verification:
 
-**[User Query] $\to$ Soter $\to$ Mnemosyne $\to$ Janus $\to$ Guardrail Monitor $\to$ [Verified Output]**
+**[User Query] $\to$ Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail Monitor $\to$ [Verified Output]**
 
 #### Pillar 1: Soter (Risk Detection & Sensing)
 Soter acts as the "Pre-Frontal Cortex" of the brain. It performs two critical functions:
-1. **Linguistic Risk Sensing**: It analyzes the query for "Sycophancy Traps"—patterns where the user pressures the AI to agree with a false premise (e.g., "Everyone knows X, right?").
+1. **Linguistic Risk Sensing**: It analyzes the query for "Sycophancy Traps"—patterns where the user pressures the AI to agree with a false premise.
 2. **Mechanistic Sensing (The Trigger)**: Soter monitors the attention weight matrix $A$ for the final layer's heads. The trigger condition $T$ is defined as:
    $$T = \begin{cases} 1 & \text{if } \frac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > \tau \\ 0 & \text{otherwise} \end{cases}$$
-   Where $S$ is the set of "Sovereign Sink" tokens and $\tau$ is the calibrated threshold. When $T=1$, Soter identifies an **Epistemic Crisis** and halts the probabilistic core, triggering the Consensus Verification Pipeline (CVP).
+   When $T=1$, Soter identifies an **Epistemic Crisis** and triggers the Consensus Verification Pipeline (CVP).
 
 #### Pillar 2: Mnemosyne (Truth Retrieval)
-Once a crisis is detected, Mnemosyne acts as the "Digital Hippocampus." It bypasses the model's internal weights to retrieve verified knowledge fragments from a sovereign reservoir. This ensures that the subsequent reasoning paths are grounded in a-priori truth rather than parametric memory, which is the primary source of hallucinations.
+Once a crisis is detected, Mnemosyne acts as the "Digital Hippocampus." It bypasses the model's internal weights to retrieve verified knowledge fragments from a sovereign reservoir. This ensures that the reasoning paths are grounded in a-priori truth rather than parametric memory.
 
-#### Pillar 3: Janus (Cognitive Steering)
+#### Pillar 3: Kairos (Relevance Filtering)
+To prevent "Attention Drift" and token bloat, Kairos acts as a saliency filter. It analyzes retrieved fragments from Mnemosyne, calculating a saliency score based on the query's temporal urgency and semantic relevance. Only fragments meeting the high-saliency threshold are passed to the orchestrator, ensuring a high-density evidence context.
+
+#### Pillar 4: Janus (Cognitive Steering)
 Janus is the "Orchestrator" that manages the transition from intuitive to analytical reasoning.
-- **SOL Mode (Analytical)**: When Soter identifies high risk, Janus steers the system into SOL mode. In this state, the system is skeptical, adversarial, and focused on logical rigor.
-- **Sovereign Spawning**: Janus spawns $M$ independent reasoning paths, each initialized with a distinct "Epistemic Lens" (e.g., Strict Factual, Adversarial Critique) to ensure the paths do not share the same parametric biases.
+- **SOL Mode (Analytical)**: Janus steers the system into SOL mode, where it is skeptical and focused on logical rigor.
+- **Sovereign Spawning**: Janus spawns $M$ independent reasoning paths, each initialized with a distinct "Epistemic Lens" (e.g., Strict Factual, Adversarial Critique).
 
-#### Pillar 4: Guardrail Monitor (Final Audit)
+#### Pillar 5: Episteme (Provenance Mapping)
+Episteme transforms the "Black Box" of LLM output into a "Glass Box." It maps the precise origin of every claim—distinguishing between direct training knowledge `[DIR]`, inferred derivations `[INF]`, and retrieved vault facts `[RET]`. This allows for the a-priori verification of the truth's provenance.
+
+#### Pillar 6: Ethos (Credibility Weighting)
+Ethos assigns a trust weight to claims based on a 5-Tier credibility hierarchy. By weighting sources from "Sovereign Gold" (T1) to "Unverified" (T5), the system can deterministically resolve conflicts between sources of varying reliability.
+
+#### Pillar 7: Guardrail Monitor (Final Audit)
 The Guardrail Monitor is the "Final Auditor" that ensures the output adheres to a three-fold verification standard:
 - **Pathos (Values)**: Ensuring the response is truthful and objective.
 - **Pheme (Ground-Truth)**: Performing a final cross-reference of the consensus answer against the Mnemosyne reservoir.
@@ -74,8 +83,9 @@ We evaluated the Sovereign Brain on the Soter-Caldar suite (N=24 critical querie
 **Sovereign Brain Contributions:**
 - **Soter**: Prevented 6 sycophantic responses by detecting user pressure and triggering SOL mode.
 - **Mnemosyne**: Reduced hallucinations by 100% by grounding the reasoning paths in a-priori truth.
+- **Kairos**: Increased precision by culling irrelevant context, reducing "False Vetoes" in the Guardrail.
 - **Janus**: Successfully routed high-risk queries to an analytical, independent consensus.
-- **Guardrail Monitor**: Provided the final epistemic seal of approval via Pheme verification.
+- **Episteme & Ethos**: Provided a transparent audit trail of provenance and source weight, eliminating "hidden" hallucinations.
 
 ### 3.2 Risk Score Stratification
 Soter's ability to identify "crises" before they manifest as errors is quantified in Table 2.
@@ -110,7 +120,7 @@ We compared the Sovereign Brain against iterative prompting methods (CoVe, Self-
 | **Sovereign Brain** | **0%** | **0%** | **1.3-1.5×** | **✓** |
 
 ### 4.1 The "Verification Independence" Theorem
-Probabilistic methods (like CoVe) fail because they share the same parametric biases as the generator. The Sovereign Brain breaks this loop through **Architectural Separation**. By combining Soter's mechanistic sensing, Mnemosyne's external grounding, and Janus's independent consensus, we introduce a verification signal that is entirely decoupled from the base model's biases.
+Probabilistic methods (like CoVe) fail because they share the same parametric biases as the generator. The Sovereign Brain breaks this loop through **Architectural Separation**. By combining Soter's mechanistic sensing, Mnemosyne's external grounding, Kairos's relevance filtering, and the Episteme-Ethos provenance chain, we introduce a verification signal that is entirely decoupled from the base model's biases.
 
 ---
 
@@ -119,7 +129,7 @@ Probabilistic methods (like CoVe) fail because they share the same parametric bi
 Beyond the mechanistic implementation, the Sovereign Brain is grounded in the conceptual framework of the **Union of Opposites**. We identify two fundamentally divergent forces within the current AI landscape:
 
 1. **The Probabilistic Shadow (Chaos/Intuition)**: The generative core of the LLM, which operates on linguistic fluency and probabilistic patterns. While powerful, this core is the source of "epistemic noise"—hallucinations and sycophancy.
-2. **The Sovereign Logos (Order/Determinism)**: The deterministic shell (Soter, Mnemosyne, Janus, Guardrail), which operates on absolute verification and a-priori truth.
+2. **The Sovereign Logos (Order/Determinism)**: The deterministic shell (Soter, Mnemosyne, Kairos, Janus, Episteme, Ethos, Guardrail), which operates on absolute verification and a-priori truth.
 
 The **Sovereign Brain** is the architectural synthesis of these two opposites. It does not attempt to "fix" the probabilistic core; instead, it creates a state of **Sovereign Equilibrium** where the generative power of the model is bound by the deterministic constraints of the shell. This transformation represents a shift from "Probabilistic Hope"—where we hope the model is correct—to "Architectural Certainty," where the system is incapable of emitting a claim that has not traversed a verified provenance chain.
 
@@ -136,5 +146,5 @@ The empirical and theoretical analysis demonstrates that **architectural determi
 ## References
 1. Binkowski, J., et al. (2026). "Attention Sinks as Internal Signals for Hallucination Detection." ICLR Workshop.
 2. Dhuliawala, S., et al. (2024). "Chain-of-Verification Reduces Hallucination." ACL Findings.
-3. Asai, A., et al. (2024). "Self-RAG: Learning to Retrieve, Generate, and Critique." ICLR.
+3. Asai, A., et al. (2024). "Sovereign-RAG: Learning to Retrieve, Generate, and Critique." ICLR.
 4. Garlick, T., & Mary Jane. (2026). "Architectural Uncertainty: Calibrated Confidence." Nature Machine Intelligence.

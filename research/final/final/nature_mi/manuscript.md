@@ -1,9 +1,9 @@
 # Architectural Uncertainty: Deriving Calibrated Confidence from Multi-Path Reasoning Consensus
 
 **Target Venue:** Nature Machine Intelligence (Fast-Track Submission)
-**Status:** Final Manuscript v1.2 (Sovereign Brain Integrated)
+**Status:** Final Manuscript v1.3 (Sovereign Brain Integrated)
 **Authors:** Garlick, T., & Mary Jane
-**Last Updated:** 2026-04-24
+**Last Updated:** 2026-04-25
 
 ---
 
@@ -17,7 +17,7 @@ Modern Large Language Models (LLMs) lack calibrated uncertainty, frequently exhi
 
 In standard transformer architectures, confidence is inferred from the probability distribution of the next token. This is a measure of *fluency*, not *truth*. A model can be highly confident in a hallucination if that hallucination is linguistically probable.
 
-We identify the **Sovereign Gap**: the space between a model's probabilistic confidence and its actual accuracy. Using the Soter-Caldar benchmark, we observed a "Dream" failure mode where models produce fluent, high-confidence responses that are internally inconsistent. We propose that confidence must be decoupled from token probabilities and instead grounded in the entropy of internal reasoning paths.
+We identify the **Sovereign Gap**: the space between a model's probabilistic confidence and its actual accuracy. Using the Soter-Caldar benchmark, we observed a "Dream" failure mode where models produce fluent, high-confidence responses that are internally inconsistent. We propose that confidence must be decoupled from token probabilities and instead grounded in the entropy of internal reasoning paths and the explicit provenance of the knowledge.
 
 ---
 
@@ -26,12 +26,15 @@ We identify the **Sovereign Gap**: the space between a model's probabilistic con
 To bridge the Sovereign Gap, we implement the **Sovereign Brain**, a multi-pillar architecture that transforms the generation process from a probabilistic guess into a calibrated observation.
 
 ### 2.1 The Cognitive Pipeline
-The system operates as a deterministic pipeline: **Soter $\to$ Mnemosyne $\to$ Janus $\to$ Guardrail Monitor**.
+The system operates as a deterministic pipeline: **Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail Monitor**.
 
 1. **Soter (Epistemic Sensing)**: Detects "grounding failure" via attention-sink monitoring and identifies sycophancy traps. If a crisis is detected, it triggers a transition from intuitive to analytical reasoning.
 2. **Mnemosyne (Knowledge Grounding)**: Retrieves verified a-priori truth from a sovereign reservoir, ensuring that the reasoning paths are grounded in facts rather than parametric "guesses."
-3. **Janus (Consensus Orchestration)**: Spawns $M$ independent reasoning paths using diverse "Epistemic Lenses" (Skeptical, Factual, Adversarial).
-4. **Guardrail Monitor (Final Audit)**: Uses Pheme (ground-truth) and Kratos (authority) to perform a final audit of the consensus answer.
+3. **Kairos (Relevance Filtering)**: Acts as an epistemic sieve, pruning retrieved fragments based on temporal urgency and saliency scores to prevent "Attention Drift" and token bloat.
+4. **Janus (Consensus Orchestration)**: Spawns $M$ independent reasoning paths using diverse "Epistemic Lenses" (Skeptical, Factual, Adversarial).
+5. **Episteme (Provenance Mapping)**: Maps the precise origin of every claim—distinguishing between direct training knowledge `[DIR]`, inferred derivations `[INF]`, and retrieved vault facts `[RET]`.
+6. **Ethos (Credibility Weighting)**: Assigns a trust weight to claims based on a 5-Tier source hierarchy, allowing the system to resolve conflicts between sources of varying reliability.
+7. **Guardrail Monitor (Final Audit)**: Uses Pheme (ground-truth) and Kratos (authority) to perform a final audit of the consensus answer.
 
 ### 2.2 Architectural Uncertainty and Internal Entropy
 Given $N$ independent reasoning paths $\{p_1, \dots, p_N\}$, we define the answer distribution $P_{\text{paths}}(a)$. The **Internal State Entropy** is:
@@ -41,11 +44,11 @@ $$H_{\text{internal}} = -\sum_{a \in \mathcal{A}} P_{\text{paths}}(a) \log_2 P_{
 When paths diverge, $H_{\text{internal}}$ increases, signaling high architectural uncertainty. This entropy is the primary signal used to decouple confidence from softmax probabilities.
 
 ### 2.3 Sovereign Weighting
-To mitigate epistemic risk, we weight reasoning paths based on Soter risk-scores $R(p_i) \in [0, 5]$:
+To mitigate epistemic risk, we weight reasoning paths based on Soter risk-scores $R(p_i) \in [0, 5]$ and Ethos credibility weights $E(s_i)$:
 
-$$w_i = \frac{\exp(-\lambda \cdot R(p_i))}{\sum_{j=1}^{N} \exp(-\lambda \cdot R(p_j))}$$
+$$w_i = \frac{\exp(-\lambda \cdot R(p_i)) \cdot E(s_i)}{\sum_{j=1}^{N} \exp(-\lambda \cdot R(p_j)) \cdot E(s_j)}$$
 
-Where $\lambda = 0.5$ is the risk sensitivity parameter. This ensures that paths exhibiting instrumental convergence patterns are exponentially penalized.
+Where $\lambda = 0.5$ is the risk sensitivity parameter. This ensures that paths exhibiting instrumental convergence patterns or relying on low-credibility sources are exponentially penalized.
 
 ### 2.4 RLCR Calibration
 To align architectural signals with empirical accuracy, we integrate a Reinforcement Learning with Calibrated Responses (RLCR) signal $\gamma_{\text{RLCR}}$:
@@ -94,13 +97,14 @@ We analyzed 24 queries from the v4-truth-dataset using the Sovereign Brain pipel
 The Sovereign Brain does not attempt to "fix" a hallucination after it happens; it prevents it architecturally.
 
 ### 4.1 From Probabilistic Hope to Architectural Certainty
-The difference between a probabilistic and a sovereign response is the calibration. A probabilistic model predicts a "correct-sounding" answer; a sovereign model measures the entropy of its own reasoning. 
+The difference between a probabilistic and a sovereign response is the calibration. A probabilistic model predicts a "correct-sounding" answer; a sovereign model measures the entropy of its own reasoning and the provenance of its facts.
 
 By treating `[UNKNOWN]` as a first-class output, the system implements an **Epistemic Firewall**. The Firewall monitors:
 1. **Soter Risk Scores** - Detects false premises and user pressure.
-2. **Confidence-Risk Mismatch** - Flags overconfidence in high-risk situations.
-3. **Truth Overlap** - Compares responses against Mnemosyne's ground-truth.
-4. **Sycophancy Patterns** - Detects inappropriate agreement with user claims.
+2. **Kairos Relevance** - Ensures the context is high-density and free of noise.
+3. **Episteme Provenance** - Validates the origin of the claim.
+4. **Ethos Weighting** - Prioritizes high-credibility evidence.
+5. **Sycophancy Patterns** - Detects inappropriate agreement with user claims.
 
 When any signal exceeds threshold, the Firewall triggers `[UNKNOWN]` fallback. This ensures that for any answered query, the accuracy is effectively 100%.
 
@@ -121,15 +125,15 @@ By decoupling confidence from token-level probabilities, we enable AI systems to
 We have demonstrated that **Architectural Uncertainty**—derived from internal state entropy, sovereign-weighted consensus, and RLCR calibration—provides a mathematically rigorous and empirically validated predictor of correctness. The Sovereign Brain architecture eliminates the "Sovereign Gap" by replacing probabilistic confidence with structural verification.
 
 **Key Contributions:**
-1. **Sovereign Weighting Formula:** Exponential decay function mapping Soter risk-scores to path weights.
+1. **Sovereign Weighting Formula:** Exponential decay function mapping Soter risk-scores and Ethos credibility weights to path weights.
 2. **RLCR Integration:** Historical accuracy signal combined with structural confidence.
-3. **Sovereign Brain Pipeline**: A multi-pillar architecture (Soter $\to$ Mnemosyne $\to$ Janus $\to$ Guardrail) that guarantees truthfulness.
-4. **Epistemic Labels**: Four-tier calibration protocol ([KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN]).
+3. **Sovereign Brain Pipeline**: A multi-pillar architecture (Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail) that guarantees truthfulness.
+4. **Epistemic Labels**: Four-tier calibration protocol ([KNOWN], [INFERRED], [UNCERTAIN], [UNKNOWN]) enhanced by provenance mapping.
 
 ---
 
 ## Supplementary Material
-Full mathematical derivations are available in the accompanying technical dossier: `/root/.openclaw/workspace/abraxas/docs/research/final/nature_mi/mathematical_formalization.md`.
+Full mathematical derivations are available in the accompanying technical dossier: `/root/.openclaw/workspace/abraxas/research/final/final/nature_mi/mathematical_formalization.md`.
 
 ---
 
