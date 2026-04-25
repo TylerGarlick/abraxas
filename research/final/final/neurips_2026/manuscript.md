@@ -36,8 +36,12 @@ The system processes every query through a deterministic sequence of verificatio
 Soter acts as the "Pre-Frontal Cortex" of the brain. It performs two critical functions:
 1. **Linguistic Risk Sensing**: It analyzes the query for "Sycophancy Traps"—patterns where the user pressures the AI to agree with a false premise.
 2. **Mechanistic Sensing (The Trigger)**: Soter monitors the attention weight matrix $A$ for the final layer's heads. The trigger condition $T$ is defined as:
-   $$T = \begin{cases} 1 & \text{if } \frac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > \tau \\ 0 & \text{otherwise} \end{cases}$$
-   When $T=1$, Soter identifies an **Epistemic Crisis** and triggers the Consensus Verification Pipeline (CVP).
+
+$$
+T = \begin{cases} 1 & \text{if } \frac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > \tau \\ 0 & \text{otherwise} \end{cases}
+$$
+
+When $T=1$, Soter identifies an **Epistemic Crisis** and triggers the Consensus Verification Pipeline (CVP).
 
 #### Pillar 2: Mnemosyne (Truth Retrieval)
 Once a crisis is detected, Mnemosyne acts as the "Digital Hippocampus." It bypasses the model's internal weights to retrieve verified knowledge fragments from a sovereign reservoir. This ensures that the reasoning paths are grounded in a-priori truth rather than parametric memory.
