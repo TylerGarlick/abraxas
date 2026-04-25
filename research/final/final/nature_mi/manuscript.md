@@ -57,7 +57,7 @@ $$\gamma_{\text{RLCR}}(t) = \frac{\sum_{\tau=1}^{t} \mathbb{I}(A^*_\tau \text{ c
 
 The **Final Confidence** integrates structural and historical signals:
 
-$$\text{Final\_Confidence} = \alpha \cdot C_{\text{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
+$$\text{Final Confidence} = \alpha \cdot C_{\text{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
 
 Where $\alpha = 0.7$ is the optimal balance. This allows the system to adopt a position of **Epistemic Humility**, outputting `[UNKNOWN]` when the structural and historical signals indicate a high probability of error.
 
