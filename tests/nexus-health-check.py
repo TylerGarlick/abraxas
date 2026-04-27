@@ -12,8 +12,8 @@ SERVERS = [
     ("Sovereign-Scribe", "/root/.openclaw/workspace/abraxas/mcps/sovereign-scribe/dist/index.js", ["node"]),
     ("Soter", "/root/.openclaw/workspace/abraxas/mcps/soter-verifier/src/index.ts", ["npx", "ts-node"]),
     ("Mnemosyne", "/root/.openclaw/workspace/abraxas/mcps/mnemosyne-memory/src/index.ts", ["npx", "ts-node"]),
-    ("Janus", "/root/.openclaw/workspace/abraxas/mcps/janus-orchestrator/src/server.ts", ["npx", "ts-node"]),
-    ("Guardrail", "/root/.openclaw/workspace/abraxas/mcps/guardrail-monitor/src/server.ts", ["npx", "ts-node"]),
+    ("Janus", "/root/.openclaw/workspace/abraxas/mcps/janus-orchestrator/src/index.ts", ["npx", "ts-node"]),
+    ("Guardrail", "/root/.openclaw/workspace/abraxas/mcps/guardrail-monitor/src/index.ts", ["npx", "ts-node"]),
 ]
 
 INIT_REQUEST = {
