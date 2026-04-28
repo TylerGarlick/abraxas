@@ -1,0 +1,16 @@
+{
+  "name": "abraxas-mcp-dream-reservoir",
+  "version": "1.0.0",
+  "description": "Sovereign Dream Reservoir MCP Server",
+  "main": "src/server.ts",
+  "type": "module",
+  "scripts": {
+    "start": "bun run src/server.ts",
+    "dev": "bun --watch src/server.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "hono": "latest",
+    "zod": "latest"
+  }
+}
