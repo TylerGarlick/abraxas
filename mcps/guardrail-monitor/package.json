@@ -1,21 +1,25 @@
 {
   "name": "guardrail-monitor",
   "version": "1.0.0",
-  "description": "Guardrail Monitor MCP - The Final Auditor of the Sovereign Brain",
-  "main": "dist/index.js",
+  "description": "MCP server for higher-order guardrails: Pathos (value saliency), Pheme (ground truth), Kratos (conflict arbitration)",
+  "module": "src/server.ts",
   "type": "module",
+  "private": true,
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts"
+    "start": "bun run src/server.ts",
+    "build": "bun build src/server.ts --outdir dist --target node",
+    "test": "bun test",
+    "test:coverage": "bun test --coverage"
+  },
+  "author": "Tyler Garlick",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
-    "zod": "^3.23.8"
-  },
-  "devDependencies": {
-    "typescript": "^5.4.0",
-    "ts-node": "^10.9.2",
-    "@types/node": "^20.11.0"
+    "@modelcontextprotocol/sdk": "^1.29.0"
   }
 }

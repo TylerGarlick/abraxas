@@ -1,0 +1,46 @@
+{
+  "fragments": [
+    {
+      "id": "frag_1",
+      "fragment": "The Sovereign Brain uses a multi-layer architecture (Soter, Mnemosyne, Janus, Guardrail) to eliminate hallucinations.",
+      "provenance": "Sovereign Brain Technical Manual v1.0",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_2",
+      "fragment": "Sovereign Precision Standard: 0% hallucinations achieved by defaulting to [UNKNOWN] when consensus is not met.",
+      "provenance": "Sovereign Evidence Standard v1.0",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_3",
+      "fragment": "The Attention Sink formula: T = 1 if 1/|H| * sum(sum(Ah(t, s))) > tau.",
+      "provenance": "Technical Manual - Mechanistic Trigger Section",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_4",
+      "fragment": "Sovereign Gap: Architectural Uncertainty (|r| = -0.490) is a superior predictor of correctness than softmax probabilities.",
+      "provenance": "Nature MI Manuscript - Empirical Evidence Section",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_5",
+      "fragment": "The 100% precision claim is based on the Soter-Caldar N=99 validation sprint.",
+      "provenance": "Soter-Caldar Benchmark Report",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_6",
+      "fragment": "Sovereign Lenses include The Skeptic, The Expert, The Adversary, The Archivist, and The Generalist.",
+      "provenance": "Janus Orchestration Logic",
+      "timestamp": "2026-04-27T23:45:00Z"
+    },
+    {
+      "id": "frag_7",
+      "fragment": "The Guardrail Monitor uses a three-fold standard: Pathos, Pheme, and Kratos.",
+      "provenance": "Guardrail Monitor Spec",
+      "timestamp": "2026-04-27T23:45:00Z"
+    }
+  ]
+}

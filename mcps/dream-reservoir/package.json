@@ -1,7 +1,7 @@
 {
-  "name": "soter-verifier",
+  "name": "abraxas-mcp",
   "version": "1.0.0",
-  "description": "MCP server for Soter epistemic verification and safety risk evaluation",
+  "description": "MCP server for Abraxas Dream Reservoir and ArangoDB Knowledge Graph",
   "module": "src/server.ts",
   "type": "module",
   "private": true,
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "arangojs": "^10.3.0",
     "dotenv": "^17.4.2"
   }
 }

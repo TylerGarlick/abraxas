@@ -1,7 +1,7 @@
 {
-  "name": "soter-verifier",
+  "name": "research-engine",
   "version": "1.0.0",
-  "description": "MCP server for Soter epistemic verification and safety risk evaluation",
+  "description": "MCP server for advanced web research: search, synthesis, and deep-dive intelligence",
   "module": "src/server.ts",
   "type": "module",
   "private": true,
@@ -20,7 +20,6 @@
     "typescript": "^5"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
-    "dotenv": "^17.4.2"
+    "@modelcontextprotocol/sdk": "^1.29.0"
   }
 }
