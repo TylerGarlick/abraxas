@@ -1,25 +1,18 @@
 {
-  "name": "research-engine",
+  "name": "abraxas-mcp-research-engine",
   "version": "1.0.0",
-  "description": "MCP server for advanced web research: search, synthesis, and deep-dive intelligence",
-  "module": "src/server.ts",
+  "description": "Sovereign Research Engine MCP Server",
+  "main": "src/server.ts",
   "type": "module",
-  "private": true,
   "scripts": {
     "start": "bun run src/server.ts",
-    "build": "bun build src/server.ts --outdir dist --target node",
-    "test": "bun test",
-    "test:coverage": "bun test --coverage"
-  },
-  "author": "Tyler Garlick",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
+    "dev": "bun --watch src/server.ts"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0"
+    "@modelcontextprotocol/sdk": "latest",
+    "hono": "latest",
+    "zod": "latest",
+    "express": "latest",
+    "cors": "latest"
   }
 }
