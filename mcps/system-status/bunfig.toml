@@ -1,0 +1,5 @@
+[install]
+# Use node resolution for MCP SDK
+
+[run]
+# Ensure node compatibility
