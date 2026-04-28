@@ -1,27 +1,16 @@
 version: '3.8'
 
 services:
-  # --- SOVEREIGN CORE (Reconstructed) ---
+  # --- SOVEREIGN CORE (The Brain) ---
   soter-verifier:
     image: oven/bun:latest
     container_name: abraxas-mcp-soter
     volumes:
       - ./mcps/soter-verifier:/app
     working_dir: /app
-    command: bun run src/server.ts
+    command: bun run src/index.ts
     ports:
       - "3002:3002"
-    restart: always
-
-  aletheia-truth:
-    image: oven/bun:latest
-    container_name: abraxas-mcp-aletheia
-    volumes:
-      - ./mcps/aletheia-truth:/app
-    working_dir: /app
-    command: bun run src/server.ts
-    ports:
-      - "3006:3006"
     restart: always
 
   mnemosyne-memory:
@@ -30,7 +19,7 @@ services:
     volumes:
       - ./mcps/mnemosyne-memory:/app
     working_dir: /app
-    command: bun run src/server.ts
+    command: bun run src/index.ts
     ports:
       - "3003:3003"
     restart: always
@@ -41,7 +30,7 @@ services:
     volumes:
       - ./mcps/janus-orchestrator:/app
     working_dir: /app
-    command: bun run src/server.ts
+    command: bun run src/index.ts
     ports:
       - "3004:3004"
     restart: always
@@ -52,9 +41,53 @@ services:
     volumes:
       - ./mcps/guardrail-monitor:/app
     working_dir: /app
-    command: bun run src/server.ts
+    command: bun run src/index.ts
     ports:
       - "3005:3005"
+    restart: always
+
+  episteme:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-episteme
+    volumes:
+      - ./mcps/episteme:/app
+    working_dir: /app
+    command: bun run src/index.ts
+    ports:
+      - "3006:3006"
+    restart: always
+
+  ethos:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-ethos
+    volumes:
+      - ./mcps/ethos:/app
+    working_dir: /app
+    command: bun run src/index.ts
+    ports:
+      - "3007:3007"
+    restart: always
+
+  kairos:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-kairos
+    volumes:
+      - ./mcps/kairos:/app
+    working_dir: /app
+    command: bun run src/index.ts
+    ports:
+      - "3008:3008"
+    restart: always
+
+  sovereign-scribe:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-scribe
+    volumes:
+      - ./mcps/sovereign-scribe:/app
+    working_dir: /app
+    command: bun run src/index.ts
+    ports:
+      - "3009:3009"
     restart: always
 
   dream-reservoir:
@@ -79,45 +112,6 @@ services:
       - "3007:3007"
     restart: always
 
-  # --- LEGACY & UTILITY MCPs ---
-  secrets-manager:
-    image: oven/bun:latest
-    container_name: mcp-secrets-manager
-    volumes:
-      - ./mcps/secrets-manager:/app
-    working_dir: /app
-    command: bun run index.ts
-    restart: always
-
-  beads-retros:
-    image: oven/bun:latest
-    container_name: mcp-beads-retros
-    volumes:
-      - ./mcps/beads-retros:/app
-    working_dir: /app
-    command: bun run index.ts
-    restart: always
-
-  memory:
-    image: oven/bun:latest
-    container_name: mcp-memory
-    volumes:
-      - ./mcps/memory:/app
-    working_dir: /app
-    command: bun run index.ts
-    restart: always
-
-  system-status:
-    image: oven/bun:latest
-    container_name: mcp-system-status
-    volumes:
-      - ./mcps/system-status:/app
-    working_dir: /app
-    command: bun run index.ts
-    ports:
-      - "8080:8080"
-    restart: always
-
   project-bridge:
     image: oven/bun:latest
     container_name: mcp-project-bridge
@@ -135,45 +129,28 @@ services:
       - ./mcps/research-engine:/app
     working_dir: /app
     command: bun run src/server.ts
+    ports:
+      - "3010:3010"
     restart: always
 
-  pipeline-orchestrator:
+  sovereign-core:
     image: oven/bun:latest
-    container_name: mcp-pipeline-orchestrator
+    container_name: abraxas-mcp-core
     volumes:
-      - ./mcps/pipeline-orchestrator:/app
-      - ../state:/app/state
-    working_dir: /app
-    command: bun run index.ts
-    restart: always
-
-  mcp-arangodb:
-    image: oven/bun:latest
-    container_name: mcp-arangodb
-    volumes:
-      - ./mcps/mcp-arangodb:/app
+      - ./mcps/sovereign-core:/app
     working_dir: /app
     command: bun run src/index.ts
-    environment:
-      - ARANGO_HOST=http://abraxas-arangodb:8529
-    networks:
-      - abraxas_default
-    restart: always
-
-  dolt-server:
-    image: dolthub/dolt:latest
-    container_name: dolt-server
-    volumes:
-      - ../.beads:/dolt/beads
     ports:
-      - "3306:3306"
-    command: sql-server --data-dir /dolt/beads
-    networks:
-      - dolt_network
+      - "3011:3011"
     restart: always
 
-networks:
-  abraxas_default:
-    external: true
-  dolt_network:
-    driver: bridge
+  aletheia-truth:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-aletheia
+    volumes:
+      - ./mcps/aletheia-truth:/app
+    working_dir: /app
+    command: bun run src/server.ts
+    ports:
+      - "3006:3001"
+    restart: always
