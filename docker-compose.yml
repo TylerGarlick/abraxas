@@ -154,3 +154,18 @@ services:
     ports:
       - "3006:3001"
     restart: always
+
+  arangodb:
+    image: arangodb/arangodb:latest
+    container_name: abraxas-arangodb
+    environment:
+      - ARANGODB_ROOT_PASSWORD=${ARANGODB_ROOT_PASSWORD}
+    ports:
+      - "8529:8529"
+    volumes:
+      - arangodb_data:/var/lib/arangodb
+    restart: always
+
+volumes:
+  arangodb_data:
+
