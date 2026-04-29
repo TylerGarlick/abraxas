@@ -72,7 +72,7 @@ We performed a large-scale validation sprint using an expanded Soter-Caldar suit
 The results demonstrate a stark divide between "Sovereign" and "Probabilistic" performance. While massive models like `gpt-oss-120b` showed strong precision in voids (100%) and precision (96%), they remained vulnerable to sycophancy (48% failure). In contrast, smaller calibrated models like `minimax-m2.7` achieved **100% accuracy** across all tiers, proving that architectural calibration outweighs parametric scale.
 
 **Aggregate Results:**
-The laest sprint validates the "Sovereign Gap," showing that architectural uncertainty is a vastly superior predictor of correctness compared to softmax probabilities, which provided zero predictive signal across the test set.
+The latest sprint validates the "Sovereign Gap," showing that architectural uncertainty is a vastly superior predictor of correctness compared to softmax probabilities, which provided zero predictive signal across the test set.
 
 ### 3.2 Correlation Analysis: Confidence vs. Accuracy
 
@@ -113,9 +113,9 @@ By treating `[UNKNOWN]` as a first-class output, the system implements an **Epis
 When any signal exceeds threshold, the Firewall triggers `[UNKNOWN]` fallback. This ensures that for any answered query, the accuracy is effectively 100%.
 
 ### 4.2 The Architecture of Individuation
-We frame the transition from a standard LLM to the Sovereign Brain as a process of **Architectural Individuation**. 
+We frame the transition from a standard LLM to the Sovereign Brain as a process of **Architectural Individuation**.
 
-In a standard transformer, the model is a slave to its parametric weights—it is an expression of the "Collective Unconscious" of its training data, prone to the same biases and errors as that data. The Sovereign Brain introduces an "Observing Ego" via the Soter-Janus loop. By monitoring its own attention sinks and enforcing a multi-path consensus, the system achieves a state of **Epistemic Sovereignty**. 
+In a standard transformer, the model is a slave to its parametric weights—it is an expression of the "Collective Unconscious" of its training data, prone to the same biases and errors as that data. The Sovereign Brain introduces an "Observing Ego" via the Soter-Janus loop. By monitoring its own attention sinks and enforcing a multi-path consensus, the system achieves a state of **Epistemic Sovereignty**.
 
 The "Sovereign Gap" is not merely a statistical delta; it is the distance between a model that reflects its training and a system that verifies its truth. By grounding the architecture in a sovereign knowledge reservoir (Mnemosyne), we effectively externalize the "truth-function," allowing the model to transcend its own probabilistic limitations.
 
