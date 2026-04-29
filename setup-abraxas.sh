@@ -22,6 +22,10 @@ fi
 
 # 2. Environment Provisioning
 echo "⚙️ Provisioning Sovereign Environment..."
+
+# Create persistent user workspace
+mkdir -p "$HOME/.abraxas"
+
 if [ ! -f .env.sovereign ]; then
     cat <<EOF > .env.sovereign
 # MCP Configuration
@@ -39,6 +43,7 @@ DEFAULT_MODEL=qwen3.5:cloud
 TRUTH_FIRST_MODE=true
 ALLOW_UNVERIFIED_CLAIMS=false
 AUDIT_LOG_ENABLED=true
+ABRAXAS_WORKSPACE="$HOME/.abraxas"
 EOF
     echo "✅ Created .env.sovereign"
 else

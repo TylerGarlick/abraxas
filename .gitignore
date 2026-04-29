@@ -409,6 +409,9 @@ skills/logos-math/storage/
 # IDE and editor files
 *.log
 
+# User workspace
+.abraxas/
+
 # Beads / Dolt files (added by bd init)
 .dolt/
 *.db
