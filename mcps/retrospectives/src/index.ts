@@ -36,6 +36,8 @@ const getStoragePath = (date: string, type: string, id: string) => {
   return { folder, filePath: path.join(folder, fileName) };
 };
 
+export { getStoragePath, RETRO_BASE_DIR };
+
 server.tool(
   "save_retro",
   {

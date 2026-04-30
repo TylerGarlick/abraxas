@@ -1,6 +1,7 @@
 import { expect, test, describe, beforeEach } from "bun:test";
 import { db } from "../src/db/index.ts";
 import { yogaServer } from "../src/graphql/index.ts";
+import { aql } from 'arangojs';
 
 const CALL_GRAPHQL = async (query: string, variables = {}) => {
   const response = await yogaServer.handleRequest({
@@ -15,9 +16,19 @@ const CALL_GRAPHQL = async (query: string, variables = {}) => {
 
 describe("Ledger Integration Tests", () => {
   beforeEach(async () => {
-    // Clear collections via AQL to be sure
-    await db.query(`FOR t IN tasks REMOVE t. _key`);
-    await db.query(`FOR e IN task_edges REMOVE e._key`);
+    // Use a dedicated testing database for isolation
+    const testDb = new (require('../src/db/index.ts').Database || (await import('../src/db/index.ts')).Database)({
+      url: process.env.ARANGO_URL || 'http://localhost:8529',
+      auth: {
+        username: process.env.ARANGO_USER || 'root',
+        password: process.env.ARANGO_ROOT_PASSWORD || '5orange5',
+      }
+    }, 'abraxas_testing');
+    
+    await testDb.dropCollection('tasks');
+    await testDb.dropCollection('task_edges');
+    await testDb.createCollection('tasks');
+    await testDb.createCollection('task_edges', { type: 'edge' });
   });
 
   test("should create and retrieve a task", async () => {
