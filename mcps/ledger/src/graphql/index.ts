@@ -1,6 +1,6 @@
 import { createYoga, createSchema } from 'graphql-yoga';
 import { gql } from 'graphql-tag';
-import { db } from '../db/index.ts';
+import { getDb } from '../db/index.ts';
 import { DateTime } from 'graphql-scalars';
 
 const typeDefs = gql`
@@ -41,10 +41,12 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     getTask: async (_, { id }) => {
+      const db = getDb();
       const collection = db.collection('tasks');
       return await collection.findOne(id);
     },
     getReadyTasks: async () => {
+      const db = getDb();
       const cursor = await db.query(`
         FOR t IN tasks
         FILTER t.status == 'ready' 
@@ -60,6 +62,7 @@ const resolvers = {
       return await cursor.all();
     },
     getTasksByProject: async (_, { project }) => {
+      const db = getDb();
       const cursor = await db.query(`
         FOR t IN tasks
         FILTER t.project == @project
@@ -70,6 +73,7 @@ const resolvers = {
   },
   Mutation: {
     createTask: async (_, args) => {
+      const db = getDb();
       const collection = db.collection('tasks');
       const task = {
         ...args,
@@ -81,6 +85,7 @@ const resolvers = {
       return { ...task, _key: res._key };
     },
     updateTaskStatus: async (_, { id, status }) => {
+      const db = getDb();
       const collection = db.collection('tasks');
       const task = await collection.findOne(id);
       if (!task) throw new Error('Task not found');
@@ -90,6 +95,7 @@ const resolvers = {
       return updated;
     },
     addDependency: async (_, { childId, parentId, type }) => {
+      const db = getDb();
       const edgeCol = db.collection('task_edges');
       await edgeCol.save({
         _from: childId,

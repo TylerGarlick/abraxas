@@ -1,33 +1,12 @@
 import { expect, test, describe, beforeEach, beforeAll } from "bun:test";
 import { Database } from 'arangojs';
 import { yogaServer } from "../src/graphql/index.ts";
+import { resetDb, getDb } from "../src/db/index.ts";
 
 const ARANGO_URL = process.env.ARANGO_URL || 'http://localhost:8529';
 const ARANGO_USER = process.env.ARANGO_USER || 'root';
 const ARANGO_PASS = process.env.ARANGO_ROOT_PASSWORD || '5orange5';
 const TEST_DB_NAME = 'abraxas_testing';
-
-// 1. Ensure the testing database exists
-async function setupTestDatabase() {
-  const systemDb = new Database({
-    url: ARANGO_URL,
-    auth: { username: ARANGO_USER, password: ARANGO_PASS }
-  }, '_system');
-  
-  try {
-    await systemDb.createDatabase(TEST_DB_NAME);
-  } catch (e) {
-    // Database already exists, ignore
-  }
-}
-
-const testDb = new Database({
-  url: ARANGO_URL,
-  auth: {
-    username: ARANGO_USER,
-    password: ARANGO_PASS,
-  }
-}, TEST_DB_NAME);
 
 const CALL_GRAPHQL = async (query: string, variables = {}) => {
   const response = await yogaServer.handleRequest({
@@ -38,24 +17,42 @@ const CALL_GRAPHQL = async (query: string, variables = {}) => {
     }
   });
   const text = await response.text();
-  return JSON.parse(text).data;
+  const json = JSON.parse(text);
+  if (json.errors) {
+    throw new Error(`GraphQL Error: ${JSON.stringify(json.errors)}`);
+  }
+  return json.data;
 };
 
 describe("Ledger Integration Tests", () => {
   beforeAll(async () => {
-    await setupTestDatabase();
+    // Force the system to use the testing database
+    process.env.ARANGO_DB = TEST_DB_NAME;
+    resetDb();
+    
+    const systemDb = new Database({
+      url: ARANGO_URL,
+      auth: { username: ARANGO_USER, password: ARANGO_PASS }
+    }, '_system');
+    
+    try {
+      await systemDb.createDatabase(TEST_DB_NAME);
+    } catch (e) {
+      // DB already exists
+    }
   });
 
   beforeEach(async () => {
+    const db = getDb();
     try {
-      await testDb.dropCollection('tasks');
+      await db.dropCollection('tasks');
     } catch (e) {}
     try {
-      await testDb.dropCollection('task_edges');
+      await db.dropCollection('task_edges');
     } catch (e) {}
     
-    await testDb.createCollection('tasks');
-    await testDb.createCollection('task_edges', { type: 'edge' });
+    await db.createCollection('tasks');
+    await db.createCollection('task_edges', { type: 'edge' });
   });
 
   test("should create and retrieve a task", async () => {
