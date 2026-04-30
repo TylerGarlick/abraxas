@@ -1,11 +1,20 @@
 import { Database } from 'arangojs';
 
+const ARANGO_URL = process.env.ARANGO_URL;
+const ARANGO_DB = process.env.ARANGO_DB;
+const ARANGO_USER = process.env.ARANGO_USER;
+const ARANGO_PASS = process.env.ARANGO_ROOT_PASSWORD;
+
+if (!ARANGO_URL || !ARANGO_DB || !ARANGO_USER || !ARANGO_PASS) {
+  throw new Error('Missing required ArangoDB environment variables: ARANGO_URL, ARANGO_DB, ARANGO_USER, or ARANGO_ROOT_PASSWORD');
+}
+
 const db = new Database({
-  url: process.env.ARANGO_URL || 'http://localhost:8529',
-  databaseName: process.env.ARANGO_DB || 'abraxas_db',
+  url: ARANGO_URL,
+  databaseName: ARANGO_DB,
   auth: {
-    username: process.env.ARANGO_USER || 'root',
-    password: process.env.ARANGO_ROOT_PASSWORD || '5orange5',
+    username: ARANGO_USER,
+    password: ARANGO_PASS,
   }
 });
 

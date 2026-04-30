@@ -1,11 +1,38 @@
-import { expect, test, describe, beforeEach } from "bun:test";
-import { db } from "../src/db/index.ts";
+import { expect, test, describe, beforeEach, beforeAll } from "bun:test";
+import { Database } from 'arangojs';
 import { yogaServer } from "../src/graphql/index.ts";
-import { aql } from 'arangojs';
+
+const ARANGO_URL = process.env.ARANGO_URL || 'http://localhost:8529';
+const ARANGO_USER = process.env.ARANGO_USER || 'root';
+const ARANGO_PASS = process.env.ARANGO_ROOT_PASSWORD || '5orange5';
+const TEST_DB_NAME = 'abraxas_testing';
+
+// 1. Ensure the testing database exists
+async function setupTestDatabase() {
+  const systemDb = new Database({
+    url: ARANGO_URL,
+    auth: { username: ARANGO_USER, password: ARANGO_PASS }
+  }, '_system');
+  
+  try {
+    await systemDb.createDatabase(TEST_DB_NAME);
+  } catch (e) {
+    // Database already exists, ignore
+  }
+}
+
+const testDb = new Database({
+  url: ARANGO_URL,
+  auth: {
+    username: ARANGO_USER,
+    password: ARANGO_PASS,
+  }
+}, TEST_DB_NAME);
 
 const CALL_GRAPHQL = async (query: string, variables = {}) => {
   const response = await yogaServer.handleRequest({
     request: {
+      url: 'http://localhost:3013/graphql',
       body: JSON.stringify({ query, variables }),
       headers: { "content-type": "application/json" },
     }
@@ -15,18 +42,18 @@ const CALL_GRAPHQL = async (query: string, variables = {}) => {
 };
 
 describe("Ledger Integration Tests", () => {
+  beforeAll(async () => {
+    await setupTestDatabase();
+  });
+
   beforeEach(async () => {
-    // Use a dedicated testing database for isolation
-    const testDb = new (require('../src/db/index.ts').Database || (await import('../src/db/index.ts')).Database)({
-      url: process.env.ARANGO_URL || 'http://localhost:8529',
-      auth: {
-        username: process.env.ARANGO_USER || 'root',
-        password: process.env.ARANGO_ROOT_PASSWORD || '5orange5',
-      }
-    }, 'abraxas_testing');
+    try {
+      await testDb.dropCollection('tasks');
+    } catch (e) {}
+    try {
+      await testDb.dropCollection('task_edges');
+    } catch (e) {}
     
-    await testDb.dropCollection('tasks');
-    await testDb.dropCollection('task_edges');
     await testDb.createCollection('tasks');
     await testDb.createCollection('task_edges', { type: 'edge' });
   });
@@ -69,32 +96,27 @@ describe("Ledger Integration Tests", () => {
   });
 
   test("should handle ready task logic with blockers", async () => {
-    // 1. Create Parent and Child
     const parentData = await CALL_GRAPHQL(`mutation { createTask(title: "Parent") { _key } }`);
     const childData = await CALL_GRAPHQL(`mutation { createTask(title: "Child") { _key } }`);
     const parentId = parentData.createTask._key;
     const childId = childData.createTask._key;
 
-    // 2. Add dependency: Child blocks Parent
     await CALL_GRAPHQL(`
       mutation AddDep($childId: String!, $parentId: String!) {
         addDependency(childId: $childId, parentId: $parentId)
       }
     `, { childId, parentId });
 
-    // 3. Parent should NOT be ready (blocked by Child who is 'open')
     const readyTasksBefore = await CALL_GRAPHQL(`query { getReadyTasks { _key title } }`);
     const parentFoundBefore = readyTasksBefore.getReadyTasks.some((t: any) => t._key === parentId);
     expect(parentFoundBefore).toBe(false);
 
-    // 4. Close Child
     await CALL_GRAPHQL(`
       mutation UpdateStatus($id: String!, $status: TaskStatus!) {
         updateTaskStatus(id: $id, status: $status) { _key }
       }
     `, { id: childId, status: "closed" });
 
-    // 5. Parent should NOW be ready
     const readyTasksAfter = await CALL_GRAPHQL(`query { getReadyTasks { _key title } }`);
     const parentFoundAfter = readyTasksAfter.getReadyTasks.some((t: any) => t._key === parentId);
     expect(parentFoundAfter).toBe(true);
