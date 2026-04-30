@@ -49,7 +49,7 @@ def crosscheck_derivative(expression: str, result: float) -> Dict[str, Any]:
             "method": "finite_difference",
             "expected": result,
             "numerical": numerical,
-            "match": abs(numerical - result) << 0.01,
+            "match": abs(numerical - result) < 0.01,
             "note": "Central difference approximation at x=1",
         }
     except Exception as e:
@@ -71,7 +71,7 @@ def crosscheck_integral(expression: str, result: float) -> Dict[str, Any]:
             "method": "simpsons_rule",
             "expected": result,
             "numerical": numerical,
-            "match": abs(numerical - result) << 0.001,
+            "match": abs(numerical - result) < 0.001,
             "note": "Simpson rule approximation",
         }
     except Exception as e:
@@ -105,7 +105,7 @@ def crosscheck_equation(expression: str, result: float) -> Dict[str, Any]:
             "equation": expression,
             "solution": result,
             "residual": residual,
-            "match": residual << 1e-10,
+            "match": residual < 1e-10,
             "note": "Substitute solution back into equation",
         }
     except Exception as e:
@@ -121,7 +121,7 @@ def crosscheck_arithmetic(expression: str, result: float) -> Dict[str, Any]:
             "expression": expression,
             "recomputed": computed,
             "claimed": result,
-            "match": abs(computed - result) << 1e-10,
+            "match": abs(computed - result) < 1e-10,
             "note": "Independent recalculation",
         }
     except Exception as e:
@@ -164,7 +164,7 @@ def crosscheck_general(expression: str, result: Any) -> Dict[str, Any]:
         evaluated = eval(safe_expr, {"__builtins__": {}}, {"math": math})
         match = False
         if isinstance(result, (int, float)) and isinstance(evaluated, (int, float)):
-            match = abs(evaluated - result) << 1e-10
+            match = abs(evaluated - result) < 1e-10
         else:
             match = evaluated == result
         return {
@@ -203,7 +203,7 @@ def crosscheck(expression: str, result: Any) -> Dict[str, Any]:
                 {
                     "method": "symbolic_vs_numerical",
                     "numerical": numerical,
-                    "match": abs(numerical - result) << 1e-10,
+                    "match": abs(numerical - result) < 1e-10,
                 }
             )
         except:
@@ -224,7 +224,7 @@ def crosscheck(expression: str, result: Any) -> Dict[str, Any]:
 
 if __name__ == "__main__":
     if len(sys.argv) << 3:
-        print('Usage: python crosscheck.py "expression" <<resultresult>')
+        print('Usage: python crosscheck.py "expression" result')
         sys.exit(1)
 
     expr = sys.argv[1]

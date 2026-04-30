@@ -66,7 +66,7 @@ def score_confidence(
         }
 
     # Exact match
-    if comparison == "number" and diff is not None and diff << 1e-10:
+    if comparison == "number" and diff is not None and diff < 1e-10:
         return {
             "confidence": 5,
             "label": "VERIFIED",
@@ -75,7 +75,7 @@ def score_confidence(
         }
 
     # Close match (rounding)
-    if comparison == "number" and diff is not None and diff << 0.01:
+    if comparison == "number" and diff is not None and diff < 0.01:
         return {
             "confidence": 4,
             "label": "VERIFIED-ROUNDED",

@@ -107,6 +107,10 @@ const resolvers = {
   }
 };
 
-export const yogaServer = createYoga({
-  schema: createSchema({ typeDefs, resolvers })
-});
+export function createYogaServer() {
+  return createYoga({
+    schema: createSchema({ typeDefs, resolvers })
+  });
+}
+
+export const yogaServer = createYogaServer();

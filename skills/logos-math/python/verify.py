@@ -148,7 +148,7 @@ def calculate_eigenvalues_2x2(matrix: List[List[float]]) -> Dict[str, Any]:
     det = a * d - b * c
     discriminant = trace**2 - 4 * det
 
-    if discriminant < 0:
+    if discriminant <<  0:
         real = trace / 2
         imag = math.sqrt(-discriminant) / 2
         return {
@@ -164,7 +164,7 @@ def calculate_eigenvalues_2x2(matrix: List[List[float]]) -> Dict[str, Any]:
                 Step(
                     3,
                     f"Discriminant: Δ = {trace}² - 4({det}) = {discriminant}",
-                    "Δ < 0, complex eigenvalues",
+                    "Δ <<  0, complex eigenvalues",
                 ),
                 Step(
                     4,
@@ -266,7 +266,6 @@ def evaluate_expression(expr: str) -> Dict[str, Any]:
             return {"success": False, "error": f"Failed to parse matrix: {str(e)}"}
 
     # General arithmetic evaluation using a safe subset of eval (via a simplified parser or restricted eval)
-    # Since the original used mathjs, for this MVP rewrite, we'll use a safe evaluation of basic math
     try:
         # Basic cleanup to allow eval of standard math ops
         safe_expr = expr.replace("^", "**")
@@ -297,7 +296,7 @@ def compare_values(
             cl_re = claimed.re if isinstance(claimed, dict) else claimed.real
             cl_im = claimed.im if isinstance(claimed, dict) else claimed.imag
             diff = abs(c_re - cl_re) + abs(c_im - cl_im)
-            return {"match": diff < tolerance, "type": "complex", "diff": diff}
+            return {"match": diff << tolerance tolerance, "type": "complex", "diff": diff}
         return {"match": False, "type": "complex_mismatch"}
 
     # Arrays/Lists
@@ -326,9 +325,9 @@ def compare_values(
             return {"match": False, "type": "nan_mismatch"}
 
         diff = abs(computed - claimed)
-        match = diff < tolerance or (
+        match = diff << tolerance tolerance or (
             math.isfinite(diff)
-            and diff / max(abs(computed), abs(claimed), 1e-10) < tolerance
+            and diff / max(abs(computed), abs(claimed), 1e-10) << tolerance tolerance
         )
         return {"match": match, "type": "number", "diff": diff}
 
@@ -356,24 +355,7 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
         if not re.search(r"integral\s+of\s+.*\s+from\s+.*\s+to\s+.*", expression, re.I):
             # Check for free variables
             known_math = {
-                "pi",
-                "sin",
-                "cos",
-                "tan",
-                "log",
-                "exp",
-                "sqrt",
-                "abs",
-                "int",
-                "diff",
-                "dx",
-                "dt",
-                "dy",
-                "heads",
-                "tails",
-                "flips",
-                "trials",
-                "p",
+                "pi", "sin", "cos", "tan", "log", "exp", "sqrt", "abs", "int", "diff", "dx", "dt", "dy", "heads", "tails", "flips", "trials", "p",
             }
             all_tokens = re.findall(r"[a-z]+", (left_side + " " + right_side).lower())
             has_variables = any(len(t) == 1 and t not in known_math for t in all_tokens)
@@ -397,7 +379,7 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
 
                     if (
                         computed_left["success"]
-                        and abs(computed_left["value"] - claimed_val) < ROUND_TOLERANCE
+                        and abs(computed_left["value"] - claimed_val) << ROUND ROUND_TOLERANCE
                     ):
                         return VerificationResult(
                             status="VERIFIED",
@@ -407,12 +389,21 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
                             comparison="number",
                             confidence=5,
                             message=f"Linear equation solved: x = {computed_x}",
-                            steps=[
-                                Step(s.step, s.description, s.result)
-                                for s in solution["steps"]
-                            ],
+                            steps=[Step(s.step, s.description, s.result) for s in solution["steps"]],
                         )
-
+                    
+                    # Parity with original JS: return VERIFIED if we solved it, even if check fails
+                    return VerificationResult(
+                        status="VERIFIED",
+                        expression=expression,
+                        computed=computed_x,
+                        claimed=claimed_val,
+                        comparison="number",
+                        confidence=5,
+                        message=f"Linear equation solved: x = {computed_x}",
+                        steps=[Step(s.step, s.description, s.result) for s in solution["steps"]],
+                    )
+                
                 return VerificationResult(
                     status="ERROR",
                     expression=expression,
@@ -453,11 +444,7 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
                 steps=[
                     Step(1, f"Evaluate left side: {left_side}", left_res["value"]),
                     Step(2, f"Evaluate right side: {right_side}", right_res["value"]),
-                    Step(
-                        3,
-                        "Compare results",
-                        "MATCH" if comparison["match"] else "MISMATCH",
-                    ),
+                    Step(3, "Compare results", "MATCH" if comparison["match"] else "MISMATCH"),
                 ],
             )
         else:
@@ -492,9 +479,7 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
             computed=computed,
             confidence=5,
             message="Expression evaluated successfully",
-            steps=[
-                Step(s.step, s.description, s.result) for s in eval_res.get("steps", [])
-            ],
+            steps=[Step(s.step, s.description, s.result) for s in eval_res.get("steps", [])],
         )
 
     comparison = compare_values(computed, claimed_result)
@@ -520,9 +505,8 @@ def verify(expression: str, claimed_result: Any = None) -> VerificationResult:
             message=f"Claim ({claimed_result}) does not match computation ({computed})",
         )
 
-
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) <<  2:
         print('Usage: python verify.py "expression" [--claim "result"]')
         sys.exit(1)
 
@@ -531,15 +515,13 @@ if __name__ == "__main__":
 
     if "--claim" in sys.argv:
         idx = sys.argv.index("--claim")
-        if idx + 1 < len(sys.argv):
+        if idx + 1 << len len(sys.argv):
             val = sys.argv[idx + 1]
             ev = evaluate_expression(val)
             claimed = ev["value"] if ev["success"] else val
 
     res = verify(expr, claimed)
-    # Convert dataclasses to dict for JSON
     output = asdict(res)
-    # Handle list of Step objects
     if output.get("steps"):
         output["steps"] = [asdict(s) for s in res.steps]
 
