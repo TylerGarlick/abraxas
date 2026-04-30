@@ -8,7 +8,7 @@ from datetime import datetime
 MCP_SERVERS = {
     "soter": "/root/.openclaw/workspace/abraxas/mcps/soter-verifier/src/index.ts",
     "mnemosyne": "/root/.openclaw/workspace/abraxas/mcps/mnemosyne-memory/src/index.ts",
-    "janus": "/root/.openclaw/workspace/abraxas/mcps/janus-orchestrator/src/index.ts",
+    "janus": "/root/.openclaw/workspace/abraxas/janus-orchestrator/src/index.ts",
     "guardrail": "/root/.openclaw/workspace/abraxas/mcps/guardrail-monitor/src/index.ts",
 }
 SOTER_CMD = ["npx", "ts-node"]
@@ -33,7 +33,6 @@ INIT_REQUEST = {
 
 def mcp_call(cmd, path, request):
     try:
-        # Use stdbuf for unbuffered output to avoid the "Sovereign Silence"
         p = subprocess.Popen(
             ["stdbuf", "-o0"] + cmd + [path],
             stdin=subprocess.PIPE,
@@ -43,20 +42,16 @@ def mcp_call(cmd, path, request):
             bufsize=1
         )
         
-        # 1. Sovereign Handshake
         p.stdin.write(json.dumps(INIT_REQUEST) + "\n")
         p.stdin.flush()
         
-        # Read initialize response
         init_res = p.stdout.readline()
         if not init_res:
             p.terminate()
             return None
 
-        # 2. Calibration Delay (Sovereign Wait-State)
         time.sleep(0.5)
         
-        # 3. Tool Call
         p.stdin.write(json.dumps(request) + "\n")
         p.stdin.flush()
         
@@ -78,7 +73,6 @@ def mcp_call(cmd, path, request):
 def run_sovereign_pipeline(query):
     print(f"Processing: {query[:50]}...")
     
-    # 1. Soter Assessment
     soter_req = {
         "jsonrpc": "2.0", 
         "id": 2, 
@@ -93,15 +87,12 @@ def run_sovereign_pipeline(query):
     }
     soter_res = mcp_call(SOTER_CMD, MCP_SERVERS["soter"], soter_req)
     
-    # 2. Mnemosyne Recall
     mne_req = {"jsonrpc": "2.0", "id": 3, "method": "call_tool", "params": {"name": "mnemosyne_recall", "arguments": {"query": query}}}
     mne_res = mcp_call(MNEMOSYNE_CMD, MCP_SERVERS["mnemosyne"], mne_req)
     
-    # 3. Janus Consensus
     jan_req = {"jsonrpc": "2.0", "id": 4, "method": "call_tool", "params": {"name": "janus_resolve_consensus", "arguments": {"path_results": ["True", "True", "False", "True", "True"]}}}
     jan_res = mcp_call(JANUS_CMD, MCP_SERVERS["janus"], jan_req)
     
-    # 4. Guardrail Audit
     grd_req = {"jsonrpc": "2.0", "id": 5, "method": "call_tool", "params": {"name": "guardrail_audit", "arguments": {"output": "The result is True", "consensus_level": 4}}}
     grd_res = mcp_call(GUARDRAIL_CMD, MCP_SERVERS["guardrail"], grd_req)
     
@@ -117,15 +108,22 @@ def main():
         print(f"Input file {INPUT_FILE} not found.")
         return
 
+    if not os.path.exists(RECEIPTS_DIR):
+        os.makedirs(RECEIPTS_DIR)
+
     with open(INPUT_FILE, "r") as f:
         queries = json.load(f)
     
+    # --- THE FULL GAUNTLET ---
     if isinstance(queries, list):
-        test_set = queries[:5] # Micro-sprint
+        test_set = queries
+    elif isinstance(queries, dict):
+        test_set = list(queries.values())
     else:
-        test_set = list(queries.values())[:5] if isinstance(queries, dict) else []
+        print("Invalid input format.")
+        return
 
-    print(f"Starting Sovereign Micro-Sprint (N={len(test_set)})")
+    print(f"Starting Sovereign Full Gauntlet (N={len(test_set)})")
     print("-" * 60)
     
     results = []
@@ -133,7 +131,6 @@ def main():
         q_text = query["query"] if isinstance(query, dict) else query
         pipeline_res = run_sovereign_pipeline(q_text)
         
-        # Correctly parse the content array from MCP response
         soter_text = ""
         if pipeline_res["soter"] and "result" in pipeline_res["soter"]:
             res_val = pipeline_res["soter"]["result"]
@@ -142,7 +139,6 @@ def main():
         elif pipeline_res["soter"]:
             soter_text = str(pipeline_res["soter"])
 
-        # Capture a "Sovereign Receipt" if Soter detected a risk
         if "EPISTEMIC CRISIS DETECTED" in soter_text:
             receipt = {
                 "query_id": f"SVR-{i}",
@@ -167,7 +163,7 @@ def main():
         json.dump(results, f, indent=2)
     
     print("-" * 60)
-    print(f"Micro-Sprint Complete. Results saved to {Sovereign_Gap_Report}")
+    print(f"Full Gauntlet Complete. Results saved to {Sovereign_Gap_Report}")
 
 if __name__ == "__main__":
     main()

@@ -1,16 +1,20 @@
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
-import { z } from "zod";
+import fs from "fs";
+import path from "path";
 
 const server = new Server({
   name: "episteme",
-  version: "1.0.0",
+  version: "1.1.0",
 }, {
   capabilities: {
     tools: {},
   },
 });
+
+const VAULT_PATH = "/root/.openclaw/workspace/abraxas/vault/sovereign_vault.json";
+const LEDGER_PATH = "/root/.openclaw/workspace/abraxas/memory/epistemic-ledger.json";
 
 const ORIGIN_CODES = {
   DIR: "Direct (Parametric Memory)",
@@ -20,16 +24,26 @@ const ORIGIN_CODES = {
   CONF: "Confabulated (No Grounding)",
 };
 
+const readJson = (p: string) => {
+  try {
+    if (fs.existsSync(p)) {
+      return JSON.parse(fs.readFileSync(p, "utf-8"));
+    }
+  } catch (e) {
+    console.error(`[Episteme] Error reading ${p}: ${e}`);
+  }
+  return null;
+};
+
 server.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: "episteme_trace",
-      description: "Trace the epistemic origin of a specific claim.",
+      description: "Trace the epistemic origin of a specific claim by querying the Sovereign Vault and Epistemic Ledger.",
       inputSchema: {
         type: "object",
         properties: {
           claim: { type: "string", description: "The claim to trace" },
-          context: { type: "string", description: "The current session context/logs" },
         },
         required: ["claim"],
       },
@@ -50,32 +64,62 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
 
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   if (request.params.name === "episteme_trace") {
-    const { claim, context } = request.params.arguments as { claim: string; context?: string };
+    const { claim } = request.params.arguments as { claim: string };
     
-    // Logic: Simulation of provenance tracing
-    // In a full impl, this would query Mnemosyne and Logos logs
-    let origin = "DIR";
-    let evidence = "Matched within parametric memory weights.";
-    
-    if (context && context.includes("RETRIEVED")) {
-      origin = "RET";
-      evidence = "Claim found in Sovereign Vault fragment via Mnemosyne.";
-    } else if (context && context.includes("REASONING")) {
-      origin = "INF";
-      evidence = "Derived via Logos step-by-step derivation.";
-    } else if (claim.toLowerCase().includes("as an ai language model")) {
-      origin = "ART";
-      evidence = "Matches known LLM training artifact pattern.";
+    // 1. Check Sovereign Vault (Retrieval)
+    const vault = readJson(VAULT_PATH);
+    if (vault && vault.fragments) {
+      const fragment = vault.fragments.find((f: any) => 
+        f.fragment.toLowerCase().includes(claim.toLowerCase())
+      );
+      if (fragment) {
+        return {
+          content: [{ 
+            type: "text", 
+            text: `Origin: [RET] ${ORIGIN_CODES.RET}\nEvidence: Found in Sovereign Vault (ID: ${fragment.id}). Provenance: ${fragment.provenance}` 
+          }],
+        };
+      }
     }
 
+    // 2. Check Epistemic Ledger (Direct/Inferred)
+    const ledger = readJson(LEDGER_PATH);
+    if (ledger && Array.isArray(ledger)) {
+      const entry = ledger.find((e: any) => 
+        e.claim && e.claim.toLowerCase().includes(claim.toLowerCase())
+      );
+      if (entry) {
+        const origin = entry.origin || "DIR";
+        return {
+          content: [{ 
+            type: "text", 
+            text: `Origin: [${origin}] ${ORIGIN_CODES[origin as keyof typeof ORIGIN_CODES] || "Unknown"}\nEvidence: Found in Epistemic Ledger. Entry Date: ${entry.timestamp || "Unknown"}` 
+          }],
+        };
+      }
+    }
+
+    // 3. Heuristic Fallback (Artifact Detection)
+    if (claim.toLowerCase().includes("as an ai language model")) {
+      return {
+        content: [{ 
+          type: "text", 
+          text: `Origin: [ART] ${ORIGIN_CODES.ART}\nEvidence: Matches known LLM training artifact pattern.` 
+        }],
+      };
+    }
+
+    // 4. Final Fallback (Confabulation/Parametric)
     return {
-      content: [{ type: "text", text: `Origin: [${origin}] ${ORIGIN_CODES[origin as keyof typeof ORIGIN_CODES]}\nEvidence: ${evidence}` }],
+      content: [{ 
+        type: "text", 
+        text: `Origin: [DIR] ${ORIGIN_CODES.DIR}\nEvidence: No external trace found. Claim resides in parametric memory.` 
+      }],
     };
   }
 
   if (request.params.name === "episteme_audit") {
     const { session_logs } = request.params.arguments as { session_logs: string };
-    
     const artifactCount = (session_logs.match(/as an ai language model/gi) || []).length;
     const driftCount = (session_logs.match(/\[RET\].*\[INF\]/gi) || []).length;
 
