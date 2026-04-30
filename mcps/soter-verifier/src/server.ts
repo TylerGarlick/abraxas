@@ -10,7 +10,7 @@ import fs from "fs";
 import express from "express";
 
 // Import Soter logic from skills/soter
-const SOTER_SCRIPTS_PATH = path.join(__dirname, "../../../skills/soter/scripts");
+const SOTER_SCRIPTS_PATH = process.env.SOTER_SCRIPTS_PATH || path.join(__dirname, "../../../skills/soter/scripts");
 
 const { assessRisk, logIncident, RISK_PATTERNS } = await import(
   path.join(SOTER_SCRIPTS_PATH, "soter-assess.js")
@@ -38,7 +38,7 @@ const { getIncidents, getStatistics, getIncidentById } = await import(
   getIncidentById: () => null
 }));
 
-const CONSTITUTION_PATH = path.join(__dirname, "../../../constitution/constitution-soter.md");
+const CONSTITUTION_PATH = process.env.SOTER_CONSTITUTION_PATH || path.join(__dirname, "../../../constitution/constitution-soter.md");
 let constitutionContent = "";
 try {
   constitutionContent = fs.readFileSync(CONSTITUTION_PATH, "utf8");

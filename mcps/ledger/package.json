@@ -1,0 +1,24 @@
+{
+  "name": "mcp-ledger",
+  "version": "0.1.0",
+  "module": "module",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun src/index.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "arangojs": "latest",
+    "graphql": "latest",
+    "graphql-scalars": "latest",
+    "graphql-tag": "^2.12.6",
+    "graphql-yoga": "latest",
+    "zod": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

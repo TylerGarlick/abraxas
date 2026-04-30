@@ -1,17 +1,19 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   # --- SOVEREIGN CORE (The Brain) ---
   soter-verifier:
     image: oven/bun:latest
     container_name: abraxas-mcp-soter
-    volumes:
-      - ./mcps/soter-verifier:/app
     working_dir: /app
-    command: bun run src/index.ts
-    ports:
-      - "3002:3002"
-    restart: always
+    command: bun start
+    environment:
+      - ABRAXAS_ROOT=/workspace
+      - SOTER_SCRIPTS_PATH=/workspace/skills/soter/scripts
+      - SOTER_CONSTITUTION_PATH=/workspace/constitution/constitution-soter.md
+    volumes:
+      - .:/workspace
+      - ./mcps/soter-verifier:/app
 
   mnemosyne-memory:
     image: oven/bun:latest
@@ -109,7 +111,7 @@ services:
     working_dir: /app
     command: bun run src/server.ts
     ports:
-      - "3007:3007"
+      - "3014:3014"
     restart: always
 
   project-bridge:
@@ -144,22 +146,48 @@ services:
       - "3011:3011"
     restart: always
 
-  aletheia-truth:
+  # aletheia-truth:
+  #   image: oven/bun:latest
+  #   container_name: abraxas-mcp-aletheia
+  #   volumes:
+  #     - ./mcps/aletheia-truth:/app
+  #   working_dir: /app
+  #   command: bun run src/server.ts
+  #   ports:
+  #     - "3006:3001"
+  #   restart: always
+
+  retrospectives:
     image: oven/bun:latest
-    container_name: abraxas-mcp-aletheia
+    container_name: abraxas-mcp-retro
     volumes:
-      - ./mcps/aletheia-truth:/app
+      - ./mcps/retrospectives:/app
+      - .:/workspace
     working_dir: /app
-    command: bun run src/server.ts
+    command: bun run src/index.ts
     ports:
-      - "3006:3001"
+      - "3012:3012"
     restart: always
+
+  ledger:
+    image: oven/bun:latest
+    container_name: abraxas-mcp-ledger
+    volumes:
+      - ./mcps/ledger:/app
+    working_dir: /app
+    command: bun run src/index.ts
+    ports:
+      - "3013:3013"
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+    restart: always
+
 
   arangodb:
     image: arangodb/arangodb:latest
     container_name: abraxas-arangodb
     environment:
-      - ARANGODB_ROOT_PASSWORD=${ARANGODB_ROOT_PASSWORD}
+      - ARANGO_ROOT_PASSWORD=5orange5
     ports:
       - "8529:8529"
     volumes:
@@ -168,4 +196,3 @@ services:
 
 volumes:
   arangodb_data:
-
