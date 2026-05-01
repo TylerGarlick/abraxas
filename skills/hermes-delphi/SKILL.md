@@ -321,44 +321,44 @@ due_date: date
 
 ### Run Management
 ```
-data/runs/{run_id}.json          # Pipeline run state
-data/checkpoints/{run_id}-{stage}.json  # Agent checkpoints
-data/reports/{run_id}-report.md  # Daily reports
+`.abraxas/hermes-delphi/runs/{run_id}.json`          # Pipeline run state
+`.abraxas/hermes-delphi/checkpoints/{run_id}-{stage}.json`  # Agent checkpoints
+`.abraxas/hermes-delphi/reports/{run_id}-report.md`  # Daily reports
 ```
 
 ### Research Findings
 ```
-data/research/active/{topic}_{timestamp}.yaml
-data/research/archive/{year}/{month}/{topic}_{timestamp}.yaml
+`.abraxas/hermes-delphi/research/active/{topic}_{timestamp}.yaml`
+`.abraxas/hermes-delphi/research/archive/{year}/{month}/{topic}_{timestamp}.yaml`
 ```
 
 ### Briefs
 ```
-data/briefs/drafts/{brief_id}.yaml
-data/briefs/final/{client_id}/{year}/{month}/{brief_id}.md
+`.abraxas/hermes-delphi/briefs/drafts/{brief_id}.yaml`
+`.abraxas/hermes-delphi/briefs/final/{client_id}/{year}/{month}/{brief_id}.md`
 ```
 
 ### Client Profiles
 ```
-data/clients/profiles/{client_id}.yaml
-data/clients/outreach/{client_id}/{sequence_id}.yaml
+`.abraxas/hermes-delphi/clients/profiles/{client_id}.yaml`
+`.abraxas/hermes-delphi/clients/outreach/{client_id}/{sequence_id}.yaml`
 ```
 
 ### Deliveries
 ```
-data/deliveries/{delivery_id}.yaml
+`.abraxas/hermes-delphi/deliveries/{delivery_id}.yaml`
 ```
 
 ### Feedback
 ```
-data/feedback/{feedback_id}.yaml
-data/feedback/reports/{year}_{month}.md
+`.abraxas/hermes-delphi/feedback/{feedback_id}.yaml`
+`.abraxas/hermes-delphi/feedback/reports/{year}_{month}.md`
 ```
 
 ### Billing
 ```
-data/billing/invoices/{invoice_id}.yaml
-data/billing/reports/{year}_{month}.md
+`.abraxas/hermes-delphi/billing/invoices/{invoice_id}.yaml`
+`.abraxas/hermes-delphi/billing/reports/{year}_{month}.md`
 ```
 
 ---
@@ -367,7 +367,7 @@ data/billing/reports/{year}_{month}.md
 
 The pipeline ensures only one run executes at a time:
 
-1. **Lock File** — `data/.pipeline_lock` contains running PID
+1. **Lock File** — `.abraxas/hermes-delphi/.pipeline_lock` contains running PID
 2. **Stale Detection** — Locks older than 2 hours are considered stale
 3. **Process Check** — Verifies lock PID is still running
 4. **Force Flag** — `--force` can override for manual runs
@@ -403,7 +403,7 @@ Kleitos feedback is wired back into the pipeline:
 1. **Collect** — Feedback collected after deliveries
 2. **Analyze** — Sentiment and theme analysis
 3. **Adapt** — Client-specific adaptations generated
-4. **Store** — Adaptations saved to `data/feedback-adaptations.json`
+4. **Store** — Adaptations saved to `.abraxas/hermes-delphi/feedback-adaptations.json`
 5. **Incorporate** — Next run loads and applies adaptations
 
 ---
@@ -469,7 +469,7 @@ The pipeline integrates with Abraxas Mission-Control via `integrations/.js`:
 
 ## Configuration
 
-### System Config (`data/config/config.yaml`)
+### System Config (`.abraxas/hermes-delphi/config/config.yaml`)
 ```yaml
 system:
   name: Hermes-Delphi

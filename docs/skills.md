@@ -11,4 +11,9 @@ This document provides a comprehensive reference for all available skills in the
 - **Backend**: `ledger-mcp` (ArangoDB).
 
 ## Specialized Skills
-(Add other skills here)
+
+### Abraxas Alias
+- **Path**: `skills/abraxas-alias/SKILL.md`
+- **Purpose**: Semantic gateway providing intuitive, namespaced aliases (`/abraxas:`) for all Greek-named systems.
+- **Key Commands**: `/abraxas:honest`, `/abraxas:debate`, `/abraxas:analyze`, `/abraxas:dream`, `/abraxas:status`.
+

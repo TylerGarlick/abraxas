@@ -1,0 +1,2 @@
+# No external packages currently required for directory creation
+python-arango

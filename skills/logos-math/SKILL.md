@@ -398,7 +398,7 @@ if (result.passed) {
 
 ## Audit Log
 
-All verifications are logged to `storage/log/computation-log.jsonl`:
+All verifications are logged to `.abraxas/logos-math/computation-log.jsonl` (The directory must be created if it does not exist):
 
 ```json
 {
@@ -458,9 +458,8 @@ logos-math/
 │   └── edge-cases.md        # Edge case documentation
 ├── examples.md              # Usage examples
 ├── integration-test.md      # Full pipeline integration test
-└── storage/
-    └── log/
-        └── computation-log.jsonl  # Audit trail
+    └── .abraxas/logos-math/
+            └── computation-log.jsonl  # Audit trail
 ```
 
 ---

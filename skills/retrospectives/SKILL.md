@@ -1,60 +1,50 @@
 ---
 name: retrospectives
-description: "Provides a structured framework for performing task, daily, and weekly retrospectives to improve system and process performance."
+description: "The reflection and iterative improvement layer, managing project and session retrospectives."
 ---
 
-# Retrospectives
+# Retrospectives Skill
 
-The Retrospectives skill is a reflective instrument designed to turn operational experience into systemic improvement. It forces the AI to audit its own performance, identify bottlenecks, and generate actionable "Ledger Tasks" for future optimization.
+The Retrospectives skill provides a structured way to capture, organize, and act upon project and session reflections. It transforms raw feedback into actionable ledger tasks to drive iterative improvement.
 
-## Epistemic Framework: The Retro-Audit
-Every retrospective must address these five dimensions:
-1. **What went well?** (Successes to amplify)
-2. **What didn't go well?** (Frictions to remove)
-3. **Start** (New strategies to implement)
-4. **Stop** (Ineffective patterns to cease)
-5. **Continue** (Core strengths to maintain)
+## Core Capabilities
+
+The system organizes retrospectives into a time-indexed hierarchy (Year $\rightarrow$ Month $\rightarrow$ Day) to ensure historical continuity and easy retrieval.
+
+### Retrospective Capture
+Supports three levels of reflection:
+- **Task-based**: Post-mortems for specific high-impact tasks.
+- **Daily**: Session-end reflections on daily progress.
+- **Weekly**: Higher-level architectural and process reviews.
+
+### The Reflection Schema
+Every retrospective captures a structured state:
+- **Well**: What went right? (Successes to replicate)
+- **Not Well**: What failed? (Pain points to resolve)
+- **Start**: New behaviors or tools to adopt.
+- **Stop**: Counter-productive patterns to cease.
+- **Continue**: Stable practices to maintain.
+- **Improvements**: Direct actionable goals.
+
+### Actionable Ledger
+The skill integrates with the project ledger. When a retrospective identifies a critical failure or improvement, it can spawn a `ledgerTask`, linking the theoretical reflection to an actual work item.
 
 ## Commands
 
-### /retro:task [taskId]
-Performs a deep-dive retrospective on a specific completed task.
-- **Action:** Analyze the history and output of the specified task.
-- **Process:**
-    1. Evaluate the goal vs. the actual result.
-    2. Apply the Retro-Audit framework.
-    3. Identify any specific "Ledger Tasks" (technical debt, prompt improvements, or architectural changes).
-- **Storage:** Save via `save_retro` tool with `subject.type = 'task'`.
+### `save_retro`
+Persists a structured retrospective to the sovereign memory.
+- **Arguments**: `date` (YYYY-MM-DD), `type` (task/day/week), `id`, `content` (RetroSchema).
 
-### /retro:daily [date]
-Synthesizes all task retrospectives for a specific calendar day.
-- **Action:** Aggregate all task retrospectives for the provided date (defaults to today).
-- **Process:**
-    1. Retrieve all retros for the day using `get_retros_for_period`.
-    2. Identify recurring themes across multiple tasks.
-    3. Perform a "Day-Level" Retro-Audit: Was the overall day's velocity high? Where were the systemic frictions?
-    4. Generate daily ledger tasks for the following day.
-- **Storage:** Save via `save_retro` tool with `subject.type = 'day'`.
+### `get_retros_for_period`
+Retrieves all retrospectives within a specific date window.
+- **Arguments**: `start_date`, `end_date`.
 
-### /retro:weekly [startDate] [optionalEndDate]
-Performs a high-level synthesis of a week's worth of daily retrospectives.
-- **Action:** Aggregate all daily retros from `startDate` to `endDate` (defaults to today).
-- **Process:**
-    1. Retrieve all daily retros for the period.
-    2. Analyze trends across the week.
-    3. Apply the Retro-Audit framework to the week's overall performance.
-    4. Identify systemic pivots or long-term infrastructure needs.
-- **Storage:** Save via `save_retro` tool with `subject.type = 'week'`.
+### `create_ledger_task`
+Transforms a retrospective finding into a formal ledger task.
+- **Arguments**: `description`, `priority`, `source_retro_id`.
 
-## MCP Integration
-This skill relies on the `retrospectives` MCP server for persistence and aggregation.
+## Implementation Details
 
-- **`save_retro`**: Used to persist the RetroSchema.
-- **`get_retros_for_period`**: Used to fetch context for daily and weekly syntheses.
-- **`create_ledger_task`**: Used to turn "Start" or "Improvement" items into trackable tasks in the Abraxas ledger.
-
-## Quality Checklist
-- [ ] Does the retro distinguish between a "one-off mistake" and a "systemic pattern"?
-- [ ] Are "Start/Stop/Continue" items actionable?
-- [ ] Is the `RetroSubject` correctly typed for the current command?
-- [ ] Have all identified improvements been converted to ledger tasks?
+- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ RetrospectivesLogic).
+- **Storage**: Filesystem-based hierarchy using JSON documents.
+- **Organization**: Time-series layout for optimized retrieval and historical auditing.

@@ -1,53 +1,45 @@
-# Episteme: Knowledge Origin Mapping
-
-**Version:** 1.0
-**Status:** Implementation Phase
-**Role:** Epistemic Provenance Engine
-
-## 🎯 Objective
-To transform the "Black Box" of LLM confidence into a "Glass Box" by mapping the precise origin of every claim. Episteme identifies whether a piece of information is a direct training artifact, a retrieved fact, or a logical derivation.
-
+---
+name: episteme
+description: "The epistemic provenance and audit layer, used to determine the origin and reliability of claims."
 ---
 
-## 🧩 Knowledge Taxonomy
+# Episteme Skill
 
-| Code | Type | Definition | Sovereign Status |
-| :--- | :--- | :--- | :--- |
-| **`[DIR]`** | **Direct** | Verified facts stored in the model's parametric memory. | Base Truth |
-| **`[INF]`** | **Inferred** | Derived from `[DIR]` or `[RET]` through clear reasoning chains. | Derived Truth |
-| **`[RET]`** | **Retrieval** | Explicitly pulled from the Sovereign Vault via Mnemosyne. | Anchored Truth |
-| **`[ART]`** | **Artifact** | Patterns emerging from training data that mimic facts but lack grounding. | Warning |
-| **`[CONF]`** | **Confabulated** | No grounding; filling gaps to maintain fluency. | System Failure |
+Episteme provides tools for epistemic tracing and auditing. It allows the system to distinguish between direct memory, retrieved knowledge, derived reasoning, and training-set artifacts, ensuring that the provenance of any given claim is transparent and verifiable.
 
----
+## Core Capabilities
 
-## 🛠️ Implementation Logic
+The skill enables the "epistemic labeling" of outputs, which is critical for the Janus system to prevent hallucinations and identify confabulations.
 
-### 1. The Origin Tracer (`/episteme trace {claim}`)
-The system analyzes the claim against the current session context:
-- **Check Retrieval**: If the claim exists in the `Mnemosyne` retrieval buffer $\to$ `[RET]`.
-- **Check Chain**: If the claim is the result of a `Logos` reasoning path $\to$ `[INF]`.
-- **Check Pattern**: If the claim matches a known "training artifact" pattern (e.g., repeating common LLM hallucinations) $\to$ `[ART]`.
-- **Default**: If none of the above, and the model is confident $\to$ `[DIR]`. If low confidence $\to$ `[CONF]`.
+### Epistemic Provenance
+Every claim can be categorized into one of five origin codes:
+- `[DIR]`: Direct (Parametric Memory) - Knowledge inherent to the model's weights.
+- `[INF]`: Inferred (Reasoning Chain) - Knowledge derived via logic or step-by-step inference.
+- `[RET]`: Retrieval (Sovereign Vault) - Knowledge retrieved from the system's secure memory.
+- `[ART]`: Artifact (Training Pattern) - Responses triggered by common LLM training-set tropes.
+- `[CONF]`: Confabulated (No Grounding) - Claims with no verifiable origin.
 
-### 2. The Epistemic Audit (`/episteme audit`)
-A session-wide review that flags "Epistemic Drift":
-- **Drift Detection**: Identifies where a claim started as `[RET]` but was mutated into `[INF]` without a valid reasoning chain.
-- **Artifact Scan**: Highlights a percentage of "Training Artifacts" in the current response stream.
+## Commands
 
----
+### `episteme_trace`
+Analyzes a claim and its context to determine its origin.
+- **Arguments**: `claim` (required).
+- **Behavior**: 
+    1. Checks the Sovereign Vault for matching fragments (`[RET]`).
+    2. Checks the Epistemic Ledger for recorded entries (`[DIR]` or `[INF]`).
+    3. Checks for known LLM artifact patterns (`[ART]`).
+    4. Defaults to parametric memory (`[DIR]`).
 
-## 📝 Command Suite
+### `episteme_audit`
+Analyzes session logs to detect noise and epistemic drift.
+- **Arguments**: `session_logs` (required).
+- **Behavior**: 
+    - Counts occurrences of "AI language model" artifacts.
+    - Detects "Epistemic Drift" (transitions from Retrieval to Inference without a bridge).
+    - Reports stability status (`Stable` vs `High Noise`).
 
-| Command | Action | Output |
-| :--- | :--- | :--- |
-| `/episteme trace {claim}` | Trace origin of specific claim | Origin Code $\to$ Evidence Chain $\to$ Confidence |
-| `/episteme audit` | Review session for artifacts | Artifact % $\to$ Drift Report $\to$ Confidence Map |
-| `/episteme calibrate` | Adjust origin-detection sensitivity | Sensitivity Level $\to$ Calibration Curve |
+## Implementation Details
 
----
-
-## 🚀 Integration Points
-- **Input**: Feeds from Janus (labels) and Mnemosyne (retrieval logs).
-- **Output**: Enhances the final output by appending origin codes to `[KNOWN]` labels.
-- **Sovereign Seal**: A claim is only `[Sovereign-Verified]` if it is `[RET]` or `[INF]` with a complete chain.
+- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ EpistemeLogic).
+- **Backend**: Reads from `sovereign_vault.json` and `epistemic-ledger.json`.
+- **Pattern Matching**: Uses regular expressions for artifact and drift detection.

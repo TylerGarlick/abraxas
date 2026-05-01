@@ -86,10 +86,10 @@ Every answer receives an epistemic label:
 
 ## Storage
 
-**`~/.abraxas/plan/`**
+**`.abraxas/plan/`**
 
 ```
-~/.abraxas/plan/
+.abraxas/plan/
 ├── clarity-ledger.jsonl    # All sessions (append-only log)
 └── current-session.json    # Active session state
 ```

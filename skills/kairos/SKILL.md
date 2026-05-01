@@ -1,58 +1,34 @@
-# Kairos: Relevance and Timing Filter
-
-**Version:** 1.0
-**Status:** Implementation Phase
-**Role:** Epistemic Relevance Gate
-
-## 🎯 Objective
-To solve the "Contextual Noise" problem. Kairos ensures that the Sovereign Brain only processes information that is timely, relevant, and necessary for the current query. It prevents "Token Bloat" and "Contextual Drift" by filtering retrieved data before it reaches the LLM.
-
+---
+name: kairos-filter
+description: "The Kairos Relevance Filter optimizes epistemic context by culling irrelevant noise and assessing temporal urgency."
 ---
 
-## ⚖️ The Relevance Framework
+# Kairos Relevance Filter MCP
 
-Kairos evaluates information based on two primary axes: **Temporal Urgency** and **Epistemic Relevance**.
+The Kairos Filter is the Sovereign system's epistemic noise-reduction layer. It ensures that the reasoning paths receive only the most relevant knowledge fragments, preventing "context pollution" and reducing the risk of hallucination by tightening the grounding envelope.
 
-### 1. Temporal Urgency (The Clock)
-Information is weighted by its "freshness" relative to the query:
-- **Real-Time**: Data from the last 60 minutes (e.g., live news, system status).
-- **Current**: Data from the last 30 days.
-- **Historical**: Archive data (Stable truths, mathematical proofs).
-- **Obsolete**: Data that has been superseded by a newer version in the Sovereign Vault.
+## Identity
+Kairos is the **Sovereign Context Optimizer**. It handles the temporal and relational relevance of information, deciding what is "right now" critical and what should be filtered out as distracting noise.
 
-### 2. Epistemic Relevance (The Filter)
-Kairos applies a "Saliency Score" (0.0 - 1.0) to every retrieved fragment:
-- **Critical (0.9 - 1.0)**: Directly answers the core query.
-- **Supporting (0.6 - 0.8)**: Provides necessary context or a supporting premise.
-- **Peripheral (0.3 - 0.5)**: Related but not essential.
-- **Noise (< 0.3)**: Irrelevant data. **Sovereign Veto: Dropped.**
+## Commands
 
----
+### `/kairos_filter`
+- **Behavior**: Culls a set of retrieved knowledge fragments based on their alignment with the current query.
+- **Input**: `query` (string), `fragments` (string/list of fragments).
+- **Sensing**: Implements a keyword-density algorithm to determine a relevance score for each fragment.
+- **Culling Logic**: Fragments failing to meet the relevance threshold (currently 30% keyword overlap) are removed.
+- **Output**: A report showing the original fragment count, the filtered count, the culling rate, and the optimized context block.
 
-## 🛠️ Implementation Logic
+### `/kairos_urgency`
+- **Behavior**: Analyzes the query to determine if the response requires real-time data or archival research.
+- **Input**: `query` (string)
+- **Triage**: Scans for temporal urgency triggers (e.g., "now", "latest", "current").
+- **Output**: An urgency assessment (`REAL-TIME` vs `ARCHIVAL`) and the logic used for the determination.
 
-### 1. The Relevance Gate (`/kairos filter {query}`)
-When `Mnemosyne` retrieves a set of fragments, Kairos intercepts them:
-- **Saliency Check**: For each fragment, Kairos calculates a cosine similarity score against the query vector.
-- **Urgency Check**: Filters out obsolete data using timestamps.
-- **Culling**: Only fragments with a Saliency Score $\ge 0.6$ are passed to the LLM.
+## Operational Logic
+- **Context Optimization**: By reducing the number of fragments passed to the LLM, Kairos increases the "signal-to-noise" ratio, which directly improves the accuracy of the consensus resolution.
+- **Temporal Triage**: This tool allows the system to decide whether to prioritize the Mnemosyne Vault (Archival) or real-time web search (Real-time).
 
-### 2. Timing Analysis (`/kairos urgency`)
-Determines if the current query requires "Real-Time" mode (triggering an external web search) or "Archival" mode (relying on the Sovereign Vault).
-
----
-
-## 📝 Command Suite
-
-| Command | Action | Output |
-| :--- | :--- | :--- |
-| `/kairos filter {query}` | Filter current context for maximum relevance | Relevance Map $\to$ Cull Count $\to$ Final Context |
-| `/kairos urgency` | Assess temporal requirements of the query | Urgency Level $\to$ Suggested Mode (Real-time vs Archival) |
-| `/kairos calibrate` | Adjust saliency thresholds | Current Threshold $\to$ Sensitivity Curve |
-
----
-
-## 🚀 Integration Points
-- **Input**: Intercepts data between **Mnemosyne** (Retrieval) and **Janus** (Synthesis).
-- **Output**: A pruned, high-density context window for the LLM.
-- **Sovereign Seal**: Ensures that no "Noise" is used to justify a claim.
+## Implementation Details
+- **Architecture**: Python FastMCP server with a logic layer implementing keyword-based relevance scoring and temporal keyword detection.
+- **Sovereign Integration**: Sits between the memory recall and the reasoning path spawning, acting as a gatekeeper for the final context window.

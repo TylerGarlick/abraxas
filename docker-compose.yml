@@ -1,193 +1,204 @@
-# version: '3.8'
-
 services:
   # --- SOVEREIGN CORE (The Brain) ---
   soter-verifier:
-    image: oven/bun:latest
+    build: ./skills/soter
     container_name: abraxas-mcp-soter
-    working_dir: /app
-    command: bun start
     environment:
       - ABRAXAS_ROOT=/workspace
-      - SOTER_SCRIPTS_PATH=/workspace/skills/soter/scripts
       - SOTER_CONSTITUTION_PATH=/workspace/constitution/constitution-soter.md
     volumes:
       - .:/workspace
-      - ./mcps/soter-verifier:/app
+      - ./skills/soter:/app
+    restart: always
 
   mnemosyne-memory:
-    image: oven/bun:latest
+    build: ./skills/mnemosyne
     container_name: abraxas-mcp-mnemosyne
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
     volumes:
-      - ./mcps/mnemosyne-memory:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/mnemosyne:/app
+      - ./vault:/app/vault
     ports:
       - "3003:3003"
     restart: always
 
+  kairos-filter:
+    build: ./skills/kairos
+    container_name: abraxas-mcp-kairos
+    volumes:
+      - ./skills/kairos:/app
+    ports:
+      - "3008:3008"
+    restart: always
+
   janus-orchestrator:
-    image: oven/bun:latest
+    build: ./skills/janus
     container_name: abraxas-mcp-janus
     volumes:
-      - ./mcps/janus-orchestrator:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/janus:/app
     ports:
       - "3004:3004"
     restart: always
 
-  guardrail-monitor:
-    image: oven/bun:latest
-    container_name: abraxas-mcp-guardrail
-    volumes:
-      - ./mcps/guardrail-monitor:/app
-    working_dir: /app
-    command: bun run src/index.ts
-    ports:
-      - "3005:3005"
-    restart: always
-
   episteme:
-    image: oven/bun:latest
+    build: ./skills/episteme
     container_name: abraxas-mcp-episteme
+    environment:
+      - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
+      - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
     volumes:
-      - ./mcps/episteme:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - .:/workspace
+      - ./skills/episteme:/app
+      - ./memory:/app/memory
     ports:
       - "3006:3006"
     restart: always
 
   ethos:
-    image: oven/bun:latest
+    build: ./skills/ethos
     container_name: abraxas-mcp-ethos
     volumes:
-      - ./mcps/ethos:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/ethos:/app
     ports:
       - "3007:3007"
     restart: always
 
-  kairos:
-    image: oven/bun:latest
-    container_name: abraxas-mcp-kairos
+  guardrail-monitor:
+    build: ./skills/guardrail_monitor
+    container_name: abraxas-mcp-guardrail
     volumes:
-      - ./mcps/kairos:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/guardrail_monitor:/app
     ports:
-      - "3008:3008"
+      - "3005:3005"
     restart: always
 
+  # --- SUPPORTING SERVICES ---
+
   sovereign-scribe:
-    image: oven/bun:latest
+    build: ./skills/sovereign_scribe
     container_name: abraxas-mcp-scribe
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
     volumes:
-      - ./mcps/sovereign-scribe:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/sovereign_scribe:/app
     ports:
       - "3009:3009"
     restart: always
 
   dream-reservoir:
-    image: oven/bun:latest
+    build: ./skills/dream_reservoir
     container_name: abraxas-mcp-dream
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
     volumes:
-      - ./mcps/dream-reservoir:/app
-    working_dir: /app
-    command: bun run src/server.ts
+      - ./skills/dream_reservoir:/app
     ports:
       - "3001:3001"
     restart: always
 
   config-registry:
-    image: oven/bun:latest
+    build: ./skills/config_registry
     container_name: abraxas-mcp-config
+    environment:
+      - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
     volumes:
-      - ./mcps/config-registry:/app
-    working_dir: /app
-    command: bun run src/server.ts
+      - .:/workspace
+      - ./skills/config_registry:/app
     ports:
       - "3014:3014"
     restart: always
 
-  project-bridge:
-    image: oven/bun:latest
-    container_name: mcp-project-bridge
+  ledger:
+    build: ./skills/ledger
+    container_name: abraxas-mcp-ledger
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}-
     volumes:
-      - ./mcps/project-bridge:/app
-      - ../:/workspace
-    working_dir: /app
-    command: bun run src/index.ts
-    restart: always
-
-  research-engine:
-    image: oven/bun:latest
-    container_name: mcp-research-engine
-    volumes:
-      - ./mcps/research-engine:/app
-    working_dir: /app
-    command: bun run src/server.ts
+      - ./skills/ledger:/app
     ports:
       - "3010:3010"
     restart: always
 
   sovereign-core:
-    image: oven/bun:latest
+    build: ./skills/sovereign_core
     container_name: abraxas-mcp-core
     volumes:
-      - ./mcps/sovereign-core:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/sovereign_core:/app
     ports:
       - "3011:3011"
     restart: always
 
-  # aletheia-truth:
-  #   image: oven/bun:latest
-  #   container_name: abraxas-mcp-aletheia
-  #   volumes:
-  #     - ./mcps/aletheia-truth:/app
-  #   working_dir: /app
-  #   command: bun run src/server.ts
-  #   ports:
-  #     - "3006:3001"
-  #   restart: always
-
-  retrospectives:
-    image: oven/bun:latest
-    container_name: abraxas-mcp-retro
+  sovereign-engine:
+    build: ./skills/sovereign_engine
+    container_name: abraxas-mcp-engine
     volumes:
-      - ./mcps/retrospectives:/app
-      - .:/workspace
-    working_dir: /app
-    command: bun run src/index.ts
+      - ./skills/sovereign_engine:/app
     ports:
       - "3012:3012"
     restart: always
 
-  ledger:
-    image: oven/bun:latest
-    container_name: abraxas-mcp-ledger
+  aletheia-truth:
+    build: ./skills/aletheia_truth
+    container_name: abraxas-mcp-aletheia
+    environment:
+      - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
+      - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
     volumes:
-      - ./mcps/ledger:/app
-    working_dir: /app
-    command: bun run src/index.ts
+      - .:/workspace
+      - ./skills/aletheia_truth:/app
     ports:
       - "3013:3013"
-    environment:
-      - ARANGO_URL=http://arangodb:8529
     restart: always
 
+  project-bridge:
+    build: ./skills/project_bridge
+    container_name: abraxas-mcp-bridge
+    environment:
+      - Sovereign_WORKSPACE_ROOT=/workspace
+    volumes:
+      - .:/workspace
+      - ./skills/project_bridge:/app
+    ports:
+      - "3015:3015"
+    restart: always
+
+  research-engine:
+    build: ./skills/research_engine
+    container_name: abraxas-mcp-research
+    volumes:
+      - ./skills/research_engine:/app
+    ports:
+      - "3016:3016"
+    restart: always
+
+  retrospectives:
+    build: ./skills/retrospectives
+    container_name: abraxas-mcp-retros
+    environment:
+      - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
+    volumes:
+      - .:/workspace
+      - ./skills/retrospectives:/app
+    restart: always
 
   arangodb:
     image: arangodb/arangodb:latest
     container_name: abraxas-arangodb
     environment:
-      - ARANGO_ROOT_PASSWORD=5orange5
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
     ports:
       - "8529:8529"
     volumes:

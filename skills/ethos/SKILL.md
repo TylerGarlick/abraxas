@@ -1,56 +1,36 @@
-# Ethos: Source Credibility Weighting
-
-**Version:** 1.0
-**Status:** Implementation Phase
-**Role:** Epistemic Credibility Engine
-
-## 🎯 Objective
-To move the Sovereign Brain from "Binary Truth" (True/False) to "Weighted Truth." Ethos assigns a credibility tier to every information source, allowing the system to resolve conflicts between sources of varying reliability without requiring manual adversarial debate.
-
+---
+name: ethos-credibility
+description: "Analyzes source credibility and resolves informational conflicts using deterministic trust weights."
 ---
 
-## ⚖️ The Credibility Hierarchy
+# Ethos Credibility MCP
 
-Truth is not monolithic; it is weighted. Ethos implements a 5-Tier system for all retrieved data.
+The Ethos Credibility service is the Sovereign system's trust arbiter. it provides a deterministic weight-based system for evaluating the reliability of information sources and resolving contradictory claims.
 
-| Tier | Designation | Criteria | Trust Weight | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| **T1** | **Sovereign/Gold** | Peer-reviewed journals, official technical specs, raw mathematical proofs. | 1.0 | *Nature, Science, RFCs, ISO* |
-| **T2** | **Authoritative** | High-reputation institutional reports, established textbooks. | 0.8 | *MIT Press, WHO, NIST* |
-| **T3** | **Reputable** | Established professional journalism, vetted industry analysis. | 0.6 | *Reuters, AP, Bloomberg* |
-| **T4** | **Speculative** | Individual experts, niche blogs, community-driven wikis. | 0.4 | *Substack, Medium, Reddit* |
-| **T5** | **Unverified** | Social media, unvetted claims, anecdotal evidence. | 0.2 | *Twitter, Personal Blogs* |
+## Identity
+Ethos is the **Sovereign Truth-Weighting Engine**. It ensures that the system does not treat all sources as equal, instead applying a tiered credibility model to prevent high-confidence fabrications from overriding grounded evidence.
 
----
+## Commands
 
-## 🛠️ Implementation Logic
+### `/ethos_score`
+- **Behavior**: Evaluates a specific source against the Ethos Registry to determine its credibility tier.
+- **Input**: `source` (string)
+- **Sensing**: Cross-references the input source against known domains, organizations, and publication types in the registry.
+- **Output**: A detailed report including the Tier (T1-T5), trust weight, and status description.
 
-### 1. The Weighting Engine (`/ethos score {source}`)
-When a piece of information is retrieved via `Mnemosyne`, Ethos performs a lookup:
-- **Match**: If the source is in the `ethos-registry.json` $\to$ Assign Tier.
-- **Heuristic**: If unknown, apply heuristics (Domain $\to$ T3, Author $\to$ T2, etc.).
-- **Conflict Resolution**: If two sources conflict:
-    - `T1` vs `T4` $\to$ T1 wins automatically.
-    - `T2` vs `T2` $\to$ Trigger `Agon` debate to resolve.
+### `/ethos_resolve`
+- **Behavior**: Resolves conflicts between two contradicting sources by comparing their respective credibility weights.
+- **Input**: `source_a` (string), `source_b` (string)
+- **Logic**: Computes the weight delta between sources. The source with the higher weight is designated as the winner.
+- **Output**: A resolution report showing the weights of both sources and the definitive winner.
 
-### 2. The Ethos Label (`[ETHOS: X]`)
-High-stakes claims are appended with their credibility weight.
-- **Example**: `The current latency of the Sovereign Shell is 45ms [KNOWN] [ETHOS: T1]`
+## Operational Logic
+- **The Ethos Registry**: Credibility is governed by `ethos-registry.json`, which maps sources to specific tiers.
+- **Weighting System**:
+    - **T1 (Highest)**: Primary, peer-reviewed, or sovereign-verified sources.
+    - **T5 (Lowest)**: Unverified, speculative, or known unreliable sources.
+    - **Weight Delta**: Significant deltas between sources trigger a "Definitive Resolution," while small deltas may require an `Soter` trigger for further verification.
 
----
-
-## 📝 Command Suite
-
-| Command | Action | Output |
-| :--- | :--- | :--- |
-| `/ethos score {source}` | Determine credibility tier of a source | Tier $\to$ Weight $\to$ Justification |
-| `/ethos resolve {conflict}` | Resolve conflict between two sources | Winner $\to$ Weight Delta $\to$ Conclusion |
-| `/ethos registry` | View current source credibility map | List of all weighted sources |
-| `/ethos calibrate` | Adjust weighting heuristics | Heuristic mapping $\to$ Adjustment |
-
----
-
-## 🚀 Integration Points
-- **Input**: Works on data retrieved by **Mnemosyne**.
-- **Output**: Informs the **Logos** verification chain and the **Janus** labeling process.
-- **Sovereign Seal**: A claim is only `Sovereign-Verified` if it is supported by at least one `T1` or `T2` source.
+## Implementation Details
+- **Architecture**: Python FastMCP server utilizing a logic layer that reads the Ethos Registry.
+- **Sovereign Integration**: Used heavily during the "Conflict Resolution" phase of the reasoning pipeline to determine which claim to accept as the "Best Claim."
