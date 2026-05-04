@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.sovereign_scribe.python.logic import SovereignScribeLogic
+from python.logic import SovereignScribeLogic
 
 mcp = FastMCP("sovereign-scribe")
 logic = SovereignScribeLogic()

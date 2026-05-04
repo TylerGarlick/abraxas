@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.ledger.python.logic import LedgerLogic
+from python.logic import LedgerLogic
 
 mcp = FastMCP("ledger")
 logic = LedgerLogic()

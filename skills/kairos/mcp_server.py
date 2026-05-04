@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.kairos.python.logic import logic
+from python.logic import logic
 
 mcp = FastMCP("Kairos Relevance Filter")
 

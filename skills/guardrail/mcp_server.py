@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.guardrail.python.logic import logic, GUARDRAIL_STANDARDS
+from python.logic import logic, GUARDRAIL_STANDARDS
 
 mcp = FastMCP("Guardrail Monitor")
 

@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.sovereign_core.python.logic import SovereignCoreLogic
+from python.logic import SovereignCoreLogic
 
 mcp = FastMCP("sovereign-core")
 logic = SovereignCoreLogic()

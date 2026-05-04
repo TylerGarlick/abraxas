@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.episteme.python.logic import EpistemeLogic
+from python.logic import EpistemeLogic
 
 mcp = FastMCP("episteme")
 logic = EpistemeLogic()

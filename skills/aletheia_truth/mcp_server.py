@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.aletheia_truth.python.logic import AletheiaTruthLogic
+from python.logic import AletheiaTruthLogic
 
 mcp = FastMCP("aletheia-truth")
 logic = AletheiaTruthLogic()

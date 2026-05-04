@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.project_bridge.python.logic import ProjectBridgeLogic
+from python.logic import ProjectBridgeLogic
 
 mcp = FastMCP("project-bridge")
 logic = ProjectBridgeLogic()

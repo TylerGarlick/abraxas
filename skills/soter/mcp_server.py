@@ -1,5 +1,5 @@
 from fastmcp import FastMCP
-from skills.soter.python.logic import soter_logic
+from python.logic import soter_logic
 
 mcp = FastMCP("soter-verifier")
 

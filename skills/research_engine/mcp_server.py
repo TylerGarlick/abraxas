@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.research_engine.python.logic import ResearchEngineLogic
+from python.logic import ResearchEngineLogic
 
 mcp = FastMCP("research-engine")
 logic = ResearchEngineLogic()

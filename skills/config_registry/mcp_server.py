@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.config_registry.python.logic import loader, masker
+from python.logic import loader, masker
 
 mcp = FastMCP("Config Registry")
 

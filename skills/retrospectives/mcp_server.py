@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.retrospectives.python.logic import RetrospectivesLogic
+from python.logic import RetrospectivesLogic
 
 mcp = FastMCP("retrospectives")
 logic = RetrospectivesLogic()

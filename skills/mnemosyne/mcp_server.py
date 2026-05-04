@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.mnemosyne.python.logic import mnemosyne_logic as logic
+from python.logic import mnemosyne_logic as logic
 
 mcp = FastMCP("Mnemosyne Memory")
 

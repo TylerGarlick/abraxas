@@ -1,5 +1,5 @@
 from mcp.server.fastmcp import FastMCP
-from skills.janus.python.logic import logic
+from python.logic import logic
 
 mcp = FastMCP("Janus Orchestrator")
 
