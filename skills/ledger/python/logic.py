@@ -21,7 +21,7 @@ class LedgerLogic:
         if not all([url, db_name, user, password]):
             raise EnvironmentError("Missing required ArangoDB environment variables: ARANGO_URL, ARANGO_DB, ARANGO_USER, ARANGO_ROOT_PASSWORD")
 
-        self.client = ArangoClient(servers=url)
+        self.client = ArangoClient(hosts=url)
         self.db = self.client.db(db_name, username=user, password=password)
         self.ensure_collections()
 
