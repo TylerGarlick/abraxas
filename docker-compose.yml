@@ -6,9 +6,11 @@ services:
     environment:
       - ABRAXAS_ROOT=/workspace
       - SOTER_CONSTITUTION_PATH=/workspace/constitution/constitution-soter.md
+      - PYTHONPATH=/app:/workspace/skills
     volumes:
       - .:/workspace
       - ./skills/soter:/app
+      - ./skills:/workspace/skills
     restart: always
 
   mnemosyne-memory:
@@ -31,91 +33,25 @@ services:
     container_name: abraxas-mcp-kairos
     volumes:
       - ./skills/kairos:/app
+      - ./skills:/workspace/skills
     ports:
       - "3008:3008"
+    environment:
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   janus-orchestrator:
     build: ./skills/janus
     container_name: abraxas-mcp-janus
     volumes:
-      - ./skills/janus:/app
-    ports:
-      - "3004:3004"
-    restart: always
-
-  episteme:
-    build: ./skills/episteme
-    container_name: abraxas-mcp-episteme
-    environment:
-      - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
-      - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
-    volumes:
-      - .:/workspace
-      - ./skills/episteme:/app
-      - ./memory:/app/memory
-    ports:
-      - "3006:3006"
-    restart: always
-
-  ethos:
-    build: ./skills/ethos
-    container_name: abraxas-mcp-ethos
-    volumes:
-      - ./skills/ethos:/app
-    ports:
-      - "3007:3007"
-    restart: always
-
-  guardrail-monitor:
-    build: ./skills/guardrail_monitor
-    container_name: abraxas-mcp-guardrail
-    volumes:
-      - ./skills/guardrail_monitor:/app
-    ports:
-      - "3005:3005"
-    restart: always
-
-  # --- SUPPORTING SERVICES ---
-
-  sovereign-scribe:
-    build: ./skills/sovereign_scribe
-    container_name: abraxas-mcp-scribe
-    environment:
-      - ARANGO_URL=http://arangodb:8529
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-    volumes:
-      - ./skills/sovereign_scribe:/app
-    ports:
-      - "3009:3009"
-    restart: always
-
-  dream-reservoir:
-    build: ./skills/dream_reservoir
-    container_name: abraxas-mcp-dream
-    environment:
-      - ARANGO_URL=http://arangodb:8529
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-    volumes:
-      - ./skills/dream_reservoir:/app
-    ports:
-      - "3001:3001"
-    restart: always
-
-  config-registry:
-    build: ./skills/config_registry
-    container_name: abraxas-mcp-config
-    environment:
-      - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
-    volumes:
       - .:/workspace
       - ./skills/config_registry:/app
+      - ./skills:/workspace/skills
     ports:
       - "3014:3014"
+    environment:
+      - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   ledger:
@@ -125,9 +61,11 @@ services:
       - ARANGO_URL=http://arangodb:8529
       - ARANGO_DB=${ARANGO_DB}
       - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}-
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
+      - PYTHONPATH=/app:/workspace/skills
     volumes:
       - ./skills/ledger:/app
+      - ./skills:/workspace/skills
     ports:
       - "3010:3010"
     restart: always
@@ -137,8 +75,11 @@ services:
     container_name: abraxas-mcp-core
     volumes:
       - ./skills/sovereign_core:/app
+      - ./skills:/workspace/skills
     ports:
       - "3011:3011"
+    environment:
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   sovereign-engine:
@@ -146,8 +87,11 @@ services:
     container_name: abraxas-mcp-engine
     volumes:
       - ./skills/sovereign_engine:/app
+      - ./skills:/workspace/skills
     ports:
       - "3012:3012"
+    environment:
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   aletheia-truth:
@@ -156,9 +100,11 @@ services:
     environment:
       - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
       - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
+      - PYTHONPATH=/app:/workspace/skills
     volumes:
       - .:/workspace
       - ./skills/aletheia_truth:/app
+      - ./skills:/workspace/skills
     ports:
       - "3013:3013"
     restart: always
@@ -166,13 +112,15 @@ services:
   project-bridge:
     build: ./skills/project_bridge
     container_name: abraxas-mcp-bridge
-    environment:
-      - Sovereign_WORKSPACE_ROOT=/workspace
     volumes:
       - .:/workspace
       - ./skills/project_bridge:/app
+      - ./skills:/workspace/skills
     ports:
       - "3015:3015"
+    environment:
+      - Sovereign_WORKSPACE_ROOT=/workspace
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   research-engine:
@@ -180,18 +128,38 @@ services:
     container_name: abraxas-mcp-research
     volumes:
       - ./skills/research_engine:/app
+      - ./skills:/workspace/skills
     ports:
       - "3016:3016"
+    environment:
+      - PYTHONPATH=/app:/workspace/skills
     restart: always
 
   retrospectives:
     build: ./skills/retrospectives
     container_name: abraxas-mcp-retros
-    environment:
-      - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
     volumes:
       - .:/workspace
       - ./skills/retrospectives:/app
+      - ./skills:/workspace/skills
+    restart: always
+    environment:
+      - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
+      - PYTHONPATH=/app:/workspace/skills
+
+  arangodb-manager:
+    build: ./skills/arangodb-manager
+    container_name: abraxas-mcp-arangodb-mgr
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
+    volumes:
+      - .:/workspace
+      - ./skills/arangodb-manager:/app
+    ports:
+      - "3020:3020"
     restart: always
 
   arangodb:

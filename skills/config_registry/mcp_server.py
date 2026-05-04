@@ -1,7 +1,7 @@
 from mcp.server.fastmcp import FastMCP
 from skills.config_registry.python.logic import loader, masker
 
-mcp = Fast uma a- la' FastMCP("Config Registry")
+mcp = FastMCP("Config Registry")
 
 @mcp.tool()
 def config_get(path: str) -> str:
