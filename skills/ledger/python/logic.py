@@ -29,7 +29,7 @@ class LedgerLogic:
             try:
                 self.db = self.client.db(db_name, username=user, password=password)
                 # Trigger a simple call to verify the DB actually exists/is reachable
-                self.db.get_version() 
+                self.client.get_version() 
                 break
             except Exception as e:
                 if i == max_retries - 1:

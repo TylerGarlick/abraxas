@@ -86,7 +86,7 @@ services:
     ports:
       - "3011:3011"
     environment:
-      - PYTHONPATH=/workspace
+      - PYTHONPATH=/workspace:/usr/lib/python3/dist-packages
     restart: always
 
   sovereign-engine:
