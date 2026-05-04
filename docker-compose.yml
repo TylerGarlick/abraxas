@@ -6,7 +6,7 @@ services:
     environment:
       - ABRAXAS_ROOT=/workspace
       - SOTER_CONSTITUTION_PATH=/workspace/constitution/constitution-soter.md
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     volumes:
       - .:/workspace
       - ./skills/soter:/app
@@ -37,7 +37,7 @@ services:
     ports:
       - "3008:3008"
     environment:
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   janus-orchestrator:
@@ -51,7 +51,7 @@ services:
       - "3014:3014"
     environment:
       - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   ledger:
@@ -62,7 +62,7 @@ services:
       - ARANGO_DB=${ARANGO_DB}
       - ARANGO_USER=${ARANGO_USER}
       - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     volumes:
       - ./skills/ledger:/app
       - ./skills:/workspace/skills
@@ -79,7 +79,7 @@ services:
     ports:
       - "3011:3011"
     environment:
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   sovereign-engine:
@@ -91,7 +91,7 @@ services:
     ports:
       - "3012:3012"
     environment:
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   aletheia-truth:
@@ -100,7 +100,7 @@ services:
     environment:
       - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
       - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     volumes:
       - .:/workspace
       - ./skills/aletheia_truth:/app
@@ -120,7 +120,7 @@ services:
       - "3015:3015"
     environment:
       - Sovereign_WORKSPACE_ROOT=/workspace
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   research-engine:
@@ -132,7 +132,7 @@ services:
     ports:
       - "3016:3016"
     environment:
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
     restart: always
 
   retrospectives:
@@ -145,7 +145,7 @@ services:
     restart: always
     environment:
       - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
-      - PYTHONPATH=/app:/workspace/skills
+      - PYTHONPATH=/workspace
 
   arangodb-manager:
     build: ./skills/arangodb-manager
