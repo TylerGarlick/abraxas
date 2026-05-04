@@ -27,10 +27,10 @@ class LedgerLogic:
 
     def ensure_collections(self):
         """Ensure tasks and task_edges collections exist."""
-        if not self.db.collection("tasks").exists():
+        if not self.db.has_collection("tasks"):
             self.db.create_collection("tasks")
         
-        if not self.db.collection("task_edges").exists():
+        if not self.db.has_collection("task_edges"):
             self.db.create_collection("task_edges", edge=True)
 
     def create_task(self, title: str, project: Optional[str] = None, scope: Optional[str] = None, priority: Optional[str] = None) -> Dict[str, Any]:

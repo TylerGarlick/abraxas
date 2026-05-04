@@ -7,5 +7,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# MCP servers usually use stdio for communication
-CMD ["python", "server.py"]
+# Make entrypoint executable
+RUN chmod +x entrypoint.sh
+
+# Use entrypoint script to handle bootstrap sequence
+CMD ["./entrypoint.sh"]

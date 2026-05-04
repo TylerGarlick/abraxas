@@ -30,6 +30,8 @@ services:
     ports:
       - "3003:3003"
     restart: always
+    depends_on:
+      - arangodb-manager
 
   kairos-filter:
     build: ./skills/kairos
@@ -72,6 +74,8 @@ services:
     ports:
       - "3010:3010"
     restart: always
+    depends_on:
+      - arangodb-manager
 
   sovereign-core:
     build: ./skills/sovereign_core
@@ -164,6 +168,8 @@ services:
     ports:
       - "3020:3020"
     restart: always
+    depends_on:
+      - arangodb
 
   arangodb:
     image: arangodb/arangodb:latest
