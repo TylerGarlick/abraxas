@@ -21,8 +21,11 @@ services:
       - ARANGO_DB=${ARANGO_DB}
       - ARANGO_USER=${ARANGO_USER}
       - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
+      - PYTHONPATH=/workspace
     volumes:
+      - .:/workspace
       - ./skills/mnemosyne:/app
+      - ./skills:/workspace/skills
       - ./vault:/app/vault
     ports:
       - "3003:3003"
