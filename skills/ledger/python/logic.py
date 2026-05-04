@@ -22,22 +22,7 @@ class LedgerLogic:
             raise EnvironmentError("Missing required ArangoDB environment variables: ARANGO_URL, ARANGO_DB, ARANGO_USER, ARANGO_ROOT_PASSWORD")
 
         self.client = ArangoClient(hosts=url)
-        
-        # Retry loop to wait for the database to be created by the manager
-        max_retries = 10
-        for i in range(max_retries):
-            try:
-                self.db = self.client.db(db_name, username=user, password=password)
-                # Trigger a simple call to verify the DB actually exists/is reachable
-                self.client.get_version() 
-                break
-            except Exception as e:
-                if i == max_retries - 1:
-                    raise e
-                print(f"Waiting for database {db_name} to be initialized... (attempt {i+1}/{max_retries})")
-                import time
-                time.sleep(5)
-        
+        self.db = self.client.db(db_name, username=user, password=password)
         self.ensure_collections()
 
     def ensure_collections(self):
