@@ -212,7 +212,7 @@ services:
       - arangodb_data:/var/lib/arangodb
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8529/_api/version || curl -f http://localhost:8529/_api/version -u root:${ARANGO_ROOT_PASSWORD}"]
+      test: ["CMD-SHELL", "curl -f http://arangodb:8529/_api/version || curl -f http://arangodb:8529/_api/version -u root:${ARANGO_ROOT_PASSWORD}"]
       interval: 10s
       timeout: 5s
       retries: 5
