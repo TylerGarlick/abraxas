@@ -12,6 +12,9 @@ services:
       - ./skills/soter:/app
       - ./skills:/workspace/skills
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   mnemosyne-memory:
     build: ./skills/mnemosyne
@@ -31,7 +34,8 @@ services:
       - "3003:3003"
     restart: always
     depends_on:
-      - arangodb-manager
+      arangodb:
+        condition: service_healthy
 
   kairos-filter:
     build: ./skills/kairos
@@ -44,6 +48,9 @@ services:
     environment:
       - PYTHONPATH=/workspace
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   janus-orchestrator:
     build: ./skills/janus
@@ -58,6 +65,9 @@ services:
       - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
       - PYTHONPATH=/workspace
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   ledger:
     build: ./skills/ledger
@@ -75,7 +85,8 @@ services:
       - "3010:3010"
     restart: always
     depends_on:
-      - arangodb-manager
+      arangodb:
+        condition: service_healthy
 
   sovereign-core:
     build: ./skills/sovereign_core
@@ -88,6 +99,9 @@ services:
     environment:
       - PYTHONPATH=/workspace:/usr/lib/python3/dist-packages
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   sovereign-engine:
     build: ./skills/sovereign_engine
@@ -100,6 +114,9 @@ services:
     environment:
       - PYTHONPATH=/workspace
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   aletheia-truth:
     build: ./skills/aletheia_truth
@@ -115,6 +132,9 @@ services:
     ports:
       - "3013:3013"
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   project-bridge:
     build: ./skills/project_bridge
@@ -129,6 +149,9 @@ services:
       - Sovereign_WORKSPACE_ROOT=/workspace
       - PYTHONPATH=/workspace
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   research-engine:
     build: ./skills/research_engine
@@ -141,6 +164,9 @@ services:
     environment:
       - PYTHONPATH=/workspace
     restart: always
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   retrospectives:
     build: ./skills/retrospectives
@@ -153,6 +179,9 @@ services:
     environment:
       - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
       - PYTHONPATH=/workspace
+    depends_on:
+      arangodb:
+        condition: service_healthy
 
   arangodb-manager:
     build: ./skills/arangodb-manager
@@ -169,7 +198,8 @@ services:
       - "3020:3020"
     restart: always
     depends_on:
-      - arangodb
+      arangodb:
+        condition: service_healthy
 
   arangodb:
     image: arangodb/arangodb:latest
@@ -181,6 +211,11 @@ services:
     volumes:
       - arangodb_data:/var/lib/arangodb
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8529/_api/version"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   arangodb_data:
