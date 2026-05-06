@@ -1,209 +1,30 @@
 services:
-  # --- SOVEREIGN CORE (The Brain) ---
-  soter-verifier:
-    build: ./skills/soter
-    container_name: abraxas-mcp-soter
+  # --- ABRAXAS UNIFIED MCP OS (The Brain) ---
+  abraxas-mcp:
+    build:
+      context: .
+      dockerfile: infra/mcp/Dockerfile
+    container_name: abraxas-mcp
     environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=${ARANGO_DB}
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
       - ABRAXAS_ROOT=/workspace
-      - SOTER_CONSTITUTION_PATH=/workspace/constitution/constitution-soter.md
       - PYTHONPATH=/workspace
     volumes:
       - .:/workspace
-      - ./skills/soter:/app
-      - ./skills:/workspace/skills
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  mnemosyne-memory:
-    build: ./skills/mnemosyne
-    container_name: abraxas-mcp-mnemosyne
-    environment:
-      - ARANGO_URL=http://arangodb:8529
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-      - PYTHONPATH=/workspace
-    volumes:
-      - .:/workspace
-      - ./skills/mnemosyne:/app
-      - ./skills:/workspace/skills
-      - ./vault:/app/vault
     ports:
-      - "3003:3003"
+      - "9900:3000"
     restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
+    depends_on:
+      arangodb:
+        condition: service_started
 
-  kairos-filter:
-    build: ./skills/kairos
-    container_name: abraxas-mcp-kairos
-    volumes:
-      - ./skills/kairos:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3008:3008"
-    environment:
-      - PYTHONPATH=/workspace
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  janus-orchestrator:
-    build: ./skills/janus
-    container_name: abraxas-mcp-janus
-    volumes:
-      - .:/workspace
-      - ./skills/config_registry:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3014:3014"
-    environment:
-      - SOVEREIGN_CONFIG_PATH=/workspace/SOVEREIGN_CONFIG.yaml
-      - PYTHONPATH=/workspace
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  ledger:
-    build: ./skills/ledger
-    container_name: abraxas-mcp-ledger
-    environment:
-      - ARANGO_URL=http://arangodb:8529
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-      - PYTHONPATH=/workspace
-    volumes:
-      - ./skills/ledger:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3010:3010"
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  sovereign-core:
-    build: ./skills/sovereign_core
-    container_name: abraxas-mcp-core
-    volumes:
-      - ./skills/sovereign_core:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3011:3011"
-    environment:
-      - PYTHONPATH=/workspace:/usr/lib/python3/dist-packages
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  sovereign-engine:
-    build: ./skills/sovereign_engine
-    container_name: abraxas-mcp-engine
-    volumes:
-      - ./skills/sovereign_engine:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3012:3012"
-    environment:
-      - PYTHONPATH=/workspace
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  aletheia-truth:
-    build: ./skills/aletheia_truth
-    container_name: abraxas-mcp-aletheia
-    environment:
-      - SOVEREIGN_VAULT_PATH=/workspace/vault/sovereign_vault.json
-      - EPISTEMIC_LEDGER_PATH=/workspace/memory/epistemic-ledger.json
-      - PYTHONPATH=/workspace
-    volumes:
-      - .:/workspace
-      - ./skills/aletheia_truth:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3013:3013"
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  project-bridge:
-    build: ./skills/project_bridge
-    container_name: abraxas-mcp-bridge
-    volumes:
-      - .:/workspace
-      - ./skills/project_bridge:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3015:3015"
-    environment:
-      - Sovereign_WORKSPACE_ROOT=/workspace
-      - PYTHONPATH=/workspace
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  research-engine:
-    build: ./skills/research_engine
-    container_name: abraxas-mcp-research
-    volumes:
-      - ./skills/research_engine:/app
-      - ./skills:/workspace/skills
-    ports:
-      - "3016:3016"
-    environment:
-      - PYTHONPATH=/workspace
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  retrospectives:
-    build: ./skills/retrospectives
-    container_name: abraxas-mcp-retros
-    volumes:
-      - .:/workspace
-      - ./skills/retrospectives:/app
-      - ./skills:/workspace/skills
-    restart: always
-    environment:
-      - Sovereign_RETRO_DIR=/workspace/.abraxas/retrospectives
-      - PYTHONPATH=/workspace
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
-  arangodb-manager:
-    build: ./skills/arangodb-manager
-    container_name: abraxas-mcp-arangodb-mgr
-    environment:
-      - ARANGO_URL=http://arangodb:8529
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
-    volumes:
-      - .:/workspace
-      - ./skills/arangodb-manager:/app
-    ports:
-      - "3020:3020"
-    restart: always
-#    depends_on:
-#      arangodb:
-#        condition: service_completed_successfully
-
+  # --- DATABASE LAYER ---
   arangodb:
     image: arangodb/arangodb:latest
-    container_name: abraxas-arangodb
+    container_name: arangodb
     environment:
       - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
     ports:

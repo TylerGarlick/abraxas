@@ -51,18 +51,14 @@ else
 fi
 
 # 3. Infrastructure Boot
-echo "🐳 Booting MCP Ecosystem via Docker Compose..."
+echo "🐳 Booting Unified MCP Server via Docker Compose..."
 docker compose -f docker-compose.yml up -d
 
 # 4. Dependency Installation
 echo "📦 Installing MCP dependencies..."
 bun install
 
-# 5. Skill Integration (Sovereign Bridge)
-echo "🛠️ Integrating Skills into the Agent Framework..."
-mkdir -p skills/
-
-# 6. Sovereign Handshake
+# 5. Sovereign Handshake
 echo "🩺 Executing Sovereign Handshake..."
 # Verify Constitution exists
 if [ ! -f constitution/genesis.md ]; then
@@ -70,20 +66,25 @@ if [ ! -f constitution/genesis.md ]; then
     exit 1
 fi
 
-# Verify MCP Health
-sleep 10 # Give containers time to start
-SOTER_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3002/health || echo "FAIL")
-JANUS_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3004/health || echo "FAIL")
-MNEMO_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3003/health || echo "FAIL")
-DREAM_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3001/health || echo "FAIL")
+# Verify Unified MCP Health
+sleep 10 # Give container time to start
+HEALTH_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8000/health || echo "FAIL")
 
-if [ "$SOTER_STATUS" == "200" ] && [ "$JANUS_STATUS" == "200" ] && [ "$MNEMO_STATUS" == "200" ] && [ "$DREAM_STATUS" == "200" ]; then
-    echo "✅ Sovereign Brain is ONLINE and verified."
+if [ "$HEALTH_STATUS" == "200" ]; then
+    echo "✅ Unified Sovereign Brain is ONLINE and verified."
 else
-    echo "⚠️ Sovereign Core is incomplete. Some MCP services are not responding."
-    echo "Soter: $SOTER_STATUS | Janus: $JANUS_STATUS | Mnemosyne: $MNEMO_STATUS | Dream: $DREAM_STATUS"
+    echo "⚠️ Sovereign Core is not responding on port 8000."
     echo "Check 'docker logs' for details."
 fi
+
+echo "🌟 Abraxas v4 Setup Complete. You are now Sovereign."
+echo ""
+echo "⚠️  FINAL STEP: ACTIVATE THE BRAIN"
+echo "The infrastructure is ready, but the LLM is still probabilistic."
+echo "To activate the Sovereign Brain, copy the Genesis Prompt below:"
+echo ""
+cat constitution/genesis.md
+echo ""
 
 echo "🌟 Abraxas v4 Setup Complete. You are now Sovereign."
 echo ""

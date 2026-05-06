@@ -12,7 +12,7 @@ To avoid the "Probabilistic Trap," Abraxas separates the **definition of truth**
 | :--- | :--- | :--- | :--- |
 | **Constitution** | The "What" | Human-readable Markdown files defining the absolute requirements and laws of the system. | **The Law Book** |
 | **Skills** | The "How" | The actual code (JavaScript/TypeScript/Python) that implements a specific capability or analysis. | **The Tool** |
-| **MCP Servers** | The "Where" | The orchestration layer that invokes skills to enforce the Constitution in real-time. | **The Police** |
+| **Unified MCP Server** | The "Where" | The modular monolith (`abraxas_mcp`) that invokes skills to enforce the Constitution in real-time. | **The Police** |
 
 ---
 
@@ -22,9 +22,9 @@ A common misconception is that the "Skills" (the code) are the source of truth. 
 
 **The Skill is a mechanism; the Constitution is the standard.**
 
-Imagine a police force (the MCP/Soter server) using a radar gun (the Skill). The radar gun can detect that a car is going 100mph, but the radar gun does not decide if 100mph is "illegal." The **Law Book (The Constitution)** is what defines the speed limit. 
+Imagine a police force (the Unified MCP server) using a radar gun (the Skill). The radar gun can detect that a car is going 100mph, but the radar gun does not decide if 100mph is "illegal." The **Law Book (The Constitution)** is what defines the speed limit. 
 
-If you remove the Law Book, the police force has a tool to measure speed, but no authority to issue a ticket. Similarly, without the Constitution, Soter can detect a "Risk 5" pattern, but it has no deterministic rule to tell it that a "Risk 5" must be blocked.
+If you remove the Law Book, the police force has a tool to measure speed, but no authority to issue a ticket. Similarly, without the Constitution, Soter (implemented as a module in the unified server) can detect a "Risk 5" pattern, but it has no deterministic rule to tell it that a "Risk 5" must be blocked.
 
 ---
 

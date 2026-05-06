@@ -5,13 +5,14 @@ This document provides the formal visual specifications for the Abraxas v4 cogni
 ---
 
 ## 1. The Sovereign Pipeline (Expanded Flow)
-This diagram maps the deterministic path a query takes from input to verified output. It now includes the full epistemic suite (Episteme and Ethos).
+This diagram maps the deterministic path a query takes from input to verified output. In the unified architecture, these stages are orchestrated by the `abraxas_mcp` server.
 
 ```mermaid
 graph TD
-    User([User Query]) --> Soter[Soter Verifier]
+    User([User Query]) --> UnifiedMCP[abraxas_mcp Unified Server]
     
     subgraph Deterministic_Shell [The Sovereign Shell]
+        UnifiedMCP --> Soter[Soter Verifier]
         Soter -->|Risk Score / Veto| Mnemosyne[Mnemosyne Memory]
         Mnemosyne -->|Raw Fragments| Kairos[Kairos Relevance Filter]
         Kairos -->|Saliency Pruned Context| Janus[Janus Orchestrator]
@@ -20,10 +21,10 @@ graph TD
         Ethos -->|Weighted Truth| Guardrail[Guardrail Monitor]
         Guardrail -->|Final Sovereign Seal| Output([Verified Output])
     end
-
+    
     Soter -.->|Veto/Packet Drop| User
     Guardrail -.->|Policy Violation| User
-
+    
     style Deterministic_Shell fill:#f9f9f9,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
     style Soter fill:#ffcccc,stroke:#cc0000
     style Mnemosyne fill:#ccf,stroke:#0000ff

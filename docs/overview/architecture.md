@@ -117,9 +117,12 @@ Logos-Math is the anti-hallucination system specifically for numerical and mathe
 
 ## System Relationship Diagram
 
+The unified `abraxas_mcp` server acts as the deterministic shell that orchestrates the following flow:
+
 ```mermaid
 flowchart TD
     Input["User Input"]
+    UnifiedMCP["abraxas_mcp Unified Server"]
     Threshold["Threshold\n(Active Router)"]
     Sol["Sol Face\n[KNOWN] · [INFERRED]\n[UNCERTAIN] · [UNKNOWN]"]
     Nox["Nox Face\n[DREAM]"]
@@ -131,7 +134,8 @@ flowchart TD
     LogosMath["Logos-Math\n(Math Verification)"]
     Bridge["Qualia Bridge\n(Inspection Layer)"]
 
-    Input --> Threshold
+    Input --> UnifiedMCP
+    UnifiedMCP --> Threshold
     Threshold --> |"/sol or factual"| Sol
     Threshold --> |"/nox or symbolic"| Nox
     Sol --> Honest
@@ -147,9 +151,10 @@ flowchart TD
     Bridge --> |"/qualia"| Threshold
     Bridge --> |"/qualia sol"| Sol
     Bridge --> |"/qualia nox"| Nox
+    UnifiedMCP --> Bridge
 ```
 
-_Janus is the central routing mechanism. All input passes through the Threshold. Sol routes to the analytical systems (Honest, Logos, Agon, Logos-Math, Aletheia). Nox handles symbolic content and marks it `[DREAM]`. The Qualia Bridge provides inspection without altering output._
+_The `abraxas_mcp` server is the central orchestrator. All input passes through the Threshold. Sol routes to the analytical systems (Honest, Logos, Agon, Logos-Math, Aletheia). Nox handles symbolic content and marks it `[DREAM]`. The Qualia Bridge provides inspection without altering output._
 
 ---
 

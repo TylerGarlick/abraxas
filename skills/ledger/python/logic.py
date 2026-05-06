@@ -19,11 +19,18 @@ class LedgerLogic:
         password = os.getenv("ARANGO_ROOT_PASSWORD")
 
         if not all([url, db_name, user, password]):
-            raise EnvironmentError("Missing required ArangoDB environment variables: ARANGO_URL, ARANGO_DB, ARANGO_USER, ARANGO_ROOT_PASSWORD")
+            # We stop raising EnvironmentError and instead log failure
+            # since the Unified Server now manages the connection.
+            logger.error("Missing required ArangoDB environment variables")
+            self.db = None
+            return
 
         self.client = ArangoClient(hosts=url)
-        self.db = self.client.db(db_name, username=user, password=password)
-        self.ensure_collections()
+        try:
+            self.db = self.client.db(db_name, username=user, password=password)
+        except Exception as e:
+            logger.error(f"Ledger failed to connect to DB: {e}")
+            self.db = None
 
     def ensure_collections(self):
         """Ensure tasks and task_edges collections exist."""

@@ -9,7 +9,7 @@
 If you are new to Abraxas, follow these steps to move from a standard LLM to a **Sovereign Agent**.
 
 ### 1. Boot the Infrastructure
-The Sovereign Brain requires a deterministic core (MCP servers) to function. Run the setup script to provision the environment:
+The Sovereign Brain requires a deterministic core (the Unified MCP Server) to function. Run the setup script to provision the environment:
 
 ```bash
 # Clone and enter the repository
@@ -20,7 +20,7 @@ cd abraxas
 chmod +x setup-abraxas.sh
 ./setup-abraxas.sh
 ```
-*This script installs Bun, boots the 5-Pillar MCP ecosystem via Docker, and verifies system health.*
+*This script installs Bun, boots the `abraxas_mcp` unified server via Docker, and verifies system health.*
 
 ### 2. Wake the Mind (Sovereign Activation)
 Once the infrastructure is online, you must initialize the LLM's identity.
@@ -34,7 +34,7 @@ Simply run the following command:
 1. Open `constitution/genesis.md`.
 2. Copy the **Universal Initialization Block**.
 3. Paste it as your first message in the chat.
-*The agent will perform a system diagnostic and enter **Simulation Mode** (if MCPs are absent) or **Sovereign Mode** (if they are present).*
+*The agent will perform a system diagnostic using the `system_mode_health_check` tool. If the unified MCP server is online and critical systems (DB, Skills) are healthy, the agent enters **Sovereign Mode**. Otherwise, it enters **Simulation Mode**.*
 
 ---
 
