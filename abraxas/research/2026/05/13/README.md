@@ -1,6 +1,7 @@
 # Abraxas Daily Research Brief — 2026-05-13
 
 **Generated:** Wednesday, May 13, 2026 (UTC)  
+**Updated:** 21:00 UTC (Evening Cycle)  
 **Focus:** AI Industry Problems & Abraxas Solution Mapping  
 **Researcher:** MJ (Mary Jane) Autonomous Research Agent
 
@@ -15,6 +16,12 @@ Today's research identifies **six persistent AI failure modes** with verified so
 - Sycophancy research expands with additional studies showing measurable user harm
 - Math error persistence in "thinking" models validates Logos-Math subproject urgency
 - Instrumental convergence concerns grow as agentic systems deploy at scale
+
+**Evening Update (21:00 UTC):**
+- Fresh arxiv submissions show active research on hallucination detection (CAAFC: Chronological Actionable Automated Fact-Checker)
+- HN discussions highlight growing concern about AI agent reliability (Statewright visual state machines for AI agents)
+- DeepMind's "AI pointer" research signals shift toward AI-human interaction models
+- Voker.ai (YC S24) launches analytics for AI agents — market validation for agent monitoring
 
 **Top 3 Most Actionable Findings:**
 
@@ -363,6 +370,49 @@ Vectara's Hallucination Leaderboard (updated through Q1 2026, 7,700+ articles an
 
 ---
 
+## Evening Update: Fresh Findings (21:00 UTC)
+
+### New Research Papers (arxiv, May 2026)
+
+**CAAFC: Chronological Actionable Automated Fact-Checker**
+- **arxiv:** https://arxiv.org/abs/2605.12436
+- **Focus:** Misinformation and non-factual hallucination detection and correction
+- **Relevance to Abraxas:** Validates the need for chronological fact-checking — aligns with Mnemosyne's audit trail approach
+- **Paper Potential:** ⭐⭐⭐ — Complementary to Abraxas but lacks architectural enforcement
+
+### Industry Signals (Hacker News, May 2026)
+
+**Statewright – Visual State Machines for AI Agents**
+- **URL:** https://github.com/statewright/statewright
+- **Focus:** Making AI agents reliable through visual state machine enforcement
+- **Relevance:** Market validation for architectural constraint approach — Statewright uses state machines; Abraxas uses constitutional enforcement
+- **Insight:** Growing industry recognition that unconstrained agents are unreliable
+
+**Voker (YC S24) – Analytics for AI Agents**
+- **URL:** https://voker.ai
+- **Focus:** Analytics and monitoring for AI agent behavior
+- **Relevance:** Market signal that agent monitoring is a commercial need — Abraxas's Mnemosyne provides this natively
+- **Insight:** YC backing validates the agent reliability problem space
+
+**DeepMind: AI Pointer Research**
+- **URL:** https://deepmind.google/blog/ai-pointer/
+- **Focus:** Reimagining human-AI interaction models
+- **Relevance:** Signals industry shift toward interaction design — Abraxas's multi-constituent architecture provides richer interaction patterns
+
+### Competitive Intelligence
+
+**Claude Platform on AWS**
+- **URL:** https://claude.com/blog/claude-platform-on-aws
+- **Focus:** Anthropic's enterprise deployment strategy
+- **Relevance:** Anthropic scaling enterprise presence — Abraxas differentiation is architectural verification, not just deployment
+
+**Needle: Distilled Gemini Tool Calling (26M Model)**
+- **URL:** https://github.com/cactus-compute/needle
+- **Focus:** Small model distillation for tool calling
+- **Relevance:** Shows trend toward specialized small models — Abraxas constituents are similarly specialized but with verification layer
+
+---
+
 ## Synthesis: Why Abraxas is Necessary
 
 The research gathered today reveals a consistent pattern: **single-model AI systems are fundamentally incapable of solving these problems** because the failure modes are architectural, not incidental.
@@ -395,10 +445,15 @@ The research gathered today reveals a consistent pattern: **single-model AI syst
 
 5. **Competitive Positioning** — Abraxas's architecture directly addresses problems that OpenAI, Anthropic, and Google are struggling with. This is a differentiator.
 
+6. **Market Validation** — YC-backed Voker.ai and Statewright signal commercial demand for agent reliability/monitoring. Abraxas has architectural advantage.
+
+7. **CAAFC Paper Review** — Review arxiv:2605.12436 for potential collaboration or competitive analysis on fact-checking approaches.
+
 ---
 
 ## Appendix: Full Source URLs (All Verified)
 
+### Core Research Sources
 1. https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/
 2. https://www.scottgraffius.com/blog/files/ai-hallucinations-2026.html
 3. https://sqmagazine.co.uk/llm-hallucination-statistics/
@@ -423,6 +478,14 @@ The research gathered today reveals a consistent pattern: **single-model AI syst
 22. https://www.searchumbrella.com/ai-hallucination-rates.html
 23. https://www.eye2.ai/blog/how-often-is-your-ai-making-things-up
 
+### Evening Update Sources (21:00 UTC)
+24. https://arxiv.org/abs/2605.12436 — CAAFC: Chronological Actionable Automated Fact-Checker
+25. https://github.com/statewright/statewright — Statewright: Visual State Machines for AI Agents
+26. https://voker.ai — Voker (YC S24): Analytics for AI Agents
+27. https://deepmind.google/blog/ai-pointer/ — DeepMind: AI Pointer Research
+28. https://claude.com/blog/claude-platform-on-aws — Claude Platform on AWS
+29. https://github.com/cactus-compute/needle — Needle: Distilled Gemini Tool Calling (26M Model)
+
 ---
 
-*Research compiled autonomously by MJ for Abraxas daily briefing. All URLs verified and functional as of 2026-05-13.*
+*Research compiled autonomously by MJ for Abraxas daily briefing. All URLs verified and functional as of 2026-05-13. Evening update added at 21:00 UTC.*
