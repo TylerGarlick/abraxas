@@ -207,50 +207,35 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
-## Task Pipeline (Task: → Beads → /task)
+## Task Pipeline
 
-T's full task lifecycle has three layers:
+T's full task lifecycle:
 
-1. **Authoring** — `Task: <prompt>` or `Task: Project: <prompt>` — you define the problem, I figure out execution
-2. **Staging/Ready Gate** — Beads (`mc/.beads/`) — tasks live here until `bd ready` confirms they're ready
-3. **Execution** — Native OpenClaw `/task` system (v2026.4.1) — actual work happens here
+1. **Authoring** — `Task: <prompt>` or `Task: Project: <prompt>` — define the problem, I figure out execution
+2. **Tracking** — **Ledger skill** (`projects/abraxas/skills/ledger.skill`, ArangoDB-backed) or native OpenClaw `/tasks` (SQLite backend)
+3. **Retrospectives** — **Retrospective-enforcer skill** fires after every task completion → per-task retro in `projects/retrospectives/`
 
 ### How it works
 
 - `Task:` spawns an **isolated subagent** (never the main session)
-- Subagent works in the Beads staging layer
-- `bd ready` (Dolt CLI) confirms when a task is truly ready to execute
-- Only then does the task enter the `/task` execution layer
-- `task-clarity` skill fires before every spawn — use it to gate "is this ready?"
-
-### Beads state machine
-
-```
-detected → planned → in_progress → delivered
-                  → qa_blocked    → (retry → delivered)
-                  → stale         → (reset → detected)
-```
-
-### /task system (v2026.4.1)
-
-- Native OpenClaw task runner — durable, persistent
-- SQLite backend: `~/.openclaw/tasks/runs.sqlite`
-- Source of truth for active/executed tasks
-- Use `/task` commands directly for execution-layer operations
+- `task-clarity` skill fires before every spawn — gate-check "is this ready?"
+- Task lifecycle: `open → ready → testing → closed`
+- **After every task closes:** create per-task retrospective using the retrospective-enforcer template
 
 ### Key files
 
 | File | Purpose |
 |------|---------|
-| `/tasks.json` | Consolidated task definitions (EHR, Abraxas, etc.) |
-| `mc/planning/backlog.json` | Full backlog with delivery state |
-| `mc/.beads/` | Beads staging layer (Dolt-backed) |
+| `projects/abraxas/skills/ledger.skill` | ArangoDB-backed task ledger |
+| `projects/retrospectives/` | All task and daily retrospectives |
+| `~/.openclaw/tasks/runs.sqlite` | Native OpenClaw task state |
 
 ### Red lines for tasks
 
-- **Never** use `done` — use `closed` for terminal Beads status
 - **Always** spawn isolated subagents for `Task:` work
-- **Always** use `BEADS_DIR=/home/ubuntu/.openclaw/workspace/mc/.beads` in subagent environment
+- **Always** create retrospectives after task completion
+- **Never** reference Beads, bd CLI, dolt, or .beads directories — deprecated and being removed
+- **Use** the ledger skill or native `/tasks` for ALL tracking
 
 ---
 
@@ -258,49 +243,9 @@ detected → planned → in_progress → delivered
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
 
-<!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:ca08a54f -->
-## Beads Issue Tracker
+---
 
-This project uses **bd (beads)** for issue tracking. Run `bd prime` to see full workflow context and commands.
+## Make It Yours
 
-### Quick Reference
+This is a starting point. Add your own conventions, style, and rules as you figure out what works.
 
-```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --claim  # Claim work
-bd close <id>         # Complete work
-```
-
-### Rules
-
-- Use `bd` for ALL task tracking — do NOT use TodoWrite, TaskCreate, or markdown TODO lists
-- Run `bd prime` for detailed command reference and session close protocol
-- Use `bd remember` for persistent knowledge — do NOT use MEMORY.md files
-
-## Session Completion
-
-**When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
-
-**MANDATORY WORKFLOW:**
-
-1. **File issues for remaining work** - Create issues for anything that needs follow-up
-2. **Run quality gates** (if code changed) - Tests, linters, builds
-3. **Update issue status** - Close finished work, update in-progress items
-4. **PUSH TO REMOTE** - This is MANDATORY:
-   ```bash
-   git pull --rebase
-   bd dolt push
-   git push
-   git status  # MUST show "up to date with origin"
-   ```
-5. **Clean up** - Clear stashes, prune remote branches
-6. **Verify** - All changes committed AND pushed
-7. **Hand off** - Provide context for next session
-
-**CRITICAL RULES:**
-- Work is NOT complete until `git push` succeeds
-- NEVER stop before pushing - that leaves work stranded locally
-- NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
-<!-- END BEADS INTEGRATION -->
