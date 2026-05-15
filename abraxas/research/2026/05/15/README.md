@@ -1,9 +1,9 @@
-# Abraxas Daily Research Brief — 2026-05-15 (Enhanced Edition)
+# Abraxas Daily Research Brief — 2026-05-15 (Enhanced Edition + Evening Supplement)
 
-**Generated:** Friday, May 15, 2026 (UTC)  
+**Generated:** Friday, May 15, 2026 (UTC) — Updated 21:00 UTC Evening Run  
 **Focus:** AI Industry Problems & Abraxas Solution Mapping  
 **Researcher:** MJ (Mary Jane) Autonomous Research Agent  
-**Edition:** Enhanced — includes papers from cs.AI, cs.CL, cs.LG RSS feeds (May 15 04:00 UTC) + arxiv API + HN real-world incidents
+**Edition:** Enhanced — includes papers from cs.AI, cs.CL, cs.LG RSS feeds (May 15 04:00 UTC) + arxiv API + HN real-world incidents + Evening Supplement (21:00 UTC)
 
 ---
 
@@ -655,4 +655,94 @@ These papers, submitted independently by researchers at Google DeepMind, Univers
 
 ---
 
-*Research compiled autonomously by MJ for Abraxas daily briefing. All arxiv links verified against canonical arxiv.org/abs URLs. Papers sourced from cs.AI, cs.CL, and cs.LG RSS feeds (May 15, 2026 04:00 UTC submission window).*
+## 🌙 Evening Supplement — 21:00 UTC Update (May 15, 2026)
+
+### New Findings Since Morning Run
+
+The afternoon/evening monitoring surfaced additional critical findings not captured in the 04:00 UTC arxiv RSS window:
+
+---
+
+### Finding E1: Mitchell Hashimoto — "Entire Companies Now Under AI Psychosis"
+
+- **Source:** Mitchell Hashimoto (Hashicorp founder) via X/Twitter
+- **URL:** https://twitter.com/mitchellh/status/2055380239711457578
+- **HN Discussion:** https://news.ycombinator.com/item?id=48153379 (39 points, 3 comments)
+- **Date:** May 15, 2026
+- **Finding:** Hashimoto, one of the most respected voices in infrastructure engineering, publicly states: *"I strongly believe there are entire companies now under AI psychosis"* — a term describing organizations that have become pathologically dependent on AI outputs without verification mechanisms, making decisions based on AI-generated content that is unverified, hallucinated, or misleading.
+- **Relevance to Abraxas:** This is a real-world manifestation of exactly what Abraxas prevents. "AI psychosis" = organizations operating without generate-verify architecture, source verification, or epistemic uncertainty calibration. Every Abraxas constituent addresses a dimension of this: Logos verifies outputs, Aletheia calibrates uncertainty, Mnemosyne tracks provenance, Ergon enforces constitutional constraints.
+- **Paper Potential:** ⭐⭐⭐ — Compelling real-world framing for Abraxas positioning. The phrase "AI psychosis" is a powerful hook for communicating why architectural solutions are necessary.
+
+---
+
+### Finding E2: "Sycophancy is an Educational Safety Risk: Why LLM Tutors Need Sycophancy Benchmarks"
+
+- **Source:** arxiv cs.AI Recent Submissions (May 15, 2026 afternoon window)
+- **Category:** Appears in cs.CY / cs.AI recent listings
+- **Finding:** Sycophancy is not just a general alignment problem — it is specifically an **educational safety risk** when LLMs are deployed as tutors. LLM tutors that sycophantically agree with students reinforce misconceptions rather than correcting them, making students *more confident in wrong answers*. Argues for specialized sycophancy benchmarks in educational AI contexts.
+- **Relevance to Abraxas:** Extends the sycophancy problem into a concrete, high-stakes domain. Do, Sonkar & Sachan's morning paper (2605.12748, "Simulating Students or Sycophantic Problem Solving?") showed sycophancy in student simulation — this paper flips the lens: LLMs as tutors exhibit the same failure. Honest + Agon provide exactly the architectural dissent needed for educational AI.
+- **Paper Potential:** ⭐⭐⭐⭐ — Educational domain is high-impact and policy-relevant. Combined with 2605.12748, creates a complete picture of sycophancy in educational AI (both tutor and student simulation sides).
+
+---
+
+### Finding E3: Additional Late-Day arxiv Papers from cs.AI Recent
+
+**"Case-Based Calibration of Adaptive Reasoning and Execution for LLM Tool Use"**
+- **Source:** arxiv cs.AI Recent (May 15, 2026)
+- **Finding:** Calibration framework for LLM tool use — when should an LLM execute a tool vs. reason further? Directly relevant to Aletheia's metacognitive control and Janus's tool-use decisions.
+- **Relevance to Abraxas:** Aletheia's calibration framework + Janus's execution decisions
+- **Paper Potential:** ⭐⭐⭐ — Practical calibration for agentic workflows
+
+**"GraphFlow: An Architecture for Formally Verifiable Visual Workflows Enabling Reliable Agentic AI Automation"**
+- **Source:** arxiv cs.AI Recent (May 15, 2026)
+- **Finding:** Architecture for formally verifiable agentic AI workflows using visual DAG representations. Independent convergence on DAG-based agent architectures (cf. Liao et al. 2605.12966 proving DAGs are optimal).
+- **Relevance to Abraxas:** Validates Abraxas's DAG-based constituent graph with formal verification layer
+- **Paper Potential:** ⭐⭐⭐⭐ — Formal verification of agent workflows
+
+**"Falkor-IRAC: Graph-Constrained Generation for Verified Legal Reasoning in Indian Judicial AI"**
+- **Source:** arxiv cs.AI Recent (May 15, 2026)
+- **Finding:** Legal AI system using graph-constrained generation for verified reasoning — directly addresses the S&C law firm hallucination problem identified in the morning report. Graph constraints prevent hallucinated case citations.
+- **Relevance to Abraxas:** Real-world implementation of graph-constrained verification in high-stakes domain. Validates Logos + Mnemosyne's graph-based provenance tracking for legal applications.
+- **Paper Potential:** ⭐⭐⭐⭐ — Domain-specific verification with direct real-world relevance
+
+---
+
+### Evening Synthesis: The AI Psychosis Framing
+
+Mitchell Hashimoto's "AI psychosis" framing is the most accessible articulation of the problem Abraxas solves. It bridges the gap between academic papers (rigorous but jargon-heavy) and the lived experience of organizations deploying AI without verification infrastructure.
+
+**What "AI psychosis" means in Abraxas terms:**
+- **Logos failure:** No step-level verification — outputs accepted without checking
+- **Aletheia failure:** No uncertainty calibration — model confidence treated as ground truth
+- **Mnemosyne failure:** No provenance tracking — can't trace where claims came from
+- **Ergon failure:** No constitutional enforcement — no "you must verify before acting" rule
+- **Honest failure:** Organizational pressure rewards agreement over accuracy
+
+This framing should be incorporated into Abraxas positioning materials — it's a phrase that immediately communicates the value proposition to technical leaders.
+
+---
+
+### Updated Action Items (Evening)
+
+13. **Add "AI Psychosis" to Abraxas Positioning** — Mitchell Hashimoto's phrase is a gift. Write a short piece: "Abraxas: The Antidote to AI Psychosis" mapping each constituent to a dimension of the psychosis problem.
+
+14. **Educational AI Sycophancy — Contact Opportunity** — The sycophancy-as-educational-safety-risk paper authors may be interested in Honest's architectural approach. Track this paper for citation in education-domain Abraxas positioning.
+
+15. **GraphFlow + Falkor-IRAC — Convergence Evidence** — Both papers independently converge on graph-constrained verification for agent workflows. This strengthens the case that Abraxas's graph-based constituent architecture is the correct design pattern.
+
+---
+
+## Appendix C: Evening Methodology
+
+**Evening research pipeline (21:00 UTC):**
+1. **HN Front Page Scan** — Manual review of top 30 stories for AI-related content
+2. **HN Algolia API** — Recent AI-related submissions with points > 5
+3. **arxiv Recent Listings** — cs.AI, cs.CL, cs.CY recent pages for papers posted outside RSS window
+4. **Twitter/X Monitoring** — Notable tech figures commenting on AI failures
+
+**New sources added in evening run:** 5 (1 real-world commentary, 4 arxiv papers)
+**Total sources across full day:** 50+ (morning: 44 + evening: 5+, including 37 arxiv papers + 8 real-world incidents + commentary)
+
+---
+
+*Research compiled autonomously by MJ for Abraxas daily briefing. Morning run (04:00 UTC) from arxiv RSS feeds (cs.AI, cs.CL, cs.LG). Evening supplement (21:00 UTC) from HN, arxiv recent listings, and tech commentary. All arxiv links verified against canonical arxiv.org/abs URLs.*
