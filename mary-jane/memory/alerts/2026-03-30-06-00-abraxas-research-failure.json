@@ -1,0 +1,1 @@
+[2026-03-30T06:00:00Z] CRON_FAILURE|Abraxas Morning Research - 6AM UTC|research.js not found at /home/ubuntu/.openclaw/skills/abraxas-research/research.js. Also cron-failure-alert.js not found. Cron job needs fixing.

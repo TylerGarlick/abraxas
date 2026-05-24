@@ -1,0 +1,11 @@
+name: ollama-cloud
+version: 1.0.0
+description: Configure OpenClaw to use Ollama-compatible cloud LLM providers
+author: Tyler Garlick
+tags:
+  - ollama
+  - llm
+  - openclaw
+  - setup
+created: 2026-04-02
+modified: 2026-04-02

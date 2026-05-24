@@ -1,0 +1,8 @@
+# Secrets Manager — .gitignore
+# Keep these files out of version control
+
+secrets-master.key
+secrets-store.json
+secrets-audit.log
+.env
+*.key
