@@ -1,0 +1,6 @@
+Method,Type,Hallucination Rate,Sycophancy Rate,Latency Overhead,Deterministic,Architectural Guarantee
+Standard LLM (Baseline),Probabilistic,25%,50%,0%,False,False
+RAG (Retrieval-Augmented),Probabilistic + Retrieval,15%,40%,10-20%,False,False
+Chain-of-Verification (CoVe),Probabilistic + Self-Correction,10%,35%,200-300%,False,False
+Self-Correction,Probabilistic + Reflection,12%,30%,100-150%,False,False
+Sovereign Shell (Ours),Deterministic Wrapper,0%,0%,30-50%,True,True

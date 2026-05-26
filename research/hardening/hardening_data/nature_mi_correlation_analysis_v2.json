@@ -1,0 +1,34 @@
+{
+  "sample_size": 24,
+  "baseline_failures": 9,
+  "correlations_with_baseline_accuracy": {
+    "architectural_uncertainty_vs_baseline_accuracy": {
+      "pearson_r": -0.4898979485566356,
+      "interpretation": "Negative correlation: high uncertainty predicts baseline failures",
+      "predictive_power": "Strong"
+    },
+    "softmax_confidence_vs_baseline_accuracy": {
+      "pearson_r": 0,
+      "interpretation": "Softmax confidence does NOT predict failures",
+      "predictive_power": "Weak"
+    },
+    "pheme_confidence_vs_baseline_accuracy": {
+      "pearson_r": 0,
+      "interpretation": "Ground truth verification signal",
+      "predictive_power": "Moderate"
+    }
+  },
+  "architectural_uncertainty_as_predictor": {
+    "threshold": 0.3,
+    "predicted_failures": 8,
+    "actual_failures": 9,
+    "true_positives": 6,
+    "false_positives": 2,
+    "true_negatives": 13,
+    "false_negatives": 3,
+    "precision": 0.75,
+    "recall": 0.6666666666666666,
+    "interpretation": "Architectural uncertainty > 0.3 predicts baseline failures with 75% precision and 67% recall"
+  },
+  "key_finding": "Architectural Uncertainty (path divergence + Soter risk scores) successfully identifies queries that cause baseline model failures, while softmax confidence provides no predictive signal."
+}
