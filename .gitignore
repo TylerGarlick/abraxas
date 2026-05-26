@@ -15,8 +15,6 @@ tmp/
 .dolt/
 *.db
 .beads-credential-key
-<<<<<<< Updated upstream
-=======
 
 # Secrets and sensitive files
 secrets/
@@ -31,7 +29,9 @@ regenerate_*.sh
 run_*.sh
 generate_*.sh
 
+# IDE files
+.idea/
+
 # Ignore cloned projects (already under source control)
 projects/
 assets/archive_alpha/
->>>>>>> Stashed changes
