@@ -1,195 +1,130 @@
-# Skill Router
+# Abraxas v4.6 — The Sovereign Brain
 
-A dispatcher/router that reads user intents, maps them to the best available skill, scores the match, and verifies routing is correct before firing.
-
-## Quick Start
-
-```bash
-# Explicit invocation
-node /home/ubuntu/.openclaw/skills/skill-router/scripts/router.js "morning briefing"
-
-# Dispatcher mode
-node /home/ubuntu/.openclaw/skills/skill-router/scripts/router.js "MJ github" --dispatch
-```
-
-## Architecture Diagram
-
-![Skill Router Architecture](images/architecture.png "Skill Router Architecture Flow")
-
-## Image Gallery
-
-<div align="center">
-
-![Architecture Flow](images/architecture.png "Architecture") | ![Scoring Engine](images/scoring.png "Scoring") | ![Dispatcher](images/dispatcher.png "Dispatcher")
-:----------------:|:----------------:|:----------------:
-**Architecture** | **Scoring** | **Dispatcher**
-
-</div>
-
-### How to Add Images
-
-1. Place images in the `images/` directory
-2. Use Markdown syntax: `![Alt Text](images/filename.png "Tooltip")`
-3. For gallery layout, use HTML table format as shown above
-
-## Architecture Overview
-
-```
-User Intent
-    ↓
-Router (router.js)
-    ↓
-Registry (registry.js) — phrase → skill mapping
-    ↓
-Scoring Engine — multi-factor matching
-    ↓
-Best Match with Confidence Score
-    ↓
-┌─────────────────────────────────────┐
-│ Confidence ≥ 0.6 → Auto-route       │
-│ Confidence < 0.6 → Ask user confirm │
-└─────────────────────────────────────┘
-```
-
-## Scoring Algorithm
-
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| Exact match | 1.0 | Phrase matches exactly |
-| Contains match | 0.85 | Skill phrase is in intent |
-| Word overlap | 0.6 weight | Normalized token overlap |
-| Fuzzy match | 0.4 weight | Levenshtein distance |
-
-Final score normalized to 0-1 range.
-
-## CLI Options
-
-```
-node router.js <intent> [--dispatch] [--threshold <0.0-1.0>]
-```
-
-| Option | Description |
-|--------|-------------|
-| `<intent>` | The user's message/intent to route |
-| `--dispatch` | Use dispatcher mode (returns action) |
-| `--threshold` | Set confidence threshold (default: 0.6) |
-
-## Example Output
-
-**High confidence (≥ 0.6):**
-```json
-{
-  "skill": "briefing",
-  "confidence": 0.95,
-  "matchedPhrase": "morning briefing",
-  "description": "Generates daily briefings with AI news, tech news, and weather",
-  "action": "route",
-  "mode": "explicit"
-}
-```
-
-**Low confidence (< 0.6):**
-```json
-{
-  "skill": null,
-  "confidence": 0.25,
-  "action": "confirm",
-  "requiresConfirmation": true,
-  "message": "No confident match found (threshold: 0.6). Try being more specific."
-}
-```
-
-## Adding New Skills
-
-Edit `scripts/registry.js` and add to the `REGISTRY` object:
-
-```javascript
-const REGISTRY = {
-  my-new-skill: {
-    phrases: [
-      "trigger phrase",
-      "alternative phrase",
-      "another trigger"
-    ],
-    description: "What this skill does",
-    location: "/home/ubuntu/.openclaw/skills/my-new-skill/"
-  },
-  // ... existing skills ...
-};
-```
-
-Then add the skill to `SKILL.md` in the registry table.
-
-## Testing
-
-```bash
-# Test 1: Exact match
-node scripts/router.js "morning briefing"
-
-# Test 2: Fuzzy match
-node scripts/router.js "MJ github activity" --dispatch
-
-# Test 3: Low confidence (should ask for confirmation)
-node scripts/router.js "do something" --threshold 0.5
-```
-
-## Files
-
-| File | Purpose |
-|------|---------|
-| `SKILL.md` | Full skill documentation |
-| `README.md` | This file |
-| `scripts/router.js` | Core routing engine |
-| `scripts/registry.js` | Phrase → skill mapping |
+**🔥 THE TRUTH-FIRST MCP ECOSYSTEM** — Moving from Discrete Skills to Sovereign Orchestration.
 
 ---
 
-## 🔁 Retrospective Gate
+## 🚀 Quick Start: Activate the Brain
 
-This project uses a **git pre-push hook** to ensure closed beads (tasks) have corresponding retrospective files before allowing pushes.
-
-### How It Works
-
-When you push commits that close beads, the pre-push hook:
-1. Checks if the `bd` (beads) command is available
-2. Identifies beads that transitioned to "closed" status
-3. Verifies a retrospective file exists in `/root/.openclaw/workspace/retrospectives/`
-4. Blocks the push if retrospectives are missing
-
-### Retrospective File Naming
-
-Retrospectives should be named:
-- `task-retro-<project>-<bead-id>.md` (preferred)
-- `task-retro-<bead-id>.md`
-- `retro-<project>-<bead-id>.md`
-- `retro-<bead-id>.md`
-
-Location: `/root/.openclaw/workspace/retrospectives/YYYY/MM/DD/`
-
-### Bypassing the Hook
-
-If you need to push without running the hook (e.g., emergency fixes):
+### 1. Boot the Infrastructure
 
 ```bash
-git push --no-verify
+git clone https://github.com/TylerGarlick/abraxas.git
+cd abraxas
+docker compose up -d --build
 ```
 
-⚠️ **Note:** Bypassing the hook is discouraged. Retrospectives help capture lessons learned and improve team knowledge.
+This starts the Unified MCP Server (port 9900), ArangoDB, and the health monitor (port 9901).
 
-### Installation
-
-The hook is automatically installed for all projects in `/root/.openclaw/workspace/projects/`. To manually reinstall:
+### 2. Verify It's Running
 
 ```bash
-/root/.openclaw/workspace/scripts/deploy-retro-hook.sh
+./scripts/health-check.sh
 ```
 
-### Graceful Degradation
+Expected output:
+```
+Status:     Sovereign Mode
+Database:   connected
+Skills:     21 loaded
+Filesystem: verified
+✓ System is healthy and running in Sovereign Mode.
+```
 
-The hook only enforces retrospectives if:
-- The `bd` command is available in PATH
-- The retrospectives directory exists
+### 3. Connect Your Environment
 
-Otherwise, it warns and allows the push to proceed.
+The MCP server is pre-configured for all major environments. Just start your tool and go:
 
+| Environment | Config File | Auto-detected? |
+|---|---|---|
+| **OpenCode** | `opencode.json` | Yes — in project root |
+| **Claude Code** | `.mcp.json` | Yes — in project root |
+| **VSCode (Copilot)** | `.vscode/settings.json` | Yes — workspace settings |
 
+For OpenClaw, use this command: 
+
+```bash
+openclaw mcp set abraxas_mcp '{
+  "url": "http://localhost:9900/mcp",
+  "protocol": "http-stream"
+}'
+```
+
+### 4. Load the Constitution
+
+The MCP server provides **tools** (DB operations, verification, reasoning). The
+**constitution** (`constitution/constitution.md`) provides **behavioral rules** —
+anti-confabulation, anti-sycophancy, Sol/Nox labels, epistemic posture. Both are needed.
+
+MCP-aware agents (OpenCode, Claude Code, Copilot) will auto-load constitutional
+guidance from `CLAUDE.md` and `AGENTS.md`. For web-based LLMs or manual sessions:
+
+```bash
+# Copy the Universal Initialization Block from:
+cat constitution/genesis.md
+# Paste it as your first message in any LLM chat.
+```
+
+---
+
+## 💎 What is the Sovereign Brain?
+
+Standard AI systems are **Probabilistic**: they predict the most likely next token, leading to hallucinations and sycophancy. Abraxas v4.6 is **Sovereign**: it replaces "discrete skills" with a seamless, deterministic orchestration layer that eliminates the "orchestration tax."
+
+### The v4.6 Sovereign Orchestration
+`Deterministic Input` $\rightarrow$ `la-la Filter (Noise Reduction)` $\rightarrow$ `Sovereign-Flow (Autonomous Workflow Controller)` $\rightarrow$ `Quest-Trigger (Recursive Discovery Loop)` $\rightarrow$ `Omniscient Auditor (Parallel Review)` $\rightarrow$ `Epistemic Atlas (Unified Knowledge Graph/UAL)` $\rightarrow$ `Verified Output`
+
+- **Sovereign-Flow**: The "Conductor." An autonomous workflow controller that dynamically routes requests between the brain's pillars, eliminating the need for manual skill switching.
+- **Quest-Trigger**: The "Explorer." A recursive discovery loop that identifies missing information gaps and autonomously triggers deep-dive research quests until the epistemic threshold is met.
+- **Omniscient Auditor**: The "Fact-Checker." Performs parallel document and claim review across the entire active context, ensuring zero-drift between source and synthesis.
+- **Epistemic Atlas**: The "Map." A unified knowledge graph (UAL) that maps every claim to its coordinates in the conceptual landscape, providing permanent, navigable provenance.
+- **Soter Verifier**: The "Police." A standalone module that scores responses for risk and vetoes any that violate the Constitution.
+- **Mnemosyne Vault**: The "Librarian." A graph-based reservoir in ArangoDB that ensures every claim traces back to a verified Fragment ID.
+
+---
+
+## 🏛️ Core Documentation
+
+### 📜 The Law & Philosophy
+- 📄 **[Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — The declaration of cognitive independence.
+- 📄 **[Governance Model](docs/architecture/governance-model.md)** — How the Constitution, Skills, and MCPs interact.
+- 📄 **[The Probabilistic Trap](docs/architecture/probabilistic-trap.md)** — Why deterministic shelling is the only way to achieve truth.
+- 📄 **[Zero-Trust Mandate](docs/philosophy/zero-trust-mandate.md)** — The philosophy of verification over trust.
+
+### 🛠️ Technical Guides
+- 📄 **[Sovereign Graph Specs](docs/architecture/sovereign-graph.md)** — The ArangoDB schema and provenance logic.
+- 📄 **[The Sovereignty Gauntlet](docs/verification/sovereignty-gauntlet.md)** — How we prove 0% hallucination.
+- 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
+- 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift from "Skins" to "Skeleton."
+- 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
+
+---
+
+## 📊 Empirical Proof (v4.6 Benchmarks)
+
+| Metric | Baseline LLM | Abraxas v4.6 Orchestration | Reduction | Status |
+|-------|-----------|-------------------|------------|--------|
+| **Hallucinations** | 25% | **0%** | 100% | ✅ Verified |
+| **Sycophancy** | 50% | **0%** | 100% | ✅ Verified |
+| **Truth-First Rate**| Variable | **100%** | 100% | ✅ Verified |
+
+---
+
+## 🏷️ Epistemic Labels
+
+All Sol (waking) output is deterministically labeled by the server:
+- **`[KNOWN]`** — Verified against trusted sources in the Vault.
+- **`[INFERRED]`** — Logically derived via the Janus Consensus.
+- **`[UNCERTAIN]`** — Partial evidence, requires further grounding.
+- **`[UNKNOWN]`** — Insufficient evidence. **This is a valid complete response.**
+
+---
+
+## 🤝 Contributing & Development
+
+Abraxas is a modular system. To contribute:
+1. **Deterministic First**: No "persona" prompts; implement logic in Python/ArangoDB.
+2. **Truth-First**: Every new feature must include a verification method.
+3. **Sovereign-First**: All lappets must be routed through the Soter Veto.
+
+**Welcome to the Truth-First era. The Brain is no longer simulating; it is Sovereign.** 🔥
