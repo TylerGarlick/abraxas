@@ -232,10 +232,9 @@ Each stage enforces specific constraints and contributes to the provenance chain
 
 Soter implements the $	au$ tripwire, monitoring the physical behavior of transformer attention heads. An Epistemic Crisis is triggered if the average attention weight to a set of sink tokens $ exceeds the discovered constant $	au = 0.15$:
 
-2129107T = egin{cases} 1 & 	ext{if } rac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > 	au \ 0 & 	ext{otherwise} \end{cases}2129107
+2133392	ext{Soter Trigger: } T = egin{cases} 1 & 	ext{if } rac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > 	au \ 0 & 	ext{otherwise} \end{cases}2133392
 
 This mechanism enforces a strict **Precision over Recall** trade-off. By halting generation at =1$, Abraxas eliminates the 'Lapping the Tracks' spiral, sacrificing the recall of a plausible answer to guarantee the precision of the output.
-
 ### 3.3 Stage 2: Mnemosyne (Cross-Session Memory)
 
 **Function:** Persist conversation state and provenance chains across Claude Code invocations.
