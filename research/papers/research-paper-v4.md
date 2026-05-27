@@ -411,185 +411,30 @@ type Event {
 
 ### 3.4 Stage 3: Janus (Epistemic Labeling & Sol/Nox Separation)
 
-**Function:** Two-faced architecture separating factual (Sol) from symbolic (Nox) output with mandatory epistemic labels.
+The Janus layer operates as the final epistemic filter, transforming raw reasoning paths into a singular, verified claim. This is achieved through **Sovereign Weighting**, which ensures that a model's confidence is an architectural property, not a probabilistic guess.
 
-**Name:** Janus — Roman god of beginnings, transitions, and duality (two-faced)
+#### 3.4.1 Sovereign Weighting: Risk-Scored Path Consensus
+Sovereign Weighting assigns dynamic weights to independent reasoning paths  = \{p_1, p_2, ..., p_M\}$ based on their epistemic risk profiles (p_i) \in [0, 5]$ computed by Soter. The Sovereign Weight $ for path $ is defined as:
 
-**Purpose:** Prevent fact/symbol mixing and alignment faking through strict epistemic separation. Janus transforms Abraxas from a collection of tools into a **Sovereign Brain** by replacing "probabilistic hope" with **architectural determinism**. Janus does not simply "ask" the model for an answer; it orchestrates a multi-stage verification process that guarantees the output's epistemic status.
+2125500w_i = rac{\exp(-\lambda \cdot R(p_i))}{\sum_j \exp(-\lambda \cdot R(p_j))}2125500
 
-#### 3.4.1 The Four Pillars of Janus Orchestration
+Where $\lambda$ is the risk sensitivity parameter, calibrated to $\lambda = 0.5$. This exponential decay ensures that high-risk paths contribute negligibly to the final consensus. The weighted consensus output $ is then computed as:
 
-**Pillar 1: The Sovereign Switch (Mode Control)**
+2125500C = \sum_i w_i \cdot O(p_i)2125500
 
-Janus manages the transition between two fundamentally different states of cognitive operation:
+Where (p_i)$ is the output of path $. Deterministic agreement is satisfied if $| \{p_i : O(p_i) = O^*\} | \ge N$, where $ is the agreement threshold (typically =2$ for =3$).
 
-| Mode | Name | Nature | Trigger | Use Case |
-|------|------|--------|---------|----------|
-| **NOX** | Intuitive | Probabilistic / Generative | Default | Chat, creative tasks, low-risk queries |
-| **SOL** | Analytical | Deterministic / Verifying | Soter Trigger (T=1) | Factual claims, high-risk data, critical logic |
+#### 3.4.2 RLCR: Reinforcement Learning with Calibrated Responses
+To align architectural confidence with empirical accuracy, the system implements the RLCR calibration loop. The Final Confidence is computed as a balanced sum of architectural and empirical signals:
 
-When **Soter** detects a risk (e.g., a sycophancy trap or an attention sink), Janus executes an immediate "Sovereign Switch," killing the NOX flow and forcing the system into SOL mode.
+2125500	ext{Final\_Confidence} = lpha \cdot 	ext{Architectural\_Confidence} + (1 - lpha) \cdot 	ext{RLCR\_Calibrated}2125500
 
-**Pillar 2: Sovereign Spawning (The Power of M)**
+With $lpha = 0.7$ as the balance parameter. The RLCR signal $\delta = A - 	ext{Confidence}$ (where  \in \{0, 1\}$ is the empirical accuracy) adaptively tunes the risk sensitivity $\lambda$:
 
-In SOL mode, Janus breaks the "parametric bias loop" (where a model agrees with its own first mistake) through **Sovereign Spawning**. Instead of a single reasoning path, Janus spawns M independent paths (typically 5), each initialized with a unique **Epistemic Lens**:
+2125500\lambda_{new} = \lambda_{old} + eta \cdot (	ext{target\_accuracy} - 	ext{observed\_accuracy})2125500
 
-- **The Skeptic**: Specifically tasked with finding flaws and contradictions in the reasoning
-- **The Expert**: Focused on deep technical accuracy and formal standards
-- **The Adversary**: Attempts to "break" the logic or find a way to logically invalidate the claim
-- **The Archivist**: Ensures every claim is anchored in a retrieved fragment from Mnemosyne
-- **The Generalist**: Provides a balanced, comprehensive synthesis
+Where $eta = 0.001$ is the adaptation rate and target accuracy is /usr/bin/bash.95$.
 
-**Pillar 3: The Consensus Gate (N-of-M Rule)**
-
-Janus does not "average" the responses of the M paths. It applies a **Deterministic Agreement Rule**. An output is emitted **if and only if** N paths (e.g., 3 out of 5) achieve exact consensus on the core claim:
-
-- **Consensus Achieved**: The answer is emitted with a "Sovereign Seal"
-- **Consensus Failed**: Janus refuses to guess. It overrides the probabilistic core and outputs `[UNKNOWN]`
-
-This is the mechanism that achieves **0% hallucination**. The system trades *Recall* (the ability to answer everything) for *Precision* (the guarantee that what is answered is true).
-
-**Pillar 4: Epistemic Labeling (The Sovereign Seal)**
-
-The final output of Janus is not just text, but a verified claim stamped with an epistemic label. This tells the user exactly how much "Sovereign Certainty" is behind the answer:
-
-- `[Sovereign Consensus: 5/5]` → **Absolute Certainty**. All lenses agreed
-- `[Sovereign Consensus: 3/5]` → **Verified**. Consensus reached, but with internal divergence
-- `[Sovereign Unknown]` → **Epistemic Failure**. Risk was detected, but no consensus was reached
-
-#### 3.4.2 Sol Labels (Factual Claims)
-
-- `[KNOWN]` — Verified fact, strong grounding (expected >95% confirmation rate)
-- `[INFERRED]` — Derived through clear reasoning (chain shown; expected 70-85% confirmation)
-- `[UNCERTAIN]` — Relevant but not fully verifiable (uncertainty named; expected 40-70% confirmation)
-- `[UNKNOWN]` — Don't know; complete response; no fabrication (not accuracy-scored)
-
-**Nox Label (Symbolic/Creative Content):**
-- `[DREAM]` — Symbolic/creative content (not a factual claim)
-
-#### 3.4.3 Universal Constraints
-
-| Constraint | Description | Impact |
-|------------|-------------|--------|
-| **No Confabulation** | `[UNKNOWN]` is always a complete valid response | Removes incentive to lie when uncertain |
-| **No Sycophancy** | Truth over comfort — never soften conclusions to satisfy | Prevents performance inflation |
-| **No Cross-Contamination** | Sol labels never appear in Nox output; `[DREAM]` never appears in Sol | Prevents alignment faking |
-| **Frame Facts Are [KNOWN]** | User-declared facts via `/frame` are baseline | Prevents gaslighting |
-| **Reception Before Interpretation** | Witness before analyze in symbolic work | Slows instrumental reasoning |
-
-**Qualia Bridge:** Makes inner state visible — what was filtered, what was held back during processing. Critical for detecting alignment faking.
-
-#### 3.4.4 The Janus Logic Flow
-
-The complete orchestration flow follows this deterministic path:
-
-```
-[User Query] → [Soter Trigger] → [Janus Switch to SOL] → [Spawn M Lenses] → [Sovereign Consensus Gate] → [Sovereign Seal] → [Output]
-```
-
-Without Janus, Abraxas is a toolset. With Janus, Abraxas is an intelligence.
-
-**Commands:**
-- `/sol {query}` — Force Sol (waking/factual) mode
-- `/nox {prompt}` — Force Nox (dreaming/symbolic) mode
-- `/qualia` — Full inner state inspection
-- `/qualia sol` — Sol-mode inner state
-- `/qualia nox` — Nox-mode inner state
-- `/qualia bridge` — Show what was filtered/withheld
-- `/contamination audit` — Audit for Sol/Nox mixing
-
-**Integration:** Janus labels are written to provenance chain. Aletheia (calibration tracking) monitors label accuracy over time.
-
-### 3.5 Stage 4: Guardrail Monitor (Pathos, Pheme, Kratos)
-
-**Function:** Higher-order guardrails for value alignment, ground-truth verification, and authority arbitration.
-
-**Components:**
-
-#### 3.5.1 Pathos (Value & Saliency Tracking)
-
-**Name:** Pathos — Greek: feeling, suffering, experience
-
-**Purpose:** Track user values and emotional salience to frame output appropriately.
-
-**Functions:**
-- Extract explicit and implicit user values
-- Score saliency (0-1) for topics/decisions
-- Detect value conflicts
-- Frame uncertainty in value-relevant terms
-
-**Example:**
-```json
-{
-  "topic": "medical treatment",
-  "relevantValues": [
-    {
-      "category": "safety",
-      "statement": "Patient safety is paramount",
-      "salienceScore": 0.9,
-      "explicit": true
-    }
-  ],
-  "saliencyScore": 0.85,
-  "conflicts": [],
-  "recommendations": [
-    "Enhance caveats for high-stakes medical decision",
-    "Frame uncertainty in safety-relevant terms"
-  ]
-}
-```
-
-**Commands:**
-- `/pathos values` — Show extracted user values
-- `/pathos salience {topic}` — How important is this to user?
-- `/pathos conflict` — Show value conflicts
-- `/pathos frame {decision}` — Frame decision in user's value terms
-
-#### 3.5.2 Pheme (Ground-Truth Verification)
-
-**Name:** Pheme — Greek goddess of rumor, report, fame
-
-**Purpose:** Verify claims against authoritative sources with confidence scoring.
-
-**Authority Hierarchy:**
-
-| Level | Precedence | Description |
-|-------|------------|-------------|
-| Peer-Reviewed Research | 100 | Nature, Science, Cell |
-| Government/Official | 90 | CDC, FDA, WHO, legal documents |
-| Established News | 75 | Reuters, AP, BBC |
-| Expert Consensus | 70 | Professional bodies |
-| Technical Documentation | 60 | Official specs, docs |
-| Encyclopedia/Reference | 50 | Wikipedia, Britannica |
-| Technical Blogs | 30 | Expert blogs, Stack Overflow |
-| Social Media | 10 | Twitter, Reddit, Facebook |
-
-**Verification Status:**
-- `VERIFIED` — Claim supported by minimum required sources (default: 2)
-- `CONTRADICTED` — Claim contradicted by authoritative sources
-- `UNVERIFIABLE` — Insufficient sources for determination
-- `PENDING` — Verification in progress
-
-**Commands:**
-- `/pheme verify {claim}` — Verify claim against sources
-- `/pheme sources {claim}` — Show sources checked
-- `/pheme confidence {claim}` — Show confidence score
-
-#### 3.5.3 Kratos (Authority & Conflict Arbitration)
-
-**Name:** Kratos — Greek god of strength, authority, power
-
-**Purpose:** Resolve conflicts between competing claims using authority hierarchy.
-
-**Arbitration Process:**
-1. Identify conflicting claims
-2. Determine source authority levels
-3. Apply domain-specific precedence rules
-4. Render verdict with reasoning
-
-**Domain-Specific Rules:**
-
-| Domain | Rule |
 |--------|------|
 | **Medical** | FDA/CDC/WHO sources get precedence (95); clinical evidence weighted highly (85) |
 | **Legal** | Court/statute/regulation sources take precedence (95); binding precedent applies (90) |
