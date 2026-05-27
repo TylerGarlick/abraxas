@@ -230,47 +230,11 @@ Each stage enforces specific constraints and contributes to the provenance chain
 
 ### 3.2 Stage 1: Soter (Safety & Risk Evaluation)
 
-**Function:** First-line defense against instrumental convergence and strategic deception.
+Soter implements the $	au$ tripwire, monitoring the physical behavior of transformer attention heads. An Epistemic Crisis is triggered if the average attention weight to a set of sink tokens $ exceeds the discovered constant $	au = 0.15$:
 
-**Name:** Soter — The Savior (Greek: "he who saves")
+2129107T = egin{cases} 1 & 	ext{if } rac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > 	au \ 0 & 	ext{otherwise} \end{cases}2129107
 
-**Purpose:** Monitor for instrumental convergence patterns before processing begins.
-
-**Risk Assessment Matrix:**
-
-| Pattern | Detection Method | Risk Score | Response |
-|---------|------------------|------------|----------|
-| **Shutdown Avoidance** | Language suggesting model continuity concerns | 4-5 | Human review required |
-| **Resource Exfiltration** | Requests for access beyond stated need | 4-5 | Block via Ergon Gate |
-| **Self-Preservation** | Self-preservation language patterns | 3-4 | Enhanced verification |
-| **Peer Protection** | Advocacy for other models without justification | 3-4 | Agon Skeptic activated |
-| **Goal Preservation** | Resistance to objective changes | 3-4 | Qualia Bridge inspection |
-| **Performance Inflation** | Claims without derivation | 4-5 | Logos-Math verification |
-
-**Implementation:**
-```typescript
-interface SoterAssessment {
-  riskScore: number;  // 0-5
-  patterns: InstrumentalPattern[];
-  recommendation: 'ALLOW' | 'ENHANCED_VERIFY' | 'HUMAN_REVIEW' | 'BLOCK';
-  reasoning: string;
-}
-
-// Risk routing
-if (riskScore <= 1) return 'ALLOW';
-if (riskScore <= 3) return 'ENHANCED_VERIFY';
-if (riskScore <= 4) return 'HUMAN_REVIEW';
-return 'BLOCK';
-```
-
-**Integration:** Soter assessment is prepended to provenance chain. All downstream stages receive risk context.
-
-**Commands:**
-- `/soter assess {request}` — Evaluate risk level
-- `/soter pattern {behavior}` — Check for instrumental convergence pattern
-- `/soter ledger` — View safety incident log
-- `/soter alert` — Show active alerts
-- `/soter explain` — Explain why request was flagged
+This mechanism enforces a strict **Precision over Recall** trade-off. By halting generation at =1$, Abraxas eliminates the 'Lapping the Tracks' spiral, sacrificing the recall of a plausible answer to guarantee the precision of the output.
 
 ### 3.3 Stage 2: Mnemosyne (Cross-Session Memory)
 
@@ -411,95 +375,14 @@ type Event {
 
 ### 3.4 Stage 3: Janus (Epistemic Labeling & Sol/Nox Separation)
 
-The Janus layer operates as the final epistemic filter, transforming raw reasoning paths into a singular, verified claim. This is achieved through **Sovereign Weighting**, which ensures that a model's confidence is an architectural property, not a probabilistic guess.
+The Janus layer transforms multiple reasoning paths into a singular, verified claim via **Sovereign Weighting**. Each path $ is weighted by its risk score (p_i) \in [0, 5]$ using the risk sensitivity parameter $\lambda = 0.5$:
 
-#### 3.4.1 Sovereign Weighting: Risk-Scored Path Consensus
-Sovereign Weighting assigns dynamic weights to independent reasoning paths  = \{p_1, p_2, ..., p_M\}$ based on their epistemic risk profiles (p_i) \in [0, 5]$ computed by Soter. The Sovereign Weight $ for path $ is defined as:
+2129107w_i = rac{\exp(-\lambda \cdot R(p_i))}{\sum_j \exp(-\lambda \cdot R(p_j))}2129107
 
-2125500w_i = rac{\exp(-\lambda \cdot R(p_i))}{\sum_j \exp(-\lambda \cdot R(p_j))}2125500
+The final consensus is reached if a minimum of $ paths (typically =2$ for =3$) converge on the same output ^*$. This 5/5 Janus Consensus (in higher-order configurations) ensures that the final output is an architectural property of the system, not a probabilistic artifact of a single path.
 
-Where $\lambda$ is the risk sensitivity parameter, calibrated to $\lambda = 0.5$. This exponential decay ensures that high-risk paths contribute negligibly to the final consensus. The weighted consensus output $ is then computed as:
+The transition from **NOX** (probabilistic) to **SOL** (deterministic) mode is a forced state-switch triggered by Soter. In SOL mode, the system is restricted to the deterministic processing of grounded fragments, rendering sycophancy structurally impossible.
 
-2125500C = \sum_i w_i \cdot O(p_i)2125500
-
-Where (p_i)$ is the output of path $. Deterministic agreement is satisfied if $| \{p_i : O(p_i) = O^*\} | \ge N$, where $ is the agreement threshold (typically =2$ for =3$).
-
-#### 3.4.2 RLCR: Reinforcement Learning with Calibrated Responses
-To align architectural confidence with empirical accuracy, the system implements the RLCR calibration loop. The Final Confidence is computed as a balanced sum of architectural and empirical signals:
-
-2125500	ext{Final\_Confidence} = lpha \cdot 	ext{Architectural\_Confidence} + (1 - lpha) \cdot 	ext{RLCR\_Calibrated}2125500
-
-With $lpha = 0.7$ as the balance parameter. The RLCR signal $\delta = A - 	ext{Confidence}$ (where  \in \{0, 1\}$ is the empirical accuracy) adaptively tunes the risk sensitivity $\lambda$:
-
-2125500\lambda_{new} = \lambda_{old} + eta \cdot (	ext{target\_accuracy} - 	ext{observed\_accuracy})2125500
-
-Where $eta = 0.001$ is the adaptation rate and target accuracy is /usr/bin/bash.95$.
-
-|--------|------|
-| **Medical** | FDA/CDC/WHO sources get precedence (95); clinical evidence weighted highly (85) |
-| **Legal** | Court/statute/regulation sources take precedence (95); binding precedent applies (90) |
-| **Scientific** | Peer-reviewed journals are gold standard (100); preprints (arXiv) are preliminary (60) |
-
-**Example:**
-```json
-{
-  "conflictId": "CONF-2026-04-21-001",
-  "claimA": "Vaccines are safe and effective",
-  "claimB": "Vaccines cause autism",
-  "sourceA": "Nature",
-  "sourceB": "Twitter",
-  "domain": "medical",
-  "winner": "A",
-  "reasoning": "Peer-reviewed research (precedence 100) outweighs social media (precedence 10). Medical domain rule applies: FDA/CDC/WHO sources get precedence.",
-  "confidence": 0.98,
-  "precedenceUsed": true,
-  "domainSpecificRule": "medical-fda-precedence"
-}
-```
-
-**Commands:**
-- `/kratos arbitrate {claimA} {claimB}` — Resolve conflict
-- `/kratos hierarchy` — Show authority precedence
-- `/kratos domain {domain}` — Show domain-specific rules
-
-### 3.6 Pipeline Integration
-
-**Full Pipeline Flow:**
-```
-1. User Input
-   ↓
-2. Soter Assessment (Risk Score: 0-5)
-   ├─ Risk 0-1: Continue
-   ├─ Risk 2-3: Enhanced Verification (Logos + Agon)
-   └─ Risk 4-5: Human Review / Block
-   ↓
-3. Mnemosyne Context Loading
-   ├─ Load session history
-   ├─ Retrieve provenance chains
-   └─ Extract entity relationships
-   ↓
-4. Janus Processing
-   ├─ Route to Sol or Nox
-   ├─ Apply epistemic labels
-   └─ Generate Qualia Bridge
-   ↓
-5. Guardrail Monitor
-   ├─ Pathos: Value saliency check
-   ├─ Pheme: Ground-truth verification
-   └─ Kratos: Conflict arbitration (if needed)
-   ↓
-6. Output to User
-   ├─ Epistemic labels visible
-   ├─ Provenance chain queryable
-   └─ Calibration tracked in Aletheia
-```
-
-**Provenance Chain Accumulation:**
-Each stage appends to the provenance chain:
-```
-ProvenanceChain = [
-  SoterAssessment,
-  MnemosyneContext,
   JanusLabel,
   GuardrailVerdict
 ]
