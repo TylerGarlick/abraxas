@@ -24,14 +24,6 @@
 ## Model
 - **Default:** ollama/minimax-m2.7:cloud
 
-## Secrets Manager
-AES-256-GCM encrypted. Skill at `workspace/skills/secrets-manager/`. Never print secret values.
-- **Master key env var:** `MJ_MASTER_KEY`
-- **Store location:** `/home/ubuntu/.openclaw/workspace//secrets/`
-- **Current secrets stored:**
-  - `:github-token` — GH PAT (REVOKED — needs refresh)
-  - `:vercel-token` — Vercel deploy token
-  - `briefing:brave-api-key` — Brave Search
 
 ## Today's Session (2026-04-02)
 See `memory/2026-04-02-task-project-migration.md` for the full task/project migration session.
