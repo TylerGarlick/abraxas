@@ -1,0 +1,37 @@
+services:
+  abraxas-mcp:
+    build:
+      context: .
+      dockerfile: infra/mcp/Dockerfile
+    container_name: abraxas-mcp
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=abraxas_prod
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
+      - ABRAXAS_ROOT=/workspace
+      - PYTHONPATH=/workspace
+    volumes:
+      - .:/workspace
+    ports:
+      - "9900:9900"
+      - "9901:9901"
+    restart: always
+
+  abraxas-graphql:
+    build:
+      context: .
+      dockerfile: infra/api/graphql/Dockerfile
+    container_name: abraxas-graphql
+    environment:
+      - ARANGO_URL=http://arangodb:8529
+      - ARANGO_DB=abraxas_prod
+      - ARANGO_USER=${ARANGO_USER}
+      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
+      - PYTHONPATH=/workspace
+      - SOVEREIGN_CHANNELS=${SOVEREIGN_CHANNELS:-}
+    volumes:
+      - .:/workspace
+    ports:
+      - "4000:4000"
+    restart: always
