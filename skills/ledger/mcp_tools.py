@@ -1,0 +1,51 @@
+from mcp.server.fastmcp import FastMCP
+from infra.mcp.context import AbraxasContext
+from skills.ledger.python.logic import TasksLogic
+
+def register_tools(mcp: FastMCP, context: AbraxasContext):
+    """Registers Tasks tools to the Abraxas MCP server."""
+    logic = TasksLogic()
+
+    @mcp.tool()
+    def create_task(title: str, project: str = None, scope: str = None, priority: str = None) -> str:
+        """Create a new task in the tasks system."""
+        result = logic.create_task(title, project, scope, priority)
+        return str(result)
+
+    @mcp.tool()
+    def get_ready_tasks() -> str:
+        """Get tasks that are ready to be worked on."""
+        result = logic.get_ready_tasks()
+        return str(result)
+
+    @mcp.tool()
+    def update_task_status(id: str, status: str) -> str:
+        """Update the status of a task. Valid statuses: open, ready, testing, closed.
+        When closing a task, automatically generates a retrospective."""
+        result = logic.update_task_status(id, status)
+        return str(result)
+
+    @mcp.tool()
+    def add_dependency(child_id: str, parent_id: str, type: str = "blocks") -> str:
+        """Add a dependency between two tasks. Child blocks Parent."""
+        result = logic.add_dependency(child_id, parent_id, type)
+        return str(result)
+
+    @mcp.tool()
+    def get_task(id: str) -> str:
+        """Get a single task by id."""
+        result = logic.get_task(id)
+        return str(result)
+
+    @mcp.tool()
+    def delete_task(id: str) -> str:
+        """Delete a task from the tasks system."""
+        result = logic.delete_task(id)
+        return str(result)
+
+    @mcp.tool()
+    def get_tasks_by_project(project: str) -> str:
+
+        """Get all tasks for a specific project."""
+        result = logic.get_tasks_by_project(project)
+        return str(result)

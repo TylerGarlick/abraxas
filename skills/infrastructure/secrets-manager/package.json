@@ -1,0 +1,17 @@
+{
+  "name": "secrets-manager-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Secrets Manager with AES-256-GCM encryption",
+  "main": "mcp-server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node mcp-server.js",
+    "dev": "node --watch mcp-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

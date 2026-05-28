@@ -12,6 +12,9 @@ description: >
 
 Logos is argument anatomy — the systematic mapping of what an argument actually contains before it is evaluated, debated, or accepted. It solves the problem of invisible structural weakness: LLMs generate confident conclusions from arguments with missing premises, skipped inferences, hidden assumptions, and unfalsifiable claims.
 
+**Debug & Reasoning Standard:**
+This skill adheres to the `references/reasoning-standard.md` protocol. All mapping and gap analysis must be preceded by a `<thought>` block detailing the structural hypothesis. Each identified gap or assumption must be explicitly anchored to the argument text using the `[Reasoning: {TextFragment}] -> {GapType}` pattern.
+
 Logos makes argument structure visible. It is the mandatory pre-analysis layer that feeds into Janus (for epistemic labeling) and Agon (for adversarial testing).
 
 ---

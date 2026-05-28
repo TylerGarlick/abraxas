@@ -1,0 +1,46 @@
+{
+  "id": "lm-1774637306595-64173d",
+  "timestamp": "2026-03-27T18:48:26.595Z",
+  "type": "verification",
+  "claim": "integral of x^2 from 0 to 2 equals 8/3",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Find antiderivative of x^2",
+      "transformation": "Power rule for integration: ∫x^n dx = x^(n+1)/(n+1) + C",
+      "intermediate_result": "F(x) = x^(2+1)/(2+1) = x^3/3",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Evaluate F(2) - F(0)",
+      "transformation": "Fundamental Theorem of Calculus",
+      "intermediate_result": "F(2) - F(0)",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compute: (2^3)/3 - (0^3)/3 = 2.6666666666666665 - 0 = 2.6666666666666665",
+      "transformation": "Arithmetic evaluation",
+      "intermediate_result": "∫₀^2 x^2 dx = 2.6666666666666665",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 4,
+      "description": "Compare: computed = 2.6666666666666665, claimed = 8",
+      "transformation": "Direct comparison",
+      "intermediate_result": "MISMATCH (diff: 5.333333333333334)",
+      "result": "UNVERIFIED"
+    }
+  ],
+  "result": "MISMATCH",
+  "confidence": "UNVERIFIED",
+  "computed_value": "2.6666666666666665",
+  "claimed_value": "8/3",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [
+    "Computed 2.6666666666666665 ≠ claimed 8"
+  ],
+  "notes": "Flags: Computed 2.6666666666666665 ≠ claimed 8"
+}

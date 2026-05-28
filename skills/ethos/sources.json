@@ -1,0 +1,95 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-04-09",
+  "tiers": {
+    "1": {
+      "name": "Peer-Reviewed",
+      "description": "Academic journals, scientific publications with rigorous peer review",
+      "weight": 1.0,
+      "sources": [
+        { "name": "Nature", "domain": "nature.com", "field": "Science" },
+        { "name": "Science", "domain": "science.org", "field": "Science" },
+        { "name": "PNAS", "domain": "pnas.org", "field": "Science" },
+        { "name": "Cell", "domain": "cell.com", "field": "Biology" },
+        { "name": "The Lancet", "domain": "thelancet.com", "field": "Medicine" },
+        { "name": "NEJM", "domain": "nejm.org", "field": "Medicine" },
+        { "name": "arXiv", "domain": "arxiv.org", "field": "Physics/Math/CS", "note": "Preprints, varies by section" },
+        { "name": "JAMA", "domain": "jamanetwork.com", "field": "Medicine" },
+        { "name": "Physical Review Letters", "domain": "journals.aps.org", "field": "Physics" },
+        { "name": "IEEE Transactions", "domain": "ieee.org", "field": "Engineering" }
+      ]
+    },
+    "2": {
+      "name": "Major News",
+      "description": "Established news organizations with editorial standards and fact-checking",
+      "weight": 0.8,
+      "sources": [
+        { "name": "Reuters", "domain": "reuters.com", "field": "News" },
+        { "name": "Associated Press", "domain": "apnews.com", "field": "News" },
+        { "name": "BBC", "domain": "bbc.com", "field": "News" },
+        { "name": "New York Times", "domain": "nytimes.com", "field": "News" },
+        { "name": "Washington Post", "domain": "washingtonpost.com", "field": "News" },
+        { "name": "The Guardian", "domain": "theguardian.com", "field": "News" },
+        { "name": "NPR", "domain": "npr.org", "field": "News" },
+        { "name": "PBS", "domain": "pbs.org", "field": "News" },
+        { "name": "Wall Street Journal", "domain": "wsj.com", "field": "Business" },
+        { "name": "Financial Times", "domain": "ft.com", "field": "Business" }
+      ]
+    },
+    "3": {
+      "name": "Fact-Checkers",
+      "description": "Dedicated fact-checking organizations with transparent methodologies",
+      "weight": 0.7,
+      "sources": [
+        { "name": "Snopes", "domain": "snopes.com", "field": "Fact-Checking" },
+        { "name": "PolitiFact", "domain": "politifact.com", "field": "Politics" },
+        { "name": "FactCheck.org", "domain": "factcheck.org", "field": "Politics" },
+        { "name": "Full Fact", "domain": "fullfact.org", "field": "UK Politics" },
+        { "name": "AFP Fact Check", "domain": "factcheck.afp.com", "field": "International" },
+        { "name": "Reuters Fact Check", "domain": "reuters.com/fact-check", "field": "International" },
+        { "name": "AP Fact Check", "domain": "apnews.com/hub/ap-fact-check", "field": "Politics" },
+        { "name": "SciCheck", "domain": "factcheck.org/scicheck", "field": "Science" }
+      ]
+    },
+    "4": {
+      "name": "Industry",
+      "description": "Trade publications, industry journals, professional sources",
+      "weight": 0.5,
+      "sources": [
+        { "name": "IEEE Spectrum", "domain": "spectrum.ieee.org", "field": "Technology" },
+        { "name": "TechCrunch", "domain": "techcrunch.com", "field": "Technology" },
+        { "name": "Wired", "domain": "wired.com", "field": "Technology" },
+        { "name": "Ars Technica", "domain": "arstechnica.com", "field": "Technology" },
+        { "name": "The Verge", "domain": "theverge.com", "field": "Technology" },
+        { "name": "MIT Technology Review", "domain": "technologyreview.com", "field": "Technology" },
+        { "name": "Harvard Business Review", "domain": "hbr.org", "field": "Business" },
+        { "name": "Forbes", "domain": "forbes.com", "field": "Business" },
+        { "name": "Bloomberg", "domain": "bloomberg.com", "field": "Business" },
+        { "name": "The Economist", "domain": "economist.com", "field": "Business" }
+      ]
+    },
+    "5": {
+      "name": "Unverified",
+      "description": "Social media, personal blogs, wikis, unknown sources",
+      "weight": 0.2,
+      "sources": [
+        { "name": "Twitter/X", "domain": "twitter.com", "field": "Social Media" },
+        { "name": "Reddit", "domain": "reddit.com", "field": "Social Media" },
+        { "name": "Facebook", "domain": "facebook.com", "field": "Social Media" },
+        { "name": "YouTube", "domain": "youtube.com", "field": "Video" },
+        { "name": "Wikipedia", "domain": "wikipedia.org", "field": "Wiki", "note": "Good starting point, not citable" },
+        { "name": "Medium", "domain": "medium.com", "field": "Blogs" },
+        { "name": "Substack", "domain": "substack.com", "field": "Newsletters" },
+        { "name": "Personal Blogs", "domain": "*", "field": "Various" }
+      ]
+    }
+  },
+  "aliases": {
+    "nytimes": "New York Times",
+    "nyt": "New York Times",
+    "wapo": "Washington Post",
+    "ap": "Associated Press",
+    "nejm": "NEJM",
+    "new england journal of medicine": "NEJM"
+  }
+}

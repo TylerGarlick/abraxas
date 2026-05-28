@@ -1,0 +1,39 @@
+{
+  "id": "lm-1774637148271-0bd828",
+  "timestamp": "2026-03-27T18:45:48.272Z",
+  "type": "verification",
+  "claim": "Solve for x: 3x + 7 = 22",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Identify operands: NaN + 7",
+      "transformation": "Operand extraction from claim",
+      "intermediate_result": "a = NaN, b = 7",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Compute NaN + 7",
+      "transformation": "Addition axiom",
+      "intermediate_result": "NaN + 7 = NaN",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compare computed (NaN) with claimed (22)",
+      "transformation": "Direct comparison",
+      "intermediate_result": "MISMATCH ✗ (difference: NaN)",
+      "result": "UNVERIFIED"
+    }
+  ],
+  "result": "MISMATCH",
+  "confidence": "UNVERIFIED",
+  "computed_value": "NaN",
+  "claimed_value": "22",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [
+    "Computed NaN ≠ claimed 22"
+  ],
+  "notes": "Flags: Computed NaN ≠ claimed 22"
+}

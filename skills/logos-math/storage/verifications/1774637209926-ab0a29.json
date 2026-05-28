@@ -1,0 +1,17 @@
+{
+  "id": "lm-1774637209898-05a5ad",
+  "timestamp": "2026-03-27T18:46:49.899Z",
+  "type": "verification",
+  "claim": "Solve for x: 3x + 7 = 22",
+  "steps": [],
+  "result": "INCONCLUSIVE",
+  "confidence": "UNVERIFIED",
+  "computed_value": null,
+  "claimed_value": null,
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [
+    "Unsupported algebraic form"
+  ],
+  "notes": "Flags: Unsupported algebraic form"
+}

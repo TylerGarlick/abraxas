@@ -1,0 +1,11 @@
+fastapi
+fastmcp
+mcp
+numpy
+pydantic
+python-arango
+pyyaml
+requests
+uvicorn
+psutil
+aiohttp

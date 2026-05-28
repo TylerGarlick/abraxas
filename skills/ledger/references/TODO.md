@@ -1,0 +1,1 @@
+- [ ] Add ledger to `docs/skills.md`

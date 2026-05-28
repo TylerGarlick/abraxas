@@ -1,0 +1,28 @@
+{
+  "name": "logos-math",
+  "version": "1.0.0",
+  "description": "Anti-hallucination mathematical verification skill for Abraxas",
+  "main": "scripts/math-verify.js",
+  "scripts": {
+    "test": "node scripts/test.js",
+    "verify": "node scripts/math-verify.js",
+    "confidence": "node scripts/math-confidence.js",
+    "crosscheck": "node scripts/math-crosscheck.js",
+    "log": "node scripts/math-log.js"
+  },
+  "keywords": [
+    "math",
+    "verification",
+    "anti-hallucination",
+    "abraxas",
+    "logos"
+  ],
+  "author": "Abraxas Project",
+  "license": "MIT",
+  "dependencies": {
+    "mathjs": "^12.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

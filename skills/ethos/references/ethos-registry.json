@@ -1,0 +1,27 @@
+{
+  "T1": {
+    "description": "Sovereign/Gold",
+    "weight": 1.0,
+    "sources": ["nature.com", "science.org", "rfc.org", "iso.org"]
+  },
+  "T2": {
+    "description": "Authoritative",
+    "weight": 0.8,
+    "sources": ["mit.edu", "who.int", "nist.gov"]
+  },
+  "T3": {
+    "description": "Reputable",
+    "weight": 0.6,
+    "sources": ["reuters.com", "apnews.com", "bloomberg.com"]
+  },
+  "T4": {
+    "description": "Speculative",
+    "weight": 0.4,
+    "sources": ["substack.com", "medium.com"]
+  },
+  "T5": {
+    "description": "Unverified",
+    "weight": 0.2,
+    "sources": ["twitter.com", "x.com", "reddit.com"]
+  }
+}

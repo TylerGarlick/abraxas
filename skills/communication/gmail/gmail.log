@@ -1,5 +1,0 @@
-2026-05-07 03:36:32,762 - ERROR - Gmail error: Gmail user not configured. Set GMAIL_USER env var or add 'gmail_user' to config.json
-2026-05-07 03:37:12,914 - ERROR - Gmail error: Failed to retrieve Gmail password from secrets manager: Secret 'gmail:password' not found. Available secrets: []
-Add it with: MJ_MASTER_KEY='...' node /root/.openclaw/workspace/secrets/add-secret.js gmail password 'YOUR_PASSWORD' 'Gmail access'
-2026-05-07 04:26:15,612 - ERROR - Gmail error: Failed to retrieve Gmail password from secrets manager: Secret 'gmail:password' not found. Available secrets: []
-Add it with: MJ_MASTER_KEY='...' node /root/.openclaw/workspace/secrets/add-secret.js gmail password 'YOUR_PASSWORD' 'Gmail access'

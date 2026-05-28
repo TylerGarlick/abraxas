@@ -1,0 +1,37 @@
+{
+  "id": "lm-1774637145549-0cbdb3",
+  "timestamp": "2026-03-27T18:45:45.549Z",
+  "type": "verification",
+  "claim": "137 + 243 = 380",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Identify operands: 137 + 243",
+      "transformation": "Operand extraction from claim",
+      "intermediate_result": "a = 137, b = 243",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Compute 137 + 243",
+      "transformation": "Addition axiom",
+      "intermediate_result": "137 + 243 = 380",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compare computed (380) with claimed (380)",
+      "transformation": "Direct comparison",
+      "intermediate_result": "MATCH ✓",
+      "result": "VERIFIED"
+    }
+  ],
+  "result": "VERIFIED",
+  "confidence": "VERIFIED",
+  "computed_value": "380",
+  "claimed_value": "380",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [],
+  "notes": null
+}

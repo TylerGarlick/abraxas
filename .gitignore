@@ -1,6 +1,20 @@
 arangodb-data
 .env.sovereign
 
+venv/
+.venv/
+tmp_env/
+
+venv/
+.venv/
+tmp_env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.backup
+
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 # Created by https://www.toptal.com/developers/gitignore/api/yarn,webstorm+all,visualstudiocode,node,macos,intellij+all,python,pythonvanilla
 # Edit at https://www.toptal.com/developers/gitignore?templates=yarn,webstorm+all,visualstudiocode,node,macos,intellij+all,python,pythonvanilla
