@@ -5,45 +5,40 @@ from skills.stochasmos.python.risk import StochasmosRiskAssessor
 planner: StochasmosPlanner = None
 risk_assessor: StochasmosRiskAssessor = None
 
-def initialize(mcp):
+def initialize(mcp, context):
     global planner, risk_assessor
-    planner = StochasmosPlanner(mcp.graph_client, mcp.krisis_client)
-    risk_assessor = StochasmosRiskAssessor(mcp.krisis_client)
+    planner = StochasmosPlanner(context.graph_client, context.krisis_client)
+    risk_assessor = StochasmosRiskAssessor(context.krisis_client)
 
-async def stochasmos_pressure_point(mcp, args: Dict[str, Any]):
+def register_tools(mcp: Any, context: Any):
+    """Registers Stochasmos tools to the Abraxas MCP server."""
+    global planner, risk_assessor
+    initialize(mcp, context)
+
+    @mcp.tool()
+    async def stochasmos_pressure_point(args: Dict[str, Any]) -> str:
+        """Identifies strategic pressure points in discourse."""
+        return await stochasmos_pressure_point_impl(mcp, args)
+
+    @mcp.tool()
+    async def stochasmos_seed(args: Dict[str, Any]) -> str:
+        """Generates a strategic disconfirmation seed."""
+        return await stochasmos_seed_impl(mcp, args)
+
+    @mcp.tool()
+    async def stochasmos_assess_risk(args: Dict[str, Any]) -> str:
+        """Assesses seed risk via Krisis frameworks."""
+        return await stochasmos_assess_risk_impl(mcp, args)
+
+async def stochasmos_pressure_point_impl(mcp, args: Dict[str, Any]):
     discourse_id = args.get("discourse_id")
     truths = args.get("truths", [])
     if not discourse_id:
         return "Error: discourse_id required."
 
     if not planner:
-        initialize(mcp)
+        initialize(mcp, context)
 
-    report = planner.identify_pressure_points(discourse_id, truths)
-
-    output = f"[STOCHASMOS PRESSURE POINT: {report.id}]\n"
-    output += f"Discourse: {report.discourse_id}\n"
-    output += f"Selection Rationale: {report.selection_rationale}\n\n"
-
-    output += "Pressure Points (ranked):\n"
-    for pp in report.pressure_points:
-        output += f"{pp['rank']}. Target: {pp['target']}\n"
-        output += f"   Centrality: {pp['centrality']:.2f} | Tension: {pp['tension_index']:.2f}\n"
-        output += f"   Strategy: {pp['strategy']}\n\n"
-
-    output += "Graph Trace:\n"
-    for step in report.graph_trace:
-        output += f"— {step}\n"
-
-    return output
-
-async def stochasmos_seed(mcp, args: Dict[str, Any]):
-    pressure_point_id = args.get("pressure_point_id")
-    if not pressure_point_id:
-        return "Error: pressure_point_id required."
-
-    if not planner:
-        initialize(mcp)
 
     pp_data = {"target": args.get("target", "undisclosed claim"), "tension_index": 0.65}
     seed = planner.generate_seed(pressure_point_id, pp_data)
@@ -57,7 +52,7 @@ async def stochasmos_seed(mcp, args: Dict[str, Any]):
 
     return output
 
-async def stochasmos_assess_risk(mcp, args: Dict[str, Any]):
+async def stochasmos_assess_risk_impl(mcp, args: Dict[str, Any]):
     seed_id = args.get("seed_id")
     if not seed_id:
         return "Error: seed_id required."

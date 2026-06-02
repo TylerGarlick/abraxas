@@ -3,7 +3,24 @@ from skills.synesis.python.logic import SynesisLogic
 # Note: GraphClient import handled by the orchestrator/server usually, 
 # but we define the tools here for the MCP server.
 
-async def synesis_map(mcp, args: Dict[str, Any]):
+def register_tools(mcp: Any, context: Any):
+    """Registers Synesis tools to the Abraxas MCP server."""
+    @mcp.tool()
+    async def synesis_map(args: Dict[str, Any]) -> str:
+        """Analyze specified truth fragments and generate a structural map."""
+        return await synesis_map_impl(mcp, args)
+
+    @mcp.tool()
+    async def synesis_theorize(args: Dict[str, Any]) -> str:
+        """Proposes a new theory based on patterns in the ledger."""
+        return await synesis_theorize_impl(mcp, args)
+
+    @mcp.tool()
+    async def synesis_validate(args: Dict[str, Any]) -> str:
+        """Stress-tests a theory against the existing ledger."""
+        return await synesis_validate_impl(mcp, args)
+
+async def synesis_map_impl(mcp, args: Dict[str, Any]):
     """
     Analyze specified truth fragments and generate a structural map of their relationships.
     """
@@ -22,7 +39,7 @@ async def synesis_map(mcp, args: Dict[str, Any]):
     output += "\nTopological Insight: Pattern identified as highly convergent."
     return output
 
-async def synesis_theorize(mcp, args: Dict[str, Any]):
+async def synesis_theorize_impl(mcp, args: Dict[str, Any]):
     """
     Scans the ledger for patterns in the specified domain and proposes a new théorie.
     """
@@ -43,7 +60,7 @@ async def synesis_theorize(mcp, args: Dict[str, Any]):
     output += f"\nFalsifiability Anchor: {theory.disconfirmation_criteria}"
     return output
 
-async def synesis_validate(mcp, args: Dict[str, Any]):
+async def synesis_validate_impl(mcp, args: Dict[str, Any]):
     """
     Stress-tests a theory against the existing ledger to find contradictions.
     """

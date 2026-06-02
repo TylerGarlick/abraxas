@@ -6,40 +6,39 @@ from skills.prognosis.python.tracker import PrognosisTracker
 forecaster: PrognosisForecaster = None
 tracker: PrognosisTracker = None
 
-def initialize(mcp):
+def initialize(mcp, context):
     global forecaster, tracker
-    forecaster = PrognosisForecaster(mcp.graph_client, mcp.alethia_client)
-    tracker = PrognosisTracker(mcp.alethia_client)
+    forecaster = PrognosisForecaster(context.graph_client, context.alethia_client)
+    tracker = PrognosisTracker(context.alethia_client)
 
-async def prognosis_forecast(mcp, args: Dict[str, Any]):
+def register_tools(mcp: Any, context: Any):
+    """Registers Prognosis tools to the Abraxas MCP server."""
+    global forecaster, tracker
+    initialize(mcp, context)
+
+    @mcp.tool()
+    async def prognosis_forecast(args: Dict[str, Any]) -> str:
+        """Produces a rupture forecast grounded in Hardened Truths."""
+        return await prognosis_forecast_impl(mcp, args)
+
+    @mcp.tool()
+    async def prognosis_signal_anticipate(args: Dict[str, Any]) -> str:
+        """Returns ranked predictions of where high-valence signals will appear."""
+        return await prognosis_signal_anticipate_impl(mcp, args)
+
+    @mcp.tool()
+    async def prognosis_calibrate(args: Dict[str, Any]) -> str:
+        """Compares forecast against actual outcome and feeds into Aletheia."""
+        return await prognosis_calibrate_impl(mcp, args)
+
+async def prognosis_forecast_impl(mcp, args: Dict[str, Any]):
     """
     Produces a rupture forecast grounded in Hardened Truths.
     """
     domain = args.get("domain", "general")
     if not forecaster:
-        initialize(mcp)
+        initialize(mcp, context)
 
-    forecast = forecaster.forecast_rupture(domain, args.get("truths", []))
-    tracker.log_forecast(forecast.id, domain, forecast.predicted_rupture)
-
-    output = f"[PROGNOSIS FORECAST: {forecast.id}]\n"
-    output += f"Domain: {forecast.domain}\n"
-    output += f"Predicted Rupture: {forecast.predicted_rupture}\n"
-    output += f"Grounded in Truths: {', '.join(forecast.grounded_in_truths)}\n"
-    output += f"Probability: {forecast.probability_interval}\n\n"
-    output += "Reasoning Trace:\n"
-    for i, step in enumerate(forecast.reasoning_trace, 1):
-        output += f"{i}. {step}\n"
-
-    return output
-
-async def prognosis_signal_anticipate(mcp, args: Dict[str, Any]):
-    """
-    Returns ranked predictions of where high-valence signals will appear.
-    """
-    domain = args.get("domain", "general")
-    if not forecaster:
-        initialize(mcp)
 
     predictions = forecaster.signal_anticipate(domain)
     output = f"[PROGNOSIS SIGNAL ANTICIPATION: {domain}]\n\n"
@@ -51,7 +50,7 @@ async def prognosis_signal_anticipate(mcp, args: Dict[str, Any]):
 
     return output
 
-async def prognosis_calibrate(mcp, args: Dict[str, Any]):
+async def prognosis_calibrate_impl(mcp, args: Dict[str, Any]):
     """
     Compares forecast against actual outcome and feeds into Aletheia.
     """
