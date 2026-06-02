@@ -4,7 +4,6 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 
 | Skill Name | Description | Related MCP Servers | Link |
 | :--- | :--- | :--- | :--- |
-| **Sovereign Boot** | Power Button for the Sovereign Brain; automates initialization. | `soter-verifier`, `mnemosyne-memory`, `janus-orchestrator`, `dream-reservoir` | [SKILL.md](./sovereign-boot/SKILL.md) |
 | **Soter** | Safety & Risk Evaluation System for goal-directed deceptive behaviors. | `soter-verifier` | [SKILL.md](./soter/SKILL.md) |
 | **Provenance Audit** | Deterministic verification of an idea's genealogy. | `dream-reservoir` | [SKILL.md](./provenance-audit/SKILL.md) |
 | **Plan** | Epistemic Clarity Engine; converts vague requests into specs. | - | [SKILL.md](./plan/SKILL.md) |
@@ -32,13 +31,11 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Ergon** | Tool-Use Verification layer for tool invocations. | - | [SKILL.md](./reasoning/ergon/SKILL.md) |
 | **Dianoia** | Formal Uncertainty Quantification. | - | [SKILL.md](./reasoning/dianoia/SKILL.md) |
 | **Krisis** | Multi-framework ethical deliberation. | - | [SKILL.md](./reasoning/krisis/SKILL.md) |
-| **Mnemon** | Belief-change tracking and anti-sycophancy auditing. | - | [SKILL.md](./memory/mnemon/SKILL.md) |
 | **Secrets Manager** | Encrypted secrets and API key management. | - | [SKILL.md](./infrastructure/secrets-manager/SKILL.md) |
 | **Pipeline Dispatcher** | Automates task discovery to execution transition. | - | [SKILL.md](./infrastructure/pipeline-dispatcher/SKILL.md) |
 | **Research Assistant** | Citation tracking and research session management. | - | [SKILL.md](./utility/research-assistant/SKILL.md) |
 | **Citation Checker** | Bibliography verification and claim-source pairing. | - | [SKILL.md](./utility/citation-checker/SKILL.md) |
 | **Retrieval Grounding** | Live external lookup and factual grounding. | - | [SKILL.md](./utility/retrieval-grounding/SKILL.md) |
-| **Scribe (Utility)** | Source-grounded citation management. | `sovereign-scribe` | [SKILL.md](./utility/scribe/SKILL.md) |
 | **Journal Scribe** | Saves journal entries to the-red-book repository. | - | [SKILL.md](./documentation/journal-scribe/SKILL.md) |
 | **Encounter Scribe** | Saves convene/dialogue outputs to the-red-book. | - | [SKILL.md](./documentation/encounter-scribe/SKILL.md) |
 | **Civitai Gen** | Image generation via Civitai Generator API. | - | [SKILL.md](./creative/civitai-image-gen/SKILL.md) |
@@ -50,7 +47,6 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Sovereign Engine** | Execution engine for sovereign agents. | - | [SKILL.md](./sovereign_engine/SKILL.md) |
 | **Sovereign Scribe** | Specialized scribe for sovereign output. | `sovereign-scribe` | [SKILL.md](./sovereign_scribe/SKILL.md) |
 | **Sovereign Calibration** | System for tuning agent behavioral parameters. | - | [SKILL.md](./sovereign-calibration/SKILL.md) |
-| **Aletheia Truth** | Ground-truth verification logic. | - | [SKILL.md](./aletheia_truth/SKILL.md) |
 | **Config Registry** | Centralized configuration and state management. | `config-registry` | [SKILL.md](./config_registry/SKILL.md) |
 | **Guardrail Monitor** | Real-time monitoring of agent guardrails. | `guardrail-monitor` | [SKILL.md](./guardrail_monitor/SKILL.md) |
 | **Guardrail** | Definition and enforcement of behavioral guardrails. | - | [SKILL.md](./guardrail/SKILL.md) |
@@ -58,5 +54,13 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Research Engine** | Core engine for autonomous information gathering. | `research-engine` | [SKILL.md](./research_engine/SKILL.md) |
 | **Retrospectives** | Framework for agent self-reflection and learning. | `retrospectives` | [SKILL.md](./retrospectives/SKILL.md) |
 | **CVP** | Consensus Verification Protocol. | - | [SKILL.md](./cvp/SKILL.md) |
-| **Aitia System** | Causal reasoning and attribution system. | - | [SKILL.md](./aitia_system/SKILL.md) |
-| **Sovereign-Boot** | initialization of Sovereign brain. | `soter-verifier`, `mnemosyne-memory`, `janus-orchestrator`, `dream-reservoir` | [SKILL.md](./sovereign-boot/SKILL.md) |
+| **Boot Protocol** | Structured session-startup protocol for Abraxas-capable sessions. | - | [SKILL.md](./boot-protocol/SKILL.md) |
+| **Aporia** | The Void Mapper for identifying and resolving epistemic gaps. | - | [SKILL.md](./aporia/SKILL.md) |
+| **Epistemic Atlas** | A unified knowledge graph and query layer that connects beliefs, evidence, and verification. | - | [SKILL.md](./epistemic_atlas_pkg/SKILL.md) |
+| **Omniscient Auditor** | High-throughput epistemic review engine for documents. | - | [SKILL.md](./omniscient-auditor/SKILL.md) |
+| **Prognosis** | Predictive intelligence grounded in hardened truths and the conceptual graph. | - | [SKILL.md](./prognosis/SKILL.md) |
+| **Quest-Trigger** | Recursive Discovery loop converting [UNKNOWN] marks into verified knowledge. | - | [SKILL.md](./quest-trigger/SKILL.md) |
+| **Sovereign-Flow** | Meta-orchestration circuit automating the transition from risk detection to resolution. | - | [SKILL.md](./sovereign-flow/SKILL.md) |
+| **Stochasmos** | Strategic intervention identifying pressure points in discourse graphs. | - | [SKILL.md](./stochasmos/SKILL.md) |
+| **Synesis** | Higher-order synthesis of hardened truths into multidimensional conceptual graphs. | - | [SKILL.md](./synesis/SKILL.md) |
+| **Sovereign-Boot** | Power Button for the Sovereign Brain; automates initialization. | `soter-verifier`, `mnemosyne-memory`, `janus-orchestrator`, `dream-reservoir` | [SKILL.md](./sovereign-boot/SKILL.md) |
