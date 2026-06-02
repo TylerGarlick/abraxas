@@ -9,8 +9,9 @@ class AbraxasContext:
     Handles database connections and absolute path resolutions.
     """
     root_dir: str
-    # Add connection pools here as they are implemented
-    # arango_client: Any = None 
+    graph_client: Any = None
+    alethia_client: Any = None
+    krisis_client: Any = None
 
     def get_path(self, relative_path: str) -> str:
         """Resolves a path relative to the project root."""

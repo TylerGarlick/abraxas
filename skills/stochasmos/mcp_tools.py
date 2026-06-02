@@ -18,7 +18,7 @@ def register_tools(mcp: Any, context: Any):
     @mcp.tool()
     async def stochasmos_pressure_point(args: Dict[str, Any]) -> str:
         """Identifies strategic pressure points in discourse."""
-        return await stochasmos_pressure_point_impl(mcp, args)
+        return await stochasmos_pressure_point_impl(mcp, args, context)
 
     @mcp.tool()
     async def stochasmos_seed(args: Dict[str, Any]) -> str:
@@ -28,9 +28,9 @@ def register_tools(mcp: Any, context: Any):
     @mcp.tool()
     async def stochasmos_assess_risk(args: Dict[str, Any]) -> str:
         """Assesses seed risk via Krisis frameworks."""
-        return await stochasmos_assess_risk_impl(mcp, args)
+        return await stochasmos_assess_risk_impl(mcp, args, context)
 
-async def stochasmos_pressure_point_impl(mcp, args: Dict[str, Any]):
+async def stochasmos_pressure_point_impl(mcp, args: Dict[str, Any], context: Any):
     discourse_id = args.get("discourse_id")
     truths = args.get("truths", [])
     if not discourse_id:
@@ -38,7 +38,6 @@ async def stochasmos_pressure_point_impl(mcp, args: Dict[str, Any]):
 
     if not planner:
         initialize(mcp, context)
-
 
     pp_data = {"target": args.get("target", "undisclosed claim"), "tension_index": 0.65}
     seed = planner.generate_seed(pressure_point_id, pp_data)
@@ -52,13 +51,13 @@ async def stochasmos_pressure_point_impl(mcp, args: Dict[str, Any]):
 
     return output
 
-async def stochasmos_assess_risk_impl(mcp, args: Dict[str, Any]):
+async def stochasmos_assess_risk_impl(mcp, args: Dict[str, Any], context: Any):
     seed_id = args.get("seed_id")
     if not seed_id:
         return "Error: seed_id required."
 
     if not risk_assessor:
-        initialize(mcp)
+        initialize(mcp, context)
 
     class MockSeed:
         def __init__(self, sid, content):

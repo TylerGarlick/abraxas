@@ -1,7 +1,8 @@
 import os
 import logging
 from typing import Any, Dict, List, Optional
-from python_arango import ArangoClient
+from arango import ArangoClient
+
 
 
 logger = logging.getLogger(__name__)
@@ -22,7 +23,15 @@ class AbraxasDB:
             self.sys_db = self.client.db("_system", password=self.password)
             
             # Ensure the product DB exists
-            if not self.sys_db.databases().get(self.db_name):
+            databases = self.sys_db.databases()
+            if isinstance(databases, list):
+                db_exists = self.db_name in databases
+            elif isinstance(databases, dict):
+                db_exists = databases.get(self.db_name)
+            else:
+                db_exists = False
+                
+            if not db_exists:
                 self.sys_db.create_database(self.db_name)
             
             self.db = self.client.db(self.db_name, password=self.password)
@@ -35,10 +44,22 @@ class AbraxasDB:
         """Ensures a collection exists."""
         if not self.db: return
         try:
-            if self.db.collections().get(name):
-                return
-            self.db.create_collection(name, edge=edge)
-            logger.info(f"Created collection: {name}")
+            collections = self.db.collections()
+            if isinstance(collections, list):
+                if name in collections:
+                    return
+            elif isinstance(collections, dict):
+                if collections.get(name):
+                    return
+            
+            try:
+                self.db.create_collection(name, edge=edge)
+                logger.info(f"Created collection: {name}")
+            except Exception as e:
+                if "duplicate name" in str(e).lower() or "1207" in str(e):
+                    logger.info(f"Collection {name} already exists, skipping creation.")
+                else:
+                    raise e
         except Exception as e:
             logger.error(f"Error ensuring collection {name}: {e}")
 

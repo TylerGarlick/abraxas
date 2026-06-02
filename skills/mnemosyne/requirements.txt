@@ -2,3 +2,4 @@ mcp
 fastapi
 uvicorn
 pydantic
+python-arango

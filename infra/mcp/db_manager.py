@@ -72,10 +72,11 @@ class DBManager:
                 {"name": "task_edges", "edge": True},
                 {"name": "provenance_chain", "edge": True},
                 {"name": "knowledge_fragments", "edge": False},
-                {"name": "epistemic_ledger", "edge": False}, # Added Ledger
+                {"name": "epistemic_ledger", "edge": False},
                 {"name": "fragments", "edge": False},
                 {"name": "claims", "edge": False},
                 {"name": "events", "edge": False},
+                {"name": "SVR_Evidence", "edge": False},
             ]
             
             # Sovereign Edges
@@ -131,22 +132,42 @@ class DBManager:
             col = self.db.collection("knowledge_fragments")
             # Base Sovereign Standard entries
             guardrails = [
-                {"key": "Sovereign_AntiSycophancy", "value": "Truth over comfort. Accuracy > Agreement.", "type": "constraint"},
-                {"key": "Sovereign_NoConfabulation", "value": "[UNKNOWN] is a complete valid response. Fabrication is forbidden.", "type": "constraint"},
-                {"key": "Sovereign_EpistemicLabeling", "value": "All Sol claims must be labeled [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN].", "type": "constraint"},
+                {"_key": "Sovereign_AntiSycophancy", "value": "Truth over comfort. Accuracy > Agreement.", "type": "constraint"},
+                {"_key": "Sovereign_NoConfabulation", "value": "[UNKNOWN] is a complete valid response. Fabrication is forbidden.", "type": "constraint"},
+                {"_key": "Sovereign_EpistemicLabeling", "value": "All Sol claims must be labeled [KNOWN], [INFERRED], [UNCERTAIN], or [UNKNOWN].", "type": "constraint"},
             ]
             for item in guardrails:
-                # Simple upsert by key
-                existing = col.get({"key": item["key"]})
-                if existing:
-                    col.update(existing['_key'], item)
-                else:
-                    col.insert(item)
+                # Standard ArangoDB upsert by _key
+                col.insert(item, overwrite=True)
             logger.info("Seeded Sovereign Standard guardrails.")
             return True
         except Exception as e:
             logger.error(f"Guardrail seeding failed: {str(e)}")
             return False
+
+    def seed_genesis_blocks(self):
+        """
+        Seeds the Codex core claims as Genesis Blocks into the fragments collection.
+        Mandated by v4.5 Phase 2.
+        """
+        if not self.db: return False
+        try:
+            col = self.db.collection("fragments")
+            genesis_blocks = [
+                {"_key": "GENESIS_001", "content": "Sovereign Brain: Truth Verification Pipeline", "type": "GENESIS_BLOCK", "immutable": True},
+                {"_key": "GENESIS_002", "content": "Tau Tripwire: Attention-weight threshold at 0.15", "type": "GENESIS_BLOCK", "immutable": True},
+                {"_key": "GENESIS_003", "content": "Janus Consensus: N-of-M agreement for SOL mode", "type": "GENESIS_BLOCK", "immutable": True},
+                {"_key": "GENESIS_004", "content": "Soter Veto: Risk score R[0-5] override", "type": "GENESIS_BLOCK", "immutable": True},
+                {"_key": "GENESIS_005", "content": "Divine Priority: Constitutional mandates override probabilistic logic", "type": "GENESIS_BLOCK", "immutable": True},
+            ]
+            for block in genesis_blocks:
+                col.insert(block, overwrite=True)
+            logger.info(f"Seeded {len(genesis_blocks)} Genesis Blocks.")
+            return True
+        except Exception as e:
+            logger.error(f"Genesis block seeding failed: {str(e)}")
+            return False
+
 
     def seed_ledger_baseline(self):
         """Seeds the Epistemic Ledger with initial structural templates."""
@@ -171,6 +192,7 @@ class DBManager:
             # Built-in seeds
             self.seed_standard_guardrails()
             self.seed_ledger_baseline()
+            self.seed_genesis_blocks()
             
             if seed_functions:
                 for seed_func in seed_functions:

@@ -1,10 +1,12 @@
 from mcp.server.fastmcp import FastMCP
 from infra.mcp.context import AbraxasContext
-from skills.ledger.python.logic import TasksLogic
+from skills.ledger.python.logic import LedgerLogic
+
 
 def register_tools(mcp: FastMCP, context: AbraxasContext):
     """Registers Tasks tools to the Abraxas MCP server."""
-    logic = TasksLogic()
+    logic = LedgerLogic()
+
 
     @mcp.tool()
     def create_task(title: str, project: str = None, scope: str = None, priority: str = None) -> str:
