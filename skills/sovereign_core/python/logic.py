@@ -4,6 +4,7 @@ import time
 import psutil
 import platform
 from typing import List, Dict, Any, Optional
+from skills.common.graphql_client import gql_client
 
 class SovereignCoreLogic:
     _instance = None
@@ -155,12 +156,33 @@ class SovereignCoreLogic:
             raise ValueError(f"Unknown action: {action}")
 
     def system_state_audit(self, check_type: str = "full", verbose: bool = False) -> Dict[str, Any]:
-        """Audit and verify the current system state."""
+        """Audit and verify the current system state via GraphQL and internal checks."""
         now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        
+        # Fetch high-level system uncertainty and ready tasks via GraphQL
+        try:
+            state_data = gql_client.execute(
+                """
+                query {
+                    projectUncertainty {
+                        totalSamples
+                        sovereignGapIndex
+                    }
+                    tasks(status: ready) {
+                        id
+                        title
+                    }
+                }
+                """
+            )
+        except Exception as e:
+            state_data = {"error": f"GraphQL state fetch failed: {e}"}
+
         audit_results = {
             "timestamp": now,
             "checkType": check_type,
             "verbose": verbose,
+            "graphql_state": state_data,
             "checks": {}
         }
 

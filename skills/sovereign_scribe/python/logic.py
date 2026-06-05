@@ -1,6 +1,7 @@
 import datetime
 import random
 from typing import Dict, Any, Optional
+from skills.common.graphql_client import gql_client
 from skills.common.mcp_client import MCPClient
 
 class SovereignScribeLogic:
@@ -25,6 +26,23 @@ class SovereignScribeLogic:
             )
             # Expecting a numeric risk score or a result object with a 'score' key
             score = risk_score["score"] if isinstance(risk_score, dict) else risk_score
+            
+            # Log the incident via GraphQL
+            gql_client.execute(
+                """
+                mutation($input: SoterIncidentInput!) {
+                    createIncident(input: $input) {
+                        id
+                    }
+                }
+                """,
+                {"input": {
+                    "request": fragment,
+                    "score": score,
+                    "resolved": False,
+                    "patterns": []
+                }}
+            )
         except Exception as e:
             raise RuntimeError(f"Sovereign Gauntlet failed at Soter stage: {str(e)}")
 
@@ -63,11 +81,26 @@ class SovereignScribeLogic:
         
         # 4. Mnemosyne Commitment
         try:
-            commitment = MCPClient.call_tool(
-                "mnemosyne-memory", 
-                "commit_fragment", 
-                {"text": fragment, "provenance": provenance, "weight": weight}
+            # Transition from MCP call to GraphQL Mutation
+            commitment_data = {
+                "label": "KNOWN" if weight > 0.8 else "INFERRED",
+                "topic": fragment[:100],
+                "reasoningChain": f"Sovereign Scribe Gauntlet: Weight {weight}, Provenance {provenance}",
+                "sessionId": "sovereign-scribe-session"
+            }
+            
+            mutation_result = gql_client.execute(
+                """
+                mutation($input: EpistemicMarkInput!) {
+                    createEpistemicMark(input: $input) {
+                        id
+                        timestamp
+                    }
+                }
+                """,
+                {"input": commitment_data}
             )
+            commitment = mutation_result.get("createEpistemicMark", "COMMITTED")
         except Exception as e:
             raise RuntimeError(f"Sovereign Gauntlet failed at Mnemosyne stage: {str(e)}")
         
