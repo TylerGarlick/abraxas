@@ -40,6 +40,12 @@ def register_tools(mcp: FastMCP, context: AbraxasContext):
         return str(result)
 
     @mcp.tool()
+    def get_all_tasks() -> str:
+        """Get all tasks in the system."""
+        result = logic.get_all_tasks()
+        return str(result)
+
+    @mcp.tool()
     def delete_task(id: str) -> str:
         """Delete a task from the tasks system."""
         result = logic.delete_task(id)

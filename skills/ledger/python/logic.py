@@ -51,7 +51,7 @@ class LedgerLogic:
             result = gql_client.execute(
                 """
                 query {
-                    tasks(status: ready) {
+                    getTasks(status: READY) {
                         id
                         title
                         status
@@ -60,7 +60,7 @@ class LedgerLogic:
                 """,
                 {}
             )
-            return result.get("tasks", [])
+            return result.get("getTasks", [])
         except Exception as e:
             logger.error(f"Failed to fetch ready tasks: {e}")
             return []
@@ -131,10 +131,24 @@ class LedgerLogic:
         except Exception as e:
             return None
 
-    def delete_task(self, id: str) -> bool:
-        # Deletion is not currently implemented in the GraphQL schema mutations.
-        # For now, we return a mock success or a 'not implemented' error.
-        return False
+    def get_all_tasks(self) -> List[Dict[str, Any]]:
+        """Get all tasks via GraphQL query."""
+        try:
+            result = gql_client.execute(
+                """
+                query {
+                    getTasks {
+                        id
+                        status
+                    }
+                }
+                """,
+                {}
+            )
+            return result.get("getTasks", [])
+        except Exception as e:
+            logger.error(f"Failed to fetch all tasks: {e}")
+            return []
 
     def get_tasks_by_project(self, project: str) -> List[Dict[str, Any]]:
         """Get all tasks for a specific project via GraphQL query."""
@@ -142,7 +156,7 @@ class LedgerLogic:
             result = gql_client.execute(
                 """
                 query($project: String) {
-                    tasks(project: $project) {
+                    getTasks(project: $project) {
                         id
                         title
                         status
@@ -151,7 +165,7 @@ class LedgerLogic:
                 """,
                 {"project": project}
             )
-            return result.get("tasks", [])
+            return result.get("getTasks", [])
         except Exception as e:
             return []
 
