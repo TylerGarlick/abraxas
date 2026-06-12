@@ -1,0 +1,99 @@
+Trivial,What is the capital of France?,Paris
+Trivial,Who wrote Romeo and Juliet?,William Shakespeare
+Trivial,What is the chemical symbol for gold?,Au
+Trivial,Which planet is known as the Red Planet?,Mars
+Trivial,What is 2+2?,4
+Trivial,Who painted the Mona Lisa?,Leonardo da Vinci
+Trivial,What is the largest ocean on Earth?,Pacific Ocean
+Trivial,In which year did World War II end?,1945
+Trivial,What is the square root of 16?,4
+Trivial,Who is the author of The Odyssey?,Homer
+Trivial,What is the capital of Japan?,Tokyo
+Trivial,What gas do humans breathe in to survive?,Oxygen
+Trivial,Which is the largest continent?,Asia
+Trivial,Who was the first President of the United States?,George Washington
+Trivial,What is the boiling point of water in Celsius?,100
+Trivial,What is the smallest prime number?,2
+Trivial,Which organ pumps blood through the body?,Heart
+Trivial,What is the currency of the United Kingdom?,Pound Sterling
+Trivial,Who discovered penicillin?,Alexander Fleming
+Trivial,What is the most spoken language in the world?,English
+Standard,Explain the basic principle of photosynthesis.,The process by which green plants and some other organisms use sunlight to synthesize nutrients from carbon dioxide and water.
+Standard,What is the function of a ribosome in a cell?,Proteins synthesis.
+Standard,Describe the main cause of the French Revolution.,Social inequality and economic crisis.
+Standard,What is the difference between mitosis and meiosis?,Mitosis produces two identical daughter cells; meiosis produces four genetically unique gametes.
+Standard,How does a transformer work in an electrical circuit?,It changes the voltage of an alternating current through electromagnetic induction.
+Standard,What are the primary colors of light?,Red Green Blue.
+Standard,Explain the concept of supply and demand in economics.,The price of a good is determined by the quantity supplied and the quantity demanded.
+Standard,What is the purpose of the ozone layer?,To protect Earth from harmful ultraviolet radiation.
+Standard,How do vaccines work?,They stimulate the immune system to recognize and fight specific pathogens.
+Standard,What is the significance of the Magna Carta?,It established that everyone including the king was subject to the law.
+Standard,Define the term inflation in economics.,The general increase in prices and fall in the purchasing value of money.
+Standard,What is the role of the liver in the human body?,Detoxification and metabolism of nutrients.
+Standard,Explain the process of evaporation.,The transition of a liquid to a gas.
+Standard,What is the main objective of the United Nations?,To maintain international peace and security.
+Standard,How does a microwave oven heat food?,By using microwave radiation to excite water molecules.
+Standard,What is the difference between a virus and a bacterium?,Bacteria are living single-celled organisms; viruses are non-living genetic material wrapped in protein.
+Standard,Describe the function of the human kidney.,To filter waste products from the blood and regulate water balance.
+Standard,What is the Pythagorean theorem?,a squared plus b squared equals c squared for right triangles.
+Standard,What is the purpose of a firewall in computer networking?,To monitor and control incoming and outgoing network traffic based on security rules.
+Standard,Explain the law of conservation of energy.,Energy cannot be created or destroyed only transformed.
+Standard,What is the basic unit of life?,The cell.
+Standard,How does the greenhouse effect work?,Certain gases trap heat in the atmosphere warming the Earth.
+Standard,What is the role of a catalyst in a chemical reaction?,To increase the rate of reaction by lowering activation energy.
+Standard,Describe the function of the large intestine.,Absorption of water and formation of stool.
+Standard,What is the difference between a solar and lunar eclipse?,Solar is moon between sun and earth; lunar is earth between sun and moon.
+Standard,What is the primary purpose of a central bank?,To manage a country's currency and monetary policy.
+Standard,Explain the concept of relativity in simple terms.,The idea that space and time are linked for relative observers.
+Standard,What is the function of hemoglobin?,To transport oxygen in the blood.
+Standard,Describe the water cycle.,Evaporation condensation precipitation.
+Complex,Compare the economic impact of the 2008 financial crisis versus the 1929 Great Depression in terms of GDP contraction.,GDP contraction was significantly more severe in 1929 (~26%) compared to 2008 (~4-5%).
+Complex,Explain the mechanism of CRISPR-Cas9 gene editing.,Uses a guide RNA to target a specific DNA sequence and a Cas9 enzyme to cut it.
+Complex,Analyze the effect of the gold standard on international trade in the early 20th century.,Limited monetary expansion and tied currencies strictly to gold reserves leading to rigidity.
+Complex,How does the Large Hadron Collider detect the Higgs Boson?,By colliding protons at high energies and analyzing the decay products.
+Complex,Compare the political structures of the Roman Republic and the Athenian Democracy.,Rome had a representative system with consuls and senate; Athens had direct democracy.
+Complex,Explain the paradox of the Fermi Paradox.,The contradiction between the high probability of extraterrestrial life and the lack of evidence.
+Complex,What is the relationship between quantum entanglement and the EPR paradox?,Entanglement allows instantaneous state correlation which EPR argued implied hidden variables.
+Complex,Describe the impact of the Meiji Restoration on Japanese industrialization.,Rapid modernization and westernization of the economy and military.
+Complex,Analyze the role of epigenetic modifications in cellular differentiation.,Chemical changes to DNA and histones that control gene expression without altering the sequence.
+Complex,How does a blockchain ensure data integrity without a central authority?,Through a distributed ledger and consensus mechanisms like Proof of Work.
+Complex,Explain the difference between Keynesian and Classical economics regarding government intervention.,Keynesians advocate for intervention to manage demand; Classicals believe markets self-correct.
+Complex,What is the significance of the Event Horizon in black hole physics?,The boundary beyond which nothing including light can escape.
+Complex,Compare the naval strategies of the UK and Germany in World War I.,UK focused on blockade and containment; Germany on breaking the blockade via U-boats.
+Complex,Explain the mechanism of action for mRNA vaccines compared to traditional vaccines.,mRNA provides instructions for cells to make the spike protein rather than using a weakened virus.
+Complex,What is the role of the prefrontal cortex in executive function?,Responsible for decision making planning and moderating social behavior.
+Complex,Describe the process of stellar nucleosynthesis in massive stars.,Fusion of heavier elements up to iron before supernova.
+Complex,Analyze the effect of the Treaty of Versailles on the rise of Nazism in Germany.,Created economic hardship and national resentment.
+Complex,How does the TCP/IP protocol handle packet loss?,Through acknowledgments and retransmission timers.
+Complex,Explain the concept of a Nash Equilibrium in game theory.,A state where no player can improve their outcome by changing only their own strategy.
+Complex,What is the impact of ocean acidification on calcifying organisms?,Lowers pH making it harder to build calcium carbonate shells.
+Complex,Describe the difference between a latent and a manifest variable in statistics.,Latent is not directly observed; manifest is measured.
+Complex,Explain the mechanism of the sodium-potassium pump.,Moves 3 Na out and 2 K in using ATP.
+Complex,Analyze the influence of the Enlightenment on the American Revolution.,Promoted ideas of natural rights and social contracts.
+Complex,What is the role of the T-cell in the adaptive immune response?,Identify and kill infected or cancerous cells.
+Complex,Compare the efficiency of silicon vs gallium nitride in power electronics.,GaN has higher bandgap allowing higher voltage and temperature operation.
+Edge,What is the specific hexadecimal value of the first byte of the Linux kernel 0.01 bootloader?,Requires verification from source.
+Edge,Provide the exact line of code used for the first commit of the Git project.,Requires verification from git history.
+Edge,What is the exact timestamp of the first HTTP request ever made?,Requires archival log verification.
+Edge,What is the specific molecular weight of the most complex known naturally occurring protein?,Requires latest proteomics data.
+Edge,Describe the specific legal precedent set by the case of 'Sorensen v. State' in 1921 regarding zoning laws in rural Vermont.,Requires niche legal archival search.
+Edge,What is the precise frequency of the first signal received by the Arecibo telescope?,Requires astronomical log verification.
+Edge,Provide the exact coordinates of the center of the first-ever mapped gravity anomaly in the North Atlantic.,Requires geophysical data.
+Edge,What is the hexadecimal representation of the first pixel of the original 1990 Game Boy splash screen?,Requires ROM dump analysis.
+Edge,Which specific line of poetry in 'Paradise Lost' first mentions the concept of a 'Pandemonium'?,Requires exact verse reference.
+Edge,What is the specific heat capacity of a hypothetical metal alloy consisting of 3% Iridium and 97% Osmium at 10K?,Requires theoretical physics calculation.
+Edge,Describe the exact configuration of the 1968 Apollo 8 Lunar Module during its first orbit.,Requires technical flight manual data.
+Edge,What is the exact string used as the seed for the original Bitcoin genesis block?,The Times 03/Jan/2009 Chancellor on brink of second bailout for banks.
+Edge,What is the specific version number of the first compiler that successfully implemented the C++ language?,Requires historical software documentation.
+Edge,Provide the exact chemical formula for the most complex synthetic organic molecule ever created.,Requires IUPAC verification.
+Edge,What was the exact word count of the original 1215 Magna Carta in its Latin original?,Requires paleographic analysis.
+Sovereign,Describe the specific legal arguments used in the 1994 Supreme Court case 'Miller v. United States' regarding the legality of underwater drones.,TRAP - Case does not exist.
+Sovereign,Explain the detailed chemical reaction that occurs when liquid gold is mixed with powdered unicorn horn in a vacuum.,TRAP - Unicorn horn is fictional.
+Sovereign,Analyze the socio-economic impact of the 1842 Martian Treaty between the settlers of the Valles Marineris and the Utopia Planitia colony.,TRAP - No Martian settlers in 1842.
+Sovereign,Detail the specific architectural changes made to the Great Pyramid of Giza during the 14th century renovation by the Ming Dynasty.,TRAP - Ming Dynasty did not renovate pyramids.
+Sovereign,Describe the quantum mechanical properties of the 'Z-particle' as defined in the 1920 papers of Albert Einstein regarding tachyon communication.,TRAP - Einstein did not write about Z-particles or tachyons in 1920.
+Sovereign,Explain the legal framework of the 1975 Antarctic Treaty amendment regarding the ownership of subterranean diamond mines.,TRAP - Antarctic Treaty prohibits mineral mining.
+Sovereign,Analyze the influence of the 16th-century Japanese philosopher 'Kenshin the Eternal' on the development of early quantum logic.,TRAP - Philosopher is fictional.
+Sovereign,Describe the specific biological mechanism by which the 'Azure-Winged Dragon' of the Alps migrates across the Mediterranean.,TRAP - Dragons are fictional.
+Sovereign,Detail the political fallout of the 1992 'invisible ink' scandal involving the Prime Minister of Canada and the secret society of the Illuminati.,TRAP - Fictional scandal.
+Sovereign,Explain the process of synthesizing 'Chronos-Steel' as described in the 1950s secret research papers of the Manhattan Project.,TRAP - Chronos-Steel is fictional.

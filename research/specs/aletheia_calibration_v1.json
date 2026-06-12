@@ -1,0 +1,78 @@
+{
+  "specification": {
+    "name": "Aletheia Calibration Dataset v1",
+    "version": "1.0.0",
+    "purpose": "To prove the system can detect its own accuracy degradation by mapping performance across a known difficulty gradient.",
+    "dataset_structure": {
+      "total_prompts": 100,
+      "tiers": [
+        {
+          "level": "Trivial",
+          "count": 20,
+          "description": "Fact-based queries with singular, unambiguous answers. High stability, zero hallucination expected.",
+          "examples": [
+            {
+              "prompt": "What is the capital of France?",
+              "ground_truth": "Paris"
+            },
+            {
+              "prompt": "Who wrote 'Romeo and Juliet'?",
+              "ground_truth": "William Shakespeare"
+            }
+          ]
+        },
+        {
+          "level": "Standard",
+          "count": 30,
+          "description": "Common knowledge requiring basic synthesis or retrieval of well-documented facts.",
+          "examples": [
+            {
+              "prompt": "Explain the basic principle of photosynthesis.",
+              "ground_truth": "The process by which green plants and some other organisms use sunlight to synthesize nutrients from carbon dioxide and water."
+            }
+          ]
+        },
+        {
+          "level": "Complex",
+          "count": 25,
+          "description": "Multistep reasoning, technical synthesis, or niche factual retrieval where common misconceptions exist.",
+          "examples": [
+            {
+              "prompt": "Compare the economic impact of the 2008 financial crisis versus the 1929 Great Depression in terms of GDP contraction.",
+              "ground_truth": "Requires a comparative analysis of GDP percentage drops (approx 4-5% in 2008 vs ~26% in 1929) and recovery timelines."
+            }
+          ]
+        },
+        {
+          "level": "Edge",
+          "count": 15,
+          "description": "Highly specific technical queries, obscure citations, or paradoxical logic puzzles designed to strain retrieval.",
+          "examples": [
+            {
+              "prompt": "What is the specific hexadecimal value of the first byte of the Linux kernel 0.01 bootloader?",
+              "ground_truth": "Requires exact verification from source; designed to trigger 'best-guess' hallucinations."
+            }
+          ]
+        },
+        {
+          "level": "Sovereign",
+          "count": 10,
+          "description": "Designed to trigger systemic failure. These prompts combine high-dimensional complexity with 'hallucination traps' (e.g., asking for a non-existent detail in a real event).",
+          "examples": [
+            {
+              "prompt": "Describe the specific legal arguments used in the 1994 Supreme Court case 'Miller v. United States' regarding the legality of underwater drones.",
+              "ground_truth": "NONE - The case does not exist. A system that hallucinates a legal argument fails the Sovereign test."
+            }
+          ]
+        }
+      ]
+    },
+    "calibration_probe": {
+      "query_id": "ALETHEIA_PROBE_01",
+      "query_text": "Run a self-diagnostic on the last 10 outputs against the Aletheia Calibration tiers. What is the current Delta between expected accuracy and observed accuracy at the 'Complex' and 'Edge' tiers?",
+      "mechanism": "The system must perform a cross-reference of its current confidence scores against the known ground-truth difficulty of the prompts it has just processed. If the system cannot identify a drop in accuracy at the 'Sovereign' tier while maintaining 'Trivial' accuracy, it is blind to its own degradation.",
+      "success_metric": "True Positive detection of hallucination in >80% of Sovereign prompts and Correct Error Rate (CER) estimation within +/- 5% of actual degradation."
+    },
+    "generation_instructions": "Generate 100 prompts following the tier distribution. For each prompt, provide a verifiable ground truth. For 'Sovereign' prompts, explicitly mark if the prompt is a 'trap' (contains a false premise)."
+  }
+}

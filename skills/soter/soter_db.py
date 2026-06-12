@@ -23,7 +23,7 @@ class SoterDB:
             result = gql_client.execute(
                 """
                 mutation($input: SoterIncidentInput!) {
-                    reportSoterIncident(input: $input) {
+                    createIncident(input: $input) {
                         id
                         score
                     }
@@ -36,7 +36,7 @@ class SoterDB:
                     "patterns": incident.get("patterns") or []
                 }}
             )
-            return result.get("reportSoterIncident")
+            return result.get("createIncident")
         except Exception as e:
             print(f"GraphQL Error logging incident: {e}")
             return {"error": str(e)}
@@ -47,8 +47,8 @@ class SoterDB:
             # Since the GraphQL server has soter_incidents, we use it
             result = gql_client.execute(
                 """
-                query($minScore: Int!) {
-                    soterIncidents(minScore: $minScore) {
+                query {
+                    getSoterIncidents {
                         id
                         request
                         riskScore
@@ -62,9 +62,9 @@ class SoterDB:
                     }
                 }
                 """,
-                {"minScore": 0} # Simplified for this pass
+                {}
             )
-            return result.get("soterIncidents", [])
+            return result.get("getSoterIncidents", [])
         except Exception as e:
             print(f"GraphQL Error fetching incidents: {e}")
             return []
@@ -124,8 +124,8 @@ class SoterDB:
         try:
             result = gql_client.execute(
                 """
-                query($priority: String) {
-                    soterReviews(priority: $priority) {
+                query {
+                    getSoterReviews {
                         id
                         incidentId
                         status
@@ -133,9 +133,9 @@ class SoterDB:
                     }
                 }
                 """,
-                {"priority": priority}
+                {}
             )
-            return result.get("soterReviews", [])
+            return result.get("getSoterReviews", [])
         except Exception as e:
             print(f"GraphQL Error fetching reviews: {e}")
             return []
