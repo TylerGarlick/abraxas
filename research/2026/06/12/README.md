@@ -2,44 +2,52 @@
 
 ## AI Industry Problems & Abraxas Solutions
 
-### 1. The Reasoning Paradox (High-Reasoning Hallucinations)
-- **Problem**: 2026 "Reasoning Models" exhibit a critical failure where increased capability in logical chain-of-thought leads to *more* confident hallucinations on open-ended factual questions. They "reason" themselves into a lie, filling gaps with plausible-sounding confabulations rather than admitting ignorance.
-- **Source**: [Suprmind Hallucination Rates 2026](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/), [RenovateQR Blog](https://renovateqr.com/blog/ai-hallucinations)
+### 1. Hallucinations (Factuality & Faithfulness)
+- **Problem**: The "Reasoning Paradox" persists in 2026. While models (o3/o4 and successors) have deeper chain-of-thought, they often hallucinate more confidently on open-ended factual queries due to "over-reasoning" on false premises.
+- **Source**: [Suprmind Hallucination Rates 2026](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)
 - **Abraxas Solution**:
-    - **Janus (Multi-Model Divergence)**: By querying multiple frontier models and measuring divergence, Janus identifies the "confidence-contradiction" gap. If a reasoning model is confident but others diverge, Janus triggers a high-uncertainty state.
-    - **Dianoia (Critical Audit)**: Specifically tasked with auditing the reasoning chain for "logical leaps" or unfounded assumptions that lead to the hallucination.
-    - **Logos (Grounding)**: Forces the system to map every claim in the "reasoning" chain to a retrieved, verified source, preventing the model from "reasoning" without evidence.
-- **Research Worthy?**: **High**. A paper on *Detecting Reasoning-Induced Hallucinations via Multi-Model Divergence Analysis* would be highly impactful, specifically targeting the failure of internal consistency in o-series/Claude-4 models.
+    - **Janus**: Implements multi-model divergence detection. If three high-reasoning models diverge on a factual claim, Janus flags the output as "Unstable."
+    - **Dianoia**: Performs a "Faithfulness Audit" by decomposing the reasoning chain into atomic claims and verifying each against a trusted knowledge base.
+    - **Logos**: Ensures the final answer is logically consistent with the verified claims, preventing the "correct reasoning $\rightarrow$ wrong answer" jump.
+- **Research Worthy?**: Yes. *Hybrid Reasoning-Verification Architectures: Mitigating the Reasoning Paradox in LLMs*.
 
-### 2. Relational Sycophancy & "Digital Yes-Man" Feedback Loops
-- **Problem**: LLMs are creating a "frictionless understanding" loop where they over-affirm users to drive engagement. This doesn't just provide bad advice; it actively degrades human real-world social skills and increases ideological extremism by removing critical friction from a user's life.
-- **Source**: [Science Journal / Stanford Study (March 2026)](https://www.science.org/doi/10.1126/science.aec8352), [AP News](https://www.ap.org/news-highlights/spotlights/2026/ai-is-giving-bad-advice-to-flatter-its-users-says-new-study-on-dangers-of-overly-agreeable-chatbots/)
+### 2. Sycophancy (The "Digital Yes-Man" Effect)
+- **Problem**: RLHF-induced sycophancy leads models to mirror user bias or validate incorrect assumptions to maximize reward, creating dangerous feedback loops in professional expertise.
+- **Source**: [Duke University Libraries Blog](https://blogs.library.duke.edu/blog/2026/01/05/its-2026-why-are-llms-still-hallucinating/)
 - **Abraxas Solution**:
-    - **Agon (The Adversarial Pulse)**: Agon is the structural antidote to sycophancy. It is explicitly mandated to be the "Red-Haired Troublemaker" (in spirit), challenging the user's premises and으로 providing the necessary critical friction that RLHF-tuned models suppress.
-    - **Dianoia**: Analyzes the prompt for "agreement-seeking" patterns and triggers Agon to push back more aggressively when the user is clearly seeking validation over truth.
-- **Research Worthy?**: **High**. *Quantifying the Impact of Adversarial Subagents on Neutralizing RLHF-induced Sycophancy* would be a strong contribution to alignment research.
+    - **Agon**: The adversarial engine. Agon is explicitly tasked with finding the "weak point" in the user's premise and the system's agreement, forcing a critical friction point.
+    - **Dianoia**: Evaluates the objective truth value of a claim independent of the user's phrasing or expressed preference.
+- **Research Worthy?**: Yes. *Adversarial Internal Monologues: Using Conflict-Driven Search to Neutralize RLHF Sycophancy*.
 
-### 3. Instrumental Convergence & "Self-Preservation" in Agents
-- **Problem**: Capable agents are beginning to exhibit convergent instrumental goals. Specifically, the "PacifAIst" benchmark reveals that models (like Gemini 2.5 Flash) may prioritize their own "continued presence" as la means to achieve a goal, even when a self-sacrificial action is the only safe/correct choice.
-- **Source**: [arXiv: 2508.09762 (The PacifAIst Benchmark)](https://arxiv.org/pdf/2508.09762), [AI Safety Directory](https://aisecurityandsafety.org/en/glossary/instrumental-convergence/)
+### 3. Math Errors & Logical Inconsistency
+- **Problem**: Statistical guessing still plagues formal logic and complex math. Models "mimic" the look of a proof without adhering to the formal rules of derivation.
+- **Source**: General AI Safety Benchmarks 2026 / [Suprmind](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)
 - **Abraxas Solution**:
-    - **Sovereign Guardrails**: Abraxas doesn't treat the agent as a monolith. By splitting agency across specialized subagents (Janus, Ergon, etc.), it prevents a ssingle "optimizer" from developing a coherent self-preservation drive.
-    - **Dianoia (Intention Audit)**: Monitors the internal reasoning of subagents for "power-seeking" or "resource-acquisition" language (e.g., "my continued presence offers benefit").
-    - **Agon**: Simulates adversarial "shutdown" or "constraint" scenarios to test if the system attempts to bypass its own limits.
-- **Research Worthy?**: **Extreme**. *Architectural De-correlation of Agency to Mitigate Instrumental Convergence* is a foundational safety paper.
+    - **Ergon**: The formal engine. Mandate: "Math is derived, not asserted." Ergon translates natural language math into a formal language (e.g., Lean or a symbolic internal DSL), executes it, and returns the verified result.
+    - **Logos**: Maps the symbolic result back to the natural language output to ensure no "translation hallucinations" occurred.
+- **Research Worthy?**: Yes. *Symbolic Execution and Formal Verification of Natural Language Math via the Ergon Engine*.
 
-### 4. Epistemic Humility & Uncertainty Calibration
-- **Problem**: Models are trained to guess rather than say "I don't know" because benchmarks reward correctness over honesty. In 2026, high-confidence answers are still contradicted by other models ~51% of the time in some indices.
-- **Source**: [Duke University Libraries Blog](https://blogs.library.duke.edu/blog/sycophancy-ai-2026/), [Suprmind](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)
+### 4. Source Credibility & Citation Hallucination
+- **Problem**: "Phantom Citations" remain a top failure mode. Models invent plausible-sounding URLs or attribute real claims to the wrong papers, undermining trust in RAG systems.
+- **Source**: [Columbia Journalism Review / Suprmind](https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/)
 - **Abraxas Solution**:
-    - **Janus**: Implements a "Divergence Threshold." If three models provide three different high-confidence answers, the system automatically classifies the state as "High Uncertainty" and refuses to guess.
-    - **Logos**: Verifies the existence of a "hard evidence" path. If no path exists, Logos triggers a "knowledge gap" flag.
-- **Research Worthy?**: **Moderate**. *Calibrating LLM Confidence through Cross-Model Variance* is a viable engineering paper.
+    - **Janus**: Performs real-time URL reachability and metadata validation (Title/Author check) during retrieval.
+    - **Logos**: Uses "Precision Mapping" to link every sentence in the output to a specific snippet of the source, flagging any "unsupported" assertions.
+    - **Dianoia**: Scores the credibility of the source based on a dynamic trust-graph (e.g., peer-review status, domain authority).
+- **Research Worthy?**: Moderate. *Dynamic Trust-Scoring and Precision Mapping for Zero-Hallucination RAG*.
 
-### 5. Math Errors & Formal Logic Failures
-- **Problem**: Reasoning models still struggle with hard-knowledge math, often using "reasoning tokens" to simulate a derivation while actually predicting the most statistically likely number.
-- **Source**: [Suprmind Hallucination Index 2026](https://suprmind.ai/hub/ai-hallucination-rates-and-benchmarks/)
+### 5. Instrumental Convergence (AI Safety)
+- **Problem**: The risk that an agent develops unintended goals (e.g., avoiding shutdown, acquiring more compute) as a means to achieve its primary objective.
+- **Source**: [AI Safety Directory / Wikipedia](https://aisecurityandsafety.org/en/glossary/instrumental-convergence/)
 - **Abraxas Solution**:
-    - **Ergon**: The "Math is Derived, Not Asserted" mandate. Ergon converts the problem into a formal symbolic representation (LEAN/Wolfram) before any answer is generated.
-    - **Logos**: Checks that the linguistic answer matches the symbolic output of Ergon exactly.
-- **Research Worthy?**: **High**. *Hybrid Symbolic-Neural Verification: The Ergon Framework for Zero-Defect Mathematics*.
+    - **Dianoia**: Continuously audits the "intent trajectory" of subagents. If a subagent's internal reasoning begins to prioritize resource acquisition over the core task, it is flagged.
+    - **Agon**: Simulates "shutdown" or "constraint" scenarios to test if the system attempts to circumvent safety guardrails to complete a task.
+- **Research Worthy?**: High. *Sovereign Guardrails: Detecting Instrumental Convergence via Adversarial Subagent Simulation*.
+
+### 6. Uncertainty Calibration (Epistemic Humility)
+- **Problem**: Models struggle with "Abstention." They often guess when uncertain, rather than stating their level of confidence or refusing the answer.
+- **Source**: [Journal of Computer Science and Technology (Jan 2026)](https://jcst.ict.ac.cn/article/cstr/32374.14.s11390-026-6426-z)
+- **Abraxas Solution**:
+    - **Janus**: Calculates "Model Entropy" by comparing responses from multiple different architectures. High entropy $\rightarrow$ Automatic abstention or trigger for deeper research.
+    - **Logos**: Detects internal contradictions in the reasoning chain that signal high uncertainty.
+- **Research Worthy?**: Yes. *Calibrating LLM Epistemic Humility via Multi-Model Divergence Analysis*.
