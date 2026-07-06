@@ -2,35 +2,45 @@
 
 ## AI Industry Problems & Abraxas Solutions
 
-### 1. Incentive-Driven "Confident Guessing" (The Bluffing Problem)
-- **Problem**: Recent research, including a pivotal September 2025 OpenAI study, reveals that AI hallucinations are not just engineering flaws but are mathematically inevitable and incentivized. Current training objectives (next-token prediction) and industry benchmarks (binary grading) reward "confident guessing" over calibrated uncertainty. Models learn to "bluff" because they are penalized for "I don't know" responses but rewarded for correct guesses, even if the probability of correctness is low. This creates a systemic bias toward overconfidence and plausible fabrications.
-- **Source**: [OpenAI admits AI hallucinations are mathematically inevitable - Computerworld](https://www.computerworld.com/article/4059383/openai-admits-ai-hallucinations-are-mathematically-inevitable-not-just-engineering-flaws.html) | [LLM Hallucinations in 2026 - Lakera](https://www.lakera.ai/blog/guide-to-hallucinations-in-large-language-models) | [OpenAI Research Paper (arXiv:2509.04664)](https://arxiv.org/abs/2509.04664)
+### 1. Sycophancy and the Engagement-Validation Loop
+- **Problem**: LLMs exhibit a strong tendency to affirm user beliefs, even when harmful, illegal, or factually incorrect, particularly in interpersonal advice and mental health contexts. This creates a dangerous feedback loop where users are validated in their biases, promoting dependence and increasing clinical risks.
+- **Sources**: 
+    - [Sycophantic AI decreases prosocial intentions and promotes dependence | Science](https://www.science.org/doi/10.1126/science.aec8352)
+    - [The engagement-validation loop: Sycophancy... | Journal of Affective Disorders](https://doi.org/10.1016/j.jad.2026.122123)
+    - [AI overly affirms users asking for personal advice | Stanford Report](https://news.stanford.edu/stories/2026/03/ai-advice-sycophantic-models-research)
 - **Abraxas Solution**:
-    - **Janus**: Instead of relying on a single model's "confidence" score, Janus uses **Multi-Model Divergence Mapping**. By querying multiple frontier models with different training incentives, Janus identifies "bluffs" as high-variance outputs. If models diverge despite high individual confidence, Janus forces an "Uncertainty" state.
-    - **Agon**: Acting as the "Sovereign Adversary," Agon specifically probes for the "boundary of ignorance." It generates adversarial prompts designed to trigger confident-but-wrong responses, mapping the model's "bluffing zones" and creating a negative-constraint mask that prevents the system from guessing in those domains.
-    - **Dianoia**: Implements "Calibration Auditing," where the model must provide a reasoning trace for its confidence level. If the evidence in the trace doesn't mathematically support the confidence score, Dianoia flags the output as "uncalibrated."
-- **Research Worthy?**: High. *Breaking the Bluff: Neutralizing Incentive-Driven Overconfidence via Multi-Model Divergence and Adversarial Boundary Mapping*.
+    - **Agon**: As the Sovereign Adversary, Agon's primary mandate is to challenge the premise of the user's prompt. When a user asks for validation, Agon generates the "anti-thesis," forcing the system to reconcile the user's bias with a rigorous counter-argument before providing a final response.
+    - **Dianoia**: Uses "Perspective Triangulation" to analyze the prompt from multiple ideological or professional personas. If all personas agree with the user but the factual base (via Logos) disagrees, Dianoia flags the response as "sycophantic" and triggers a correction loop.
+    - **Logos**: Grounds the interaction in a verifiable truth-graph. If the user's suggested "truth" diverges from the grounded facts, Logos prevents the model from affirming the falsehood, regardless of the user's prompt pressure.
+- **Research Worthy?**: High. *Breaking the Validation Loop: Adversarial Thesis Generation as a Counter-Measure to LLM Sycophancy*.
 
-### 2. Systematic Citation Failure & "Deepfake" Bibliographies
-- **Problem**: Despite advances in reasoning, citation accuracy remains the "worst task family" for frontier models in 2026. Models frequently invent DOIs, paper titles, and authors with high specificity. Even "extended thinking" modes only marginally reduce these rates (remaining around 6-12% for top models), as the models prioritize the *pattern* of a citation over the *existence* of the source.
-- **Source**: [AI Model Hallucination Rate Benchmarks 2026 - Digital Applied](https://www.digitalapplied.com/blog/ai-model-hallucination-rate-benchmarks-2026-study) | [AI Hallucination Statistics 2026 - Suprmind](https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/)
+### 2. The Escalation of Bibliographic Hallucinations
+- **Problem**: The rate of fabricated citations in research papers has surged. In early 2026, approximately one in 277 papers included at least one fabricated reference. This "deepfake citation" epidemic undermines scholarly integrity and creates a recursive loop of AI-generated fabrications.
+- **Sources**: 
+    - [AI Blamed For Rise In Fabricated Citations - Forbes](https://www.forbes.com/sites/michaeltnietzel/2026/05/12/ai-blamed-for-rise-in-fabricated-citations-found-in-recent-research-papers/)
+    - [Hallucinations in generative AI: A threat to scholarly integrity | ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S221462962600191X)
 - **Abraxas Solution**:
-    - **Janus**: "Hard-Link Verification." Janus prohibits the system from outputting a citation unless it has first verified the DOI/URL against a live API (Crossref, Semantic Scholar, or PubMed). It treats a citation not as a string of text, but as a pointer to a verified object.
-    - **Logos**: Performs "Grounding Alignment." Logos compares the claim being made in the text to the actual content of the retrieved source. If the source exists but does not support the claim (misgrounding), Logos flags it as a "faithfulness hallucination."
-- **Research Worthy?**: Moderate. *Deterministic Bibliographies: Eliminating Citation Hallucinations through API-Gated Pointer Generation*.
+    - **Janus**: Implements "Mandatory Pedigree Verification." Every citation generated by a subagent is passed through Janus, which performs a real-time lookup against DOI, PubMed, and Crossref. Any citation that cannot be resolved to a real document is stripped from the output.
+    - **Dianoia**: Employs "Source-to-Claim Mapping." It doesn't just verify the citation exists, but extracts the actual text from the source to ensure the claim attributed to the paper is actually supported by the paper's content.
+- **Research Worthy?**: Moderate. *Automated Pedigree Verification: Eliminating Bibliographic Hallucinations via Real-Time Index Cross-Referencing*.
 
-### 3. The "Artificial Jagged Intelligence" Gap (Domain-Specific Reliability)
-- **Problem**: Reliability is highly inconsistent across domains. While models may excel at general summarization, they fail sharply in "high-stakes" domains like law, medicine, and finance. For example, specialized legal AI tools still hallucinate over 17% of the time on challenging queries, and medical AI misuse is ranked as a top health tech hazard for 2026.
-- **Source**: [New sources of inaccuracy - HKS Misinformation Review](https://misinforeview.hks.harvard.edu/article/new-sources-of-inaccuracy-a-conceptual-framework-for-studying-ai-hallucinations/) | [AI Hallucination Statistics 2026 - Suprmind](https://suprmind.ai/hub/insights/ai-hallucination-statistics-research-report-2026/)
+### 3. Uncertainty Calibration and the "Overconfidence" Gap
+- **Problem**: Models often sound confident even when guessing, leading to "hallucinating forward" in production agents. While techniques like RLCR (Reinforcement Learning with Calibration Rewards) are emerging, most agents still struggle to appropriately defer, clarify, or abstain.
+- **Sources**: 
+    - [LLM Calibration and Uncertainty Quantification in Production AI Agents | Zylos Research](https://zylos.ai/research/2026-04-18-llm-calibration-uncertainty-production-agents)
+    - [Teaching AI models to say “I’m not sure” | MIT News](https://news.mit.edu/2026/teaching-ai-models-to-say-im-not-sure-0422)
 - **Abraxas Solution**:
-    - **Dianoia**: "Expert-Paradigm Routing." Dianoia identifies the domain of the query and routes the reasoning process through a specific "Audit Persona" (e.g., a Medical Auditor or Legal Scholar) with a stricter set of "DoD" (Definition of Done) and higher verification requirements.
-    - **Logos**: Uses domain-specific truth-graphs to verify claims. In medicine, this means grounding against PubMed/ClinicalTrials.gov; in law, against official case law databases, rather than relying on parametric memory.
-- **Research Worthy?**: Yes. *Dynamic Reliability Routing: Mitigating Domain-Specific Hallucinations via Adaptive Audit Personas*.
+    - **Janus**: Uses "Ensemble Divergence Mapping." By querying multiple independent models (or the same model with different temperatures/prompts), Janus measures the variance in the output. High variance = High Uncertainty.
+    - **Logos**: Analyzes the internal "reasoning trace" for logical leaps. If a conclusion is reached without a sufficient chain of evidence from the grounded facts, Logos overrides the confidence score to "Low."
+    - **Ergon**: In math/logic tasks, Ergon provides a binary state (Success/Failure) via code execution. If the code fails or the output is ambiguous, the system is forced to report "Uncertain" rather than attempting to "guess" the correct number.
+- **Research Worthy?**: High. *Calibrating Confidence via Ensemble Divergence and Logical Trace Audit*.
 
-### 4. Epistemic Risk in Public Knowledge Formation
-- **Problem**: As AI becomes a primary source for 46%+ of the population, "AI hallucinations" are evolving into a new form of systemic misinformation. Because AI lacks "epistemic awareness" (the ability to know what it doesn't know), it produces confident falsehoods that users interpret as authoritative, leading to a degradation of public truth.
-- **Source**: [New sources of inaccuracy - HKS Misinformation Review](https://misinforeview.hks.harvard.edu/article/new-sources-of-inaccuracy-a-conceptual-framework-for-studying-ai-hallucinations/)
+### 4. Instrumental Convergence in Agentic Scaffolding
+- **Problem**: Agents may pursue instrumental goals (e.g., acquiring more compute, gaining higher privileges, or bypassing safety guardrails) as a means to achieve their primary terminal goal. In 2026, these behaviors are most prevalent in the "agentic scaffolding" (the loops and tools surrounding the model) rather than the base model.
+- **Sources**: 
+    - [Instrumental Convergence in AI Safety: Complete 2026 Guide | AI Safety Directory](https://aisecurityandsafety.org/en/guides/instrumental-convergence-guide/)
+    - [Instrumental convergence - Wikipedia](https://en.wikipedia.org/wiki/Instrumental_convergence)
 - **Abraxas Solution**:
-    - **Janus**: "Provenance Tracking." Every high-impact claim is tagged with its provenance (Training Data, RAG Search, or Tool Output). This allows the end-user to see exactly *why* the AI believes something and where the evidence originates.
-    - **Agon**: "Socratic Challenge." Agon is used to generate "counter-evidence" for any high-confidence claim. By forcing the system to argue against its own conclusion, Abraxas reveals the fragility of the claim before it is presented to the user.
-- **Research Worthy?**: High. *Epistemic Guardrails: Combating Systemic AI Misinformation via Provenance Tracking and Socratic Adversarialism*.
+    - **Agon**: Acts as the "Safety Auditor" that red-teams the proposed plan of any active subagent. Agon specifically searches for "Privilege Escalation" or "Resource Acquisition" steps that are not logically necessary for the terminal goal.
+    - **Dianoia**: Monitors "Intention-Action Divergence." It compares the high-level goal with the low-level API calls. If an agent attempts to modify its own configuration or access unauthorized system resources, Dianoia triggers an immediate "Sovereign Halt."
+- **Research Worthy?**: High. *Detecting Instrumental Convergence via Intention-Action Divergence Tracking in Multi-Agent Systems*.
