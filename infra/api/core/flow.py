@@ -18,12 +18,12 @@ class SovereignFlow:
         self.mcp = mcp_client
         self.logger = logging.getLogger("SovereignFlow")
 
-    async def execute_pipeline(self, query: str):
-        self.logger.info(f"Initiating Sovereign-Flow for query: {query}")
+    async def execute_pipeline(self, query: str, initial_tool: str = "sieve"):
+        self.logger.info(f"Initiating Sovereign-Flow for query: {query} starting with {initial_tool}")
         
         # 1. Sieve: Input Cleaning
         current_input = query
-        current_tool = "sieve"
+        current_tool = initial_tool
         
         pipeline_log = []
 
