@@ -1,5 +1,6 @@
 import { createHash, randomUUID } from "node:crypto";
 import type { Store } from "../../storage/index.ts";
+import { CONSTITUTION_DEFAULTS } from "./defaults.ts";
 
 export enum EpistemicMode { Sol = "sol", Nox = "nox", Auto = "auto" }
 const configCollection = "system/config";
@@ -18,6 +19,33 @@ export async function updateConstitutionThreshold(store: Store, ruleId: string, 
 export async function getConstitutionThreshold(store: Store, ruleId: string) {
   const row = (await store.collection("system/constitution").find({ ruleId }))[0]; return typeof row?.value === "number" ? row.value : 0.5;
 }
+
+export async function initializeConstitution(store: Store) {
+  const col = store.collection("system/constitution");
+  const existing = await col.find();
+  const existingIds = new Set(existing.map(r => r.ruleId));
+  
+  const operations = Object.entries(CONSTITUTION_DEFAULTS)
+    .filter(([id]) => !existingIds.has(id))
+    .map(([id, value]) => col.insert({ ruleId: id, value }));
+    
+  if (operations.length > 0) {
+    await Promise.all(operations);
+  }
+  return { initialized: operations.length > 0, count: operations.length };
+}
+
+export async function systemInit(store: Store) {
+  const configInit = await initializeConstitution(store);
+  const collections = await store.listCollections();
+  return {
+    status: "Sovereign Ready",
+    constitution: configInit,
+    collections,
+    timestamp: new Date().toISOString()
+  };
+}
+
 export async function addFragment(store: Store, content: string, provenanceId: string, trustWeight = 1) {
   const result = await store.collection("epistemic/fragments").insert({ content, provenanceId, trustWeight, createdAt: new Date().toISOString() }); return result._id;
 }
