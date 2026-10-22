@@ -95,7 +95,7 @@ Augmented Mode occurs when some but not all sovereign dependencies are verified.
 **Verification:** Full (provenance-verified, constitutionally enforced)
 **Requirements for activation:**
 
-1. **Database Connectivity** — The DBManager must successfully connect to the Sovereign Vault (ArangoDB)
+1. **Database Connectivity** — The DBManager must successfully connect to the Sovereign Vault (the graph database)
 2. **Skill Registry** — At least one skill module must be successfully loaded
 3. **Filesystem Integrity** — The server must verify the project root directory
 
@@ -227,7 +227,7 @@ Claim: "Abraxas v4 achieves 0% hallucination"
 - Save/load conversation state across invocations
 - Persist full provenance chains for all claims
 - Maintain unique entity IDs for concepts, hypotheses, plans
-- Graph database integration via ArangoDB
+- Graph database integration via the graph database
 
 **Key tool:** `mnemosyne_recall` — retrieve verified knowledge fragments from the Sovereign Vault
 
@@ -320,7 +320,7 @@ DreamSession → Hypothesis (novelty + coherence scored) → Concept (grounded w
 **Key tools:** `sovereign_core_health_check`, `config_get`, `config_get_all`, `config_get_section`, `config_reload`
 
 #### Ledger — Task Management
-**Role:** ArangoDB-backed project task tracking.
+**Role:** the graph database-backed project task tracking.
 **Function:** Central source of truth for project tasks. Lifecycle: open → ready → testing → closed. Supports hierarchical children and dependency edges.
 
 #### Retrospectives — Iterative Improvement
@@ -391,7 +391,7 @@ Active context. Holds current state, current goal, immediate history. Like the h
 ### 7.4 The Subconscious (Dream Reservoir)
 Where raw, unverified intuitions are stored. The realm of Chaos — seeds of ideas before refinement. The most critical Sovereign layer because it's where novelty originates.
 
-### 7.5 The Genome (ArangoDB Knowledge Graph)
+### 7.5 The Genome (the graph database Knowledge Graph)
 Bedrock of truth. The Genetic Memory. Nothing is true unless it exists here with a complete Provenance Chain. Represents absolute Order.
 
 ### 7.6 The Cognitive Cycle

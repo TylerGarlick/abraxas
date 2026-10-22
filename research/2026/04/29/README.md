@@ -209,7 +209,7 @@ The core issue: LLMs generate math tokens; they don't compute. This is a categor
 ### Why Abraxas Solves This
 
 **Mechanism 1: Symbolic Execution Layer**
-- Mathematical operations are routed to verified symbolic engines (Python, SymPy, verified calculators), not token prediction
+- Mathematical operations are routed to verified symbolic engines (the system language, SymPy, verified calculators), not token prediction
 - Arithmetic is computed, not generated
 - Logical reasoning uses formal verification where applicable
 - Clear separation: neural for understanding, symbolic for computation

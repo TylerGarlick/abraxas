@@ -145,7 +145,7 @@ curl http://localhost:11434/api/generate -d '{
 
 ### Application-Level Parsing
 
-```python
+```the system language
 import re
 
 def parse_epistemic_claim(text):
@@ -161,7 +161,7 @@ def parse_epistemic_claim(text):
 
 ### Confidence-Based Routing
 
-```python
+```the system language
 def route_by_confidence(claims):
     known = [c for c in claims if c['confidence'] == 'KNOWN']
     uncertain = [c for c in claims if c['confidence'] == 'UNCERTAIN']
@@ -172,7 +172,7 @@ def route_by_confidence(claims):
 
 ### Sol/Nox Validation
 
-```python
+```the system language
 def validate_sol_claims(claims):
     # Apply fact-checking, source verification
     pass

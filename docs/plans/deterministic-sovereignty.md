@@ -7,7 +7,7 @@ Convert the "Sovereign" capabilities of Abraxas from LLM-simulated behaviors (pr
 
 ### 1. From Weights to Vault (The Truth Anchor)
 **Current State**: I "remember" truths based on context windows and memory files.
-**Target State**: The LLM is prohibited from asserting a `[KNOWN]` claim unless it is accompanied by a **Fragment ID** from the ArangoDB Vault.
+**Target State**: The LLM is prohibited from asserting a `[KNOWN]` claim unless it is accompanied by a **Fragment ID** from the the graph database Vault.
 - **Implementation**: The `SovereignAnchor` skill must act as a gatekeeper. Any claim marked `[KNOWN]` must be cross-referenced against a hash in the `fragments` collection.
 - **Code Logic**: 
   `IF claim == [KNOWN] AND NOT exists(fragment_id) THEN Trigger [SVR-RUPTURE: UNFOUNDED_CLAIM]`
@@ -31,7 +31,7 @@ Convert the "Sovereign" capabilities of Abraxas from LLM-simulated behaviors (pr
 
 ### Phase 1: Bedrock (The Vault Integration)
 - [ ] **Fragment-Locked Claims**: Modify the `Honest` and `Janus` systems to require a `fragment_id` for all `[KNOWN]` labels.
-- [ ] **Vault Ingestion Pipeline**: Create a tool to convert verified research findings into signed fragments in ArangoDB.
+- [ ] **Vault Ingestion Pipeline**: Create a tool to convert verified research findings into signed fragments in the graph database.
 - [ ] **Sovereign Seal Cryptography**: Implement a simple signing mechanism (HMAC/RSA) that binds the `Claim + Provenance + ConsensusProof`.
 
 ### Phase 2: Brain (The Consensus Engine)
@@ -44,14 +44,14 @@ Convert the "Sovereign" capabilities of Abraxas from LLM-simulated behaviors (pr
 - [ ] **Provenance Exporter**: Create the "Sovereign Evidence" export tool for the Nexus, allowing external verification of the seal.
 
 ## ✅ Definition of Done (DoD)
-1. **Zero-Trust Baseline**: A claim can be marked `[KNOWN]` if and only if it is anchored to a record in the ArangoDB Vault.
+1. **Zero-Trust Baseline**: A claim can be marked `[KNOWN]` if and only if it is anchored to a record in the the graph database Vault.
 2. **Deterministic Consensus**: The system can prove that 3/5 different models reached the same conclusion for a specific technical claim.
 3. **Artifact Verification**: The "Sovereign Pulse" can successfully detect a "lie" where a task is claimed "done" but no corresponding file change exists.
 4. **Cryptographic Seal**: Every final output in SOL mode carries a seal that can be verified against the Sovereign Ledger.
 
 ## 💻 Plausible Implementation (Pseudo-Code)
 
-```python
+```the system language
 # The Sovereign Gate
 def generate_sovereign_response(query):
     # 1. Soter Risk Assessment

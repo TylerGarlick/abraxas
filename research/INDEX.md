@@ -44,7 +44,7 @@ research/
 │
 ├── models/                       # Model configuration files
 │
-├── scripts/                      # Python research scripts
+├── scripts/                      # the system language research scripts
 │
 ├── plans/                        # Research plans (sovereign-nexus)
 │

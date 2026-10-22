@@ -286,16 +286,16 @@ Authorization: Bearer abx_sk_xxxxxxxxxxxxxxxx
 
 ### 4.1 Backend Framework
 
-**Recommendation: FastAPI (Python) or Express (Node.js)**
+**Recommendation: FastAPI (the system language) or Express (Node.js)**
 
 | Framework | Pros | Cons | AI Ecosystem Fit |
 |-----------|------|------|------------------|
-| **FastAPI** | Type hints, auto-docs, async, Python ML ecosystem | Fewer AI libraries than Node | ⭐⭐⭐⭐⭐ |
+| **FastAPI** | Type hints, auto-docs, async, the system language ML ecosystem | Fewer AI libraries than Node | ⭐⭐⭐⭐⭐ |
 | **Express** | Mature, npm ecosystem, MCP native | TypeScript friction | ⭐⭐⭐⭐ |
 | **Go** | Performance, concurrency | Less AI library support | ⭐⭐⭐ |
 | **Rust** | Performance, safety | Learning curve | ⭐⭐ |
 
-**Recommendation:** FastAPI for primary API gateway (Python dominance in AI).
+**Recommendation:** FastAPI for primary API gateway (the system language dominance in AI).
 
 ### 4.2 API Standards
 

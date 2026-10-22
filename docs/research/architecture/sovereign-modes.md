@@ -14,7 +14,7 @@ The Abraxas unified server implements a `system_mode_health_check` tool that act
 
 **Achieved only when all critical deterministic dependencies are verified:**
 
-1. **Database Connectivity** — DBManager must successfully connect to the Sovereign Vault (ArangoDB)
+1. **Database Connectivity** — DBManager must successfully connect to the Sovereign Vault (the graph database)
 2. **Skill Registry** — At least one skill module must be successfully loaded
 3. **Filesystem Integrity** — Server must verify the root project directory
 

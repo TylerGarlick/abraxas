@@ -43,7 +43,7 @@ This creates a **Block Chain of Thought** — a hash-linked sequence of reasonin
 
 | Layer | System | Purpose |
 |-------|--------|---------|
-| **Truth Provenance** | Provenance Graph (ArangoDB) | Verify that claims trace to evidence fragments |
+| **Truth Provenance** | Provenance Graph (the graph database) | Verify that claims trace to evidence fragments |
 | **Safety Provenance** | Audit Log (Guardrail Monitor) | Verify that no unsafe outputs were delivered |
 
 ## Architectural Safety vs. Behavioral Safety

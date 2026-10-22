@@ -132,7 +132,7 @@
 - ✓ test_logos_decomposition.py (5.0KB)
 - ✓ test_ergon_sandbox.py (5.7KB)
 
-**Total Code Written:** ~97KB across 8 Python modules + 2 SKILL.md files + 2 test files
+**Total Code Written:** ~97KB across 8 the system language modules + 2 SKILL.md files + 2 test files
 
 ---
 
@@ -188,7 +188,7 @@
 
 **D1: Probability Calibration Module**
 - Status: ✓ Implemented
-- Path: `/abraxas/systems/dianoia/python/calibration.py`
+- Path: `/abraxas/systems/dianoia/the system language/calibration.py`
 - Description: Confidence → probability mapping
 - Deliverables:
   - ECE/MCE calculation
@@ -199,7 +199,7 @@
 
 **D2: Uncertainty Bounds Calculator**
 - Status: ✓ Implemented
-- Path: `/abraxas/systems/dianoia/python/uncertainty_bounds.py`
+- Path: `/abraxas/systems/dianoia/the system language/uncertainty_bounds.py`
 - Description: Error bars on claims
 - Deliverables:
   - Confidence intervals (50/80/90/95/99%)
@@ -210,7 +210,7 @@
 
 **D3: Distribution Analyzer**
 - Status: ✓ Implemented
-- Path: `/abraxas/systems/dianoia/python/distribution_analyzer.py`
+- Path: `/abraxas/systems/dianoia/the system language/distribution_analyzer.py`
 - Description: Analyze probability distributions
 - Deliverables:
   - Distribution type inference (normal/uniform/beta/bimodal/multimodal/skewed)
@@ -223,7 +223,7 @@
 
 **D4: Aletheia Integration**
 - Status: ✓ Implemented
-- Path: `/abraxas/systems/dianoia/python/aletheia_integration.py`
+- Path: `/abraxas/systems/dianoia/the system language/aletheia_integration.py`
 - Description: Calibration tracking for Aletheia
 - Deliverables:
   - Continuous calibration monitoring
@@ -264,21 +264,21 @@
   - Batch verification support
 
 **Dianoia System - ALL COMPONENTS IMPLEMENTED:**
-- ✓ D1: Probability Calibration (`/abraxas/systems/dianoia/python/calibration.py` - 13.5KB)
+- ✓ D1: Probability Calibration (`/abraxas/systems/dianoia/the system language/calibration.py` - 13.5KB)
   - ECE/MCE calculation
   - 10-bin calibration analysis
   - Reliability diagram data generation
   - Historical calibration tracking
   - Confidence → probability mapping
   - Calibration correction application
-- ✓ D2: Uncertainty Bounds (`/abraxas/systems/dianoia/python/uncertainty_bounds.py` - 14.5KB)
+- ✓ D2: Uncertainty Bounds (`/abraxas/systems/dianoia/the system language/uncertainty_bounds.py` - 14.5KB)
   - 5 confidence levels (50/80/90/95/99%)
   - Error propagation (add/sub/mul/div/power)
   - Wilson score intervals for proportions
   - t-distribution for small samples
   - Statistical significance testing
   - Bounds comparison
-- ✓ D3: Distribution Analyzer (`/abraxas/systems/dianoia/python/distribution_analyzer.py` - 17.8KB)
+- ✓ D3: Distribution Analyzer (`/abraxas/systems/dianoia/the system language/distribution_analyzer.py` - 17.8KB)
   - 7 distribution types supported
   - Parameter fitting (normal/uniform/beta)
   - Normality testing (Jarque-Bera)
@@ -286,7 +286,7 @@
   - Skewness/kurtosis calculation
   - Outlier detection (IQR method)
   - Gaussian mixture modeling for multimodal
-- ✓ D4: Aletheia Integration (`/abraxas/systems/dianoia/python/aletheia_integration.py` - 14.1KB)
+- ✓ D4: Aletheia Integration (`/abraxas/systems/dianoia/the system language/aletheia_integration.py` - 14.1KB)
   - Continuous calibration monitoring
   - Drift detection (threshold > 0.05)
   - Historical ECE trends
@@ -301,9 +301,9 @@
 - ✓ test_aitia.py (8.6KB) - 15+ test cases
 - ✓ test_dianoia.py (8.0KB) - 15+ test cases
 
-**Total Code Written:** ~109KB across 8 Python modules + 2 SKILL.md files + 2 test files
+**Total Code Written:** ~109KB across 8 the system language modules + 2 SKILL.md files + 2 test files
 
-**Combined Total (Phase 1 + Phase 2 + Phase 3):** ~301KB across 24 Python modules + 6 SKILL.md files + 6 test files
+**Combined Total (Phase 1 + Phase 2 + Phase 3):** ~301KB across 24 the system language modules + 6 SKILL.md files + 6 test files
 
 ---
 
@@ -446,6 +446,6 @@
 - ✓ test_chronos.py (14.4KB) - 25+ test cases
 - ✓ test_scribe.py (16.1KB) - 25+ test cases
 
-**Total Code Written:** ~95KB across 8 Python modules + 2 SKILL.md files + 2 test files
+**Total Code Written:** ~95KB across 8 the system language modules + 2 SKILL.md files + 2 test files
 
-**Combined Total (Phase 1 + Phase 2):** ~192KB across 16 Python modules + 4 SKILL.md files + 4 test files
+**Combined Total (Phase 1 + Phase 2):** ~192KB across 16 the system language modules + 4 SKILL.md files + 4 test files

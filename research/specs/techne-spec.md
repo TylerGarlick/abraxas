@@ -75,4 +75,3 @@ Records verified outcomes for Techne's own calibration.
 - **Input:** Task description + output
 - **Output:** Quality grade + improvement suggestions
 - **Complements:** Ergon (constitutional process), Praxis (action planning)
-

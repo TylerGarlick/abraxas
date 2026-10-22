@@ -10,11 +10,11 @@ is [`skills/README.md`](../../skills/README.md), which links to the skill source
 - **Path**: [`skills/ledger/SKILL.md`](../../skills/ledger/SKILL.md)
 - **Current source name**: `tasks`
 - **Purpose**: Project and task management with progress tracking and dependencies.
-- **Legacy details**: The Ledger name, `/ledger` commands, and `ledger-mcp`/ArangoDB backend
+- **Legacy details**: The Ledger name, `/ledger` commands, and `ledger-mcp`/the graph database backend
   below were documented previously. Verify them against the current skill and runtime before use.
 - **Previously documented commands**: `/ledger create`, `/ledger ready`, `/ledger update`,
   `/ledger dep`, `/ledger show`.
-- **Previously documented backend**: `ledger-mcp` (ArangoDB).
+- **Previously documented backend**: `ledger-mcp` (the graph database).
 
 ## Specialized Skills
 

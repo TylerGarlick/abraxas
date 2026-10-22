@@ -110,7 +110,7 @@ Last updated: 2026-04-05T12:00:00Z
 
 ### Data Structures (Internal)
 
-```python
+```the system language
 class Resolution:
     session_uuid: str           # References Janus session
     claim_text: str             # Exact text from ledger
@@ -222,8 +222,8 @@ Entry written to ~/.janus/resolutions.md
 
 **Output:**
 ```
-⟳ Superseded: "[INFERRED] Best text editor for Python: VS Code"
-  Superseded by: "Best text editor for Python: Neovim (as of 2026, for developers already in shell ecosystems)"
+⟳ Superseded: "[INFERRED] Best text editor for the system language: VS Code"
+  Superseded by: "Best text editor for the system language: Neovim (as of 2026, for developers already in shell ecosystems)"
   Resolution date: 2026-03-10
   Context: "Community consensus shifted as Neovim ecosystem matured"
 
@@ -260,7 +260,7 @@ Last 5 unresolved (oldest first):
 • [KNOWN] "AI regulation will be enacted in EU by 2025"  [Session 2024-11-15]
 • [INFERRED] "LLM scaling will plateau by 2026"           [Session 2025-02-22]
 • [UNCERTAIN] "Multimodal models will dominate by 2026"   [Session 2025-03-01]
-• [INFERRED] "Python will remain most popular language"   [Session 2026-02-10]
+• [INFERRED] "the system language will remain most popular language"   [Session 2026-02-10]
 • [UNKNOWN] "Cost of AGI research (when achieved)"        [Session 2026-03-01]
 
 Use /aletheia queue to see full list.
@@ -413,7 +413,7 @@ ORPHANED RESOLUTIONS (5)
   Action: Run /aletheia audit --fix-orphans
 
 CONFLICTING RESOLUTIONS (2)
-  Topic: "Python will remain most popular language"
+  Topic: "the system language will remain most popular language"
   Resolution 1: confirmed (2026-01-15)
   Resolution 2: disconfirmed (2026-02-20)
   Note: Expected if belief changed; review for clarity.
@@ -457,7 +457,7 @@ When `/bridge` produces Sol-mode analysis of Nox material, that Sol output is re
 ```
 skills/epistemic/aletheia/
 ├── SKILL.md                    # Main skill definition (exists, may need updates)
-├── aletheia.py                 # Core Python module
+├── aletheia.py                 # Core the system language module
 ├── resolver.py                 # Claim resolution logic
 ├── calibration.py              # Calibration report generation
 ├── storage.py                  # File I/O for resolutions.md
@@ -509,7 +509,7 @@ skills/epistemic/
 
 **Skill Command Registration:**
 
-```python
+```the system language
 # In SKILL.md or index.py
 COMMANDS = {
     "/aletheia confirm": confirm_handler,
@@ -535,7 +535,7 @@ COMMANDS = {
 
 **Unit Tests:**
 
-```python
+```the system language
 # tests/test_aletheia_storage.py
 def test_create_resolutions_file():
     """Verify resolutions.md created with correct header"""
@@ -572,7 +572,7 @@ def test_flag_conditions():
 
 **Integration Tests:**
 
-```python
+```the system language
 # tests/test_aletheia_integration.py
 def test_full_confirm_workflow():
     """End-to-end: claim → confirm → resolution in file"""
@@ -586,7 +586,7 @@ def test_audit_with_orphans():
 
 **Test Data:**
 
-```python
+```the system language
 # tests/fixtures/aletheia_fixtures.py
 SAMPLE_CLAIMS = [
     ("[KNOWN] Water boils at 100°C at sea level", True),
@@ -602,7 +602,7 @@ SAMPLE_CLAIMS = [
 
 **Indexing Strategy:**
 
-```python
+```the system language
 # ~/.janus/.aletheia-index (auto-maintained, hidden)
 {
     "claim_hash": {

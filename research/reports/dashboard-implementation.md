@@ -10,7 +10,7 @@
 
 Built a comprehensive dashboard for the Abraxas research project that aggregates test results, system implementations, and research papers into two formats:
 1. **Web Dashboard** (`index.html`) - Interactive HTML/JS visualization
-2. **Report Generator** (`report.py`) - Python markdown report tool
+2. **Report Generator** (`report.py`) - the system language markdown report tool
 
 ---
 
@@ -90,10 +90,10 @@ Including:
 **Usage:**
 ```bash
 # Generate markdown report
-python3 report.py --output report.md
+the system language3 report.py --output report.md
 
 # Generate JSON report
-python3 report.py --format json --output report.json
+the system language3 report.py --format json --output report.json
 ```
 
 **Output Sections:**
@@ -125,7 +125,7 @@ The dashboard shows which systems co-occur based on:
 
 ### Implemented (17)
 ✓ All 12 skills deployed  
-✓ 5 system implementations in TypeScript/Python
+✓ 5 system implementations in TypeScript/the system language
 
 ### Planned (4 from research)
 ○ **Aitia** - Causal reasoning engine  
@@ -196,7 +196,7 @@ dashboard/
 
 **Access:**
 - Open `index.html` in browser for interactive dashboard
-- Run `python3 report.py` for markdown reports
+- Run `the system language3 report.py` for markdown reports
 - Both read from JSON data files in same directory
 
 ---
@@ -204,7 +204,7 @@ dashboard/
 ## Implementation Notes
 
 ### Data Aggregation
-- Python script collected 12 test result JSONs
+- the system language script collected 12 test result JSONs
 - Extracted composite scores and 7 dimension scores
 - Handled encoding errors gracefully (binary files skipped)
 
@@ -236,7 +236,7 @@ dashboard/
 To verify dashboard functionality:
 ```bash
 cd /abraxas/dashboard
-python3 report.py --format json | jq '.summary'
+the system language3 report.py --format json | jq '.summary'
 # Should show: total_tests, avg_score, systems_count, papers_count
 ```
 

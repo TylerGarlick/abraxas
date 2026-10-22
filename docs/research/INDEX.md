@@ -25,7 +25,7 @@ This index links all foundational research documentation for the Abraxas Soverei
 | **Governance Model** | [`architecture/governance-model.md`](architecture/governance-model.md) | Three Pillars, Law Book analogy, Sovereignty Gap |
 | **MCP Architecture Map** | [`architecture/mcp-map.md`](architecture/mcp-map.md) | Modular Monolith topology, 5-pillar consolidation |
 | **Janus Orchestration** | [`architecture/janus-orchestration.md`](architecture/janus-orchestration.md) | Four Pillars: Sovereign Switch, Spawning, Consensus Gate, Epistemic Labeling |
-| **Sovereign Graph** | [`architecture/sovereign-graph.md`](architecture/sovereign-graph.md) | ArangoDB v4.2 Provenance Graph schema, vertex/edge collections |
+| **Sovereign Graph** | [`architecture/sovereign-graph.md`](architecture/sovereign-graph.md) | the graph database v4.2 Provenance Graph schema, vertex/edge collections |
 | **Sovereign Modes** | [`architecture/sovereign-modes.md`](architecture/sovereign-modes.md) | Sovereign Mode vs Simulation Mode, health check logic |
 | **Sovereign Security** | [`architecture/sovereign-security.md`](architecture/sovereign-security.md) | Instrumental Convergence Detection, Deterministic Veto, Audit Logging |
 | **Brain Diagrams** | [`architecture/brain-diagram.md`](architecture/brain-diagram.md) | Pipeline flow diagrams, Deterministic Sandwich, Janus Threshold |
@@ -62,7 +62,7 @@ This index links all foundational research documentation for the Abraxas Soverei
 
 ## External References
 
-- **GitHub Repository:** [TylerGarlick/abraxas](https://github.com/TylerGarlick/abraxas)
+- **GitHub Repository:** [[USER]/abraxas](https://github.com/[USER]/abraxas)
 - **arXiv Category:** cs.AI (Artificial Intelligence)
 - **Research Paper (arXiv):** Forthcoming
 
