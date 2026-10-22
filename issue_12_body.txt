@@ -1,0 +1,21 @@
+### User Story
+As a Knowledge Manager, I want a unified knowledge graph (the Epistemic Atlas), so that I can eliminate memory fragmentation and trace any belief to its authoritative source.
+
+### Description
+The Epistemic Atlas is the "Map" of the Sovereign Brain. It solves the problem of memory fragmentation by creating a "Universal Artifact Link" (UAL) between disparate storage systems, providing permanent, navigable provenance for every claim.
+
+### Acceptance Criteria
+- [ ] Implement the "Universal Artifact Link" (UAL) to connect disparate storage systems.
+- [ ] Build the unified map connecting Belief $\rightarrow$ Evidence $\rightarrow$ Verifier.
+- [ ] Implement the ability to trace a belief's provenance through the entire Sovereign stack.
+- [ ] Generate gap reports identifying missing evidence for specific beliefs.
+
+### Implementation Notes
+- The Atlas integrates Mnemon (Beliefs), Mnemosyne (Evidence), and Janus (Verification).
+- Focus on the mapping logic that connects these three pillars into a single graph.
+
+### Research Notes
+- Solves memory fragmentation by creating a shared conceptual landscape for all verified truths.
+
+### Open Questions
+- Which graph database (or JSON-equivalent) is most efficient for storing the UAL (Universal Artifact Link) structure?

@@ -1,0 +1,21 @@
+### User Story
+As a Sovereign User, I want to be able to inject immutable "Genesis Blocks" of truth into the system, so that I can override probabilistic weights with "Divine Priority" and eliminate constraint leakage.
+
+### Description
+The Sovereign-Anchor protocol allows the Human-Sovereign to inject immutable fragments of truth (Genesis Blocks) that the system must treat as absolute physical laws. This reframes the human from a "user" who persuades the model to a "Sovereign" whose declarations carry architectural force.
+
+### Acceptance Criteria
+- [ ] Implement the Sovereign-Anchor protocol for writing immutable Genesis Blocks.
+- [ ] Create a mechanism for these blocks to act as "absolute physical laws" that override all probabilistic model weights.
+- [ ] Integrate the Anchor system to resolve `VOID_COORDINATES` in the Aporia system.
+- [ ] Ensure Genesis Blocks are hash-linked and immutable within the Sovereign-Nexus ledger.
+
+### Implementation Notes
+- Implementation location: `infra/api/src/core/anchor.py`.
+- Workflow: Human-Sovereign $\rightarrow$ Genesis Block $\rightarrow$ Sovereign-Anchor $\rightarrow$ Hardened Truth.
+
+### Research Notes
+- Sovereign-Anchor provides "Divine Priority," ensuring that human-anchored truths are never overriden by probabilistic model confidence.
+
+### Open Questions
+- How can the system prevent 'Divine Priority' from being used to inject false beliefs that override verified empirical evidence?

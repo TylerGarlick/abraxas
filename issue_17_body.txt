@@ -1,0 +1,21 @@
+### User Story
+As a Security Auditor, I want an immutable hash-linked cognitive ledger (the "Iron Chain"), so that every reasoning step is permanent, auditable, and protected from "reasoning drift" or retroactive tampering.
+
+### Description
+Sovereign-Nexus implements a SHA-256 hash-linked cognitive ledger. Instead of a transient token stream, reasoning is treated as a verifiable ledger of cognitive blocks, ensuring that every step of the process is immutable and verifiable.
+
+### Acceptance Criteria
+- [ ] Implement the SHA-256 hash-linked cognitive ledger for all reasoning steps.
+- [ ] Ensure every output from Logos, Janus, and Agon is recorded as a `CognitiveBlock` in the Nexus chain.
+- [ ] Implement a chain-validation mechanism that detects unauthorized database modification via hash mismatch.
+- [ ] Integrate with the Sovereign-Anchor to ensure Genesis Blocks are permanently anchored in the chain.
+
+### Implementation Notes
+- Implementation location: `infra/api/src/core/nexus.py`.
+- Reasoning is treated as a verifiable ledger, not a transient token stream.
+
+### Research Notes
+- Prevents "reasoning drift" and unauthorized state modification by treating cognition as a block-chain.
+
+### Open Questions
+- What is the expected performance overhead of SHA-256 hashing for every cognitive block in the reasoning chain?

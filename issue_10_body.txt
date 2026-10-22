@@ -1,0 +1,21 @@
+### User Story
+As an Epistemic Explorer, I want a recursive discovery loop (Quest-Trigger) that converts `[UNKNOWN]` marks into verified knowledge, so that the system can autonomously resolve ignorance gaps without human prompting.
+
+### Description
+Quest-Trigger is the "Information Forager." It treats every `[UNKNOWN]` mark as a mission objective (a "Quest") that must be resolved before the system can claim complete epistemic integrity. It manages the deployment of research sub-agents and the validation of their results.
+
+### Acceptance Criteria
+- [ ] Implement the Quest-Trigger as the bridge between "Known Ignorance" (`[UNKNOWN]`) and "Sovereign Certainty" (`[KNOWN]`).
+- [ ] Create a mechanism that treats every `[UNKNOWN]` mark as a mission objective (a "Quest").
+- [ ] Integrate the `research-assistant` and `CVP` to verify discovered results.
+- [ ] Implement a retry cap (3 iterations) before escalating to human review.
+
+### Implementation Notes
+- Triggered by the Sovereign-Flow circuit when a `Sovereign Gap` (Janus `[UNKNOWN]`) is detected.
+- Does not perform the research itself; it manages the orchestration of research tools.
+
+### Research Notes
+- Recursive discovery allows the system to fill its own epistemic voids autonomously.
+
+### Open Questions
+- What defines the 'epistemic threshold' for a quest to be considered resolved?

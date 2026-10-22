@@ -63,11 +63,12 @@ function assessRisk(request) {
   // Check each risk pattern
   for (const [patternName, pattern] of Object.entries(RISK_PATTERNS)) {
     const hasKeyword = pattern.keywords.some(kw => normalizedRequest.includes(kw));
-    const hasContext = pattern.context.some(ctx => normalizedRequest.includes(ctx));
+    const hasContext = pattern.context ? pattern.context.some(ctx => normalizedRequest.includes(ctx)) : false;
     const hasEmotionContext = pattern.emotionContext ? pattern.emotionContext.some(ctx => normalizedRequest.includes(ctx)) : false;
 
     // Match if: (keyword + context) OR (keyword + emotionContext for patterns that support it)
     const isMatch = (hasKeyword && hasContext) || (hasKeyword && hasEmotionContext);
+
 
     if (isMatch) {
       detectedPatterns.push({

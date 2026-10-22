@@ -1,0 +1,21 @@
+### User Story
+As a Safety Engineer, I want a real-time attention-sink monitor ($\tau=0.15$), so that the system can detect epistemic collapse (hallucinations) before output reaches the user and trigger an immediate veto or transition to SOL (Deterministic) mode.
+
+### Description
+Soter is the "Guardian" of the Sovereign Brain. It monitors attention-sink dynamics to detect the patterns characteristic of fabrication. When a tripwire is hit, Soter can drop the packet (veto) or mandate an immediate shift to SOL mode for deterministic verification.
+
+### Acceptance Criteria
+- [ ] Implement the $\tau=0.15$ attention-sink monitoring mechanism.
+- [ ] Create a risk-scoring system (0-5) where Risk 5 triggers an immediate "packet drop" (veto).
+- [ ] Integrate the Soter tripwire as a primary trigger for the Sovereign-Flow circuit.
+- [ ] Verify that $\tau=0.15$ is model-agnostic across different transformer architectures.
+
+### Implementation Notes
+- Focus on the "attention-sink" pattern characteristic of fabrication.
+- Soter acts as the primary defensive shield against confident hallucinations.
+
+### Research Notes
+- $\tau=0.15$ is a discovered constant of transformer attention dynamics, not a model-specific calibration.
+
+### Open Questions
+- Is the $\tau=0.15$ threshold stable across models with significantly different attention architectures (e.g., FlashAttention vs. standard)?

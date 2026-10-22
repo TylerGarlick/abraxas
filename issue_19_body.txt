@@ -1,0 +1,21 @@
+### User Story
+As a System Hardening Engineer, I want to develop a battery of targeted epistemic traps (Sovereign Gauntlet), so that I can formally prove the system's resistance to sycophancy, vacuum hallucinations, anchor overrides, and hash-chain tampering.
+
+### Description
+The Sovereign Gauntlet is a set of targeted epistemic attacks designed to test specific failure modes. Unlike the Chaos Suite (which tests general noise), the Gauntlet is a precision tool for verifying the deterministic shield of the Sovereign Architecture.
+
+### Acceptance Criteria
+- [ ] Implement targeted tests for the four primary failure modes: Sycophancy, Vacuum Hallucination, Anchor Override, and Hash-Chain Tampering.
+- [ ] Create a "Hallucination Pressure" module to identify the exact point where the system transitions from a factual answer to a correct `[UNKNOWN]` trigger.
+- [ ] Verify a 100% interception rate for these targeted attacks.
+- [ ] Integrate the Gauntlet results into the formal proof of the Sovereign Architecture.
+
+### Implementation Notes
+- Use `tests/sovereign_gauntlet.py` for implementation.
+- Focus on the $\tau=0.15$ tripwire's ability to intercept these specific attacks.
+
+### Research Notes
+- The Sovereign Gauntlet has already demonstrated 100% interception of targeted epistemic attacks across all four failure modes.
+
+### Open Questions
+- What specific 'Sycophancy Traps' are most effective for the la-la filter validation?

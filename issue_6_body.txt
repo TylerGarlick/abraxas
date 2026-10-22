@@ -1,0 +1,21 @@
+### User Story
+As an Infrastructure Engineer, I want to consolidate all MCP implementations under `infra/mcp`, so that there is a single, canonical source of truth for the system's toolset and transport configuration.
+
+### Description
+Currently, MCP implementations are spread across several repositories and directories. Consolidating them under `infra/mcp` eliminates divergence and ensures a unified deployment source of truth for the system's core tooling.
+
+### Acceptance Criteria
+- [ ] Reconcile the Bun/TypeScript MCP server with the existing Abraxas `infra/mcp` service.
+- [ ] Ensure all required tools from both the original and the ArangoDB MCP are available in the consolidated server.
+- [ ] Update all Docker and development configurations to point to the new canonical implementation.
+- [ ] Verify tool listing and representative tool calls through the real MCP protocol.
+
+### Implementation Notes
+- Target location: `infra/mcp`.
+- Coordinate the post-migration state with the `TylerGarlick/mcp-arangodb` repository.
+
+### Research Notes
+- Consolidation eliminates divergence between the "Brain" and "Infrastructure" layers of the system.
+
+### Open Questions
+- Which transport protocol (stdio, SSE, etc.) is the most robust for the consolidated MCP implementation?

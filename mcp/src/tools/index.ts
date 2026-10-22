@@ -1,6 +1,7 @@
 import type { ToolModule } from "./helpers.ts";
 import { storeTools } from "./store.ts";
 import { systemTools } from "./system.ts";
+import { janusTools } from "./janus.ts";
 import { aletheiaTools } from "./aletheia.ts";
 import { aporiaTools } from "./aporia.ts";
 import { autoAgonTools } from "./auto-agon.ts";
@@ -35,7 +36,6 @@ import { projectBridgeTools } from "./project_bridge.ts";
 import { prometheusTools } from "./prometheus.ts";
 import { researchTools } from "./research.ts";
 import { scribeTools } from "./scribe.ts";
-import { secretsTools } from "./secrets.ts";
 import { sieveTools } from "./sieve.ts";
 import { soterTools } from "./soter.ts";
 import { sovereignAnchorTools } from "./sovereign_anchor.ts";
@@ -47,6 +47,7 @@ import { synesisTools } from "./synesis.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
+  janusTools,
   systemTools,
   storeTools,
   aletheiaTools,
@@ -83,7 +84,6 @@ export const toolModules: ToolModule[] = [
   prometheusTools,
   researchTools,
   scribeTools,
-  secretsTools,
   sieveTools,
   soterTools,
   sovereignAnchorTools,

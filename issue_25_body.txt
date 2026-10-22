@@ -1,0 +1,22 @@
+### User Story
+As a Quality Engineer, I want to standardize the versioning and prompt configurations for the baseline models used in hallucination benchmarks, so that we can eliminate baseline drift and ensure that reported improvements are a result of the Sovereign architecture rather than variation in the baseline.
+
+### Description
+To resolve the current 'Baseline Drift' identified in the epistemic debate, we need to standardize the exact version and prompt configuration of gemma4:cloud used across internal and external benchmarks. This ensures that the reported 40-80% reduction is a result of architecture rather than baseline variation.
+
+### Acceptance Criteria
+- [ ] Define a locked version and prompt set for the `gemma4:cloud` baseline.
+- [ ] Update all internal and external benchmark scripts to use this standardized baseline.
+- [ ] Rerun the "Sovereign Gap" analysis ($|r_{\text{arch}}| - |r_{\text{softmax}}|$) to ensure consistency.
+- [ ] Document the exact prompt templates used for baseline comparison.
+
+### Implementation Notes
+- Standardize across HalBench, FEVER, and the Stanford sycophancy framework.
+- Ensure the "Sovereign Gap" is measured using the same prompt configuration across all runs.
+
+### Research Notes
+- Baseline models consistently fail on sycophancy traps and hallucination-prone queries.
+- "Sovereign Gap" quantifies the epistemic advantage of architectural verification over probabilistic (softmax) confidence estimation.
+
+### Open Questions
+- Should the standardized baseline prompts be public-facing or kept as a proprietary internal benchmark?

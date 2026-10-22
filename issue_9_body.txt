@@ -1,0 +1,21 @@
+### User Story
+As a System Architect, I want an autonomous workflow controller (Sovereign-Flow), so that the system can dynamically route requests between the brain's pillars and eliminate the "orchestration tax" of manual skill switching.
+
+### Description
+Sovereign-Flow is the "Central Nervous System" of the Sovereign Brain. It transforms discrete skills from tools into a continuous, deterministic pipeline by monitoring outputs for "Trigger Signals" (e.g., Soter risk flags or Janus `[UNKNOWN]` marks) and automatically initiating corrective circuits.
+
+### Acceptance Criteria
+- [ ] Implement the meta-orchestration circuit that transforms discrete skills into a deterministic pipeline.
+- [ ] Create "Trigger Signals" (e.g., Soter high-risk flags or Janus `[UNKNOWN]` marks) that initiate corrective circuits.
+- [ ] Implement a DAG orchestration to chain at least 3 skills (e.g., Sieve $\rightarrow$ Soter $\rightarrow$ Sovereign-Scribe) without manual prompts.
+- [ ] Ensure a human-approval gate exists for critical-risk (Risk 4-5) cases.
+
+### Implementation Notes
+- Sovereign-Flow does not generate content; it only routes the agent through necessary epistemic gates.
+- The objective is the reduction of manual "hand-off" prompts.
+
+### Research Notes
+- Reduces the "orchestration tax" by automating the transition from risk detection to resolution.
+
+### Open Questions
+- How is the 'human-approval gate' for Risk 4-5 integrated into the autonomous Sovereign-Flow loop?
