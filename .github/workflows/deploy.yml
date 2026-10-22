@@ -20,7 +20,8 @@ jobs:
         run: |
           mkdir deploy_dir
           cp -r public/* deploy_dir/
-          cp -r docs deploy_dir/
+          # Rename docs to content to prevent GH automatic MD rendering
+          cp -r docs deploy_dir/content
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
