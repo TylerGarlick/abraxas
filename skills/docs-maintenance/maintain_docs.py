@@ -20,33 +20,31 @@ def clean_text(text):
 
 def verify_links(root_dir):
     broken = []
-    for root, _, files in os.walk(root_dir):
+    for root, dirs, files in os.walk(root_dir):
+        dirs[:] = [d for d in dirs if d not in ('.git', '.history', 'node_modules', '__pycache__', '.backup')]
         for file in files:
             if file.endswith('.md'):
                 path = os.path.join(root, file)
-                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                    content = f.read()
-                links = re.findall(r'\[.*?\]\((.*?)\)', content)
-                for link in links:
-                    if link.startswith(('http', 'mailto', '#')): continue
-                    full_path = os.path.normpath(os.path.join(root, link))
-                    if not os.path.exists(full_path):
-                        broken.append((path, link))
+                try:
+                    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    links = re.findall(r'\[.*?\]\((.*?)\)', content)
+                    for link in links:
+                        if link.startswith(('http', 'mailto', '#')): continue
+                        full_path = os.path.normpath(os.path.join(root, link))
+                        if not os.path.exists(full_path):
+                            broken.append((path, link))
+                except Exception: pass
     return broken
 
 def sync_docs(project_root):
-    # Very basic sync: list files in skills/ and compare to docs/systems/skills.md
     skills_dir = os.path.join(project_root, 'skills')
     docs_file = os.path.join(project_root, 'docs/systems/skills.md')
-    
     if not os.path.exists(skills_dir): return "Skills dir not found."
-    
     actual_skills = [d for d in os.listdir(skills_dir) if os.path.isdir(os.path.join(skills_dir, d))]
-    
     if not os.path.exists(docs_file): return "Documentation file not found."
     with open(docs_file, 'r', encoding='utf-8') as f:
         content = f.read()
-    
     missing = [s for s in actual_skills if s not in content]
     return missing
 
@@ -56,23 +54,24 @@ def main():
     parser.add_argument('--clean', action='store_true')
     parser.add_argument('--sync', action='store_true')
     args = parser.parse_args()
-
-    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../'))
 
     if args.clean:
         print("Cleaning banned terms...")
-        for root, _, files in os.walk(project_root):
-            if 'node_modules' in root or '.git' in root: continue
+        for root, dirs, files in os.walk(project_root):
+            dirs[:] = [d for d in dirs if d not in ('.git', '.history', 'node_modules', '__pycache__', '.backup')]
             for file in files:
                 if file.endswith(('.md', '.txt', '.json')):
                     path = os.path.join(root, file)
-                    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
-                        text = f.read()
-                    cleaned = clean_text(text)
-                    if cleaned != text:
-                        with open(path, 'w', encoding='utf-8') as f:
-                            f.write(cleaned)
-                        print(f"Cleaned: {path}")
+                    try:
+                        with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                            text = f.read()
+                        cleaned = clean_text(text)
+                        if cleaned != text:
+                            with open(path, 'w', encoding='utf-8') as f:
+                                f.write(cleaned)
+                            print(f"Cleaned: {path}")
+                    except Exception: pass
 
     if args.verify:
         print("Verifying links...")
