@@ -532,3 +532,7 @@ This is the anti-hallucination core. Ergon (with logos-math) is the final gate b
 ---
 
 _Last updated: 2026-04-04_
+
+## MCP tools
+
+Available Bun MCP tools: `logos_math_verify`, `logos_math_verify_claim`, `logos_math_calculate`, `logos_math_log`, `logos_math_crosscheck`, `logos_math_confidence`.

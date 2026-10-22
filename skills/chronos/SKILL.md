@@ -247,3 +247,7 @@ Chronos persists data to `~/.abraxas/chronos/`:
 ## Version
 
 **1.0.0** — Initial implementation (Phase 2, 2026-03-19)
+
+## MCP tools
+
+Available Bun MCP tools: `index_claim`, `detect_drift`, `resolve_conflict`, `chronos_timeline`.

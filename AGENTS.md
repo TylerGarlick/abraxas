@@ -24,10 +24,15 @@ cd skills && zip -r skill-name.skill skill-name/
 ### Development Commands
 
 ```bash
-# No traditional tests exist — skills are validated by manual invocation
-# No linting — markdown-only project
-# No build system — skills are zip archives
+# MCP server (all code lives in /mcp, Bun + TypeScript)
+cd mcp && bun install
+bun test                 # unit + in-memory MCP client tests
+bunx tsc --noEmit        # typecheck
+bun src/index.ts         # run over stdio (--http for HTTP on :8787)
 ```
+
+Runtime data is written to `.abraxas/data` (gitignored, JSON by default). No Python, GraphQL, or
+ArangoDB remains in the repo. Skills are validated by manual invocation.
 
 ### Documentation
 

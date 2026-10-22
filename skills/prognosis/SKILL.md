@@ -40,3 +40,7 @@ Resolve truth.
 
 ---
 Oracle Mode Active. Ready to forecast.
+
+## MCP tools
+
+Available Bun MCP tools: `prognosis_forecast`, `prognosis_signal_anticipate`, `prognosis_calibrate`.

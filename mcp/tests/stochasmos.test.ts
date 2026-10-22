@@ -1,0 +1,2 @@
+import { expect, test } from "bun:test"; import { assessRisk, pressurePoints } from "../src/lib/stochasmos/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
+test("Stochasmos reports provisional pressure and screens seed risk", async () => { const c = fakeCollection(); const p = await pressurePoints("d", ["claim"], undefined, c); expect(p.pressure_points.length).toBe(1); expect((await assessRisk("s", "threat", c)).cleared_for_deployment).toBe(false); });

@@ -27,6 +27,10 @@ Processes a piece of external data through the complete gauntlet.
 
 ## Implementation Details
 
-- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ SovereignScribeLogic).
+- **Architecture**: Bun + TypeScript Abraxas MCP server (`mcp/src/lib/scribe`, `mcp/src/tools/scribe.ts`).
+
+## MCP tools
+
+`ingest_fragment`, `source_capture`, `source_get`, `source_reliability_update`, `scribe_link_check`.
 - **Role**: Orchestrator. In a full deployment, this skill makes synchronous calls to the `Soter`, `Episteme`, `Ethos`, and `Mnemosyne` MCP servers.
 - **Status**: Currently utilizes surrogate logic for these services to ensure independent stability.

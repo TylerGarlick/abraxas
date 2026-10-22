@@ -14,7 +14,7 @@ cd abraxas
 docker compose up -d --build
 ```
 
-This starts the Unified MCP Server (port 9900), ArangoDB, and the health monitor (port 9901).
+This starts the Bun/TypeScript MCP server (port 8787, health at `/health`). Data is stored as JSON in `.abraxas/data`. See [mcp/README.md](mcp/README.md).
 
 ### 2. Verify It's Running
 
@@ -79,7 +79,7 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - **Omniscient Auditor**: The "Fact-Checker." Performs parallel document and claim review across the entire active context, ensuring zero-drift between source and synthesis.
 - **Epistemic Atlas**: The "Map." A unified knowledge graph (UAL) that maps every claim to its coordinates in the conceptual landscape, providing permanent, navigable provenance.
 - **Soter Verifier**: The "Police." A standalone module that scores responses for risk and vetoes any that violate the Constitution.
-- **Mnemosyne Vault**: The "Librarian." A graph-based reservoir in ArangoDB that ensures every claim traces back to a verified Fragment ID.
+- **Mnemosyne Vault**: The "Librarian." A reservoir of fragments in `.abraxas/data` that ensures every claim traces back to a verified Fragment ID.
 
 ---
 
@@ -123,7 +123,7 @@ All Sol (waking) output is deterministically labeled by the server:
 ## 🤝 Contributing & Development
 
 Abraxas is a modular system. To contribute:
-1. **Deterministic First**: No "persona" prompts; implement logic in Python/ArangoDB.
+1. **Deterministic First**: No "persona" prompts; implement logic in the TypeScript MCP server (`/mcp`).
 2. **Truth-First**: Every new feature must include a verification method.
 3. **Sovereign-First**: All lappets must be routed through the Soter Veto.
 

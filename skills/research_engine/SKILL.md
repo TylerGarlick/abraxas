@@ -52,6 +52,10 @@ Diagnostic status of the engine and its API dependencies.
 
 ## Implementation Details
 
-- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ ResearchEngineLogic).
-- **Dependencies**: Uses `requests` for HTTP communication and `re` for HTML cleaning.
+- **Architecture**: Bun + TypeScript Abraxas MCP server (`mcp/src/tools/research.ts`).
+- **Dependencies**: Uses built-in `fetch` for HTTP communication.
+
+## MCP tools
+
+`web_search`, `web_fetch`, `synthesize_report`, `deep_dive_research`, `research_engine_health_check`.
 - **Connectivity**: Interfaces with Ollama's search API and Brave Search.

@@ -237,3 +237,7 @@ interface Known {
 ---
 
 **Plan is forethought made systematic.** It ensures Abraxas never charges into implementation blind.
+
+## MCP tools
+
+The shared TypeScript MCP server exposes `start_clarity_session`, `extract_unknowns`, and `export_map`. Clarity sessions persist in the shared store.

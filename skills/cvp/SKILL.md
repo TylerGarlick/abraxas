@@ -66,3 +66,7 @@ When a result is `[UNKNOWN]`, CVP calculates the **Sovereign Gap**: the distance
 - **Agon**: CVP is the consumer of Agon's M-path output.
 - **Guardrail**: CVP provides the verified consensus and the $N/M$ ratio to the Guardrail Monitor.
 - **Aletheia**: The results of CVP (whether confirmed or resulting in `[UNKNOWN]`) are recorded in the Aletheia calibration ledger.
+
+## MCP tools
+
+Available Bun MCP tools: `resolve_consensus`, `log_sovereign_gap`.

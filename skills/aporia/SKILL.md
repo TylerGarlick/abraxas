@@ -24,3 +24,7 @@ Binds new evidence to a previously identified void, effectively closing the epis
 ## Constraints
 - A `VOID_COORDINATE` must be resolved via a `Sovereign-Anchor` block before the chain can be promoted to `Hardened Truth`.
 - Aporia identifies gaps, but does not research them (that is the role of Quest-Trigger).
+
+## MCP tools
+
+Available Bun MCP tools: `map_epistemic_void`, `resolve_void`.

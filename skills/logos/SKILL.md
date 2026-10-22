@@ -403,3 +403,7 @@ Before delivering any Logos analysis:
 - [ ] Falsifiability tested (at least one condition identified)
 - [ ] Clear recommendation for next steps (ready for Agon / needs refinement / too weak)
 - [ ] Janus labels applied if requested
+
+## MCP tools
+
+Available Bun MCP tools: `logos_parse_claim`, `logos_decompose_claim`, `logos_extract_svo`, `logos_aggregate_confidence`, `logos_aggregate_evidence`, `logos_verify_claim`, `logos_process_claim`.

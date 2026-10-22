@@ -1,4 +1,0 @@
-mcp
-fastapi
-uvicorn
-pydantic

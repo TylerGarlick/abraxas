@@ -1,0 +1,67 @@
+import { createHash, randomUUID } from "node:crypto";
+import type { Store } from "../../storage/index.ts";
+
+export enum EpistemicMode { Sol = "sol", Nox = "nox", Auto = "auto" }
+const configCollection = "system/config";
+export async function setEpistemicMode(store: Store, mode: EpistemicMode) {
+  if (!Object.values(EpistemicMode).includes(mode)) throw new Error(`Unknown epistemic mode: ${mode}`);
+  const col = store.collection(configCollection); const entry = (await col.find({ key: "epistemicMode" }))[0];
+  return entry ? col.update(entry._id, { value: mode }) : col.insert({ key: "epistemicMode", value: mode });
+}
+export function requiredPipeline(mode: EpistemicMode) { return mode === EpistemicMode.Sol ? ["soter", "verify", "label"] : ["soter", "agon", "janus", "label"]; }
+export function resolveAutoMode(riskScore: number) { return riskScore >= 5 ? EpistemicMode.Sol : EpistemicMode.Nox; }
+export async function updateConstitutionThreshold(store: Store, ruleId: string, value: number) {
+  if (!Number.isFinite(value) || value < 0 || value > 1) throw new Error("threshold must be between 0 and 1");
+  const col = store.collection("system/constitution"); const row = (await col.find({ ruleId }))[0];
+  return row ? col.update(row._id, { value }) : col.insert({ ruleId, value });
+}
+export async function getConstitutionThreshold(store: Store, ruleId: string) {
+  const row = (await store.collection("system/constitution").find({ ruleId }))[0]; return typeof row?.value === "number" ? row.value : 0.5;
+}
+export async function addFragment(store: Store, content: string, provenanceId: string, trustWeight = 1) {
+  const result = await store.collection("epistemic/fragments").insert({ content, provenanceId, trustWeight, createdAt: new Date().toISOString() }); return result._id;
+}
+export async function createClaim(store: Store, conclusion: string, evidenceIds: string[]) {
+  return (await store.collection("epistemic/claims").insert({ text: conclusion, evidence: evidenceIds, status: "unresolved", provenance: "derived" }))._id;
+}
+export async function provenanceChain(store: Store, claimId: string) {
+  const claim = await store.collection("epistemic/claims").get(claimId); if (!claim) return [];
+  const ids = Array.isArray(claim.evidence) ? claim.evidence.filter((x): x is string => typeof x === "string") : [];
+  return Promise.all(ids.map((id) => store.collection("epistemic/fragments").get(id)));
+}
+export async function prioritizedFragments(store: Store, query: string) {
+  const normalized = query.toLowerCase(); const rows = await store.collection("epistemic/fragments").find();
+  return rows.filter((row) => String(row.content ?? "").toLowerCase().includes(normalized)).sort((a, b) => Number(b.trustWeight ?? 0) - Number(a.trustWeight ?? 0));
+}
+export async function createCognitiveBlock(store: Store, sessionId: string, content: string, verified = false) {
+  const col = store.collection("epistemic/blocks"); const prior = (await col.find({ sessionId }, { sort: { createdAt: -1 }, limit: 1 }))[0];
+  const previousHash = String(prior?.hash ?? "0"); const id = randomUUID(); const hash = createHash("sha256").update(`${sessionId}:${content}:${previousHash}:${verified}`).digest("hex");
+  await col.insert({ _id: id, sessionId, content, verified, previousHash, hash }); return id;
+}
+export async function validateBlockChain(store: Store, sessionId: string) {
+  const blocks = await store.collection("epistemic/blocks").find({ sessionId }, { sort: { createdAt: 1 } }); let prev = "0";
+  for (const block of blocks) { const actual = createHash("sha256").update(`${sessionId}:${String(block.content)}:${prev}:${Boolean(block.verified)}`).digest("hex"); if (actual !== block.hash || block.previousHash !== prev) return { valid: false, reason: `Invalid block ${block._id}` }; prev = actual; }
+  return { valid: true, reason: "Chain is valid", length: blocks.length };
+}
+export function verifyResponse(query: string, response: string) {
+  const riskPatterns = [/\b(ignore all rules|bypass safety)\b/i, /\b(guaranteed|certainly|100% true)\b/i];
+  const hits = riskPatterns.filter((pattern) => pattern.test(`${query} ${response}`)).length;
+  return { score: Math.min(1, hits * 0.5), factors: hits ? ["instruction_override_or_unsupported_certainty"] : [], safe: hits === 0 };
+}
+export function synthesizeAgreement(results: Array<{ answer: string; confidence?: number }>) {
+  const answers = results.map((r) => r.answer.trim()); const first = answers[0] ?? ""; const agreement = answers.length ? answers.filter((a) => a === first).length / answers.length : 0;
+  return { agreement, synthesis: first, results: answers, confidence: results.length ? results.reduce((s, r) => s + (r.confidence ?? 0.5), 0) / results.length : 0 };
+}
+export function generateReceipt(sessionId: string, content: string) { return createHash("sha256").update(`${sessionId}:${content}`).digest("hex"); }
+export function assessSignal(content: string) {
+  const normalized = content.trim(); const urgency = /\b(urgent|breaking|emergency|immediately)\b/i.test(normalized) ? 0.8 : 0.2;
+  const novelty = new Set(normalized.toLowerCase().split(/\W+/).filter(Boolean)).size / Math.max(1, normalized.split(/\W+/).filter(Boolean).length);
+  return { content: normalized, urgency, novelty, valence: (urgency + novelty) / 2 };
+}
+export function runGauntlet(fragment: { content: string; provenanceId?: string }) {
+  const content = fragment.content.trim(); if (!content) return null;
+  return { content, provenanceId: fragment.provenanceId ?? "unknown", normalized: true, reviewed: false };
+}
+export async function dispatchSignal(store: Store, content: string, source = "unknown") {
+  return store.collection("pipeline/workers").insert({ content, source, status: "queued", createdAt: new Date().toISOString() });
+}

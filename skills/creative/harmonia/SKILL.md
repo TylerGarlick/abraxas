@@ -426,3 +426,7 @@ Before delivering any composition:
 - [ ] Epistemic mode transitions are valid
 - [ ] Mnemosyne included for persistence (recommended)
 - [ ] Status checked with `/harmonia status`
+
+## MCP tools
+
+Available Bun MCP tools: `compose_workflow`, `execute_sequence`, `check_conflict`.

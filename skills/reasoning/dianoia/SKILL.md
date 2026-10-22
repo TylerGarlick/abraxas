@@ -258,3 +258,7 @@ interface Dianoia {
 ```
 
 See `references/dianoia-architecture.md` for mathematical details and derivations.
+
+## MCP tools
+
+Available Bun MCP tools: `quantify_uncertainty`, `calculate_brier_score`, `dianoia_quantify`, `dianoia_record_outcome`, `dianoia_calibration_report`, `dianoia_calibration_history`.

@@ -71,3 +71,7 @@ The skill automatically reads `HF_TOKEN` from the secrets manager:
 
 - Pay-per-use via Fal-AI: ~$0.002-0.01 per image
 - Billed through your HuggingFace Pro account
+
+## MCP tools
+
+The Python script was replaced by `generate_image` (`mcp/src/tools/creative.ts`; requires `HF_TOKEN`). The `generate.py` examples above map to this tool.

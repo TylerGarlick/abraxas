@@ -254,3 +254,9 @@ python3 /root/.openclaw/workspace/skills/gmail/gmail_tool.py search "before:2024
 ## License
 
 Part of OpenClaw AgentSkills ecosystem.
+
+## MCP tools
+
+The Python CLI was replaced by the Bun + TypeScript server (`mcp/src/tools/gmail.ts`) using the Gmail REST API. Set `GMAIL_ACCESS_TOKEN` (an OAuth access token; never logged).
+
+`gmail_fetch`, `gmail_read`, `gmail_search`, `gmail_mark_read`, `gmail_send`. The `python3 gmail_tool.py` examples above map to these tools.

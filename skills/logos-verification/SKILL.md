@@ -206,3 +206,7 @@ Verification history stored in `~/.logos/`:
 - [ ] Confidence scores calculated correctly
 - [ ] Fallbacks handle verification failures
 - [ ] Results passed to confidence engine
+
+## MCP tools
+
+Available Bun MCP tools: `logos_verify_atoms`, `logos_verification_history`.

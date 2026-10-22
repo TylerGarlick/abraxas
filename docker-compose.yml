@@ -2,18 +2,13 @@ services:
   abraxas-mcp:
     build:
       context: .
-      dockerfile: infra/mcp/Dockerfile
+      dockerfile: mcp/Dockerfile
     container_name: abraxas-mcp
     environment:
-      - ARANGO_URL=${ARANGO_URL}
-      - ARANGO_DB=${ARANGO_DB}
-      - ARANGO_USER=${ARANGO_USER}
-      - ARANGO_ROOT_PASSWORD=${ARANGO_ROOT_PASSWORD}
       - ABRAXAS_ROOT=/workspace
-      - PYTHONPATH=/workspace
+      - ABRAXAS_STORAGE=${ABRAXAS_STORAGE:-json}
     volumes:
-      - .:/workspace
+      - ./.abraxas:/workspace/.abraxas
     ports:
-      - "9900:9900"
-      - "9901:9901"
+      - "8787:8787"
     restart: always

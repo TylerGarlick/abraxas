@@ -61,3 +61,7 @@ Guardrail is the **Truth Arbiter**. It does not perform reasoning or consensus g
 - **Mnemosyne**: Pheme relies on the Mnemosyne reservoir for ground-truth cross-referencing.
 - **Ethos**: Kratos uses the Ethos registry for trust-weighting authority resolution.
 - **Janus**: Guardrail provides the final "Seal" that Janus presents to the user in Sol-mode.
+
+## MCP tools
+
+Available MCP tools: `guardrail_audit`, `guardrail_veto`.

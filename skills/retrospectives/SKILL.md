@@ -45,6 +45,8 @@ Transforms a retrospective finding into a formal ledger task.
 
 ## Implementation Details
 
-- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ RetrospectivesLogic).
-- **Storage**: Filesystem-based hierarchy using JSON documents.
-- **Organization**: Time-series layout for optimized retrieval and historical auditing.
+Retrospectives are stored as structured documents in the shared JSON-backed store, indexed by date and retrospective ID.
+
+## MCP tools
+
+The shared TypeScript MCP server exposes `save_retro`, `get_retros_for_period`, and `create_ledger_task`. Retrospectives and tasks persist in the shared store; task closure also generates a retrospective automatically.

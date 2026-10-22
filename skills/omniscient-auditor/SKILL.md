@@ -81,3 +81,7 @@ The Auditor produces a Markdown table as its primary artifact:
 - **Soter:** Provides the risk sensing.
 - **CVP:** Provides the final consensus.
 - **Sovereign-Flow:** The resolution path for any red-flagged claims.
+
+## MCP tools
+
+Available MCP tools: `decompose_document`, `generate_heat_map`.

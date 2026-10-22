@@ -46,6 +46,8 @@ Verifies workspace accessibility and project availability.
 
 ## Implementation Details
 
-- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ ProjectBridgeLogic).
-- **Workspace Insight**: Dynamically discovers project folders and integrates with the Sovereign root path.
-- **Storage**: Uses a JSON-based ledger for project relationships.
+Project mappings and retrospectives use the shared store. Cross-project search walks workspace directories while excluding generated and dependency folders.
+
+## MCP tools
+
+The shared TypeScript MCP server exposes `cross_project_search`, `unified_retrospective`, `project_mapping`, and `project_bridge_health_check`. Project relationships and retrospective records persist in the shared store. Search uses workspace paths configured through the MCP server.

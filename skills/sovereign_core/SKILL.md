@@ -46,3 +46,7 @@ Reports on the immediate operational status of the Sovereign Core.
 - **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ SovereignCoreLogic).
 - **State**: Managed via an internal configuration store and system timers.
 - **Dependencies**: Uses `psutil` for resource monitoring.
+
+## MCP tools
+
+Available MCP tools: `sovereign_patcher`, `config_management`, `system_state_audit`, `sovereign_core_health_check`.

@@ -730,3 +730,7 @@ See `references/` directory for:
 - Core commands: confirm, disconfirm, supersede, status, calibration, queue, audit
 - Integration with Janus System, Honest, and Abraxas Oneironautics
 - Calibration ledger with disconfirmation tracking and drift detection
+
+## MCP tools
+
+Available MCP tools: `aletheia_confirm`, `aletheia_disconfirm`, `aletheia_supersede`, `aletheia_status`, `aletheia_calibration`, `aletheia_queue`, `aletheia_audit`.

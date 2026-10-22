@@ -38,5 +38,9 @@ The Config Registry acts as the **Sovereign Epistemic Anchor** for system settin
 - **Path Validation**: Invalid dot-notation paths result in a specific error message rather than a system crash.
 
 ## Implementation Details
-- **Storage**: Backed by `SOVEREIGN_CONFIG.yaml`.
-- **Architecture**: Implemented as a Python FastMCP server with a decoupled logic layer for configuration loading and secret masking.
+- **Storage**: Dotted-path entries in the `system/config` collection under `.abraxas/data`.
+- **Architecture**: Bun + TypeScript Abraxas MCP server (`mcp/src/tools/config.ts`) with secret masking.
+
+## MCP tools
+
+`config_get`, `config_get_all`, `config_get_section`, `config_reload`, `config_set`.

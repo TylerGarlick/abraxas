@@ -32,3 +32,7 @@ Kairos is the **Sovereign Context Optimizer**. It handles the temporal and relat
 ## Implementation Details
 - **Architecture**: Python FastMCP server with a logic layer implementing keyword-based relevance scoring and temporal keyword detection.
 - **Sovereign Integration**: Sits between the memory recall and the reasoning path spawning, acting as a gatekeeper for the final context window.
+
+## MCP tools
+
+Available Bun MCP tools: `kairos_filter`, `kairos_urgency`.

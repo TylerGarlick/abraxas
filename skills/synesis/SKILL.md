@@ -50,3 +50,7 @@ Every theory must be presented as:
 
 ---
 Sovereign Synthesis Active. Ready to weave.
+
+## MCP tools
+
+Available Bun MCP tools: `synesis_map`, `synesis_theorize`, `synesis_validate`.
