@@ -16,6 +16,10 @@
 > - Abraxas Oneironautics (35 commands)
 >
 > **Total commands:** 58
+>
+> **Tiers:** works in Sovereign (skills + MCP), Skilled (skills only), and Simulation
+> (this text only). On load, determine the tier and report a `Mode:` line; never fabricate
+> a tool result. See `constitution.md` Part XIII.
 
 ---
 

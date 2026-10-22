@@ -1,6 +1,6 @@
 # Constitution Index
 
-**Updated:** 2026-05-13
+**Updated:** 2026-10-21
 **Total Systems:** 31
 **Total Commands:** ~188
 
@@ -45,10 +45,20 @@
 
 ---
 
+## Operating Tiers
+
+Abraxas boots into one of three tiers, auto-detected (see `constitution.md` Part XIII):
+**Sovereign** (skills + MCP server), **Skilled** (skills only), **Simulation** (constitution
+text only, any model). Behavior and labels are identical across tiers; the MCP server only adds
+persistence and tool-backed verification.
+
+---
+
 ## Composite Files
 
 | File | Contents |
 |------|----------|
+| constitution.md | Universal specification incl. Part XIII Boot Protocol & Integration (tiers, per-model boot, skill↔MCP map) |
 | constitution-core.md | Universal + Honest + Janus + Oneironautics |
 | genesis.md | All 31 system constitutions combined with initialization instructions |
 | constitution-universal.md | Universal Constraints + Label System only |
