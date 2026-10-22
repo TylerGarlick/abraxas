@@ -1,0 +1,10 @@
+import { z } from "zod";
+import { fetchEmails, markRead, readEmail, searchEmails, sendEmail } from "../lib/gmail/index.ts";
+import { defineTool, type ToolModule } from "./helpers.ts";
+export const gmailTools:ToolModule={name:"gmail",register(server,ctx){const token=()=>{const value=process.env.GMAIL_ACCESS_TOKEN;if(!value)throw new Error("GMAIL_ACCESS_TOKEN is required");return value;};
+ defineTool(server,ctx,"gmail_fetch","Fetch recent Gmail message summaries.",{count:z.number().int().min(1).max(100).optional()},({count})=>fetchEmails(token(),count),{readOnly:true});
+ defineTool(server,ctx,"gmail_read","Read a Gmail message by id.",{email_id:z.string()},({email_id})=>readEmail(token(),email_id),{readOnly:true});
+ defineTool(server,ctx,"gmail_search","Search Gmail using Gmail query syntax.",{query:z.string(),count:z.number().int().min(1).max(100).optional()},({query,count})=>searchEmails(token(),query,count));
+ defineTool(server,ctx,"gmail_mark_read","Mark a Gmail message as read.",{email_id:z.string()},({email_id})=>markRead(token(),email_id));
+ defineTool(server,ctx,"gmail_send","Send a plain-text email through Gmail.",{to:z.string().email(),subject:z.string(),body:z.string()},({to,subject,body})=>sendEmail(token(),to,subject,body));
+}};
