@@ -4,7 +4,7 @@
 
 **Created:** 2026-04-07  
 **Status:** Planning  
-**Repository:** TylerGarlick/research (private)
+**Repository:** [USER]/research (private)
 
 ---
 
@@ -434,7 +434,7 @@ CREATE INDEX idx_audit_logs_created ON audit_logs(created_at DESC);
 
 ### 4.2 Alternative Stacks
 
-#### Option B: Python Stack
+#### Option B: the system language Stack
 - **Backend**: FastAPI + SQLAlchemy
 - **Frontend**: Same as above
 - **Pros**: Great for data-heavy features, ML integration

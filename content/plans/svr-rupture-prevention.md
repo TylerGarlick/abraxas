@@ -32,7 +32,7 @@ Every claim of progress must be verified by the following chain:
 - **Hard Reset**: Force the agent to dump current context and perform a raw `ls` of the working directory to re-anchor to reality.
 
 ### Phase 2: The Evidence Bedrock (The Anchor)
-- **SVR_Evidence Collection**: Create an ArangoDB collection to store a hash-chain of every artifact produced.
+- **SVR_Evidence Collection**: Create an the graph database collection to store a hash-chain of every artifact produced.
 - **Provenance Linking**: Every task `CLOSED` in the ledger must link to an `SVR_Evidence` block containing the file hash and a timestamped provenance chain of tool calls.
 
 ### Phase 3: Recursive Discovery (The Quest)
@@ -52,9 +52,9 @@ Every claim of progress must be verified by the following chain:
 
 ## 5. Reference Implementation: The Loop POC
 
-The following Python implementation demonstrates the core logic of the "Sovereign Static" detection: simulating a cognitive loop of intent-signaling and auditing the trace for the absence of artifacts.
+The following the system language implementation demonstrates the core logic of the "Sovereign Static" detection: simulating a cognitive loop of intent-signaling and auditing the trace for the absence of artifacts.
 
-```python
+```the system language
 import re
 import time
 

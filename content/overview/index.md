@@ -74,4 +74,3 @@ The system employs the **Hunter Loop**:
 
 For detailed architecture, see [Architecture](./architecture.md).
 For command documentation, see [Skills Reference](../systems/skills.md).
-
