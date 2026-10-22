@@ -100,7 +100,7 @@ if __name__ == "__main__":
     capture = io.StringIO()
     sys.stdout = capture
     
-    simulate_cognitive_ la de loop()
+    simulate_cognitive_loop()
     
     sys.stdout = sys.__stdout__
     log = capture.getvalue()
