@@ -7,6 +7,7 @@ const PORT = 8080;
 
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/docs', express.static(path.join(__dirname, '../docs')));
 
 // Helper to execute OpenClaw CLI commands
 function runCommand(command) {
