@@ -24,3 +24,7 @@ Processes a bulk stream of data and extracts only the signals with valence $\geq
 ## Constraints
 - Signals marked as `NOISE` (valence < 0.3) are discarded immediately and never touch the ledger.
 - A `HIGH_VALENCE` signal automatically triggers a `Sovereign-Flow` sequence involving `Aporia` and `Auto-Agon`.
+
+## MCP tools
+
+Available MCP tools: `analyze_signal`, `curate_stream`.

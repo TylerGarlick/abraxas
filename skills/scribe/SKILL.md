@@ -287,3 +287,8 @@ Scribe persists data to `~/.abraxas/scribe/`:
 ## Version
 
 **1.0.0** — Initial implementation (Phase 2, 2026-03-19)
+
+
+## MCP tools
+
+`ingest_fragment`, `source_capture`, `source_get`, `source_reliability_update`, `scribe_link_check` (Bun + TypeScript server, `mcp/src/tools/scribe.ts`). The Python modules and `pytest` instructions above are superseded by `mcp/tests/scribe.test.ts`.

@@ -77,3 +77,7 @@ Soter assigns a Risk Score $R \in [0, 5]$ to every processing window. This score
 - **Janus**: Soter informs Janus when to switch from a single-path intuitive mode to the multi-path analytical mode.
 - **CVP**: Soter is the primary trigger for the Consensus Verification Pipeline.
 - **Guardrail**: Soter's risk score $R$ is used in the final audit to determine the "Sovereign Weight" of the output.
+
+## MCP tools
+
+Available MCP tools: `soter_verify_claim`, `run_soter_query`, `check_constitution_adherence`, `soter_assess`, `soter_trigger`.

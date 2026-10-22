@@ -1,0 +1,2 @@
+import { expect, test } from "bun:test"; import { mapVoids, resolveVoid } from "../src/lib/aporia/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
+test("Aporia detects and resolves an epistemic void", async () => { const c = fakeCollection(); const r = await mapVoids([{ id: "s", confidence: 0.2 }], c); expect(r.voids_detected).toBe(1); expect(await resolveVoid(r.voids[0]!.void_id, "evidence", c)).toMatchObject({ success: true }); });

@@ -217,3 +217,7 @@ interface Prometheus {
 ```
 
 See `references/prometheus-architecture.md` for technical details.
+
+## MCP tools
+
+`get_profile`, `set_preference`, `record_signal` (Bun + TypeScript server, `mcp/src/tools/prometheus.ts`; data in `user/preferences`).

@@ -24,6 +24,21 @@ Janus is the infrastructure layer. Honest is the plain-language interface to Jan
 **Project root:** `/Users/tylergarlick/@Projects/abraxas`
 **Current phase:** Phase 7 — Session Continuity (see PLAN.md)
 
+## MCP Server (`/mcp`)
+
+All executable code lives in `mcp/` — a single Bun + TypeScript MCP server that every skill calls
+for tooling and context. There is no Python, GraphQL, or ArangoDB in this repo.
+
+- Run: `bun mcp/src/index.ts` (stdio) or `bun mcp/src/index.ts --http` (port 8787, `/health`)
+- Test / typecheck: `cd mcp && bun test && bunx tsc --noEmit`
+- Layout: `src/lib/<domain>/` pure logic, `src/tools/<domain>.ts` tool modules registered in
+  `src/tools/index.ts`, `src/storage/` store backends, `tests/` bun tests
+- Data: all runtime data is stored in `.abraxas/data` (private, gitignored). JSON files by default
+  (`ABRAXAS_STORAGE=json`); optional NeDB (`ABRAXAS_STORAGE=nedb`). Override with `ABRAXAS_DATA_DIR`.
+- Generic `store_*` tools let skills persist any collection without server changes.
+- Logs go to stderr only (stdout is the MCP protocol). Never `console.log` in server code.
+- Beads, task ledger, retrospectives, and pipeline orchestration were intentionally not ported.
+
 ---
 
 ## File Map

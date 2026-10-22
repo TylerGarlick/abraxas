@@ -1,6 +1,6 @@
 ---
 name: sovereign-anchor
-description: "Privileged write-operation for injecting immutable Genesis Blocks into the ArangoDB vault."
+description: "Privileged write-operation for injecting immutable Genesis Blocks into the persistent MCP store."
 user-invokable: true
 ---
 
@@ -20,3 +20,7 @@ Injects a string of content as an immutable truth fragment.
 ## Constraints
 - Genesis Blocks cannot be edited once written.
 - Use exclusively for Codex core claims or human-verified ground truths.
+
+## MCP tools
+
+Available MCP tools: `anchor_truth`, `verify_anchor`.

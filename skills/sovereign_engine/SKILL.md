@@ -54,3 +54,7 @@ Maps a numerical confidence score to a human-readable epistemic label.
 
 - **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ SovereignEngineLogic).
 - **Complexity**: O(N) for most calculations, ensuring high-performance epistemic labeling.
+
+## MCP tools
+
+Available MCP tools: `calculate_sovereign_weight`, `compute_integrated_confidence`, `calculate_rlcr`, `verify_consensus`, `get_epistemic_label`.

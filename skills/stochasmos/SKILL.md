@@ -39,7 +39,11 @@ Run the Krisis gauntlet.
 - Never deploy without Krisis clearance.
 - Never frame as an imperative.
 - Every seed must explain what would prove it wrong.
-- Interventions are ledgered (full provenance in ArangoDB).
+- Interventions are ledgered (full provenance in the Abraxas Store).
 
 ---
 Catalyst Active. Ready to deploy truth strategically.
+
+## MCP tools
+
+Available Bun MCP tools: `stochasmos_pressure_point`, `stochasmos_seed`, `stochasmos_assess_risk`.

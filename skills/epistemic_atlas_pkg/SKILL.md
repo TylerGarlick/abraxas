@@ -76,3 +76,7 @@ When the Atlas resolves a query, it presents the data as a **Unified Truth Recor
 - **Mnemosyne:** The source of truth for session context.
 - **Janus Ledger:** The source of truth for epistemic status.
 - **Logos:** The source for logical and structural gaps.
+
+## MCP tools
+
+Available MCP tools: `trace_belief`, `map_domain`, `identify_gaps`.

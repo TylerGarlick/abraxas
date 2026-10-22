@@ -43,3 +43,7 @@ Analyzes session logs to detect noise and epistemic drift.
 - **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ EpistemeLogic).
 - **Backend**: Reads from `sovereign_vault.json` and `epistemic-ledger.json`.
 - **Pattern Matching**: Uses regular expressions for artifact and drift detection.
+
+## MCP tools
+
+Available MCP tools: `episteme_trace`, `episteme_audit`.

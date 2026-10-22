@@ -29,6 +29,16 @@ Mnemosyne is the **Sovereign Archivist**. It provides the system with a determin
 - **Deterministic Recall**: Search is performed via precise matching and keyword analysis within the `sovereign_vault.json` store.
 
 ## Implementation Details
-- **Architecture**: Python FastMCP server with a logic layer managing a JSON-based flat-file database.
-- **Storage**: Persists data to `.abraxas/mnemosyne/sovereign_vault.json`, ensuring memory survives container restarts. (The directory must be created if it does not exist).
-- **Format**: Data is stored as a collection of `KnowledgeFragment` objects containing ID, content, provenance, and timestamp.
+- **Architecture**: Served by the Bun + TypeScript Abraxas MCP server (`mcp/src/tools/memory.ts`).
+- **Storage**: Fragments persist in the `memory/fragments` collection under `.abraxas/data`.
+- **Format**: Each fragment holds ID, content, provenance, and timestamp.
+
+## MCP tools
+
+| Tool | Purpose |
+|---|---|
+| `mnemosyne_store` | Store a fragment with provenance |
+| `mnemosyne_recall` | Recall by fragment ID or text match |
+| `record_belief` | Record a belief with confidence and lens (Mnemon; `memory/sessions`) |
+| `track_revision` | Revise a belief's confidence with a reason |
+| `flag_prompted` | Flag the prompt that elicited a belief |

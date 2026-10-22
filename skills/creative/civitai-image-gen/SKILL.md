@@ -202,3 +202,7 @@ generate_civitai_image(
 ## License
 
 MIT License - See Civitai terms for model-specific licenses.
+
+## MCP tools
+
+The Python script was replaced by `generate_civitai_image` (`mcp/src/tools/creative.ts`; requires `CIVITAI_API_KEY`). The `generate.py` examples above map to this tool.

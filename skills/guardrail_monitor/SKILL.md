@@ -45,3 +45,7 @@ Resolves a conflict between two competing claims.
 
 - **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ GuardrailLogic).
 - **Integrated Logic**: Combines value extraction, reliability scoring, and authority hierarchies.
+
+## MCP tools
+
+Available MCP tools: `check_value_saliency`, `verify_ground_truth`, `arbitrate_conflict`.

@@ -9,7 +9,7 @@ The Tasks skill is the central source of truth for project tasks, tracking progr
 
 ## Core Capabilities
 
-The Tasks skill manages tasks as documents in ArangoDB and dependencies as edges in a graph.
+The Tasks skill manages tasks as documents in  and dependencies as edges in a graph.
 
 ### Task Lifecycle
 Tasks typically move through the following statuses:
@@ -42,6 +42,8 @@ Creates a directed edge between two tasks.
 
 ## Implementation Details
 
-- **Database**: ArangoDB.
-- **Collections**: `tasks` (document), `task_edges` (edge).
-- **Architecture**: Two-tier Python implementation (FastMCP $\rightarrow$ TasksLogic).
+Tasks, dependency edges, and retrospectives use collections in the shared JSON-backed store. A blocking edge points from the child/blocker to the parent/blocked task.
+
+## MCP tools
+
+The shared TypeScript MCP server exposes `create_task`, `get_ready_tasks`, `update_task_status`, `add_dependency`, `get_task`, `get_all_tasks`, `delete_task`, and `get_tasks_by_project`. Tasks and blocking dependency edges persist in the shared JSON-backed store. Closing a task automatically creates one retrospective.

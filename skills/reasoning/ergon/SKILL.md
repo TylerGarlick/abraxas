@@ -290,3 +290,7 @@ interface Ergon {
 ```
 
 See `references/ergon-architecture.md` for technical implementation details.
+
+## MCP tools
+
+Available Bun MCP tools: `ergon_validate_output`, `ergon_detect_failure`.

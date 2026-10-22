@@ -594,3 +594,10 @@ generate_*.sh
 # Ignore cloned projects (already under source control)
 projects/
 assets/archive_alpha/
+
+# Abraxas private workspace (runtime data, logs)
+.abraxas/
+.abraxas-test-root/
+node_modules/
+# MCP server source (overrides the generic lib/ rule above)
+!mcp/src/lib/

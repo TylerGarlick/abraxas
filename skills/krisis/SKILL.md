@@ -30,3 +30,7 @@ Assigns an epistemic weight to sources based on their provenance.
 ## Constraints
 - A `KRISIS_ALERT` must trigger an immediate review by the Sovereign Operator.
 - Krisis cannot override a Genesis Block but can flag a contradiction for the ledger.
+
+## MCP tools
+
+Available MCP tools: `evaluate_alignment`, `resolve_ethos_weight`.

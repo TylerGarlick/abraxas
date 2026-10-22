@@ -171,3 +171,7 @@ The verification pipeline:
 5. **Label enhancement** — Append verification to Janus label
 
 See `references/pheme-architecture.md` for technical details.
+
+## MCP tools
+
+`verify_claim`, `update_source_trust` (Bun + TypeScript server, `mcp/src/tools/pheme.ts`; data in `epistemic/pheme`).

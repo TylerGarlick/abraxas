@@ -156,3 +156,7 @@ The core logic is in `src/hermes.ts`:
 - `updateTrackRecord(agentId, correct)` — Update after verification
 
 See `references/hermes-architecture.md` for full technical details.
+
+## MCP tools
+
+`add_agent_position`, `compute_consensus`, `weight_record` (Bun + TypeScript server, `mcp/src/tools/hermes.ts`; data in `epistemic/consensus`).

@@ -34,3 +34,7 @@ Ethos is the **Sovereign Truth-Weighting Engine**. It ensures that the system do
 ## Implementation Details
 - **Architecture**: Python FastMCP server utilizing a logic layer that reads the Ethos Registry.
 - **Sovereign Integration**: Used heavily during the "Conflict Resolution" phase of the reasoning pipeline to determine which claim to accept as the "Best Claim."
+
+## MCP tools
+
+Available MCP tools: `ethos_score`, `ethos_resolve`.
