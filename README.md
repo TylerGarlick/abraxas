@@ -96,7 +96,7 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - 📄 **[The Sovereignty Gauntlet](docs/verification/sovereignty-gauntlet.md)** — How we prove 0% hallucination.
 - 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
 - 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift from "Skins" to "Skeleton."
-- 📄 **[150 Practical Examples](docs/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
+- 📄 **[150 Practical Examples](docs/manual/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
 
 ---
 

@@ -1379,9 +1379,9 @@ python3 scripts/calibrate.py "This algorithm is perfectly optimized"
 ---
 
 **See Also:**
-- [Skills Documentation](./skills/) — Detailed skill guides
-- [System Overview](./docs/overview/index.md) — Architecture overview
-- [Test Suite](./tests/) — Verification benchmarks
-- [Research Papers](./research/papers/) — Academic foundations
+- [Skills Documentation](../../skills/) — Detailed skill guides
+- [System Overview](../overview/index.md) — Architecture overview
+- [Test Suite](../../tests/) — Verification benchmarks
+- [Research Papers](../../research/papers/) — Academic foundations
 
 *Last updated: 2026-04-13*

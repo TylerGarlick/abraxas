@@ -64,7 +64,7 @@ The system employs the **Hunter Loop**:
 ### Installation & Usage
 
 - **Guide**: For a detailed walkthrough on moving from reactive to sovereign operations, see the [Sovereign Mode Guide](../manual/sovereign-mode-guide.md).
-- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](./skills.md).
+- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](../systems/skills.md).
 - **As a Constitution**: Load `CONSTITUTION.md` as your system prompt for an immediate Sovereign-ready environment.
 
 ---
@@ -73,5 +73,5 @@ The system employs the **Hunter Loop**:
 **v4.3 Operational.** The transition from Reactive to Autonomous is complete.
 
 For detailed architecture, see [Architecture](./architecture.md).
-For command documentation, see [Skills Reference](./skills.md).
+For command documentation, see [Skills Reference](../systems/skills.md).
 

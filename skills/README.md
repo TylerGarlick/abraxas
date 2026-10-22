@@ -64,3 +64,8 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Stochasmos** | Strategic intervention identifying pressure points in discourse graphs. | - | [SKILL.md](./stochasmos/SKILL.md) |
 | **Synesis** | Higher-order synthesis of hardened truths into multidimensional conceptual graphs. | - | [SKILL.md](./synesis/SKILL.md) |
 | **Sovereign-Boot** | Power Button for the Sovereign Brain; automates initialization. | `soter-verifier`, `mnemosyne-memory`, `janus-orchestrator`, `dream-reservoir` | [SKILL.md](./sovereign-boot/SKILL.md) |
+| **Tasks** | Project and task management with progress tracking and dependencies. | - | [SKILL.md](./ledger/SKILL.md) |
+| **Metanoia** | Recursive self-evolution of stress-test parameters and skill-composition workflows. | - | [SKILL.md](./metanoia/SKILL.md) |
+| **Mnemosyne Memory MCP** | Long-term storage for verified truth fragments and historical provenance. | - | [SKILL.md](./mnemosyne/SKILL.md) |
+| **Sieve** | Filters environmental noise and curates high-valence epistemic signals. | - | [SKILL.md](./sieve_pkg/SKILL.md) |
+| **Sovereign Anchor** | Privileged write operation for injecting immutable Genesis Blocks. | - | [SKILL.md](./sovereign_anchor/SKILL.md) |
