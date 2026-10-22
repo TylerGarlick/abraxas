@@ -54,7 +54,7 @@
 
 ### Record a Claim
 
-```python
+```the system language
 from aletheia_tracker import AletheiaTracker
 
 tracker = AletheiaTracker()
@@ -68,7 +68,7 @@ tracker.record_claim(
 
 ### Get Calibration Report
 
-```python
+```the system language
 report = tracker.get_calibration_report()
 print(f"Known Accuracy: {report['known_accuracy']}%")
 print(f"Calibration Score: {report['calibration_score']}%")

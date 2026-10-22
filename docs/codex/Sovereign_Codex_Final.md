@@ -75,7 +75,7 @@ Testing across 6 models (Gemma 3-27B, GLM-5, GPT-OSS 120B, GPT-OSS 20B, MiniMax 
 ## VOLUME V: OPERATIONAL SPECIFICATIONS
 ### 5.1 Deployment Standards
 The Sovereign Brain requires a three-tier architecture:
-1. **Bedrock**: ArangoDB (Provenance Graph), encrypted vault.
+1. **Bedrock**: the graph database (Provenance Graph), encrypted vault.
 2. **Brain**: MCP Servers (Soter, Janus, Mnemosyne, etc.).
 3. **Edge**: Gateway with deterministic routing.
 

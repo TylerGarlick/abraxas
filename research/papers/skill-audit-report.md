@@ -94,7 +94,7 @@ Gmail sends → Guardrail Monitor (audit log)
 **Required Changes:**
 
 1. **Pre-send Soter verification:**
-   ```python
+   ```the system language
    from abruxas.soter import verify_risk
    
    def send_email_with_verification(to, subject, body):
@@ -109,7 +109,7 @@ Gmail sends → Guardrail Monitor (audit log)
    - Enable anti-sycophancy checks (push back on incorrect user framing)
 
 3. **Guardrail Monitor audit logging:**
-   ```python
+   ```the system language
    guardrail_log("email_sent", metadata={
        "to": to,
        "subject": subject,
@@ -233,7 +233,7 @@ Guardrail Monitor (log generation with metadata)
 **Required Changes:**
 
 1. **Pre-generation prompt verification:**
-   ```python
+   ```the system language
    from abruxas.soter import verify_content_policy
    
    def generate_with_verification(prompt, preset):
@@ -284,13 +284,13 @@ Guardrail Monitor (log generation with metadata)
 **Location:** `/root/.openclaw/workspace/skills/pipeline-dispatcher/SKILL.md`
 
 **Current State:**
-- Scans Beads for `#ready` tasks
+- Scans the issue tracker for `#ready` tasks
 - Spawns sub-agents with complexity-based timeouts
-- Logs to ArangoDB (`SovereignNodes`, `SovereignEdges`)
+- Logs to the graph database (`SovereignNodes`, `SovereignEdges`)
 - **No epistemic labeling of task outputs**
 
 **Abraxas Alignment:**
-- Already uses ArangoDB (shared with Abraxas)
+- Already uses the graph database (shared with Abraxas)
 - Task dispatch aligns with Janus orchestration
 - **Gap:** No Soter pre-dispatch risk check, no Janus post-completion verification
 
@@ -298,14 +298,14 @@ Guardrail Monitor (log generation with metadata)
 
 **Architecture Change:**
 ```
-Current:  Beads #ready → Dispatcher → Sub-agent → Result
-Sovereign: Beads #ready → Soter (risk) → Janus (plan) → Sub-agent → Janus (verify) → Result
+Current:  the issue tracker #ready → Dispatcher → Sub-agent → Result
+Sovereign: the issue tracker #ready → Soter (risk) → Janus (plan) → Sub-agent → Janus (verify) → Result
 ```
 
 **Required Changes:**
 
 1. **Pre-dispatch Soter check:**
-   ```python
+   ```the system language
    from abruxas.soter import verify_task_risk
    
    def dispatch_with_verification(task):
@@ -321,7 +321,7 @@ Sovereign: Beads #ready → Soter (risk) → Janus (plan) → Sub-agent → Janu
    - Generate execution plan with epistemic labels
 
 3. **Post-completion verification:**
-   ```python
+   ```the system language
    from abruxas.janus import verify_output
    
    def verify_subagent_result(result, original_task):
@@ -563,7 +563,7 @@ This gap quantifies the **epistemic advantage** gained by shifting from post-hoc
 | Skills with Janus labeling | 2/9 (22%) | 9/9 (100%) | Epistemic labels in outputs |
 | Skills with Mnemosyne linkage | 2/9 (22%) | 7/9 (78%) | Cross-session retrieval tests |
 | Policy violations blocked | 0 | 100% | Soter veto count |
-| Task completion rate | ~85% | ~95% | Beads task success rate |
+| Task completion rate | ~85% | ~95% | the issue tracker task success rate |
 
 ---
 

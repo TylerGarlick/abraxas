@@ -37,16 +37,18 @@ docs/
 
 ### New Users
 1. Start with [`overview/index.md`](overview/index.md) — what Abraxas is
-2. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — comprehensive architecture
-3. See [`research/INDEX.md`](research/INDEX.md) — research documentation index
-4. See [`systems/skills.md`](systems/skills.md) — command reference
+2. Read [`overview/whitepaper.md`](overview/whitepaper.md) — the core theoretical vision
+3. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — comprehensive architecture
+4. See [`codex/MASTER_INDEX.md`](codex/MASTER_INDEX.md) — the encyclopedia of Sovereign logic
+5. See [`systems/skills.md`](systems/skills.md) — command reference
 
 ### Researchers
 1. Read [`research/INDEX.md`](research/INDEX.md) — full research documentation map
-2. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — complete architecture overview
-3. Read [`research/architecture/`](research/architecture/) — architecture docs with research focus
-4. See [`../research/reports/`](../research/reports/) — empirical reports and evaluations
-5. See [`testing/testing.md`](testing/testing.md) — testing methodology
+2. Read [`overview/whitepaper.md`](overview/whitepaper.md) — theoretical foundations
+3. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — complete architecture overview
+4. Read [`research/architecture/`](research/architecture/) — architecture docs with research focus
+5. See [`../research/reports/`](../research/reports/) — empirical reports and evaluations
+6. See [`testing/testing.md`](testing/testing.md) — testing methodology
 
 ### Developers
 1. Read [`overview/architecture.md`](overview/architecture.md) — system design
@@ -87,6 +89,6 @@ docs/
 
 ## Git Status
 
-All files tracked in main branch: https://github.com/TylerGarlick/abraxas
+All files tracked in main branch: https://github.com/[USER]/abraxas
 
 _Last updated: 2026-05-14_

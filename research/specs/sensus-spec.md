@@ -56,4 +56,3 @@ Override with explicit justification. Reasons are logged.
 - **Input:** Any Abraxas output before surfacing
 - **Output:** Plausibility scores and violation explanations
 - **Complements:** Janus (epistemic labels), Logos (structural validity)
-

@@ -15,7 +15,7 @@ The Abraxas governance model defines the architectural relationship between laws
 | Component | Role | Description | Analogy |
 |-----------|------|-------------|---------|
 | **Constitution** | The "What" | Human-readable Markdown files defining absolute requirements and laws | **The Law Book** |
-| **Skills** | The "How" | Code (JavaScript/TypeScript/Python) implementing specific capabilities | **The Tool** |
+| **Skills** | The "How" | Code (JavaScript/TypeScript/the system language) implementing specific capabilities | **The Tool** |
 | **Unified MCP Server** | The "Where" | Modular monolith (`abraxas_mcp`) invoking skills to enforce the Constitution | **The Police** |
 
 ## The Law Book Analogy

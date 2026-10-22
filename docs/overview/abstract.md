@@ -20,8 +20,8 @@ We propose five empirical tests for deception detection: performance inflation (
 
 **Word Count:** ~8,500 words (main text), ~150 words (abstract)
 
-**Corresponding Author:** Tyler Garlick — GitHub: https://github.com/TylerGarlick
+**Corresponding Author:** Tyler Garlick — GitHub: https://github.com/[USER]
 
-**Repository:** https://github.com/TylerGarlick/abraxas
+**Repository:** https://github.com/[USER]/abraxas
 
 **License:** MIT

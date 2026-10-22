@@ -87,7 +87,7 @@ Abraxas is one answer.
 **Interactive Demo:** [Deploy to Vercel](https://vercel.com/new) or run locally:
 
 ```bash
-git clone https://github.com/TylerGarlick/abraxas
+git clone https://github.com/[USER]/abraxas
 cd abraxas/demos/interactive
 npm install && node server.js
 # Open http://localhost:3000
@@ -95,7 +95,7 @@ npm install && node server.js
 
 **Full Whitepaper:** [`docs/overview/whitepaper.md`](whitepaper.md)
 
-**GitHub:** https://github.com/TylerGarlick/abraxas
+**GitHub:** https://github.com/[USER]/abraxas
 
 ---
 

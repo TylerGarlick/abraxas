@@ -43,7 +43,7 @@ graph TD
     end
 
     subgraph Genome_Layer [The Deep Genome / The Truth]
-        Concepts <--> GraphDB[(ArangoDB Knowledge Graph)]
+        Concepts <--> GraphDB[(the graph database Knowledge Graph)]
         GraphDB <--> Provenance[Provenance Chain]
     end
 
@@ -68,7 +68,7 @@ The active context. Holds the current state of the world, the current goal, and 
 ### 4. The Subconscious (Dream Reservoir)
 The most critical Sovereign layer. Where raw, unverified intuitions are stored as `DreamSessions`. This is the realm of **Chaos** — seeds of ideas before refinement into `Hypothesis` (with novelty + coherence scores) and eventually `Concept` (grounded with steps).
 
-### 5. The Genome (ArangoDB Knowledge Graph)
+### 5. The Genome (the graph database Knowledge Graph)
 The bedrock of truth. The "Genetic Memory" of the system. Nothing is "true" unless it exists here with a complete **Provenance Chain**. This represents the absolute **Order** of the system.
 
 ## The Cognitive Cycle: From Chaos to Order
@@ -101,7 +101,7 @@ The bidirectional cycle ensures the system both grounds its outputs in verified 
 | Pre-Frontal Cortex | Soter + Guardrail | Inhibition | Vetoes unsafe output |
 | Working Memory | Mnemosyne | Context | Bridges short/long-term memory |
 | Subconscious | Dream Reservoir | Chaos | Generates novel intuitions |
-| Genome | ArangoDB Graph | Order | Stores verified truth |
+| Genome | the graph database Graph | Order | Stores verified truth |
 
 ---
 

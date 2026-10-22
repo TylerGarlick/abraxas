@@ -6,7 +6,7 @@ Guide to configuring OpenClaw to use Ollama cloud providers as the default LLM b
 
 OpenClaw supports Ollama-compatible API providers. This setup connects your OpenClaw installation to cloud-based LLM services via Ollama's API interface.
 
-The startup script also launches **Beads** — your issue tracker — alongside Ollama.
+The startup script also launches **the issue tracker** — your issue tracker — alongside Ollama.
 
 ## Prerequisites
 
@@ -16,10 +16,10 @@ The startup script also launches **Beads** — your issue tracker — alongside 
 curl -fsSL https://ollama.com/install.sh | sh
 ```
 
-### 2. Install Beads (Issue Tracker)
+### 2. Install the issue tracker (Issue Tracker)
 
 ```bash
-npm install -g beads@0.2.1
+npm install -g the issue tracker@0.2.1
 ```
 
 ### 3. Sign in to Ollama Cloud (required for Ollama Cloud provider)
@@ -63,7 +63,7 @@ bash ~/.openclaw/workspace/skills/ollama-cloud/scripts/ollama.sh
 
 This will:
 1. Start `ollama serve` (or confirm it's running)
-2. Start `beads` (issue tracker server)
+2. Start `the issue tracker` (issue tracker server)
 3. Prompt for `ollama signin` if using Ollama Cloud
 4. Ask you to select provider, model, and API key
 5. Back up and patch `~/.openclaw/openclaw.json`

@@ -116,7 +116,7 @@ research/
 
 ## Git Status
 
-Repository: [TylerGarlick/abraxas](https://github.com/TylerGarlick/abraxas). Browse the
+Repository: [[USER]/abraxas](https://github.com/[USER]/abraxas). Browse the
 [research index](INDEX.md) for the repository-relative catalog.
 
 _Last updated: 2026-04-06_
