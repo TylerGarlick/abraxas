@@ -57,6 +57,32 @@ export async function provenanceChain(store: Store, claimId: string) {
   const ids = Array.isArray(claim.evidence) ? claim.evidence.filter((x): x is string => typeof x === "string") : [];
   return Promise.all(ids.map((id) => store.collection("epistemic/fragments").get(id)));
 }
+
+export async function exportPef(store: Store, claimId: string) {
+  const claim = await store.collection("epistemic/claims").get(claimId); if (!claim) throw new Error(`Claim ${claimId} not found`);
+  const evidence = await provenanceChain(store, claimId);
+  return {
+    pef_version: "0.1",
+    anchor: {
+      claim_id: claimId,
+      proposition: claim.text,
+      timestamp: claim.createdAt || new Date().toISOString(),
+    },
+    provenance: {
+      evidence: evidence.map((f: any) => ({
+        id: f?._id,
+        content: f?.content,
+        weight: f?.trustWeight ?? 1,
+      })),
+      chain: ["derived"],
+    },
+    calibration: {
+      confidence: claim.status === "confirmed" ? 1.0 : 0.5,
+      label: claim.status || "Unknown",
+      metric: "uncalibrated",
+    },
+  };
+}
 export async function prioritizedFragments(store: Store, query: string) {
   const normalized = query.toLowerCase(); const rows = await store.collection("epistemic/fragments").find();
   return rows.filter((row) => String(row.content ?? "").toLowerCase().includes(normalized)).sort((a, b) => Number(b.trustWeight ?? 0) - Number(a.trustWeight ?? 0));
