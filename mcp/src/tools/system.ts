@@ -32,9 +32,18 @@ export async function healthReport(ctx: import("../context.ts").AppContext) {
   } catch (err) {
     ctx.log.warn("health: store check failed", { error: String(err) });
   }
+  
+  const constitution = await ctx.store.collection("system/constitution").find();
+  const constitutionalCount = constitution.length;
+  const isSovereign = storeOk && constitutionalCount > 0;
+
   return {
-    status: storeOk ? "Sovereign Mode" : "Simulation Mode",
+    status: isSovereign ? "Sovereign Mode" : "Simulation Mode",
     storage: storeOk ? "verified" : "unavailable",
+    constitution: {
+      initialized: constitutionalCount > 0,
+      ruleCount: constitutionalCount,
+    },
     backend: ctx.store.backend,
     version: SERVER_VERSION,
   };
