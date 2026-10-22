@@ -1,6 +1,6 @@
 # Abraxas Research Documentation — Index
 
-**Last Updated:** 2026-05-14  
+**Last Updated:** 2026-10-21
 **Reorganized:** 2026-05-14
 
 ---
@@ -64,19 +64,20 @@ research/
 
 | Document | Location | Status | Description |
 |----------|----------|--------|-------------|
-| **Research Paper v4** | [`papers/research-paper-v4.md`](papers/research-paper-v4.md) | ✅ Current | Full v4 whitepaper — hallucinations, sycophancy, provenance chains |
-| **Sovereign Corpus** | [`SOVEREIGN_CORPUS.md`](SOVEREIGN_CORPUS.md) | ✅ Current | Comprehensive reference with heavy math formalization |
-| **Nature MI Manuscript** | [`final/final/nature_mi/manuscript.md`](final/final/nature_mi/manuscript.md) | ✅ Final | Nature Machine Intelligence submission |
-| **NeurIPS 2026 Manuscript** | [`final/final/neurips_2026/manuscript.md`](final/final/neurips_2026/manuscript.md) | ✅ Final | NeurIPS 2026 submission |
-| **Mathematical Formalization** | [`final/final/neurips_2026/mathematical_formalization.md`](final/final/neurips_2026/mathematical_formalization.md) | ✅ Final | Full math appendix |
-| **Comparison Matrix** | [`comparison/ABRAXAS_COMPARISON_MATRIX.md`](comparison/ABRAXAS_COMPARISON_MATRIX.md) | ✅ Current | Cross-model comparison |
-| **Executive Summary** | [`reports/EXECUTIVE_SUMMARY.md`](reports/EXECUTIVE_SUMMARY.md) | ✅ Current | High-level summary |
+| **Research Paper v4** | [`papers/research-paper-v4.md`](papers/research-paper-v4.md) | Research paper | Full v4 whitepaper — hallucinations, sycophancy, provenance chains |
+| **Sovereign Corpus** | [`SOVEREIGN_CORPUS.md`](SOVEREIGN_CORPUS.md) | Consolidated reference | Comprehensive reference with heavy math formalization |
+| **Nature MI Manuscript** | [`final/final/nature_mi/manuscript.md`](final/final/nature_mi/manuscript.md) | Manuscript package | Nature Machine Intelligence manuscript |
+| **NeurIPS 2026 Manuscript** | [`final/final/neurips_2026/manuscript.md`](final/final/neurips_2026/manuscript.md) | Manuscript package | NeurIPS 2026 manuscript |
+| **Mathematical Formalization** | [`final/final/neurips_2026/mathematical_formalization.md`](final/final/neurips_2026/mathematical_formalization.md) | Supporting manuscript | Full math appendix |
+| **Comparison Matrix** | [`comparison/ABRAXAS_COMPARISON_MATRIX.md`](comparison/ABRAXAS_COMPARISON_MATRIX.md) | Comparative research | Cross-model comparison |
+| **Executive Summary** | [`reports/EXECUTIVE_SUMMARY.md`](reports/EXECUTIVE_SUMMARY.md) | Research summary | High-level summary |
 
 ---
 
 ## Daily Briefings (2026)
 
-38 daily research briefings from March—May 2026. Each folder contains a `README.md` with the day's findings.
+Date-organized research records span March through June 2026; browse the [`2026/`](2026/) tree.
+Not every date has a briefing, and some date folders contain experiment outputs as well.
 
 | Period | Folders | Coverage |
 |--------|---------|----------|

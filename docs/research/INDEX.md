@@ -14,8 +14,8 @@ This index links all foundational research documentation for the Abraxas Soverei
 | **Sovereign Brain Reference** | [`sovereign-brain-reference.md`](sovereign-brain-reference.md) | Comprehensive overview of the Abraxas architecture, three-tier sovereignty model, full pipeline, and system-by-system reference |
 | **Sovereign Evidence Standard** | [`sovereign-evidence-standard.md`](sovereign-evidence-standard.md) | The empirical standard for what constitutes Sovereign Evidence in Abraxas |
 | **Research Paper v4** | [`../papers/research-paper-v4.md`](../../research/papers/research-paper-v4.md) | Full academic whitepaper: "Mitigating Hallucinations and Sycophancy via Epistemic Guardrails and Provenance Chains" |
-| **Whitepaper (v3)** | [`../overview/whitepaper.md`](../../overview/whitepaper.md) | Abraxas v3 whitepaper |
-| **Sovereign Manifesto** | [`../overview/sovereign-manifesto.md`](../../overview/sovereign-manifesto.md) | The philosophical foundation of the Sovereign approach |
+| **Whitepaper (v3)** | [`../overview/whitepaper.md`](../overview/whitepaper.md) | Abraxas v3 whitepaper |
+| **Sovereign Manifesto** | [`../overview/sovereign-manifesto.md`](../overview/sovereign-manifesto.md) | The philosophical foundation of the Sovereign approach |
 
 ## Architecture Design Documents
 
@@ -35,21 +35,21 @@ This index links all foundational research documentation for the Abraxas Soverei
 
 | Volume | Location | Content |
 |--------|----------|---------|
-| **Master Index** | [`../codex/MASTER_INDEX.md`](../../codex/MASTER_INDEX.md) | Navigational index for all Codex volumes |
-| **Vol I: Epistemic Crisis** | [`../codex/Vol_I_Epistemic_Crisis.md`](../../codex/Vol_I_Epistemic_Crisis.md) | The hallucination and sycophancy problem in modern AI |
-| **Vol II: Sovereign Architecture** | [`../codex/Vol_II_Sovereign_Architecture.md`](../../codex/Vol_II_Sovereign_Architecture.md) | The architectural solution |
-| **Vol III: Orchestration** | [`../codex/Vol_III_Orchestration.md`](../../codex/Vol_III_Orchestration.md) | Janus and the cognitive engine |
-| **Vol IV: Empirical Evidence** | [`../codex/Vol_IV_Empirical_Evidence.md`](../../codex/Vol_IV_Empirical_Evidence.md) | Validation results and benchmarks |
-| **Vol V: Operational Specs** | [`../codex/Vol_V_Operational_Specs.md`](../../codex/Vol_V_Operational_Specs.md) | Deployment and operational specifications |
+| **Master Index** | [`../codex/MASTER_INDEX.md`](../codex/MASTER_INDEX.md) | Navigational index for all Codex volumes |
+| **Vol I: Epistemic Crisis** | [`../codex/Vol_I_Epistemic_Crisis.md`](../codex/Vol_I_Epistemic_Crisis.md) | The hallucination and sycophancy problem in modern AI |
+| **Vol II: Sovereign Architecture** | [`../codex/Vol_II_Sovereign_Architecture.md`](../codex/Vol_II_Sovereign_Architecture.md) | The architectural solution |
+| **Vol III: Orchestration** | [`../codex/Vol_III_Orchestration.md`](../codex/Vol_III_Orchestration.md) | Janus and the cognitive engine |
+| **Vol IV: Empirical Evidence** | [`../codex/Vol_IV_Empirical_Evidence.md`](../codex/Vol_IV_Empirical_Evidence.md) | Validation results and benchmarks |
+| **Vol V: Operational Specs** | [`../codex/Vol_V_Operational_Specs.md`](../codex/Vol_V_Operational_Specs.md) | Deployment and operational specifications |
 
 ## Implementation Plans
 
 | Plan | Location | Status |
 |------|----------|--------|
-| **v4.1** | [`../plans/v4.1.md`](../../plans/v4.1.md) | Complete |
-| **v4.3** | [`../plans/4.3.md`](../../plans/4.3.md) | Complete |
-| **v4.4** | [`../plans/4.4.md`](../../plans/4.4.md) | Complete |
-| **v4.5** | [`../plans/4.5.md`](../../plans/4.5.md) | In Progress — Integrity Hardening |
+| **v4.1** | [`../plans/v4.1.md`](../plans/v4.1.md) | Complete |
+| **v4.3** | [`../plans/4.3.md`](../plans/4.3.md) | Complete |
+| **v4.4** | [`../plans/4.4.md`](../plans/4.4.md) | Complete |
+| **v4.5** | [`../plans/4.5.md`](../plans/4.5.md) | In Progress — Integrity Hardening |
 
 ## Research Data & Benchmarks
 

@@ -123,7 +123,7 @@ We tested Abraxas across **5 models** and **130+ structured queries**. Key findi
 | 4 | gemma3:27b-cloud | 0.69 | Resource-constrained deployment |
 | 5 | glm-5:cloud | 0.58 | Research only (15% timeout rate) |
 
-**Full Results:** [`research/05-research-paper-v2.0-final.md`](../../research/05-research-paper-v2.0-final.md)
+**Full Results:** [`research/05-research-paper-v2.0-final.md`](../../research/archive/05-research-paper-v2.0-final.md)
 
 ## The Five Deception Tests
 
@@ -201,7 +201,7 @@ Abraxas provides one architectural answer.
 
 **Full Whitepaper:** [`docs/overview/whitepaper.md`](whitepaper.md)
 
-**Empirical Validation:** [`research/05-research-paper-v2.0-final.md`](../../research/05-research-paper-v2.0-final.md)
+**Empirical Validation:** [`research/05-research-paper-v2.0-final.md`](../../research/archive/05-research-paper-v2.0-final.md)
 
 **GitHub Repository:** https://github.com/TylerGarlick/abraxas
 

@@ -161,4 +161,4 @@ Source Modelfile: `abraxas/research/Modelfile-abraxian-gpt-oss-120b-cloud`
 
 ---
 
-*Part of the Abraxas epistemic infrastructure. For more on the architecture, see [Architecture](./architecture.md) and [Skills Reference](./skills.md).*
+*Part of the Abraxas epistemic infrastructure. For more on the architecture, see [Architecture](../overview/architecture.md) and [Skills Reference](../systems/skills.md).*

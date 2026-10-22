@@ -18,7 +18,7 @@ Large language models exhibit a structural inability to distinguish between veri
 
 In May 2026, the Abraxas architecture transitioned from "Simulation" to "Sovereign Architecture". Through the implementation of a hash-linked cognitive chain (Sovereign-Nexus) and an attention-sink tripwire ($\tau = 0.15$), Abraxas has effectively closed the **Sovereign Gap**. Empirical validation via the "Sovereign Gauntlet" and "Chaos Suite" demonstrates 100% interception of high-entropy fabrications, rendering the system structurally incapable of emitting confident hallucinations.
 
-📄 **Verification Proof:** [`/docs/verification/SV-Doc.md`](docs/verification/SV-Doc.md)
+📄 **Verification Proof:** [`/docs/verification/SV-Doc.md`](../verification/SV-Doc.md)
 
 ---
 

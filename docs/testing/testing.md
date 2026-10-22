@@ -396,7 +396,7 @@ git checkout FETCH_HEAD -- docs/ scripts/
 ./scripts/generate-report.sh
 ```
 
-See [../scripts/README.md](../scripts/README.md) for detailed execution instructions.
+See [../../mcp/README.md](../../mcp/README.md) for detailed execution instructions.
 
 ---
 

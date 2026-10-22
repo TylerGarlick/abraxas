@@ -428,5 +428,5 @@ All Abraxas skills use consistent ID formats for cross-referencing:
 ## Related Documentation
 
 - [Skills Reference](./skills.md) — All Abraxas skills and commands
-- [Architecture](./architecture.md) — System architecture diagrams
-- [Composition Patterns](./composition-patterns.md) — Multi-skill workflows
+- [Architecture](../overview/architecture.md) — System architecture diagrams
+- [Composition Patterns](../design/composition-patterns.md) — Multi-skill workflows
