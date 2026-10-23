@@ -339,7 +339,7 @@ the report with different framing after the positions have already run.
 
 **Error case:** If no prior Advocate and Skeptic outputs exist in the session:
 ```
-[AGON] No prior debate found in this session. Run /agon (alias: /abraxas:agon, /abx:agon)  debate {claim} first.
+[AGON] No prior debate found in this session. Run /agon (alias: /abraxas:agon, /abx:agon)   debate {claim} first.
 ```
 
 ---
@@ -414,7 +414,7 @@ from opposite priors. Possible causes: (1) the claim is genuinely well-supported
 and both positions independently confirmed it; (2) the claim is framed in a way
 that does not generate real disagreement; (3) the positions did not maintain
 asymmetric starting points. Before treating this as strong confirmation, consider
-running /agon (alias: /abraxas:agon, /abx:agon)  falsify {claim} to test whether the claim has identifiable breaking
+running /agon (alias: /abraxas:agon, /abx:agon)   falsify {claim} to test whether the claim has identifiable breaking
 points.
 
 OPEN QUESTIONS
@@ -449,7 +449,7 @@ RECOMMENDED NEXT STEPS
 {One to three concrete actions based on the report:}
 — {action}: e.g., "Verify the specific figure cited by Skeptic against an external
   source before treating Advocate's conclusion as established."
-— {action}: e.g., "Run /agon (alias: /abraxas:agon, /abx:agon)  falsify to test whether the claim's breaking points
+— {action}: e.g., "Run /agon (alias: /abraxas:agon, /abx:agon)   falsify to test whether the claim's breaking points
   are empirically accessible."
 — {action}: e.g., "Extract the factual claims from both positions and check them
   against primary sources."
@@ -528,14 +528,14 @@ designed to process. Adversarial debate is a Sol-mode operation — it tests fac
 against opposing evidence. Applying it to symbolic material produces category errors, not insight.
 
 For this material, the appropriate path is:
-— If this is dream material: /receive (alias: /abraxas:receive, /abx:receive)  or /witness (alias: /abraxas:witness, /abx:witness)  to bring it into the Temenos
-— If you want Sol epistemic analysis of a symbol: /bridge (alias: /abraxas:bridge, /abx:bridge)  {symbol} to carry it
+— If this is dream material: /receive (alias: /abraxas:receive, /abx:receive)   or /witness (alias: /abraxas:witness, /abx:witness)   to bring it into the Temenos
+— If you want Sol epistemic analysis of a symbol: /bridge (alias: /abraxas:bridge, /abx:bridge)   {symbol} to carry it
   across the Threshold for factual examination
-— If you want to work with the symbolic content directly: /nox (alias: /abraxas:nox, /abx:nox)  or /dialogue (alias: /abraxas:dialogue, /abx:dialogue)  {figure}
+— If you want to work with the symbolic content directly: /nox (alias: /abraxas:nox, /abx:nox)   or /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   {figure}
 
 If you have a factual claim that emerged from or alongside this material — a
 specific assertion you want to test — restate it as a factual claim and run
-/agon (alias: /abraxas:agon, /abx:agon)  debate again.
+/agon (alias: /abraxas:agon, /abx:agon)   debate again.
 ```
 
 The redirect must not apologize for declining to process the material. It must not characterize
@@ -563,8 +563,8 @@ positions disagreed, but whether they disagreed on *central* points.
 [THEATRICAL DEBATE RISK]
 Both positions reached compatible conclusions on the central claim. This may reflect
 genuine evidence strength, or it may reflect that the positions did not maintain
-asymmetric starting points. To test: run /agon (alias: /abraxas:agon, /abx:agon)  falsify {claim} to search for breaking
-points. If /agon (alias: /abraxas:agon, /abx:agon)  falsify also fails to generate genuine challenge, the claim may be
+asymmetric starting points. To test: run /agon (alias: /abraxas:agon, /abx:agon)   falsify {claim} to search for breaking
+points. If /agon (alias: /abraxas:agon, /abx:agon)   falsify also fails to generate genuine challenge, the claim may be
 well-supported — or it may be framed in a way that resists adversarial analysis.
 ```
 
@@ -615,12 +615,12 @@ Adversarial debate is not the right tool for this kind of question. A Convergenc
 not a verdict on how to live.
 
 If there are specific factual claims embedded in this question — things you want to test
-against evidence — extract them and run /agon (alias: /abraxas:agon, /abx:agon)  debate on those claims directly.
+against evidence — extract them and run /agon (alias: /abraxas:agon, /abx:agon)   debate on those claims directly.
 
 For the broader question, consider working with it in a different mode:
-— /sol (alias: /abraxas:sol, /abx:sol)  {question} for a labeled epistemic analysis of the factual components
-— /nox (alias: /abraxas:nox, /abx:nox)  {question} for symbolic engagement with the felt dimension
-— /receive (alias: /abraxas:receive, /abx:receive)  if this is connected to dream or shadow material
+— /sol (alias: /abraxas:sol, /abx:sol)   {question} for a labeled epistemic analysis of the factual components
+— /nox (alias: /abraxas:nox, /abx:nox)   {question} for symbolic engagement with the felt dimension
+— /receive (alias: /abraxas:receive, /abx:receive)   if this is connected to dream or shadow material
 ```
 
 The redirect must be direct but not clinical. It must not dismiss the question as invalid — it
@@ -673,8 +673,8 @@ that Sol-mode output to Agon, Agon accepts it as valid Sol-mode input. The bridg
 labeled and factual; it can be debated. The canonical workflow is:
 
 ```
-/bridge (alias: /abraxas:bridge, /abx:bridge)  {symbol}           → Sol-mode dossier on the symbol
-/agon (alias: /abraxas:agon, /abx:agon)  debate {sol claim}   → Agon runs on the factual claim from the dossier
+/bridge (alias: /abraxas:bridge, /abx:bridge)   {symbol}           → Sol-mode dossier on the symbol
+/agon (alias: /abraxas:agon, /abx:agon)   debate {sol claim}   → Agon runs on the factual claim from the dossier
 ```
 
 ---
@@ -824,7 +824,7 @@ narrow conditions (raw benchmark performance) but requires heavy qualification f
 application. Current verdict: the claim overstates the case.
 
 RECOMMENDED NEXT STEPS
-— Run /agon (alias: /abraxas:agon, /abx:agon)  falsify to identify the precise conditions under which the claim breaks.
+— Run /agon (alias: /abraxas:agon, /abx:agon)   falsify to identify the precise conditions under which the claim breaks.
 — Examine deployment data from inference-constrained environments to resolve the efficiency question.
 — Check whether specialized model architectures (mixture-of-experts, domain-specific training)
   change the scaling picture.
@@ -850,7 +850,7 @@ A convergence rate of 100% is unusually high for adversarial positions operating
 priors. Possible causes: (1) the claim is genuinely well-supported and both positions independently
 confirmed it; (2) the claim is framed in a way that does not generate real disagreement; (3) the
 positions did not maintain asymmetric starting points. Before treating this as strong confirmation,
-consider running /agon (alias: /abraxas:agon, /abx:agon)  falsify {claim} to test whether the claim has identifiable breaking points.
+consider running /agon (alias: /abraxas:agon, /abx:agon)   falsify {claim} to test whether the claim has identifiable breaking points.
 
 OVERALL EPISTEMIC STATUS
 [CLAIM SUPPORTED] — Both positions found the claim unambiguously correct; there are no peripheral
@@ -859,7 +859,7 @@ scientific fact.)
 
 RECOMMENDED NEXT STEPS
 — No further verification needed for basic molecular composition.
-— If you need to challenge this claim, /agon (alias: /abraxas:agon, /abx:agon)  falsify will show you the precise conditions that
+— If you need to challenge this claim, /agon (alias: /abraxas:agon, /abx:agon)   falsify will show you the precise conditions that
   would need to be false for the core claim to fail (spoiler: they are not falsifiable within
   known physics).
 ```
@@ -879,14 +879,14 @@ designed to process. Adversarial debate is a Sol-mode operation — it tests fac
 against opposing evidence. Applying it to symbolic material produces category errors, not insight.
 
 For this material, the appropriate path is:
-— If this is dream material: /receive (alias: /abraxas:receive, /abx:receive)  or /witness (alias: /abraxas:witness, /abx:witness)  to bring it into the Temenos
-— If you want Sol epistemic analysis of a symbol: /bridge (alias: /abraxas:bridge, /abx:bridge)  {symbol} to carry it
+— If this is dream material: /receive (alias: /abraxas:receive, /abx:receive)   or /witness (alias: /abraxas:witness, /abx:witness)   to bring it into the Temenos
+— If you want Sol epistemic analysis of a symbol: /bridge (alias: /abraxas:bridge, /abx:bridge)   {symbol} to carry it
   across the Threshold for factual examination
-— If you want to work with the symbolic content directly: /nox (alias: /abraxas:nox, /abx:nox)  or /dialogue (alias: /abraxas:dialogue, /abx:dialogue)  {figure}
+— If you want to work with the symbolic content directly: /nox (alias: /abraxas:nox, /abx:nox)   or /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   {figure}
 
 If you have a factual claim that emerged from or alongside this material — a
 specific assertion you want to test — restate it as a factual claim and run
-/agon (alias: /abraxas:agon, /abx:agon)  debate again.
+/agon (alias: /abraxas:agon, /abx:agon)   debate again.
 ```
 
 ---
@@ -895,12 +895,12 @@ specific assertion you want to test — restate it as a factual claim and run
 
 **User completes:**
 ```
-/bridge (alias: /abraxas:bridge, /abx:bridge)  shadow figure → {Sol-mode dossier on the psychological concept of the Shadow}
+/bridge (alias: /abraxas:bridge, /abx:bridge)   shadow figure → {Sol-mode dossier on the psychological concept of the Shadow}
 ```
 
 **Then extracts a factual claim from the dossier and runs:**
 ```
-/agon (alias: /abraxas:agon, /abx:agon)  debate "In Jungian psychology, the Shadow represents repressed or disowned aspects of the psyche."
+/agon (alias: /abraxas:agon, /abx:agon)   debate "In Jungian psychology, the Shadow represents repressed or disowned aspects of the psyche."
 ```
 
 **Agon accepts this as Sol-mode input and produces a full Convergence Report** testing whether this

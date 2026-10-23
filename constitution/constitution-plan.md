@@ -72,7 +72,7 @@ Questions are asked in descending leverage order. Each answer receives an episte
 ### Workflow Chain
 
 ```
-Vague Request -> /plan start -> Extract unknowns -> Ask questions -> Answer/Skip -> Export clarity map -> readyForImplementation: true -> /logos (alias: /abraxas:logos, /abx:logos) map -> /agon (alias: /abraxas:agon, /abx:agon) debate -> Implementation
+Vague Request -> /plan start -> Extract unknowns -> Ask questions -> Answer/Skip -> Export clarity map -> readyForImplementation: true -> /logos (alias: /abraxas:logos, /abx:logos)  map -> /agon (alias: /abraxas:agon, /abx:agon)  debate -> Implementation
 ```
 
 ### Plan Commands

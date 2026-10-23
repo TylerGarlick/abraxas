@@ -349,11 +349,11 @@ When `/mnemosyne save` runs, it auto-extracts artifact IDs:
 ### Pattern 1: Sustained Investigation
 
 ```
-1. /janus (alias: /abraxas:janus, /abx:janus) session open              → Begin Janus session
-2. /sol (alias: /abraxas:sol, /abx:sol) (analysis work)            → Epistemic analysis
-3. /mnemon (alias: /abraxas:mnemon, /abx:mnemon) hold "X"                 → Track belief
+1. /janus (alias: /abraxas:janus, /abx:janus)  session open              → Begin Janus session
+2. /sol (alias: /abraxas:sol, /abx:sol)  (analysis work)            → Epistemic analysis
+3. /mnemon (alias: /abraxas:mnemon, /abx:mnemon)  hold "X"                 → Track belief
 4. /kairos frame "decision Y"      → Structure decision
-5. /logos (alias: /abraxas:logos, /abx:logos) map "argument Z"          → Map argument
+5. /logos (alias: /abraxas:logos, /abx:logos)  map "argument Z"          → Map argument
 6. /mnemosyne save "Investigation Q" → Archive everything
 7. [Close Claude Code]
 8. [Open new session]

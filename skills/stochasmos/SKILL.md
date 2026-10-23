@@ -23,15 +23,15 @@ Seeds must NEVER frame as imperatives. "You should..." is a constitutional viola
 
 ## Commands
 
-### /stochasmos pressure {discourse_id} with {truths}
+### /stochasmos (alias: /abraxas:stochasmos, /abx:stochasmos) pressure {discourse_id} with {truths}
 Identify the optimal pressure point.
 - **Behavior**: Call `stochasmos_pressure_point`. Use structural graph analysis. Rank by centrality × tension. Explain *why* this point was chosen.
 
-### /stochasmos seed {pressure_point_id}
+### /stochasmos (alias: /abraxas:stochasmos, /abx:stochasmos) seed {pressure_point_id}
 Generate a friction seed.
 - **Behavior**: Call `stochasmos_seed`. Produce a calibrated truth payload. Include disconfirmation criteria. Ensure non-imperative framing.
 
-### /stochasmos assess {seed_id}
+### /stochasmos (alias: /abraxas:stochasmos, /abx:stochasmos) assess {seed_id}
 Run the Krisis gauntlet.
 - **Behavior**: Call `stochasmos_assess_risk`. Run all four frameworks. Block imperatives. Report tensions. Use non-verdict closing language.
 

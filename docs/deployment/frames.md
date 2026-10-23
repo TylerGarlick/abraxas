@@ -7,9 +7,9 @@ about your knowledge, what it prioritizes in its responses, and what standards i
 Frames are loaded via the `/frame` command:
 
 ```
-/frame (alias: /abraxas:frame, /abx:frame) <name>       # Replace: clear and load named frame
-/frame (alias: /abraxas:frame, /abx:frame) + <name>    # Merge: add named frame to existing frame
-/frame (alias: /abraxas:frame, /abx:frame) merge <name> # Merge: add named frame (alternative syntax)
+/frame (alias: /abraxas:frame, /abx:frame)  <name>       # Replace: clear and load named frame
+/frame (alias: /abraxas:frame, /abx:frame)  + <name>    # Merge: add named frame to existing frame
+/frame (alias: /abraxas:frame, /abx:frame)  merge <name> # Merge: add named frame (alternative syntax)
 ```
 
 Project frames are checked first (`frames/<name>.md`), then user frames (`~/.claude/frames/<name>.md`).
@@ -41,11 +41,11 @@ Context frames establish your role, communication preferences, and working style
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) skeptic
+/frame (alias: /abraxas:frame, /abx:frame)  skeptic
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + skeptic    # Merge into existing frame
+/frame (alias: /abraxas:frame, /abx:frame)  + skeptic    # Merge into existing frame
 ```
 
 **What This Looks Like:**
@@ -73,11 +73,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) learner
+/frame (alias: /abraxas:frame, /abx:frame)  learner
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + learner
+/frame (alias: /abraxas:frame, /abx:frame)  + learner
 ```
 
 **What This Looks Like:**
@@ -106,11 +106,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) expert
+/frame (alias: /abraxas:frame, /abx:frame)  expert
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + expert
+/frame (alias: /abraxas:frame, /abx:frame)  + expert
 ```
 
 **What This Looks Like:**
@@ -139,11 +139,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) cautious
+/frame (alias: /abraxas:frame, /abx:frame)  cautious
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + cautious
+/frame (alias: /abraxas:frame, /abx:frame)  + cautious
 ```
 
 **What This Looks Like:**
@@ -172,11 +172,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) creative
+/frame (alias: /abraxas:frame, /abx:frame)  creative
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + creative
+/frame (alias: /abraxas:frame, /abx:frame)  + creative
 ```
 
 **What This Looks Like:**
@@ -205,11 +205,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) collaborator
+/frame (alias: /abraxas:frame, /abx:frame)  collaborator
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + collaborator
+/frame (alias: /abraxas:frame, /abx:frame)  + collaborator
 ```
 
 **What This Looks Like:**
@@ -244,11 +244,11 @@ and debugging.
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) evaluate-code
+/frame (alias: /abraxas:frame, /abx:frame)  evaluate-code
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + evaluate-code
+/frame (alias: /abraxas:frame, /abx:frame)  + evaluate-code
 ```
 
 **Evaluation Criteria:**
@@ -291,11 +291,11 @@ Find weaknesses first.
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) evaluate-argument
+/frame (alias: /abraxas:frame, /abx:frame)  evaluate-argument
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + evaluate-argument
+/frame (alias: /abraxas:frame, /abx:frame)  + evaluate-argument
 ```
 
 **Evaluation Criteria:**
@@ -320,11 +320,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) evaluate-decision
+/frame (alias: /abraxas:frame, /abx:frame)  evaluate-decision
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + evaluate-decision
+/frame (alias: /abraxas:frame, /abx:frame)  + evaluate-decision
 ```
 
 **Evaluation Criteria:**
@@ -350,11 +350,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) evaluate-writing
+/frame (alias: /abraxas:frame, /abx:frame)  evaluate-writing
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + evaluate-writing
+/frame (alias: /abraxas:frame, /abx:frame)  + evaluate-writing
 ```
 
 **Evaluation Criteria:**
@@ -380,11 +380,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) evaluate-research
+/frame (alias: /abraxas:frame, /abx:frame)  evaluate-research
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + evaluate-research
+/frame (alias: /abraxas:frame, /abx:frame)  + evaluate-research
 ```
 
 **Evaluation Criteria:**
@@ -410,11 +410,11 @@ or
 
 **Activation:**
 ```
-/frame (alias: /abraxas:frame, /abx:frame) debug-criteria
+/frame (alias: /abraxas:frame, /abx:frame)  debug-criteria
 ```
 or
 ```
-/frame (alias: /abraxas:frame, /abx:frame) + debug-criteria
+/frame (alias: /abraxas:frame, /abx:frame)  + debug-criteria
 ```
 
 **Evaluation Criteria:**
@@ -457,7 +457,7 @@ When loading by name, frames are checked in this order:
 Save your own frames:
 
 ```
-/frame (alias: /abraxas:frame, /abx:frame) save my-custom-frame
+/frame (alias: /abraxas:frame, /abx:frame)  save my-custom-frame
 ```
 
 This writes to `~/.claude/frames/my-custom-frame.md` and can be loaded in future sessions
@@ -468,13 +468,13 @@ with `/frame my-custom-frame` or `/frame + my-custom-frame`.
 Set a frame to auto-load at session start:
 
 ```
-/frame (alias: /abraxas:frame, /abx:frame) default my-custom-frame
+/frame (alias: /abraxas:frame, /abx:frame)  default my-custom-frame
 ```
 
 Remove the default:
 
 ```
-/frame (alias: /abraxas:frame, /abx:frame) default clear
+/frame (alias: /abraxas:frame, /abx:frame)  default clear
 ```
 
 ---

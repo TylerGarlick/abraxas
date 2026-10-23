@@ -143,7 +143,7 @@ When user provides a claim string (e.g., `/aletheia confirm "COVID vaccines are 
 
 ---
 
-### Calibration Report (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration)
+### Calibration Report (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  calibration)
 
 **Algorithm:**
 
@@ -200,7 +200,7 @@ When user provides a claim string (e.g., `/aletheia confirm "COVID vaccines are 
 
 ---
 
-### Status Query (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia) status)
+### Status Query (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  status)
 
 **Algorithm:**
 
@@ -240,7 +240,7 @@ When user provides a claim string (e.g., `/aletheia confirm "COVID vaccines are 
 
 ---
 
-### Audit Query (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit)
+### Audit Query (Used by /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit)
 
 **Algorithm:**
 
@@ -340,11 +340,11 @@ Possible reasons:
 3. Ledger has been modified or corrupted
 
 Options:
-1. Run /aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue to find similar claims
-2. Try /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm session:{uuid} to browse this session's claims
+1. Run /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue to find similar claims
+2. Try /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm session:{uuid} to browse this session's claims
 3. Paste the exact claim text from the ledger
 
-If you believe the ledger is corrupted, run /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit.
+If you believe the ledger is corrupted, run /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit.
 ```
 
 ### Orphaned Resolution (Audit Mode)
@@ -361,7 +361,7 @@ This session file no longer exists in ~/.janus/sessions/
 
 Options:
 1. If you deleted the session intentionally, remove this resolution:
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit --remove-orphans
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit --remove-orphans
 
 2. If the session was deleted by accident and you have a backup, restore it.
 
@@ -379,7 +379,7 @@ Your resolution index may be from an older version of Aletheia.
 
 Options:
 1. Migrate to new schema:
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia) migrate-legacy-resolutions
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  migrate-legacy-resolutions
    (Creates backup at ~/.janus/resolutions.md.bak first)
 
 2. Continue with current schema (some features may not work).

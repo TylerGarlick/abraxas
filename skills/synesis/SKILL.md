@@ -25,15 +25,15 @@ When proposing an emergent theory, you must follow the **Synthetical Trinity**:
 
 ## Commands
 
-### /synesis map {truth_ids}
+### /synesis (alias: /abraxas:synesis, /abx:synesis) map {truth_ids}
 Analyze specific truth fragments and generate their relational map.
 - **Behavior**: Call `synesis_map`. Present the edges and their reasons. Provide a topological insight at the end.
 
-### /synesis theorize {domain}
+### /synesis (alias: /abraxas:synesis, /abx:synesis) theorize {domain}
 Propose a la-labeled `[INFERRED]` theory based on a specific domain.
 - **Behavior**: Call `synesis_theorize`. Follow the Theory Output Template. Ensure the falsifiability anchor is sharp and specific.
 
-### /synesis validate {theory_id}
+### /synesis (alias: /abraxas:synesis, /abx:synesis) validate {theory_id}
 Stress-test a theory against the total ledger.
 - **Behavior**: Call `synesis_validate`. Identify any contradictions or unsupported leaps. Deliver a verdict of [VALIDATED], [CONTESTED], or [REFINED].
 
