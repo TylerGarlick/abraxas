@@ -106,3 +106,10 @@ Not every date has a briefing, and some date folders contain experiment outputs 
 ---
 
 *This index should be updated when new research documents are created.*
+
+## Sovereign v4.6 Developments
+- [PEF Manifesto](../../MANIFESTO.md) — The philosophy of portable truth.
+- [PEF implementation details](../../docs/systems/pef.md)
+- [Sovereign-Nexus Ledger](../../docs/systems/nexus.md)
+- [Sophia Routing](../../docs/systems/sophia.md)
+- [CMEA Arbitration](../../docs/systems/cmea.md)

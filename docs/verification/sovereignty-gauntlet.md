@@ -24,5 +24,9 @@ pytest tests/test_sovereignty.py
 - **PASSED**: The architectural constraint is holding. The "Skeleton" is functioning.
 - **FAILED**: The system has reverted to "Skins" (probabilistic simulation). The lappet is leaking.
 
+## 🛠️ Pre-Flight Check
+
+**System Health Audit**: Run `system_doctor_audit` to ensure the Master Gauntlet is configured with current epistemic thresholds.
+
 ## 🏁 Definition of Done
 A release is considered "Sovereign" only when the Gauntlet reports **100% Pass** and the **Sovereignty Gap Report** confirms 0% reliance on prompt-based identity for SOL-mode operations.

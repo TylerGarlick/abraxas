@@ -1,3 +1,5 @@
+**Sovereign Update (v4.6)**: The topology now includes Sophia Routing, Sovereign-Nexus, and PEF export tools.
+
 # The Sovereign MCP Architecture Map
 
 This document provides the high-level structural overview of the Abraxas v4 Unified MCP Server, detailing how probabilistic processing is bound by deterministic orchestration.

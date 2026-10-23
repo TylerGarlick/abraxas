@@ -36,3 +36,9 @@ pages were not represented in the earlier Ledger/Alias-only overview:
 | [Sieve](../../skills/sieve_pkg/SKILL.md) | Filters noise and curates epistemic signals. | `skills/sieve_pkg/SKILL.md` |
 | [Sovereign Anchor](../../skills/sovereign_anchor/SKILL.md) | Privileged write operation for immutable Genesis Blocks. | `skills/sovereign_anchor/SKILL.md` |
 | [Tasks](../../skills/ledger/SKILL.md) | Project and task management. | `skills/ledger/SKILL.md` |
+
+## New Sovereign Systems (v4.6+)
+- [Portable Epistemic Frame (PEF)](pef.md) — Portable, P2P truth-sets.
+- [Cross-Model Epistemic Arbitration (CMEA)](cmea.md) — Model-agnostic truth resolution.
+- [Sophia Meta-Cognitive Routing](sophia.md) — Intelligent request orchestration.
+- [Sovereign-Nexus Cognitive Ledger](nexus.md) — Tracking the evolution of claims.
