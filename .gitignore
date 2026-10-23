@@ -1,5 +1,6 @@
 arangodb-data
 .env.sovereign
+.abraxas
 
 venv/
 .venv/
