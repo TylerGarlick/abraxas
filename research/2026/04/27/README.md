@@ -185,7 +185,7 @@ Today's research identified **six critical problem areas** in current AI systems
 **Architectural Advantages:**
 
 1. **Specialized Math Agent**
-   - Dedicated agent with tool access (Python, Wolfram Alpha, symbolic math engines)
+   - Dedicated agent with tool access (the system language, Wolfram Alpha, symbolic math engines)
    - Never computes directly; always uses verified tools
    - Cross-validates results across multiple computation methods
 

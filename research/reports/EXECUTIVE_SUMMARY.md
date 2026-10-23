@@ -180,7 +180,7 @@ Simple questions (facts, casual) → minimax or gemma3
 
 **Questions?** This summary simplifies technical findings. Full technical report available in `abraxas/research/05-research-paper-v2.0-final.md`
 
-**Contact:** Research team via Tyler Garlick (GitHub: TylerGarlick)
+**Contact:** Research team via Tyler Garlick (GitHub: [USER])
 
 ---
 

@@ -11,7 +11,7 @@ To avoid the "Probabilistic Trap," Abraxas separates the **definition of truth**
 | Component | Role | Description | Analogy |
 | :--- | :--- | :--- | :--- |
 | **Constitution** | The "What" | Human-readable Markdown files defining the absolute requirements and laws of the system. | **The Law Book** |
-| **Skills** | The "How" | The actual code (JavaScript/TypeScript/Python) that implements a specific capability or analysis. | **The Tool** |
+| **Skills** | The "How" | The actual code (JavaScript/TypeScript/the system language) that implements a specific capability or analysis. | **The Tool** |
 | **Unified MCP Server** | The "Where" | The modular monolith (`abraxas_mcp`) that invokes skills to enforce the Constitution in real-time. | **The Police** |
 
 ---

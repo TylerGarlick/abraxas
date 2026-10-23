@@ -133,7 +133,7 @@ LLMs still struggle with "fragile reasoning"—where a small change in phrasing 
 ### Why Abraxas Solves This
 
 **Mechanism 1: Symbolic Execution Layer**
-- Mathematical operations are routed to a verified symbolic engine (e.g., Wolfram/Python) instead of the LLM.
+- Mathematical operations are routed to a verified symbolic engine (e.g., Wolfram/the system language) instead of the LLM.
 - The LLM acts as the *orchestrator* and *translator*, while the engine provides the *ground truth*.
 
 **Mechanism 2: Multi-Path Formal Verification**

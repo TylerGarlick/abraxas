@@ -69,7 +69,7 @@ class NexusChain:
         with open(self.storage_path, 'w') as f:
             json.dump([asdict(block) for block in self.chain], f, indent=2)
 
-    def validate_chain(self) -> tuple[bool, Optional[int]]:
+    def validate_chain(self) -> (bool, Optional[int]):
         """
         Returns (is_valid, corrupted_index). 
         If is_valid is True, corrupted_index is None.

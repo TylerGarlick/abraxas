@@ -50,12 +50,59 @@ export async function addFragment(store: Store, content: string, provenanceId: s
   const result = await store.collection("epistemic/fragments").insert({ content, provenanceId, trustWeight, createdAt: new Date().toISOString() }); return result._id;
 }
 export async function createClaim(store: Store, conclusion: string, evidenceIds: string[]) {
-  return (await store.collection("epistemic/claims").insert({ text: conclusion, evidence: evidenceIds, status: "unresolved", provenance: "derived" }))._id;
+  const now = new Date().toISOString();
+  return (await store.collection("epistemic/claims").insert({ 
+    text: conclusion, 
+    evidence: evidenceIds, 
+    status: "unresolved", 
+    provenance: "derived",
+    trajectory: [{ status: "unresolved", timestamp: now, reason: "initial creation" }]
+  }))._id;
 }
+export async function updateClaimStatus(store: Store, claimId: string, status: string, reason: string, agentId: string = "system") {
+  const col = store.collection("epistemic/claims");
+  const claim = await col.get(claimId);
+  if (!claim) throw new Error(`Claim ${claimId} not found`);
+
+  const now = new Date().toISOString();
+  const trajectory = Array.isArray(claim.trajectory) ? claim.trajectory : [];
+  
+  return col.update(claimId, {
+    status,
+    trajectory: [...trajectory, { status, timestamp: now, reason, agentId }]
+  });
+}
+
 export async function provenanceChain(store: Store, claimId: string) {
   const claim = await store.collection("epistemic/claims").get(claimId); if (!claim) return [];
   const ids = Array.isArray(claim.evidence) ? claim.evidence.filter((x): x is string => typeof x === "string") : [];
   return Promise.all(ids.map((id) => store.collection("epistemic/fragments").get(id)));
+}
+
+export async function exportPef(store: Store, claimId: string) {
+  const claim = await store.collection("epistemic/claims").get(claimId); if (!claim) throw new Error(`Claim ${claimId} not found`);
+  const evidence = await provenanceChain(store, claimId);
+  return {
+    pef_version: "0.1",
+    anchor: {
+      claim_id: claimId,
+      proposition: claim.text,
+      timestamp: claim.createdAt || new Date().toISOString(),
+    },
+    provenance: {
+      evidence: evidence.map((f: any) => ({
+        id: f?._id,
+        content: f?.content,
+        weight: f?.trustWeight ?? 1,
+      })),
+      chain: ["derived"],
+    },
+    calibration: {
+      confidence: claim.status === "confirmed" ? 1.0 : 0.5,
+      label: claim.status || "Unknown",
+      metric: "uncalibrated",
+    },
+  };
 }
 export async function prioritizedFragments(store: Store, query: string) {
   const normalized = query.toLowerCase(); const rows = await store.collection("epistemic/fragments").find();

@@ -69,7 +69,7 @@
 1. `5f87bf3` — Research report (245 insertions)
 2. `e13cbbd` — Claims validation (209 insertions)
 
-**Pushed to:** `github.com:TylerGarlick/abraxas.git` (main branch)
+**Pushed to:** `github.com:[USER]/abraxas.git` (main branch)
 
 ---
 

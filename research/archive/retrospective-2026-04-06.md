@@ -20,7 +20,7 @@
 3. **Aletheia Spec** — Complete
 4. **Folder Organization** — research/ and docs/ restructured
 
-### All Pushed to: https://github.com/TylerGarlick/abraxas
+### All Pushed to: https://github.com/[USER]/abraxas
 
 ---
 

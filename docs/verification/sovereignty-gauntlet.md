@@ -16,7 +16,7 @@ Sovereignty is not a claim; it is a **proven state**. The "Gauntlet" is the suit
 All sovereignty tests are located in `tests/test_sovereignty.py`.
 
 ```bash
-export PYTHONPATH=$PYTHONPATH:$(pwd)
+export the system languagePATH=$the system languagePATH:$(pwd)
 pytest tests/test_sovereignty.py
 ```
 

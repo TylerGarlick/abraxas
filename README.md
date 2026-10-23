@@ -87,16 +87,25 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 
 ### 📜 The Law & Philosophy
 - 📄 **[Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — The declaration of cognitive independence.
+- 📄 **[Sovereign Whitepaper](docs/overview/whitepaper.md)** — The theoretical foundation of the Sovereign Brain.
 - 📄 **[Governance Model](docs/architecture/governance-model.md)** — How the Constitution, Skills, and MCPs interact.
 - 📄 **[The Probabilistic Trap](docs/architecture/probabilistic-trap.md)** — Why deterministic shelling is the only way to achieve truth.
 - 📄 **[Zero-Trust Mandate](docs/philosophy/zero-trust-mandate.md)** — The philosophy of verification over trust.
 
+### 📚 The Sovereign Codex
+- 📄 **[Codex Master Index](docs/codex/MASTER_INDEX.md)** — The comprehensive encyclopedia of Sovereign logic.
+
 ### 🛠️ Technical Guides
+- 📄 **[Sovereign Brain Manual](docs/manual/sovereign_brain_manual.md)** — Full operational guide for the system.
 - 📄 **[Sovereign Graph Specs](docs/architecture/sovereign-graph.md)** — The ArangoDB schema and provenance logic.
 - 📄 **[The Sovereignty Gauntlet](docs/verification/sovereignty-gauntlet.md)** — How we prove 0% hallucination.
 - 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
 - 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift from "Skins" to "Skeleton."
 - 📄 **[150 Practical Examples](docs/manual/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
+
+### ⚙️ System Internals
+- 📄 **[System Component Map](docs/systems/skills.md)** — Deep dive into the individual brain modules.
+- 📄 **[Epistemic Framework](docs/systems/episteme.md)** — The logic of labels and certainty.
 
 ---
 

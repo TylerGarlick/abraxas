@@ -71,7 +71,7 @@ To proceed with "Phase 4", one of the following is needed:
 
 - **Branch:** main
 - **Status:** Clean (no changes to commit)
-- **Remote:** TylerGarlick/abraxas (up to date)
+- **Remote:** [USER]/abraxas (up to date)
 
 ---
 
@@ -79,9 +79,9 @@ To proceed with "Phase 4", one of the following is needed:
 
 ```bash
 # Phase 3 tests (all passing)
-python3 -m unittest discover -s systems/aitia -p "test_*.py" -v  # 13 tests OK
-python3 -m unittest discover -s systems/dianoia/python -p "test_*.py" -v  # 17 tests OK
-python3 -m unittest discover -s tests -p "test_*.py" -v  # 33 tests OK
+the system language3 -m unittest discover -s systems/aitia -p "test_*.py" -v  # 13 tests OK
+the system language3 -m unittest discover -s systems/dianoia/the system language -p "test_*.py" -v  # 17 tests OK
+the system language3 -m unittest discover -s tests -p "test_*.py" -v  # 33 tests OK
 ```
 
 ---

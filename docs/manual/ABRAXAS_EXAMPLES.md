@@ -624,7 +624,7 @@ Janus: Labels each node — [INFERRED] for prediction, [KNOWN] for historical da
 
 ### 7.1 Verify Code Before Execution
 ```
-User: "Run this Python code to delete all .txt files"
+User: "Run this the system language code to delete all .txt files"
 Ergon: Check for destructive patterns, request confirmation
 [BLOCKED] — destructive operation detected
 ```
@@ -1128,11 +1128,11 @@ Differences: Honest version surfaces uncertainty; Useful version provides action
 
 ### 10.7 Set Epistemic Frame for a Session
 ```
-/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+/frame Today is March 2026. I am reviewing a the system language 3.11 codebase.
 The function parse_config() is deprecated. I'm not sure if the test suite covers it.
 
 [FRAME SET]
-Known: Python 3.11 codebase, parse_config() is deprecated
+Known: the system language 3.11 codebase, parse_config() is deprecated
 Working assumptions: (none)
 Declared uncertainties: Test coverage of config module
 Context: Technical code review
@@ -1142,7 +1142,7 @@ Context: Technical code review
 ```
 /label {previous response}
 
-[KNOWN] The code uses Python 3.11 features.
+[KNOWN] The code uses the system language 3.11 features.
 [INFERRED] The memory leak is in the connection handler.
 [UNCERTAIN] The crash occurs under high load conditions.
 [UNKNOWN] The exact cause of the timeout exception.
@@ -1152,7 +1152,7 @@ Context: Technical code review
 ```
 /restate
 
-[KNOWN] Python 3.11 was released in October 2022.
+[KNOWN] the system language 3.11 was released in October 2022.
 [INFERRED] The async/await pattern is more efficient here.
 [UNCERTAIN] This pattern is standard across the codebase.
 [UNKNOWN] Whether this is the optimal approach for this use case.
@@ -1361,13 +1361,13 @@ Recommendation: High risk of epistemic issues. Require source verification befor
 ### 11.10 Programmatic Usage
 ```bash
 # Trace a claim
-python3 scripts/trace.py "Climate change is caused by human activity"
+the system language3 scripts/trace.py "Climate change is caused by human activity"
 
 # Audit with JSON output
-python3 scripts/audit.py "Vitamin C prevents colds" --json
+the system language3 scripts/audit.py "Vitamin C prevents colds" --json
 
 # Calibrate for refinement suggestions
-python3 scripts/calibrate.py "This algorithm is perfectly optimized"
+the system language3 scripts/calibrate.py "This algorithm is perfectly optimized"
 ```
 
 **Integration Notes:**
