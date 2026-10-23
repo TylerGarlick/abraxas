@@ -7,6 +7,9 @@
   --matrix-green: #00ff41;
   --sovereign-amber: #ffb000;
   --bg-black: #000000;
+  --cp-yellow: #fcee0a;
+  --cp-blue: #00fbff;
+  --cp-pink: #ff00ff;
 }
 
 body {
@@ -46,6 +49,11 @@ body {
   color: var(--sovereign-amber);
 }
 
+.cp-yellow-glow {
+  text-shadow: 0 0 8px var(--cp-yellow);
+  color: var(--cp-yellow);
+}
+
 .scanline {
   width: 100%;
   height: 100px;
@@ -71,4 +79,25 @@ body {
   background: rgba(0, 255, 65, 0.05);
   border: 1px solid var(--matrix-green);
   box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.2);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+
+.cp-panel {
+  background: rgba(252, 238, 10, 0.05);
+  border: 2px solid var(--cp-yellow);
+  box-shadow: inset 0 0 10px rgba(252, 238, 10, 0.2);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+}
+
+.glitch-text {
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
 }
