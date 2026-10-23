@@ -3,9 +3,9 @@ name: logos
 description: >
   Logos is argument anatomy. Use this skill to map argument structure: premises,
   conclusions, inference chains, hidden assumptions, and logical gaps. Commands:
-  /logos map, /logos gaps, /logos inferences, /logos assume, /logos falsify,
-  /logos report. Logos is the pre-layer to Agon debates and feeds into Janus
-  for epistemic labeling. Always run /logos report before /agon debate.
+  /logos (alias: /abraxas:logos, /abx:logos) map, /logos (alias: /abraxas:logos, /abx:logos) gaps, /logos (alias: /abraxas:logos, /abx:logos) inferences, /logos (alias: /abraxas:logos, /abx:logos) assume, /logos (alias: /abraxas:logos, /abx:logos) falsify,
+  /logos (alias: /abraxas:logos, /abx:logos) report. Logos is the pre-layer to Agon debates and feeds into Janus
+  for epistemic labeling. Always run /logos (alias: /abraxas:logos, /abx:logos) report before /agon (alias: /abraxas:agon, /abx:agon) debate.
 ---
 
 # Logos
@@ -48,14 +48,14 @@ Without structure, there is no surface for epistemic labeling (Janus) or adversa
 1. User has claim or argument
          │
          ▼
-2. /logos map        → Extract structure
-3. /logos gaps       → Identify weaknesses  
-4. /logos assume     → Surface assumptions
-5. /logos falsify    → Test validity
-6. /logos report     → Get recommendation
+2. /logos (alias: /abraxas:logos, /abx:logos) map        → Extract structure
+3. /logos (alias: /abraxas:logos, /abx:logos) gaps       → Identify weaknesses  
+4. /logos (alias: /abraxas:logos, /abx:logos) assume     → Surface assumptions
+5. /logos (alias: /abraxas:logos, /abx:logos) falsify    → Test validity
+6. /logos (alias: /abraxas:logos, /abx:logos) report     → Get recommendation
          │
          ▼ (if ready for debate)
-7. /agon debate {refined claim}
+7. /agon (alias: /abraxas:agon, /abx:agon) debate {refined claim}
 ```
 
 **Do not use Logos when:**
@@ -82,7 +82,7 @@ Extract and organize the structural components of an argument.
 
 **Example:**
 ```
-/logos map All dogs bark. Max is a dog. Therefore, Max barks.
+/logos (alias: /abraxas:logos, /abx:logos) map All dogs bark. Max is a dog. Therefore, Max barks.
 ```
 
 **Output:**
@@ -127,7 +127,7 @@ Analyze the argument map for missing structural elements that would strengthen o
 
 **Example:**
 ```
-/logos gaps Remote work is better because employees are more productive at home.
+/logos (alias: /abraxas:logos, /abx:logos) gaps Remote work is better because employees are more productive at home.
 ```
 
 **Output:**
@@ -179,7 +179,7 @@ Map the complete path from premises to conclusions, showing each step in detail 
 
 **Example:**
 ```
-/logos inferences Climate change is caused by humans because CO2 levels have increased and CO2 causes warming.
+/logos (alias: /abraxas:logos, /abx:logos) inferences Climate change is caused by humans because CO2 levels have increased and CO2 causes warming.
 ```
 
 ---
@@ -198,7 +198,7 @@ Explicitly identify and examine the unstated assumptions required for an argumen
 
 **Example:**
 ```
-/logos assume We should switch to renewable energy because it's the right thing to do.
+/logos (alias: /abraxas:logos, /abx:logos) assume We should switch to renewable energy because it's the right thing to do.
 ```
 
 ---
@@ -216,7 +216,7 @@ Attempt to falsify the argument by finding conditions under which the conclusion
 
 **Example:**
 ```
-/logos falsify This theory is true because the scientist said so.
+/logos (alias: /abraxas:logos, /abx:logos) falsify This theory is true because the scientist said so.
 ```
 
 **Output:**
@@ -289,7 +289,7 @@ Logos produces argument maps that feed into Janus for epistemic labeling:
 
 **Workflow:**
 ```
-/logos map {argument} + /sol label
+/logos (alias: /abraxas:logos, /abx:logos) map {argument} + /sol (alias: /abraxas:sol, /abx:sol) label
 ```
 
 ### Agon Pre-Layer

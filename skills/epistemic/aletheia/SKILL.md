@@ -4,9 +4,9 @@ description: >
   Aletheia is epistemic calibration and ground-truth tracking. It resolves labeled Janus
   claims after the fact — confirming, disconfirming, or superseding them. Transforms the
   Abraxas stack from output-focused to practice-focused, tracking whether epistemic
-  confidence claims held up over time. Commands: /aletheia confirm, /aletheia disconfirm,
-  /aletheia supersede, /aletheia status, /aletheia calibration, /aletheia queue,
-  /aletheia audit. Requires Janus System installed.
+  confidence claims held up over time. Commands: /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) disconfirm,
+  /aletheia (alias: /abraxas:aletheia, /abx:aletheia) supersede, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) status, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue,
+  /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit. Requires Janus System installed.
 ---
 
 # Aletheia
@@ -138,9 +138,9 @@ After the fact, you have learned that a claim was correct. This command records 
 **Usage:**
 
 ```
-/aletheia confirm "COVID vaccines are >90% effective at preventing severe disease"
-/aletheia confirm session:{uuid}  # Open a prompt to choose which claim in that session to confirm
-/aletheia confirm  # If called in a session where Janus was active, list open claims and let user choose
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "COVID vaccines are >90% effective at preventing severe disease"
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm session:{uuid}  # Open a prompt to choose which claim in that session to confirm
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm  # If called in a session where Janus was active, list open claims and let user choose
 ```
 
 **Behavior:**
@@ -171,9 +171,9 @@ Evidence later emerged that contradicts a claim. This command records the discon
 **Usage:**
 
 ```
-/aletheia disconfirm "Quantum computers will break RSA by 2030"
-/aletheia disconfirm session:{uuid}
-/aletheia disconfirm
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) disconfirm "Quantum computers will break RSA by 2030"
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) disconfirm session:{uuid}
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) disconfirm
 ```
 
 **Behavior:**
@@ -205,8 +205,8 @@ A claim was reasonable at the time but has been replaced by a stronger or more c
 **Usage:**
 
 ```
-/aletheia supersede "Best text editor for Python: VS Code"
-/aletheia supersede session:{uuid}
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) supersede "Best text editor for Python: VS Code"
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) supersede session:{uuid}
 ```
 
 **Behavior:**
@@ -238,7 +238,7 @@ This command surfaces unresolved claims at session open. It makes epistemic debt
 **Usage:**
 
 ```
-/aletheia status
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) status
 ```
 
 **Output:**
@@ -262,14 +262,14 @@ Last 5 unresolved (oldest first):
 • [INFERRED] "Python will remain most popular language"   [Session 2026-02-10]
 • [UNKNOWN] "Cost of AGI research (when achieved)"        [Session 2026-03-01]
 
-Use /aletheia queue to see full list.
-Use /aletheia confirm|disconfirm|supersede to resolve claims.
+Use /aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue to see full list.
+Use /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm|disconfirm|supersede to resolve claims.
 ```
 
 **Lightweight mode** (called in a session where Janus is active):
 
 ```
-3 unresolved from this session's prior work. Use /aletheia queue to review.
+3 unresolved from this session's prior work. Use /aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue to review.
 ```
 
 ---
@@ -283,9 +283,9 @@ This produces the core epistemic feedback report. It answers: "How accurate are 
 **Usage:**
 
 ```
-/aletheia calibration
-/aletheia calibration {days:30}   # Last 30 days
-/aletheia calibration {days:90}   # Last 90 days
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration {days:30}   # Last 30 days
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration {days:90}   # Last 90 days
 ```
 
 **Output:**
@@ -336,7 +336,7 @@ OVERALL CALIBRATION QUALITY: MEDIUM
 Concern: [KNOWN] accuracy has declined; review recent [KNOWN] claims for pattern.
 Strength: [INFERRED] and [UNCERTAIN] are well-calibrated; confidence in those labels is justified.
 
-Next steps: Run /aletheia audit to check for orphaned or conflicting resolutions.
+Next steps: Run /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit to check for orphaned or conflicting resolutions.
 ```
 
 **Calibration theater prevention note:**
@@ -354,11 +354,11 @@ A detailed view of what remains unresolved. Helps prioritize what to resolve nex
 **Usage:**
 
 ```
-/aletheia queue
-/aletheia queue [KNOWN]        # Only unresolved [KNOWN] claims (high priority)
-/aletheia queue [INFERRED]
-/aletheia queue [UNCERTAIN]
-/aletheia queue [UNKNOWN]
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue [KNOWN]        # Only unresolved [KNOWN] claims (high priority)
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue [INFERRED]
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue [UNCERTAIN]
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue [UNKNOWN]
 ```
 
 **Output:**
@@ -373,12 +373,12 @@ RESOLUTION QUEUE — 234 Unresolved Claims
 1. [2024-11-15] "AI regulation will be enacted in EU by 2025"
    Session: 2024-11-15T09:22:33-UTC
    Status: OPEN for 482 days
-   /aletheia confirm "AI regulation will be enacted in EU by 2025"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "AI regulation will be enacted in EU by 2025"
 
 2. [2025-01-20] "Remote work will remain >30% of tech jobs through 2027"
    Session: 2025-01-20T14:10:22-UTC
    Status: OPEN for 415 days
-   /aletheia confirm "Remote work will remain >30% of tech jobs through 2027"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "Remote work will remain >30% of tech jobs through 2027"
 
 [... 16 more [KNOWN] claims ...]
 
@@ -387,7 +387,7 @@ RESOLUTION QUEUE — 234 Unresolved Claims
 18. [2025-02-22] "LLM scaling will plateau by 2026"
     Session: 2025-02-22T11:33:41-UTC
     Status: OPEN for 408 days
-    /aletheia confirm "LLM scaling will plateau by 2026"
+    /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "LLM scaling will plateau by 2026"
 
 [... 66 more [INFERRED] claims ...]
 
@@ -397,7 +397,7 @@ RESOLUTION QUEUE — 234 Unresolved Claims
 
 [UNKNOWN] — 53 unresolved
 
-These remain open indefinitely by design. Check /aletheia audit to see if any have been invalidated.
+These remain open indefinitely by design. Check /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit to see if any have been invalidated.
 ```
 
 ---
@@ -411,7 +411,7 @@ This command checks data integrity: Are all resolved claims still present in the
 **Usage:**
 
 ```
-/aletheia audit
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit
 ```
 
 **Output (healthy system):**
@@ -455,7 +455,7 @@ ORPHANED RESOLUTIONS (5)
 Session 2025-08-10T12:34:22-UTC
   Resolution: "[INFERRED] Quantum computers will break RSA"
   Status: Ledger entry not found (session may have been deleted)
-  Action: Run /aletheia audit --fix-orphans to remove
+  Action: Run /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit --fix-orphans to remove
 
 CONFLICTING RESOLUTIONS (2)
 
@@ -471,7 +471,7 @@ RESOLUTIONS.MD FORMAT ISSUES (0)
 Recommended action:
   1. Review orphaned resolutions (manual deletion recommended)
   2. Review conflicting resolutions for clarity
-  3. Run /aletheia audit --fix-orphans to remove orphaned entries (optional)
+  3. Run /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit --fix-orphans to remove orphaned entries (optional)
 
 Last audit: 2026-03-10T14:25:10-UTC
 ```
@@ -489,7 +489,7 @@ Aletheia operates **exclusively on Sol-mode labels**: `[KNOWN]`, `[INFERRED]`, `
 **Behavior when user attempts to resolve `[DREAM]` material:**
 
 ```
-/aletheia confirm "The Shadow archetype represents denied aspects of self"
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "The Shadow archetype represents denied aspects of self"
 
 Cannot resolve [DREAM] material.
 
@@ -501,7 +501,7 @@ Use:
   /pattern query          to find recurring themes
   /integrate synthesis    to synthesize symbols
 
-If you bridged this material into Sol mode via /bridge, use the Sol output instead.
+If you bridged this material into Sol mode via /bridge (alias: /abraxas:bridge, /abx:bridge), use the Sol output instead.
 ```
 
 **When `/bridge` produces Sol output:**
@@ -580,7 +580,7 @@ Example workflow:
 3. User closes session: /session close
 4. Janus writes Closure Report to ~/.janus/sessions/{uuid}.md
 5. Later, user learns ground truth
-6. User runs /aletheia confirm "claim text"
+6. User runs /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "claim text"
 7. Aletheia finds claim in ledger, records resolution in ~/.janus/resolutions.md
 ```
 
@@ -595,7 +595,7 @@ User: /check "Photosynthesis occurs in chloroplasts"
 Honest: [KNOWN] Photosynthesis is the light-dependent process in plants, occurring in chloroplasts...
 
 Later:
-User: /aletheia confirm "Photosynthesis occurs in chloroplasts"
+User: /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "Photosynthesis occurs in chloroplasts"
 Aletheia: ✓ Confirmed. Resolution recorded.
 ```
 
@@ -621,11 +621,11 @@ When Abraxas `/bridge` produces Sol-mode analysis of Nox material, that output c
 Example:
 
 ```
-User: /bridge "What does the Shadow represent in my work?"
+User: /bridge (alias: /abraxas:bridge, /abx:bridge) "What does the Shadow represent in my work?"
 Abraxas (via bridge): [INFERRED] The Shadow in your work represents unintegrated aspects of power...
 
 Later:
-User: /aletheia confirm "The Shadow in my work represents unintegrated aspects of power"
+User: /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm "The Shadow in my work represents unintegrated aspects of power"
 Aletheia: ✓ Confirmed. Resolution recorded.
 ```
 

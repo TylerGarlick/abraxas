@@ -256,7 +256,7 @@ Claim: "Abraxas v4 achieves 0% hallucination"
 **Role:** Long-term memory. Hippocampus analog.
 **Function:** Persists conversation state, provenance chains, and entity IDs across sessions.
 **Key capabilities:**
-- Save/load conversation state across invocations
+- Save/load  conversation state across invocations
 - Persist full provenance chains for all claims
 - Maintain unique entity IDs for concepts, hypotheses, plans
 - Graph database integration via the graph database

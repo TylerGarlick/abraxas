@@ -268,7 +268,7 @@ See `tests/constitution-tests.md` for full constitution enforcement tests.
 ## Running All Tests
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # Run verification tests
 node scripts/math-verify.js "2 + 2" --claim "4"

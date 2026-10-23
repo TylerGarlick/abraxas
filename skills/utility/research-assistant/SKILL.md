@@ -22,7 +22,7 @@ Research Assistant is the project manager of the Abraxas epistemic stack. While 
 
 ## Commands
 
-### /research  start [project name]
+### /research (alias: /abraxas:research, /abx:research)  start [project name]
 
 Begin a new research project.
 
@@ -30,12 +30,12 @@ Begin a new research project.
 
 **Example:**
 ```
-/research  start Quantum Computing Market Analysis
+/research (alias: /abraxas:research, /abx:research)  start Quantum Computing Market Analysis
 → Creates new project with timestamp
 → Project ID: qc-market-2024-001
 ```
 
-### /research  add [source]
+### /research (alias: /abraxas:research, /abx:research)  add [source]
 
 Add a source to the current project.
 
@@ -49,12 +49,12 @@ Add a source to the current project.
 
 **Example:**
 ```
-/research  add https://arxiv .org/abs /2301 .00001
-/research  add DOI:10.1109/5 .771073
-/research  add Title: The Age of AI, Author: Henry Kissinger, Year: 2023
+/research (alias: /abraxas:research, /abx:research)  add https://arxiv .org/abs /2301 .00001
+/research (alias: /abraxas:research, /abx:research)  add DOI:10.1109/5 .771073
+/research (alias: /abraxas:research, /abx:research)  add Title: The Age of AI, Author: Henry Kissinger, Year: 2023
 ```
 
-### /research  verify [source ID]
+### /research (alias: /abraxas:research, /abx:research)  verify [source ID]
 
 Verify a source in the project.
 
@@ -62,11 +62,11 @@ Verify a source in the project.
 
 **Example:**
 ```
-/research  verify 1
+/research (alias: /abraxas:research, /abx:research)  verify 1
 → Source 1 verified (accessible, 2024-01-15)
 ```
 
-### /research  analyze [topic]
+### /research (alias: /abraxas:research, /abx:research)  analyze [topic]
 
 Cross-source analysis for a specific topic.
 
@@ -74,12 +74,12 @@ Cross-source analysis for a specific topic.
 
 **Example:**
 ```
-/research  analyze quantum supremacy timeline
+/research (alias: /abraxas:research, /abx:research)  analyze quantum supremacy timeline
 → Analyzes all sources for timeline predictions
 → Identifies consensus and disagreements
 ```
 
-### /research  export [format]
+### /research (alias: /abraxas:research, /abx:research)  export [format]
 
 Export project bibliography.
 
@@ -92,7 +92,7 @@ Export project bibliography.
 
 **Example:**
 ```
-/research  export markdown
+/research (alias: /abraxas:research, /abx:research)  export markdown
 → # Quantum Computing Market Analysis
 → 
 → [1] https://arxiv .org/abs /2301 .00001

@@ -52,7 +52,7 @@ Diagnostic status of the engine and its API dependencies.
 
 ## Implementation Details
 
-- **Architecture**: Bun + TypeScript Abraxas MCP server (`mcp/src/tools/research.ts`).
+- **Architecture**: Bun + TypeScript Abraxas MCP server (`mcp/src/tools/research .ts`).
 - **Dependencies**: Uses built-in `fetch` for HTTP communication.
 
 ## MCP tools

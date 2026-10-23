@@ -104,7 +104,7 @@ User-defined connections:
 ```json
 {
   "related_sessions": ["mnemo-2026-02-abc123"],
-  "external": ["https://example.com/research"]
+  "external": ["https://example.com/research "]
 }
 ```
 

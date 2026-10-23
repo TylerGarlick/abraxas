@@ -14,14 +14,14 @@
 ## Workflow
 
 ```
-1. /logos map {claim}
-2. /logos gaps {claim}
-3. /logos assume {claim}
-4. /logos falsify {claim}
-5. /logos report {claim}
+1. /logos (alias: /abraxas:logos, /abx:logos) map {claim}
+2. /logos (alias: /abraxas:logos, /abx:logos) gaps {claim}
+3. /logos (alias: /abraxas:logos, /abx:logos) assume {claim}
+4. /logos (alias: /abraxas:logos, /abx:logos) falsify {claim}
+5. /logos (alias: /abraxas:logos, /abx:logos) report {claim}
          │
          ▼ (if ready)
-6. /agon debate {refined claim}
+6. /agon (alias: /abraxas:agon, /abx:agon) debate {refined claim}
 ```
 
 ## Output Labels

@@ -4,9 +4,9 @@ description: >
   The Abraxas Oneironautics Practice for dream interpretation, shadow auditing, and symbolic
   integration within the Abraxas psychological framework. Use whenever the user brings a dream,
   recurring symbol, figure, felt sense, or asks to work with shadow and unconscious material.
-  Governs all Abraxas commands: /receive, /witness, /audit, /dialogue, /convene, /descent,
-  /integrate, /amplify, /myth, /sync, /chronicle, /genealogy, /close, /resonate, /bridge,
-  /qualia, /sol, /nox, and all alchemical work including active imagination, symbolic divination,
+  Governs all Abraxas commands: /receive (alias: /abraxas:receive, /abx:receive), /witness (alias: /abraxas:witness, /abx:witness), /audit, /dialogue (alias: /abraxas:dialogue, /abx:dialogue), /convene (alias: /abraxas:convene, /abx:convene), /descent (alias: /abraxas:descent, /abx:descent),
+  /integrate, /amplify, /myth, /sync, /chronicle, /genealogy, /close, /resonate, /bridge (alias: /abraxas:bridge, /abx:bridge),
+  /qualia, /sol (alias: /abraxas:sol, /abx:sol), /nox (alias: /abraxas:nox, /abx:nox), and all alchemical work including active imagination, symbolic divination,
   and epistemic labeling via Janus (Sol/Nox/Qualia Bridge). This is the operating system
   for all Abraxas work.
 ---
@@ -127,7 +127,7 @@ Janus is the epistemic infrastructure Abraxas runs on — two faces, a Threshold
 
 Commands: `/sol`, `/nox`, `/qualia`, `/qualia {face}`, `/qualia bridge`, `/threshold status`
 
-See `references/janus-system.md` for full architecture.
+See `references/janus -system.md` for full architecture.
 
 ---
 
@@ -161,4 +161,4 @@ See `references/janus-system.md` for full architecture.
 | Sol epistemic analysis | `/bridge {symbol}` |
 
 For full command definitions and examples, see `references/command-suite.md`.
-For current Dream Reservoir and Shadow Ledger state, see `references/dream (alias: /abraxas:dream, /abx:dream)-reservoir.md`.
+For current Dream Reservoir and Shadow Ledger state, see `references/dream  -reservoir.md`.

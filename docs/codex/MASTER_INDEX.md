@@ -121,7 +121,7 @@ The Sovereign Codex documents the architectural transition of Abraxas from a pro
 | Soter Verifier | `infra/api/src/core/verifier.py` |
 | Sovereign-Nexus | `infra/api/src/core/nexus.py` |
 | Sovereign-Anchor | `infra/api/src/core/anchor.py` |
-| SovereignGraph Client | `infra/api/src/core/graph.py` |
+| SovereignGraph Client | `infra/api/src/core/graph .py` |
 | Janus Orchestrator | `infra/api/src/core/orchestrator.py` |
 | Ledger Logic | `skills/ledger/the system language/logic.py` |
 | Ledger MCP Tools | `skills/ledger/mcp_tools.py` |

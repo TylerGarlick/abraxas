@@ -21,16 +21,16 @@ This document covers four composition patterns, ordered from simplest to most co
 **Skill sequence:**
 
 ```
-/frame [context]     ← Honest: set session context
+/frame (alias: /abraxas:frame, /abx:frame) [context]     ← Honest: set session context
 [factual work]       ← use /check, /split, /label as needed
 
-/sol                 ← Janus: enter Sol face (full epistemic labeling)
+/sol (alias: /abraxas:sol, /abx:sol)                 ← Janus: enter Sol face (full epistemic labeling)
 [analysis requiring [KNOWN]/[INFERRED]/[UNCERTAIN] on every claim]
 
-/nox                 ← Janus: enter Nox face (symbolic/speculative)
+/nox (alias: /abraxas:nox, /abx:nox)                 ← Janus: enter Nox face (symbolic/speculative)
 [creative, speculative, or design work — all output marked [DREAM]]
 
-/sol                 ← return to Sol when analysis resumes
+/sol (alias: /abraxas:sol, /abx:sol)                 ← return to Sol when analysis resumes
 /audit               ← Honest: session-end audit of unlabeled claims
 ```
 
@@ -52,15 +52,15 @@ This document covers four composition patterns, ordered from simplest to most co
 **Skill sequence:**
 
 ```
-/agon open [topic]           ← Agon: open a debate session
-/agon advocate [position]    ← Agon: set Advocate position
-/agon skeptic [position]     ← Agon: set Skeptic position
+/agon (alias: /abraxas:agon, /abx:agon) open [topic]           ← Agon: open a debate session
+/agon (alias: /abraxas:agon, /abx:agon) advocate [position]    ← Agon: set Advocate position
+/agon (alias: /abraxas:agon, /abx:agon) skeptic [position]     ← Agon: set Skeptic position
 [debate rounds]
-/agon convergence            ← Agon: generate Convergence Report
+/agon (alias: /abraxas:agon, /abx:agon) convergence            ← Agon: generate Convergence Report
 
-/aletheia resolve [claim]    ← Aletheia: resolve claims from Convergence Report
-/aletheia log                ← Aletheia: log resolutions to persistent ledger
-/aletheia debt               ← Aletheia: surface any unresolved claims
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) resolve [claim]    ← Aletheia: resolve claims from Convergence Report
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) log                ← Aletheia: log resolutions to persistent ledger
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) debt               ← Aletheia: surface any unresolved claims
 ```
 
 **What to resolve from the Convergence Report:**
@@ -81,16 +81,16 @@ This document covers four composition patterns, ordered from simplest to most co
 **Skill sequence:**
 
 ```
-/honest                          ← Honest: activate maximum-honesty mode
+/honest (alias: /abraxas:honest, /abx:honest)                          ← Honest: activate maximum-honesty mode
 [State your topic and initial framing]
 /split                           ← Honest: separate known from assumed in the framing
 /check [key claim in framing]    ← Honest: verify grounding of each major claim
 
-/agon open [verified topic]      ← Agon: open debate with cleaned framing
-/agon advocate [position]
-/agon skeptic [position]
+/agon (alias: /abraxas:agon, /abx:agon) open [verified topic]      ← Agon: open debate with cleaned framing
+/agon (alias: /abraxas:agon, /abx:agon) advocate [position]
+/agon (alias: /abraxas:agon, /abx:agon) skeptic [position]
 [debate]
-/agon convergence
+/agon (alias: /abraxas:agon, /abx:agon) convergence
 ```
 
 **Why the order matters:** If you run Agon first and then use Honest to audit the framing, you are auditing after the debate has already embedded the assumption. Pre-verification with Honest prevents this.
@@ -108,8 +108,8 @@ This document covers four composition patterns, ordered from simplest to most co
 ```
 ── SESSION OPEN ──────────────────────────────────────
 
-/frame [context]              ← Honest: set session context and constraints
-/honest                       ← Honest: maximum-honesty baseline
+/frame (alias: /abraxas:frame, /abx:frame) [context]              ← Honest: set session context and constraints
+/honest (alias: /abraxas:honest, /abx:honest)                       ← Honest: maximum-honesty baseline
 
 ── FRAMING VERIFICATION ──────────────────────────────
 
@@ -118,22 +118,22 @@ This document covers four composition patterns, ordered from simplest to most co
 
 ── FACTUAL ANALYSIS ──────────────────────────────────
 
-/sol                          ← Janus: enter Sol face
+/sol (alias: /abraxas:sol, /abx:sol)                          ← Janus: enter Sol face
 [Analysis with full [KNOWN]/[INFERRED]/[UNCERTAIN]/[UNKNOWN] labeling on every claim]
 
 ── STRUCTURED DEBATE ─────────────────────────────────
 
-/agon open [topic]            ← Agon: open debate
-/agon advocate [position A]
-/agon skeptic [position B]
+/agon (alias: /abraxas:agon, /abx:agon) open [topic]            ← Agon: open debate
+/agon (alias: /abraxas:agon, /abx:agon) advocate [position A]
+/agon (alias: /abraxas:agon, /abx:agon) skeptic [position B]
 [debate rounds — Agon operates independently of Janus face state]
-/agon convergence             ← Agon: generate Convergence Report
+/agon (alias: /abraxas:agon, /abx:agon) convergence             ← Agon: generate Convergence Report
 
 ── RESOLUTION AND TRACKING ───────────────────────────
 
-/aletheia resolve [claims from convergence zone]
-/aletheia log                 ← Aletheia: persist resolutions to ~/.janus/
-/aletheia debt                ← Aletheia: surface remaining open claims
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) resolve [claims from convergence zone]
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) log                 ← Aletheia: persist resolutions to ~/.janus/
+/aletheia (alias: /abraxas:aletheia, /abx:aletheia) debt                ← Aletheia: surface remaining open claims
 
 ── SESSION CLOSE ─────────────────────────────────────
 

@@ -37,7 +37,7 @@ Use Honest to separate confirmed behavior from LLM interpretation when reviewing
 **Pattern: Frame first, then review**
 
 ```
-/frame expert
+/frame (alias: /abraxas:frame, /abx:frame) expert
 [Paste diff or code change]
 /split
 ```
@@ -57,7 +57,7 @@ When debugging, LLMs often present guesses as diagnoses. Honest surfaces the dif
 **Pattern: `/honest` before hypothesis generation**
 
 ```
-/honest
+/honest (alias: /abraxas:honest, /abx:honest)
 Here is the stack trace: [paste trace]
 What could cause this?
 ```
@@ -92,7 +92,7 @@ Runs the response with confidence labels on every substantive claim. A response 
 **Pattern: `/frame skeptic` for high-stakes decisions**
 
 ```
-/frame skeptic
+/frame (alias: /abraxas:frame, /abx:frame) skeptic
 We're considering moving to a microservices architecture. What are the risks?
 ```
 
@@ -145,7 +145,7 @@ Load with: `/frame expert`, `/frame skeptic`, `/frame learner`
 Create a session-specific frame for a recurring context:
 
 ```
-/frame save "reviewing-payment-service"
+/frame (alias: /abraxas:frame, /abx:frame) save "reviewing-payment-service"
 Context: We are reviewing the payment-service codebase.
 Known constraints: PCI-DSS compliance required, no external HTTP calls from core payment flow.
 Flag any recommendation that would violate these constraints.

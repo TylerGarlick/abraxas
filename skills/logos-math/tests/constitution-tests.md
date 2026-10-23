@@ -233,7 +233,7 @@ Consider adding:
 To verify the constitution enforcement, run these commands:
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # 1. Run constitution test suite
 ./tests/run-constitution-tests.sh

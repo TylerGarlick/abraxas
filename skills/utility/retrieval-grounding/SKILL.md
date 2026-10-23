@@ -24,7 +24,7 @@ This skill is typically invoked by other skills rather than directly by users, t
 
 ## Commands
 
-### /retrieval  search [query]
+### /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  search [query]
 
 Search the web for relevant information.
 
@@ -32,11 +32,11 @@ Search the web for relevant information.
 
 **Example:**
 ```
-/retrieval  search Python asyncio best practices 2024
+/retrieval (alias: /abraxas:retrieval, /abx:retrieval)  search Python asyncio best practices 2024
 → Returns top results with snippets and URLs
 ```
 
-### /retrieval  lookup [source]
+### /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  lookup [source]
 
 Fetch and parse a specific source.
 
@@ -49,11 +49,11 @@ Fetch and parse a specific source.
 
 **Example:**
 ```
-/retrieval  lookup https://docs .python.org/3 /library /asyncio .html
+/retrieval (alias: /abraxas:retrieval, /abx:retrieval)  lookup https://docs .python.org/3 /library /asyncio .html
 → Fetches and summarizes key content
 ```
 
-### /retrieval  ground [claim]
+### /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  ground [claim]
 
 Ground a specific claim by finding supporting or contradicting sources.
 
@@ -61,11 +61,11 @@ Ground a specific claim by finding supporting or contradicting sources.
 
 **Example:**
 ```
-/retrieval  ground Python GIL prevents true multithreading
+/retrieval (alias: /abraxas:retrieval, /abx:retrieval)  ground Python GIL prevents true multithreading
 → Returns sources supporting or refuting the claim
 ```
 
-### /retrieval  status
+### /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  status
 
 Show current grounding session status.
 

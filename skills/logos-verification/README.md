@@ -21,9 +21,9 @@ The skill is automatically available when loaded into OpenClaw. No additional in
 ### Via OpenClaw Commands
 
 ```
-/logos-verify The Earth orbits the Sun
-/logos-verify The Earth orbits the Sun, Paris is the capital of France
-/logos-verify-pipeline --context "Your claim here"
+/logos (alias: /abraxas:logos, /abx:logos)-verify The Earth orbits the Sun
+/logos (alias: /abraxas:logos, /abx:logos)-verify The Earth orbits the Sun, Paris is the capital of France
+/logos (alias: /abraxas:logos, /abx:logos)-verify-pipeline --context "Your claim here"
 ```
 
 ### Via Python
@@ -144,7 +144,7 @@ logos-verification/
 ## Testing
 
 ```bash
-cd skills/logos-verification
+cd skills/logos -verification
 python -m pytest tests/test_verify.py -v
 
 # Or with coverage

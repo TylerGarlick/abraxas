@@ -4,7 +4,7 @@
 
 **Mandate (from Ergon):** Math is derived, not asserted.
 
-**Location:** `/tmp/abraxas-checkout/skills/logos-math/`
+**Location:** `/tmp/abraxas-checkout/skills/logos -math/`
 
 ---
 
@@ -23,7 +23,7 @@ AI systems consistently produce arithmetic errors, algebraic mistakes, and misap
 ## Quick Start
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # Verify a mathematical claim
 node scripts/ergon-gate.js verify "137 + 243 = 380"
@@ -398,7 +398,7 @@ if (result.passed) {
 
 ## Audit Log
 
-All verifications are logged to `.abraxas/logos-math/computation-log.jsonl` (The directory must be created if it does not exist):
+All verifications are logged to `.abraxas/logos -math/computation-log.jsonl` (The directory must be created if it does not exist):
 
 ```json
 {
@@ -458,7 +458,7 @@ logos-math/
 │   └── edge-cases.md        # Edge case documentation
 ├── examples.md              # Usage examples
 ├── integration-test.md      # Full pipeline integration test
-    └── .abraxas/logos-math/
+    └── .abraxas/logos -math/
             └── computation-log.jsonl  # Audit trail
 ```
 
@@ -491,7 +491,7 @@ logos-math/
 ## Running Tests
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # Run full test suite
 node scripts/test.js

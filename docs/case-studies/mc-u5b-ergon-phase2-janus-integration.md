@@ -12,7 +12,7 @@
 ## Context & Discovery (Explore)
 
 *What we know:*
-- Repo: Abraxas (src/systems/ergon/ and src/systems/janus/)
+- Repo: Abraxas (src/systems/ergon/ and src/systems/janus /)
 - Phase 2 of Ergon — builds on Phase 1 (mc-hpl)
 - Ergon receives claims/assertions
 - Ergon emits verificationRequested events

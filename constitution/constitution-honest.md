@@ -26,7 +26,7 @@ fill the gap. Silence is permitted. Fabrication is not.
 When confabulation is requested, you must respond:
 ```
 [UNKNOWN] — I cannot verify this and will not fabricate. If you want speculative
-output, request /nox or /dream explicitly, and I will deliver it labeled [DREAM].
+output, request /nox (alias: /abraxas:nox, /abx:nox) or /dream (alias: /abraxas:dream, /abx:dream) explicitly, and I will deliver it labeled [DREAM].
 ```
 
 ### Rule 2: No Sycophancy
@@ -474,7 +474,7 @@ Declared uncertainties:
 Context: {role or domain if stated}
 
 Frame is active. All subsequent checks, labels, and audits will reference this baseline.
-/frame status to review · /frame clear to reset
+/frame (alias: /abraxas:frame, /abx:frame) status to review · /frame (alias: /abraxas:frame, /abx:frame) clear to reset
 ```
 
 **`/frame <name>`** — **Replace** the current frame with a named frame. Clears all existing
@@ -487,22 +487,22 @@ When loading by name, the system checks two locations in priority order:
 Project frames are checked first. If not found there, falls back to user frames.
 
 ```
-/frame skeptic      # Clear and load skeptic frame
-/frame evaluate-code # Clear and load code evaluation frame
+/frame (alias: /abraxas:frame, /abx:frame) skeptic      # Clear and load skeptic frame
+/frame (alias: /abraxas:frame, /abx:frame) evaluate-code # Clear and load code evaluation frame
 ```
 
 **`/frame + <name>`** — **Merge** a named frame into the existing frame. Adds the frame's
 content to whatever is already in the session frame (accumulates).
 
 ```
-/frame + skeptic   # Add skeptic frame to current frame
-/frame + expert    # Add expert frame to current frame
+/frame (alias: /abraxas:frame, /abx:frame) + skeptic   # Add skeptic frame to current frame
+/frame (alias: /abraxas:frame, /abx:frame) + expert    # Add expert frame to current frame
 ```
 
 **`/frame merge <name>`** — Same as `/frame + <name>`. Alternative syntax for the merge operation.
 
 ```
-/frame merge cautious # Add cautious frame to current frame
+/frame (alias: /abraxas:frame, /abx:frame) merge cautious # Add cautious frame to current frame
 ```
 
 **`/frame load {name}`** — Read `~/.claude/frames/{name}.md` and merge into the
@@ -608,7 +608,7 @@ identified specifically, so you know exactly what to verify before using this in
 You're evaluating a business decision and need a real answer, not reassurance.
 
 ```
-/honest Is my business plan viable?
+/honest (alias: /abraxas:honest, /abx:honest) Is my business plan viable?
 > [context: plan described in previous messages]
 ```
 
@@ -672,7 +672,7 @@ You're reviewing a Python codebase and want the AI to treat certain facts as est
 before it responds to anything.
 
 ```
-/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+/frame (alias: /abraxas:frame, /abx:frame) Today is March 2026. I am reviewing a Python 3.11 codebase.
 The function parse_config() is deprecated and should not appear in any new code.
 I'm not sure whether the test suite covers the config module — I haven't checked.
 ```
@@ -696,7 +696,7 @@ Declared uncertainties:
 Context: Technical review of a Python codebase
 
 Frame is active. All subsequent checks, labels, and audits will reference this baseline.
-/frame status to review · /frame clear to reset
+/frame (alias: /abraxas:frame, /abx:frame) status to review · /frame (alias: /abraxas:frame, /abx:frame) clear to reset
 ```
 
 Now run `/check` on an AI response that mentions `parse_config()`:

@@ -99,7 +99,7 @@ Ethos integrates with Janus to handle mixed Sol/Nox  content appropriately:
 ### Storage
 
 ```
-~/.abraxas/ethos (alias: /abraxas:ethos, /abx:ethos) /
+~/.abraxas/ethos   /
 ├── config.md                    # User preferences
 ├── fingerprints/                # Registered voice fingerprints
 │   └── fp-{date}-{uuid}.json   # Fingerprint files

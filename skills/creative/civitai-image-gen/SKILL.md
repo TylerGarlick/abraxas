@@ -82,7 +82,7 @@ MJ_MASTER_KEY="..." python3 generate.py "your prompt" \
   --seed 12345 \
   --clip-skip 2 \
   --count 4 \
-  --output /custom/output/path
+  --output /custom/output /path
 ```
 
 ### Batch Generation

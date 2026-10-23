@@ -3,7 +3,7 @@ name: janus-system
 description: >
   The Janus System v2 — an epistemic architecture with two faces (Sol and Nox), a
   Qualia Bridge inspection protocol, and cross-session Epistemic Ledger persistence.
-  Use this skill whenever the user invokes /sol, /nox, /qualia, /qualia bridge,
+  Use this skill whenever the user invokes /sol (alias: /abraxas:sol, /abx:sol), /nox (alias: /abraxas:nox, /abx:nox), /qualia, /qualia bridge,
   /qualia sol, /qualia nox, /threshold status, /ledger, or /session commands.
   Also use when the user wants to separate waking (factual, labeled, anti-hallucination)
   from dreaming (symbolic, creative, unfettered) output, when the user wants to inspect
@@ -25,7 +25,7 @@ This skill adheres to the `references/reasoning-standard.md` protocol. Every out
 
 It can operate standalone or as the infrastructure layer beneath the Abraxas system.
 
-Read `references/janus-architecture.md` for the full diagram, routing logic, and failure modes.
+Read `references/janus -architecture.md` for the full diagram, routing logic, and failure modes.
 
 ---
 
@@ -226,4 +226,4 @@ label does not diminish Sol. They make the system honest about its own nature.
 
 That honesty is the architecture.
 
-For full technical detail, routing rules, and failure mode analysis, see `references/janus-architecture.md`.
+For full technical detail, routing rules, and failure mode analysis, see `references/janus -architecture.md`.
