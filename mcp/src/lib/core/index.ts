@@ -88,11 +88,8 @@ export async function provenanceChain(store: Store, claimId: string) {
 
 
 export async function exportPef(store: Store, claimId: string) {
-  // Note: In the actual file this calls createPef. I'll keep it as a proxy or import it.
-  // Looking at the file, it was: return createPef(store, claimId);
-  // But createPef wasn't defined in this file. It's likely imported from ./pef.ts.
-  // I will add the import and use it.
   return (await (require("./pef").createPef))(store, claimId);
+}
 
 export async function verifyAnchor(store: Store, id: string, type: "fragment" | "claim") {
   const col = type === "fragment" ? "epistemic/fragments" : "epistemic/claims";
