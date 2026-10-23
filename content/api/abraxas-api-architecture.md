@@ -70,7 +70,7 @@ The `abraxas-retrieval` MCP server includes an Express-based HTTP server:
 ```typescript
 // mcp-servers/abraxas-retrieval/src/mcp-server.ts
 POST /api/v1/web_search
-GET  /status
+GET  /status (alias: /abraxas:status, /abx:status) 
 ```
 
 **Security Stack:**
@@ -129,7 +129,7 @@ GET  /status
 │                 │  │                         │  │                     │
 │ ┌─────────────┐ │  │  ┌───────────────────┐ │  │  ┌───────────────┐  │
 │ │minimax-m2.5 │ │  │  │ /mnemosyne/*     │ │  │  │ Janus Engine │  │
-│ │gpt-oss      │ │  │  │ /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/*     │ │  │  │ Honest Parser│  │
+│ │gpt-oss      │ │  │  │ /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  /*     │ │  │  │ Honest Parser│  │
 │ │ollama:*     │ │  │  │ / retrieval tools │ │  │  │ Agon Debater │  │
 │ └─────────────┘ │  │  └───────────────────┘ │  │  │ Aletheia Track│  │
 │                 │  │                         │  │  └───────────────┘  │
@@ -164,8 +164,8 @@ POST /v1/chat/completions       # Chat completions
 POST /v1/generate               # Text generation
 GET  /v1/models                 # List available models
 POST /mnemosyne/v1/sessions     # Session management
-POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/v1/search       # Web search
-POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/v1/fact-check   # Fact verification
+POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  /v1/search       # Web search
+POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  /v1/fact-check   # Fact verification
 ```
 
 #### 3.2.2 Model Abstraction Layer
@@ -539,7 +539,7 @@ paths:
           description: Session deleted
 
   # Retrieval Endpoints
-  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/search:
+  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  /search:
     post:
       summary: Web search
       requestBody:
@@ -559,7 +559,7 @@ paths:
         '200':
           description: Search results
 
-  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/fact-check:
+  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)  /fact-check:
     post:
       summary: Fact-check a claim
       requestBody:

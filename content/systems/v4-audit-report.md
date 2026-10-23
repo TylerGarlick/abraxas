@@ -3,7 +3,7 @@
 **Audit Date:** 2026-04-21  
 **Auditor:** Mary Jane (OpenClaw Subagent)  
 **Scope:** Verify implementation status of v4 research paper components  
-**Reference:** `/root/.openclaw/workspace/abraxas/docs/research /research (alias: /abraxas:research, /abx:research) -paper-v4.md`
+**Reference:** `/root/.openclaw/workspace/abraxas/docs/research /research (alias: /abraxas:research, /abx:research)   -paper-v4.md`
 
 ---
 

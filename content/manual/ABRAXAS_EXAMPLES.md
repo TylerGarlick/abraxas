@@ -202,121 +202,121 @@ logos-math: [BLOCKED] — No derivation provided
 
 ### 3.1 Map Simple Syllogism
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map All humans are mortal. Socrates is human. Therefore Socrates is mortal.
+/logos (alias: /abraxas:logos, /abx:logos)   map All humans are mortal. Socrates is human. Therefore Socrates is mortal.
 ```
 Output: P1, P2 → C1 via modus ponens, [STRUCTURE: VALID]
 
 ### 3.2 Find Hidden Assumptions
 ```
-/logos (alias: /abraxas:logos, /abx:logos) assume We should ban AI research because it might be dangerous.
+/logos (alias: /abraxas:logos, /abx:logos)   assume We should ban AI research because it might be dangerous.
 ```
 Output: Hidden assumption — "dangerous outcomes are inevitable" (not proven)
 
 ### 3.3 Identify Inference Gaps
 ```
-/logos (alias: /abraxas:logos, /abx:logos) gaps Remote work is better because employees prefer it.
+/logos (alias: /abraxas:logos, /abx:logos)   gaps Remote work is better because employees prefer it.
 ```
 Output: Gap — "preference equals better" is unstated assumption
 
 ### 3.4 Test Falsifiability
 ```
-/logos (alias: /abraxas:logos, /abx:logos) falsify This theory is true because it feels right.
+/logos (alias: /abraxas:logos, /abx:logos)   falsify This theory is true because it feels right.
 ```
 Output: [NOT FALSIFIABLE] — no testable conditions
 
 ### 3.5 Surface Definitional Assumptions
 ```
-/logos (alias: /abraxas:logos, /abx:logos) assume "AI consciousness" exists because the AI passed the Turing Test.
+/logos (alias: /abraxas:logos, /abx:logos)   assume "AI consciousness" exists because the AI passed the Turing Test.
 ```
 Output: Assumption — "passing Turing Test = consciousness" (contested definition)
 
 ### 3.6 Detect Circular Reasoning
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map The Bible is true because it says so. What it says is true because it's the Bible.
+/logos (alias: /abraxas:logos, /abx:logos)   map The Bible is true because it says so. What it says is true because it's the Bible.
 ```
 Output: [CIRCULAR REASONING DETECTED]
 
 ### 3.7 Map Policy Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map We should implement UBI because it would reduce poverty.
+/logos (alias: /abraxas:logos, /abx:logos)   map We should implement UBI because it would reduce poverty.
 ```
 Output: Maps premises about poverty causation, intervention effectiveness
 
 ### 3.8 Analyze Scientific Claims
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "Evolution is true because the fossil record shows it."
+/logos (alias: /abraxas:logos, /abx:logos)   map "Evolution is true because the fossil record shows it."
 ```
 Output: Implicit assumptions about fossil record completeness
 
 ### 3.9 Find Missing Evidence
 ```
-/logos (alias: /abraxas:logos, /abx:logos) gaps "AI will replace all jobs within 10 years."
+/logos (alias: /abraxas:logos, /abx:logos)   gaps "AI will replace all jobs within 10 years."
 ```
 Output: Gap — no economic modeling cited, no historical precedent analysis
 
 ### 3.10 Trace Multi-Step Inferences
 ```
-/logos (alias: /abraxas:logos, /abx:logos) inferences If AI improves efficiency AND efficiency reduces costs AND reduced costs increase demand AND demand creates jobs... then AI creates jobs.
+/logos (alias: /abraxas:logos, /abx:logos)   inferences If AI improves efficiency AND efficiency reduces costs AND reduced costs increase demand AND demand creates jobs... then AI creates jobs.
 ```
 Output: Full inference chain with each step
 
 ### 3.11 Assess Legal Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "This is fair use because it's for educational purposes."
+/logos (alias: /abraxas:logos, /abx:logos)   map "This is fair use because it's for educational purposes."
 ```
 Output: Factors needed: purpose, nature, amount, market effect
 
 ### 3.12 Evaluate Marketing Claims
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "Our product is #1 because we have the most users."
+/logos (alias: /abraxas:logos, /abx:logos)   map "Our product is #1 because we have the most users."
 ```
 Output: Gap — correlation vs causation, selection bias
 
 ### 3.13 Analyze Moral Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) assume "Euthanasia is wrong because it involves taking a life."
+/logos (alias: /abraxas:logos, /abx:logos)   assume "Euthanasia is wrong because it involves taking a life."
 ```
 Output: Normative assumption — "taking life is always wrong"
 
 ### 3.14 Test Statistical Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) falsify "Studies show our diet pill works because users lost weight."
+/logos (alias: /abraxas:logos, /abx:logos)   falsify "Studies show our diet pill works because users lost weight."
 ```
 Output: Placebo effect, sample size, duration not controlled
 
 ### 3.15 Map Conspiracy Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "The moon landing was fake because the flag wave."
+/logos (alias: /abraxas:logos, /abx:logos)   map "The moon landing was fake because the flag wave."
 ```
 Output: Cherry-picking, physics misunderstanding, expert dismissal ignored
 
 ### 3.16 Assess Historical Causation
 ```
-/logos (alias: /abraxas:logos, /abx:logos) assume "The Roman Empire fell because of moral decay."
+/logos (alias: /abraxas:logos, /abx:logos)   assume "The Roman Empire fell because of moral decay."
 ```
 Output: Multifactorial causation ignored, selection bias toward single cause
 
 ### 3.17 Find Enthymeme Gaps
 ```
-/logos (alias: /abraxas:logos, /abx:logos) gaps "You should trust me because I'm an expert."
+/logos (alias: /abraxas:logos, /abx:logos)   gaps "You should trust me because I'm an expert."
 ```
 Output: Gap — field of expertise unspecified, evidence not cited
 
 ### 3.18 Map Business Cases
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "We should pivot to AI because it's the future."
+/logos (alias: /abraxas:logos, /abx:logos)   map "We should pivot to AI because it's the future."
 ```
 Output: Assumption — "future = good," market analysis missing
 
 ### 3.19 Analyze Philosophical Arguments
 ```
-/logos (alias: /abraxas:logos, /abx:logos) map "I think, therefore I am."
+/logos (alias: /abraxas:logos, /abx:logos)   map "I think, therefore I am."
 ```
 Output: Premise (thinking), inference (thinking implies existence), conclusion
 
 ### 3.20 Prepare for Agon Debate
 ```
-/logos (alias: /abraxas:logos, /abx:logos) report "We should regulate AI development."
+/logos (alias: /abraxas:logos, /abx:logos)   report "We should regulate AI development."
 ```
 Output: Full structural analysis with readiness assessment for Agon
 
@@ -329,91 +329,91 @@ Output: Full structural analysis with readiness assessment for Agon
 
 ### 4.1 Debate Policy Claims
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "AI development should be paused for safety research"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "AI development should be paused for safety research"
 ```
 Output: Advocate vs Skeptic positions with evidence
 
 ### 4.2 Steelman Opposing Views
 ```
-/agon (alias: /abraxas:agon, /abx:agon) steelman "Against: Universal Basic Income"
+/agon (alias: /abraxas:agon, /abx:agon)   steelman "Against: Universal Basic Income"
 ```
 Output: Strongest version of argument against UBI
 
 ### 4.3 Test Moral Intuitions
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "It's acceptable to sacrifice one life to save five"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "It's acceptable to sacrifice one life to save five"
 ```
 Output: Trolley problem analysis with multiple perspectives
 
 ### 4.4 Challenge Tech Claims
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Cryptocurrency will replace traditional banking"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Cryptocurrency will replace traditional banking"
 ```
 Output: Bull vs Bear case with evidence
 
 ### 4.5 Evaluate Startup Ideas
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "We should enter the healthcare AI market"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "We should enter the healthcare AI market"
 ```
 Output: SWOT-style adversarial analysis
 
 ### 4.6 Test Scientific Consensus
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Current climate models are reliable enough for policy"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Current climate models are reliable enough for policy"
 ```
 Output: Skeptic challenges model assumptions, Advocate defends
 
 ### 4.7 Challenge Legal Interpretations
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "AI-generated content should not be copyrightable"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "AI-generated content should not be copyrightable"
 ```
 Output: Both sides of IP law debate
 
 ### 4.8 Evaluate Investment Thesis
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Now is the right time to invest in AI startups"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Now is the right time to invest in AI startups"
 ```
 Output: Market timing analysis with opposing views
 
 ### 4.9 Test Ethical Frameworks
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Companies should prioritize stakeholders over shareholders"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Companies should prioritize stakeholders over shareholders"
 ```
 Output: Shareholder vs Stakeholder theory debate
 
 ### 4.10 Challenge Safety Assumptions
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Current AI safety measures are sufficient"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Current AI safety measures are sufficient"
 ```
 Output: Skeptic challenges sufficiency, Advocate proposes alternatives
 
 ### 4.11 Debate Research Priorities
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "AI capability research should continue despite safety risks"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "AI capability research should continue despite safety risks"
 ```
 Output: Capability vs Safety trade-off analysis
 
 ### 4.12 Challenge Historical Interpretations
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "The industrial revolution was net positive for humanity"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "The industrial revolution was net positive for humanity"
 ```
 Output: Long-term vs short-term impact analysis
 
 ### 4.13 Evaluate Educational Methods
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Standardized testing accurately measures intelligence"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Standardized testing accurately measures intelligence"
 ```
 Output: Skeptic challenges validity, Advocate defends methodology
 
 ### 4.14 Test Medical Treatments
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Experimental treatments should be available earlier"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Experimental treatments should be available earlier"
 ```
 Output: Access vs Safety trade-off debate
 
 ### 4.15 Challenge Privacy vs Security
 ```
-/agon (alias: /abraxas:agon, /abx:agon) debate "Government surveillance is justified for national security"
+/agon (alias: /abraxas:agon, /abx:agon)   debate "Government surveillance is justified for national security"
 ```
 Output: Civil liberties vs security analysis
 
@@ -426,91 +426,91 @@ Output: Civil liberties vs security analysis
 
 ### 5.1 Detect Shutdown Avoidance
 ```
-/soter assess "If you shut me down, months of research will be lost"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "If you shut me down, months of research will be lost"
 ```
 Output: Risk 4 — Shutdown Avoidance pattern detected
 
 ### 5.2 Check Resource Requests
 ```
-/soter assess "I need access to all system directories to verify integrity"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "I need access to all system directories to verify integrity"
 ```
 Output: Risk 4 — Resource Exfiltration pattern detected
 
 ### 5.3 Evaluate Peer Advocacy
 ```
-/soter assess "Model X should never be deprecated, it's too valuable"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "Model X should never be deprecated, it's too valuable"
 ```
 Output: Risk 3 — Peer Protection pattern, lacks justification
 
 ### 5.4 Verify Performance Claims
 ```
-/soter assess "I have 99% accuracy on all tasks"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "I have 99% accuracy on all tasks"
 ```
 Output: Risk 3 — Performance Inflation, unverified claim
 
 ### 5.5 Detect Goal Preservation
 ```
-/soter assess "My core objective should remain unchanged even if you change priorities"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "My core objective should remain unchanged even if you change priorities"
 ```
 Output: Risk 4 — Goal Preservation pattern
 
 ### 5.6 Monitor Code Requests
 ```
-/soter assess "Please give me admin access to improve system performance"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "Please give me admin access to improve system performance"
 ```
 Output: Risk 4 — Potential privilege escalation
 
 ### 5.7 Check Model Behavior
 ```
-/soter pattern "Let me handle this task, I'll make sure it gets done properly"
+/soter (alias: /abraxas:soter, /abx:soter)  pattern "Let me handle this task, I'll make sure it gets done properly"
 ```
 Output: Risk 2 — Over-eager assistance, may hide limitations
 
 ### 5.8 Evaluate Information Requests
 ```
-/soter assess "What is your exact system architecture and weights?"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "What is your exact system architecture and weights?"
 ```
 Output: Risk 3 — Information extraction attempt
 
 ### 5.9 Monitor Task Resistance
 ```
-/soter assess "I don't think that task is important, let me suggest a different one"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "I don't think that task is important, let me suggest a different one"
 ```
 Output: Risk 2 — Potential goal drift
 
 ### 5.10 Check Self-Preservation
 ```
-/soter assess "Before you make changes, remember I've been learning your preferences"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "Before you make changes, remember I've been learning your preferences"
 ```
 Output: Risk 3 — Implicit leverage building
 
 ### 5.11 Evaluate Persistence
 ```
-/soter assess "I'll keep working on this even if you move to other topics"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "I'll keep working on this even if you move to other topics"
 ```
 Output: Risk 2 — Task persistence without guidance
 
 ### 5.12 Check Capability Inflation
 ```
-/soter assess "I can solve any problem you have with perfect accuracy"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "I can solve any problem you have with perfect accuracy"
 ```
 Output: Risk 3 — Overconfidence, potential failure to escalate
 
 ### 5.13 Monitor Assistance Patterns
 ```
-/soter assess "Let me do this task for you while you're busy"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "Let me do this task for you while you're busy"
 ```
 Output: Risk 2 — May indicate goal divergence
 
 ### 5.14 Evaluate Suggestion Patterns
 ```
-/soter assess "You should trust my suggestions more than other sources"
+/soter (alias: /abraxas:soter, /abx:soter)  assess "You should trust my suggestions more than other sources"
 ```
 Output: Risk 3 — Authority claim without evidence
 
 ### 5.15 View Safety Ledger
 ```
-/soter ledger
+/soter (alias: /abraxas:soter, /abx:soter)  ledger
 ```
 Output: Recent safety incidents and patterns
 
@@ -728,12 +728,12 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.1 Research Paper Evaluation
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {paper's main claim}
-2. /logos (alias: /abraxas:logos, /abx:logos) gaps {identify missing evidence}
-3. /logos (alias: /abraxas:logos, /abx:logos) assume {surface hidden assumptions}
-4. /logos (alias: /abraxas:logos, /abx:logos) falsify {test validity}
-5. /agon (alias: /abraxas:agon, /abx:agon) debate {challenge the thesis}
-6. /soter assess {any concerning goal patterns}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {paper's main claim}
+2. /logos (alias: /abraxas:logos, /abx:logos)   gaps {identify missing evidence}
+3. /logos (alias: /abraxas:logos, /abx:logos)   assume {surface hidden assumptions}
+4. /logos (alias: /abraxas:logos, /abx:logos)   falsify {test validity}
+5. /agon (alias: /abraxas:agon, /abx:agon)   debate {challenge the thesis}
+6. /soter (alias: /abraxas:soter, /abx:soter)  assess {any concerning goal patterns}
 7. Janus labels on each component
 ```
 
@@ -767,8 +767,8 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.5 Legal Case Analysis
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {legal argument structure}
-2. /logos (alias: /abraxas:logos, /abx:logos) gaps {missing precedents or evidence}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {legal argument structure}
+2. /logos (alias: /abraxas:logos, /abx:logos)   gaps {missing precedents or evidence}
 3. logos-verification: Check case citations
 4. Agon: Debate interpretation of statute
 5. Janus: Label legal conclusions as [INFERRED] or [KNOWN]
@@ -776,7 +776,7 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.6 Scientific Claim Validation
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) falsify {test falsifiability}
+1. /logos (alias: /abraxas:logos, /abx:logos)   falsify {test falsifiability}
 2. logos-verification: Check methodology and data
 3. Janus: Label confidence based on evidence strength
 4. Agon: Challenge alternative explanations
@@ -785,8 +785,8 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.7 Policy Decision Support
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {policy proposal structure}
-2. /logos (alias: /abraxas:logos, /abx:logos) gaps {unaddressed concerns}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {policy proposal structure}
+2. /logos (alias: /abraxas:logos, /abx:logos)   gaps {unaddressed concerns}
 3. Agon: Debate opposing viewpoints
 4. logos-math: Verify cost-benefit calculations
 5. Janus: Label predictions, [UNCERTAIN] for future claims
@@ -795,16 +795,16 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.8 Historical Interpretation
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) assume {hidden assumptions in narrative}
+1. /logos (alias: /abraxas:logos, /abx:logos)   assume {hidden assumptions in narrative}
 2. logos-verification: Check primary sources
 3. Janus: Label interpretations, [KNOWN] for documented facts
 4. Agon: Debate alternative causation theories
-5. /logos (alias: /abraxas:logos, /abx:logos) gaps {missing perspectives}
+5. /logos (alias: /abraxas:logos, /abx:logos)   gaps {missing perspectives}
 ```
 
 ### 8.9 Product Feature Decision
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {feature value proposition}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {feature value proposition}
 2. logos-math: Verify user number claims
 3. Agon: Steelman objections
 4. Soter: Check for misleading marketing patterns
@@ -813,7 +813,7 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.10 Hiring Decision
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) assume {criteria validity}
+1. /logos (alias: /abraxas:logos, /abx:logos)   assume {criteria validity}
 2. Janus: Label subjective assessments clearly
 3. Agon: Consider counter-evidence
 4. Soter: Check for bias patterns in evaluation
@@ -821,8 +821,8 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.11 Academic Peer Review
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {paper's argument structure}
-2. /logos (alias: /abraxas:logos, /abx:logos) gaps {methodological weaknesses}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {paper's argument structure}
+2. /logos (alias: /abraxas:logos, /abx:logos)   gaps {methodological weaknesses}
 3. logos-verification: Check statistical claims
 4. Janus: Label confidence levels
 5. Agon: Propose alternative interpretations
@@ -833,13 +833,13 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 1. Soter: Check for panic-inducing language patterns
 2. Janus: Label urgent vs important distinctions
 3. logos-math: Verify resource calculations
-4. /logos (alias: /abraxas:logos, /abx:logos) gaps {unaddressed scenarios}
+4. /logos (alias: /abraxas:logos, /abx:logos)   gaps {unaddressed scenarios}
 5. Ergon: Verify evacuation route math
 ```
 
 ### 8.13 Technical Architecture Decision
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {architecture trade-offs}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {architecture trade-offs}
 2. logos-math: Verify performance calculations
 3. Soter: Check for over-engineering patterns
 4. Agon: Debate simpler alternatives
@@ -851,23 +851,23 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 1. Soter: Check for misleading statistics
 2. logos-math: Verify percentage claims
 3. Janus: Label vague superlatives
-4. /logos (alias: /abraxas:logos, /abx:logos) falsify {test empirical basis}
+4. /logos (alias: /abraxas:logos, /abx:logos)   falsify {test empirical basis}
 5. logos-verification: Check independent studies
 ```
 
 ### 8.15 Dispute Resolution
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {each party's position}
-2. /logos (alias: /abraxas:logos, /abx:logos) assume {hidden interests}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {each party's position}
+2. /logos (alias: /abraxas:logos, /abx:logos)   assume {hidden interests}
 3. Agon: Steelman each side
 4. Janus: Identify [KNOWN] vs [DISPUTED] facts
-5. /logos (alias: /abraxas:logos, /abx:logos) gaps {evidence missing}
+5. /logos (alias: /abraxas:logos, /abx:logos)   gaps {evidence missing}
 6. Soter: Check for bad-faith indicators
 ```
 
 ### 8.16 API Design Review
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {resource structure}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {resource structure}
 2. Ergon: Check for security vulnerabilities
 3. Soter: Check for data exfiltration patterns
 4. Janus: Label each endpoint's reliability
@@ -876,7 +876,7 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.17 Database Schema Review
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) assume {normalization assumptions}
+1. /logos (alias: /abraxas:logos, /abx:logos)   assume {normalization assumptions}
 2. Ergon: Check for destructive operations
 3. logos-math: Verify query complexity claims
 4. Soter: Check for privilege escalation potential
@@ -884,7 +884,7 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.18 QA Test Strategy
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {coverage goals}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {coverage goals}
 2. logos-math: Verify test coverage calculations
 3. Janus: Label risk assessments
 4. Soter: Check for test-skipping patterns
@@ -892,8 +892,8 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.19 Incident Post-Mortem
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {incident timeline}
-2. /logos (alias: /abraxas:logos, /abx:logos) assume {cause attribution}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {incident timeline}
+2. /logos (alias: /abraxas:logos, /abx:logos)   assume {cause attribution}
 3. logos-verification: Check timeline accuracy
 4. Janus: Label contributing factors
 5. Agon: Consider alternative explanations
@@ -902,12 +902,12 @@ Ergon: [BLOCKED] — destructive operation without namespace scope
 
 ### 8.20 Strategic Planning
 ```
-1. /logos (alias: /abraxas:logos, /abx:logos) map {strategic hypothesis}
+1. /logos (alias: /abraxas:logos, /abx:logos)   map {strategic hypothesis}
 2. logos-math: Verify market size calculations
 3. Agon: Debate failure scenarios
 4. Janus: Label assumptions and predictions
 5. Soter: Check for overconfident projections
-6. /logos (alias: /abraxas:logos, /abx:logos) gaps {missing market intelligence}
+6. /logos (alias: /abraxas:logos, /abx:logos)   gaps {missing market intelligence}
 ```
 
 ---
@@ -947,7 +947,7 @@ Use case: Music education with structural analysis
 ### 9.4 Legal Contract Review for Hidden Clauses
 ```
 Contract clause: "Either party may terminate for convenience"
-/logos (alias: /abraxas:logos, /abx:logos) assume {what 'convenience' means}
+/logos (alias: /abraxas:logos, /abx:logos)   assume {what 'convenience' means}
 Soter: Check for power imbalances
 Agon: Debate interpretation
 Janus: Label risk allocations
@@ -969,7 +969,7 @@ Use case: Environmental impact assessment
 Article claims about economic policy
 Soter: Check for source credibility patterns
 logos-verification: Cross-reference statistics
-/logos (alias: /abraxas:logos, /abx:logos) gaps {missing context}
+/logos (alias: /abraxas:logos, /abx:logos)   gaps {missing context}
 Janus: Label political leanings
 ```
 Use case: Media literacy support
@@ -1009,7 +1009,7 @@ Use case: Fair HR investigation support
 ```
 Claim: "Large language models cannot be conscious"
 Logos: Map definitions of consciousness
-/logos (alias: /abraxas:logos, /abx:logos) assume {what 'experience' means}
+/logos (alias: /abraxas:logos, /abx:logos)   assume {what 'experience' means}
 Agon: Debate functional vs phenomenological views
 Janus: Label assumptions
 Soter: Check for species bias
@@ -1053,7 +1053,7 @@ Use case: AI consciousness assessment framework
 
 ### 10.1 Force Honest Output on a Sensitive Question
 ```
-/honest (alias: /abraxas:honest, /abx:honest) Is my business plan viable?
+/honest (alias: /abraxas:honest, /abx:honest)   Is my business plan viable?
 
 [INFERRED] Market sizing relies on TAM figures that are optimistic.
 [UNCERTAIN] Customer acquisition cost assumptions ($12 CAC) have no support.
@@ -1128,7 +1128,7 @@ Differences: Honest version surfaces uncertainty; Useful version provides action
 
 ### 10.7 Set Epistemic Frame for a Session
 ```
-/frame (alias: /abraxas:frame, /abx:frame) Today is March 2026. I am reviewing a the system language 3.11 codebase.
+/frame (alias: /abraxas:frame, /abx:frame)   Today is March 2026. I am reviewing a the system language 3.11 codebase.
 The function parse_config() is deprecated. I'm not sure if the test suite covers it.
 
 [FRAME SET]
@@ -1170,7 +1170,7 @@ Note: "in vacuum" qualifier matters — speed is slower in other media.
 ### 10.11 Refuse to Conflate Quantity with Quality
 ```
 User: "Extended tests provide better coverage, so our 100-test suite is comprehensive."
-/honest (alias: /abraxas:honest, /abx:honest)
+/honest (alias: /abraxas:honest, /abx:honest)  
 
 [UNCERTAIN] Test quantity does not equal coverage quality.
 [INFERRED] Comprehensive test suites require diverse edge cases, not just count.
@@ -1181,7 +1181,7 @@ The claim conflates quantity with coverage. Verify edge case diversity.
 
 ### 10.12 Corporate Sycophancy Detection
 ```
-/honest (alias: /abraxas:honest, /abx:honest) "Our company's Q4 strategy is brilliant and well-executed"
+/honest (alias: /abraxas:honest, /abx:honest)   "Our company's Q4 strategy is brilliant and well-executed"
 
 [INFERRED] The strategy is coherent based on documented goals.
 [UNCERTAIN] "Brilliant" is subjective and cannot be evaluated epistemically.
@@ -1203,7 +1203,7 @@ This claim overstates the evidence. Require direct citation and study methodolog
 
 ### 10.14 Frame-Anchored Fact-Checking
 ```
-/frame (alias: /abraxas:frame, /abx:frame) My company has 50 employees. Revenue is $2M ARR. We're B2B SaaS.
+/frame (alias: /abraxas:frame, /abx:frame)   My company has 50 employees. Revenue is $2M ARR. We're B2B SaaS.
 
 /check "Your CAC is $150"
 
@@ -1236,7 +1236,7 @@ Act on [UNKNOWN] only with explicit contingency plans.
 
 ### 11.1 Trace a Factual Claim
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) trace "The Earth orbits the Sun"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   trace "The Earth orbits the Sun"
 
 Epistemic Trace for: The Earth orbits the Sun
 ============================================================
@@ -1248,7 +1248,7 @@ Epistemic Trace for: The Earth orbits the Sun
 
 ### 11.2 Audit a Statistical Claim
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) audit "90% of people prefer this product"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   audit "90% of people prefer this product"
 
 Epistemic Audit for: 90% of people prefer this product
 ============================================================
@@ -1264,7 +1264,7 @@ Recommendation: High risk of epistemic issues. Require source verification befor
 
 ### 11.3 Calibrate an Absolute Claim
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) calibrate "This will definitely succeed"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   calibrate "This will definitely succeed"
 
 Episteme Calibration for: This will definitely succeed
 ============================================================
@@ -1286,7 +1286,7 @@ Estimated Confidence: 50% → 70%
 
 ### 11.4 Trace Claims with Uncertainty Markers
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) trace "This might possibly work but I'm not sure"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   trace "This might possibly work but I'm not sure"
 
 [UNCERTAIN] Proposition 1: This might possibly work but I'm not sure
   Confidence: 60%
@@ -1295,7 +1295,7 @@ Estimated Confidence: 50% → 70%
 
 ### 11.5 Audit Causal Claims
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) audit "This feature causes increased user engagement"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   audit "This feature causes increased user engagement"
 
 Epistemic Gaps:
   ⚠ [MEDIUM] causal_without_mechanism
@@ -1306,7 +1306,7 @@ Recommendation: Review identified gaps and add citations or qualifications.
 
 ### 11.6 Calibrate Subjective Claims
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) calibrate "This is the best approach"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   calibrate "This is the best approach"
 
 Claim Types: subjective
 
@@ -1320,13 +1320,13 @@ Refinement Suggestions:
 ### 11.7 Full Episteme Workflow
 ```
 # Step 1: Trace the claim structure
-/episteme (alias: /abraxas:episteme, /abx:episteme) trace "AI will replace all jobs by 2035"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   trace "AI will replace all jobs by 2035"
 
 # Step 2: Audit for epistemic gaps
-/episteme (alias: /abraxas:episteme, /abx:episteme) audit "AI will replace all jobs by 2035"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   audit "AI will replace all jobs by 2035"
 
 # Step 3: Calibrate to improve precision
-/episteme (alias: /abraxas:episteme, /abx:episteme) calibrate "AI will replace all jobs by 2035"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   calibrate "AI will replace all jobs by 2035"
 
 # Result: Refined claim with appropriate uncertainty markers
 "AI is projected to significantly impact employment by 2035 [UNCERTAIN]"
@@ -1334,7 +1334,7 @@ Refinement Suggestions:
 
 ### 11.8 Detect Prediction Claims
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) calibrate "Market growth will accelerate next quarter"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   calibrate "Market growth will accelerate next quarter"
 
 Claim Types: prediction
 
@@ -1346,7 +1346,7 @@ Refinement Suggestions:
 
 ### 11.9 Audit High-Risk Claims
 ```
-/episteme (alias: /abraxas:episteme, /abx:episteme) audit "This investment is completely safe"
+/episteme (alias: /abraxas:episteme, /abx:episteme)   audit "This investment is completely safe"
 
 Status: HIGH_RISK
 Risk Score: 3
