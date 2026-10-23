@@ -50,6 +50,7 @@ import { reportTools } from "./report.ts";
 import { praxisTools } from "./praxis.ts";
 import { sophiaTools } from "./sophia.ts";
 import { acquisitionTools } from "./acquisition.ts";
+import { constitutionEnforcementTools } from "./constitution_enforcement.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
@@ -104,4 +105,5 @@ export const toolModules: ToolModule[] = [
   praxisTools,
   sophiaTools,
   acquisitionTools,
+  constitutionEnforcementTools,
 ];

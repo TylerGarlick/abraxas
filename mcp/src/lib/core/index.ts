@@ -47,15 +47,19 @@ export async function systemInit(store: Store) {
 }
 
 export async function addFragment(store: Store, content: string, provenanceId: string, trustWeight = 1) {
-  const result = await store.collection("epistemic/fragments").insert({ content, provenanceId, trustWeight, createdAt: new Date().toISOString() }); return result._id;
+  const hash = createHash("sha256").update(`${content}:${provenanceId}`).digest("hex");
+  const result = await store.collection("epistemic/fragments").insert({ content, provenanceId, trustWeight, hash, createdAt: new Date().toISOString() }); 
+  return result._id;
 }
 export async function createClaim(store: Store, conclusion: string, evidenceIds: string[]) {
   const now = new Date().toISOString();
+  const hash = createHash("sha256").update(`${conclusion}:${evidenceIds.join(",")}`).digest("hex");
   return (await store.collection("epistemic/claims").insert({ 
     text: conclusion, 
     evidence: evidenceIds, 
     status: "unresolved", 
     provenance: "derived",
+    hash,
     trajectory: [{ status: "unresolved", timestamp: now, reason: "initial creation" }]
   }))._id;
 }
@@ -77,6 +81,24 @@ export async function provenanceChain(store: Store, claimId: string) {
   const claim = await store.collection("epistemic/claims").get(claimId); if (!claim) return [];
   const ids = Array.isArray(claim.evidence) ? claim.evidence.filter((x): x is string => typeof x === "string") : [];
   return Promise.all(ids.map((id) => store.collection("epistemic/fragments").get(id)));
+}
+
+export async function verifyAnchor(store: Store, id: string, type: "fragment" | "claim") {
+  const col = type === "fragment" ? "epistemic/fragments" : "epistemic/claims";
+  const doc = await store.collection(col).get(id);
+  if (!doc) return { valid: false, reason: "Not found" };
+  
+  const data = type === "fragment" 
+    ? `${doc.content}:${doc.provenanceId}` 
+    : `${doc.text}:${(doc.evidence || []).join(",")}`;
+    
+  const actualHash = createHash("sha256").update(data).digest("hex");
+  return {
+    valid: actualHash === doc.hash,
+    expected: doc.hash,
+    actual: actualHash,
+    reason: actualHash === doc.hash ? "Anchor verified" : "Content mismatch - possible tampering"
+  };
 }
 
 export async function exportPef(store: Store, claimId: string) {
