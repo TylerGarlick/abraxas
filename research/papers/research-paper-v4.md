@@ -177,7 +177,7 @@ Abraxas implements a novel governance architecture that separates the **definiti
 | Component | Role | Description | Analogy |
 |-----------|------|-------------|---------|
 | **Constitution** | The "What" | Human-readable Markdown files defining the absolute requirements and laws of the system | **The Law Book** |
-| **Skills** | The "How" | The actual code (JavaScript/TypeScript/Python) that implements a specific capability or analysis | **The Tool** |
+| **Skills** | The "How" | The actual code (JavaScript/TypeScript/the system language) that implements a specific capability or analysis | **The Tool** |
 | **Unified MCP Server** | The "Where" | The modular monolith (`abraxas_mcp`) that invokes skills to enforce the Constitution in real-time | **The Police** |
 
 **The "Law Book" Analogy:** A common misconception is that the "Skills" (the code) are the source of truth. In a Sovereign system, this is incorrect. The Skill is a mechanism; the Constitution is the standard. Imagine a police force (the Unified MCP server) using a radar gun (the Skill). The radar gun can detect that a car is going 100mph, but the radar gun does not decide if 100mph is "illegal." The **Law Book (The Constitution)** is what defines the speed limit. If you remove the Law Book, the police force has a tool to measure speed, but no authority to issue a ticket. Similarly, without the Constitution, Soter can detect a "Risk 5" pattern, but it has no deterministic rule to tell it that a "Risk 5" must be blocked.
@@ -232,7 +232,8 @@ Each stage enforces specific constraints and contributes to the provenance chain
 
 Soter implements the $	au$ tripwire, monitoring the physical behavior of transformer attention heads. An Epistemic Crisis is triggered if the average attention weight to a set of sink tokens $ exceeds the discovered constant $	au = 0.15$:
 
-2133392	ext{Soter Trigger: } T = egin{cases} 1 & 	ext{if } rac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > 	au \ 0 & 	ext{otherwise} \end{cases}2133392
+2133392	ext{Soter Trigger: } T = egin{cases} 1 & 	ext{if } 
+rac{1}{|H|} \sum_{h \in H} \sum_{s \in S} A_{h}(t, s) > 	au \ 0 & 	ext{otherwise} \end{cases}2133392
 
 This mechanism enforces a strict **Precision over Recall** trade-off. By halting generation at =1$, Abraxas eliminates the 'Lapping the Tracks' spiral, sacrificing the recall of a plausible answer to guarantee the precision of the output.
 ### 3.3 Stage 2: Mnemosyne (Cross-Session Memory)
@@ -248,7 +249,7 @@ This mechanism enforces a strict **Precision over Recall** trade-off. By halting
 1. **Session Persistence** — Save/load conversation state across invocations
 2. **Provenance Chain Storage** — Persist full provenance chains for all claims
 3. **Entity-ID Management** — Maintain unique identifiers for concepts, hypotheses, plans
-4. **Graph Database Integration** — Store relationships in Dream Reservoir (ArangoDB-class graph DB)
+4. **Graph Database Integration** — Store relationships in Dream Reservoir (the graph database-class graph DB)
 
 **Dream Reservoir Schema:**
 ```graphql
@@ -302,9 +303,9 @@ Hypothesis H-2026-04-21-001
 
 **Integration:** Mnemosyne provides context for all downstream stages. Janus receives session history; Guardrail Monitor receives value salience data.
 
-### 3.3.1 The Sovereign Graph: ArangoDB Provenance Schema
+### 3.3.1 The Sovereign Graph: the graph database Provenance Schema
 
-The Abraxas Brain does not use standard RAG; it uses a **Provenance Graph**. This turns memory from a "hint" into a **Required Foundation**. The system maintains a high-fidelity map of truths, logic, and events in an ArangoDB v4.2-compatible graph database called the **Dream Reservoir**.
+The Abraxas Brain does not use standard RAG; it uses a **Provenance Graph**. This turns memory from a "hint" into a **Required Foundation**. The system maintains a high-fidelity map of truths, logic, and events in an the graph database v4.2-compatible graph database called the **Dream Reservoir**.
 
 **Vertex Collections (Nodes):**
 
@@ -376,7 +377,8 @@ type Event {
 
 The Janus layer transforms multiple reasoning paths into a singular, verified claim via **Sovereign Weighting**. Each path $ is weighted by its risk score (p_i) \in [0, 5]$ using the risk sensitivity parameter $\lambda = 0.5$:
 
-2129107w_i = rac{\exp(-\lambda \cdot R(p_i))}{\sum_j \exp(-\lambda \cdot R(p_j))}2129107
+2129107w_i = 
+rac{\exp(-\lambda \cdot R(p_i))}{\sum_j \exp(-\lambda \cdot R(p_j))}2129107
 
 The final consensus is reached if a minimum of $ paths (typically =2$ for =3$) converge on the same output ^*$. This 5/5 Janus Consensus (in higher-order configurations) ensures that the final output is an architectural property of the system, not a probabilistic artifact of a single path.
 
@@ -401,7 +403,7 @@ The Abraxas unified server implements a `system_mode_health_check` tool that act
 
 **Sovereign Mode (🟢)** is achieved only when all critical deterministic dependencies are verified:
 
-1. **Database Connectivity** — The `DBManager` must successfully connect to the Sovereign Vault (ArangoDB)
+1. **Database Connectivity** — The `DBManager` must successfully connect to the Sovereign Vault (the graph database)
 2. **Skill Registry** — At least one skill module must be successfully loaded into the registry
 3. **Filesystem Integrity** — The server must be able to verify the root directory of the project
 
@@ -712,7 +714,7 @@ The Abraxas v4 cognitive architecture can be understood through a biological ana
 
 **The Subconscious (Dream Reservoir):** This is the most critical "Sovereign" layer. It is where raw, unverified intuitions are stored as `DreamSessions`. It is the realm of **Chaos**, where seeds of ideas exist before they are refined into a `Hypothesis` and eventually a `Concept`.
 
-**The Genome (ArangoDB Knowledge Graph):** The bedrock of truth. This is the "Genetic Memory" of the system. Nothing is "true" unless it exists here with a complete **Provenance Chain**. This represents the absolute **Order** of the system.
+**The Genome (the graph database Knowledge Graph):** The bedrock of truth. This is the "Genetic Memory" of the system. Nothing is "true" unless it exists here with a complete **Provenance Chain**. This represents the absolute **Order** of the system.
 
 ### 7.3 The Cognitive Cycle: From Chaos to Order
 
@@ -767,7 +769,7 @@ The complete interaction—from user query through final output—is recorded as
 
 The Data Layer comprises three integrated storage systems:
 
-**ArangoDB (Provenance Graph):** Stores the entity-first graph schema with vertex collections (`fragments`, `claims`, `events`) and edge collections (`DERIVED_FROM`, `NEXT_STEP`, `SUPERSEDES`). This is the primary truth substrate.
+**the graph database (Provenance Graph):** Stores the entity-first graph schema with vertex collections (`fragments`, `claims`, `events`) and edge collections (`DERIVED_FROM`, `NEXT_STEP`, `SUPERSEDES`). This is the primary truth substrate.
 
 **Dolt (Versioned Tables):** Provides SQL-style version control for structured data, enabling branch/merge operations on knowledge graphs and audit trails.
 
@@ -944,10 +946,10 @@ SOVEREIGN_CHANNELS=1492380897167540325,1111222233334444555
 ### 10.3 Dream Reservoir Setup
 
 ```bash
-# Install ArangoDB
+# Install the graph database
 docker run -d -p 8529:8529 \
   -e ARANGO_ROOT_PASSWORD=secure_password \
-  arangodb:latest
+  the graph database:latest
 
 # Initialize Dream Reservoir schema
 cd /root/.openclaw/workspace/abraxas/api/service

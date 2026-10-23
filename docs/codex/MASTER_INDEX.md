@@ -12,7 +12,7 @@ The Sovereign Codex documents the architectural transition of Abraxas from a pro
 
 **Volume IV** provides the empirical proof. The Sovereign Gauntlet demonstrated 100% interception of four targeted epistemic attacks. The Chaos Suite tested 10 categories of fabricated queries across 6 models (20B-120B parameters), finding a 72-90% Simulation hallucination rate and a 100% Sovereign rejection rate. The critical finding: $\tau = 0.15$ is model-agnostic—a discovered constant of transformer attention dynamics, not a model-specific calibration.
 
-**Volume V** provides operational specifications: the three-tier architecture (Bedrock→Brain→Edge), the Sovereign Health Check protocol, deployment procedures, maintenance guidelines, and monitoring configuration. The system is verified as production-ready with 21 MCP skills in the Brain layer backed by ArangoDB's Provenance Graph.
+**Volume V** provides operational specifications: the three-tier architecture (Bedrock→Brain→Edge), the Sovereign Health Check protocol, deployment procedures, maintenance guidelines, and monitoring configuration. The system is verified as production-ready with 21 MCP skills in the Brain layer backed by the graph database's Provenance Graph.
 
 ## Table of Contents
 
@@ -117,13 +117,13 @@ The Sovereign Codex documents the architectural transition of Abraxas from a pro
 
 | Component | File |
 | :--- | :--- |
-| Soter Attention Monitor | `skills/soter/python/logic.py` |
+| Soter Attention Monitor | `skills/soter/the system language/logic.py` |
 | Soter Verifier | `infra/api/src/core/verifier.py` |
 | Sovereign-Nexus | `infra/api/src/core/nexus.py` |
 | Sovereign-Anchor | `infra/api/src/core/anchor.py` |
 | SovereignGraph Client | `infra/api/src/core/graph.py` |
 | Janus Orchestrator | `infra/api/src/core/orchestrator.py` |
-| Ledger Logic | `skills/ledger/python/logic.py` |
+| Ledger Logic | `skills/ledger/the system language/logic.py` |
 | Ledger MCP Tools | `skills/ledger/mcp_tools.py` |
 | Gauntlet Tests | `tests/gauntlet_stress_test.py` |
 | Chaos Suite Tests | `tests/chaos_suite.py` |

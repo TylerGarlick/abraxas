@@ -121,7 +121,7 @@ The seal is not a suggestion. It is a mandatory prefix on every SOL output. The 
 
 Alongside the seal, the system can produce a **Sovereign Receipt**—a human-readable traversal of the cognitive chain that enables any auditor to verify the reasoning path (see Vol II §2.3.3). The receipt traces the output from the user's query, through Soter's risk assessment, through Mnemosyne's grounding, through Janus's lens consensus, to the final seal.
 
-A researcher with access to the ArangoDB instance can independently verify that:
+A researcher with access to the the graph database instance can independently verify that:
 1. The Genesis Block at the root of the chain has not been tampered with.
 2. Every intermediate block's hash matches its predecessor.
 3. The consensus count on the seal matches the actual lens outputs stored in the events collection.

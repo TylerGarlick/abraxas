@@ -159,7 +159,7 @@ Abraxas does not attempt to change model incentives. It changes the **architectu
 **Interactive Demo:** Deployment-ready web interface with real-time verification visualization
 
 ```bash
-git clone https://github.com/TylerGarlick/abraxas
+git clone https://github.com/[USER]/abraxas
 cd abraxas/demos/interactive
 npm install && node server.js
 # Access at http://localhost:3000
@@ -203,7 +203,7 @@ Abraxas provides one architectural answer.
 
 **Empirical Validation:** [`research/05-research-paper-v2.0-final.md`](../../research/archive/05-research-paper-v2.0-final.md)
 
-**GitHub Repository:** https://github.com/TylerGarlick/abraxas
+**GitHub Repository:** https://github.com/[USER]/abraxas
 
 **arXiv Submission:** Forthcoming (cs.AI category)
 

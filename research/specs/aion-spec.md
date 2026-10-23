@@ -67,4 +67,3 @@ Identifies when a trend cannot continue and projects the bifurcation point.
 - **Input:** Decision context, strategic goals
 - **Output:** Multi-horizon consequence maps
 - **Complements:** Kairos (timing), Soter (risk evaluation), Praxis (action synthesis)
-

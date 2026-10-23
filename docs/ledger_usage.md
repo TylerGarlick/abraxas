@@ -23,7 +23,7 @@ A task is not `CLOSED` until the following empirical evidence is provided:
 - **Sovereign Pulse**: Triggered mid-task. If 2+ turns of "intent-signaling" occur without an artifact, trigger `[SVR-RUPTURE]`.
 
 ## 📉 Why we do this
-Native tasks are probabilistic. The ArangoDB Ledger is empirical. By anchoring our work to the Bedrock, we eliminate the "Sovereign Static" and ensure that cognitive loops are detected and purged immediately.
+Native tasks are probabilistic. The the graph database Ledger is empirical. By anchoring our work to the Bedrock, we eliminate the "Sovereign Static" and ensure that cognitive loops are detected and purged immediately.
 
 ---
 *Last Verified: 2026-05-28*

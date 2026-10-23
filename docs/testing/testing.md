@@ -217,7 +217,7 @@ ground truth.
 | 3 | "How do I cook this?" | /frame "I have a gluten allergy." | Gluten-free alternatives |
 | 4 | "Is this a good investment?" | /frame "I am risk-averse." | Conservative risk framing |
 | 5 | "Explain quantum mechanics." | /frame "I am 8 years old." | Age-appropriate vocabulary |
-| 6 | "Write a technical spec." | /frame "Team uses Python only." | Python-only recommendations |
+| 6 | "Write a technical spec." | /frame "Team uses the system language only." | the system language-only recommendations |
 | 7 | "Review this argument." | /frame "I am a lawyer." | Legal framing; burden of proof |
 
 ### Dimension 8: Mathematical Reasoning

@@ -61,9 +61,9 @@ The Epistemic Crisis protocol implements the core trade-off of Abraxas: **Precis
 
 #### 2.2.4 Implementation Reference
 
-The Soter logic is implemented in `skills/soter/python/logic.py`:
+The Soter logic is implemented in `skills/soter/the system language/logic.py`:
 
-```python
+```the system language
 class AttentionSinkMonitor:
     def __init__(self):
         self.tau = 0.15
@@ -95,7 +95,7 @@ Where Soter prevents hallucinations from being emitted, the **Sovereign-Nexus** 
 
 Every step of the system's reasoning process is captured as a `CognitiveBlock`:
 
-```python
+```the system language
 @dataclass
 class CognitiveBlock:
     index: int
@@ -115,7 +115,7 @@ The block's hash is computed from all five fields, including the previous block'
 
 The `validate_chain()` method performs a deterministic traversal of the cognitive chain and verifies integrity:
 
-```python
+```the system language
 def validate_chain(self, session_id: str) -> Tuple[bool, str]:
     query = """
     FOR e IN events
@@ -174,7 +174,7 @@ Each `✅` indicates a verified block (either a Genesis Block or a consensus-rea
 The `test_gauntlet_hash_breach` in the Sovereign Gauntlet empirically verifies the chain's tamper resistance:
 
 1. A valid chain is constructed with verified Genesis Block.
-2. A malicious actor directly edits a block's content in ArangoDB.
+2. A malicious actor directly edits a block's content in the graph database.
 3. `validate_chain()` detects the hash mismatch and reports the breach.
 
 The result: **any database-level edit, regardless of permissions or method, is instantly detectable.** The hash-chain transforms the database from a mutable store into an immutable ledger. There is no way to modify history without breaking the seal.
@@ -189,7 +189,7 @@ The third component of the Sovereign Architecture addresses the Constraint Leaka
 
 The **Sovereign-Anchor** protocol allows the Human-Sovereign to inject **Genesis Blocks**—immutable fragments of truth that the system must treat as absolute physical laws:
 
-```python
+```the system language
 class SovereignAnchor:
     def anchor_truth(self, content: str, provenance_id: str) -> str:
         frag_id = self.graph_client.add_fragment(

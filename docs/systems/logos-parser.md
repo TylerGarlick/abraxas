@@ -15,7 +15,7 @@ The parser solves the problem of "holistic confidence inflation" by:
 ## Installation
 
 ```bash
-# The parser requires Python 3.8+
+# The parser requires the system language 3.8+
 # No external NLP dependencies required (uses regex-based parsing)
 
 # Import into your project
@@ -24,7 +24,7 @@ from src.logos.parser import ClaimParser, ClaimStructure, AtomicProposition
 
 ## Quick Start
 
-```python
+```the system language
 from src.logos.parser import ClaimParser
 
 parser = ClaimParser()
@@ -62,7 +62,7 @@ for atom in result.atoms:
 
 The parser extracts Subject-Verb-Object triplets from atomic propositions:
 
-```python
+```the system language
 claim = "Smoking causes lung cancer."
 result = parser.parse(claim)
 
@@ -77,7 +77,7 @@ print(f"Object: {svo.object}")     # lung cancer
 
 Each atom is assessed for confidence level based on linguistic markers:
 
-```python
+```the system language
 # KNOWN - High certainty
 claim1 = "The Earth orbits the Sun."
 # Result: [KNOWN]
@@ -95,7 +95,7 @@ claim3 = "I think this is correct."
 
 All results are JSON-serializable:
 
-```python
+```the system language
 result = parser.parse("Complex claim...")
 json_output = result.to_dict()
 # Can be serialized: json.dumps(json_output)
@@ -105,7 +105,7 @@ json_output = result.to_dict()
 
 ### Compound Claims (AND)
 
-```python
+```the system language
 claim = "Remote work increases productivity and improves work-life balance."
 result = parser.parse(claim)
 
@@ -119,7 +119,7 @@ result = parser.parse(claim)
 
 ### Conditionals (IF/THEN)
 
-```python
+```the system language
 claim = "If we continue emitting CO2, then global temperatures will rise."
 result = parser.parse(claim)
 
@@ -132,7 +132,7 @@ result = parser.parse(claim)
 
 ### Negation
 
-```python
+```the system language
 claim = "The Earth is not flat."
 result = parser.parse(claim)
 
@@ -169,7 +169,7 @@ Based on testing with 57 complex claims from the Abraxas test corpus:
 
 The parser integrates with other Abraxas systems:
 
-```python
+```the system language
 # 1. Decompose with Logos
 from src.logos.parser import ClaimParser
 parser = ClaimParser()

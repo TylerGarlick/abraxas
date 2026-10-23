@@ -1,4 +1,4 @@
-# The Sovereign Graph: ArangoDB Provenance Schema
+# The Sovereign Graph: the graph database Provenance Schema
 
 **Domain:** Data Layer
 **Source:** `docs/architecture/sovereign-graph.md`
@@ -8,7 +8,7 @@
 
 ## Overview
 
-The Abraxas Brain does not use standard RAG; it uses a **Provenance Graph**. This turns memory from a "hint" into a **Required Foundation**. The system maintains a high-fidelity map of truths, logic, and events in an ArangoDB v4.2-compatible graph database — the **Dream Reservoir**.
+The Abraxas Brain does not use standard RAG; it uses a **Provenance Graph**. This turns memory from a "hint" into a **Required Foundation**. The system maintains a high-fidelity map of truths, logic, and events in an the graph database v4.2-compatible graph database — the **Dream Reservoir**.
 
 ## Graph Architecture
 
