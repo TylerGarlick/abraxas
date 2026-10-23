@@ -48,6 +48,7 @@ import { synesisTools } from "./synesis.ts";
 import { nexusTools } from "./nexus.ts";
 import { reportTools } from "./report.ts";
 import { praxisTools } from "./praxis.ts";
+import { sophiaTools } from "./sophia.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
@@ -100,4 +101,5 @@ export const toolModules: ToolModule[] = [
   nexusTools,
   reportTools,
   praxisTools,
+  sophiaTools,
 ];
