@@ -1,0 +1,19 @@
+{
+  "name": "hermes-delphi-runner",
+  "version": "1.0.0",
+  "description": "Hermes-Delphi Autonomous Research Pipeline Runner",
+  "main": "runner/pipeline-runner.js",
+  "scripts": {
+    "start": "node runner/pipeline-runner.js run",
+    "status": "node runner/pipeline-runner.js status",
+    "resume": "node runner/pipeline-runner.js resume",
+    "cancel": "node runner/pipeline-runner.js cancel",
+    "cron:setup": "bash runner/setup-cron.sh",
+    "cron:remove": "bash runner/setup-cron.sh --remove",
+    "cron:status": "bash runner/setup-cron.sh --status"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

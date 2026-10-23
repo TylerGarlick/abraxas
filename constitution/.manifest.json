@@ -1,0 +1,151 @@
+{
+  "files": {
+    "constitution-agon.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "64cb18cad5532ef3d767866fa0cf25c701eea832a3d0e48f1dd08704dd5ba0c5"
+    },
+    "constitution-aletheia.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "a2814b54909305e5ce849fc36f83873301fc9325df192aaf8237c5eadb6b8a54"
+    },
+    "constitution-chronos.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "509fe6037f42ecc09909222ee7b8f1623c7798425d1e29e9eeb9133f8a723fc4"
+    },
+    "constitution-core.md": {
+      "modified": "2026-05-14T16:27:10.779232+00:00",
+      "sha256": "b599bebf2bac06c1e524fada131667257f77f28007e9bf45247236db2503746c"
+    },
+    "constitution-cvp.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "71623804c4323679f11deddaa54020e4832066c8de18e2589ead59f0571b7881"
+    },
+    "constitution-dianoia.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "75dd42587992f8b35745e15937c7294a69ca843844178037a79d17935038c1e4"
+    },
+    "constitution-episteme.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "8cd8ea1895bd79f48fadb236a44c02365800df60bcda3a5104da9460550b5ee3"
+    },
+    "constitution-ergon.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "00bbb0763a17be5895eeb22e6240506a89a9ba797829e81ed6eabc0ef15efbff"
+    },
+    "constitution-ethos.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "4d9a7d9b88ee55de2d147199a59b6e5b0e237e747cfbc1374ea33e66526b25a9"
+    },
+    "constitution-guardrail.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "feb919169f65d50da1cf1c17b7e55baf81483b85360ef06725e006cfa086544d"
+    },
+    "constitution-harmonia.md": {
+      "modified": "2026-05-14T00:58:29.040117+00:00",
+      "sha256": "101dddb4b2022fc2b1fb427944711b098d531e94f0388ebc13d1e6bf9df36f1f"
+    },
+    "constitution-hermes.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "f32150fc3dbeec2e921dba22dc789af2b1c69e684fe040caa210adf41c0921ef"
+    },
+    "constitution-honest.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "e877dd0845112acf2d5f41a1392f7ccd35f7a09b4c43dcebdfebf6810b9aa3a7"
+    },
+    "constitution-index.md": {
+      "modified": "2026-05-14T16:27:10.779232+00:00",
+      "sha256": "4c43d97dbb2a619b53efc157d6b1d6c974929be2c641f3154f6cb275867f00eb"
+    },
+    "constitution-janus.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "cb3c8eec5323fcd942332ee56955c38870fb3aa3df415376c2bc17a755ef06fb"
+    },
+    "constitution-kairos.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "b8d7190a592be9de94c60edcf792979589e96a3b022c85b309956b8c5ba31add"
+    },
+    "constitution-krisis.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "b56ddb42f014dce01e4aa28f6675239cf55f7aac3e223680021ed4c606a70cef"
+    },
+    "constitution-logos-math.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "108ddf94d8a7573ed5f51d399487d47c5f42c5234dec8cc1d41d1dfadc47604b"
+    },
+    "constitution-logos.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "9cb50b3388b7e0af982441736ed7df0ffbcf2f273c8fceb50cd326b0bcbc7c8e"
+    },
+    "constitution-metanoia.md": {
+      "modified": "2026-05-12T21:26:45.176625+00:00",
+      "sha256": "b4349360596c0ed328d2ddff1066b51000cf1ae1c47a826bc95678a80292fe60"
+    },
+    "constitution-mnemon.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "78c209f10674fdc6d451fa18bbde857c786324dc7951e71b6a187e0fb1ca5e48"
+    },
+    "constitution-mnemosyne.md": {
+      "modified": "2026-05-02T01:17:07.356094+00:00",
+      "sha256": "20bd3098f69a7396705c8a602d6455c71ed4df4d0949c53dde1220a00424d877"
+    },
+    "constitution-oneironautics.md": {
+      "modified": "2026-05-02T01:17:07.360094+00:00",
+      "sha256": "3b516f3add9bdda2267013f3147b84f9e70ffadeae8ab85fd297bc7c6fc1278f"
+    },
+    "constitution-pheme.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "a4e0f2a5f3726a63c269da59525355aee091380b5a47638c8dff6b6638b6e4a8"
+    },
+    "constitution-plan.md": {
+      "modified": "2026-05-14T00:58:29.041117+00:00",
+      "sha256": "a890f68256d9daf833887d5ca001a32e4ac9df966d612abe21424d91df4a499b"
+    },
+    "constitution-prognosis.md": {
+      "modified": "2026-05-12T21:26:45.176625+00:00",
+      "sha256": "33b30107190e628858182bd03e9d8c6e53065fb7bfec5582a1b3aa31f5fef4a9"
+    },
+    "constitution-prometheus.md": {
+      "modified": "2026-05-14T00:58:29.042117+00:00",
+      "sha256": "5b3c468042af66fa2342262bddcae0ff944c8db1aff4f397b3701f970b3f2681"
+    },
+    "constitution-soter.md": {
+      "modified": "2026-05-14T16:27:10.779232+00:00",
+      "sha256": "884fd3f1cb28ef33609180269766437a7016309655b0b5e0437a09103b46229b"
+    },
+    "constitution-sovereign-calibration.md": {
+      "modified": "2026-05-14T00:58:29.042117+00:00",
+      "sha256": "a62c2e4d7ab2ca35ca83ace5af3fad6a41ffd47f45d549244451a050ed35b601"
+    },
+    "constitution-sovereign-core.md": {
+      "modified": "2026-05-14T00:58:29.042117+00:00",
+      "sha256": "dd434f82db2bfe18d521fc0e740ae85901d9e7ec063e4382a7f9b1658124c4c4"
+    },
+    "constitution-sovereign-engine.md": {
+      "modified": "2026-05-14T00:58:29.042117+00:00",
+      "sha256": "24bf62651516a5e68928bad0580bcb4a460a20cb5739881138c0017da9b73105"
+    },
+    "constitution-sovereign-scribe.md": {
+      "modified": "2026-05-14T00:58:29.042117+00:00",
+      "sha256": "a75d8301d0f809153ac382ec439674c450114e9254b44cd800bb60bcabedc07a"
+    },
+    "constitution-stochasmos.md": {
+      "modified": "2026-05-12T21:26:45.176625+00:00",
+      "sha256": "0576def41d498df352ac8d245dee3610ba05148854e23cd326467dafb20d1135"
+    },
+    "constitution-synesis.md": {
+      "modified": "2026-05-12T21:26:45.176625+00:00",
+      "sha256": "275cfffd638a2f550d2de208217230b5889088fb44f66b18921a0f8653e35d15"
+    },
+    "constitution-universal.md": {
+      "modified": "2026-05-14T16:27:10.779232+00:00",
+      "sha256": "9dc8c69f03fa5a3c3c57d8413577def13a3c00b203b2c6778346b1076f3e37d2"
+    },
+    "genesis.md": {
+      "modified": "2026-05-14T16:27:10.779232+00:00",
+      "sha256": "66847075c38c2255e08860f4f03e6f865e77d34946273de6853c6e3b5536e052"
+    }
+  },
+  "generated_at": "2026-05-15T04:25:56.901574+00:00",
+  "generated_by": "session-boot.py",
+  "genesis_version": "4.4.1"
+}

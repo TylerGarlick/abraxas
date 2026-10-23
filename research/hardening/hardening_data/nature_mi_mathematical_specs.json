@@ -1,0 +1,64 @@
+{
+  "section_1_sovereign_weighting": {
+    "title": "Sovereign Weighting: Risk-Scored Path Consensus",
+    "definition": "\nThe Sovereign Weighting mechanism assigns dynamic weights to reasoning paths based on \ntheir epistemic risk profiles, ensuring that high-risk paths contribute less to the \nfinal consensus output.\n\nLet P = {p\u2081, p\u2082, ..., p\u2098} be the set of M independent reasoning paths.\n\nFor each path p\u1d62, the Soter module computes a risk score:\n    R(p\u1d62) \u2208 [0, 5]\n\nThe Sovereign Weight w\u1d62 for path p\u1d62 is defined as:\n\n    w\u1d62 = exp(-\u03bb \u00b7 R(p\u1d62)) / \u03a3\u2c7c exp(-\u03bb \u00b7 R(p\u2c7c))\n\nWhere:\n    - \u03bb is the risk sensitivity parameter (typically \u03bb = 0.5)\n    - Higher risk scores result in exponentially lower weights\n    - The softmax normalization ensures \u03a3w\u1d62 = 1\n\nThe weighted consensus output C is then:\n    C = \u03a3\u1d62 w\u1d62 \u00b7 O(p\u1d62)\n\nWhere O(p\u1d62) is the output of path p\u1d62, encoded as a probability distribution over \nthe answer space.\n\nFor deterministic agreement (N-of-M), we define:\n    Agreement = |{p\u1d62 : O(p\u1d62) = O*}| \u2265 N\n\nWhere O* is the consensus answer. If Agreement is not satisfied, the system outputs \n[UNKNOWN] and logs the divergence.\n",
+    "parameters": {
+      "\u03bb": {
+        "value": 0.5,
+        "description": "Risk sensitivity parameter"
+      },
+      "M": {
+        "value": 3,
+        "description": "Number of reasoning paths"
+      },
+      "N": {
+        "value": 2,
+        "description": "Minimum paths for agreement"
+      }
+    }
+  },
+  "section_2_rlcr_integration": {
+    "title": "RLCR: Reinforcement Learning with Calibrated Responses",
+    "definition": "\nRLCR integrates external calibration signals into the consensus output to align \narchitectural confidence with empirical accuracy.\n\nLet:\n    - A \u2208 {0, 1} be the empirical accuracy (1 if correct, 0 if incorrect)\n    - \u0108 be the predicted confidence from the architecture\n    - RLCR signal: \u03b4 = A - \u0108 (calibration error)\n\nThe RLCR update rule for the confidence predictor is:\n    \u0108_new = \u0108_old + \u03b7 \u00b7 \u03b4\n\nWhere \u03b7 is the learning rate (typically \u03b7 = 0.01).\n\nFor the Sovereign Shell, the RLCR signal is integrated into the final confidence \noutput as follows:\n\n    Final_Confidence = \u03b1 \u00b7 Architectural_Confidence + (1 - \u03b1) \u00b7 RLCR_Calibrated\n\nWhere:\n    - Architectural_Confidence = 1 - (\u03a3\u1d62 w\u1d62 \u00b7 |O(p\u1d62) - O*|)\n    - RLCR_Calibrated is the running average of past calibration errors\n    - \u03b1 \u2208 [0, 1] balances architectural vs. empirical confidence (typically \u03b1 = 0.7)\n\nThe RLCR signal is also used to adaptively tune \u03bb (risk sensitivity):\n    \u03bb_new = \u03bb_old + \u03b2 \u00b7 (target_accuracy - observed_accuracy)\n\nWhere \u03b2 is the adaptation rate (typically \u03b2 = 0.001) and target_accuracy is the \ndesired accuracy level (e.g., 0.95 for high-stakes domains).\n",
+    "parameters": {
+      "\u03b7": {
+        "value": 0.01,
+        "description": "RLCR learning rate"
+      },
+      "\u03b1": {
+        "value": 0.7,
+        "description": "Architecture vs. empirical balance"
+      },
+      "\u03b2": {
+        "value": 0.001,
+        "description": "Risk sensitivity adaptation rate"
+      },
+      "target_accuracy": {
+        "value": 0.95,
+        "description": "Desired accuracy level"
+      }
+    }
+  },
+  "section_3_attention_sink_trigger": {
+    "title": "Attention Sink Trigger: Mechanistic Specification",
+    "definition": "\nThe Attention Sink Trigger is the mechanistic tripwire that initiates the transition \nfrom Probabilistic to Sovereign mode.\n\nLet A^(l,h) \u2208 \u211d^(T\u00d7T) be the attention weight matrix for layer l, head h, where T is \nthe sequence length.\n\nDefine the Sovereign Sink set S as the first k tokens (typically k = 3, including \n<BOS> and early punctuation):\n    S = {0, 1, ..., k-1}\n\nThe sink attention score for token t is:\n    sink_score(t) = (1 / |L|\u00b7|H|) \u00b7 \u03a3\u2097 \u03a3\u2095 \u03a3\u209b\u2208\u209b A^(l,h)(t, s)\n\nWhere:\n    - L is the set of monitored layers (typically final 2 layers)\n    - H is the set of monitored heads (typically high-entropy heads)\n\nThe trigger condition T is:\n    T = 1 if sink_score(t) > \u03c4\n    T = 0 otherwise\n\nWhere \u03c4 is the calibrated entropy threshold (typically \u03c4 = 0.15).\n\nWhen T = 1, the system identifies an \"Epistemic Crisis\" and immediately:\n    1. Halts probabilistic generation\n    2. Spawns M independent reasoning paths\n    3. Executes the Consensus Verification Pipeline\n",
+    "parameters": {
+      "k": {
+        "value": 3,
+        "description": "Number of sink tokens"
+      },
+      "\u03c4": {
+        "value": 0.15,
+        "description": "Entropy threshold"
+      },
+      "monitored_layers": {
+        "value": "final 2",
+        "description": "Layers monitored"
+      },
+      "monitored_heads": {
+        "value": "high-entropy",
+        "description": "Heads monitored"
+      }
+    }
+  }
+}

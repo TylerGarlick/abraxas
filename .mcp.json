@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "abraxas": {
+      "command": "bun",
+      "args": ["run", "mcp/src/index.ts"],
+      "env": { "ABRAXAS_ROOT": "." }
+    }
+  }
+}

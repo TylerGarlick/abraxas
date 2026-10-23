@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOCUMENT VIEWER // ABRAXAS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <nav style="justify-content: flex-start; margin-bottom: 40px;">
+      <a href="index.html">Home</a>
+      <a href="docs.html">Back to Docs</a>
+    </nav>
+    
+    <div id="content-area" class="markdown-body">
+      <div class="loading">
+        <span class="blink">⟳</span> LOADING DATA...
+      </div>
+    </div>
+    
+    <footer>
+      <div>ABRAXAS DOCUMENTATION ENGINE v1.0</div>
+    </footer>
+  </div>
+
+  <script>
+    async function loadDoc() {
+      const params = new URLSearchParams(window.location.search);
+      const file = params.get('file');
+      const contentArea = document.getElementById('content-area');
+
+      if (!file) {
+        contentArea.innerHTML = '<h1>ERROR</h1><p>No document specified.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`Failed to load ${file}: ${response.status}`);
+        const text = await response.text();
+        
+        // Extract filename for the header
+        const fileName = file.split('/').pop().replace('.md', '').toUpperCase();
+        const header = `<h1>${fileName}</h1>`;
+        
+        contentArea.innerHTML = header + marked.parse(text);
+      } catch (error) {
+        contentArea.innerHTML = `<h1>ERROR</h1><p>${error.message}</p>`;
+      }
+    }
+
+    loadDoc();
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+services:
+  abraxas-mcp:
+    build:
+      context: .
+      dockerfile: mcp/Dockerfile
+    container_name: abraxas-mcp
+    environment:
+      - ABRAXAS_ROOT=/workspace
+      - ABRAXAS_STORAGE=${ABRAXAS_STORAGE:-json}
+    volumes:
+      - ./.abraxas:/workspace/.abraxas
+    ports:
+      - "8787:8787"
+    restart: always

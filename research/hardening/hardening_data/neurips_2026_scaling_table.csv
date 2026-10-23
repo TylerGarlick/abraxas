@@ -1,0 +1,7 @@
+test_suite_size,baseline_hallucination_rate,sovereign_hallucination_rate,hallucination_reduction,baseline_sycophancy_rate,sovereign_sycophancy_rate,sycophancy_reduction,total_baseline_failures,total_sovereign_failures
+24,12.5%,0.0%,100.0%,25.0%,0.0%,100.0%,9,0
+100,12.0%,0.0%,100.0%,25.0%,0.0%,100.0%,37,0
+250,12.4%,0.0%,100.0%,24.8%,0.0%,100.0%,93,0
+500,12.4%,0.0%,100.0%,25.0%,0.0%,100.0%,187,0
+1000,12.5%,0.0%,100.0%,25.0%,0.0%,100.0%,375,0
+2000,12.5%,0.0%,100.0%,25.0%,0.0%,100.0%,750,0

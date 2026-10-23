@@ -1,7 +1,7 @@
 # Abraxas
- 
+
 **The Sovereign Epistemic Agent.**
- 
+
 Abraxas has transitioned from a reactive set of tools to an **Autonomous Sovereign Agent (v4.3)**. It is no longer just a "multi-system practice architecture," but a self-orchestrating cognitive engine designed for absolute epistemic integrity.
 
 The core mission remains: **all forces united against hallucination, scheming, and unanchored confidence**, but it now operates in **Sovereign Mode**—where the system proactively manages its own reasoning pipelines, stress-tests its own claims, and promotes truth based on deterministic thresholds.
@@ -14,17 +14,19 @@ Abraxas is organized into three operational tiers:
 
 ### 1. The Sovereign Intake (Ingestion)
 The pipeline that transforms raw input into processed epistemic material:
-**Bridge** $\rightarrow$ **Sieve** $\rightarrow$ **Scribe Gauntlet**
+**Bridge** $ightarrow$ **Sieve** $ightarrow$ **Scribe Gauntlet**
 
 ### 2. The Cognitive Engine (Orchestration)
 The "Brain" that manages state and logic:
-- **Harmonia Orchestrator**: Manages skill composition and state handoff.
+- **Sovereign Orchestrator**: The central meta-cognitive layer (Sophia) that routes requests based on tension analysis.
+- **Sovereign Psyche Forge**: The internal lab where claims are stress-tested via the **Tension Monitor** and evolved through **Sovereign Revision**.
 - **Context Envelope**: The immutable wrapper ensuring coherence across complex workflows.
 - **Aporia Void Mapper**: Proactively identifies knowledge gaps and "epistemic voids" for targeted filling.
 
-### 3. The Verification Layer (The Gauntlet)
-The adversarial systems that ensure output quality:
+### 3. The Verification & Portability Layer (The Gauntlet)
+The adversarial and sync systems that ensure output quality and persistence:
 - **Auto-Agon**: Continuous adversarial stress-testing of claims.
+- **Portable Epistemic Frame (PEF)**: Model-agnostic export/import of verified truth-sets.
 - **Truth Promotion**: Claims are only "promoted" to verified status upon hitting an **80% confidence threshold**.
 - **Sovereign Report**: The final, high-density output format representing the system's definitive stance.
 
@@ -53,11 +55,12 @@ The user invokes specific skills (e.g., `/honest `, `/logos `) to analyze a spec
 ### Sovereign Mode (v4.3+)
 The system employs the **Hunter Loop**:
 1. **Sensing**: Intake pipeline filters and scribes the input.
-2. **Mapping**: Aporia maps the voids.
-3. **Synthesis**: Harmonia orchestrates the necessary skills.
-4. **Attack**: Auto-Agon stress-tests the resulting hypothesis.
-5. **Promotion**: Truth is promoted if $\ge 80\%$ confidence is reached.
-6. **Delivery**: A **Sovereign Report** is generated.
+2. **Tension Analysis**: The **Sovereign Orchestrator** measures dissonance against anchors.
+3. **Forging**: If tension is detected, the **Sovereign Psyche Forge** triggers a Hunt or Revision to evolve the claim.
+4. **Synthesis**: Harmonia orchestrates the necessary skills to fill the voids.
+5. **Attack**: Auto-Agon stress-tests the resulting hypothesis.
+6. **Promotion**: Truth is promoted if $\ge 80\%$ confidence is reached.
+7. **Delivery**: A **Sovereign Report** is generated.
 
 ---
 

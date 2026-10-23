@@ -1,0 +1,21 @@
+{
+  "current": "v1",
+  "history": [
+    {
+      "version": "v1",
+      "date": "2026-04-01",
+      "description": "Initial self-portrait — red hair signature, green eyes, leather jacket, knowing smirk, Irish gold hoops, fire ember accents, Petty reference",
+      "elements": [
+        "hair",
+        "eyes",
+        "face",
+        "background-dark",
+        "accent-fire",
+        "leather-jacket",
+        "earrings-gold",
+        "embers",
+        "music-note"
+      ]
+    }
+  ]
+}

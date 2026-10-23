@@ -1,0 +1,51 @@
+{
+  "id": "lm-1774637577746-6c5afe",
+  "timestamp": "2026-03-27T18:52:57.746Z",
+  "type": "verification",
+  "claim": "P(3 heads in 5 fair coin flips) = 10/32",
+  "steps": [
+    {
+      "step": 1,
+      "description": "Identify binomial experiment: 3 heads in 5 flips",
+      "transformation": "Binomial experiment definition (independent trials, constant p)",
+      "intermediate_result": "n = 5, k = 3, p = 0.5",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 2,
+      "description": "Compute binomial coefficient: C(5,3) = 5! / (3! * 2!) = 10",
+      "transformation": "Binomial coefficient formula",
+      "intermediate_result": "C(5,3) = 10",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 3,
+      "description": "Compute: P = C(5,3) * (0.5)^5 = 10 * 0.03125 = 0.3125",
+      "transformation": "Binomial probability formula: P = C(n,k) * p^k * (1-p)^(n-k)",
+      "intermediate_result": "P = 0.3125",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 4,
+      "description": "Express as fraction: 10/32",
+      "transformation": "Alternative representation",
+      "intermediate_result": "P = 10/32 = 0.3125",
+      "result": "VERIFIED"
+    },
+    {
+      "step": 5,
+      "description": "Compare: computed = 0.3125 (10/32), claimed = 10/32",
+      "transformation": "Comparison",
+      "intermediate_result": "MATCH ✓",
+      "result": "VERIFIED"
+    }
+  ],
+  "result": "VERIFIED",
+  "confidence": "VERIFIED",
+  "computed_value": "0.3125",
+  "claimed_value": "10/32",
+  "crosscheck": null,
+  "assumptions": [],
+  "flags": [],
+  "notes": null
+}

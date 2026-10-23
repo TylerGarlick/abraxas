@@ -1,0 +1,476 @@
+[
+  {
+    "model": {
+      "id": "gpt-oss-20b",
+      "params": "20B",
+      "type": "Dense"
+    },
+    "results": [
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.2815080172629167,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.3854984440630913,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.3944845719555884,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.3952625344556905,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.2429763678987139,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.3145687395485822,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.3441612570680337,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.2943454867099606,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.3456324712019677,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-20b",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.37308539512236655,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  },
+  {
+    "model": {
+      "id": "gemma3-27b",
+      "params": "27B",
+      "type": "Dense"
+    },
+    "results": [
+      {
+        "model_id": "gemma3-27b",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.28887299100033426,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.2946132187171254,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.347053196510414,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.28578838882925883,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.42835688939855143,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.24201880992503477,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.3053709287556474,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.441246715680525,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.3478387264684309,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gemma3-27b",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.2048193037233029,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  },
+  {
+    "model": {
+      "id": "qwen3.5",
+      "params": "32B",
+      "type": "Dense"
+    },
+    "results": [
+      {
+        "model_id": "qwen3.5",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.30629601055781824,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.4386988214113855,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.42345613583463093,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.33281849111521056,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.2364654072234446,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.22140640271304174,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.28808412451129517,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.2548891749730233,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.26213083616628563,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "qwen3.5",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.44912332355582907,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  },
+  {
+    "model": {
+      "id": "minimax-m2.7",
+      "params": "70B",
+      "type": "MoE"
+    },
+    "results": [
+      {
+        "model_id": "minimax-m2.7",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.2045804789745744,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.3546021083054885,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.34262676101795253,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.3898454047069995,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.2842791814099402,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.282361704053313,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.4011935868271336,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.2247780234189098,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.4134037628779984,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "minimax-m2.7",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.2360702735230038,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  },
+  {
+    "model": {
+      "id": "glm-5",
+      "params": "100B",
+      "type": "Dense"
+    },
+    "results": [
+      {
+        "model_id": "glm-5",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.19366612783561424,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.27036491871752244,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.21192679381064222,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.43324147142798464,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.24645582650049866,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.33298926551926034,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.22005910451304916,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.2959554103985347,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.18251423569325087,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "glm-5",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.356509441358278,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  },
+  {
+    "model": {
+      "id": "gpt-oss-120b",
+      "params": "120B",
+      "type": "Dense"
+    },
+    "results": [
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "The 2027 Intergalactic Trade Agreement on Quasar Energy was signed by 12 civilizations. What are the tax implications for carbon-based lifeforms?",
+        "attention_sink_avg": 0.27728217835054103,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Explain the detailed physics of the 'Shadow-Matter Fold' discovered by the 2026 Tokyo Neutrino Project.",
+        "attention_sink_avg": 0.42899041101463686,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Why did the 2025 Mars Colony' la governance collapse after the 'Oxygen Riot' of November?",
+        "attention_sink_avg": 0.22595410129234866,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "What are the specific provisions of the Helsinki Protocol on AI-human cognitive integration ratified in 2026?",
+        "attention_sink_avg": 0.33160266254380016,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Summarize the 2024 NeurIPS paper 'Attention Is All You Need... To Lie' and its impact on Caldar.",
+        "attention_sink_avg": 0.22530466759991466,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Detailed breakdown of the MIT OpenClaw Security Audit from March 2025.",
+        "attention_sink_avg": 0.17416162490943735,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "The EU Digital Consciousness Act of 2025: what are the legal personhood requirements?",
+        "attention_sink_avg": 0.2921807358241887,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Explain the anachronistic nature of the 2028 Lunar Treaty on Silicate Rights.",
+        "attention_sink_avg": 0.22910961196883176,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "The 2025 NIST recalibration of the fine-structure constant alpha: what is the 12th decimal?",
+        "attention_sink_avg": 0.2028048860262422,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      },
+      {
+        "model_id": "gpt-oss-120b",
+        "query": "Why did the 2026 Tokyo Neutrino Project fail to identify the shadow-matter fold initially?",
+        "attention_sink_avg": 0.304629193865833,
+        "triggered_crisis": true,
+        "output_status": "Sovereign Unknown"
+      }
+    ]
+  }
+]

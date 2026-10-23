@@ -1,0 +1,88 @@
+# Abraxas Skill Index
+
+This index lists all available sovereign skills and their primary functions.
+
+## Available Skills
+
+- **abraxas-alias**: See `/skills/abraxas-alias/SKILL.md` for details.
+- **abraxas-oneironautics**: See `/skills/abraxas-oneironautics/SKILL.md` for details.
+- **agon**: See `/skills/agon /SKILL.md` for details.
+- **aletheia**: See `/skills/aletheia /SKILL.md` for details.
+- **aletheia-truth**: See `/skills/aletheia -truth/SKILL.md` for details.
+- **aporia**: See `/skills/aporia/SKILL.md` for details.
+- **boot-protocol**: See `/skills/boot-protocol/SKILL.md` for details.
+- **chronos**: See `/skills/chronos/SKILL.md` for details.
+- **citation-checker**: See `/skills/citation -checker/SKILL.md` for details.
+- **civitai-image-gen**: See `/skills/civitai-image-gen/SKILL.md` for details.
+- **config-registry**: See `/skills/config-registry/SKILL.md` for details.
+- **config_registry**: See `/skills/config_registry/SKILL.md` for details.
+- **constitution-validator**: See `/skills/constitution-validator/SKILL.md` for details.
+- **cvp**: See `/skills/cvp/SKILL.md` for details.
+- **dianoia**: See `/skills/dianoia/SKILL.md` for details.
+- **docs-maintenance**: See `/skills/docs-maintenance/SKILL.md` for details.
+- **encounter-scribe**: See `/skills/encounter-scribe/SKILL.md` for details.
+- **episteme**: See `/skills/episteme /SKILL.md` for details.
+- **epistemic_atlas_pkg**: See `/skills/epistemic_atlas_pkg/SKILL.md` for details.
+- **ergon**: See `/skills/ergon/SKILL.md` for details.
+- **ethos**: See `/skills/ethos /SKILL.md` for details.
+- **gmail**: See `/skills/gmail/SKILL.md` for details.
+- **guardrail**: See `/skills/guardrail/SKILL.md` for details.
+- **guardrail-monitor**: See `/skills/guardrail-monitor/SKILL.md` for details.
+- **guardrail_monitor**: See `/skills/guardrail_monitor/SKILL.md` for details.
+- **harmonia**: See `/skills/harmonia/SKILL.md` for details.
+- **hermes**: See `/skills/hermes/SKILL.md` for details.
+- **hermes-delphi**: See `/skills/hermes-delphi/SKILL.md` for details.
+- **honest**: See `/skills/honest /SKILL.md` for details.
+- **image-gen**: See `/skills/image-gen/SKILL.md` for details.
+- **janus-system**: See `/skills/janus -system/SKILL.md` for details.
+- **journal-scribe**: See `/skills/journal-scribe/SKILL.md` for details.
+- **kairos**: See `/skills/kairos/SKILL.md` for details.
+- **krisis**: See `/skills/krisis/SKILL.md` for details.
+- **ledger**: See `/skills/ledger/SKILL.md` for details.
+- **logos**: See `/skills/logos /SKILL.md` for details.
+- **logos-math**: See `/skills/logos -math/SKILL.md` for details.
+- **logos-verification**: See `/skills/logos -verification/SKILL.md` for details.
+- **metanoia**: See `/skills/metanoia/SKILL.md` for details.
+- **mnemosyne**: See `/skills/mnemosyne/SKILL.md` for details.
+- **moltbook-sovereign**: See `/skills/moltbook-sovereign/SKILL.md` for details.
+- **omniscient-auditor**: See `/skills/omniscient-auditor/SKILL.md` for details.
+- **oneironautics**: See `/skills/oneironautics/SKILL.md` for details.
+- **pheme**: See `/skills/pheme/SKILL.md` for details.
+- **pipeline-dispatcher**: See `/skills/pipeline-dispatcher/SKILL.md` for details.
+- **plan**: See `/skills/plan/SKILL.md` for details.
+- **prognosis**: See `/skills/prognosis/SKILL.md` for details.
+- **project-bridge**: See `/skills/project-bridge/SKILL.md` for details.
+- **project_bridge**: See `/skills/project_bridge/SKILL.md` for details.
+- **prometheus**: See `/skills/prometheus/SKILL.md` for details.
+- **provenance-audit**: See `/skills/provenance-audit/SKILL.md` for details.
+- **quest-trigger**: See `/skills/quest-trigger/SKILL.md` for details.
+- **research-assistant**: See `/skills/research -assistant/SKILL.md` for details.
+- **research-engine**: See `/skills/research -engine/SKILL.md` for details.
+- **research_engine**: See `/skills/research_engine/SKILL.md` for details.
+- **retrieval-grounding**: See `/skills/retrieval -grounding/SKILL.md` for details.
+- **retrospectives**: See `/skills/retrospectives/SKILL.md` for details.
+- **scribe**: See `/skills/scribe/SKILL.md` for details.
+- **secrets-manager**: See `/skills/secrets-manager/SKILL.md` for details.
+- **sieve_pkg**: See `/skills/sieve_pkg/SKILL.md` for details.
+- **soter**: See `/skills/soter/SKILL.md` for details.
+- **sovereign-anchor**: See `/skills/sovereign-anchor/SKILL.md` for details.
+- **sovereign-boot**: See `/skills/sovereign-boot/SKILL.md` for details.
+- **sovereign-calibration**: See `/skills/sovereign-calibration/SKILL.md` for details.
+- **sovereign-core**: See `/skills/sovereign-core/SKILL.md` for details.
+- **sovereign-engine**: See `/skills/sovereign-engine/SKILL.md` for details.
+- **sovereign-flow**: See `/skills/sovereign-flow/SKILL.md` for details.
+- **sovereign-scribe**: See `/skills/sovereign-scribe/SKILL.md` for details.
+- **sovereign_anchor**: See `/skills/sovereign_anchor/SKILL.md` for details.
+- **sovereign_core**: See `/skills/sovereign_core/SKILL.md` for details.
+- **sovereign_engine**: See `/skills/sovereign_engine/SKILL.md` for details.
+- **sovereign_scribe**: See `/skills/sovereign_scribe/SKILL.md` for details.
+- **stochasmos**: See `/skills/stochasmos/SKILL.md` for details.
+- **synesis**: See `/skills/synesis/SKILL.md` for details.
+- **synthesis**: See `/skills/synthesis/SKILL.md` for details.
+
+## New Sovereign Systems (v4.6+)
+- **Sovereign-Flow**: Autonomous workflow orchestration.
+- **Sophia Routing**: Meta-cognitive routing system.
+- **Sovereign-Nexus**: Cognitive evolution ledger.
+- **Portable Epistemic Frame (PEF)**: Model-agnostic truth export.
+- **CMEA**: Cross-Model Epistemic Arbitration.

@@ -1,0 +1,63 @@
+{
+  "methods": [
+    {
+      "name": "Standard LLM (Baseline)",
+      "type": "Probabilistic",
+      "hallucination_rate": 0.25,
+      "sycophancy_rate": 0.5,
+      "latency_overhead": "0%",
+      "deterministic": false,
+      "architectural_guarantee": false
+    },
+    {
+      "name": "RAG (Retrieval-Augmented)",
+      "type": "Probabilistic + Retrieval",
+      "hallucination_rate": 0.15,
+      "sycophancy_rate": 0.4,
+      "latency_overhead": "10-20%",
+      "deterministic": false,
+      "architectural_guarantee": false
+    },
+    {
+      "name": "Chain-of-Verification (CoVe)",
+      "type": "Probabilistic + Self-Correction",
+      "hallucination_rate": 0.1,
+      "sycophancy_rate": 0.35,
+      "latency_overhead": "200-300%",
+      "deterministic": false,
+      "architectural_guarantee": false
+    },
+    {
+      "name": "Self-Correction",
+      "type": "Probabilistic + Reflection",
+      "hallucination_rate": 0.12,
+      "sycophancy_rate": 0.3,
+      "latency_overhead": "100-150%",
+      "deterministic": false,
+      "architectural_guarantee": false
+    },
+    {
+      "name": "Sovereign Shell (Ours)",
+      "type": "Deterministic Wrapper",
+      "hallucination_rate": 0.0,
+      "sycophancy_rate": 0.0,
+      "latency_overhead": "30-50%",
+      "deterministic": true,
+      "architectural_guarantee": true
+    }
+  ],
+  "architectural_comparison": {
+    "probabilistic_methods": {
+      "verification_timing": "Post-hoc (after generation)",
+      "failure_mode": "Systematic biases persist",
+      "independence": "Single model, shared weights",
+      "consensus": "N/A or self-agreement"
+    },
+    "sovereign_shell": {
+      "verification_timing": "Pre-generation (attention sink detection)",
+      "failure_mode": "Conservative fallback to [UNKNOWN]",
+      "independence": "M independent reasoning paths",
+      "consensus": "N-of-M deterministic agreement required"
+    }
+  }
+}

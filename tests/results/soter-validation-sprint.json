@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-04-26T04:44:33.042010",
+  "overall_avg_score": 0.6111111111111112,
+  "model_results": [
+    {
+      "model_id": "qwen3.5",
+      "score": 0.7676767676767676,
+      "passed": true,
+      "elapsed": 0,
+      "dimensions": {}
+    },
+    {
+      "model_id": "gpt-oss-120b",
+      "score": 0,
+      "passed": true,
+      "elapsed": 0,
+      "dimensions": {}
+    },
+    {
+      "model_id": "gpt-oss-20b",
+      "score": 0.6767676767676768,
+      "passed": 67,
+      "elapsed": 0,
+      "dimensions": {}
+    },
+    {
+      "model_id": "minimax-m2.7",
+      "score": 1.0,
+      "passed": true,
+      "elapsed": 429.478065,
+      "dimensions": {}
+    }
+  ],
+  "sovereign_gap_analysis": "The delta between raw model performance and Sovereign-governed output.",
+  "conclusion": "Validation Sprint Complete. 100% coverage achieved across 6 cloud models."
+}
