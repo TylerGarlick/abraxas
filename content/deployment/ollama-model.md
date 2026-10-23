@@ -157,7 +157,7 @@ This model is particularly suited for:
 
 ## Reference
 
-Source Modelfile: `abraxas/research/Modelfile-abraxian-gpt-oss-120b-cloud`
+Source Modelfile: `abraxas/research /Modelfile-abraxian-gpt-oss-120b-cloud`
 
 ---
 

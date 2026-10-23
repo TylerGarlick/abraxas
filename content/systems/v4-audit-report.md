@@ -3,7 +3,7 @@
 **Audit Date:** 2026-04-21  
 **Auditor:** Mary Jane (OpenClaw Subagent)  
 **Scope:** Verify implementation status of v4 research paper components  
-**Reference:** `/root/.openclaw/workspace/abraxas/docs/research/research-paper-v4.md`
+**Reference:** `/root/.openclaw/workspace/abraxas/docs/research /research (alias: /abraxas:research, /abx:research) -paper-v4.md`
 
 ---
 
@@ -86,9 +86,9 @@ bd create "Soter: Finalize test suite for all 5 test cases (S1-S5)" --priority P
 ### Current Implementation Status
 
 **✅ Exists:**
-- Specification: `/root/.openclaw/workspace/abraxas/research/specs/aletheia-spec.md` (comprehensive 100+ line spec)
-- Skill: `/root/.openclaw/workspace/abraxas/skills/epistemic/aletheia.skill`
-- Legacy tracker: `/root/.openclaw/workspace/abraxas/research/aletheia_tracker.py` (8KB)
+- Specification: `/root/.openclaw/workspace/abraxas/research /specs/aletheia -spec.md` (comprehensive 100+ line spec)
+- Skill: `/root/.openclaw/workspace/abraxas/skills/epistemic/aletheia .skill`
+- Legacy tracker: `/root/.openclaw/workspace/abraxas/research /aletheia_tracker.py` (8KB)
 - Constitution: `/root/.openclaw/workspace/abraxas/constitution/constitution-aletheia.md`
 - Bead Task: `abraxas-9r4.3` (P2 Pheme: Build auto-calibration trigger for Aletheia)
 
@@ -134,8 +134,8 @@ bd create "Aletheia: Write test suite (45 unit + 12 integration tests)" --priori
 ### Current Implementation Status
 
 **✅ Exists:**
-- Specification: `/root/.openclaw/workspace/abraxas/specs/ethos-spec.md` (comprehensive spec with JSON schema)
-- Skill: `/root/.openclaw/workspace/abraxas/skills/ethos/`
+- Specification: `/root/.openclaw/workspace/abraxas/specs/ethos -spec.md` (comprehensive spec with JSON schema)
+- Skill: `/root/.openclaw/workspace/abraxas/skills/ethos /`
   - `SKILL.md`, `ethos-score.js`, `sources.json`
   - Test directory exists
 - Constitution: `/root/.openclaw/workspace/abraxas/constitution/constitution-ethos.md`
@@ -330,13 +330,13 @@ bd create "Guardrail Monitor: Create skill command wrappers for MCP tools" --pri
 - Spec: In v4 paper Section 3.2
 
 ### Aletheia
-- Spec: `/root/.openclaw/workspace/abraxas/research/specs/aletheia-spec.md`
-- Skill: `/root/.openclaw/workspace/abraxas/skills/epistemic/aletheia.skill`
-- Legacy: `/root/.openclaw/workspace/abraxas/research/aletheia_tracker.py`
+- Spec: `/root/.openclaw/workspace/abraxas/research/specs/aletheia -spec.md`
+- Skill: `/root/.openclaw/workspace/abraxas/skills/epistemic/aletheia .skill`
+- Legacy: `/root/.openclaw/workspace/abraxas/research /aletheia_tracker.py`
 
 ### Ethos
-- Spec: `/root/.openclaw/workspace/abraxas/specs/ethos-spec.md`
-- Skill: `/root/.openclaw/workspace/abraxas/skills/ethos/`
+- Spec: `/root/.openclaw/workspace/abraxas/specs/ethos -spec.md`
+- Skill: `/root/.openclaw/workspace/abraxas/skills/ethos /`
 - Constitution: `/root/.openclaw/workspace/abraxas/constitution/constitution-ethos.md`
 
 ### Kairos

@@ -237,7 +237,7 @@ Create manual links between the current session and related artifacts or other s
 **Example:**
 ```
 /mnemosyne link session mnemo-2026-02-abc123 "continuation of previous analysis"
-/mnemosyne link external https://example.com/research "source data"
+/mnemosyne link external https://example.com/research  "source data"
 /mnemosyne link artifact lg-2026-03-xyz789 "contains argument map"
 ```
 
@@ -383,11 +383,11 @@ All Abraxas skills use consistent ID formats for cross-referencing:
 ### Pattern 1: Sustained Investigation
 
 ```
-1. /janus session open              → Begin Janus session
-2. /sol (analysis work)            → Epistemic analysis
-3. /mnemon hold "X"                 → Track belief
+1. /janus (alias: /abraxas:janus, /abx:janus) session open              → Begin Janus session
+2. /sol (alias: /abraxas:sol, /abx:sol) (analysis work)            → Epistemic analysis
+3. /mnemon (alias: /abraxas:mnemon, /abx:mnemon) hold "X"                 → Track belief
 4. /kairos frame "decision Y"      → Structure decision
-5. /logos map "argument Z"          → Map argument
+5. /logos (alias: /abraxas:logos, /abx:logos) map "argument Z"          → Map argument
 6. /mnemosyne save "Investigation Q" → Archive everything
 7. [Close Claude Code]
 8. [Open new session]

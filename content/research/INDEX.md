@@ -13,7 +13,7 @@ This index links all foundational research documentation for the Abraxas Soverei
 |----------|----------|-------------|
 | **Sovereign Brain Reference** | [`sovereign-brain-reference.md`](sovereign-brain-reference.md) | Comprehensive overview of the Abraxas architecture, three-tier sovereignty model, full pipeline, and system-by-system reference |
 | **Sovereign Evidence Standard** | [`sovereign-evidence-standard.md`](sovereign-evidence-standard.md) | The empirical standard for what constitutes Sovereign Evidence in Abraxas |
-| **Research Paper v4** | [`../papers/research-paper-v4.md`](../../research/papers/research-paper-v4.md) | Full academic whitepaper: "Mitigating Hallucinations and Sycophancy via Epistemic Guardrails and Provenance Chains" |
+| **Research Paper v4** | [`../papers/research -paper-v4.md`](../../research/papers/research -paper-v4.md) | Full academic whitepaper: "Mitigating Hallucinations and Sycophancy via Epistemic Guardrails and Provenance Chains" |
 | **Whitepaper (v3)** | [`../overview/whitepaper.md`](../overview/whitepaper.md) | Abraxas v3 whitepaper |
 | **Sovereign Manifesto** | [`../overview/sovereign-manifesto.md`](../overview/sovereign-manifesto.md) | The philosophical foundation of the Sovereign approach |
 
@@ -24,7 +24,7 @@ This index links all foundational research documentation for the Abraxas Soverei
 | **Probabilistic Trap** | [`architecture/probabilistic-trap.md`](architecture/probabilistic-trap.md) | Core problem statement — the three systemic failures of probabilistic systems |
 | **Governance Model** | [`architecture/governance-model.md`](architecture/governance-model.md) | Three Pillars, Law Book analogy, Sovereignty Gap |
 | **MCP Architecture Map** | [`architecture/mcp-map.md`](architecture/mcp-map.md) | Modular Monolith topology, 5-pillar consolidation |
-| **Janus Orchestration** | [`architecture/janus-orchestration.md`](architecture/janus-orchestration.md) | Four Pillars: Sovereign Switch, Spawning, Consensus Gate, Epistemic Labeling |
+| **Janus Orchestration** | [`architecture/janus -orchestration.md`](architecture/janus -orchestration.md) | Four Pillars: Sovereign Switch, Spawning, Consensus Gate, Epistemic Labeling |
 | **Sovereign Graph** | [`architecture/sovereign-graph.md`](architecture/sovereign-graph.md) | the graph database v4.2 Provenance Graph schema, vertex/edge collections |
 | **Sovereign Modes** | [`architecture/sovereign-modes.md`](architecture/sovereign-modes.md) | Sovereign Mode vs Simulation Mode, health check logic |
 | **Sovereign Security** | [`architecture/sovereign-security.md`](architecture/sovereign-security.md) | Instrumental Convergence Detection, Deterministic Veto, Audit Logging |

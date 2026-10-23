@@ -12,7 +12,7 @@
 ## Context & Discovery (Explore)
 
 *What we know:*
-- Repo: Abraxas (src/systems/janus/)
+- Repo: Abraxas (src/systems/janus /)
 - Janus dispatches verification requests to Ergon
 - Currently: sequential execution assumed
 - Task: execute independent tools concurrently, aggregate results
