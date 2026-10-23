@@ -47,7 +47,12 @@ import { stochasmosTools } from "./stochasmos.ts";
 import { synesisTools } from "./synesis.ts";
 import { nexusTools } from "./nexus.ts";
 import { reportTools } from "./report.ts";
-import { praxisTools } from "./praxis.ts";
+import { praxisTools } from "./praxis the Tools";
+import { sophiaTools } from "./sophia.ts";
+import { acquisitionTools } from "./acquisition.ts";
+import { constitutionEnforcementTools } from "./constitution_enforcement.ts";
+import { researchTools as advResearchTools } from "./research_advanced.ts";
+import { researchTools as advResearchTools } from "./research_advanced.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
@@ -100,4 +105,8 @@ export const toolModules: ToolModule[] = [
   nexusTools,
   reportTools,
   praxisTools,
+  sophiaTools,
+  acquisitionTools,
+  constitutionEnforcementTools,
+  advResearchTools,
 ];
