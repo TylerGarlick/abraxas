@@ -7,9 +7,9 @@ export default function AbraxasDashboard() {
   const [settings, setSettings] = useState({ ...abraxasData });
   const [showControlPanel, setShowControlPanel] = useState(false);
   const [showDataExplorer, setShowDataExplorer] = useState(false);
-  const [selectedCollection, setSelectedCollection] = useState(null);
+  const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [explorerData, setExplorerData] = useState({});
+  const [explorerData, setExplorerData] = useState<Record<string, any[]>>({});
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -18,12 +18,12 @@ export default function AbraxasDashboard() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleSaveSettings = (newSettings) => {
+  const handleSaveSettings = (newSettings: any) => {
     setSettings(newSettings);
     setShowControlPanel(false);
   };
 
-  const handleOpenCollection = (col) => {
+  const handleOpenCollection = (col: string) => {
     setSelectedCollection(col);
     // Mock data for the explorer
     setExplorerData({
@@ -36,7 +36,7 @@ export default function AbraxasDashboard() {
   };
 
   const filteredData = selectedCollection 
-    ? explorerData[selectedCollection]?.filter(item => 
+    ? explorerData[selectedCollection]?.filter((item: any) => 
         item.content.toLowerCase().includes(searchQuery.toLowerCase()) || 
         item.id.includes(searchQuery)
       ) || [] 
@@ -141,7 +141,7 @@ export default function AbraxasDashboard() {
               <span className="text-white">{settings.storage.totalCollections}</span>
             </div>
             <div className="grid grid-cols-1 gap-1 max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#00ff41]/30">
-              {settings.storage.collections.map((col, i) => (
+              {settings.storage.collections.map((col: string, i: number) => (
                 <div key={i} className="flex items-center text-[11px] opacity-80 hover:opacity-100 cursor-default">
                   <span className="mr-2 opacity-40">&gt;</span>
                   <span>{col}</span>
@@ -267,7 +267,7 @@ export default function AbraxasDashboard() {
                 <div className="flex-1 overflow-y-auto space-y-1 font-mono text-xs">
                   {settings.storage.collections
                     .filter(col => col.toLowerCase().includes(searchQuery.toLowerCase()))
-                    .map((col, i) => (
+                    .map((col: string, i: number) => (
                       <div 
                         key={i} 
                         onClick={() => handleOpenCollection(col)}
@@ -289,7 +289,7 @@ export default function AbraxasDashboard() {
                     </div>
                     <div className="flex-1 overflow-y-auto bg-black/50 p-4 font-mono text-xs border border-[#fcee0a]/20">
                       {filteredData.length > 0 ? (
-                        filteredData.map((item, i) => (
+                        filteredData.map((item: any, i: number) => (
                           <div key={i} className="mb-4 p-2 border border-[#fcee0a]/10 hover:border-[#fcee0a]/40 transition-colors">
                             <div className="flex justify-between text-[#fcee0a] mb-1">
                               <span className="font-bold">ID: {item.id}</span>
