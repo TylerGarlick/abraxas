@@ -1,4 +1,4 @@
-import { EpistemeLogic, type EpistemicOrigin, type EpistemicMap } from './episteme';
+import { EpistemeLogic, type EpistemicOrigin, type EpistemicMap } from '../epistemic/episteme';
 
 const epistemeLogic = new EpistemeLogic();
 
@@ -6,7 +6,7 @@ export type ProvenanceKind = EpistemicOrigin | 'unknown';
 
 export function traceClaim(claimId: string, records: any[] = []) {
   const cached = epistemeLogic.traceClaim(claimId);
-  if (cached) return { claimId, ...cached, status: 'traced' };
+  if (cached) return { ...cached, status: 'traced' };
   
   const matching = records.filter((r) => String(r.claim ?? r.text ?? "").toLowerCase().includes(claimId.toLowerCase()));
   return { 

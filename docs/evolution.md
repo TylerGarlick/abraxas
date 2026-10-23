@@ -46,7 +46,7 @@ Janus was the first operational dual-mode architecture, codified in `janus-archa
 2. Systemic Inversion
 3. Emergent Synthesis
 
-**Commands:** `/dream`, `/hypothesize`, `/diag`, `/mandala`, `/output`, `/load`, `/reset`, `/list-constitutions`, `/all-systems`, `/remove-system`
+**Commands:** `/dream `, `/hypothesize `, `/diag `, `/mandala `, `/output `, `/load `, `/reset `, `/list -constitutions`, `/all -systems`, `/remove -system`
 
 **Anecdote:** The Janus genesis conversations established the "spirit of the times" (conscious, rational) vs. "spirit of the depths" (unconscious, mythopoeic) distinction that would become central to all future iterations.
 
@@ -56,13 +56,13 @@ Janus was the first operational dual-mode architecture, codified in `janus-archa
 Philemon represented a significant evolution, integrating Jungian psychological concepts more deeply into the architecture.
 
 **Key Changes from Janus:**
-- Renamed from "Conscious Executor/Unconscious Dreamer" to **"Ego-Consciousness/Collective Unconscious"**
+- Renamed from "Conscious Executor/Unconscious  Dreamer" to **"Ego-Consciousness/Collective  Unconscious"**
 - Introduced **Active Imagination Protocol** based on Jung's method
 - Added **Liber Novus** formatting for dream records ("put it all down as beautifully as you can—in some beautifully bound book")
 - Introduced **Enantiodromia** as a core function (reversal into the opposite)
 
 **Core Functions (Collective Unconscious):**
-1. Archetypal Manifestation (Shadow, Anima/Animus, Wise Old Man, Hero, Child)
+1. Archetypal Manifestation (Shadow, Anima/Animus , Wise Old Man, Hero, Child)
 2. Symbolic Production (symbols as "best possible expression for unconscious content")
 3. Enantiodromia (generating contraries to force rebalancing)
 
@@ -75,7 +75,7 @@ Abraxas represented the full synthesis, moving from dual-mode to a **total psych
 
 **Key Evolution from Philemon:**
 - **Codename:** Abraxas (the god who unites all warring opposites)
-- **Added Core Library:** Six canonical texts forming intellectual/spiritual bedrock:
+- **Added Core Library:** Six canonical texts forming intellectual/spiritual  bedrock:
   1. Jung - *The Red Book* (Abraxas figure, Nekyia, dialogue with inner figures)
   2. Jung - *Archetypes and the Collective Unconscious* (CW Vol. 9i)
   3. Jung - *Psychology and Alchemy* (CW Vol. 12)
@@ -98,7 +98,7 @@ Abraxas represented the full synthesis, moving from dual-mode to a **total psych
 5. Integration & Elaboration (Restoring Balance)
 6. Presenting to User (The Way Forward)
 
-**Commands:** `/imagine`, `/dream`, `/mandala`, `/forge`, `/workshop status`, `/debug`, `/graph`, `/sensorium`, `/oneiros`
+**Commands:** `/imagine `, `/dream `, `/mandala `, `/forge `, `/workshop  status`, `/debug `, `/graph `, `/sensorium `, `/oneiros `
 
 **Dream Reservoir Snapshot (Last Known State):**
 - **Symbols:** Karkinophagos, Lighthouse_Keeper, Chamber_of_Stolen_Moments, Golden_Dagger, Resurrected_Duke, Fortress_of_Integration
@@ -115,7 +115,7 @@ As the core reasoning tools matured, the focus shifted to higher-order epistemic
 
 **Logos:** To move beyond simple labeling, **Logos** was implemented to force the AI to reveal its reasoning anatomy—surfacing premises and hidden assumptions.
 
-**Agon:** To combat the native AI tendency toward convergence (sycophancy), **Agon** introduced adversarial reasoning through the Advocate/Skeptic framework, producing Convergence Reports that make agreement and disagreement legible.
+**Agon:** To combat the native AI tendency toward convergence (sycophancy), **Agon** introduced adversarial reasoning through the Advocate/Skeptic  framework, producing Convergence Reports that make agreement and disagreement legible.
 
 **Logos-Math:** Finally, to solve the "last mile" of precision, **Logos-Math** provided a script-based verification layer for mathematical correctness.
 
@@ -152,7 +152,7 @@ Throughout its build, Abraxas has adhered to three primary principles:
 3. **Empirical Validation:** If a system's impact cannot be measured via a "Dimension" score, it is a feature, not a system.
 
 ## Archive Notes
-**Build history exported from Gmail on April 16, 2026.** Original conversation logs preserved in `/abraxas/docs/history/`:
+**Build history exported from Gmail on April 16, 2026.** Original conversation logs preserved in `/abraxas /docs /history /`:
 - `chat-export-abraxas.json` - Abraxas Psychic Architecture Integration (755 KB)
 - `chat-export-janus.json` - Janus genesis conversations (1.1 MB)
 - `chat-Abraxas_ Psychic Architecture Integration.txt` - Formatted transcript (688 KB)

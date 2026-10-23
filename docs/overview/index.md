@@ -48,7 +48,7 @@ The adversarial systems that ensure output quality:
 ## Operational States
 
 ### Reactive Mode (Legacy)
-The user invokes specific skills (e.g., `/honest`, `/logos`) to analyze a specific piece of text.
+The user invokes specific skills (e.g., `/honest `, `/logos `) to analyze a specific piece of text.
 
 ### Sovereign Mode (v4.3+)
 The system employs the **Hunter Loop**:
@@ -63,8 +63,8 @@ The system employs the **Hunter Loop**:
 
 ### Installation & Usage
 
-- **Guide**: For a detailed walkthrough on moving from reactive to sovereign operations, see the [Sovereign Mode Guide](../manual/sovereign-mode-guide.md).
-- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](../systems/skills.md).
+- **Guide**: For a detailed walkthrough on moving from reactive to sovereign operations, see the [Sovereign Mode Guide](../manual /sovereign -mode-guide.md).
+- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](../systems /skills .md).
 - **As a Constitution**: Load `CONSTITUTION.md` as your system prompt for an immediate Sovereign-ready environment.
 
 ---
@@ -72,5 +72,5 @@ The system employs the **Hunter Loop**:
 ## Project Status
 **v4.3 Operational.** The transition from Reactive to Autonomous is complete.
 
-For detailed architecture, see [Architecture](./architecture.md).
-For command documentation, see [Skills Reference](../systems/skills.md).
+For detailed architecture, see [Architecture](./architecture .md).
+For command documentation, see [Skills Reference](../systems /skills .md).

@@ -20,27 +20,27 @@ This skill is typically invoked by other skills rather than directly by users, t
 - Verifying factual claims in real-time
 - Looking up documentation, API specs, or technical references
 - Grounding claims before labeling with Janus
-- Pre-flight verification before using /check
+- Pre-flight verification before using /check 
 
 ## Commands
 
-### /retrieval search [query]
+### /retrieval  search [query]
 
 Search the web for relevant information.
 
-**Usage:** `/retrieval search [query]`
+**Usage:** `/retrieval  search [query]`
 
 **Example:**
 ```
-/retrieval search Python asyncio best practices 2024
+/retrieval  search Python asyncio best practices 2024
 → Returns top results with snippets and URLs
 ```
 
-### /retrieval lookup [source]
+### /retrieval  lookup [source]
 
 Fetch and parse a specific source.
 
-**Usage:** `/retrieval lookup [source]`
+**Usage:** `/retrieval  lookup [source]`
 
 **Source types:**
 - URLs (web pages, API docs)
@@ -49,27 +49,27 @@ Fetch and parse a specific source.
 
 **Example:**
 ```
-/retrieval lookup https://docs.python.org/3/library/asyncio.html
+/retrieval  lookup https://docs .python.org/3 /library /asyncio .html
 → Fetches and summarizes key content
 ```
 
-### /retrieval ground [claim]
+### /retrieval  ground [claim]
 
 Ground a specific claim by finding supporting or contradicting sources.
 
-**Usage:** `/retrieval ground [claim]`
+**Usage:** `/retrieval  ground [claim]`
 
 **Example:**
 ```
-/retrieval ground Python GIL prevents true multithreading
+/retrieval  ground Python GIL prevents true multithreading
 → Returns sources supporting or refuting the claim
 ```
 
-### /retrieval status
+### /retrieval  status
 
 Show current grounding session status.
 
-**Usage:** `/retrieval status`
+**Usage:** `/retrieval  status`
 
 **Output:**
 - Active queries
@@ -80,7 +80,7 @@ Show current grounding session status.
 
 ### With Honest
 
-Retrieval can be invoked before Honest's `/check` to pre-fetch sources.
+Retrieval can be invoked before Honest's `/check ` to pre-fetch sources.
 
 ### With Janus Sol
 
@@ -126,7 +126,7 @@ This skill requires the `abraxas-retrieval` MCP server to function. The MCP serv
   "title": "Page Title",
   "content": "Extracted text content...",
   "status": 200,
-  "contentType": "text/html"
+  "contentType": "text/html "
 }
 ```
 
@@ -145,13 +145,13 @@ This skill requires the `abraxas-retrieval` MCP server to function. The MCP serv
 ### Configuration
 
 The MCP server is located at:
-- **Path:** `mcp-servers/abraxas-retrieval/`
-- **Entry:** `src/index.js`
+- **Path:** `mcp-servers/abraxas -retrieval/`
+- **Entry:** `src/index .js`
 - **Run:** `npm start` from that directory
 
 ## Constraints
 
-1. **Tool dependency** — Requires web/API access; degrades gracefully if unavailable
+1. **Tool dependency** — Requires web/API  access; degrades gracefully if unavailable
 2. **Not authoritative** — Retrieves sources, does not verify accuracy of content
 3. **Rate limited** — Respects API limits; caches results where possible
 

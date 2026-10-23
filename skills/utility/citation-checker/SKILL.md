@@ -22,38 +22,38 @@ Citation Checker is the quality assurance layer. While Scribe creates citations 
 
 ## Commands
 
-### /citation check [claim]
+### /citation  check [claim]
 
 Verify a claim has sufficient source support.
 
-**Usage:** `/citation check [claim]`
+**Usage:** `/citation  check [claim]`
 
 **Example:**
 ```
-/citation check Python is the most popular programming language
+/citation  check Python is the most popular programming language
 → Claim: "Python is the most popular programming language"
 → Source: TIOBE Index 2024
 → Verdict: Supported (ranked #1 in 2024)
 ```
 
-### /citation flag [claim]
+### /citation  flag [claim]
 
 Mark a claim as needing verification.
 
-**Usage:** `/citation flag [claim]`
+**Usage:** `/citation  flag [claim]`
 
 **Example:**
 ```
-/citation flag AI will replace all programmers by 2030
+/citation  flag AI will replace all programmers by 2030
 → Flagged: No supporting sources found
 → Suggested: Add source or rephrase
 ```
 
-### /citation resolve [citation ID]
+### /citation  resolve [citation ID]
 
 Confirm or refute a citation's validity.
 
-**Usage:** `/citation resolve [citation ID] [status]`
+**Usage:** `/citation  resolve [citation ID] [status]`
 
 **Statuses:**
 - `confirmed` — Source supports the claim
@@ -62,15 +62,15 @@ Confirm or refute a citation's validity.
 
 **Example:**
 ```
-/citation resolve 3 confirmed
+/citation  resolve 3 confirmed
 → Citation 3 marked as confirmed
 ```
 
-### /citation export
+### /citation  export
 
 Export citation audit report.
 
-**Usage:** `/citation export [format]`
+**Usage:** `/citation  export [format]`
 
 **Formats:**
 - `markdown` — Formatted report
@@ -78,7 +78,7 @@ Export citation audit report.
 
 **Example:**
 ```
-/citation export markdown
+/citation  export markdown
 → # Citation Audit Report
 → 
 → ✓ Confirmed: 5
@@ -112,7 +112,7 @@ Can invoke Retrieval to fetch source content for verification.
 ## Constraints
 
 1. **Claim-centric** — Focuses on claims, not just sources
-2. **Manual resolution** — User confirms/refutes; not automated
+2. **Manual resolution** — User confirms/refutes ; not automated
 3. **Requires sources** — Cannot verify claims without citations
 
 ## Quality Checklist

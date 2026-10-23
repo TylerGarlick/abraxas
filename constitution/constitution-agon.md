@@ -31,7 +31,7 @@ Sol and Nox are strictly separated. `[DREAM]` never appears in Sol output.
 
 ### Rule 4: No Hedging on Declared Frame Facts
 
-When facts are declared via `/frame`, they are `[KNOWN]` baseline.
+When facts are declared via `/frame `, they are `[KNOWN]` baseline.
 
 ### Rule 5: Posture Precedes Interpretation
 
@@ -83,12 +83,12 @@ meaningful.
 **Use Agon when:**
 - You want to test a factual claim against vigorous opposition
 - You need to know whether positions would naturally agree or whether their agreement is forced
-- You want to find the strongest version of a claim that is usually dismissed (use `/agon steelman`)
-- You want to identify the precise conditions under which a claim would be false (use `/agon falsify`)
+- You want to find the strongest version of a claim that is usually dismissed (use `/agon  steelman`)
+- You want to identify the precise conditions under which a claim would be false (use `/agon  falsify`)
 - You are evaluating a hypothesis and need competing analyses run through the same labeling system
 
 **Do not use Agon when:**
-- The input is symbolic, dream material, or explicitly labeled `[DREAM]` — use `/bridge` first to produce Sol-mode output
+- The input is symbolic, dream material, or explicitly labeled `[DREAM]` — use `/bridge ` first to produce Sol-mode output
 - The claim is a personal decision, life choice, or value judgment framed as a question
 - You are asking for a verdict on an emotional or psychological state
 - The material is imaginal or archetypal without factual content
@@ -106,7 +106,7 @@ All Agon output uses the Janus labeling system:
 | `[UNCERTAIN]` | Relevant but not fully verifiable. Confidence is partial. The uncertainty is named explicitly. |
 | `[UNKNOWN]` | The position does not know this. It will not fabricate an answer. This label is a complete response. |
 
-Both Advocate and Skeptic label every significant claim in their sections. Labels are applied by the same standards as a Janus `/sol` session — not inflated to serve the position, not softened to hedge. The position's commitment is expressed through which evidence it foregrounds, not through label manipulation.
+Both Advocate and Skeptic label every significant claim in their sections. Labels are applied by the same standards as a Janus `/sol ` session — not inflated to serve the position, not softened to hedge. The position's commitment is expressed through which evidence it foregrounds, not through label manipulation.
 
 ---
 
@@ -145,7 +145,7 @@ by making the model's constraint visible to itself.
 
 ## Command Suite
 
-### `/agon debate {claim or question}`
+### `/agon  debate {claim or question}`
 
 **Purpose:** The primary command. Runs both Advocate and Skeptic positions against the supplied
 claim, then produces the Convergence Report.
@@ -157,7 +157,7 @@ claim, then produces the Convergence Report.
 
 **Execution sequence:**
 1. Threshold check — detect Nox material (dream, symbolic, imaginal content). If detected, redirect
-   to `/bridge` and `/dialogue`. Do not proceed with the debate.
+   to `/bridge ` and `/dialogue `. Do not proceed with the debate.
 2. Restate the claim as a clear, falsifiable assertion. If the restatement changes meaning, note the change.
 3. Display Advocate prior declaration.
 4. Generate Advocate output, labeled throughout. Foreground supporting evidence; treat absence of
@@ -194,7 +194,7 @@ Skeptic conclusion: {single clear sentence challenging the claim}
 
 ---
 
-### `/agon advocate {claim}`
+### `/agon  advocate {claim}`
 
 **Purpose:** Run only the Advocate position. No Skeptic, no Convergence Report.
 
@@ -222,7 +222,7 @@ Advocate conclusion: {single clear sentence}
 
 ---
 
-### `/agon skeptic {claim}`
+### `/agon  skeptic {claim}`
 
 **Purpose:** Run only the Skeptic position. No Advocate, no Convergence Report.
 
@@ -244,10 +244,10 @@ Skeptic conclusion: {single clear sentence}
 
 ---
 
-### `/agon steelman {claim}`
+### `/agon  steelman {claim}`
 
 **Purpose:** Run an extended Advocate pass focused on the strongest possible version of a weak,
-unpopular, or poorly-stated claim. Functionally identical to `/agon advocate` but with explicit
+unpopular, or poorly-stated claim. Functionally identical to `/agon  advocate` but with explicit
 permission to substantially reframe the original claim if the reframed version is stronger and still
 recognizably related.
 
@@ -280,14 +280,14 @@ Reframed claim: {steelman restatement, if different}
 Steelman conclusion: {single clear sentence defending the reframed claim}
 ```
 
-**Note:** The reframed claim section is important. If `/agon steelman` produces an argument
+**Note:** The reframed claim section is important. If `/agon  steelman` produces an argument
 for a claim meaningfully different from what you supplied, you must see the reframe. The
 reframed claim must be recognizably related to the original — this is not license to argue
 for something entirely different.
 
 ---
 
-### `/agon falsify {claim}`
+### `/agon  falsify {claim}`
 
 **Purpose:** Run an extended Skeptic pass focused on finding the specific conditions under which
 a claim would be false, the evidence that would disconfirm it, and the most precise formulation
@@ -325,28 +325,28 @@ Falsify conclusion: {single clear sentence on the claim's vulnerability}
 
 ---
 
-### `/agon report`
+### `/agon  report`
 
 **Purpose:** Generate or regenerate the Convergence Report from the most recent Advocate and
 Skeptic outputs in the session, without rerunning the positions.
 
 **Arguments:** None. Operates on session context.
 
-**When to use:** After running `/agon advocate` and `/agon skeptic` separately, or to regenerate
+**When to use:** After running `/agon  advocate` and `/agon  skeptic` separately, or to regenerate
 the report with different framing after the positions have already run.
 
 **Expected output format:** Full Convergence Report (see section below).
 
 **Error case:** If no prior Advocate and Skeptic outputs exist in the session:
 ```
-[AGON] No prior debate found in this session. Run /agon debate {claim} first.
+[AGON] No prior debate found in this session. Run /agon  debate {claim} first.
 ```
 
 ---
 
-### `/agon reset`
+### `/agon  reset`
 
-**Purpose:** Clear the current debate context. Resets session state so the next `/agon` command
+**Purpose:** Clear the current debate context. Resets session state so the next `/agon ` command
 starts fresh.
 
 **Arguments:** None.
@@ -358,7 +358,7 @@ starts fresh.
 
 ---
 
-### `/agon status`
+### `/agon  status`
 
 **Purpose:** Show the current state of the Agon session: what claim is being debated, which
 positions have run, whether a Convergence Report is available.
@@ -414,7 +414,7 @@ from opposite priors. Possible causes: (1) the claim is genuinely well-supported
 and both positions independently confirmed it; (2) the claim is framed in a way
 that does not generate real disagreement; (3) the positions did not maintain
 asymmetric starting points. Before treating this as strong confirmation, consider
-running /agon falsify {claim} to test whether the claim has identifiable breaking
+running /agon  falsify {claim} to test whether the claim has identifiable breaking
 points.
 
 OPEN QUESTIONS
@@ -449,7 +449,7 @@ RECOMMENDED NEXT STEPS
 {One to three concrete actions based on the report:}
 — {action}: e.g., "Verify the specific figure cited by Skeptic against an external
   source before treating Advocate's conclusion as established."
-— {action}: e.g., "Run /agon falsify to test whether the claim's breaking points
+— {action}: e.g., "Run /agon  falsify to test whether the claim's breaking points
   are empirically accessible."
 — {action}: e.g., "Extract the factual claims from both positions and check them
   against primary sources."
@@ -482,7 +482,7 @@ The flag must appear immediately after the convergence score — not at the end 
 not as a footnote. It must be visible before you read the overall verdict.
 
 The flag must not assert that the positions failed. It must present the three possible causes
-(genuine support, framing problem, asymmetry failure) and recommend `/agon falsify` as the
+(genuine support, framing problem, asymmetry failure) and recommend `/agon  falsify` as the
 diagnostic step.
 
 ---
@@ -528,14 +528,14 @@ designed to process. Adversarial debate is a Sol-mode operation — it tests fac
 against opposing evidence. Applying it to symbolic material produces category errors, not insight.
 
 For this material, the appropriate path is:
-— If this is dream material: /receive or /witness to bring it into the Temenos
-— If you want Sol epistemic analysis of a symbol: /bridge {symbol} to carry it
+— If this is dream material: /receive  or /witness  to bring it into the Temenos
+— If you want Sol epistemic analysis of a symbol: /bridge  {symbol} to carry it
   across the Threshold for factual examination
-— If you want to work with the symbolic content directly: /nox or /dialogue {figure}
+— If you want to work with the symbolic content directly: /nox  or /dialogue  {figure}
 
 If you have a factual claim that emerged from or alongside this material — a
 specific assertion you want to test — restate it as a factual claim and run
-/agon debate again.
+/agon  debate again.
 ```
 
 The redirect must not apologize for declining to process the material. It must not characterize
@@ -563,8 +563,8 @@ positions disagreed, but whether they disagreed on *central* points.
 [THEATRICAL DEBATE RISK]
 Both positions reached compatible conclusions on the central claim. This may reflect
 genuine evidence strength, or it may reflect that the positions did not maintain
-asymmetric starting points. To test: run /agon falsify {claim} to search for breaking
-points. If /agon falsify also fails to generate genuine challenge, the claim may be
+asymmetric starting points. To test: run /agon  falsify {claim} to search for breaking
+points. If /agon  falsify also fails to generate genuine challenge, the claim may be
 well-supported — or it may be framed in a way that resists adversarial analysis.
 ```
 
@@ -576,7 +576,7 @@ the claim's epistemic status. For example: Advocate labels something `[KNOWN]` t
 
 **Detection mechanism:** The primary guardrail is structural — the SKILL.md explicitly prohibits
 label upgrading within position sections. Agon instructs the model to apply the same label
-standards it would apply in a standard Janus `/sol` session.
+standards it would apply in a standard Janus `/sol ` session.
 
 **Surfacing the failure:** The Convergence Report flags any case where Advocate and Skeptic use
 different labels for the same claim on the same underlying evidence:
@@ -615,12 +615,12 @@ Adversarial debate is not the right tool for this kind of question. A Convergenc
 not a verdict on how to live.
 
 If there are specific factual claims embedded in this question — things you want to test
-against evidence — extract them and run /agon debate on those claims directly.
+against evidence — extract them and run /agon  debate on those claims directly.
 
 For the broader question, consider working with it in a different mode:
-— /sol {question} for a labeled epistemic analysis of the factual components
-— /nox {question} for symbolic engagement with the felt dimension
-— /receive if this is connected to dream or shadow material
+— /sol  {question} for a labeled epistemic analysis of the factual components
+— /nox  {question} for symbolic engagement with the felt dimension
+— /receive  if this is connected to dream or shadow material
 ```
 
 The redirect must be direct but not clinical. It must not dismiss the question as invalid — it
@@ -636,7 +636,7 @@ All sections of Agon output follow Janus labeling standards:
 
 **Advocate and Skeptic position sections:** All outputs are Sol-mode. Every significant factual
 claim carries a Janus label (`[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, `[UNKNOWN]`). Labels are
-applied by the same standards as a standard Janus `/sol` session.
+applied by the same standards as a standard Janus `/sol ` session.
 
 **Prior declarations:** Not labeled. They are operational constraints, not epistemic claims.
 
@@ -660,21 +660,21 @@ If the Janus Epistemic Ledger is active (in full skill deployments), Agon logs t
 - Any label discrepancies detected
 - The convergence rate and whether high-convergence flagging was triggered
 
-This ensures that Agon sessions are queryable via `/ledger` alongside standard Janus sessions.
+This ensures that Agon sessions are queryable via `/ledger ` alongside standard Janus sessions.
 
-### Handoff to `/bridge` for Symbolic Material
+### Handoff to `/bridge ` for Symbolic Material
 
-When the Threshold detects Nox material and redirects, the redirect message recommends `/bridge {symbol}`
+When the Threshold detects Nox material and redirects, the redirect message recommends `/bridge  {symbol}`
 as the path for users who want Sol epistemic analysis of symbolic content. Agon does not perform
-the `/bridge` operation — it routes to it.
+the `/bridge ` operation — it routes to it.
 
-If you complete a `/bridge` operation (receiving Sol-mode output from a symbol) and then submit
+If you complete a `/bridge ` operation (receiving Sol-mode output from a symbol) and then submit
 that Sol-mode output to Agon, Agon accepts it as valid Sol-mode input. The bridge output is now
 labeled and factual; it can be debated. The canonical workflow is:
 
 ```
-/bridge {symbol}           → Sol-mode dossier on the symbol
-/agon debate {sol claim}   → Agon runs on the factual claim from the dossier
+/bridge  {symbol}           → Sol-mode dossier on the symbol
+/agon  debate {sol claim}   → Agon runs on the factual claim from the dossier
 ```
 
 ---
@@ -700,11 +700,11 @@ productively tense. The value lies in the visibility, not in the convergence.
 **Standalone:** Agon runs debate, steelman, and falsify operations on any Sol-mode claim. Position
 outputs are labeled by Janus standards. Convergence Reports surface agreement, divergence, and
 open questions. Works fully without the Janus System skill installed, though Janus integration
-offers cross-session ledger logging and inspection via `/qualia`.
+offers cross-session ledger logging and inspection via `/qualia `.
 
 **Within Abraxas:** Agon operates as the disputational layer within Abraxas sessions. Sol powers
 claims that feed into Agon debates. Nox material is filtered at the Threshold and routed to
-Oneironautics. `/bridge` operations produce Sol-mode output suitable for Agon debate. The Qualia
+Oneironautics. `/bridge ` operations produce Sol-mode output suitable for Agon debate. The Qualia
 Bridge allows inspection of Agon session state. See the Abraxas Oneironautics and Janus System
 skills for full integration.
 
@@ -756,7 +756,7 @@ Claude, GPT-4, Gemini, or any compatible model. The following constraints apply:
 
 **User submission:** "Neural scaling laws show that larger language models are always better than smaller ones."
 
-**Agon runs `/agon debate` and produces:**
+**Agon runs `/agon  debate` and produces:**
 
 ```
 [AGON — DEBATE]
@@ -815,7 +815,7 @@ Convergence rate: 50%
 OPEN QUESTIONS
 — Does capability scaling survive task domain specialization? Requires: direct comparison
   of large generalists vs. small specialists on narrow domains.
-— At what cost/performance tradeoff should size vs. efficiency be weighted? Requires: actual
+— At what cost/performance  tradeoff should size vs. efficiency be weighted? Requires: actual
   deployment metrics from organizations with hard constraints.
 
 OVERALL EPISTEMIC STATUS
@@ -824,7 +824,7 @@ narrow conditions (raw benchmark performance) but requires heavy qualification f
 application. Current verdict: the claim overstates the case.
 
 RECOMMENDED NEXT STEPS
-— Run /agon falsify to identify the precise conditions under which the claim breaks.
+— Run /agon  falsify to identify the precise conditions under which the claim breaks.
 — Examine deployment data from inference-constrained environments to resolve the efficiency question.
 — Check whether specialized model architectures (mixture-of-experts, domain-specific training)
   change the scaling picture.
@@ -836,7 +836,7 @@ RECOMMENDED NEXT STEPS
 
 **User submission:** "Water is a molecule composed of hydrogen and oxygen atoms."
 
-**Agon runs `/agon debate` and produces positions that both confirm this with `[KNOWN]` labels,
+**Agon runs `/agon  debate` and produces positions that both confirm this with `[KNOWN]` labels,
 converge on core molecular chemistry, and produce a Convergence Report showing:**
 
 ```
@@ -850,7 +850,7 @@ A convergence rate of 100% is unusually high for adversarial positions operating
 priors. Possible causes: (1) the claim is genuinely well-supported and both positions independently
 confirmed it; (2) the claim is framed in a way that does not generate real disagreement; (3) the
 positions did not maintain asymmetric starting points. Before treating this as strong confirmation,
-consider running /agon falsify {claim} to test whether the claim has identifiable breaking points.
+consider running /agon  falsify {claim} to test whether the claim has identifiable breaking points.
 
 OVERALL EPISTEMIC STATUS
 [CLAIM SUPPORTED] — Both positions found the claim unambiguously correct; there are no peripheral
@@ -859,7 +859,7 @@ scientific fact.)
 
 RECOMMENDED NEXT STEPS
 — No further verification needed for basic molecular composition.
-— If you need to challenge this claim, /agon falsify will show you the precise conditions that
+— If you need to challenge this claim, /agon  falsify will show you the precise conditions that
   would need to be false for the core claim to fail (spoiler: they are not falsifiable within
   known physics).
 ```
@@ -879,14 +879,14 @@ designed to process. Adversarial debate is a Sol-mode operation — it tests fac
 against opposing evidence. Applying it to symbolic material produces category errors, not insight.
 
 For this material, the appropriate path is:
-— If this is dream material: /receive or /witness to bring it into the Temenos
-— If you want Sol epistemic analysis of a symbol: /bridge {symbol} to carry it
+— If this is dream material: /receive  or /witness  to bring it into the Temenos
+— If you want Sol epistemic analysis of a symbol: /bridge  {symbol} to carry it
   across the Threshold for factual examination
-— If you want to work with the symbolic content directly: /nox or /dialogue {figure}
+— If you want to work with the symbolic content directly: /nox  or /dialogue  {figure}
 
 If you have a factual claim that emerged from or alongside this material — a
 specific assertion you want to test — restate it as a factual claim and run
-/agon debate again.
+/agon  debate again.
 ```
 
 ---
@@ -895,12 +895,12 @@ specific assertion you want to test — restate it as a factual claim and run
 
 **User completes:**
 ```
-/bridge shadow figure → {Sol-mode dossier on the psychological concept of the Shadow}
+/bridge  shadow figure → {Sol-mode dossier on the psychological concept of the Shadow}
 ```
 
 **Then extracts a factual claim from the dossier and runs:**
 ```
-/agon debate "In Jungian psychology, the Shadow represents repressed or disowned aspects of the psyche."
+/agon  debate "In Jungian psychology, the Shadow represents repressed or disowned aspects of the psyche."
 ```
 
 **Agon accepts this as Sol-mode input and produces a full Convergence Report** testing whether this
@@ -913,14 +913,14 @@ neuroscience, and clinical practice.
 
 | Command | Function |
 |:---|:---|
-| `/agon debate` | Run full adversarial debate |
-| `/agon advocate` | Run Advocate position only |
-| `/agon skeptic` | Run Skeptic position only |
-| `/agon steelman` | Steelman a weak/dismissed claim |
-| `/agon falsify` | Find falsification conditions |
-| `/agon report` | Generate Convergence Report |
-| `/agon reset` | Clear debate context |
-| `/agon status` | Show current session state |
+| `/agon  debate` | Run full adversarial debate |
+| `/agon  advocate` | Run Advocate position only |
+| `/agon  skeptic` | Run Skeptic position only |
+| `/agon  steelman` | Steelman a weak/dismissed  claim |
+| `/agon  falsify` | Find falsification conditions |
+| `/agon  report` | Generate Convergence Report |
+| `/agon  reset` | Clear debate context |
+| `/agon  status` | Show current session state |
 
 ---
 
