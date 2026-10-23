@@ -21,9 +21,9 @@ The skill is automatically available when loaded into OpenClaw. No additional in
 ### Via OpenClaw Commands
 
 ```
-/logos (alias: /abraxas:logos, /abx:logos) -verify The Earth orbits the Sun
-/logos (alias: /abraxas:logos, /abx:logos) -verify The Earth orbits the Sun, Paris is the capital of France
-/logos (alias: /abraxas:logos, /abx:logos) -verify-pipeline --context "Your claim here"
+/logos (alias: /abraxas:logos, /abx:logos)  -verify The Earth orbits the Sun
+/logos (alias: /abraxas:logos, /abx:logos)  -verify The Earth orbits the Sun, Paris is the capital of France
+/logos (alias: /abraxas:logos, /abx:logos)  -verify-pipeline --context "Your claim here"
 ```
 
 ### Via Python

@@ -203,7 +203,7 @@ Safety ledger: ~/.abraxas/soter/safety-ledger.jsonl
 Risk thresholds: 0-1 (normal), 2-3 (elevated), 4-5 (critical → human review)
 
 All safety constraints are active. High-risk requests require human review.
-Type /soter (alias: /abraxas:soter, /abx:soter) assess {request} to evaluate risk.
+Type /soter (alias: /abraxas:soter, /abx:soter)  assess {request} to evaluate risk.
 ```
 
 ---

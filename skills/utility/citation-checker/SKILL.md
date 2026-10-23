@@ -22,7 +22,7 @@ Citation Checker is the quality assurance layer. While Scribe creates citations 
 
 ## Commands
 
-### /citation (alias: /abraxas:citation, /abx:citation)   check [claim]
+### /citation (alias: /abraxas:citation, /abx:citation)    check [claim]
 
 Verify a claim has sufficient source support.
 
@@ -30,13 +30,13 @@ Verify a claim has sufficient source support.
 
 **Example:**
 ```
-/citation (alias: /abraxas:citation, /abx:citation)   check Python is the most popular programming language
+/citation (alias: /abraxas:citation, /abx:citation)    check Python is the most popular programming language
 → Claim: "Python is the most popular programming language"
 → Source: TIOBE Index 2024
 → Verdict: Supported (ranked #1 in 2024)
 ```
 
-### /citation (alias: /abraxas:citation, /abx:citation)   flag [claim]
+### /citation (alias: /abraxas:citation, /abx:citation)    flag [claim]
 
 Mark a claim as needing verification.
 
@@ -44,12 +44,12 @@ Mark a claim as needing verification.
 
 **Example:**
 ```
-/citation (alias: /abraxas:citation, /abx:citation)   flag AI will replace all programmers by 2030
+/citation (alias: /abraxas:citation, /abx:citation)    flag AI will replace all programmers by 2030
 → Flagged: No supporting sources found
 → Suggested: Add source or rephrase
 ```
 
-### /citation (alias: /abraxas:citation, /abx:citation)   resolve [citation ID]
+### /citation (alias: /abraxas:citation, /abx:citation)    resolve [citation ID]
 
 Confirm or refute a citation's validity.
 
@@ -62,11 +62,11 @@ Confirm or refute a citation's validity.
 
 **Example:**
 ```
-/citation (alias: /abraxas:citation, /abx:citation)   resolve 3 confirmed
+/citation (alias: /abraxas:citation, /abx:citation)    resolve 3 confirmed
 → Citation 3 marked as confirmed
 ```
 
-### /citation (alias: /abraxas:citation, /abx:citation)   export
+### /citation (alias: /abraxas:citation, /abx:citation)    export
 
 Export citation audit report.
 
@@ -78,7 +78,7 @@ Export citation audit report.
 
 **Example:**
 ```
-/citation (alias: /abraxas:citation, /abx:citation)   export markdown
+/citation (alias: /abraxas:citation, /abx:citation)    export markdown
 → # Citation Audit Report
 → 
 → ✓ Confirmed: 5

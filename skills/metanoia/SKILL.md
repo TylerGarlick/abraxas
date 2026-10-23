@@ -19,19 +19,19 @@ Before ANY change is made, you must:
 
 ## Commands
 
-### /metanoia (alias: /abraxas:metanoia, /abx:metanoia) agon audit
+### /metanoia (alias: /abraxas:metanoia, /abx:metanoia)  agon audit
 Self-audit Auto-Agon stress-test parameters.
 - **Behavior**: Call `metanoia_agon_audit`. Report all detected weakness patterns, blind spots, and soft spots. Provide an actionable recommendation.
 
-### /metanoia (alias: /abraxas:metanoia, /abx:metanoia) agon evolve {target}
+### /metanoia (alias: /abraxas:metanoia, /abx:metanoia)  agon evolve {target}
 Evolve Auto-Agon parameters.
 - **Behavior**: Call `metanoia_agon_evolve`. Show the before and after values. Explain the reasoning. Note the ledger entry.
 
-### /metanoia (alias: /abraxas:metanoia, /abx:metanoia) harmonia audit {composition_id}
+### /metanoia (alias: /abraxas:metanoia, /abx:metanoia)  harmonia audit {composition_id}
 Audit a Harmonia composition DAG.
 - **Behavior**: Call `metanoia_harmonia_audit`. Report bottlenecks, redundancy, and an efficiency score.
 
-### /metanoia (alias: /abraxas:metanoia, /abx:metanoia) harmonia refine {composition_id}
+### /metanoia (alias: /abraxas:metanoia, /abx:metanoia)  harmonia refine {composition_id}
 Propose DAG optimization.
 - **Behavior**: Call `metanoia_harmonia_refine`. Show current vs. projected efficiency. List the proposed changes. The user must approve before application.
 

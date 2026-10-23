@@ -199,7 +199,7 @@ Aletheia writes these to the truth ledger. Future queries about "45% lower risk 
 ## Step 5 — Agon stress-tests the weak points
 
 ```
-User: /agon (alias: /abraxas:agon, /abx:agon)  debate "Exercise causes better heart health"
+User: /agon (alias: /abraxas:agon, /abx:agon)   debate "Exercise causes better heart health"
 ```
 
 Agon receives the Logos structure + Janus labels + logos-math verification:

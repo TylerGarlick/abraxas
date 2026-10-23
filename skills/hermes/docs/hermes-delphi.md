@@ -23,7 +23,7 @@ zip -r hermes-delphi.skill hermes-delphi/
 ### Basic Usage
 ```
 /hermes status                    # Check all agent statuses
-/research (alias: /abraxas:research, /abx:research)  monitor {topic}        # Set up market monitoring
+/research (alias: /abraxas:research, /abx:research)   monitor {topic}        # Set up market monitoring
 /brief synthesize {research_id}  # Generate client brief
 /outreach connect {prospect}     # Start prospecting
 /delivery send {brief_id}        # Deliver brief

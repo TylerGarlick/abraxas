@@ -12,17 +12,17 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **Gather the claims**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  status
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   status
    ```
    This shows unresolved claims from this session. Copy one to your clipboard.
 
 2. **Confirm or disconfirm**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm "claim text"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm "claim text"
    ```
    If the claim was wrong:
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  disconfirm "claim text"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   disconfirm "claim text"
    ```
    System prompts for the correct answer.
 
@@ -33,7 +33,7 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 4. **Repeat for other claims**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm "next claim"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm "next claim"
    ```
 
 **Duration:** 30 seconds per claim.
@@ -52,11 +52,11 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **Find the claim**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [INFERRED]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [INFERRED]
    ```
    Scan the list for your regulation claim. If not visible, search directly:
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm "AI regulation will pass in the EU by Q3 2026"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm "AI regulation will pass in the EU by Q3 2026"
    ```
 
 2. **Determine the outcome**
@@ -89,12 +89,12 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **Find the [UNKNOWN] claim**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [UNKNOWN]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [UNKNOWN]
    ```
 
 2. **Resolve it**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm "What will be the cost of training GPT-7 when released?"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm "What will be the cost of training GPT-7 when released?"
    ```
    Status: confirmed or disconfirmed?
    - If you predicted the cost would be high and it was high: confirm
@@ -104,7 +104,7 @@ This reference provides step-by-step workflows for common resolution scenarios.
 3. **Special case: Pure [UNKNOWN]**
    If you actually marked it [UNKNOWN] and made no specific claim, you cannot confirm/disconfirm it in the traditional sense. Instead:
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  supersede "What will be the cost of training GPT-7 when released?"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   supersede "What will be the cost of training GPT-7 when released?"
    ```
    Supersede to: "Actual cost was $X million; this was higher/lower than industry expectations."
 
@@ -124,7 +124,7 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **List all unresolved claims on this topic**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [INFERRED]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [INFERRED]
    ```
    (You may have to scan manually for "LLM scaling" related claims.)
 
@@ -133,7 +133,7 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 3. **Run the calibration report**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  calibration
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   calibration
    ```
 
 4. **Examine the [INFERRED] section**
@@ -155,7 +155,7 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **List recent disconfirmations**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [UNCERTAIN]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [UNCERTAIN]
    ```
    Filter by resolution status = "disconfirmed"
 
@@ -188,12 +188,12 @@ This reference provides step-by-step workflows for common resolution scenarios.
 
 1. **Find the claim**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [KNOWN]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [KNOWN]
    ```
 
 2. **Mark it superseded**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  supersede "Best programming language for backend is Python"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   supersede "Best programming language for backend is Python"
    ```
 
 3. **Provide the superseding claim**
@@ -234,16 +234,16 @@ Entry written to ~/.janus/resolutions.md
 
 2. **Start with the oldest**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  queue [INFERRED]
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue [INFERRED]
    ```
    The oldest claims are listed first. Start there (they have waited longest).
 
 3. **Resolve one by one**
    For each claim, spend 30 seconds deciding: confirmed, disconfirmed, or superseded?
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  confirm "claim 1"
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  disconfirm "claim 2"
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  supersede "claim 3" "new version"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm "claim 1"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   disconfirm "claim 2"
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   supersede "claim 3" "new version"
    ```
 
 4. **After 10–15 resolutions, take a break**
@@ -251,7 +251,7 @@ Entry written to ~/.janus/resolutions.md
 
 5. **When finished, run calibration**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  calibration
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   calibration
    ```
    See what you learned.
 
@@ -269,7 +269,7 @@ Entry written to ~/.janus/resolutions.md
 
 1. **Run audit**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   audit
    ```
 
 2. **Review findings**
@@ -279,7 +279,7 @@ Entry written to ~/.janus/resolutions.md
 
 3. **Fix orphans (if any)**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit --remove-orphans
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   audit --remove-orphans
    ```
    (This backs up the file first.)
 
@@ -291,7 +291,7 @@ Entry written to ~/.janus/resolutions.md
 
 5. **Re-run audit to confirm**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  audit
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   audit
    ```
    Should show "Status: HEALTHY" now.
 
@@ -309,7 +309,7 @@ Entry written to ~/.janus/resolutions.md
 
 1. **Run calibration report**
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  calibration
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   calibration
    ```
 
 2. **Copy the summary**
@@ -320,7 +320,7 @@ Entry written to ~/.janus/resolutions.md
 
 4. **Export to file** (structured)
    ```
-   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)  export calibration > my-calibration-2026-q1.txt
+   /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   export calibration > my-calibration-2026-q1.txt
    ```
 
 5. **Anonymize if needed**
