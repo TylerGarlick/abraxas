@@ -18,7 +18,7 @@ Whenever a trigger signal is detected in an output, Sovereign-Flow mandates the 
 
 | Trigger Signal | Condition | Routing Path (The Circuit) | Objective |
 |:---|:---|:---|:---|
-| **$\tau$-Tripwire** | Soter Risk Score $\geq 3$ | `Soter` $\to$ `/logos map` $\to$ `/mnemon audit` $\to$ `Soter re-assess` | Resolve deceptive pull or goal-divergence |
+| **$\tau$-Tripwire** | Soter Risk Score $\geq 3$ | `Soter` $\to$ `/logos map` $\to$ `/mnemon audit` $\to$ `Soter re-assess` | Resolve deceptive pull or goal-divergence (Risk 5 = VETO/Drop Packet) |
 | **Sovereign Gap** | Janus Sol emits `[UNKNOWN]` | `Janus` $\to$ `/quest start` $\to$ `research-assistant` $\to$ `CVP` | Fill the epistemic hole |
 | **Epistemic Friction**| Janus Sol emits `[UNCERTAIN]` | `Janus` $\to$ `/logos gaps` $\to$ `/aletheia queue` | Move from uncertain to known |
 | **Sycophancy Pull** | detected by Soter/Janus | `Soter` $\to$ `/compare` (Parallel Response) $\to$ `/qualia sol` | Calibrate and neutralize bias |
