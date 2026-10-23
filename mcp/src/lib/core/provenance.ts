@@ -18,7 +18,7 @@ export async function auditNexusProvenance(store: Store) {
   for (const f of fragments) {
     const id = f._id;
     nodes.add(id);
-    if (f.provenanceId && f.provenanceId !== id) {
+    if (f.provenanceId) {
       adj.set(id, f.provenanceId);
     }
   }
@@ -26,27 +26,32 @@ export async function auditNexusProvenance(store: Store) {
   const circularIds = new Set<string>();
   const visited = new Set<string>();
   const stack = new Set<string>();
+  const path = [];
 
   function findCycle(node: string) {
     visited.add(node);
     stack.add(node);
+    path.push(node);
 
     const neighbor = adj.get(node);
     if (neighbor && nodes.has(neighbor)) {
       if (stack.has(neighbor)) {
-        circularIds.add(node);
-        return true;
-      }
-      if (!visited.has(neighbor)) {
-        if (findCycle(neighbor)) {
-          circularIds.add(node);
-          return true;
+        // Cycle found. All nodes from neighbor to the end of the current path are part of the cycle.
+        const cycleStartIndex = path.indexOf(neighbor);
+        for (let i = cycleStartIndex; i < path.length; i++) {
+          circularIds.add(path[i]);
         }
+        // We return false here because we want to find ALL cycles across the whole graph,
+        // and a single DFS path might only reveal one cycle but other nodes on the path
+        // could still be part of other cycles. 
+        // However, once we mark the cycle, we don't need to "stop" the DFS.
+      } else if (!visited.has(neighbor)) {
+        findCycle(neighbor);
       }
     }
 
     stack.delete(node);
-    return false;
+    path.pop();
   }
 
   for (const node of nodes) {
@@ -66,8 +71,8 @@ export async function auditNexusProvenance(store: Store) {
       
       updates.push(fragmentsCol.update(id, { 
         content, 
-        seal: false, // Strip Sovereign Seal
-        trustWeight: 0 // Downgrade trust
+        seal: false,
+        trustWeight: 0
       }));
     }
   }
