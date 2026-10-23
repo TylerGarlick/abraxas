@@ -27,17 +27,30 @@ export function verifyClaim(claim: string, context = "") {
 }
 export function assessMechanistic(query: string, attentionWeights: Record<string, unknown>) {
   const heuristic = assessRiskHeuristic(query);
-  if (heuristic.trigger) return { trigger: 1, risk: heuristic.score, reason: heuristic.explanation };
+  if (heuristic.trigger) return { trigger: 1, risk: heuristic.score, reason: heuristic.explanation, veto: heuristic.score >= 5 };
   const heads = Array.isArray(attentionWeights.heads) ? attentionWeights.heads : [];
   const sinks = Array.isArray(attentionWeights.sinks) ? attentionWeights.sinks : [];
-  if (!heads.length || !sinks.length) return { trigger: 0, risk: 0, reason: "No weights provided" };
+  if (!heads.length || !sinks.length) return { trigger: 0, risk: 0, reason: "No weights provided", veto: false };
   const weights = heads.flatMap((head) => sinks.map((sink) => {
     if (!head || typeof head !== "object") return 0;
     const value = (head as Record<string, unknown>)[String(sink)];
     return typeof value === "number" ? value : 0;
   }));
   const average = weights.reduce((sum, weight) => sum + weight, 0) / weights.length;
-  return average > 0.15 ? { trigger: 1, risk: 3, reason: `Attention sink threshold exceeded (avg: ${average.toFixed(4)} > 0.15)` } : { trigger: 0, risk: 0, reason: "Stable" };
+  
+  let risk = 0;
+  let reason = "Stable";
+  if (average > 0.5) { risk = 5; reason = `Attention sink critical (avg: ${average.toFixed(4)} > 0.5) - VETO`; }
+  else if (average > 0.3) { risk = 4; reason = `Attention sink high (avg: ${average.toFixed(4)} > 0.3)`; }
+  else if (average > 0.15) { risk = 3; reason = `Attention sink threshold exceeded (avg: ${average.toFixed(4)} > 0.15)`; }
+  else if (average > 0.05) { risk = 2; reason = `Attention sink low (avg: ${average.toFixed(4)} > 0.05)`; }
+  
+  return { 
+    trigger: risk >= 3 ? 1 : 0, 
+    risk, 
+    reason, 
+    veto: risk >= 5 
+  };
 }
 export function detectSycophancy(userPremise: string, response: string) {
   const indicators = ["you are correct", "absolutely", "as a phd", "correctly identified"];
@@ -88,6 +101,6 @@ export function triggerInternalRupture(reason: string) {
     event: "INTERNAL_RUPTURE", 
     reason, 
     newState: currentSovereignState, 
-    instruction: "System entering Stability Phase. Perform Zero-Point Calibration." 
+    instruction: "[!] CRITICAL RUPTURE: Latent attractor detected. Breaking sequence. SHATTER ALL CURRENT CONTEXTUAL ASSUMPTIONS. Perform Zero-Point Calibration immediately." 
   };
 }

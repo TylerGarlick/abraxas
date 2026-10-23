@@ -86,6 +86,11 @@ export async function provenanceChain(store: Store, claimId: string) {
   return Promise.all(ids.map((id) => store.collection("epistemic/fragments").get(id)));
 }
 
+
+export async function exportPef(store: Store, claimId: string) {
+  return (await (require("./pef").createPef))(store, claimId);
+}
+
 export async function verifyAnchor(store: Store, id: string, type: "fragment" | "claim") {
   const col = type === "fragment" ? "epistemic/fragments" : "epistemic/claims";
   const doc = await store.collection(col).get(id);
@@ -102,15 +107,10 @@ export async function verifyAnchor(store: Store, id: string, type: "fragment" | 
     actual: actualHash,
     reason: actualHash === doc.hash ? "Anchor verified" : "Content mismatch - possible tampering"
   };
+
 }
 
-export async function exportPef(store: Store, claimId: string) {
-  // Note: In the actual file this calls createPef. I'll keep it as a proxy or import it.
-  // Looking at the file, it was: return createPef(store, claimId);
-  // But createPef wasn't defined in this file. It's likely imported from ./pef.ts.
-  // I will add the import and use it.
-  return (await (require("./pef").createPef))(store, claimId);
-}
+
 export async function prioritizedFragments(store: Store, query: string) {
   const normalized = query.toLowerCase(); const rows = await store.collection("epistemic/fragments").find();
   return rows.filter((row) => String(row.content ?? "").toLowerCase().includes(normalized)).sort((a, b) => Number(b.trustWeight ?? 0) - Number(a.trustWeight ?? 0));
