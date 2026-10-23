@@ -10,6 +10,9 @@ export default function AbraxasDashboard() {
   const [selectedCollection, setSelectedCollection] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [explorerData, setExplorerData] = useState<Record<string, any[]>>({});
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [importingClaims, setImportingClaims] = useState<any[]>([]);
+  const [isImporting, setIsImporting] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,6 +36,30 @@ export default function AbraxasDashboard() {
         { id: "003", timestamp: new Date().toISOString(), content: "Anomalous signal detected in " + col, confidence: 0.45, status: "UNKNOWN" },
       ]
     });
+  };
+
+  const handleStartImport = () => {
+    setIsImporting(true);
+    setTimeout(() => {
+      setImportingClaims([
+        { id: 'pef_001', claim: 'The Sovereign Brain architecture allows for local epistemic verification.', confidence: 0.98, status: 'pending' },
+        { id: 'pef_002', claim: 'P2P context sharing reduces reliance on centralized LLM providers.', confidence: 0.85, status: 'pending' },
+        { id: 'pef_003', claim: 'Epistemic collapse is inevitable without a formal gating mechanism.', confidence: 0.72, status: 'pending' },
+        { id: 'pef_004', claim: 'All truths are provisional and subject to falsification.', confidence: 0.99, status: 'pending' },
+      ]);
+      setIsImporting(false);
+    }, 1500);
+  };
+
+  const updateClaimStatus = (id: string, status: 'accepted' | 'rejected') => {
+    setImportingClaims(prev => prev.map(c => c.id === id ? { ...c, status } : c));
+  };
+
+  const handleCommitImport = () => {
+    const accepted = importingClaims.filter(c => c.status === 'accepted');
+    console.log('Committing to frame:', accepted);
+    setShowImportModal(false);
+    setImportingClaims([]);
   };
 
   const filteredData = selectedCollection 
@@ -166,6 +193,12 @@ export default function AbraxasDashboard() {
         >
           Data Explorer
         </button>
+        <button 
+          onClick={() => setShowImportModal(true)}
+          className="cp-panel px-6 py-2 font-bold uppercase italic hover:bg-[#fcee0a] hover:text-black transition-all active:scale-95"
+        >
+          Import PEF
+        </button>
       </div>
 
       {/* Footer Console */}
@@ -243,6 +276,80 @@ export default function AbraxasDashboard() {
               >
                 Cancel
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Import PEF Modal */}
+      {showImportModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="cp-panel p-8 w-full max-w-3xl h-[80vh] relative flex flex-col">
+            <h2 className="text-2xl font-black cp-yellow-glow uppercase mb-2 italic">Epistemic Gate // PEF Import</h2>
+            <p className="text-xs opacity-60 mb-6 font-mono">VERIFY AND FILTER EXTERNAL CLAIMS BEFORE INTEGRATION INTO SOVEREIGN FRAME</p>
+            
+            <div className="flex-1 overflow-y-auto pr-2 space-y-4 font-mono text-sm">
+              {!isImporting && importingClaims.length === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                  <p className="opacity-40 italic">NO PEF LOADED. INITIALIZE IMPORT SEQUENCE...</p>
+                  <button 
+                    onClick={handleStartImport}
+                    className="px-6 py-2 border border-[#fcee0a] text-[#fcee0a] font-bold uppercase hover:bg-[#fcee0a] hover:text-black transition-all"
+                  >
+                    Initialize Import
+                  </button>
+                </div>
+              ) : isImporting ? (
+                <div className="h-full flex items-center justify-center text-center opacity-60 animate-pulse font-bold uppercase tracking-widest">
+                  Fetching PEF Data Stream...
+                </div>
+              ) : (
+                importingClaims.map((c: any, i: number) => (
+                  <div key={i} className="p-4 border border-[#fcee0a]/20 bg-black/40 flex justify-between items-start gap-4 hover:border-[#fcee0a]/50 transition-colors">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-[10px] opacity-40">ID: {c.id}</span>
+                        <span className="text-[10px] text-cyan-400">CONF: {c.confidence}</span>
+                        <span className={`text-[10px] font-bold uppercase ${c.status === 'accepted' ? 'text-green-400' : c.status === 'rejected' ? 'text-red-400' : 'text-amber-400'}`}>
+                          {c.status}
+                        </span>
+                      </div>
+                      <p className="text-white opacity-90">{c.claim}</p>
+                    </div>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => updateClaimStatus(c.id, 'accepted')}
+                        className={`px-3 py-1 text-xs font-bold uppercase border transition-colors ${c.status === 'accepted' ? 'bg-green-400 text-black border-green-400' : 'border-green-400 text-green-400 hover:bg-green-400/20'}`}
+                      >
+                        Accept
+                      </button>
+                      <button 
+                        onClick={() => updateClaimStatus(c.id, 'rejected')}
+                        className={`px-3 py-1 text-xs font-bold uppercase border transition-colors ${c.status === 'rejected' ? 'bg-red-400 text-black border-red-400' : 'border-red-400 text-red-400 hover:bg-red-400/20'}`}
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            
+            <div className="mt-6 flex gap-3">
+              <button 
+                onClick={() => setShowImportModal(false)}
+                className="px-4 py-2 border border-[#fcee0a] text-[#fcee0a] text-xs font-bold uppercase hover:bg-[#fcee0a]/20 transition-colors"
+              >
+                Abort
+              </button>
+              {importingClaims.length > 0 && !isImporting && (
+                <button 
+                  onClick={handleCommitImport}
+                  className="flex-1 bg-[#fcee0a] text-black font-bold uppercase py-2 hover:bg-white transition-colors text-xs"
+                >
+                  Commit to Sovereign Frame
+                </button>
+              )}
             </div>
           </div>
         </div>
