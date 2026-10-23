@@ -24,14 +24,25 @@ export function aggregateConfidence(values: number[], method: "mean" | "min" | "
   const confidence = method === "min" ? Math.min(...values) : method === "max" ? Math.max(...values) : values.reduce((a, b) => a + b, 0) / values.length;
   return { confidence, uncertainty: 1 - confidence, method };
 }
-export async function verifyClaim(claim: string, sources: string[], history: Collection) {
-  const result = { claim, status: sources.length ? "partially_verified" : "unverified", sourceCount: sources.length, confidence: sources.length ? Math.min(0.95, 0.45 + 0.15 * sources.length) : 0.25, sources };
+export async function verifyClaim(claim: string, sources: string[], history: Collection, fragments: Collection) {
+  let finalSources = [...sources];
+  let status = sources.length ? "partially_verified" : "unverified";
+
+  if (sources.length === 0) {
+    const found = await fragments.find({ content: { $regex: claim, $options: "i" } });
+    if (found && found.length > 0) {
+      finalSources.push(found[0].provenanceId);
+      status = "verified";
+    }
+  }
+
+  const result = { claim, status, sourceCount: finalSources.length, confidence: finalSources.length ? Math.min(0.95, 0.45 + 0.15 * finalSources.length) : 0.25, sources: finalSources };
   await history.insert({ ...result, kind: "verification" });
   return result;
 }
-export async function processClaim(claim: string, sources: string[], history: Collection) {
+export async function processClaim(claim: string, sources: string[], history: Collection, fragments: Collection) {
   const decomposition = decomposeClaim(claim);
-  const verification = await verifyClaim(claim, sources, history);
+  const verification = await verifyClaim(claim, sources, history, fragments);
   const label = verification.confidence >= 0.8 ? "[VERIFIED]" : verification.confidence >= 0.5 ? "[UNCERTAIN]" : "[UNVERIFIED]";
   const result = { claim, label, decomposition, verification };
   await history.insert({ kind: "processed_claim", ...result });
