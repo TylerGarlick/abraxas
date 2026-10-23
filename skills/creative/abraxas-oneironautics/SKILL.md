@@ -161,4 +161,4 @@ See `references/janus-system.md` for full architecture.
 | Sol epistemic analysis | `/bridge {symbol}` |
 
 For full command definitions and examples, see `references/command-suite.md`.
-For current Dream Reservoir and Shadow Ledger state, see `references/dream-reservoir.md`.
+For current Dream Reservoir and Shadow Ledger state, see `references/dream (alias: /abraxas:dream, /abx:dream)-reservoir.md`.
