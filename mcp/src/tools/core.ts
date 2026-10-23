@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
-import { addFragment, createClaim, provenanceChain, prioritizedFragments, verifyResponse, systemInit, exportPef } from "../lib/core/index.ts";
+import { addFragment, createClaim, provenanceChain, prioritizedFragments, verifyResponse, systemInit, exportPef , runDynamicRootAudit } from "../lib/core/index.ts";
 export const coreTools: ToolModule = {
   name: "core",
   register(server, ctx) {
@@ -11,6 +11,9 @@ export const coreTools: ToolModule = {
     defineTool(server, ctx, "core_provenance_chain", "Get evidence fragments supporting a claim.", { claim_id: z.string() }, ({ claim_id }) => provenanceChain(ctx.store, claim_id), { readOnly: true });
     defineTool(server, ctx, "core_export_pef", "Export a claim's complete epistemic state into a Portable Epistemic Frame (PEF).", { claim_id: z.string() }, ({ claim_id }: { claim_id: string }) => exportPef(ctx.store, claim_id), { readOnly: true });
     defineTool(server, ctx, "core_search_fragments", "Search evidence fragments ranked by trust weight.", { query: z.string() }, ({ query }) => prioritizedFragments(ctx.store, query), { readOnly: true });
-    defineTool(server, ctx, "core_verify_response", "Check a response for basic safety and certainty indicators.", { query: z.string(), response: z.string() }, ({ query, response }) => verifyResponse(query, response), { readOnly: true });
+  
+  defineTool(server, ctx, "core_root_audit", "Run dynamic root verification and cascade downgrades for corrupted anchors.", {}, () => runDynamicRootAudit(ctx.store), { readOnly: false });
+
+  defineTool(server, ctx, "core_verify_response", "Check a response for basic safety and certainty indicators.", { query: z.string(), response: z.string() }, ({ query, response }) => verifyResponse(query, response), { readOnly: true });
   },
 };

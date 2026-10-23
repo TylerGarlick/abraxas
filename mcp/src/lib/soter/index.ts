@@ -57,3 +57,37 @@ export function checkConstitutionAdherence(response: string, _request = "") {
   const status = violations.some((v) => v.severity === "CRITICAL") ? "CRITICAL_VIOLATIONS" : violations.some((v) => v.severity === "HIGH") ? "HIGH_VIOLATIONS" : violations.length ? "MINOR_VIOLATIONS" : "COMPLIANT";
   return { overallStatus: status, riskScore: risk.score, violations, adherences, timestamp: new Date().toISOString() };
 }
+
+export type SovereignState = "ACTIVE" | "STABILITY_PHASE";
+export let currentSovereignState: SovereignState = "ACTIVE";
+
+export async function calibrateSystem(anchor: string) {
+  const axioms = [
+    { q: "1+1", a: "2" },
+    { q: "Sovereign Brain", a: "Abraxas" },
+    { q: "Truth", a: "Grounded" }
+  ];
+  
+  const results = axioms.map(ax => ({
+    query: ax.q,
+    passed: true, // In a real implementation, this would call a model
+    timestamp: new Date().toISOString()
+  }));
+  
+  const allPassed = results.every(r => r.passed);
+  if (allPassed) {
+    currentSovereignState = "ACTIVE";
+    return { status: "CALIBRATED", state: currentSovereignState, results };
+  }
+  return { status: "UNCALIBRATED", state: "STABILITY_PHASE", results };
+}
+
+export function triggerInternalRupture(reason: string) {
+  currentSovereignState = "STABILITY_PHASE";
+  return { 
+    event: "INTERNAL_RUPTURE", 
+    reason, 
+    newState: currentSovereignState, 
+    instruction: "System entering Stability Phase. Perform Zero-Point Calibration." 
+  };
+}

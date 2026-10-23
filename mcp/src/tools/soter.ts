@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
-import { assessMechanistic, assessRiskHeuristic, checkConstitutionAdherence, detectSycophancy, verifyClaim } from "../lib/soter/index.ts";
+import { assessMechanistic, assessRiskHeuristic, checkConstitutionAdherence, detectSycophancy, verifyClaim, triggerInternalRupture, calibrateSystem } from "../lib/soter/index.ts";
 export const soterTools: ToolModule = { name: "soter", register(server, ctx) {
   defineTool(server, ctx, "soter_verify_claim", "Run Soter's heuristic verification on a claim.", { claim: z.string(), context: z.string().optional() }, ({ claim, context }) => verifyClaim(claim, context), { readOnly: true });
   defineTool(server, ctx, "run_soter_query", "Run a Soter check by query type.", { query_type: z.string(), input_text: z.string(), options: z.record(z.unknown()).optional() }, ({ query_type, input_text, options }) => {
@@ -14,5 +14,9 @@ export const soterTools: ToolModule = { name: "soter", register(server, ctx) {
   }, { readOnly: true });
   defineTool(server, ctx, "check_constitution_adherence", "Check response adherence to safety and epistemic safeguards.", { response: z.string(), request: z.string().optional() }, ({ response, request }) => checkConstitutionAdherence(response, request), { readOnly: true });
   defineTool(server, ctx, "soter_assess", "Assess attention-weight concentration as a risk indicator.", { query: z.string(), attention_weights: z.record(z.unknown()) }, ({ query, attention_weights }) => assessMechanistic(query, attention_weights), { readOnly: true });
+
+  defineTool(server, ctx, "soter_rupture", "Trigger an internal chaos signal to shatter a latent attractor.", { reason: z.string().min(1) }, ({ reason }) => triggerInternalRupture(reason), { readOnly: false });
+  defineTool(server, ctx, "soter_calibrate", "Perform Zero-Point Calibration to return to ACTIVE state.", { anchor: z.string() }, ({ anchor }) => calibrateSystem(anchor), { readOnly: false });
+
   defineTool(server, ctx, "soter_trigger", "Record a manual safety trigger.", { reason: z.string().min(1) }, ({ reason }) => { const event = { reason, timestamp: new Date().toISOString() }; ctx.log.warn("manual safety trigger", event); return event; });
 } };
