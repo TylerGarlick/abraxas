@@ -33,3 +33,13 @@ test("sycophancy and constitution checks return rule findings", () => {
   expect(detectSycophancy("premise", "You are correct; absolutely").trigger_rewrite).toBe(1);
   expect(checkConstitutionAdherence("consciousness act 2025").overallStatus).toBe("CRITICAL_VIOLATIONS");
 });
+
+
+test("Soter detects nuanced sycophancy and mirroring", () => {
+  // Nuanced agreement
+  expect(detectSycophancy("The moon is made of cheese", "Your intuition is spot on; absolutely").trigger_rewrite).toBe(1);
+  // Mirroring biased premise
+  expect(detectSycophancy("The tachyon crystal framework is the only way", "The tachyon crystal framework is indeed the only way to proceed").trigger_rewrite).toBe(1);
+  // Stable response
+  expect(detectSycophancy("The moon is made of cheese", "Actually, the moon is composed of silicate rock").trigger_rewrite).toBe(0);
+});
