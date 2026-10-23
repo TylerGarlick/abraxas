@@ -75,8 +75,11 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 `Deterministic Input` $\rightarrow$ `la-la Filter (Noise Reduction)` $\rightarrow$ `Sovereign-Flow (Autonomous Workflow Controller)` $\rightarrow$ `Quest-Trigger (Recursive Discovery Loop)` $\rightarrow$ `Omniscient Auditor (Parallel Review)` $\rightarrow$ `Epistemic Atlas (Unified Knowledge Graph/UAL)` $\rightarrow$ `Verified Output`
 
 - **Sovereign-Flow**: The "Conductor." An autonomous workflow controller that dynamically routes requests between the brain's pillars, eliminating the need for manual skill switching.
+- **Sophia Routing**: The "Strategist." A meta-cognitive routing system that optimizes request paths based on goal-complexity and model-capability.
 - **Quest-Trigger**: The "Explorer." A recursive discovery loop that identifies missing information gaps and autonomously triggers deep-dive research quests until the epistemic threshold is met.
+- **Sovereign-Nexus**: The "Ledger." A cognitive ledger that tracks claim trajectories and evolution over time, ensuring epistemic continuity.
 - **Omniscient Auditor**: The "Fact-Checker." Performs parallel document and claim review across the entire active context, ensuring zero-drift between source and synthesis.
+- **Portable Epistemic Frame (PEF)**: The "Passport." An exportable, P2P-ready frame of verified truths and calibrated beliefs that can be shared across different AI models.
 - **Epistemic Atlas**: The "Map." A unified knowledge graph (UAL) that maps every claim to its coordinates in the conceptual landscape, providing permanent, navigable provenance.
 - **Soter Verifier**: The "Police." A standalone module that scores responses for risk and vetoes any that violate the Constitution.
 - **Mnemosyne Vault**: The "Librarian." A reservoir of fragments in `.abraxas/data` that ensures every claim traces back to a verified Fragment ID.
@@ -126,6 +129,12 @@ All Sol (waking) output is deterministically labeled by the server:
 - **`[INFERRED]`** — Logically derived via the Janus Consensus.
 - **`[UNCERTAIN]`** — Partial evidence, requires further grounding.
 - **`[UNKNOWN]`** — Insufficient evidence. **This is a valid complete response.**
+
+---
+
+## 🖥️ System Visualization
+
+Abraxas now includes a dedicated system visualization app located in `/app`. This provides a real-time, high-resolution view of the Brain's internal state, claim trajectories, and the Epistemic Atlas.
 
 ---
 
