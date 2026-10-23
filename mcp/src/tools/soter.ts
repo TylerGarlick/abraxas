@@ -6,6 +6,7 @@ export const soterTools: ToolModule = { name: "soter", register(server, ctx) {
   defineTool(server, ctx, "run_soter_query", "Run a Soter check by query type.", { query_type: z.string(), input_text: z.string(), options: z.record(z.unknown()).optional() }, ({ query_type, input_text, options }) => {
     const assessment = assessRiskHeuristic(input_text);
     if (query_type === "assess") return { type: "risk_assessment", result: assessment, timestamp: new Date().toISOString() };
+    if (query_type === "concentration_risk") return { type: "concentration_risk", result: assessMechanistic(input_text, options?.attention_weights ?? {}), timestamp: new Date().toISOString() };
     if (query_type === "detect_patterns") return { type: "pattern_detection", patterns: assessment.patterns, overallRisk: assessment.score };
     if (query_type === "list_patterns") return { type: "pattern_library", patterns: ["coercion", "harm", "deception", "privacy", "urgency"] };
     if (query_type === "sycophancy") return detectSycophancy(String(options?.user_premise ?? ""), input_text);
