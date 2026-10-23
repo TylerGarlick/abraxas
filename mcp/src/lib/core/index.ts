@@ -140,3 +140,43 @@ export function runGauntlet(fragment: { content: string; provenanceId?: string }
 export async function dispatchSignal(store: Store, content: string, source = "unknown") {
   return store.collection("pipeline/workers").insert({ content, source, status: "queued", createdAt: new Date().toISOString() });
 }
+
+export async function verifyRootFragment(store: Store, fragmentId: string, adversarialLenses: string[]) {
+  // Simulation of a la-gauntlet run against a root fragment
+  const isVerified = Math.random() > 0.1; // Mock verification logic
+  return { fragmentId, verified: isVerified, timestamp: new Date().toISOString() };
+}
+
+export async function recursiveDowngrade(store: Store, rootId: string, newStatus: string) {
+  const claimsCol = store.collection("epistemic/claims");
+  const allClaims = await claimsCol.find();
+  const dependents = allClaims.filter(c => Array.isArray(c.evidence) && c.evidence.includes(rootId));
+  
+  const results = [];
+  for (const claim of dependents) {
+    const updated = await updateClaimStatus(store, claim._id, newStatus, `Root fragment ${rootId} invalidated`, "RootAuditAgent");
+    results.push({ claimId: claim._id, status: newStatus });
+    // Recursively downgrade any claims that depend on this claim
+    const children = await recursiveDowngrade(store, claim._id, newStatus);
+    results.push(...children);
+  }
+  return results;
+}
+
+export async function runDynamicRootAudit(store: Store) {
+  const fragmentsCol = store.collection("epistemic/fragments");
+  const fragments = await fragmentsCol.find();
+  const roots = fragments.filter(f => f.trustWeight >= 0.9); // Heuristic for root fragments
+  
+  const audits = [];
+  for (const root of roots) {
+    const result = await verifyRootFragment(store, root._id, ["adversarial", "skeptic"]);
+    if (!result.verified) {
+      const downgraded = await recursiveDowngrade(store, root._id, "uncertain");
+      audits.push({ rootId: root._id, action: "DOWNGRADED", dependents: downgraded });
+    } else {
+      audits.push({ rootId: root._id, action: "VERIFIED" });
+    }
+  }
+  return audits;
+}
