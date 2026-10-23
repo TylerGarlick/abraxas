@@ -37,7 +37,8 @@ docs/
 
 ### New Users
 1. Start with [`manual/beginners-guide.md`](manual/beginners-guide.md) — a comprehensive jumpstart
-2. Read [`overview/index.md`](overview/index.md) — what Abraxas is
+2. Dive deep with [`manual/advanced-guide.md`](manual/advanced-guide.md) — for power users
+3. Read [`overview/index.md`](overview/index.md) — what Abraxas is
 2. Read [`overview/whitepaper.md`](overview/whitepaper.md) — the core theoretical vision
 3. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — comprehensive architecture
 4. See [`codex/MASTER_INDEX.md`](codex/MASTER_INDEX.md) — the encyclopedia of Sovereign logic
