@@ -1,4 +1,4 @@
-# Abraxas v4.6 — The Sovereign Brain
+# Abraxas — The Sovereign Brain
 
 **🔥 THE TRUTH-FIRST MCP ECOSYSTEM** — Moving from Discrete Skills to Sovereign Orchestration.
 
