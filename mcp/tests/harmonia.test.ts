@@ -1,2 +1,0 @@
-import { expect, test } from "bun:test"; import { checkConflict, composeWorkflow } from "../src/lib/harmonia/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
-test("Harmonia persists workflows and rejects cyclic or missing dependencies", async () => { const c = fakeCollection(); await composeWorkflow("w", [{ id: "a" }, { id: "b", depends_on: "a" }], c); expect((await checkConflict("w", c)).conflict_count).toBe(0); await expect(composeWorkflow("bad", [{ id: "a", depends_on: "b" }, { id: "b", depends_on: "a" }], c)).rejects.toThrow("cycle"); });

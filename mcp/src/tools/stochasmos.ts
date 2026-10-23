@@ -1,6 +1,0 @@
-import { z } from "zod"; import { defineTool, type ToolModule } from "./helpers.ts"; import { assessRisk, generateSeed, pressurePoints } from "../lib/stochasmos/logic.ts";
-export const stochasmosTools: ToolModule = { name: "stochasmos", register(server, ctx) { const records = ctx.store.collection("reasoning/stochasmos");
-  defineTool(server, ctx, "stochasmos_pressure_point", "Identify provisional discourse pressure points from supplied truths.", { discourse_id: z.string(), truths: z.array(z.string()).default([]), target: z.string().optional() }, ({ discourse_id, truths, target }) => pressurePoints(discourse_id, truths, target, records));
-  defineTool(server, ctx, "stochasmos_seed", "Generate a disconfirmation seed from a target claim.", { pressure_point_id: z.string(), target: z.string(), tension_index: z.number().min(0).max(1).default(0.65) }, ({ pressure_point_id, target, tension_index }) => generateSeed(pressure_point_id, target, tension_index, records));
-  defineTool(server, ctx, "stochasmos_assess_risk", "Run a preliminary lexical risk screen on a seed; not a deployment approval.", { seed_id: z.string(), seed_content: z.string().default("") }, ({ seed_id, seed_content }) => assessRisk(seed_id, seed_content, records));
-} };

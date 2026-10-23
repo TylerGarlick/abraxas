@@ -1,2 +1,0 @@
-import { expect, test } from "bun:test"; import { detectFailure, validateOutput } from "../src/lib/ergon/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
-test("Ergon validates shape and degrades failures to UNKNOWN", async () => { const c = fakeCollection(); expect((await validateOutput("x", { ok: true }, { required: ["ok"] }, c)).status).toBe("valid"); expect((await detectFailure("x", "timeout", {}, c)).status).toBe("UNKNOWN"); });

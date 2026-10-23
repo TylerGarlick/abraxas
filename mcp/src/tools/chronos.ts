@@ -1,7 +1,0 @@
-import { z } from "zod"; import { defineTool, type ToolModule } from "./helpers.ts"; import { detectDrift, indexClaim, resolveConflict, timeline } from "../lib/chronos/logic.ts";
-export const chronosTools: ToolModule = { name: "chronos", register(server, ctx) { const claims = ctx.store.collection("chronos/claims"); const resolutions = ctx.store.collection("chronos/resolutions");
-  defineTool(server, ctx, "index_claim", "Index a claim on the persistent temporal timeline.", { claim_id: z.string(), timestamp: z.string(), sequence: z.number().int().min(0) }, ({ claim_id, timestamp, sequence }) => indexClaim(claim_id, timestamp, sequence, claims));
-  defineTool(server, ctx, "detect_drift", "Compare a claim's recorded state with an expected state.", { claim_id: z.string(), expected_state: z.string() }, ({ claim_id, expected_state }) => detectDrift(claim_id, expected_state, claims));
-  defineTool(server, ctx, "resolve_conflict", "Record a temporal conflict resolution strategy for an indexed claim.", { conflict_id: z.string(), resolution_strategy: z.enum(["recency", "confidence", "source_strength", "manual", "merge", "flag"]) }, ({ conflict_id, resolution_strategy }) => resolveConflict(conflict_id, resolution_strategy, claims, resolutions));
-  defineTool(server, ctx, "chronos_timeline", "Render recent indexed claims as ordered timeline events.", { limit: z.number().int().min(1).max(500).optional() }, ({ limit }) => timeline(claims, limit), { readOnly: true });
-} };

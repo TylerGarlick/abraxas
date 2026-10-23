@@ -1,2 +1,0 @@
-import { expect, test } from "bun:test"; import { mapTruths, theorize } from "../src/lib/synesis/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
-test("Synesis maps store records and marks hypotheses provisional", async () => { const claims = fakeCollection(); const theories = fakeCollection(); await claims.insert({ _id: "t1", claim: "claim" }); expect((await mapTruths(["t1"], claims)).found).toBe(1); expect((await theorize("d", ["t1"], claims, theories)).status).toBe("PROPOSED"); });

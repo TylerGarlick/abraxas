@@ -1,6 +1,0 @@
-import { z } from "zod"; import { defineTool, type ToolModule } from "./helpers.ts"; import { mapTruths, theorize, validateTheory } from "../lib/synesis/logic.ts";
-export const synesisTools: ToolModule = { name: "synesis", register(server, ctx) { const claims = ctx.store.collection("epistemic/claims"); const theories = ctx.store.collection("reasoning/synesis/theories");
-  defineTool(server, ctx, "synesis_map", "Map supplied truth records by structural association.", { truth_ids_json: z.string() }, ({ truth_ids_json }) => mapTruths(JSON.parse(truth_ids_json) as string[], claims), { readOnly: true });
-  defineTool(server, ctx, "synesis_theorize", "Propose an explicitly provisional theory grounded in claim IDs.", { domain: z.string(), candidate_truths_json: z.string() }, ({ domain, candidate_truths_json }) => theorize(domain, JSON.parse(candidate_truths_json) as string[], claims, theories));
-  defineTool(server, ctx, "synesis_validate", "Check that a theory and its grounding records exist.", { theory_id: z.string(), grounding_ids_json: z.string() }, ({ theory_id, grounding_ids_json }) => validateTheory(theory_id, JSON.parse(grounding_ids_json) as string[], theories, claims), { readOnly: true });
-} };

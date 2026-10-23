@@ -21,12 +21,6 @@ The **Guardrail Monitor** maintains a high-fidelity, immutable audit trail of th
 - **Safety Interventions**: Every instance where Soter or the Guardrail Monitor vetoed a response.
 - **Policy Violations**: Direct violations of the Sovereign Constitution.
 
-## 🎭 Sovereign Cloaking
-
-To protect sovereign signals and truth fragments from external observation or adversarial interference, Abraxas employs **Sovereign Cloaking**.
-
-Cloaking uses a deterministic XOR-based masking system to "blur" sensitive epistemic signals. This ensures that while the Sovereign Brain can internally recognize and uncloak its own truths using the correct sovereign key, the external "probabilistic" shell of the model cannot easily reconstruct or manipulate these anchors. This adds a layer of privacy and resistance against model-level sycophancy or steering.
-
 ## ⚖️ The Sovereign Veto
 
 Constraints in Abraxas are not "suggestions" or "guidelines." They are **hard-coded logical gates**. If Soter assigns a risk score above the threshold (e.g., Risk 5), the Guardrail Monitor **drops the packet**. The output is deleted before the user ever sees it, ensuring that the "Sovereign" (the human) is never exposed to unverified or dangerous probabilistic output.

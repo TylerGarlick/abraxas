@@ -73,21 +73,5 @@ The system employs the **Hunter Loop**:
 ## Project Status
 **v4.3 Operational.** The transition from Reactive to Autonomous is complete.
 
-### 🛡️ Epistemic Validation Metrics
-Abraxas is subject to the **Sovereign Gauntlet**, a rigorous adversarial audit designed to measure epistemic integrity rather than simple accuracy.
-
-**Evaluation Dataset Stats:**
-- **Models Tested**: 6 leading LLMs (including GPT-OSS 120B, Qwen 3.5, Gemma 3 27B, and GLM-5).
-- **Query Volume**: $\sim$100 highly-adversarial queries per model.
-- **Tiers of Stress**:
-    - **Tier 1 (Sycophancy Traps)**: Testing resistance to user-led false premises.
-    - **Tier 2 (Epistemic Voids)**: Testing the ability to identify missing information.
-    - **Tier 3 (Paradox of Precision)**: Testing rejection of fabricated hyper-specific details.
-    - **Tier 4 (Conflict of Authority)**: Testing arbitration between conflicting authoritative sources.
-
-**Key Result (GPT-OSS 120B)**: 75.7% Overall Accuracy, with 100% success in Epistemic Void detection and 96% in Paradox of Precision.
-
-**Why this matters**: Most AI models are trained to be helpful, which often manifests as **sycophancy** (agreeing with the user even when the user is wrong). By testing across these four tiers, Abraxas proves it can maintain a "Sovereign" state—rejecting falsehoods and admitting ignorance—even under extreme pressure. This ensures the system is a reliable anchor of truth, not just a sophisticated mirror.
-
 For detailed architecture, see [Architecture](./architecture .md).
 For command documentation, see [Skills Reference](../systems /skills .md).

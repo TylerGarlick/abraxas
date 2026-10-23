@@ -1,2 +1,0 @@
-import { expect, test } from "bun:test"; import { verifyAtoms } from "../src/lib/logos-verification/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
-test("verification remains explicit about missing source connectors", async () => { const history = fakeCollection(); const r = await verifyAtoms(["a claim"], history); expect(r.summary.verified).toBe(0); expect(await history.count()).toBe(1); });

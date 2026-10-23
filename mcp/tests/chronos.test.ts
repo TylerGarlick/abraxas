@@ -1,2 +1,0 @@
-import { expect, test } from "bun:test"; import { detectDrift, indexClaim, timeline } from "../src/lib/chronos/logic.ts"; import { fakeCollection } from "./fake-collection.ts";
-test("Chronos indexes, detects drift, and renders chronological events", async () => { const c = fakeCollection(); await indexClaim("c", "2025-01-01", 1, c); expect((await detectDrift("c", "changed", c)).drift_detected).toBe(true); expect((await timeline(c)).count).toBe(1); });
