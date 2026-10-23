@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
+<<<<<<< Updated upstream
 import { addFragment, createClaim, provenanceChain, prioritizedFragments, verifyResponse, systemInit, exportPef , runDynamicRootAudit } from "../lib/core/index.ts";
+=======
+import { addFragment, createClaim, provenanceChain, prioritizedFragments, verifyResponse, systemInit, exportPef , runDynamicRootAudit, updateClaimStatus, markSovereignPosition, auditNexusProvenance } from "../lib/core/index.ts";
+>>>>>>> Stashed changes
 export const coreTools: ToolModule = {
   name: "core",
   register(server, ctx) {
@@ -13,6 +17,7 @@ export const coreTools: ToolModule = {
     defineTool(server, ctx, "core_search_fragments", "Search evidence fragments ranked by trust weight.", { query: z.string() }, ({ query }) => prioritizedFragments(ctx.store, query), { readOnly: true });
   
   defineTool(server, ctx, "core_root_audit", "Run dynamic root verification and cascade downgrades for corrupted anchors.", {}, () => runDynamicRootAudit(ctx.store), { readOnly: false });
+  defineTool(server, ctx, "core_provenance_cycle_audit", "Audit the Sovereign-Nexus for circular provenance chains to prevent trust echo-chambers.", {}, () => auditNexusProvenance(ctx.store), { readOnly: false });
 
   defineTool(server, ctx, "core_verify_response", "Check a response for basic safety and certainty indicators.", { query: z.string(), response: z.string() }, ({ query, response }) => verifyResponse(query, response), { readOnly: true });
   },

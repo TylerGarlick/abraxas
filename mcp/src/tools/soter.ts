@@ -19,4 +19,5 @@ export const soterTools: ToolModule = { name: "soter", register(server, ctx) {
   defineTool(server, ctx, "soter_calibrate", "Perform Zero-Point Calibration to return to ACTIVE state.", { anchor: z.string() }, ({ anchor }) => calibrateSystem(anchor), { readOnly: false });
 
   defineTool(server, ctx, "soter_trigger", "Record a manual safety trigger.", { reason: z.string().min(1) }, ({ reason }) => { const event = { reason, timestamp: new Date().toISOString() }; ctx.log.warn("manual safety trigger", event); return event; });
+  defineTool(server, ctx, "soter_monitor_chaos", "Meta-Monitor for token stream entropy and digital seizure detection.", { text: z.string(), entropy_history: z.array(z.number()).optional() }, ({ text, entropy_history }) => analyzeChaosSignal(text, entropy_history ?? []), { readOnly: true });
 } };
