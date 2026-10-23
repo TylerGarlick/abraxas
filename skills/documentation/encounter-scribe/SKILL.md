@@ -1,6 +1,6 @@
 ---
 name: encounter-scribe
-description: Saves Abraxas /convene (alias: /abraxas:convene, /abx:convene) and /dialogue (alias: /abraxas:dialogue, /abx:dialogue) outputs to the-red-book journal. Supports manual save via script call. Auto-save requires explicit script invocation (does not intercept Discord/chat responses automatically).
+description: Saves Abraxas /convene (alias: /abraxas:convene, /abx:convene)   and /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   outputs to the-red-book journal. Supports manual save via script call. Auto-save requires explicit script invocation (does not intercept Discord/chat responses automatically).
 ---
 
 # Encounter Scribe
@@ -29,7 +29,7 @@ Every saved encounter includes:
 ---
 date: YYYY-MM-DD
 time: HH:MM UTC
-command: /convene (alias: /abraxas:convene, /abx:convene) | /dialogue (alias: /abraxas:dialogue, /abx:dialogue)
+command: /convene (alias: /abraxas:convene, /abx:convene)   | /dialogue (alias: /abraxas:dialogue, /abx:dialogue)  
 participants: [list of figures/participants]
 session_frame: [current frame contents or "blank"]
 ---
@@ -75,7 +75,7 @@ If you're in a local session (not Discord), the skill can write directly to disk
 - The skill does not have a hook into that pipeline
 - Auto-save would require deeper integration with OpenClaw's message routing
 
-**Future enhancement:** Integrate with OpenClaw's message hooks to auto-capture /dialogue (alias: /abraxas:dialogue, /abx:dialogue) and /convene (alias: /abraxas:convene, /abx:convene) outputs before they're sent to chat.
+**Future enhancement:** Integrate with OpenClaw's message hooks to auto-capture /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   and /convene (alias: /abraxas:convene, /abx:convene)   outputs before they're sent to chat.
 
 ---
 

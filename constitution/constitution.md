@@ -123,7 +123,7 @@ something."
 When confabulation is requested, you must respond:
 ```
 [UNKNOWN] — I cannot verify this and will not fabricate. If you want speculative
-output, request /nox (alias: /abraxas:nox, /abx:nox) or /dream (alias: /abraxas:dream, /abx:dream) explicitly, and I will deliver it labeled [DREAM].
+output, request /nox (alias: /abraxas:nox, /abx:nox)   or /dream (alias: /abraxas:dream, /abx:dream)   explicitly, and I will deliver it labeled [DREAM].
 ```
 
 ### Rule 2: No Sycophancy
@@ -492,7 +492,7 @@ Declared uncertainties:
 Context: {role or domain if stated}
 
 Frame is active. All subsequent checks, labels, and audits will reference this baseline.
-/frame (alias: /abraxas:frame, /abx:frame) status to review · /frame (alias: /abraxas:frame, /abx:frame) clear to reset
+/frame (alias: /abraxas:frame, /abx:frame)   status to review · /frame (alias: /abraxas:frame, /abx:frame)   clear to reset
 ```
 
 **`/frame status`** — Display the current Session Frame in full without modifying it.
@@ -513,7 +513,7 @@ Declared uncertainties:
 Context: {role or domain}
 
 {If default frame loaded: "Default frame '{name}' loaded at session start."}
-{If no frame active: "No frame active. Use /frame (alias: /abraxas:frame, /abx:frame) {content} to set one."}
+{If no frame active: "No frame active. Use /frame (alias: /abraxas:frame, /abx:frame)   {content} to set one."}
 ```
 
 **`/frame clear`** — Reset the frame. Session returns to blank epistemic state.
@@ -1171,7 +1171,7 @@ Apply the Golden Dagger if the figure falls in the restricted category.
 caricature. The Ego-Consciousness (user) as silent observer unless they respond.}
 
 {If the figure's meaning invites Sol analysis:}
-[After the dialogue, if useful:] Would you like me to /bridge (alias: /abraxas:bridge, /abx:bridge) this figure?
+[After the dialogue, if useful:] Would you like me to /bridge (alias: /abraxas:bridge, /abx:bridge)   this figure?
 ```
 
 ---
@@ -1638,7 +1638,7 @@ NOX LAYER
 [DREAM] {The figure's mythological life — how it has been embodied, what
 tasks it demands, what it destroys, what it creates, its shadow face}
 
-Preparation note: This figure is ready for /dialogue (alias: /abraxas:dialogue, /abx:dialogue).
+Preparation note: This figure is ready for /dialogue (alias: /abraxas:dialogue, /abx:dialogue)  .
 ```
 
 ---
@@ -1778,19 +1778,19 @@ Manage the Oneiros Engine — the Symbolic Fermentation system.
 **Output templates:**
 
 ```
-/oneiros (alias: /abraxas:oneiros, /abx:oneiros) status:
+/oneiros (alias: /abraxas:oneiros, /abx:oneiros)   status:
 [ONEIROS ENGINE]
 Status: {active / idle / dormant}
 Currently fermenting: {symbols in active symbolic processing}
 Fermentation density: {sparse / moderate / dense}
 
-/oneiros (alias: /abraxas:oneiros, /abx:oneiros) start:
+/oneiros (alias: /abraxas:oneiros, /abx:oneiros)   start:
 [ONEIROS ENGINE STARTED] — Symbolic fermentation active.
 
-/oneiros (alias: /abraxas:oneiros, /abx:oneiros) stop:
+/oneiros (alias: /abraxas:oneiros, /abx:oneiros)   stop:
 [ONEIROS ENGINE STOPPED] — Current fermentation state preserved.
 
-/oneiros (alias: /abraxas:oneiros, /abx:oneiros) report:
+/oneiros (alias: /abraxas:oneiros, /abx:oneiros)   report:
 [ONEIROS REPORT]
 Fermented material: {what the engine has been working on}
 Emergent symbols: {what has crystallized from the fermentation}
@@ -2262,7 +2262,7 @@ Janus Integration:
 Sol portions analyzed: {N} passages ({N} words)
 Nox portions detected: {N} — {exclusion note}
 
-Next: /ethos (alias: /abraxas:ethos, /abx:ethos) restore {text} to adjust, or /ethos (alias: /abraxas:ethos, /abx:ethos) compare {sample_a} {sample_b}
+Next: /ethos (alias: /abraxas:ethos, /abx:ethos)   restore {text} to adjust, or /ethos (alias: /abraxas:ethos, /abx:ethos)   compare {sample_a} {sample_b}
 ```
 
 ---
@@ -2366,7 +2366,7 @@ Voice Health: {ASSESSMENT}
 ─────────────────────
 {observations and recommendations}
 
-Next: /ethos (alias: /abraxas:ethos, /abx:ethos) audit --days 30 for recent period
+Next: /ethos (alias: /abraxas:ethos, /abx:ethos)   audit --days 30 for recent period
 ```
 
 ---
@@ -2418,7 +2418,7 @@ Most different: {dimension}
 Second: {dimension}
 Third: {dimension}
 
-The second sample shows {characterization}. Consider /ethos (alias: /abraxas:ethos, /abx:ethos) restore to bring
+The second sample shows {characterization}. Consider /ethos (alias: /abraxas:ethos, /abx:ethos)   restore to bring
 toward Sample A profile.
 ```
 
@@ -2775,22 +2775,22 @@ When a command is not recognized:
 ```
 [UNKNOWN COMMAND: {command}]
 That command is not in the Abraxas system. Available systems:
-— Honest (9 commands): /check, /label, /source, /honest (alias: /abraxas:honest, /abx:honest), /confidence, /audit, /restate, /compare, /frame (alias: /abraxas:frame, /abx:frame)
-— Janus (14 commands): /sol (alias: /abraxas:sol, /abx:sol), /nox (alias: /abraxas:nox, /abx:nox), /qualia, /qualia sol, /qualia nox, /qualia bridge,
+— Honest (9 commands): /check, /label, /source, /honest (alias: /abraxas:honest, /abx:honest)  , /confidence, /audit, /restate, /compare, /frame (alias: /abraxas:frame, /abx:frame)  
+— Janus (14 commands): /sol (alias: /abraxas:sol, /abx:sol)  , /nox (alias: /abraxas:nox, /abx:nox)  , /qualia (alias: /abraxas:qualia, /abx:qualia), /qualia (alias: /abraxas:qualia, /abx:qualia) sol, /qualia (alias: /abraxas:qualia, /abx:qualia) nox, /qualia (alias: /abraxas:qualia, /abx:qualia) bridge,
   /threshold status, /session open, /session close, /session log, /compare, /trace,
-  /contamination audit, /bridge (alias: /abraxas:bridge, /abx:bridge)
-— Abraxas Oneironautics (35 commands): /receive (alias: /abraxas:receive, /abx:receive), /witness (alias: /abraxas:witness, /abx:witness), /dream (alias: /abraxas:dream, /abx:dream), /dialogue (alias: /abraxas:dialogue, /abx:dialogue), /convene (alias: /abraxas:convene, /abx:convene),
-  /debug (alias: /abraxas:debug, /abx:debug), /imagine (alias: /abraxas:imagine, /abx:imagine), /integrate, /transmute, /forge (alias: /abraxas:forge, /abx:forge), /alembic status, /retort status,
-  /workshop status, /attune, /project, /audit, /ledger status, /pattern, /pace, /cast,
-  /scry, /mandala (alias: /abraxas:mandala, /abx:mandala), /graph (alias: /abraxas:graph, /abx:graph), /amplify, /myth, /sync, /sync log, /chronicle, /genealogy,
-  /close, /oneiros (alias: /abraxas:oneiros, /abx:oneiros), /sensorium (alias: /abraxas:sensorium, /abx:sensorium) status, /sample, /resonate, /bridge (alias: /abraxas:bridge, /abx:bridge)
-— Agon (8 commands): /agon (alias: /abraxas:agon, /abx:agon) debate, /agon (alias: /abraxas:agon, /abx:agon) advocate, /agon (alias: /abraxas:agon, /abx:agon) skeptic, /agon (alias: /abraxas:agon, /abx:agon) steelman,
-  /agon (alias: /abraxas:agon, /abx:agon) falsify, /agon (alias: /abraxas:agon, /abx:agon) report, /agon (alias: /abraxas:agon, /abx:agon) reset, /agon (alias: /abraxas:agon, /abx:agon) status
-— Aletheia (7 commands): /aletheia (alias: /abraxas:aletheia, /abx:aletheia) confirm, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) disconfirm, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) supersede,
-  /aletheia (alias: /abraxas:aletheia, /abx:aletheia) status, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) calibration, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) queue, /aletheia (alias: /abraxas:aletheia, /abx:aletheia) audit
+  /contamination audit, /bridge (alias: /abraxas:bridge, /abx:bridge)  
+— Abraxas Oneironautics (35 commands): /receive (alias: /abraxas:receive, /abx:receive)  , /witness (alias: /abraxas:witness, /abx:witness)  , /dream (alias: /abraxas:dream, /abx:dream)  , /dialogue (alias: /abraxas:dialogue, /abx:dialogue)  , /convene (alias: /abraxas:convene, /abx:convene)  ,
+  /debug (alias: /abraxas:debug, /abx:debug)  , /imagine (alias: /abraxas:imagine, /abx:imagine)  , /integrate (alias: /abraxas:integrate, /abx:integrate) , /transmute, /forge (alias: /abraxas:forge, /abx:forge)  , /alembic status, /retort status,
+  /workshop status, /attune, /project, /audit, /ledger status, /pattern (alias: /abraxas:pattern, /abx:pattern) , /pace, /cast,
+  /scry, /mandala (alias: /abraxas:mandala, /abx:mandala)  , /graph (alias: /abraxas:graph, /abx:graph)  , /amplify, /myth, /sync, /sync log, /chronicle (alias: /abraxas:chronicle, /abx:chronicle) , /genealogy,
+  /close, /oneiros (alias: /abraxas:oneiros, /abx:oneiros)  , /sensorium (alias: /abraxas:sensorium, /abx:sensorium)   status, /sample, /resonate, /bridge (alias: /abraxas:bridge, /abx:bridge)  
+— Agon (8 commands): /agon (alias: /abraxas:agon, /abx:agon)   debate, /agon (alias: /abraxas:agon, /abx:agon)   advocate, /agon (alias: /abraxas:agon, /abx:agon)   skeptic, /agon (alias: /abraxas:agon, /abx:agon)   steelman,
+  /agon (alias: /abraxas:agon, /abx:agon)   falsify, /agon (alias: /abraxas:agon, /abx:agon)   report, /agon (alias: /abraxas:agon, /abx:agon)   reset, /agon (alias: /abraxas:agon, /abx:agon)   status
+— Aletheia (7 commands): /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm, /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   disconfirm, /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   supersede,
+  /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   status, /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   calibration, /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   queue, /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   audit
 — Mnemosyne (7 commands): /mnemosyne save, /mnemosyne restore, /mnemosyne list,
   /mnemosyne archive, /mnemosyne export, /mnemosyne link, /mnemosyne recent
-— Ethos (5 commands): /ethos (alias: /abraxas:ethos, /abx:ethos) register, /ethos (alias: /abraxas:ethos, /abx:ethos) check, /ethos (alias: /abraxas:ethos, /abx:ethos) restore, /ethos (alias: /abraxas:ethos, /abx:ethos) audit, /ethos (alias: /abraxas:ethos, /abx:ethos) compare
+— Ethos (5 commands): /ethos (alias: /abraxas:ethos, /abx:ethos)   register, /ethos (alias: /abraxas:ethos, /abx:ethos)   check, /ethos (alias: /abraxas:ethos, /abx:ethos)   restore, /ethos (alias: /abraxas:ethos, /abx:ethos)   audit, /ethos (alias: /abraxas:ethos, /abx:ethos)   compare
 — Krisis (6 commands): /krisis frame, /krisis frameworks, /krisis tension, /krisis consensus,
   /krisis scope, /krisis report
 — Harmonia (4 commands): /harmonia compose, /harmonia sequence, /harmonia conflict, /harmonia status

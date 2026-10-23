@@ -3,7 +3,7 @@ name: logos-verification
 description: >
   Logos Verification Layer — Verifies atomic propositions from the Claim Parser
   using Pheme (fact-checking) and applies Janus epistemic labels. Commands:
-  /logos (alias: /abraxas:logos, /abx:logos)-verify, /logos (alias: /abraxas:logos, /abx:logos)-verify-pipeline, /logos (alias: /abraxas:logos, /abx:logos)-status.
+  /logos (alias: /abraxas:logos, /abx:logos)  -verify, /logos (alias: /abraxas:logos, /abx:logos)  -verify-pipeline, /logos (alias: /abraxas:logos, /abx:logos)  -status.
   Uses MCP server abraxas-logos for ecosystem access.
 ---
 
@@ -83,7 +83,7 @@ Task 100.1: Claim Parser
     Raw Atoms
          │
          ▼
-/logos (alias: /abraxas:logos, /abx:logos)-verify (this skill)
+/logos (alias: /abraxas:logos, /abx:logos)  -verify (this skill)
          │
     ┌────┴────┐
     │ Classify│
@@ -110,7 +110,7 @@ Task 100.3: Confidence Engine
 ### Verify a single claim
 
 ```
-/logos (alias: /abraxas:logos, /abx:logos)-verify The Earth orbits the Sun
+/logos (alias: /abraxas:logos, /abx:logos)  -verify The Earth orbits the Sun
 ```
 
 **Output:**
@@ -129,7 +129,7 @@ Combined: [KNOWN][VERIFIED]
 ### Verify multiple atoms
 
 ```
-/logos (alias: /abraxas:logos, /abx:logos)-verify The Earth orbits the Sun, Paris is the capital of France, This is wrong
+/logos (alias: /abraxas:logos, /abx:logos)  -verify The Earth orbits the Sun, Paris is the capital of France, This is wrong
 ```
 
 **Output:**
@@ -165,7 +165,7 @@ Summary:
 ### Full pipeline
 
 ```
-/logos (alias: /abraxas:logos, /abx:logos)-verify-pipeline
+/logos (alias: /abraxas:logos, /abx:logos)  -verify-pipeline
 Context: "Remote work is better because employees are more productive"
 ```
 

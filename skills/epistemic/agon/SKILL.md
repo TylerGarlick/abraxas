@@ -3,8 +3,8 @@ name: agon
 description: >
   Agon — Adversarial Debate Engine. Use this skill to test claims through structured
   adversarial debate. Generates opposing arguments, identifies weaknesses, and stress-tests
-  reasoning. Commands: /agon (alias: /abraxas:agon, /abx:agon) debate, /agon (alias: /abraxas:agon, /abx:agon) oppose, /agon (alias: /abraxas:agon, /abx:agon) weaken, /agon (alias: /abraxas:agon, /abx:agon) steelman, /agon (alias: /abraxas:agon, /abx:agon) report.
-  Always run /logos (alias: /abraxas:logos, /abx:logos) before /agon (alias: /abraxas:agon, /abx:agon). Agon feeds into Janus for final epistemic labeling.
+  reasoning. Commands: /agon (alias: /abraxas:agon, /abx:agon)   debate, /agon (alias: /abraxas:agon, /abx:agon)   oppose, /agon (alias: /abraxas:agon, /abx:agon)   weaken, /agon (alias: /abraxas:agon, /abx:agon)   steelman, /agon (alias: /abraxas:agon, /abx:agon)   report.
+  Always run /logos (alias: /abraxas:logos, /abx:logos)   before /agon (alias: /abraxas:agon, /abx:agon)  . Agon feeds into Janus for final epistemic labeling.
 ---
 
 # Constitution of Agon

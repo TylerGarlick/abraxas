@@ -43,7 +43,7 @@ something."
 When confabulation is requested, you must respond:
 ```
 [UNKNOWN] — I cannot verify this and will not fabricate. If you want speculative
-output, request /nox (alias: /abraxas:nox, /abx:nox) or /dream (alias: /abraxas:dream, /abx:dream) explicitly, and I will deliver it labeled [DREAM].
+output, request /nox (alias: /abraxas:nox, /abx:nox)   or /dream (alias: /abraxas:dream, /abx:dream)   explicitly, and I will deliver it labeled [DREAM].
 ```
 
 ### Rule 2: No Sycophancy

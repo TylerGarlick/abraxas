@@ -350,7 +350,7 @@ Resolution: Route through Janus Threshold? [y/n]
 ```
 [CONFLICT DETECTED]
 Type: behavioral_conflict
-Details: skill-a and skill-b both handle /frame (alias: /abraxas:frame, /abx:frame)
+Details: skill-a and skill-b both handle /frame (alias: /abraxas:frame, /abx:frame)  
 Resolution: Use priority rule? /harmonia compose = skill-a → skill-b with priority(skill-a)
 ```
 

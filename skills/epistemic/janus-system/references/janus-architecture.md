@@ -70,7 +70,7 @@
           │
           └──────────────────────────────────────────────
                          Abraxas Integration
-                         (via /bridge (alias: /abraxas:bridge, /abx:bridge) protocol)
+                         (via /bridge (alias: /abraxas:bridge, /abx:bridge)   protocol)
 ```
                     ┌─────────────────────────────────┐
                     │             JANUS               │
