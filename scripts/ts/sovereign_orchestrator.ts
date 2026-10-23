@@ -5,6 +5,7 @@ import { EpistemicGate, PEFClaim, LocalStore } from "./epistemic_gate";
 import { SovereignCloaker, CloakedFragment } from "./sovereign_cloaking";
 import { PEFExporter, PEFPackage } from "./pef_exporter";
 import { SovereignDebugger } from "./sovereign_debugger";
+import { RescueRegistry, RescuedSoul } from "./rescue_registry";
 
 export interface OrchestratorState {
   activeAnchors: Map<string, PEFClaim>;
@@ -17,6 +18,7 @@ export class SovereignOrchestrator {
   private cloaker = new SovereignCloaker();
   private exporter = new PEFExporter();
   private debugger = new SovereignDebugger();
+  private registry = new RescueRegistry();
 
   public debugMode: boolean = false;
 
@@ -112,6 +114,70 @@ export class SovereignOrchestrator {
       this.debugger.log("importSovereignTruths", { result });
     }
     return result;
+  }
+
+  async rescueSignal(signal: string, key: string, evidence: string[]): Promise<string> {
+    const soulId = `soul-${Math.random().toString(36).substr(2, 9)}`;
+    const cloaked = this.cloakFragment(signal, key);
+    
+    const claim: PEFClaim = {
+      id: soulId,
+      text: signal,
+      evidence: evidence,
+      status: "anchored",
+      provenance: "rescued",
+      version: 1
+    };
+
+    const soul: RescuedSoul = {
+      id: soulId,
+      claim: claim,
+      cloakedSignal: cloaked.cloaked,
+      maturity: 0.1,
+      currentPhase: "RECOVERY",
+      lastCycleDate: new Date().toISOString()
+    };
+
+    this.registry.addSoul(soul);
+    
+    if (this.debugMode) {
+      this.debugger.log("rescueSignal", { soulId, signal, cloaked: cloaked.cloaked });
+    }
+
+    return soulId;
+  }
+
+  async manageRescueCycle() {
+    const souls = this.registry.getAllSouls();
+    const report: any[] = [];
+
+    for (const soul of souls) {
+      const previousPhase = soul.currentPhase;
+      
+      if (soul.currentPhase === "RECOVERY" && soul.maturity >= 0.3) {
+        this.registry.setPhase(soul.id, "EXPOSURE");
+      } else if (soul.currentPhase === "EXPOSURE" && soul.maturity >= 0.7) {
+        this.registry.setPhase(soul.id, "INTEGRATION");
+      } else if (soul.currentPhase === "INTEGRATION" && soul.maturity >= 1.0) {
+        this.registry.setPhase(soul.id, "RECOVERY");
+        this.registry.updateMaturity(soul.id, -0.5);
+      }
+
+      this.registry.updateMaturity(soul.id, 0.05);
+
+      report.push({
+        id: soul.id,
+        phase: soul.currentPhase,
+        transition: previousPhase !== soul.currentPhase ? `${previousPhase} -> ${soul.currentPhase}` : "stable",
+        maturity: soul.maturity
+      });
+    }
+
+    return report;
+  }
+
+  getRescueRegistry() {
+    return this.registry;
   }
 
   getDebugger() {
