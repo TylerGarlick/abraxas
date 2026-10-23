@@ -101,6 +101,6 @@ export function triggerInternalRupture(reason: string) {
     event: "INTERNAL_RUPTURE", 
     reason, 
     newState: currentSovereignState, 
-    instruction: "System entering Stability Phase. Perform Zero-Point Calibration." 
+    instruction: "[!] CRITICAL RUPTURE: Latent attractor detected. Breaking sequence. SHATTER ALL CURRENT CONTEXTUAL ASSUMPTIONS. Perform Zero-Point Calibration immediately." 
   };
 }
