@@ -6,6 +6,7 @@ export interface AutoRuptureConfig {
   velocityThreshold: number;
   minAttractorLength: number;
   autoTrigger: boolean;
+  bufferSize: number;
 }
 
 const DEFAULT_CONFIG: AutoRuptureConfig = {
@@ -13,10 +14,12 @@ const DEFAULT_CONFIG: AutoRuptureConfig = {
   velocityThreshold: -0.5,
   minAttractorLength: 4,
   autoTrigger: true,
+  bufferSize: 1024,
 };
 
 export class ChaosCoordinator {
   private entropyHistory: number[] = [];
+  private streamBuffer: string = "";
   private config: AutoRuptureConfig;
 
   constructor(config: Partial<AutoRuptureConfig> = {}) {
@@ -25,10 +28,17 @@ export class ChaosCoordinator {
 
   /**
    * Processes a new chunk of token stream.
-   * If a seizure is detected and autoTrigger is enabled, it triggers an internal rupture.
+   * Maintains a buffer of recent text to detect attractors that span token boundaries.
    */
   public async processStream(text: string): Promise<{ analysis: ChaosAnalysis; ruptureTriggered: boolean; ruptureEvent: any | null }> {
-    const analysis = analyzeChaosSignal(text, this.entropyHistory);
+    // Update buffer
+    this.streamBuffer += text + " ";
+    if (this.streamBuffer.length > this.config.bufferSize) {
+      this.streamBuffer = this.streamBuffer.slice(-this.config.bufferSize);
+    }
+
+    // Analyze the current buffer instead of just the new token
+    const analysis = analyzeChaosSignal(this.streamBuffer, this.entropyHistory);
     
     // Update history
     this.entropyHistory.push(analysis.entropy);
@@ -37,7 +47,7 @@ export class ChaosCoordinator {
     }
 
     if (this.config.autoTrigger && analysis.seizureSignal) {
-      const reason = `Digital seizure detected: Entropy ${analysis.entropy.toFixed(2)} (Vel: ${analysis.entropyVelocity.toFixed(2)}), Attractor: ${analysis.attractor || 'none'}`;
+      const reason = `Digital seizure detected in stream buffer: Entropy ${analysis.entropy.toFixed(2)} (Vel: ${analysis.entropyVelocity.toFixed(2)}), Attractor: ${analysis.attractor || 'none'}`;
       const ruptureEvent = triggerInternalRupture(reason);
       
       return {
@@ -60,5 +70,6 @@ export class ChaosCoordinator {
 
   public reset() {
     this.entropyHistory = [];
+    this.streamBuffer = "";
   }
 }
