@@ -45,6 +45,7 @@ import { sovereignEngineTools } from "./sovereign_engine.ts";
 import { statusTools } from "./status.ts";
 import { stochasmosTools } from "./stochasmos.ts";
 import { synesisTools } from "./synesis.ts";
+import { nexusTools } from "./nexus.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
@@ -94,4 +95,5 @@ export const toolModules: ToolModule[] = [
   statusTools,
   stochasmosTools,
   synesisTools,
+  nexusTools,
 ];
