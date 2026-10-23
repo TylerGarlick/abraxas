@@ -71,6 +71,6 @@ Whitepaper polish for arXiv submission
 
 ---
 
-**Whitepaper Location:** https://github.com/TylerGarlick/abraxas/blob/main/docs/overview/whitepaper.md  
-**Abstract:** https://github.com/TylerGarlick/abraxas/blob/main/docs/overview/abstract.md  
-**Blog Post:** https://github.com/TylerGarlick/abraxas/blob/main/docs/overview/blog-post-summary.md
+**Whitepaper Location:** https://github.com/[USER]/abraxas/blob/main/docs/overview/whitepaper.md  
+**Abstract:** https://github.com/[USER]/abraxas/blob/main/docs/overview/abstract.md  
+**Blog Post:** https://github.com/[USER]/abraxas/blob/main/docs/overview/blog-post-summary.md

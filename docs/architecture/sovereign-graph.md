@@ -1,4 +1,4 @@
-# The Sovereign Graph: ArangoDB Schema v4.2
+# The Sovereign Graph: the graph database Schema v4.2
 
 The Abraxas Brain does not use standard RAG; it uses a **Provenance Graph**. This turns memory from a "hint" into a **Required Foundation**.
 

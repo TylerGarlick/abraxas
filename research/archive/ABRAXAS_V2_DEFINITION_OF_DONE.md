@@ -98,7 +98,7 @@ Abraxas v2.1 is complete when:
 ```bash
 # Run the v2.1 test suite
 cd /home/ubuntu/.openclaw/workspace/abraxas
-python3 tests/test_abraxas_v2_7dim.py
+the system language3 tests/test_abraxas_v2_7dim.py
 
 # Check latest results
 ls -lt research/abraxas-v2-test-results-*.json | head -1

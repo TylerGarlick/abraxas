@@ -198,4 +198,3 @@ Potential additions to the visual design:
 - **Session-Persistent State:** The geometry animates differently based on which system is active
 - **Dark/Light Mode:** Alternative color schemes for accessibility
 - **Mobile-Optimized Geometry:** Simplified patterns for smaller screens
-

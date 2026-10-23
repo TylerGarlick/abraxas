@@ -369,7 +369,7 @@ The "Do We Need Frontier Models to Verify Mathematical Proofs?" paper (arxiv, Ap
    - **Impact:** Early detection of concerning behavioral patterns
 
 4. **Tiered Architecture (Sovereign Systems)**
-   - **Mechanism:** Tier 1 (Bedrock: ArangoDB, Dolt, Encrypted Vault) provides immutable foundation
+   - **Mechanism:** Tier 1 (Bedrock: the graph database, Dolt, Encrypted Vault) provides immutable foundation
    - **Implementation:** Constituents cannot modify their own constraints or access credentials
    - **Impact:** Architectural prevention of self-modification or credential acquisition
 
@@ -523,7 +523,7 @@ The Google Research metacognition paper (Yona, Geva, Matias) and URAG benchmark 
    - **Implementation:** Every citation links to a specific Dolt commit hash
    - **Impact:** Citations are auditable and reproducible
 
-3. **ArangoDB (Grounded Knowledge Graph)**
+3. **the graph database (Grounded Knowledge Graph)**
    - **Mechanism:** Knowledge is stored as graph with explicit source relationships
    - **Implementation:** Claims are linked to source nodes; orphaned claims are flagged
    - **Impact:** Structural prevention of unsourced assertions
@@ -533,7 +533,7 @@ The Google Research metacognition paper (Yona, Geva, Matias) and URAG benchmark 
    - **Implementation:** Every output includes derivation trail back to source documents
    - **Impact:** Complete accountability for source credibility
 
-**Paper Potential:** ⭐⭐⭐ **MEDIUM-HIGH** — Citation fabrication is well-documented but architectural solutions are not. Abraxas's Dolt+ArangoDB+Logos integration provides a concrete framework. Publication angle: **"Versioned Knowledge Graphs for Citation Integrity in AI Systems."** Suitable for ISWC 2026 or WWW 2027.
+**Paper Potential:** ⭐⭐⭐ **MEDIUM-HIGH** — Citation fabrication is well-documented but architectural solutions are not. Abraxas's Dolt+the graph database+Logos integration provides a concrete framework. Publication angle: **"Versioned Knowledge Graphs for Citation Integrity in AI Systems."** Suitable for ISWC 2026 or WWW 2027.
 
 The "LLM hallucinations in the wild" paper (111M citations audited) provides empirical validation that citation fabrication is a massive, real-world problem — Abraxas's architecture directly addresses this.
 
@@ -574,7 +574,7 @@ The research gathered today reveals a consistent pattern: **single-model AI syst
    - Constitutional Verification for Reasoning Model Hallucination (validates Logos/Janus separation)
    - Architectural Remediation of AI Sycophancy (validates Honest+Agon+Ergon)
    - Aletheia: Confidence Calibration in Multi-Agent Systems (validates metacognition approach)
-   - Versioned Knowledge Graphs for Citation Integrity (validates Dolt+ArangoDB+Logos)
+   - Versioned Knowledge Graphs for Citation Integrity (validates Dolt+the graph database+Logos)
 
 5. **Competitive Positioning** — Abraxas's architecture directly addresses problems that OpenAI, Anthropic, and Google are struggling with. This is a differentiator.
 

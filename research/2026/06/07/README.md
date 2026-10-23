@@ -38,7 +38,7 @@
 - **Problem**: Even the best reasoning models often "guess" the answer to a math problem based on statistical patterns in the training data rather than executing a formal derivation. This leads to "correct-looking" but logically flawed proofs.
 - **Source**: [OpenAI / Georgia Tech Research](https://www.computerworld.com/article/4059383/openai-admits-ai-hallucinations-are-mathematically-inevitable-not-just-engineering-flaws.html)
 - **Abraxas Solution**:
-    - **Ergon (The Formal Engine)**: Ergon's mandate is absolute: *Math is derived, not asserted.* It forces the translation of natural language problems into a formal symbolic language (like Lean or Python) where the result is a computed fact, not a predicted token.
+    - **Ergon (The Formal Engine)**: Ergon's mandate is absolute: *Math is derived, not asserted.* It forces the translation of natural language problems into a formal symbolic language (like Lean or the system language) where the result is a computed fact, not a predicted token.
     - **Logos (Verification)**: Logos then verifies that the natural language output accurately reflects the formal result from Ergon.
 - **Research Worthy?**: **High**. *The Ergon Approach: Eliminating Statistical Guessing in LLM Mathematics via Formal Symbolic Execution*.
 

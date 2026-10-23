@@ -61,7 +61,7 @@
 
 | Anti-Pattern | Why It's Bad | Fix |
 |--------------|--------------|-----|
-| **"Awesome README"** | Generic, says nothing | "A Python library for dealing with word pluralization" |
+| **"Awesome README"** | Generic, says nothing | "A the system language library for dealing with word pluralization" |
 | **No Installation** | Users bounce immediately | Add 1-liner install command |
 | **Wall of Text** | Unscannable, intimidating | Use headers, lists, whitespace |
 | **Outdated Examples** | Code doesn't run, trust lost | Test examples in CI |
@@ -329,7 +329,7 @@ Mailing lists, IRC, bugzilla, MAINTAINERS
 | Technique | Example | Why |
 |-----------|---------|-----|
 | **Headers** | `##`, `###` (not `####` deep) | Scannable hierarchy |
-| **Code blocks** | \`\`\`python + syntax highlighting | Readable examples |
+| **Code blocks** | \`\`\`the system language + syntax highlighting | Readable examples |
 | **Bold emphasis** | **key terms** not _italics_ | Faster scanning |
 | **Lists** | `-` or `*` consistently | Clean rendering |
 | **Links** | `[text](url)` with descriptive text | Clear CTAs |
@@ -424,7 +424,7 @@ graph TD
 1. **Submit to awesome lists** - `awesome-{domain}` curated lists
 2. **Get featured** - GitHub trending, newsletters, blogs
 3. **Cross-link** - Mention in related project READMEs
-4. **Keywords naturally** - "Python web framework" in description
+4. **Keywords naturally** - "the system language web framework" in description
 5. **Backlinks** - Blog posts, tutorials, conference talks
 
 ### Topics Strategy
