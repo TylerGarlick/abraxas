@@ -304,9 +304,9 @@ Commands: `/sol`, `/nox`, `/qualia`, `/qualia {face}`, `/qualia bridge`, `/thres
 
 For full command definitions, examples, and workflows, see:
 - `references/command-suite.md`
-- `references/dream-reservoir.md`
+- `references/dream  -reservoir.md`
 - `references/system-architecture.md`
-- `references/janus-architecture.md`
+- `references/janus -architecture.md`
 
 ---
 

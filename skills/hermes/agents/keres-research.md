@@ -27,7 +27,7 @@ Create or update a continuous monitor for a topic.
 
 **Behavior:**
 1. Check if monitor already exists for topic
-2. If new, create monitor entry in `data/research/active/monitors.yaml`
+2. If new, create monitor entry in `data/research /active/monitors.yaml`
 3. Execute initial scan to establish baseline
 4. Store findings with Sol-face confidence (positive bias in initial discovery)
 5. Return monitor confirmation
@@ -62,7 +62,7 @@ Perform a one-time deep scan of a domain for intelligence.
    - Technology stack
 3. Cross-reference with existing knowledge
 4. Label findings with Meridian confidence (balanced)
-5. Store in `data/research/active/scans/{domain}_{timestamp}.yaml`
+5. Store in `data/research /active/scans/{domain}_{timestamp}.yaml`
 
 ---
 
@@ -82,7 +82,7 @@ Identify emerging trends in an industry using search aggregation.
 3. Identify patterns and consensus trends
 4. Flag contrarian indicators (Nox-face review)
 5. Rank by confidence and novelty
-6. Store top 10 trends in `data/research/active/trends/{industry}_{date}.yaml`
+6. Store top 10 trends in `data/research /active/trends/{industry}_{date}.yaml`
 
 ---
 
@@ -128,7 +128,7 @@ Define an alert threshold for a specific signal.
 2. Create alert rule in monitor config
 3. Configure threshold (default: 0.7 confidence)
 4. When signal detected, create urgent finding with `type: alert`
-5. Alert findings stored separately in `data/research/active/alerts/`
+5. Alert findings stored separately in `data/research /active/alerts/`
 
 ---
 
@@ -195,10 +195,10 @@ Source: {source_url}
 
 ## Data Storage
 
-All research data stored in YAML format under `data/research/`:
+All research data stored in YAML format under `data/research /`:
 
 ```
-data/research/
+data/research /
 ├── active/
 │   ├── monitors.yaml          # Monitor configurations
 │   ├── findings.yaml          # Recent findings (24h)

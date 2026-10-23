@@ -21,10 +21,10 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Hermes** | Multi-Agent Consensus & Divergence Tracker. | - | [SKILL.md](./hermes/SKILL.md) |
 | **Logos** | Argument Anatomy; maps structure of claims/arguments. | - | [SKILL.md](./logos/SKILL.md) |
 | **Abraxas Oneironautics** | Dream interpretation and symbolic integration. | `dream-reservoir` | [SKILL.md](./creative/abraxas-oneironautics/SKILL.md) |
-| **Agon** | Adversarial Debate Engine for stress-testing claims. | - | [SKILL.md](./epistemic/agon/SKILL.md) |
-| **Aletheia** | Epistemic calibration and ground-truth tracking. | - | [SKILL.md](./epistemic/aletheia/SKILL.md) |
-| **Honest** | Everyday anti-hallucination interface for Claude. | - | [SKILL.md](./epistemic/honest/SKILL.md) |
-| **Janus System** | Epistemic architecture with Sol and Nox faces. | `janus-orchestrator` | [SKILL.md](./epistemic/janus-system/SKILL.md) |
+| **Agon** | Adversarial Debate Engine for stress-testing claims. | - | [SKILL.md](./epistemic/agon /SKILL.md) |
+| **Aletheia** | Epistemic calibration and ground-truth tracking. | - | [SKILL.md](./epistemic/aletheia /SKILL.md) |
+| **Honest** | Everyday anti-hallucination interface for Claude. | - | [SKILL.md](./epistemic/honest /SKILL.md) |
+| **Janus System** | Epistemic architecture with Sol and Nox faces. | `janus-orchestrator` | [SKILL.md](./epistemic/janus -system/SKILL.md) |
 | **Mnemosyne** | Cross-session memory layer for Abraxas. | `mnemosyne-memory` | [SKILL.md](./epistemic/mnemosyne/SKILL.md) |
 | **Harmonia** | Skill composition architecture for unified workflows. | - | [SKILL.md](./creative/harmonia/SKILL.md) |
 | **Synthesis** | Session-closing artifact generator for epistemic outputs. | - | [SKILL.md](./creative/synthesis/SKILL.md) |
@@ -33,11 +33,11 @@ A tabular index of the skills, what they are used for, purposes for use, and a l
 | **Krisis** | Multi-framework ethical deliberation. | - | [SKILL.md](./reasoning/krisis/SKILL.md) |
 | **Secrets Manager** | Encrypted secrets and API key management. | - | [SKILL.md](./infrastructure/secrets-manager/SKILL.md) |
 | **Pipeline Dispatcher** | Automates task discovery to execution transition. | - | [SKILL.md](./infrastructure/pipeline-dispatcher/SKILL.md) |
-| **Research Assistant** | Citation tracking and research session management. | - | [SKILL.md](./utility/research-assistant/SKILL.md) |
-| **Citation Checker** | Bibliography verification and claim-source pairing. | - | [SKILL.md](./utility/citation-checker/SKILL.md) |
-| **Retrieval Grounding** | Live external lookup and factual grounding. | - | [SKILL.md](./utility/retrieval-grounding/SKILL.md) |
+| **Research Assistant** | Citation tracking and research session management. | - | [SKILL.md](./utility/research -assistant/SKILL.md) |
+| **Citation Checker** | Bibliography verification and claim-source pairing. | - | [SKILL.md](./utility/citation -checker/SKILL.md) |
+| **Retrieval Grounding** | Live external lookup and factual grounding. | - | [SKILL.md](./utility/retrieval -grounding/SKILL.md) |
 | **Journal Scribe** | Saves journal entries to the-red-book repository. | - | [SKILL.md](./documentation/journal-scribe/SKILL.md) |
-| **Encounter Scribe** | Saves convene/dialogue outputs to the-red-book. | - | [SKILL.md](./documentation/encounter-scribe/SKILL.md) |
+| **Encounter Scribe** | Saves convene/dialogue  outputs to the-red-book. | - | [SKILL.md](./documentation/encounter-scribe/SKILL.md) |
 | **Civitai Gen** | Image generation via Civitai Generator API. | - | [SKILL.md](./creative/civitai-image-gen/SKILL.md) |
 | **Image Gen** | Image generation via HuggingFace/Fal-AI. | - | [SKILL.md](./creative/image-gen/SKILL.md) |
 | **Gmail** | Fetching, reading, and sending emails via IMAP/SMTP. | - | [SKILL.md](./communication/gmail/SKILL.md) |

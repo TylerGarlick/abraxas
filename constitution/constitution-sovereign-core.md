@@ -74,7 +74,7 @@ AI systems deployed in complex environments accumulate configuration drift, unve
 | Command | Function |
 |:---|:---|
 | `sovereign_patcher` | Apply vetted updates with rollback capability |
-| `config_management` | Read/write/list/validate/reset system configuration |
+| `config_management` | Read/write/list/validate/reset  system configuration |
 | `system_state_audit` | Full verification of version, config, integrity, dependencies |
 | `health_check` | Immediate operational status with optional detailed metrics |
 

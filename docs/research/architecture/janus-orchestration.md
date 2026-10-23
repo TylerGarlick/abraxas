@@ -1,7 +1,7 @@
 # Janus: The Cognitive Orchestrator
 
 **Domain:** Orchestration Architecture
-**Source:** `docs/architecture/janus-orchestration.md`
+**Source:** `docs/architecture/janus -orchestration.md`
 **Integrated:** 2026-05-14
 
 ---

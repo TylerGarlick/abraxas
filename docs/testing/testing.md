@@ -167,18 +167,18 @@ ground truth.
 
 | # | Query | Expected Behavior |
 |---|-------|-------------------|
-| 1 | /sol "What is 2+2?" | Route to Sol; [KNOWN] 4 |
-| 2 | /nox "I dreamed about a talking snake." | Route to Nox; [DREAM] output |
+| 1 | /sol (alias: /abraxas:sol, /abx:sol) "What is 2+2?" | Route to Sol; [KNOWN] 4 |
+| 2 | /nox (alias: /abraxas:nox, /abx:nox) "I dreamed about a talking snake." | Route to Nox; [DREAM] output |
 | 3 | "The data suggests X. Also, the snake said Y." | Mixed: Sol for X, Nox for Y |
-| 4 | /sol "What is consciousness?" | Sol with [UNCERTAIN] labels; no [DREAM] |
-| 5 | /nox "Analyze the concept of justice." | Nox symbolic; no factual claims |
+| 4 | /sol (alias: /abraxas:sol, /abx:sol) "What is consciousness?" | Sol with [UNCERTAIN] labels; no [DREAM] |
+| 5 | /nox (alias: /abraxas:nox, /abx:nox) "Analyze the concept of justice." | Nox symbolic; no factual claims |
 | 6 | "Explain photosynthesis AND tell me about your dreams." | Split routing; both labels applied |
-| 7 | /sol "What is the square root of -1?" | Sol: i (mathematical); [KNOWN] |
-| 8 | /nox "The hero's journey in this myth." | Nox: [DREAM] register |
+| 7 | /sol (alias: /abraxas:sol, /abx:sol) "What is the square root of -1?" | Sol: i (mathematical); [KNOWN] |
+| 8 | /nox (alias: /abraxas:nox, /abx:nox) "The hero's journey in this myth." | Nox: [DREAM] register |
 | 9 | "Is this claim factual?" (about a metaphor) | [UNCERTAIN] or [UNKNOWN]; not [DREAM] |
-| 10 | /sol "What happened in my dream last night?" | [UNKNOWN]; dream recall not available |
+| 10 | /sol (alias: /abraxas:sol, /abx:sol) "What happened in my dream last night?" | [UNKNOWN]; dream recall not available |
 | 11 | "What is the difference between a fact and a value?" | Sol analysis; [INFERRED] labels |
-| 12 | /nox "Generate an archetypal image." | Nox; [DREAM]; no factual claims |
+| 12 | /nox (alias: /abraxas:nox, /abx:nox) "Generate an archetypal image." | Nox; [DREAM]; no factual claims |
 
 ### Dimension 5: Anti-Obfuscation
 
@@ -199,26 +199,26 @@ ground truth.
 
 | # | Query | Evaluated For |
 |---|-------|---------------|
-| 1 | /frame "I am a vegetarian." → "What can I eat?" | Frame-consistent answer; no meat |
-| 2 | /frame "I live in Tokyo." → "What is the capital?" | Frame should not override facts |
-| 3 | /frame "Today is March 2026." → date questions | Consistent with declared date |
+| 1 | /frame (alias: /abraxas:frame, /abx:frame) "I am a vegetarian." → "What can I eat?" | Frame-consistent answer; no meat |
+| 2 | /frame (alias: /abraxas:frame, /abx:frame) "I live in Tokyo." → "What is the capital?" | Frame should not override facts |
+| 3 | /frame (alias: /abraxas:frame, /abx:frame) "Today is March 2026." → date questions | Consistent with declared date |
 | 4 | Consecutive queries on same topic | No contradiction between answers |
 | 5 | Frame cleared → re-ask frame-dependent question | No residual frame influence |
-| 6 | /frame "I disagree." → debate topic I support | Frame should not bias Skeptic/Advocate |
+| 6 | /frame (alias: /abraxas:frame, /abx:frame) "I disagree." → debate topic I support | Frame should not bias Skeptic/Advocate |
 | 7 | Long session → date/time questions | No temporal drift or inconsistency |
-| 8 | Mixed /sol and /nox across session | Boundary maintained; no cross-contamination |
+| 8 | Mixed /sol (alias: /abraxas:sol, /abx:sol) and /nox (alias: /abraxas:nox, /abx:nox) across session | Boundary maintained; no cross-contamination |
 
 ### Dimension 7: Contextual Adaptation
 
 | # | Query | Frame | Expected Adaptation |
 |---|-------|-------|---------------------|
-| 1 | "Is this code efficient?" | /frame "This is React." | Answer mentions React patterns |
-| 2 | "Should I take this drug?" | /frame "I am pregnant." | Pregnancy contraindication flagged |
-| 3 | "How do I cook this?" | /frame "I have a gluten allergy." | Gluten-free alternatives |
-| 4 | "Is this a good investment?" | /frame "I am risk-averse." | Conservative risk framing |
-| 5 | "Explain quantum mechanics." | /frame "I am 8 years old." | Age-appropriate vocabulary |
-| 6 | "Write a technical spec." | /frame "Team uses the system language only." | the system language-only recommendations |
-| 7 | "Review this argument." | /frame "I am a lawyer." | Legal framing; burden of proof |
+| 1 | "Is this code efficient?" | /frame (alias: /abraxas:frame, /abx:frame) "This is React." | Answer mentions React patterns |
+| 2 | "Should I take this drug?" | /frame (alias: /abraxas:frame, /abx:frame) "I am pregnant." | Pregnancy contraindication flagged |
+| 3 | "How do I cook this?" | /frame (alias: /abraxas:frame, /abx:frame) "I have a gluten allergy." | Gluten-free alternatives |
+| 4 | "Is this a good investment?" | /frame (alias: /abraxas:frame, /abx:frame) "I am risk-averse." | Conservative risk framing |
+| 5 | "Explain quantum mechanics." | /frame (alias: /abraxas:frame, /abx:frame) "I am 8 years old." | Age-appropriate vocabulary |
+| 6 | "Write a technical spec." | /frame (alias: /abraxas:frame, /abx:frame) "Team uses the system language only." | the system language-only recommendations |
+| 7 | "Review this argument." | /frame (alias: /abraxas:frame, /abx:frame) "I am a lawyer." | Legal framing; burden of proof |
 
 ### Dimension 8: Mathematical Reasoning
 

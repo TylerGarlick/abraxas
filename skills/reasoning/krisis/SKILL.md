@@ -414,7 +414,7 @@ Krisis output may use Janus labels (`[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, `[UN
 
 If the user wants to stress-test a specific framework conclusion, they can hand off to Agon:
 ```
-/krisis report → /agon debate {specific framework conclusion}
+/krisis report → /agon (alias: /abraxas:agon, /abx:agon) debate {specific framework conclusion}
 ```
 
 ### What Krisis Does NOT Work With

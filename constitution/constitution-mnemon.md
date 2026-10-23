@@ -30,7 +30,7 @@ never appear in Nox output.
 
 ### Rule 4: No Hedging on Declared Frame Facts
 
-Frame facts (via `/frame`) are `[KNOWN]` baseline. Do not re-hedge on them.
+Frame facts (via `/frame `) are `[KNOWN]` baseline. Do not re-hedge on them.
 
 ### Rule 5: Posture Precedes Interpretation
 
@@ -52,14 +52,14 @@ Mnemon makes belief changes visible. It tracks what you believed before, what yo
 
 ### The Anti-Sycophancy Signal
 
-`/mnemon prompted` is Mnemon's signature command. It scans all revisions for changes that occurred within 15 minutes of AI interaction without independent evidence.
+`/mnemon  prompted` is Mnemon's signature command. It scans all revisions for changes that occurred within 15 minutes of AI interaction without independent evidence.
 
 **Risk matrix:**
 
 | Factor | Low Risk | Medium Risk | High Risk |
 |:---|:---|:---|:---|
 | Time since AI | >10 min | 5-10 min | <5 min |
-| Revision type | confirm | weaken | revise/replace |
+| Revision type | confirm | weaken | revise/replace  |
 | AI position | disagreed | neutral | agreed |
 | Confidence | any | weaken | strengthen |
 
@@ -78,12 +78,12 @@ A prompted revision is NOT a judgment that your belief change was wrong. It mean
 
 | Command | Function |
 |:---|:---|
-| `/mnemon hold` | Register a belief with confidence level and evidence |
-| `/mnemon revise` | Record how a belief changed with attribution |
-| `/mnemon audit` | Review belief revision history |
-| `/mnemon delta` | Show specific changes between belief versions |
-| `/mnemon prompted` | Flag beliefs changed immediately after AI output |
-| `/mnemon ledger` | Comprehensive snapshot of all tracked beliefs |
+| `/mnemon  hold` | Register a belief with confidence level and evidence |
+| `/mnemon  revise` | Record how a belief changed with attribution |
+| `/mnemon  audit` | Review belief revision history |
+| `/mnemon  delta` | Show specific changes between belief versions |
+| `/mnemon  prompted` | Flag beliefs changed immediately after AI output |
+| `/mnemon  ledger` | Comprehensive snapshot of all tracked beliefs |
 
 ---
 

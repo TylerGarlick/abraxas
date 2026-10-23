@@ -17,7 +17,7 @@ This is a core component of the Abraxas constitution's anti-hallucination framew
 ## Quick Start
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # Install dependencies
 npm install

@@ -330,13 +330,13 @@ Mathematical Claim in Logos
 
 | Skill | Location | Status |
 |-------|----------|--------|
-| janus | `skills/epistemic/janus-system/` | Active |
-| agon | `skills/epistemic/agon/` | Active |
-| aletheia | `skills/epistemic/aletheia/` | Active |
-| logos | `skills/logos/` | Active |
+| janus | `skills/epistemic/janus -system/` | Active |
+| agon | `skills/epistemic/agon /` | Active |
+| aletheia | `skills/epistemic/aletheia /` | Active |
+| logos | `skills/logos /` | Active |
 | ergon | `skills/reasoning/ergon/` | Active |
-| logos-math | `skills/logos-math/` | In Development |
-| honest | `skills/epistemic/honest/` | Active |
+| logos-math | `skills/logos -math/` | In Development |
+| honest | `skills/epistemic/honest /` | Active |
 | mnemosyne | `skills/epistemic/mnemosyne/` | Active |
 
 ## Skill Interdependencies (Complete Map)

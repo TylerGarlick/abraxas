@@ -646,7 +646,7 @@ That honesty is the architecture.
 ### References
 
 For full technical detail, routing rules, and failure mode analysis, see:
-- `references/janus-architecture.md`
+- `references/janus -architecture.md`
 - `references/epistemic-ledger.md`
 
 ---

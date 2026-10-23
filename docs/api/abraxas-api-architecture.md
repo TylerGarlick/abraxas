@@ -129,7 +129,7 @@ GET  /status
 │                 │  │                         │  │                     │
 │ ┌─────────────┐ │  │  ┌───────────────────┐ │  │  ┌───────────────┐  │
 │ │minimax-m2.5 │ │  │  │ /mnemosyne/*     │ │  │  │ Janus Engine │  │
-│ │gpt-oss      │ │  │  │ /retrieval/*     │ │  │  │ Honest Parser│  │
+│ │gpt-oss      │ │  │  │ /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/*     │ │  │  │ Honest Parser│  │
 │ │ollama:*     │ │  │  │ / retrieval tools │ │  │  │ Agon Debater │  │
 │ └─────────────┘ │  │  └───────────────────┘ │  │  │ Aletheia Track│  │
 │                 │  │                         │  │  └───────────────┘  │
@@ -164,8 +164,8 @@ POST /v1/chat/completions       # Chat completions
 POST /v1/generate               # Text generation
 GET  /v1/models                 # List available models
 POST /mnemosyne/v1/sessions     # Session management
-POST /retrieval/v1/search       # Web search
-POST /retrieval/v1/fact-check   # Fact verification
+POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/v1/search       # Web search
+POST /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/v1/fact-check   # Fact verification
 ```
 
 #### 3.2.2 Model Abstraction Layer
@@ -539,7 +539,7 @@ paths:
           description: Session deleted
 
   # Retrieval Endpoints
-  /retrieval/search:
+  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/search:
     post:
       summary: Web search
       requestBody:
@@ -559,7 +559,7 @@ paths:
         '200':
           description: Search results
 
-  /retrieval/fact-check:
+  /retrieval (alias: /abraxas:retrieval, /abx:retrieval)/fact-check:
     post:
       summary: Fact-check a claim
       requestBody:
@@ -736,7 +736,7 @@ curl -X POST https://api.abraxas.ai/v1/mnemosyne/sessions \
 
 **Fact Check:**
 ```bash
-curl -X POST https://api.abraxas.ai/v1/retrieval/fact-check \
+curl -X POST https://api.abraxas.ai/v1/retrieval /fact-check \
   -H "Authorization: Bearer abx_sk_xxxxx" \
   -H "Content-Type: application/json" \
   -d '{

@@ -328,8 +328,8 @@ due_date: date
 
 ### Research Findings
 ```
-`.abraxas/hermes-delphi/research/active/{topic}_{timestamp}.yaml`
-`.abraxas/hermes-delphi/research/archive/{year}/{month}/{topic}_{timestamp}.yaml`
+`.abraxas/hermes-delphi/research /active/{topic}_{timestamp}.yaml`
+`.abraxas/hermes-delphi/research /archive/{year}/{month}/{topic}_{timestamp}.yaml`
 ```
 
 ### Briefs

@@ -172,7 +172,7 @@ Derivation: C(5,3) / 2^5 = 10/32
 ## Running Tests
 
 ```bash
-cd /tmp/abraxas-checkout/skills/logos-math
+cd /tmp/abraxas-checkout/skills/logos -math
 
 # Full test suite
 node scripts/test.js
@@ -255,7 +255,7 @@ Some edge cases documented but not tested:
 ## File Locations
 
 ```
-/tmp/abraxas-checkout/skills/logos-math/
+/tmp/abraxas-checkout/skills/logos -math/
 ├── SKILL.md                    # Full documentation
 ├── README.md                   # Quick start
 ├── IMPLEMENTATION_SUMMARY.md   # This file

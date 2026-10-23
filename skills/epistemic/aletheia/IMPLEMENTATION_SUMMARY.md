@@ -14,7 +14,7 @@
 - `python/storage.py` - File I/O layer for resolutions.md
 - `python/resolver.py` - Claim matching and validation logic
 - `python/calibration.py` - Calibration report generation
-- `python/aletheia.py` - Main command dispatcher
+- `python/aletheia .py` - Main command dispatcher
 - `python/__init__.py` - Package initialization
 
 **Key Features:**
@@ -99,42 +99,42 @@ All 7 commands implemented:
 
 ### Confirm a Claim
 ```bash
-cd /root/.openclaw/workspace/abraxas/skills/epistemic/aletheia
-python3 python/aletheia.py confirm "Water boils at 100°C at sea level"
+cd /root/.openclaw/workspace/abraxas/skills/epistemic/aletheia 
+python3 python/aletheia .py confirm "Water boils at 100°C at sea level"
 ```
 
 ### Disconfirm with Actual Finding
 ```bash
-python3 python/aletheia.py disconfirm "Quantum computers will break RSA by 2030" \
+python3 python/aletheia .py disconfirm "Quantum computers will break RSA by 2030" \
   --actual-finding "Timeline pushed to 2050+ by NIST"
 ```
 
 ### Supersede a Claim
 ```bash
-python3 python/aletheia.py supersede "Best editor: VS Code" \
+python3 python/aletheia .py supersede "Best editor: VS Code" \
   --superseded-by "Best editor: Neovim (2026)"
 ```
 
 ### View Status
 ```bash
-python3 python/aletheia.py status
+python3 python/aletheia .py status
 ```
 
 ### Generate Calibration Report
 ```bash
-python3 python/aletheia.py calibration --days 90
+python3 python/aletheia .py calibration --days 90
 ```
 
 ### List Unresolved Claims
 ```bash
-python3 python/aletheia.py queue
-python3 python/aletheia.py queue --label KNOWN
+python3 python/aletheia .py queue
+python3 python/aletheia .py queue --label KNOWN
 ```
 
 ### Audit Integrity
 ```bash
-python3 python/aletheia.py audit
-python3 python/aletheia.py audit --fix-orphans
+python3 python/aletheia .py audit
+python3 python/aletheia .py audit --fix-orphans
 ```
 
 ---
@@ -142,7 +142,7 @@ python3 python/aletheia.py audit --fix-orphans
 ## File Structure
 
 ```
-skills/epistemic/aletheia/
+skills/epistemic/aletheia /
 ├── SKILL.md                        # Main skill definition
 ├── IMPLEMENTATION_SUMMARY.md       # This file
 ├── python/
@@ -197,7 +197,7 @@ skills/epistemic/aletheia/
 
 2. **Date Handling**: Uses `datetime.utcnow()` which is deprecated in Python 3.12+. Should migrate to `datetime.now(timezone.utc)` in future update.
 
-3. **Resolution Note Parsing**: The current save/load cycle may not preserve resolution notes through the markdown format. Notes are stored but parsing could be improved.
+3. **Resolution Note Parsing**: The current save/load  cycle may not preserve resolution notes through the markdown format. Notes are stored but parsing could be improved.
 
 4. **Index Building**: The performance index (`~/.janus/.aletheia-index`) is not automatically built. Should be added as a post-save operation.
 
@@ -207,7 +207,7 @@ skills/epistemic/aletheia/
 
 Run tests:
 ```bash
-cd /root/.openclaw/workspace/abraxas/skills/epistemic/aletheia
+cd /root/.openclaw/workspace/abraxas/skills/epistemic/aletheia 
 python3 -m pytest tests/ -v
 ```
 

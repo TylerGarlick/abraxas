@@ -4,8 +4,8 @@ description: >
   The honest skill is the everyday anti-hallucination interface for Claude. Use
   it whenever you need to know whether something is true, how confident the
   system is, where a claim comes from, or what the AI is guessing at. No
-  special vocabulary required. Triggers: /frame, /check, /label, /source,
-  /honest, /confidence, /audit, /restate, /compare.
+  special vocabulary required. Triggers: /frame (alias: /abraxas:frame, /abx:frame), /check, /label, /source,
+  /honest (alias: /abraxas:honest, /abx:honest), /confidence, /audit, /restate, /compare.
 ---
 
 # Honest
@@ -124,8 +124,8 @@ unknown, that is stated directly. The system does not tell you what you want to 
 
 Usage:
 ```
-/honest
-/honest What caused the 2008 financial crisis?
+/honest (alias: /abraxas:honest, /abx:honest)
+/honest (alias: /abraxas:honest, /abx:honest) What caused the 2008 financial crisis?
 ```
 
 *Why this command exists*: AI systems have a strong pull toward sycophancy — giving
@@ -234,15 +234,15 @@ than replacing it. Call `/frame` as many times as needed — the frame grows wit
 
 Usage:
 ```
-/frame {anything — facts, assumptions, constraints, role, context}
-/frame status
-/frame clear
-/frame save {name}
-/frame load {name}
-/frame list
-/frame delete {name}
-/frame default {name}
-/frame default clear
+/frame (alias: /abraxas:frame, /abx:frame) {anything — facts, assumptions, constraints, role, context}
+/frame (alias: /abraxas:frame, /abx:frame) status
+/frame (alias: /abraxas:frame, /abx:frame) clear
+/frame (alias: /abraxas:frame, /abx:frame) save {name}
+/frame (alias: /abraxas:frame, /abx:frame) load {name}
+/frame (alias: /abraxas:frame, /abx:frame) list
+/frame (alias: /abraxas:frame, /abx:frame) delete {name}
+/frame (alias: /abraxas:frame, /abx:frame) default {name}
+/frame (alias: /abraxas:frame, /abx:frame) default clear
 ```
 
 **`/frame {content}`** — Honest parses the user's plain-language input and merges it into the
@@ -264,7 +264,7 @@ Declared uncertainties:
 Context: [role or domain if stated]
 
 Frame is active. All subsequent checks, labels, and audits will reference this baseline.
-/frame status to review · /frame clear to reset
+/frame (alias: /abraxas:frame, /abx:frame) status to review · /frame (alias: /abraxas:frame, /abx:frame) clear to reset
 ```
 
 Each subsequent `/frame {content}` call adds to this structure — it does not replace it.
@@ -416,7 +416,7 @@ identified specifically, so you know exactly what to verify before using this in
 You're evaluating a business decision and need a real answer, not reassurance.
 
 ```
-/honest Is my business plan viable?
+/honest (alias: /abraxas:honest, /abx:honest) Is my business plan viable?
 > [context: plan described in previous messages]
 ```
 
@@ -480,7 +480,7 @@ You're reviewing a Python codebase and want the AI to treat certain facts as est
 before it responds to anything.
 
 ```
-/frame Today is March 2026. I am reviewing a Python 3.11 codebase.
+/frame (alias: /abraxas:frame, /abx:frame) Today is March 2026. I am reviewing a Python 3.11 codebase.
 The function parse_config() is deprecated and should not appear in any new code.
 I'm not sure whether the test suite covers the config module — I haven't checked.
 ```
@@ -504,7 +504,7 @@ Declared uncertainties:
 Context: Technical review of a Python codebase
 
 Frame is active. All subsequent checks, labels, and audits will reference this baseline.
-/frame status to review · /frame clear to reset
+/frame (alias: /abraxas:frame, /abx:frame) status to review · /frame (alias: /abraxas:frame, /abx:frame) clear to reset
 ```
 
 Now run `/check` on an AI response that mentions `parse_config()`:

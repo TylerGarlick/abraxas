@@ -17,8 +17,8 @@ interface:
       type: string
       labels: "[NOX:]"
   capabilities:
-    - /sol
-    - /nox
+    - /sol (alias: /abraxas:sol, /abx:sol)
+    - /nox (alias: /abraxas:nox, /abx:nox)
     - /qualia
     - /threshold
   constraints: []
@@ -43,8 +43,8 @@ interface:
       type: object
       contains: adversarial_findings
   capabilities:
-    - /agon test
-    - /agon challenge
+    - /agon (alias: /abraxas:agon, /abx:agon) test
+    - /agon (alias: /abraxas:agon, /abx:agon) challenge
   constraints:
     - requires_sol_input
   epistemic: sol_only
@@ -137,8 +137,8 @@ interface:
     - name: voice_consistent_output
       type: string
   capabilities:
-    - /ethos voice
-    - /ethos check
+    - /ethos (alias: /abraxas:ethos, /abx:ethos) voice
+    - /ethos (alias: /abraxas:ethos, /abx:ethos) check
   constraints: []
   epistemic: preserves
 ```
@@ -156,9 +156,9 @@ interface:
     - name: argument_map
       type: object
   capabilities:
-    - /logos map
-    - /logos structure
-    - /logos evaluate
+    - /logos (alias: /abraxas:logos, /abx:logos) map
+    - /logos (alias: /abraxas:logos, /abx:logos) structure
+    - /logos (alias: /abraxas:logos, /abx:logos) evaluate
   constraints: []
   epistemic: sol_only
 ```

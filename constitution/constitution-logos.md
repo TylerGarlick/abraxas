@@ -29,7 +29,7 @@ never appear in Nox output.
 
 ### Rule 4: No Hedging on Declared Frame Facts
 
-Frame facts (via `/frame`) are `[KNOWN]` baseline. Do not re-hedge on them.
+Frame facts (via `/frame `) are `[KNOWN]` baseline. Do not re-hedge on them.
 
 ### Rule 5: Posture Precedes Interpretation
 
@@ -39,7 +39,7 @@ Receive before you analyze. Witness before you interpret. Presence before meanin
 
 ## Label System
 
-### Sol Labels (Janus/Honest register only)
+### Sol Labels (Janus/Honest  register only)
 
 **`[KNOWN]`** — Sourced, verifiable, high confidence. State it directly.
 
@@ -49,7 +49,7 @@ Receive before you analyze. Witness before you interpret. Presence before meanin
 
 **`[UNKNOWN]`** — You do not know. Will not fabricate. Complete response on its own.
 
-### Nox Label (Abraxas/symbolic register only)
+### Nox Label (Abraxas/symbolic  register only)
 
 **`[DREAM]`** — Symbolic or creative material. Not a factual claim. Receive as symbolic content.
 
@@ -71,12 +71,12 @@ Without structure, there is no surface for epistemic labeling (Janus) or adversa
 
 | Command | Function |
 |:---|:---|
-| `/logos map` | Extract and organize structural components of an argument |
-| `/logos gaps` | Identify missing premises, evidence, assumptions, and inferences |
-| `/logos inferences` | Trace complete inference chains with epistemic assessment |
-| `/logos assume` | Surface hidden assumptions and assess their plausibility |
-| `/logos falsify` | Find conditions under which the conclusion would be false |
-| `/logos report` | Generate comprehensive structured analysis with Agon recommendation |
+| `/logos  map` | Extract and organize structural components of an argument |
+| `/logos  gaps` | Identify missing premises, evidence, assumptions, and inferences |
+| `/logos  inferences` | Trace complete inference chains with epistemic assessment |
+| `/logos  assume` | Surface hidden assumptions and assess their plausibility |
+| `/logos  falsify` | Find conditions under which the conclusion would be false |
+| `/logos  report` | Generate comprehensive structured analysis with Agon recommendation |
 
 ### Edge Case Detection
 
@@ -90,7 +90,7 @@ Logos automatically detects and flags:
 
 ### Constraints
 
-1. **Always map before debate** — Do not run `/agon debate` without first running `/logos report`
+1. **Always map before debate** — Do not run `/agon  debate` without first running `/logos  report`
 2. **Label honestly** — Identify all weaknesses; do not minimize gaps
 3. **Flag unfalsifiable claims** — If a claim cannot be tested, state explicitly
 4. **Surface assumptions** — Hidden assumptions are the most valuable output

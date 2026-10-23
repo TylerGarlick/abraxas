@@ -37,7 +37,7 @@ python3 /root/.openclaw/workspace/skills/image-gen/generate.py "Your prompt here
 ```bash
 python3 /root/.openclaw/workspace/skills/image-gen/generate.py "A cyberpunk cityscape" \
   --preset concept \
-  --output /path/to/output.png \
+  --output /path/to/output .png \
   --count 4
 ```
 

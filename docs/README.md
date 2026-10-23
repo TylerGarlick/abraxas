@@ -70,9 +70,9 @@ docs/
 
 | Content | Primary Location | Research Copy |
 |---------|-----------------|---------------|
-| Architecture docs | `docs/architecture/` | `docs/research/architecture/` |
-| Sovereign Brain reference | `docs/reference/sovereign-brain-reference.md` | `docs/research/sovereign-brain-reference.md` |
-| Research paper v4 | `research/papers/research-paper-v4.md` | — |
+| Architecture docs | `docs/architecture/` | `docs/research /architecture/` |
+| Sovereign Brain reference | `docs/reference/sovereign-brain-reference.md` | `docs/research /sovereign-brain-reference.md` |
+| Research paper v4 | `research/papers/research -paper-v4.md` | — |
 | Codex volumes | `docs/codex/` | — |
 | Reports | `research/reports/` | — |
 | Benchmarks | `research/benchmarks/` | — |

@@ -49,7 +49,7 @@ Abraxas skills are designed to compose — Kairos feeds Krisis, Krisis feeds Ago
 
 ### Context Envelope
 
-The fundamental abstraction: a structured state object that travels between skills during composition. Every skill in a composition receives an envelope and produces an updated envelope for the next skill. Envelope tracks origin skill, epistemic mode (sol/nox/mixed), primary output, metadata, and complete handoff history.
+The fundamental abstraction: a structured state object that travels between skills during composition. Every skill in a composition receives an envelope and produces an updated envelope for the next skill. Envelope tracks origin skill, epistemic mode (sol/nox /mixed), primary output, metadata, and complete handoff history.
 
 ### Composition Patterns
 

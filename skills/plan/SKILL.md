@@ -105,13 +105,13 @@ Vague Request
 /plan start → Extract unknowns, ask questions
      │
      ▼ (readyForImplementation: true)
-/logos map → Map argument structure
+/logos (alias: /abraxas:logos, /abx:logos) map → Map argument structure
      │
      ▼
-/agon debate → Adversarial testing
+/agon (alias: /abraxas:agon, /abx:agon) debate → Adversarial testing
      │
      ▼
-/janus label → Epistemic labeling (KNOWN/INFERRED/UNCERTAIN)
+/janus (alias: /abraxas:janus, /abx:janus) label → Epistemic labeling (KNOWN/INFERRED/UNCERTAIN)
 ```
 
 ### Plan → Ergon (Implementation)

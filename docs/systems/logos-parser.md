@@ -192,11 +192,11 @@ Based on:
 
 ## Files
 
-- `src/logos/parser.py` - Main ClaimParser class
-- `src/logos/models.py` - Data models (AtomicProposition, ClaimStructure, etc.)
-- `src/logos/svo_extractor.py` - SVO triplet extraction
+- `src/logos /parser.py` - Main ClaimParser class
+- `src/logos /models.py` - Data models (AtomicProposition, ClaimStructure, etc.)
+- `src/logos /svo_extractor.py` - SVO triplet extraction
 - `tests/test_claim_parser.py` - Test suite (50+ test cases)
-- `docs/logos-parser.md` - This documentation
+- `docs/logos -parser.md` - This documentation
 
 ## Future Improvements
 

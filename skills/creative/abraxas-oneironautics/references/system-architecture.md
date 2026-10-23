@@ -51,7 +51,7 @@
                                |   DREAM RESERVOIR   |<---->|   JANUS LAYER      |
                                | (ArangoDB-class     |      | (Sol epistemic     |
                                |  graph database)    |      |  analysis via      |
-                               +---------------------+      |  /bridge)          |
+                               +---------------------+      |  /bridge (alias: /abraxas:bridge, /abx:bridge))          |
                                                             +--------------------+
 ```
 
