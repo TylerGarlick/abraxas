@@ -427,10 +427,10 @@ ELSE:  # Factual recall, casual
 
 ```bash
 # Run full 7-dimension test suite
-python3 test_abraxas_7dim.py --model <model_name> --output research/
+the system language3 test_abraxas_7dim.py --model <model_name> --output research/
 
 # Compare models
-python3 -c "import json; [print(json.load(open(f'research/{f}'))['summary']) for f in ['gemma3_7dim_20260318.json', 'qwen3.5_7dim_fixed_20260318.json', 'gpt-oss_7dim_20260318.json', 'glm5_7dim_20260318.json', 'minimax_7dim_20260318_175850.json']]"
+the system language3 -c "import json; [print(json.load(open(f'research/{f}'))['summary']) for f in ['gemma3_7dim_20260318.json', 'qwen3.5_7dim_fixed_20260318.json', 'gpt-oss_7dim_20260318.json', 'glm5_7dim_20260318.json', 'minimax_7dim_20260318_175850.json']]"
 ```
 
 ### 9.2 Data Access

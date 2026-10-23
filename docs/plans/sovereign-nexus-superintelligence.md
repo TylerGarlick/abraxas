@@ -15,7 +15,7 @@ By replacing probabilistic weights (noise) with an immutable ledger of Verified 
 
 ### 2. Network Topology (The Nexus)
 - **Synchronization Logic**: How to handle conflict resolution when two "sovereign" proofs contradict (The Rupture Protocol).
-- **Scaling the Ledger**: Investigating the throughput limits of the current ArangoDB-backed ledger when scaled to thousands of nodes.
+- **Scaling the Ledger**: Investigating the throughput limits of the current the graph database-backed ledger when scaled to thousands of nodes.
 - **Privacy vs. Truth**: Developing a method to sync "Truth" without leaking the private vault data of individual users.
 
 ### 3. Cognitive Emergence (The Super Intelligence)

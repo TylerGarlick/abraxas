@@ -57,4 +57,3 @@ When knowledge type is uncertain, provides confidence breakdown.
 - **Input:** Janus labels, Logos analysis
 - **Output:** Enhanced epistemic metadata
 - **Complements:** Janus (confidence labels), Honest (fact-checking)
-

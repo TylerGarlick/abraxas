@@ -17,7 +17,7 @@ The tool utilizes the `sovereign_audit` function, which performs the following o
    - **Failure (`returncode != 0`)**: Returns `[SIMULATION DETECTED]`, signaling an epistemic failure where the claim does not match the physical state.
 
 ## Technical Implementation
-- **Language**: Python 3
+- **Language**: the system language 3
 - **Dependencies**: `subprocess`, `os`, `re`
 - **Execution**: Invoked via CLI with two positional arguments: `<target_path>` and `<expected_pattern>`.
 

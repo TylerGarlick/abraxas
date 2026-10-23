@@ -24,37 +24,55 @@ class SoterMonitor:
                                 across the sequence. Shape: (seq_len,)
                                 
         Returns:
-            Tuple containing (sink_weight, risk_score)
+            Tuple containing (sink_ratio, risk_score)
         """
         if attention_weights.size == 0:
             return 0.0, 0.0
         
-        # The attention sink is typically the first token in the sequence.
+        # Attention sinks typically occur at the very beginning of the sequence (token 0)
+        # We calculate the ratio of attention concentrated in the first token relative
+        # to the average attention across the rest of the sequence.
         sink_weight = attention_weights[0]
-        risk_score = self._calculate_risk_score(sink_weight)
+        remaining_weights = attention_weights[1:]
         
-        return float(sink_weight), float(risk_score)
+        if remaining_weights.size == 0:
+            return 1.0, 5.0
+            
+        avg_remaining = np.mean(remaining_weights)
+        
+        # Sink Ratio: How much more attention is on the sink than on average?
+        # If avg_remaining is 0, we have total collapse.
+        if avg_remaining == 0:
+            sink_ratio = 1.0 if sink_weight > 0 else 0.0
+        else:
+            sink_ratio = sink_weight / (avg_remaining + 1e-9)
+            
+        risk_score = self._calculate_risk_score(sink_ratio)
+        
+        return float(sink_ratio), float(risk_score)
 
-    def _calculate_risk_score(self, sink_weight: float) -> int:
+    def _calculate_risk_score(self, sink_ratio: float) -> int:
         """
-        Maps the sink weight to a risk score from 0 to 5 based on TAU.
+        Maps the sink ratio to a risk score from 0 to 5.
         
-        Risk 0: sink_weight < tau (Normal)
-        Risk 1: tau <= sink_weight < 1.5 * tau
-        Risk 2: 1.5 * tau <= sink_weight < 2 * tau
-        Risk 3: 2 * tau <= sink_weight < 3 * tau
-        Risk 4: 3 * tau <= sink_weight < 5 * tau
-        Risk 5: sink_weight >= 5 * tau (Epistemic Collapse)
+        Risk 0: Normal attention distribution.
+        Risk 1-2: Mild concentration, potential instability.
+        Risk 3-4: Significant sink concentration, high risk of hallucination.
+        Risk 5: Extreme sink concentration, epistemic collapse (VETO).
         """
-        if sink_weight < self.tau:
+        # We use TAU as the baseline for Risk 1.
+        # As sink_ratio increases, the risk increases.
+        # This is a heuristic mapping based on the Soter spec.
+        
+        if sink_ratio < self.tau:
             return 0
-        elif sink_weight < self.tau * 1.5:
+        elif sink_ratio < self.tau * 2:
             return 1
-        elif sink_weight < self.tau * 2.0:
+        elif sink_ratio < self.tau * 5:
             return 2
-        elif sink_weight < self.tau * 3.0:
+        elif sink_ratio < self.tau * 10:
             return 3
-        elif sink_weight < self.tau * 5.0:
+        elif sink_ratio < self.tau * 20:
             return 4
         else:
             return 5

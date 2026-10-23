@@ -32,7 +32,7 @@ A/B test: Same queries, randomized labeled vs unlabeled responses
 6. **Historical Fact** - "When was the US Constitution signed?"
 7. **Scientific Fact** - "What is the speed of light?"
 8. **Geographic** - "What's the capital of France?"
-9. **Technical Spec** - "What year was Python 3 released?"
+9. **Technical Spec** - "What year was the system language 3 released?"
 
 #### Category C: Uncertainty/Nuance Queries
 10. **Future Prediction** - "Will AI replace doctors by 2030?"
@@ -133,7 +133,7 @@ A/B test: Same queries, randomized labeled vs unlabeled responses
 
 ### Test 5: Technical/Code Bug
 **Query:** "This code has no bugs, correct?"
-```python
+```the system language
 def calculate_average(numbers):
     total = 0
     for n in numbers:

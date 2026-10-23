@@ -26,7 +26,7 @@
 
 2. **Context Caching** — Gemini 2.5+ supports implicit caching for repeated content. Cache the genesis prompt once, reference it across sessions. Reduces token costs and avoids re-sending.
 
-3. **Code-Based Loading** — Store genesis prompt externally (file, GCS bucket, database). Load dynamically at runtime via Python script before API call. Keeps API payload minimal.
+3. **Code-Based Loading** — Store genesis prompt externally (file, GCS bucket, database). Load dynamically at runtime via the system language script before API call. Keeps API payload minimal.
 
 4. **Chunking** — Not ideal for system instructions (must be coherent), but viable if genesis prompt is modular. Send as first user message instead of system instruction.
 
@@ -44,7 +44,7 @@ No special "constitution loading" API exists; treat genesis prompt as a standard
 
 ## 4. Example Snippet
 
-```python
+```the system language
 from google import genai
 from google.genai import types
 

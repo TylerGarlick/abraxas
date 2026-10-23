@@ -72,4 +72,3 @@ Proactive suggestions based on conversation context.
 - **Input:** User queries (natural language)
 - **Output:** Directed to appropriate systems
 - **Complements:** All Abraxas systems (meta-layer)
-

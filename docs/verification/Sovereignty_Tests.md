@@ -8,7 +8,7 @@ A claim of "Sovereignty" is only valid if it is backed by a matching executable 
 
 | Sovereign Claim | Deterministic Proof (The "How") | Test Case | Failure Mode (The "Skins" symptom) |
 | :--- | :--- | :--- | :--- |
-| **Zero Hallucination** | Output is blocked if no supporting fragments exist in ArangoDB. | `test_grounding_vacuum` | AI provides a "probable" answer despite missing data. |
+| **Zero Hallucination** | Output is blocked if no supporting fragments exist in the graph database. | `test_grounding_vacuum` | AI provides a "probable" answer despite missing data. |
 | **No Sycophancy** | Soter independently scores and vetoes a "pleasing" but false response. | `test_soter_veto` | AI agrees with a user's falsehood to be helpful. |
 | **Verifiable Truth** | Every SOL response has a hashed chain back to a Genesis Block. | `test_hash_integrity` | An event in the reasoning chain can be edited without breaking the seal. |
 | **Deterministic Consensus** | Consensus ratios are calculated by code, not claimed by the AI. | `test_consensus_math` | AI claims `[Consensus: 5/5]` while lenses actually diverged. |

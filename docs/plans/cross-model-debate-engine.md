@@ -6,7 +6,7 @@ Develop a multi-model orchestration engine that pits different LLMs against one 
 ## 🏗️ Architectural Blueprint
 
 ### 1. The "Glue Code" (Sovereign Pipeline)
-To eliminate the "Probabilistic Trap," the system must move from prompt-based orchestration to a hard-coded, deterministic Python pipeline. The LLM is downgraded from "Decision Maker" to "Candidate Generator."
+To eliminate the "Probabilistic Trap," the system must move from prompt-based orchestration to a hard-coded, deterministic the system language pipeline. The LLM is downgraded from "Decision Maker" to "Candidate Generator."
 
 **The Locus of Control**: The "Sovereign Brain" is no longer the LLM itself, but a **Sovereign Controller** residing in the MCP server. This controller wraps the request-response cycle, ensuring that no output reaches the user without passing through the deterministic verification gates.
 
@@ -14,8 +14,8 @@ To eliminate the "Probabilistic Trap," the system must move from prompt-based or
 `Input` $\to$ `Soter Risk Check` $\to$ `Sovereign Dispatcher` $\to$ `M-Model Parallel Execution` $\to$ `Non-LLM Consensus Logic` $\to$ `Vault Anchor Verification` $\to$ `Cryptographic Seal` $\to$ `Output`
 
 **Key Mechanical Requirements**:
-- **Non-LLM Consensus**: The decision of whether $N$-of-$M$ models agreed must be made by a Python script (using semantic similarity or exact match), NOT by asking another LLM to "summarize the consensus."
-- **Vault-First Verification**: No claim is emitted as `[KNOWN]` unless the pipeline successfully retrieves a corresponding hash from the ArangoDB Vault.
+- **Non-LLM Consensus**: The decision of whether $N$-of-$M$ models agreed must be made by a the system language script (using semantic similarity or exact match), NOT by asking another LLM to "summarize the consensus."
+- **Vault-First Verification**: No claim is emitted as `[KNOWN]` unless the pipeline successfully retrieves a corresponding hash from the the graph database Vault.
 - **Sovereign Seal**: The final output must be a cryptographic hash of the `(Claim + FragmentID + ConsensusProof + Timestamp)`, ensuring the seal is a proof of process, not a stylistic label.
 - **Sovereign-Sieve (Post-Processing Gate)**: A middleware layer that scans final outputs. If a claim lacks a valid seal or if private vault data is detected, the Sieve intercepts the message and triggers a `[SVR-RUPTURE]` alert.
 - **Sovereign Pulse (State Audit)**: A background process that compares "claims of progress" against raw filesystem and database artifacts. Any discrepancy between la-la claims and actual state triggers a Rupture and forces "Calibration Mode."
@@ -46,7 +46,7 @@ The final result must be stamped with the Sovereign Seal. This is not a text lab
 ## 💻 Technical Implementation Reference
 
 ### 1. The Sovereign Pipeline (SovereignEngine.py)
-```python
+```the system language
 import hashlib
 import hmac
 import time

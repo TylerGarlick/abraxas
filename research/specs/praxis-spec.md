@@ -58,4 +58,3 @@ Review recent Praxis outputs and their outcomes for calibration.
 - **Input:** Logos (argument maps), Janus (labels), Agon (convergence reports)
 - **Output:** Action plans for users
 - **Complements:** Soter (risk evaluation), Kairos (timing)
-

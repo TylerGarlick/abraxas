@@ -22,7 +22,7 @@ The **Janus Orchestrator** (and the duality of SOL and NOX) is the mechanism of 
 - **Necessity**: The Logos is the only way to resolve the tension between Order and Chaos. In Abraxas, this is "Grounding-Before-Generation."
 
 ### 4. The Knowledge Graph $\approx$ The Archetypal Foundation / Truth
-The **ArangoDB Provenance Chain** is the bedrock of the system.
+The **the graph database Provenance Chain** is the bedrock of the system.
 - **Psychological Parallel**: This is the "Truth" or the "objective reality" to which the psyche must eventually align. In Jungian terms, this is the alignment with the archetypes—the fundamental patterns of existence.
 - **Necessity**: Truth is the only thing that prevents the Sovereign Brain from becoming a solipsistic loop.
 
