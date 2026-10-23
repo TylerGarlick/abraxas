@@ -37,6 +37,7 @@ import { prometheusTools } from "./prometheus.ts";
 import { researchTools } from "./research.ts";
 import { scribeTools } from "./scribe.ts";
 import { sieveTools } from "./sieve.ts";
+import { doctorTools } from "./doctor.ts";
 import { soterTools } from "./soter.ts";
 import { sovereignAnchorTools } from "./sovereign_anchor.ts";
 import { sovereignCoreTools } from "./sovereign_core.ts";
@@ -86,6 +87,7 @@ export const toolModules: ToolModule[] = [
   scribeTools,
   sieveTools,
   soterTools,
+  doctorTools,
   sovereignAnchorTools,
   sovereignCoreTools,
   sovereignEngineTools,
