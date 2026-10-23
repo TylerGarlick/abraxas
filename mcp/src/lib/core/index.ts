@@ -48,6 +48,7 @@ export async function systemInit(store: Store) {
 }
 
 export { auditNexusProvenance } from "./provenance.ts";
+export { importPef } from "./pef.ts";
 
 export async function addFragment(store: Store, content: string, provenanceId: string, trustWeight = 1) {
   const hash = createHash("sha256").update(`${content}:${provenanceId}`).digest("hex");
