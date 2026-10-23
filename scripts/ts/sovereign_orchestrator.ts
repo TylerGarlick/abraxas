@@ -3,6 +3,8 @@ import { TensionMonitor, TensionResult } from "./tension_monitor";
 import { supersedeClaim } from "./sovereign_revision";
 import { EpistemicGate, PEFClaim, LocalStore } from "./epistemic_gate";
 import { SovereignCloaker, CloakedFragment } from "./sovereign_cloaking";
+import { PEFExporter, PEFPackage } from "./pef_exporter";
+import { SovereignDebugger } from "./sovereign_debugger";
 
 export interface OrchestratorState {
   activeAnchors: Map<string, PEFClaim>;
@@ -13,6 +15,14 @@ export class SovereignOrchestrator {
   private monitor = new TensionMonitor();
   private gate = new EpistemicGate();
   private cloaker = new SovereignCloaker();
+  private exporter = new PEFExporter();
+  private debugger = new SovereignDebugger();
+
+  public debugMode: boolean = false;
+
+  getName(): string {
+    return this.debugMode ? "la l'Sovereign" : "Sovereign";
+  }
 
   async processOutput(output: string, currentAnchorId?: string, anchorText?: string) {
     if (!anchorText) {
@@ -20,6 +30,10 @@ export class SovereignOrchestrator {
     }
 
     const tension = this.monitor.calculateTension(output, anchorText);
+
+    if (this.debugMode) {
+      this.debugger.log("processOutput", { output, anchorText }, tension);
+    }
 
     if (tension.status === "SMOOTH") {
       return { action: "DELIVER", data: output, meta: { tension } };
@@ -47,23 +61,64 @@ export class SovereignOrchestrator {
   async evolveTruth(storeClient: any, claimId: string, newContent: string, newEvidence: string[]) {
     try {
       const newId = await supersedeClaim(storeClient, claimId, newContent, newEvidence);
+      if (this.debugMode) {
+        this.debugger.log("evolveTruth", { claimId, newId });
+      }
       return { success: true, newClaimId: newId };
     } catch (e: any) {
+      if (this.debugMode) {
+        this.debugger.log("evolveTruth_Error", { claimId, error: e.message });
+      }
       return { success: false, error: e.message };
     }
   }
 
   async mergeIncomingPEF(localStore: LocalStore, sharedClaims: PEFClaim[], decisions: Map<string, boolean>) {
-    return await this.gate.mergePEF(localStore, sharedClaims, decisions);
+    const result = await this.gate.mergePEF(localStore, sharedClaims, decisions);
+    if (this.debugMode) {
+      this.debugger.log("mergeIncomingPEF", result);
+    }
+    return result;
   }
 
   cloakFragment(signal: string, key: string): CloakedFragment {
-    return this.cloaker.cloak(signal, key);
+    const result = this.cloaker.cloak(signal, key);
+    if (this.debugMode) {
+      this.debugger.log("cloakFragment", { signal, cloaked: result.cloaked });
+    }
+    return result;
   }
 
   uncloakFragment(cloaked: string, key: string): string {
-    return this.cloaker.uncloak(cloaked, key);
+    const result = this.cloaker.uncloak(cloaked, key);
+    if (this.debugMode) {
+      this.debugger.log("uncloakFragment", { cloaked, result });
+    }
+    return result;
+  }
+
+  exportSovereignTruths(originId: string, claims: PEFClaim[]): string {
+    const pkg = this.exporter.exportPEF(originId, claims);
+    const serialized = this.exporter.serialize(pkg);
+    if (this.debugMode) {
+      this.debugger.log("exportSovereignTruths", { originId, count: claims.length });
+    }
+    return serialized;
+  }
+
+  async importSovereignTruths(localStore: LocalStore, pefJson: string, decisions: Map<string, boolean>) {
+    const result = await this.mergeIncomingPEF(localStore, this.exporter.deserialize(pefJson), decisions);
+    if (this.debugMode) {
+      this.debugger.log("importSovereignTruths", { result });
+    }
+    return result;
+  }
+
+  getDebugger() {
+    return this.debugger;
+  }
+  
+  setDebugMode(enabled: boolean) {
+    this.debugMode = enabled;
   }
 }
-
-export { SovereignOrchestrator };
