@@ -46,6 +46,7 @@ import { statusTools } from "./status.ts";
 import { stochasmosTools } from "./stochasmos.ts";
 import { synesisTools } from "./synesis.ts";
 import { nexusTools } from "./nexus.ts";
+import { reportTools } from "./report.ts";
 import { praxisTools } from "./praxis.ts";
 
 /** Every tool module exposed by the server. Add new modules here. */
@@ -97,5 +98,6 @@ export const toolModules: ToolModule[] = [
   stochasmosTools,
   synesisTools,
   nexusTools,
+  reportTools,
   praxisTools,
 ];
