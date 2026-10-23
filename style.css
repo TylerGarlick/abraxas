@@ -26,7 +26,6 @@ body {
   min-height: 100vh;
 }
 
-/* Alchemical Atmosphere - Soft grain/haze */
 body::before {
   content: '';
   position: fixed;
@@ -91,7 +90,6 @@ nav a:hover {
   box-shadow: var(--glow-gold);
 }
 
-/* Entry Section */
 .entry-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -149,7 +147,6 @@ nav a:hover {
   padding-left: 10px;
 }
 
-/* Docs Sections */
 .docs-section {
   margin-bottom: 80px;
 }
@@ -204,7 +201,6 @@ footer {
   letter-spacing: 1px;
 }
 
-/* Monitor */
 .status-bar {
   display: flex;
   justify-content: space-between;
@@ -264,7 +260,6 @@ footer {
   nav { flex-direction: column; align-items: center; gap: 20px; }
 }
 
-/* Markdown Content Styles */
 .markdown-body {
   line-height: 1.6;
   color: var(--text-main);
