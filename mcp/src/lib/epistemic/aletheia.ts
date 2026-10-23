@@ -54,7 +54,22 @@ export async function unresolvedClaims(store: Store, labelFilter?: string) {
 export async function auditLedger(store: Store) {
   const [claims, resolutions] = await Promise.all([store.collection(COLLECTIONS.claims).find(), store.collection(COLLECTIONS.resolutions).find()]);
   const resolved = new Set(resolutions.map((row) => row.claimId).filter(Boolean));
-  return { claims: claims.length, resolutions: resolutions.length, orphanResolutions: resolutions.filter((row) => !row.claimId).map((row) => row._id), unresolvedClaims: claims.filter((row) => !resolved.has(row._id)).map((row) => row._id) };
+  
+  const contradictions = [];
+  const claimGroups = Object.groupBy(resolutions.filter(r => r.claimId), (r) => String(r.claimId));
+  for (const [claimId, resList] of Object.entries(claimGroups)) {
+    if (!resList) continue;
+    const labels = new Set(resList.map(r => String(r.status ?? r.label)));
+    if (labels.size > 1) contradictions.push({ claimId, conflict: Array.from(labels) });
+  }
+
+  return { 
+    claims: claims.length, 
+    resolutions: resolutions.length, 
+    contradictions,
+    orphanResolutions: resolutions.filter((row) => !row.claimId).map((row) => row._id), 
+    unresolvedClaims: claims.filter((row) => !resolved.has(row._id)).map((row) => row._id) 
+  };
 }
 export function fuzzyMatch<T extends { text?: unknown; claim?: unknown }>(items: T[], text: string, limit = 5, threshold = 0.6): T[] {
   const wanted = normalize(text);
