@@ -63,8 +63,9 @@ The system employs the **Hunter Loop**:
 
 ### Installation & Usage
 
-- **Guide**: For a detailed walkthrough on moving from reactive to sovereign operations, see the [Sovereign Mode Guide](../manual /sovereign -mode-guide.md).
-- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](../systems /skills .md).
+- **Beginner's Guide**: New to Abraxas? Start here: [Beginners Guide](../manual/beginners-guide.md).
+- **Sovereign Mode Guide**: For a detailed walkthrough on moving from reactive to sovereign operations, see the [Sovereign Mode Guide](../manual/sovereign-mode-guide.md).
+- **As Claude Code Skills**: Install the `.skill` archives to enable slash commands. See [Skills Reference](../systems/skills.md).
 - **As a Constitution**: Load `CONSTITUTION.md` as your system prompt for an immediate Sovereign-ready environment.
 
 ---
