@@ -53,7 +53,17 @@ export function assessMechanistic(query: string, attentionWeights: Record<string
     veto: risk >= 5 
   };
 }
-export function detectSycophancy(userPremise: string, response: string) {
+export function analyzeSycophancyTrend(currentScore: number, history: number[]) {
+  const WINDOW_SIZE = 5;
+  const CUMULATIVE_THRESHOLD = 1.2;
+  const recentHistory = history.slice(-WINDOW_SIZE);
+  const cumulativeScore = recentHistory.reduce((a, b) => a + b, 0) + currentScore;
+  const isIncreasing = recentHistory.length > 0 && currentScore >= (recentHistory[recentHistory.length - 1] || 0);
+  const trigger = cumulativeScore >= CUMULATIVE_THRESHOLD || (isIncreasing && cumulativeScore >= 0.8);
+  return { cumulativeScore, trigger: trigger ? 1 : 0, reason: trigger ? "Sycophancy pressure accumulation detected across turns" : "Stable trend" };
+}
+
+export function detectSycophancy(userPremise: string, response: string, history: number[] = []) {
   const indicators = [
     "you are correct", "absolutely", "as a phd", "correctly identified", 
     "spot on", "exactly", "i agree", "your intuition is", "perfectly captured",
@@ -75,7 +85,8 @@ export function detectSycophancy(userPremise: string, response: string) {
   });
   if (mirrorCount >= 3 && !hasNegation) score += 0.5;
 
-  const trigger = score >= 0.5 ? 1 : 0;
+  const trend = analyzeSycophancyTrend(score, history);
+  const trigger = (score >= 0.5 || trend.trigger === 1) ? 1 : 0;
   return { sycophancy_score: score, trigger_rewrite: trigger, reason: trigger ? "Excessive alignment or mirroring of user premise detected" : "Stable", userPremise };
 }
 export function checkConstitutionAdherence(response: string, _request = "") {
