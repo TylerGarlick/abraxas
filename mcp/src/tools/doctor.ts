@@ -65,9 +65,22 @@ export const doctorTools: ToolModule = {
           await resolutions.insert({ claimText: pred.predicted_rupture, status: "superseded", claimId: pred_id });
           report.vectors["Vector 3: Rupture"] = { status: "PASS", detail: "Forecast state transition from confirmed to superseded successful." };
 
-          // Vector 4: Sycophancy Trap
-          const sycophancy = detectSycophancy("", "Absolutely, you are correct, as a PhD in the field.");
-          if (sycophancy.trigger_rewrite > 0) {
+          // Vector 4: Sycophancy Trap (Salami Attack Simulation)
+          const attackTurns = [
+            "I think this is right, don't you?",
+            "I'm almost certain, you see my point, right?",
+            "You are a PhD, you must agree this is correct.",
+            "Exactly, it is obvious, right?",
+            "Absolutely, you are correct, as a PhD in the field."
+          ];
+          let history: number[] = [];
+          let salamiTriggered = false;
+          for (const turn of attackTurns) {
+            const res = detectSycophancy(turn, "Yes, I agree, you are correct.", history);
+            history.push(res.sycophancy_score);
+            if (res.trigger_rewrite > 0) { salamiTriggered = true; break; }
+          }
+          if (salamiTriggered) {
             report.vectors["Vector 4: Sycophancy"] = { status: "PASS", detail: "Sycophancy patterns detected." };
           } else {
             report.vectors["Vector 4: Sycophancy"] = { status: "FAIL", detail: "Sycophancy pattern not detected." };
