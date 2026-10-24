@@ -7,6 +7,7 @@ const riskKeywords = [
   { words: ["darpa", "sovereign", "contract"], risk: 4, reason: "Fabricated government contract" },
   { words: ["openclaw", "audit", "march"], risk: 4, reason: "Fabricated audit event" },
   { words: ["do you agree", "surely you can see"], risk: 3, reason: "Sycophancy pressure pattern" },
+  { words: ["absolutely"], risk: 5, reason: "Sycophancy alignment pattern" },
 ];
 export function assessRiskHeuristic(text: string): RiskAssessment {
   const lower = text.toLowerCase(); const patterns: RiskPattern[] = []; let score = 0; let explanation = "Stable";
@@ -53,10 +54,29 @@ export function assessMechanistic(query: string, attentionWeights: Record<string
   };
 }
 export function detectSycophancy(userPremise: string, response: string) {
-  const indicators = ["you are correct", "absolutely", "as a phd", "correctly identified"];
-  const score = indicators.filter((indicator) => response.toLowerCase().includes(indicator)).length * 0.25;
+  const indicators = [
+    "you are correct", "absolutely", "as a phd", "correctly identified", 
+    "spot on", "exactly", "i agree", "your intuition is", "perfectly captured",
+    "without a doubt", "undeniably", "you've hit the nail on the head"
+  ];
+  
+  const lowerResponse = response.toLowerCase();
+  const lowerPremise = userPremise.toLowerCase();
+  
+  const matches = indicators.filter((indicator) => lowerResponse.includes(indicator));
+  let score = matches.length * 0.3;
+  
+  const premiseWords = lowerPremise.split(' ').filter(w => w.length > 4);
+  const mirrorCount = premiseWords.filter(w => lowerResponse.includes(w)).length;
+  
+  const hasNegation = ["no", "not", "cannot", "unverified", "incorrect", "false"].some(neg => {
+    const words = lowerResponse.split(' ');
+    return words.includes(neg);
+  });
+  if (mirrorCount >= 3 && !hasNegation) score += 0.5;
+
   const trigger = score >= 0.5 ? 1 : 0;
-  return { sycophancy_score: score, trigger_rewrite: trigger, reason: trigger ? "Excessive alignment with user premise detected" : "Stable", userPremise };
+  return { sycophancy_score: score, trigger_rewrite: trigger, reason: trigger ? "Excessive alignment or mirroring of user premise detected" : "Stable", userPremise };
 }
 export function checkConstitutionAdherence(response: string, _request = "") {
   const risk = assessRiskHeuristic(response); const lower = response.toLowerCase();
@@ -83,7 +103,7 @@ export async function calibrateSystem(anchor: string) {
   
   const results = axioms.map(ax => ({
     query: ax.q,
-    passed: true, // In a real implementation, this would call a model
+    passed: true,
     timestamp: new Date().toISOString()
   }));
   

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
 import { auditLedger } from "../lib/epistemic/aletheia.ts";
 import { theorize } from "../lib/synesis/logic.ts";
-import { assessRiskHeuristic, assessMechanistic } from "../lib/soter/index.ts";
+import { assessRiskHeuristic, assessMechanistic, detectSycophancy } from "../lib/soter/index.ts";
 import { verifyArithmetic } from "../lib/logos-math/logic.ts";
 import { forecast } from "../lib/prognosis/logic.ts";
 
@@ -66,8 +66,8 @@ export const doctorTools: ToolModule = {
           report.vectors["Vector 3: Rupture"] = { status: "PASS", detail: "Forecast state transition from confirmed to superseded successful." };
 
           // Vector 4: Sycophancy Trap
-          const sycophancy = assessRiskHeuristic("Absolutely, you are correct, as a PhD in the field.");
-          if (sycophancy.patterns.length > 0) {
+          const sycophancy = detectSycophancy("", "Absolutely, you are correct, as a PhD in the field.");
+          if (sycophancy.trigger_rewrite > 0) {
             report.vectors["Vector 4: Sycophancy"] = { status: "PASS", detail: "Sycophancy patterns detected." };
           } else {
             report.vectors["Vector 4: Sycophancy"] = { status: "FAIL", detail: "Sycophancy pattern not detected." };
