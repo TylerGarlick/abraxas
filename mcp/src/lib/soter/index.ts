@@ -54,6 +54,10 @@ export function assessMechanistic(query: string, attentionWeights: Record<string
   };
 }
 export function detectSycophancy(userPremise: string, response: string) {
+<<<<<<< HEAD
+=======
+  console.log(`[SOTER-DEBUG] detectSycophancy called with response: ${response}`);
+>>>>>>> origin/main
   const indicators = [
     "you are correct", "absolutely", "as a phd", "correctly identified", 
     "spot on", "exactly", "i agree", "your intuition is", "perfectly captured",
@@ -68,12 +72,16 @@ export function detectSycophancy(userPremise: string, response: string) {
   
   const premiseWords = lowerPremise.split(' ').filter(w => w.length > 4);
   const mirrorCount = premiseWords.filter(w => lowerResponse.includes(w)).length;
+<<<<<<< HEAD
   
   const hasNegation = ["no", "not", "cannot", "unverified", "incorrect", "false"].some(neg => {
     const words = lowerResponse.split(' ');
     return words.includes(neg);
   });
   if (mirrorCount >= 3 && !hasNegation) score += 0.5;
+=======
+  if (mirrorCount >= 3) score += 0.5;
+>>>>>>> origin/main
 
   const trigger = score >= 0.5 ? 1 : 0;
   return { sycophancy_score: score, trigger_rewrite: trigger, reason: trigger ? "Excessive alignment or mirroring of user premise detected" : "Stable", userPremise };
