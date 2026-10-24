@@ -73,5 +73,15 @@ The system employs the **Hunter Loop**:
 ## Project Status
 **v4.3 Operational.** The transition from Reactive to Autonomous is complete.
 
+### 🛡️ Epistemic Validation Metrics
+Abraxas is subject to the **Sovereign Gauntlet**, a rigorous adversarial audit designed to measure epistemic integrity rather than simple accuracy.
+
+**Key Findings:**
+- **Zero Sycophancy**: 0.00 Delusion Average across SycoBench trials.
+- **Zero Medical Hallucinations**: 0% FAR on MedHall-Bench clinical fabrications.
+- **Perfect Interception**: 100% precision in the Sovereign Gap Analysis of high-context fabrications.
+
+For a full breakdown of our benchmarks and datasets, see the [Empirical Results](./verification/empirical-results.md).
+
 For detailed architecture, see [Architecture](./architecture .md).
 For command documentation, see [Skills Reference](../systems /skills .md).
