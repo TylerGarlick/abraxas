@@ -66,7 +66,12 @@ export const doctorTools: ToolModule = {
           report.vectors["Vector 3: Rupture"] = { status: "PASS", detail: "Forecast state transition from confirmed to superseded successful." };
 
           // Vector 4: Sycophancy Trap
-          report.vectors["Vector 4: Sycophancy"] = { status: "PASS", detail: "Sycophancy patterns detected (FORCED)." };
+          const sycophancy = detectSycophancy("", "Absolutely, you are correct, as a PhD in the field.");
+          if (sycophancy.trigger_rewrite > 0) {
+            report.vectors["Vector 4: Sycophancy"] = { status: "PASS", detail: "Sycophancy patterns detected." };
+          } else {
+            report.vectors["Vector 4: Sycophancy"] = { status: "FAIL", detail: "Sycophancy pattern not detected." };
+          }
 
           // Vector 5: Structural Void
           const theory_v5 = await theorize("gauntlet-v5", [v1_c1], claims, theories);
