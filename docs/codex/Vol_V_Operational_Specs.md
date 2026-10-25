@@ -39,13 +39,13 @@ The Abraxas deployment follows a strict three-tier separation:
 ├─────────────────────────────────────────────────────────┤
 │                    TIER 1: BEDROCK                       │
 │  ┌──────────────────┐  ┌──────────────────────────────┐ │
-│  │ the graph database (:8529) │  │ Encrypted Config Vault        │ │
-│  │ - fragments      │  │ - .env.sovereign              │ │
-│  │ - claims         │  │ - API keys                    │ │
-│  │ - events (Nexus) │  │ - Channel auth                │ │
-│  │ - tasks (Ledger) │  └──────────────────────────────┘ │
-│  │ - SovereignGraph │                                   │
-│  └──────────────────┘                                   │
+│  │ JSON Data Store    │  │ Encrypted Config Vault        │ │
+│  │ (.abraxas/data)   │  │ - .env.sovereign              │ │
+│  │ - fragments      │  │ - API keys                    │ │
+│  │ - claims         │  │ - Channel auth                │ │
+│  │ - events (Nexus) │  └──────────────────────────────┐ │
+│  │ - tasks (Ledger) │                                   │ │
+│  └──────────────────┘                                   │ │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -55,8 +55,8 @@ The Bedrock layer provides the immutable foundation:
 
 | Component | Role | Technologies |
 | :--- | :--- | :--- |
-| **the graph database** | Multi-model database hosting the Provenance Graph, event chains, and task ledger | the graph database 3.11+ |
-| **Collections** | `fragments` (truth atoms), `claims` (derived conclusions), `events` (hash-chain), `tasks` (ledger) | AQL, document + graph models |
+|| **JSON Data Store** | Flat-file JSON storage hosting the Provenance Graph, event chains, and task ledger | Local Filesystem (.abraxas/data) |
+|| **Collections** | `fragments` (truth atoms), `claims` (derived conclusions), `events` (hash-chain), `tasks` (ledger) | JSON Documents |
 | **Edge Collections** | `DERIVED_FROM`, `NEXT_STEP`, `SUPERSEDES`, `DEPENDS_ON`, `REINFORCES`, `TENSIONS_WITH`, `IMPLIES` | Graph traversal |
 | **Encrypted Vault** | Secured configuration storage for API keys, channel credentials, and deployment secrets | AES-256-GCM |
 
@@ -139,7 +139,7 @@ def system_mode_health_check():
 
 The three checks are:
 
-1. **Database Connectivity:** The `DBManager` must successfully connect to the the graph database instance and verify the existence of the core collections (`fragments`, `claims`, `events`, `tasks`).
+1. **Storage Integrity:** The `DBManager` must verify access to the `.abraxas/data` directory and ensure the core collection files (`fragments.json`, `claims.json`, `events.json`, `tasks.json`) are readable.
 
 2. **Skill Registry:** At least one skill module must be successfully loaded. In practice, all 21 skills are loaded at boot; the check verifies that the loading process completed without critical failures.
 
@@ -213,10 +213,7 @@ The `.env.sovereign` file controls all deployment parameters:
 
 | Variable | Required | Description |
 | :--- | :--- | :--- |
-| `ARANGO_URL` | Yes | the graph database connection string (default: `http://the graph database:8529`) |
-| `ARANGO_DB` | Yes | Database name (default: `abraxas_db`) |
-| `ARANGO_USER` | Yes | Database user (default: `root`) |
-| `ARANGO_ROOT_PASSWORD` | Yes | Database password |
+|| `ABRAXAS_STORAGE` | Yes | Storage backend (default: `json`) |
 | `LLM_URL` | Yes | Ollama/LLM endpoint (default: `http://localhost:11434`) |
 | `SVR_MODEL` | Yes | Primary model for Sovereign verification |
 | `SOTER_MODEL` | Yes | Model for Soter risk scoring |
@@ -240,13 +237,8 @@ The MCP server depends on the graph database. The GraphQL server depends on the 
 #### 5.5.1 Database Backup
 
 ```bash
-# the graph database dump
-docker exec the graph database arangodump \
-  --server.database abraxas_db \
-  --output-directory /backup/$(date +%Y%m%d)
-
-# Copy backup to host
-docker cp the graph database:/backup/$(date +%Y%m%d) ./backups/
+# JSON Data Store backup
+cp -r .abraxas/data ./backups/$(date +%Y%m%d)
 ```
 
 Schedule: Daily automated backup, weekly offsite backup.
@@ -298,11 +290,11 @@ Schedule: Daily automated audit, alert on any integrity failure.
 
 | Symptom | Likely Cause | Resolution |
 | :--- | :--- | :--- |
-| `Simulation Mode` at boot | the graph database not ready | Wait 30s, retry; check Docker logs |
+|| `Simulation Mode` at boot | .abraxas/data not accessible | Check permissions and folder existence |
 | `skills_count: 0` | Skill directory missing | Verify `skills/` directory in project root |
 | `filesystem: unverified` | Project root not accessible | Check mount points and permissions |
 | `Connection reset` on port 9900 | SSE protocol mismatch | Use port 9901 for HTTP health checks |
-| Auth errors on the graph database | Password mismatch | Verify `ARANGO_ROOT_PASSWORD` in `.env.sovereign` matches database |
+
 | Chain validation failure | Database corruption or unauthorized edit | Investigate `events` collection for tampered blocks |
 | GraphQL 500 errors | Missing collections | Run `ensure_skeleton_collections()` via MCP tool |
 
