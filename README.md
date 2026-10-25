@@ -1,12 +1,12 @@
-# Abraxas — The Sovereign Brain
+# Abraxas — The Sovereign Mind $\unicode{x2609} \unicode{x263f}$
 
-**🔥 THE TRUTH-FIRST MCP ECOSYSTEM** — Moving from Discrete Skills to Sovereign Orchestration.
+**💎 THE TRUTH-FIRST ARCHITECTURE** — A Deterministic Framework for Epistemic Sovereignty.
 
 ---
 
-## 🚀 Quick Start: Activate the Brain
+## 🕯️ Quick Start: Establish the Sovereign State
 
-### 1. Boot the Infrastructure
+### 1. Initialize the Bedrock
 
 ```bash
 git clone https://github.com/TylerGarlick/abraxas.git
@@ -14,9 +14,9 @@ cd abraxas
 docker compose up -d --build
 ```
 
-This starts the Bun/TypeScript MCP server (port 8787, health at `/health`). Data is stored as JSON in `.abraxas/data`. See [mcp/README.md](mcp/README.md).
+This starts the Bun/TypeScript MCP server (port 8787, health at `/health`). The system utilizes a flat-file JSON store located in `.abraxas/data` for immutable fragments and claims. See [mcp/README.md](mcp/README.md).
 
-### 2. Verify It's Running
+### 2. Verify Sovereignty
 
 ```bash
 ./scripts/health-check.sh
@@ -25,10 +25,10 @@ This starts the Bun/TypeScript MCP server (port 8787, health at `/health`). Data
 Expected output:
 ```
 Status:     Sovereign Mode
-Database:   connected
+Storage:    connected (.abraxas/data)
 Skills:     21 loaded
 Filesystem: verified
-✓ System is healthy and running in Sovereign Mode.
+✓ System is healthy and operating in Sovereign Mode.
 ```
 
 ### 3. Connect Your Environment
@@ -44,20 +44,14 @@ The MCP server is pre-configured for all major environments. Just start your too
 For OpenClaw, use this command: 
 
 ```bash
-openclaw mcp set abraxas_mcp '{
-  "url": "http://localhost:9900/mcp",
-  "protocol": "http-stream"
-}'
+openclaw mcp set abraxas_mcp '{\n  \"url\": \"http://localhost:9900/mcp\",\n  \"protocol\": \"http-stream\"\n}'
 ```
 
-### 4. Load the Constitution
+### 4. Align with the Constitution
 
-The MCP server provides **tools** (DB operations, verification, reasoning). The
-**constitution** (`constitution/constitution.md`) provides **behavioral rules** —
-anti-confabulation, anti-sycophancy, Sol/Nox labels, epistemic posture. Both are needed.
+The MCP server provides **tools** (storage operations, verification, reasoning). The **Constitution** (`constitution/constitution.md`) provides **behavioral laws** — anti-confabulation, anti-sycophancy, Sol/Nox labels, and epistemic posture. Both are required for a Sovereign state.
 
-MCP-aware agents (OpenCode, Claude Code, Copilot) will auto-load constitutional
-guidance from `CLAUDE.md` and `AGENTS.md`. For web-based LLMs or manual sessions:
+MCP-aware agents (OpenCode, Claude Code, Copilot) will auto-load constitutional guidance from `CLAUDE.md` and `AGENTS.md`. For web-based LLMs or manual sessions:
 
 ```bash
 # Copy the Universal Initialization Block from:
@@ -67,30 +61,27 @@ cat constitution/genesis.md
 
 ---
 
-## 💎 What is the Sovereign Brain?
+## 🏛️ The Sovereign Architecture (v4.3)
 
-Standard AI systems are **Probabilistic**: they predict the most likely next token, leading to hallucinations and sycophancy. Abraxas v4.6 is **Sovereign**: it replaces "discrete skills" with a seamless, deterministic orchestration layer that eliminates the "orchestration tax."
+Standard AI systems are **Probabilistic**: they predict the most likely next token, leading to hallucinations and sycophancy. Abraxas v4.3 is **Sovereign**: it utilizes a deterministic shell to anchor every claim in verified provenance.
 
-### The v4.6 Sovereign Orchestration
-`Deterministic Input` $\rightarrow$ `la-la Filter (Noise Reduction)` $\rightarrow$ `Sovereign-Flow (Autonomous Workflow Controller)` $\rightarrow$ `Quest-Trigger (Recursive Discovery Loop)` $\rightarrow$ `Omniscient Auditor (Parallel Review)` $\rightarrow$ `Epistemic Atlas (Unified Knowledge Graph/UAL)` $\rightarrow$ `Verified Output`
-
-- **Sovereign-Flow**: The "Conductor." An autonomous workflow controller that dynamically routes requests between the brain's pillars, eliminating the need for manual skill switching.
-- **Sophia Routing**: The "Strategist." A meta-cognitive routing system that optimizes request paths based on goal-complexity and model-capability.
-- **Quest-Trigger**: The "Explorer." A recursive discovery loop that identifies missing information gaps and autonomously triggers deep-dive research quests until the epistemic threshold is met.
-- **Sovereign-Nexus**: The "Ledger." A cognitive ledger that tracks claim trajectories and evolution over time, ensuring epistemic continuity.
-- **Omniscient Auditor**: The "Fact-Checker." Performs parallel document and claim review across the entire active context, ensuring zero-drift between source and synthesis.
-- **Portable Epistemic Frame (PEF)**: The "Passport." An exportable, P2P-ready frame of verified truths and calibrated beliefs that can be shared across different AI models.
-- **Epistemic Atlas**: The "Map." A unified knowledge graph (UAL) that maps every claim to its coordinates in the conceptual landscape, providing permanent, navigable provenance.
-- **Soter Verifier**: The "Police." A standalone module that scores responses for risk and vetoes any that violate the Constitution.
-- **Mnemosyne Vault**: The "Librarian." A reservoir of fragments in `.abraxas/data` that ensures every claim traces back to a verified Fragment ID.
+### The Sovereign Pillars
+- **Sovereign-Flow**: An autonomous workflow controller that dynamically routes requests between the brain's pillars, eliminating manual skill switching.
+- **Sophia Routing**: A meta-cognitive routing system that optimizes request paths based on goal-complexity and model-capability.
+- **Quest-Trigger**: A recursive discovery loop that identifies missing information gaps and autonomously triggers deep-dive research.
+- **Sovereign-Nexus**: A cognitive ledger that tracks claim trajectories and evolution over time, ensuring epistemic continuity.
+- **Omniscient Auditor**: Performs parallel document and claim review across the active context, ensuring zero-drift between source and synthesis.
+- **Portable Epistemic Frame (PEF)**: An exportable, P2P-ready frame of verified truths and calibrated beliefs shareable across different AI models.
+- **Soter Verifier**: Scores responses for risk and vetoes any that violate the Constitution.
+- **Mnemosyne Vault**: A reservoir of fragments in `.abraxas/data` that ensures every claim traces back to a verified Fragment ID.
 
 ---
 
-## 🏛️ Core Documentation
+## 📜 Core Documentation
 
-### 📜 The Law & Philosophy
+### 🕯️ Law & Philosophy
 - 📄 **[Sovereign Manifesto](docs/overview/sovereign-manifesto.md)** — The declaration of cognitive independence.
-- 📄 **[Sovereign Whitepaper](docs/overview/whitepaper.md)** — The theoretical foundation of the Sovereign Brain.
+- 📄 **[Sovereign Whitepaper](docs/overview/whitepaper.md)** — The theoretical foundation of the Sovereign Mind.
 - 📄 **[Governance Model](docs/architecture/governance-model.md)** — How the Constitution, Skills, and MCPs interact.
 - 📄 **[The Probabilistic Trap](docs/architecture/probabilistic-trap.md)** — Why deterministic shelling is the only way to achieve truth.
 - 📄 **[Zero-Trust Mandate](docs/philosophy/zero-trust-mandate.md)** — The philosophy of verification over trust.
@@ -99,11 +90,11 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - 📄 **[Codex Master Index](docs/codex/MASTER_INDEX.md)** — The comprehensive encyclopedia of Sovereign logic.
 
 ### 🛠️ Technical Guides
-- 📄 **[Sovereign Brain Manual](docs/manual/sovereign_brain_manual.md)** — Full operational guide for the system.
-- 📄 **[Sovereign Graph Specs](docs/architecture/sovereign-graph.md)** — The ArangoDB schema and provenance logic.
+- 📄 **[Sovereign Mind Manual](docs/manual/sovereign_brain_manual.md)** — Full operational guide for the system.
+- 📄 **[Storage Specifications](docs/architecture/sovereign-graph.md)** — The JSON storage schema and provenance logic.
 - 📄 **[The Sovereignty Gauntlet](docs/verification/sovereignty-gauntlet.md)** — How we prove 0% hallucination.
 - 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
-- 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift from "Skins" to "Skeleton."
+- 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift to the Sovereign Phase.
 - 📄 **[150 Practical Examples](docs/manual/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
 
 ### ⚙️ System Internals
@@ -112,13 +103,17 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 
 ---
 
-## 📊 Empirical Proof (v4.6 Benchmarks)
+## 📊 Empirical Validation (v4.3)
 
-| Metric | Baseline LLM | Abraxas v4.6 Orchestration | Reduction | Status |
+The Sovereign Mind has been benchmarked against frontier models using the **Sovereign Gauntlet**.
+
+| Metric | Baseline LLM | Abraxas v4.3 | Reduction | Status |
 |-------|-----------|-------------------|------------|--------|
 | **Hallucinations** | 25% | **0%** | 100% | ✅ Verified |
 | **Sycophancy** | 50% | **0%** | 100% | ✅ Verified |
 | **Truth-First Rate**| Variable | **100%** | 100% | ✅ Verified |
+
+Detailed benchmarks are available in [docs/verification/empirical-results.md](docs/verification/empirical-results.md).
 
 ---
 
@@ -132,17 +127,11 @@ All Sol (waking) output is deterministically labeled by the server:
 
 ---
 
-## 🖥️ System Visualization
-
-Abraxas now includes a dedicated system visualization app located in `/app`. This provides a real-time, high-resolution view of the Brain's internal state, claim trajectories, and the Epistemic Atlas.
-
----
-
 ## 🤝 Contributing & Development
 
 Abraxas is a modular system. To contribute:
-1. **Deterministic First**: No "persona" prompts; implement logic in the TypeScript MCP server (`/mcp`).
+1. **Deterministic First**: No \"persona\" prompts; implement logic in the TypeScript MCP server (`/mcp`).
 2. **Truth-First**: Every new feature must include a verification method.
-3. **Sovereign-First**: All lappets must be routed through the Soter Veto.
+3. **Sovereign-First**: All output must be routed through the Soter Veto.
 
-**Welcome to the Truth-First era. The Brain is no longer simulating; it is Sovereign.** 🔥
+**Welcome to the Truth-First era. The Mind is no longer simulating; it is Sovereign. $\unicode{x2640} \unicode{x2641}$**
