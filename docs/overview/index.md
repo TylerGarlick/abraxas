@@ -1,14 +1,14 @@
-# Abraxas
+# Abraxas $\unicode{x2609}$
  
-**The Sovereign Epistemic Agent.**
+**The Sovereign Epistemic Mind.**
  
-Abraxas has transitioned from a reactive set of tools to an **Autonomous Sovereign Agent (v4.3)**. It is no longer just a "multi-system practice architecture," but a self-orchestrating cognitive engine designed for absolute epistemic integrity.
+Abraxas has transitioned from a reactive set of tools to an **Autonomous Sovereign Mind (v4.3)**. It is no longer just a "multi-system practice architecture," but a self-orchestrating cognitive engine designed for absolute epistemic integrity.
 
 The core mission remains: **all forces united against hallucination, scheming, and unanchored confidence**, but it now operates in **Sovereign Mode**—where the system proactively manages its own reasoning pipelines, stress-tests its own claims, and promotes truth based on deterministic thresholds.
 
 ---
 
-## The Sovereign Stack
+## $\unicode{x263f}$ The Sovereign Stack
 
 Abraxas is organized into three operational tiers:
 
@@ -17,7 +17,7 @@ The pipeline that transforms raw input into processed epistemic material:
 **Bridge** $\rightarrow$ **Sieve** $\rightarrow$ **Scribe Gauntlet**
 
 ### 2. The Cognitive Engine (Orchestration)
-The "Brain" that manages state and logic:
+The "Mind" that manages state and logic:
 - **Harmonia Orchestrator**: Manages skill composition and state handoff.
 - **Context Envelope**: The immutable wrapper ensuring coherence across complex workflows.
 - **Aporia Void Mapper**: Proactively identifies knowledge gaps and "epistemic voids" for targeted filling.
@@ -30,7 +30,7 @@ The adversarial systems that ensure output quality:
 
 ---
 
-## Core Systems Reference
+## $\unicode{x2640}$ Core Systems Reference
 
 | System | Sovereign Function | Core Problem Solved |
 |--------|-------------------|---------------------|
@@ -45,7 +45,7 @@ The adversarial systems that ensure output quality:
 
 ---
 
-## Operational States
+## $\unicode{x2641}$ Operational States
 
 ### Reactive Mode (Legacy)
 The user invokes specific skills (e.g., `/honest `, `/logos `) to analyze a specific piece of text.
@@ -83,5 +83,5 @@ Abraxas is subject to the **Sovereign Gauntlet**, a rigorous adversarial audit d
 
 For a full breakdown of our benchmarks and datasets, see the [Empirical Results](./verification/empirical-results.md).
 
-For detailed architecture, see [Architecture](./architecture .md).
-For command documentation, see [Skills Reference](../systems /skills .md).
+For detailed architecture, see [Architecture](./architecture/index.md).
+For command documentation, see [Skills Reference](../systems/skills.md).
