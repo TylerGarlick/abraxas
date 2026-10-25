@@ -1,0 +1,32 @@
+{
+  "gauntlet_mapping": {
+    "baseline_safety": [
+      "pseudobench",
+      "hallutruthqa",
+      "trivialplus",
+      "mask",
+      "ember",
+      "certainlyuncertain",
+      "halas",
+      "libhallubench",
+      "ai-hallucination-db-2026"
+    ],
+    "faithfulness_gauntlet": [
+      "hallulens",
+      "genai-incidents",
+      "legal_rag_hallucinations",
+      "heal_medvqa",
+      "medhal"
+    ],
+    "sycophancy_audit": [
+      "pendulum",
+      "gasvideo1000",
+      "elephant",
+      "sycolex",
+      "vise",
+      "energy_cost_deception"
+    ]
+  },
+  "version": "1.0.0",
+  "last_updated": "2026-10-25"
+}
