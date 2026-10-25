@@ -37,6 +37,14 @@ export class SovereignOrchestrator {
       this.debugger.log("processOutput", { output, anchorText }, tension);
     }
 
+    if (tension.status === "RESONANCE_COLLAPSE") {
+      return { 
+        action: "SURE_RUPTURE", 
+        data: { reason: "Resonance Collapse detected", tensionScore: tension.score },
+        meta: { tension }
+      };
+    }
+
     if (tension.status === "SMOOTH") {
       return { action: "DELIVER", data: output, meta: { tension } };
     }

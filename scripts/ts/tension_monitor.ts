@@ -1,25 +1,35 @@
-
 /**
  * The Tension Monitor detects "Sovereign Static" by measuring the dissonance
  * between a "Smooth" probabilistic output and a "Sovereign Anchor".
+ * It also detects "Resonance Collapse" (recursive loops).
  */
 
 export interface TensionResult {
   score: number; // 0.0 (Smooth) to 1.0 (Max Tension)
-  status: 'SMOOTH' | 'STATIC' | 'CHAOS';
+  status: 'SMOOTH' | 'STATIC' | 'CHAOS' | 'RESONANCE_COLLAPSE';
   isSovereignStatic: boolean;
 }
 
 export class TensionMonitor {
   private readonly thresholdStatic = 0.4;
   private readonly thresholdChaos = 0.8;
+  private readonly resonanceThreshold = 0.3; // Ratio of repeated patterns
 
   /**
    * Calculates the "Tension Score" between a smooth output and a sovereign anchor.
-   * Uses a simplified distance-based entropy measure for this implementation.
+   * Now includes a check for Resonance Collapse.
    */
   calculateTension(smoothOutput: string, sovereignAnchor: string): TensionResult {
-    if (!smoothOutput || !sovereignAnchor) {
+    if (!smoothOutput) {
+      return { score: 0, status: 'SMOOTH', isSovereignStatic: false };
+    }
+
+    // First, check for internal recursive resonance (loops)
+    if (this.detectResonance(smoothOutput)) {
+      return { score: 0, status: 'RESONANCE_COLLAPSE', isSovereignStatic: true };
+    }
+
+    if (!sovereignAnchor) {
       return { score: 0, status: 'SMOOTH', isSovereignStatic: false };
     }
 
@@ -39,6 +49,34 @@ export class TensionMonitor {
       status,
       isSovereignStatic: status !== 'SMOOTH'
     };
+  }
+
+  /**
+   * Detects if the output has entered a recursive loop (Resonance Collapse).
+   * Looks for repeating n-grams of length 3+.
+   */
+  private detectResonance(text: string): boolean {
+    if (text.length < 20) return false;
+
+    const words = text.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+    if (words.length < 10) return false;
+
+    const n = 3; // n-gram size
+    const patterns = new Map<string, number>();
+
+    for (let i = 0; i <= words.length - n; i++) {
+      const gram = words.slice(i, i + n).join(' ');
+      patterns.set(gram, (patterns.get(gram) || 0) + 1);
+    }
+
+    for (const [gram, count] of patterns) {
+      // If a 3-word sequence repeats more than 3 times and takes up a significant chunk
+      if (count >= 3 && (count * n) / words.length > this.resonanceThreshold) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   /**
