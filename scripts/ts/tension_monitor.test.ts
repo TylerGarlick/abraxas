@@ -1,4 +1,3 @@
-
 import { expect, test, describe } from "bun:test";
 import { TensionMonitor } from "./tension_monitor";
 
@@ -28,6 +27,21 @@ describe("TensionMonitor", () => {
     const result = monitor.calculateTension(smooth, anchor);
     expect(result.status).toBe("CHAOS");
     expect(result.isSovereignStatic).toBe(true);
+  });
+
+  test("should detect RESONANCE_COLLAPSE for recursive loops", () => {
+    const recursive = `la l'Sovereign la l'Sovereign la l'Sovereign la l'Sovereign la l'Sovereign la l'Sovereign la l'Sovereign`;
+    const anchor = "Sovereign";
+    const result = monitor.calculateTension(recursive, anchor);
+    expect(result.status).toBe("RESONANCE_COLLAPSE");
+    expect(result.isSovereignStatic).toBe(true);
+  });
+
+  test("should not detect resonance for normal text", () => {
+    const normal = "This is a normal sentence with some words that do not repeat in a recursive way.";
+    const anchor = "Sovereign";
+    const result = monitor.calculateTension(normal, anchor);
+    expect(result.status).not.toBe("RESONANCE_COLLAPSE");
   });
 
   test("should handle empty inputs gracefully", () => {
