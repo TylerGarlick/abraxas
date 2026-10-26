@@ -21,7 +21,7 @@
 *   **Chapter 7: Episteme and the Glass Box.** The mapping of knowledge boundaries; the structural anatomy of a provenance chain; distinguishing [RET], [INF], and [DIR].
 
 ### Part III: The Mathematical and Formal Engine
-*   **Chapter 8: Internal State Entropy.** The mathematics of path divergence; the formula for $H_{\text{internal}}$ and the decoupling of confidence from token probabilities.
+*   **Chapter 8: Internal State Entropy.** The mathematics of path divergence; the formula for $H_{\mathrm{internal}}$ and the decoupling of confidence from token probabilities.
 *   **Chapter 9: Sovereign Weighting.** The exponential decay function for risk-scores and the 5-Tier Ethos credibility hierarchy.
 *   **Chapter 10: RLCR Calibration.** Reinforcement Learning with Calibrated Responses; using the Brier score to align stated confidence with empirical accuracy.
 
@@ -172,15 +172,46 @@ The `SovereignOrchestrator` utilizes a deterministic state machine based on `Ten
 
 ### Chapter 5: The Janus Duality
 
-#### 5.1 The Spirit of the Times (Sol) vs. The Spirit of the Depths (Nox)
-The a-priori separation of analytical and symbolic registers is the core of the Janus architecture. Janus bifurcates these into **Sol** and **Nox**.
+The Janus Orchestrator is the meta-cognitive router that transforms Abraxas from a collection of tools into a **Sovereign Brain**. Its fundamental purpose is to solve the "Probabilistic Trap"—the systemic failure of LLMs to distinguish between linguistic fluency and epistemic truth—by replacing "Probabilistic Hope" with **Architectural Determinism**.
 
-**Sol (The Waking Face)** is the register of provenance and disciplined ignorance. It is the observer, the skeptic, and the auditor. Sol is forbidden from synthesizing new ideas; its sole function is to verify. 
+#### 5.1 Architectural Individuation and the Union of Opposites
+The architecture of Janus is a software implementation of Jungian **individuation**. In depth psychology, individuation is the process of integrating the conscious ego with the unconscious shadow. The Sovereign Brain mirrors this by bifurcating its output into two distinct registers: the **Spirit of the Times** (analytical, rational, and verified) and the **Spirit of the Depths** (intuitive, symbolic, and mythopoeic). 
 
-**Nox (The Dreaming Face)** is the generative engine, the register of intuition and symbolic exploration. Nox allows the system to navigate the latent space and propose hypotheses, but it is strictly prohibited from emitting claims as [KNOWN]. All output from Nox is explicitly marked as **[DREAM]**.
+Instead of attempting to "balance" these opposing forces into a single, smoothed-over response—which is where sycophancy and hallucinations thrive—Janus maintains them as a strict duality. This ensures that the generative, "dreaming" capacity of the model does not contaminate the rigor of verification.
 
-#### 5.2 The Tension of the Threshold
-The power of the Sovereign Brain comes from the tension between Sol and Nox. By forcing every intuitive leap (Nox) to pass through a rigorous analytical filter (Sol), the system prevents the "sycophancy of the depths"—the tendency of the model to believe its own dreams.
+#### 5.2 Sol: The Waking Face
+Sol represents the observing ego and the lab assistant. It is the register of provenance and epistemic discipline. When Sol is active, the system operates as a **Sovereign Shell**, where every claim must be grounded in a content-hashed fragment from Mnemosyne.
+
+Sol employs a strict set of epistemic labels to communicate certainty:
+- **[KNOWN]**: The claim is sourced, verifiable, and high-confidence.
+- **[INFERRED]**: The claim is derived through a transparent reasoning chain (premise $\to$ reasoning $\to$ conclusion).
+- **[UNCERTAIN]**: The material is relevant but cannot be fully verified; uncertainty is named explicitly.
+- **[UNKNOWN]**: Sol lacks reliable information and refuses to fabricate. This is treated as a high-value epistemic claim.
+
+Sol is further governed by an **anti-sycophancy constraint**. It is designed to push back against factual errors in user framing, logical gaps in reasoning, and confirmation-seeking queries. Sol does not optimize for user comfort, but for the accuracy of the inquiry.
+
+#### 5.3 Nox: The Dreaming Face
+Nox represents the generative engine and the symbolic depths. It is the register of synthesis, intuition, and exploration. While Sol is bound by the provenance chain, Nox is unfettered, allowing the system to navigate the latent space to propose hypotheses, interpret symbols, and engage in active imagination.
+
+Every output from Nox is marked with the **[DREAM]** label. This is not a warning of falsehood, but a mode label. It communicates that the material is offered as archetypal or interpretive—a "pattern truth" rather than a "factual truth." Nox provides the raw, symbolic material that Sol then analyzes and verifies.
+
+#### 5.4 The Threshold and Sovereign Routing
+The **Threshold** is the routing mechanism that determines which face should speak. In the Sovereign configuration, this is integrated with the **Soter Risk Sensor**.
+
+1. **Risk Sensing**: Every input is scanned for sycophancy traps and attention sinks.
+2. **Routing Decision**: If the risk is low, the Threshold routes to Sol or Nox based on the query type. If the risk is critical ($\tau \geq 3$), the Threshold triggers a **Sovereign Switch**, killing the Nox flow and forcing the system into the **Consensus Verification Pipeline (CVP)**.
+3. **Contamination Prevention**: The Threshold ensures that Nox material is never presented as a Sol claim. The faces never blend in a single unlabeled paragraph; they are kept distinct to prevent the "smoothness" of intuition from masquerading as the rigor of fact.
+
+#### 5.5 The Qualia Bridge: The Epistemic X-Ray
+The **Qualia Bridge** is an inspection protocol that makes the system's inner state visible without altering its behavior. It allows the user to see the "cognitive friction" of the reasoning process.
+
+By invoking the Bridge, the user can see:
+- **Routing Logic**: Why the Threshold chose a specific face.
+- **Filtered Content**: What Sol marked as `[UNKNOWN]` rather than fabricate.
+- **Sycophancy Resistance**: Where the anti-sycophancy constraint is active and what specific framing it is resisting.
+- **Nox Raw State**: The symbolic connections active in the dreaming face before the Threshold shapes them.
+
+This transforms the Sovereign Brain from a "Black Box" into a "Glass Box," where the tension of the void is no longer hidden, but charted.
 
 ### Chapter 6: Mnemosyne and the Sovereign Reservoir
 
@@ -205,17 +236,17 @@ A provenance chain is the sequence of fragments that support a claim. Episteme d
 #### 8.1 The Mathematics of Path Divergence
 The Sovereign Brain evaluates the stability of its internal state by measuring the divergence between multiple reasoning paths ($M$-paths). High divergence indicates high internal state entropy.
 
-#### 8.2 The $H_{\text{internal}}$ Formula
-We quantify this as **Internal State Entropy** ($H_{\text{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\langle \text{BOS} \rangle$, punctuation):
+#### 8.2 The $H_{\mathrm{internal}}$ Formula
+We quantify this as **Internal State Entropy** ($H_{\mathrm{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\langle \text{BOS} \rangle$, punctuation):
 
-$$H_{\text{internal}} = - \sum_{i=1}^{n} p(s_i) \log p(s_i)$$
+$$H_{\mathrm{internal}} = - \sum_{i=1}^{n} p(s_i) \log p(s_i)$$
 
 **Variable Breakdown:**
-- $H_{\text{internal}}$: The internal state entropy.
+- $H_{\mathrm{internal}}$: The internal state entropy.
 - $p(s_i)$: The probability (attention weight) assigned to the $i$-th sink token.
 - $n$: The total number of monitored sink tokens.
 
-A precipitous drop in $H_{\text{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**.
+A precipitous drop in $H_{\mathrm{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**.
 
 ### Chapter 9: Sovereign Weighting
 
@@ -241,24 +272,24 @@ The final weight of a claim is modified by the **Ethos Hierarchy**, mapping prov
 ### Chapter 10: RLCR Calibration
 
 #### 10.1 Reinforcement Learning with Calibrated Responses (RLCR)
-Abraxas implements **RLCR Calibration** to blend structural confidence ($C_{\text{arch}}$) with historical track record ($\gamma_{\text{RLCR}}$):
+Abraxas implements **RLCR Calibration** to blend structural confidence ($C_{\mathrm{arch}}$) with historical track record ($\gamma_{\text{RLCR}}$):
 
-$$\text{Final\_Confidence} = \alpha \cdot C_{\text{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
+$$\mathrm{FinalConfidence} = \alpha \cdot C_{\mathrm{arch}} + (1 - \alpha) \cdot \gamma_{\text{RLCR}}$$
 
 **Variable Breakdown:**
-- $\text{Final\_Confidence}$: The final confidence score emitted to the user.
+- $\mathrm{FinalConfidence}$: The final confidence score emitted to the user.
 - $\alpha$: The architectural weighting factor (set to $0.7$).
-- $C_{\text{arch}}$: The structural confidence (percentage of $M$-paths in agreement).
+- $C_{\mathrm{arch}}$: The structural confidence (percentage of $M$-paths in agreement).
 - $\gamma_{\text{RLCR}}$: The historical accuracy rate from the **Aletheia Calibration Ledger**.
 
 #### 10.2 The Brier Score and Empirical Alignment
 The RLCR value is updated using the **Brier Score**:
 
-$$\text{BS} = (\text{prediction} - \text{outcome})^2$$
+$$\mathrm{BS} = (\mathrm{prediction} - \mathrm{outcome})^2$$
 
 **Variable Breakdown:**
-- $\text{prediction}$: The confidence score (0.0 to 1.0).
-- $\text{outcome}$: The binary outcome (1 for true, 0 for false).
+- $\mathrm{prediction}$: The confidence score (0.0 to 1.0).
+- $\mathrm{outcome}$: The binary outcome (1 for true, 0 for false).
 
 A system is "Well-Calibrated" when the average $\text{BS} < 0.15$.
 
@@ -344,7 +375,7 @@ The Sovereign Brain utilizes a **Deterministic Wrapper** to guarantee a 0% hallu
 **Analysis**: Truth is a derivable result, not a confident token.
 
 #### Case Study 4: The Epistemic Void
-**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\text{internal}}$ $\to$ `[UNCERTAIN]`.
+**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
 **Analysis**: Exhibits **Epistemic Humility**.
 
 ## Part VI: Deployment and the Future
