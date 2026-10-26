@@ -1,4 +1,4 @@
-# Abraxas — The Sovereign Mind
+# Abraxas — The Sovereign Mind ☉ ☽
 
 **💎 THE TRUTH-FIRST ARCHITECTURE** — A Deterministic Framework for Epistemic Sovereignty.
 
@@ -44,7 +44,10 @@ The MCP server is pre-configured for all major environments. Just start your too
 For OpenClaw, use this command: 
 
 ```bash
-openclaw mcp set abraxas_mcp '{\n  \"url\": \"http://localhost:9900/mcp\",\n  \"protocol\": \"http-stream\"\n}'
+openclaw mcp set abraxas_mcp '{
+  "url": "http://localhost:9900/mcp",
+  "protocol": "http-stream"
+}'
 ```
 
 ### 4. Align with the Constitution
@@ -130,8 +133,8 @@ All Sol (waking) output is deterministically labeled by the server:
 ## 🤝 Contributing & Development
 
 Abraxas is a modular system. To contribute:
-1. **Deterministic First**: No \"persona\" prompts; implement logic in the TypeScript MCP server (`/mcp`).
+1. **Deterministic First**: No "persona" prompts; implement logic in the TypeScript MCP server (`/mcp`).
 2. **Truth-First**: Every new feature must include a verification method.
 3. **Sovereign-First**: All output must be routed through the Soter Veto.
 
-**Welcome to the Truth-First era. The Mind is no longer simulating; it is Sovereign. $\unicode{x2640} \unicode{x2641}$**
+**Welcome to the Truth-First era. The Mind is no longer simulating; it is Sovereign. ♀ ♂**
