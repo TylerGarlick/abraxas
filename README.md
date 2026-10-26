@@ -1,4 +1,4 @@
-# Abraxas — The Sovereign Mind $\unicode{x2609} \unicode{x263f}$
+# Abraxas — The Sovereign Mind
 
 **💎 THE TRUTH-FIRST ARCHITECTURE** — A Deterministic Framework for Epistemic Sovereignty.
 
