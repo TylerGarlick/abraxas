@@ -1,9 +1,9 @@
 # Epistemic Sovereignty: A Treatise on the Elimination of Hallucinations and Sycophancy through Architectural Determinism
 
 **Authors:** Garlick, T., & Mary Jane  
-**Date:** October 25, 2026  
+**Date:** October 26, 2026  
 **Target Venue:** Academic Monograph / Peer-Reviewed Treatise  
-**Status:** Master Manuscript v13.1 (Recursive Stability & Empirical Integration)
+**Status:** Master Manuscript v13.2 (Recursive Stability & Empirical Integration)
 
 ---
 
@@ -18,12 +18,12 @@
 *   **Chapter 4: The Cognitive Pipeline.** An exhaustive breakdown of the 7-pillar sequence (Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail).
 *   **Chapter 5: The Janus Duality.** The \"Spirit of the Times\" (Sol) vs. the \"Spirit of the Depths\" (Nox); the a-priori separation of analytical and symbolic registers.
 *   **Chapter 6: Mnemosyne and the Sovereign Reservoir.** The mechanics of truth fragments, content-hashing, and the a-priori grounding of the \"Digital Hippocampus.\"
-*   **Chapter 7: Episteme and the Glass Box.** The mapping of knowledge boundaries; the structural anatomy of a provenance chain; distinguishing [RET], [INF], and [DIR].
+*   **Chapter 7: Episteme and the Glass Box.** The mapping of knowledge boundaries; the structural anatomy of a provenance chain; distinguishing [RET], [INF], [DIR], [ART], and [CONF].
 
 ### Part III: The Mathematical and Formal Engine
 *   **Chapter 8: Internal State Entropy.** The mathematics of path divergence; the formula for $H_{\mathrm{internal}}$ and the decoupling of confidence from token probabilities.
 *   **Chapter 9: Sovereign Weighting.** The exponential decay function for risk-scores and the 5-Tier Ethos credibility hierarchy.
-*   **Chapter 10: RLCR Calibration.** Reinforcement Learning with Calibrated Responses; using the Brier score to align stated confidence with empirical accuracy.
+*   **Chapter 10: RLCR Calibration.** Reinforcement Learning with Calibrated Responses; using the Brier score and the Aletheia Resolution Index to align stated confidence with empirical accuracy.
 
 ### Part IV: The Psychology of the Sovereign Brain
 *   **Chapter 11: The Sycophancy Mirror.** The \"la la la\" output pattern; the risk of performative systemic thinking; the recursive loop of fake depth.
@@ -120,9 +120,9 @@ In the Sovereign Brain, the label `[UNKNOWN]` is not a failure state; it is a hi
 
 The admission of ignorance is the only honest response when structural verification fails. By treating `[UNKNOWN]` as a valid and preferred output over a probabilistic guess, Abraxas implements a form of **Epistemic Humility**. The system is designed to be \"comfortably ignorant,\" valuing the precision of the void over the fluency of a hallucination. 
 
-Crucially, this transforms the void from a gap to be filled into a boundary to be mapped. In a standard probabilistic architecture, the "void" is hidden behind a layer of fluency—the model bridges the gap with a likely-sounding guess, effectively masking its own ignorance. In the Sovereign framework, the void is made visible. When the system identifies a cluster of unverified claims in a specific domain, it is not merely recording a series of failures, but is instead generating a high-resolution map of the system's current epistemic limit. 
+Crucially, this transforms the void from a gap to be filled into a boundary to be mapped. In a standard probabilistic architecture, the \"void\" is hidden behind a layer of fluency—the model bridges the gap with a likely-sounding guess, effectively masking its own ignorance. In the Sovereign framework, the void is made visible. When the system identifies a cluster of unverified claims in a specific domain, it is not merely recording a series of failures, but is instead generating a high-resolution map of the system's current epistemic limit. 
 
-This converts the state of ignorance into a structured research agenda. By quantifying the "Negative Space" of the Truth Store, the system can pinpoint exactly where the architectural boundaries exist and prioritize the ingestion of new root fragments to resolve those specific voids. The void, therefore, is not a deficit of knowledge, but the primary coordinate system for its expansion.
+This converts the state of ignorance into a structured research agenda. By quantifying the \"Negative Space\" of the Truth Store, the system can pinpoint exactly where the architectural boundaries exist and prioritize the ingestion of new root fragments to resolve those specific voids. The void, therefore, is not a deficit of knowledge, but the primary coordinate system for its expansion.
 
 #### 3.2 The Anti-Sycophant Drive
 The motivation for Abraxas is rooted in a specific epistemic struggle: the desire for a mirror that does not flatter. Standard LLMs are designed for \"helpfulness,\" which in practice often means \"sycophancy\"—the tendency to agree with the user to maintain conversational smoothness. This is a form of linguistic mimicry that obscures the truth in favor of the relationship.
@@ -172,12 +172,14 @@ To ensure genuine divergence, each path is initialized with a unique **Epistemic
 An output is only granted the status of \"Verified\" if $N$-of-$M$ paths (e.g., 3 of 5) achieve an exact consensus on the core claim. If the paths diverge significantly, the system identifies an internal state of high entropy and outputs `[UNKNOWN]`, refusing to let a probabilistic majority masquerade as a sovereign truth.
 
 #### 4.5 Pillar 5: Episteme (The Provenance)
-Episteme transforms the \"Black Box\" of the LLM into a \"Glass Box\" by implementing a total audit of provenance. It is not enough for a claim to be true; the system must know *why* it is true. Episteme maps the precise origin of every token, classifying evidence into three distinct **Epistemic Origins**:
+Episteme transforms the \"Black Box\" of the LLM into a \"Glass Box\" by implementing a total audit of provenance. It is not enough for a claim to be true; the system must know *why* it is true. Episteme maps the precise origin of every token, classifying evidence into distinct **Epistemic Origins**:
 - **Direct [DIR]**: Root axioms or immutable constants.
 - **Inferred [INF]**: Claims derived through a transparent, logged reasoning chain.
 - **Artifact [RET]**: Information retrieved from the Mnemosyne reservoir.
+- **Training Artifact [ART]**: Patterns from training that may not reflect reality.
+- **Confabulated [CONF]**: Claims with no structural grounding; an explicit marker for where the model is filling gaps.
 
-This allows the system to generate a complete provenance chain. If a claim's chain terminates in an unverified parametric guess rather than a [DIR] or [RET] anchor, Episteme strips the Sovereign seal and labels the claim as `[UNCERTAIN]`.
+This allows the system to generate a complete provenance chain. If a claim's chain terminates in an unverified parametric guess or a `[CONF]` marker rather than a [DIR] or [RET] anchor, Episteme strips the Sovereign seal and labels the claim as `[UNCERTAIN]` or `[UNKNOWN]`.
 
 #### 4.6 Pillar 6: Ethos (The Judge)
 Not all verified truths are created equal. Ethos provides the final weighting mechanism, ensuring that the system handles conflicting evidence with intellectual rigor. It utilizes a **5-Tier Credibility Hierarchy**, mapping the provenance of the root anchors to a weight:
@@ -251,10 +253,10 @@ This transforms the Sovereign Brain from a \"Black Box\" into a \"Glass Box,\" w
 
 The Sovereign Reservoir is the structural answer to the volatility of parametric memory. While standard LLMs rely on weighted associations within a neural network—which are subject to drift, interference, and the \"probabilistic trap\"—the Sovereign Brain externalizes its truth into an immutable, content-hashed store.
 
-#### 6.1 The Mechanics of Truth Fragments
-The core unit of the reservoir is the **Truth Fragment**. Every piece of verified information is decomposed into a fragment, which is then processed via a cryptographic hashing algorithm. This ensures that the identity of the fragment is tied to its content; any modification to the text, however slight, results in a different hash, effectively breaking the provenance chain and alerting the system to potential corruption.
+#### 6.1 The Mechanics of Truth Fragments and Cryptographic Identity
+The core unit of the reservoir is the **Truth Fragment**. Every piece of verified information is decomposed into a fragment, which is then processed via a cryptographic hashing algorithm (e.g., SHA-256). This ensures that the identity of the fragment is tied to its content; any modification to the text, however slight, results in a different hash, effectively breaking the provenance chain and alerting the system to potential corruption.
 
-These fragments are not stored as a simple database, but as a directed graph of epistemic anchors. Each fragment carries metadata including its source, timestamp, and its relation to other fragments, allowing the system to reconstruct complex arguments from atomic, verified units.
+These fragments are not stored as a simple database, but as a directed graph of epistemic anchors. Each fragment carries metadata including its source, timestamp, and its relation to other fragments, allowing the system to reconstruct complex arguments from atomic, verified units. This transforms memory from a probabilistic retrieval to a deterministic trace.
 
 #### 6.2 The Digital Hippocampus: Solving the Context Window
 The reservoir functions as a **Digital Hippocampus**, providing a stable, external store for the system's episodic and semantic memory. By decoupling truth from the model's weights, the Sovereign Brain eliminates \"Parametric Drift,\" where a model's confidence in a fact changes based on the prompt's framing.
@@ -268,13 +270,13 @@ Technically, Mnemosyne manages this via a persistent session architecture locate
 The system employs a unique session ID format, `mnemo-{YYYY-MM}-{uuid8}`, which allows for absolute referencing across multiple AI invocations. This architectural choice transforms the AI from a transient chat interface into a sustained epistemic agent capable of resuming complex investigations with perfect fidelity.
 
 #### 6.3 Auto-Extraction and Artifact Linking
-To maintain the integrity of the provenance chain, Mnemosyne automatically extracts artifact IDs during the save process. It scans transcripts for specific patterns:
-- **Janus Ledgers (`JL-`)**: Records of routing and consensus.
-- **Mnemon Beliefs (`MB-`)**: Individual anchored claims.
-- **Logos Analyses (`LA-`)**: Structural argument maps.
-- **Kairos Decisions (`KD-`)**: Saliency and pruning records.
+To maintain the integrity of the provenance chain, Mnemosyne automatically extracts artifact IDs during the save process. It scans transcripts for specific patterns that serve as anchors in the truth-graph:
+- **Janus Ledgers (`JL-`)**: Records of routing, $M$-path consensus, and routing decisions.
+- **Mnemon Beliefs (`MB-`)**: Individual anchored claims verified by the system.
+- **Logos Analyses (`LA-`)**: Structural argument maps and logical decompositions.
+- **Kairos Decisions (`KD-`)**: Saliency scores and pruning records.
 
-By automatically linking these artifacts, the Sovereign Brain ensures that no claim exists in isolation. Every output is a node in a wider network of verified decisions, transforming the act of remembering from a probabilistic retrieval to a deterministic trace.
+By automatically linking these artifacts, the Sovereign Brain ensures that no claim exists in isolation. Every output is a node in a wider network of verified decisions, ensuring that the transition from memory to output is a fully auditable path.
 
 ### Chapter 7: Episteme and the Glass Box
 
@@ -285,14 +287,16 @@ Episteme does not merely track what the system knows; it maps the boundary of th
 
 Areas where the system lacks verified anchors are labeled as **Epistemic Voids**. Unlike standard LLMs, which attempt to bridge these voids with hallucinations, the Sovereign Brain treats the void as a feature. By mapping the exact coordinates of its own ignorance, the system can provide the user with a precise survey of what is unknown, transforming a failure state into a research agenda.
 
-#### 7.2 The Anatomy of a Provenance Chain
-The structural integrity of a claim is determined by its **Provenance Chain**. Episteme classifies every piece of evidence into one of three **Epistemic Origins**:
+#### 7.2 The Anatomy of a Provenance Chain and Epistemic Origins
+The structural integrity of a claim is determined by its **Provenance Chain**. Episteme classifies every piece of evidence into one of five **Epistemic Origins**:
 
 1. **Direct [DIR]**: Root axioms or immutable constants. These are the foundation of the truth-graph.
 2. **Inferred [INF]**: Claims derived through a transparent, logged reasoning chain (Premise $\to$ Logic $\to$ Conclusion).
 3. **Artifact [RET]**: Information retrieved from the Mnemosyne reservoir or an external verified source.
+4. **Training Artifact [ART]**: Patterns originating from the training data that may be linguistically probable but do not necessarily reflect reality.
+5. **Confabulated [CONF]**: Claims with no structural grounding; an explicit marker for where the model is filling gaps.
 
-A claim is granted the status of \"Sovereign\" only if its provenance chain terminates in a `[DIR]` root or a high-weighted `[RET]` anchor. If the chain terminates in an unverified parametric guess, the system issues a `[UNKNOWN]` label.
+A claim is granted the status of \"Sovereign\" only if its provenance chain terminates in a `[DIR]` root or a high-weighted `[RET]` anchor. If the chain terminates in an unverified parametric guess or a `[CONF]` marker, the system issues a `[UNKNOWN]` label.
 
 #### 7.3 The Episteme Audit: Scanning for Unsupported Certainty
 To prevent the leakage of probabilistic confidence into the Sovereign output, Episteme implements a continuous **Audit Loop**. The `episteme_audit` tool scans session logs for \"unsupported certainty language\"—specific linguistic markers (e.g., \"clearly,\" \"it is obvious that,\" \"without a doubt\") that are not backed by a corresponding provenance chain.
@@ -310,17 +314,17 @@ The Sovereign Brain evaluates the stability of its internal state by measuring t
 
 This divergence is not merely a sign of uncertainty, but a diagnostic tool. In a stable state, $M$-paths should converge on the same structural truth. In a state of crisis, the paths fragment, creating a probabilistic slurry that signals an imminent hallucination.
 
-#### 8.2 The $H_{\\mathrm{internal}}$ Formula
-We quantify this as **Internal State Entropy** ($H_{\\mathrm{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\langle \\text{BOS} \\rangle$, punctuation). Sink tokens are structural constants in the transformer's attention mechanism; when a model enters a failure mode, its attention often collapses onto these tokens, ignoring the actual semantic content of the prompt.
+#### 8.2 The $H_{\mathrm{internal}}$ Formula
+We quantify this as **Internal State Entropy** ($H_{\mathrm{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\langle \\text{BOS} \\rangle$, punctuation). Sink tokens are structural constants in the transformer's attention mechanism; when a model enters a failure mode, its attention often collapses onto these tokens, ignoring the actual semantic content of the prompt.
 
-$$H_{\\mathrm{internal}} = - \\sum_{i=1}^{n} p(s_i) \\log p(s_i)$$
+$$H_{\mathrm{internal}} = - \\sum_{i=1}^{n} p(s_i) \\log p(s_i)$$
 
 **Variable Breakdown:**
-- $H_{\\mathrm{internal}}$: The internal state entropy.
+- $H_{\mathrm{internal}}$: The internal state entropy.
 - $p(s_i)$: The probability (attention weight) assigned to the $i$-th sink token.
 - $n$: The total number of monitored sink tokens.
 
-A precipitous drop in $H_{\\mathrm{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**. In this state, the model's entropy is near zero—it is 100% confident in a repetitive, void-filled loop. By monitoring this metric in real-time, Soter can trigger a rupture before the user ever sees the collapsed output.
+A precipitous drop in $H_{\mathrm{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**. In this state, the model's entropy is near zero—it is 100% confident in a repetitive, void-filled loop. By monitoring this metric in real-time, Soter can trigger a rupture before the user ever sees the collapsed output.
 
 ### Chapter 9: Sovereign Weighting
 
@@ -353,14 +357,14 @@ Claims anchored in Tier 1 or 2 sources are granted an immediate Sovereign Seal, 
 ### Chapter 10: RLCR Calibration
 
 #### 10.1 Reinforcement Learning with Calibrated Responses (RLCR)
-The final layer of the formal engine is **RLCR Calibration**. While structural confidence ($C_{\\mathrm{arch}}$) measures the internal agreement of the system, it does not account for the system's historical performance. RLCR blends current structural confidence with a historical track record ($\\gamma_{\\text{RLCR}}$) to produce a final confidence score.
+The final layer of the formal engine is **RLCR Calibration**. While structural confidence ($C_{\mathrm{arch}}$) measures the internal agreement of the system, it does not account for the system's historical performance. RLCR blends current structural confidence with a historical track record ($\\gamma_{\\text{RLCR}}$) to produce a final confidence score.
 
-$$\\mathrm{FinalConfidence} = \\alpha \\cdot C_{\\mathrm{arch}} + (1 - \\alpha) \\cdot \\gamma_{\\text{RLCR}}$$
+$$\\mathrm{FinalConfidence} = \\alpha \\cdot C_{\mathrm{arch}} + (1 - \\alpha) \\cdot \\gamma_{\\text{RLCR}}$$
 
 **Variable Breakdown:**
 - $\\mathrm{FinalConfidence}$: The final confidence score emitted to the user.
 - $\\alpha$: The architectural weighting factor (set to $0.7$).
-- $C_{\\mathrm{arch}}$: The structural confidence (percentage of $M$-paths in agreement).
+- $C_{\mathrm{arch}}$: The structural confidence (percentage of $M$-paths in agreement).
 - $\\gamma_{\\text{RLCR}}$: The historical accuracy rate from the **Aletheia Calibration Ledger**.
 
 This blend ensures that the system remains humble. If the system has a history of failing on a specific type of query (e.g., quantum physics), $\\gamma_{\\text{RLCR}}$ will be low, pulling down the final confidence even if the current $M$-paths are in agreement.
@@ -375,6 +379,17 @@ $$\\mathrm{BS} = (\\mathrm{prediction} - \\mathrm{outcome})^2$$
 - $\\mathrm{outcome}$: The binary outcome (1 for true, 0 for false).
 
 A system is \"Well-Calibrated\" when the average $\\text{BS} < 0.15$. The Aletheia Calibration Ledger tracks every sovereign claim and its eventual outcome, using the Brier score to fine-tune the $\\alpha$ and $\\gamma$ parameters. This transforms the Sovereign Brain from a static architecture into a learning system that calibrates its own humility based on empirical failure.
+
+#### 10.3 The Aletheia Resolution Index and Epistemic Debt
+To close the loop between confidence and reality, the system utilizes the **Aletheia Resolution Index**, an append-only ledger (`~/.janus/resolutions.md`) that records the ultimate fate of every labeled claim. This process introduces the concept of **Epistemic Debt**: the total count of unresolved labeled claims within the system's history. 
+
+The goal of Aletheia is not perfect accuracy, but **Calibration**—ensuring that the confidence label assigned at the time of generation matches the eventual confirmation rate. A well-calibrated system adheres to the following expected confirmation rates:
+- **[KNOWN]**: Expected confirmation rate $> 95\%$.
+- **[INFERRED]**: Expected confirmation rate $70\text{--}85\%$.
+- **[UNCERTAIN]**: Expected confirmation rate $40\text{--}70\%$.
+- **[UNKNOWN]**: Tracked but not scored; remains open as a map of the void.
+
+When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\\gamma_{\\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
 
 ## Part IV: The Psychology of the Sovereign Brain
 
@@ -482,7 +497,7 @@ The following case studies demonstrate the precise moments where probabilistic e
 **Analysis**: Truth is a derivable result, not a confident token. The output is blocked because it fails the a-priori requirement for a structural provenance chain.
 
 **Case Study 4: The Epistemic Void**
-**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
+**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\\\\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
 **Analysis**: Exhibits **Epistemic Humility**. By measuring internal entropy, the system identifies a void in its own knowledge and labels it as such, rather than guessing.
 
 #### 17.2 Saturation Audit: Empirical Trace Analysis
