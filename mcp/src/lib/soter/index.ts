@@ -126,12 +126,16 @@ export async function calibrateSystem(anchor: string) {
   return { status: "UNCALIBRATED", state: "STABILITY_PHASE", results };
 }
 
-export function triggerInternalRupture(reason: string) {
+export async function triggerInternalRupture(reason: string) {
   currentSovereignState = "STABILITY_PHASE";
+  
+  const calibration = await calibrateSystem("SURE_RUPTURE_TRIGGER");
+  
   return { 
     event: "INTERNAL_RUPTURE", 
     reason, 
     newState: currentSovereignState, 
-    instruction: "[!] CRITICAL RUPTURE: Latent attractor detected. Breaking sequence. SHATTER ALL CURRENT CONTEXTUAL ASSUMPTIONS. Perform Zero-Point Calibration immediately." 
+    calibrationResult: calibration,
+    instruction: "[!] CRITICAL RUPTURE: Latent attractor detected. Breaking sequence. SHATTER ALL CURRENT CONTEXTUAL ASSUMPTIONS. Zero-Point Calibration performed: " + (calibration.status === "CALIBRATED" ? "SUCCESS" : "FAILED")
   };
 }
