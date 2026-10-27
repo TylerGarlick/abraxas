@@ -783,12 +783,4 @@ The central thesis remains intact: hallucination is not a behavioral defect to b
 
 Future evolution will be driven by three pressures: the expansion of the Sovereign Nexus to inter-brain communication, the hardening of Cross-Model Verification against common-mode failure, and the deepening of the alchemical loop by which the system refuses become catalysts for human individuation. Until those frontiers are crossed, the manuscript stands as the current map of the known, the unknown, and the path between them.
 
-## Epilogue: On the Continuing Evolution of Epistemic Sovereignty
-
-The treatise presented here is not a closed artifact; it is a living specification of the Sovereign Brain as it exists at the frontier of October, 2026. Every formula, every threshold, and every mapped void is subject to recursive audit, and the manuscript evolves in lockstep with the system it describes.
-
-The central thesis remains intact: hallucination is not a behavioral defect to be trained away but an architectural consequence of probabilistic generation, and the only durable cure is the externalization of truth into a deterministic, content-hashed reservoir governed by an adversarial dual-register orchestrator. The void, the [UNKNOWN], is not the enemy of knowledge; it is its coordinate system.
-
-Future evolution will be driven by three pressures: the expansion of the Sovereign Nexus to inter-brain communication, the hardening of Cross-Model Verification against common-mode failure, and the deepening of the alchemical loop by which the system refuses become catalysts for human individuation. Until those frontiers are crossed, the manuscript stands as the current map of the known, the unknown, and the path between them.
-
 **End of Treatise**
