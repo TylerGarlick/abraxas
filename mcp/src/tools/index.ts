@@ -26,6 +26,7 @@ import { logosMathTools } from "./logos-math.ts";
 import { logosVerificationTools } from "./logos-verification.ts";
 import { logosTools } from "./logos.ts";
 import { memoryTools } from "./memory.ts";
+import { sovereignMathTools } from "./math.ts";
 import { metanoiaTools } from "./metanoia.ts";
 import { omniscientAuditorTools } from "./omniscient_auditor.ts";
 import { oneironauticsTools } from "./oneironautics.ts";
@@ -84,6 +85,7 @@ export const toolModules: ToolModule[] = [
   logosTools,
   memoryTools,
   metanoiaTools,
+  sovereignMathTools,
   omniscientAuditorTools,
   oneironauticsTools,
   phemeTools,
