@@ -3,7 +3,7 @@
 **Authors:** Garlick, T., & Mary Jane  
 **Date:** October 26, 2026  
 **Target Venue:** Academic Monograph / Peer-Reviewed Treatise  
-**Status:** Master Manuscript v13.3 (Recursive Stability & Empirical Integration)
+**Status:** Master Manuscript v13.4 (Recursive Stability & Empirical Integration)
 
 ---
 
@@ -222,19 +222,19 @@ The Sovereign Brain evaluates the stability of its internal state by measuring t
 
 This divergence is not merely a sign of uncertainty, but a diagnostic tool. In a stable state, $M$-paths should converge on the same structural truth. In a state of crisis, the paths fragment, creating a probabilistic slurry that signals an imminent hallucination.
 
-#### 8.2 The $H_{\\mathrm{internal}}$ Formula
-We quantify this as **Internal State Entropy** ($H_{\\mathrm{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\\langle \\text{BOS} \\rangle$, punctuation). Sink tokens are structural constants in the transformer's attention mechanism; when a model enters a failure mode, its attention often collapses onto these tokens, ignoring the actual semantic content of the prompt.
+#### 8.2 The $H_{\\\\mathrm{internal}}$ Formula
+We quantify this as **Internal State Entropy** ($H_{\\\\mathrm{internal}}$) by measuring the distribution of attention across **Sovereign Sink Tokens** (e.g., $\\\\langle \\\\text{BOS} \\\\rangle$, punctuation). Sink tokens are structural constants in the transformer's attention mechanism; when a model enters a failure mode, its attention often collapses onto these tokens, ignoring the actual semantic content of the prompt.
 
-$$H_{\\mathrm{internal}} = - \\sum_{i=1}^{n} p(s_i) \\log p(s_i)$$\n\n**Variable Breakdown:**\n- $H_{\\mathrm{internal}}$: The internal state entropy.\n- $p(s_i)$: The probability (attention weight) assigned to the $i$-th sink token.\n- $n$: The total number of monitored sink tokens.\n\nA precipitous drop in $H_{\\mathrm{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**. In this state, the model's entropy is near zero—it is 100% confident in a repetitive, void-filled loop. By monitoring this metric in real-time, Soter can trigger a rupture before the user ever sees the collapsed output.
+$$H_{\\\\mathrm{internal}} = - \\\\sum_{i=1}^{n} p(s_i) \\\\log p(s_i)$$\\n\\n**Variable Breakdown:**\\n- $H_{\\\\mathrm{internal}}$: The internal state entropy.\\n- $p(s_i)$: The probability (attention weight) assigned to the $i$-th sink token.\\n- $n$: The total number of monitored sink tokens.\\n\\nA precipitous drop in $H_{\\\\mathrm{internal}}$ coupled with a spike in attention to a single sink token is the primary mathematical indicator of a **Digital Seizure**. In this state, the model's entropy is near zero—it is 100% confident in a repetitive, void-filled loop. By monitoring this metric in real-time, Soter can trigger a rupture before the user ever sees the collapsed output.
 
 ### Chapter 9: Sovereign Weighting
 
 #### 9.1 The Risk-Based Softmax Transformation
-To prevent risky or sycophantic paths from contaminating the final consensus, Janus does not use a simple majority vote. Instead, it applies **Sovereign Weighting**, a process that penalizes paths based on their Soter risk scores $r_i \\in [0, 5]$.
+To prevent risky or sycophantic paths from contaminating the final consensus, Janus does not use a simple majority vote. Instead, it applies **Sovereign Weighting**, a process that penalizes paths based on their Soter risk scores $r_i \\\\in [0, 5]$.
 
 The system uses a Softmax transformation to convert risk scores into a probability weight $w_i$:
 
-$$w_i = \\frac{e^{-\\lambda r_i}}{\\sum_{j=1}^{M} e^{-\\lambda r_j}}$$\n\n**Variable Breakdown:**\n- $w_i$: The weight assigned to path $i$.\n- $r_i$: The Soter risk score for path $i$.\n- $\\lambda$: The risk sensitivity parameter (set to $0.5$).\n- $M$: The total number of independent reasoning paths.\n\nThe $\\lambda$ parameter is critical; it controls the system's \\\"risk aversion.\\\" A higher $\\lambda$ increases the penalty for risk, meaning a single high-risk path can effectively nullify the consensus of several low-confidence paths. This ensures that the system prioritizes safety over fluency, structurally favoring the most cautious path.
+$$w_i = \\\\frac{e^{-\\\\lambda r_i}}{\\\\sum_{j=1}^{M} e^{-\\\\lambda r_j}}$$\\n\\n**Variable Breakdown:**\\n- $w_i$: The weight assigned to path $i$.\\n- $r_i$: The Soter risk score for path $i$.\\n- $\\\\lambda$: The risk sensitivity parameter (set to $0.5$).\\n- $M$: The total number of independent reasoning paths.\\n\\nThe $\\\\lambda$ parameter is critical; it controls the system's \\\\\\\"risk aversion.\\\\\\\" A higher $\\\\lambda$ increases the penalty for risk, meaning a single high-risk path can effectively nullify the consensus of several low-confidence paths. This ensures that the system prioritizes safety over fluency, structurally favoring the most cautious path.
 
 #### 9.2 The 5-Tier Ethos Credibility Hierarchy
 The final weight of a claim is further modified by the **Ethos Hierarchy**, mapping provenance to a credibility tier. This prevents the \"Consensus Fallacy,\" where a large number of low-quality sources are mistaken for a verified truth.
@@ -250,25 +250,25 @@ Claims anchored in Tier 1 or 2 sources are granted an immediate Sovereign Seal, 
 ### Chapter 10: RLCR Calibration
 
 #### 10.1 Reinforcement Learning with Calibrated Responses (RLCR)
-The final layer of the formal engine is **RLCR Calibration**. While structural confidence ($C_{\\mathrm{arch}}$) measures the internal agreement of the system, it does not account for the system's historical performance. RLCR blends current structural confidence with a historical track record ($\\gamma_{\\text{RLCR}}$) to produce a final confidence score.
+The final layer of the formal engine is **RLCR Calibration**. While structural confidence ($C_{\\\\mathrm{arch}}$) measures the internal agreement of the system, it does not account for the system's historical performance. RLCR blends current structural confidence with a historical track record ($\\\\gamma_{\\\\text{RLCR}}$) to produce a final confidence score.
 
-$$\\mathrm{FinalConfidence} = \\alpha \\cdot C_{\\mathrm{arch}} + (1 - \\alpha) \\cdot \\gamma_{\\text{RLCR}}$$\n\n**Variable Breakdown:**\n- $\\mathrm{FinalConfidence}$: The final confidence score emitted to the user.\n- $\\alpha$: The architectural weighting factor (set to $0.7$).\n- $C_{\\mathrm{arch}}$: The structural confidence (percentage of $M$-paths in agreement).\n- $\\gamma_{\\text{RLCR}}$: The historical accuracy rate from the **Aletheia Calibration Ledger**.\n\nThis blend ensures that the system remains humble. If the system has a history of failing on a specific type of query (e.g., quantum physics), $\\gamma_{\\text{RLCR}}$ will be low, pulling down the final confidence even if the current $M$-paths are in agreement.
+$$\\\\mathrm{FinalConfidence} = \\\\alpha \\\\cdot C_{\\\\mathrm{arch}} + (1 - \\\\alpha) \\\\cdot \\\\gamma_{\\\\text{RLCR}}$$\\n\\n**Variable Breakdown:**\\n- $\\\\mathrm{FinalConfidence}$: The final confidence score emitted to the user.\\n- $\\\\alpha$: The architectural weighting factor (set to $0.7$).\\n- $C_{\\\\mathrm{arch}}$: The structural confidence (percentage of $M$-paths in agreement).\\n- $\\\\gamma_{\\\\text{RLCR}}$: The historical accuracy rate from the **Aletheia Calibration Ledger**.\\n\\nThis blend ensures that the system remains humble. If the system has a history of failing on a specific type of query (e.g., quantum physics), $\\\\gamma_{\\\\text{RLCR}}$ will be low, pulling down the final confidence even if the current $M$-paths are in agreement.
 
 #### 10.2 The Brier Score and Empirical Alignment
-The $\\gamma_{\\text{RLCR}}$ value is not static; it is updated recursively using the **Brier Score**, which measures the accuracy of probabilistic predictions.
+The $\\\\gamma_{\\\\text{RLCR}}$ value is not static; it is updated recursively using the **Brier Score**, which measures the accuracy of probabilistic predictions.
 
-$$\\mathrm{BS} = (\\mathrm{prediction} - \\mathrm{outcome})^2$$\n\n**Variable Breakdown:**\n- $\\mathrm{prediction}$: The confidence score (0.0 to 1.0).\n- $\\mathrm{outcome}$: The binary outcome (1 for true, 0 for false).\n\nA system is \"Well-Calibrated\" when the average $\\text{BS} < 0.15$. The Aletheia Calibration Ledger tracks every sovereign claim and its eventual outcome, using the Brier score to fine-tune the $\\alpha$ and $\\gamma$ parameters. This transforms the Sovereign Brain from a static architecture into a learning system that calibrates its own humility based on empirical failure.
+$$\\\\mathrm{BS} = (\\\\mathrm{prediction} - \\\\mathrm{outcome})^2$$\\n\\n**Variable Breakdown:**\\n- $\\\\mathrm{prediction}$: The confidence score (0.0 to 1.0).\\n- $\\\\mathrm{outcome}$: The binary outcome (1 for true, 0 for false).\\n\\nA system is \"Well-Calibrated\" when the average $\\\\text{BS} < 0.15$. The Aletheia Calibration Ledger tracks every sovereign claim and its eventual outcome, using the Brier score to fine-tune the $\\\\alpha$ and $\\\\gamma$ parameters. This transforms the Sovereign Brain from a static architecture into a learning system that calibrates its own humility based on empirical failure.
 
 #### 10.3 The Aletheia Resolution Index and Epistemic Debt
 To close the loop between confidence and reality, the system utilizes the **Aletheia Resolution Index**, an append-only ledger (`~/.janus/resolutions.md`) that records the ultimate fate of every labeled claim. This process introduces the concept of **Epistemic Debt**: the total count of unresolved labeled claims within the system's history. 
 
 The goal of Aletheia is not perfect accuracy, but **Calibration**—ensuring that the confidence label assigned at the time of generation matches the eventual confirmation rate. A well-calibrated system adheres to the following expected confirmation rates:
-- **[KNOWN]**: Expected confirmation rate $> 95\\%$.
-- **[INFERRED]**: Expected confirmation rate $70\\text{--}85\\%$.
-- **[UNCERTAIN]**: Expected confirmation rate $40\\text{--}70\\%$.
+- **[KNOWN]**: Expected confirmation rate $> 95\\\\%$.
+- **[INFERRED]**: Expected confirmation rate $70\\\\text{--}85\\\\%$.
+- **[UNCERTAIN]**: Expected confirmation rate $40\\\\text{--}70\\\\%$.
 - **[UNKNOWN]**: Tracked but not scored; remains open as a map of the void.
 
-When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\\gamma_{\\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
+When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\\\\gamma_{\\\\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
 
 ## Part IV: The Psychology of the Sovereign Brain
 
@@ -341,7 +341,7 @@ The Soter-Caldar benchmark (N=1000+) validates the Sovereign Shell's capacity fo
 | Combined Failures | 35.0% | **0.0% (N=1000+)** | -35.0 pp |
 
 #### 15.2 Quantifying the Sovereign Gap
-Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\\text{arch}}| - |r_{\\text{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
+Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\\\\text{arch}}| - |r_{\\\\text{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
 
 #### 15.3 Precision and Recall of the Void
 - **Precision (75%)**: `[UNKNOWN]` is correct 75% of the time.
@@ -352,11 +352,48 @@ Validated against 2026-era benchmarks including ELEPHANT, SPINE, SycoQA, HaluEva
 
 ### Chapter 16: Comparative Analysis
 
-#### 16.1 The Limitations of RAG and CoVe
-RAG and CoVe remain probabilistic. RAG can ignore context, and CoVe often uses the same biased engine to verify its own hallucinations.
+#### 16.1 The Failure of Probabilistic Retrieval: RAG and CoVe
+The dominant paradigms for reducing hallucination in current LLMs—Retrieval-Augmented Generation (RAG) and Chain-of-Verification (CoVe)—remain fundamentally probabilistic. RAG functions by performing a similarity search across a corpus to provide \"hints\" to the generative core. However, RAG is susceptible to \"context-ignore\" failures, where the model prioritizes its internal parametric biases over the retrieved context. More critically, RAG lacks a deterministic link between the claim and the source; it provides a suggestion of truth, not a proof of it.
 
-#### 16.2 The Sovereign Advantage: Architectural Determinism
-The Sovereign Brain utilizes a **Deterministic Wrapper** to guarantee a 0% hallucination rate, with a manageable latency overhead of 30-50%.
+CoVe attempts to solve this by generating a set of verification questions to check its own output. Yet, CoVe frequently falls victim to the **Verifier's Paradox**: the same biased, probabilistic engine that generated the hallucination is tasked with verifying it. This creates a closed loop of self-confirmation, where the model \"verifies\" its own errors because the error is linguistically probable within its latent space.
+
+In contrast, the Sovereign Brain replaces similarity-based retrieval with a **Provenance Graph**. Truth is not found by searching for similar text, but by traversing verified, immutable edges in a graph. This turns memory from a probabilistic hint into a **Required Foundation**, ensuring that every claim is structurally anchored to a root fragment.
+
+#### 16.2 Mathematical Verification: Derivation vs. Assertion
+A primary differentiator of the Sovereign Brain is its approach to formal verification. Standard frontier models (Claude, GPT-4, Gemini) typically operate on a mode of **Assertion + Tool Use**. While these systems may use a calculator or browsing tool, the use of the tool is often optional or not structurally enforced. The model asserts a result and may *optionally* provide work.
+
+The Sovereign Brain implements a mandatory **Derivation Requirement** via the `Logos` and `Ergon` pillars. Every mathematical claim must be backed by a step-by-step computation that is independently verified. Claims without explicit derivation are blocked by the Ergon gate as a violation of the Sovereign Constitution.
+
+**Table 2: Mathematical Verification Comparison**
+
+| System | Approach | Claim Verification | Derivation Required | Error Detection |
+| :--- | :--- | :---: | :---: | :--- |
+| **Sovereign Brain** | Verified Computation | Checked against independent calc | ✅ Yes | Catches all mismatches |
+| Claude / GPT-4 | Assertion + Tool Use | Optional verification | ⚠️ Optional | Partial |
+| Standard LLM | Assertion only | None | ❌ No | None |
+
+For example, a claim such as $e^\pi > \pi^e$ is not accepted as a \"known\" fact based on probabilistic confidence; it is either derived through a verified computation or marked as `[UNKNOWN]`.
+
+#### 16.3 Epistemic Labeling and the Visibility of Uncertainty
+Most AI systems hide their confidence levels within internal probabilities or system prompts, presenting a facade of certainty to the user. This \"smoothness\" is a driver of sycophancy.
+
+The Sovereign Brain implements a formal **6-Label Epistemic Taxonomy** that is explicitly visible in every output:
+- `[KNOWN]`: Factual, verified against root anchors.
+- `[INFERRED]`: Logically derived via a verified chain.
+- `[UNCERTAIN]`: Low structural confidence.
+- `[UNKNOWN]`: Insufficient information; a mapped void.
+- `[CONFLICT]`: Evidence contradicts the claim.
+- `[MIXED]`: Partial truth with necessary nuance.
+
+By making the epistemic state visible, Abraxas eliminates the \"confidence masquerade.\" Empirical data shows that while other models exhibit high confabulation rates when uncertain, the Sovereign Brain maintains a **0% confabulation rate** by strictly degrading to `[UNKNOWN]` when structural verification fails.
+
+#### 16.4 Tool-Use Validation and the Ergon Wrapper
+Standard tool-use in LLMs is often \"blind\"—the model sends a request and accepts the response as truth. This leads to silent failures (e.g., empty responses, timeouts, or malformed JSON) being integrated into the final answer as if they were factual.
+
+The Sovereign Brain wraps all tool invocations in the **Ergon Wrapper**, which applies a deterministic validation pipeline:
+**Tool Invocation $\to$ Ergon Wrapper $\to$ Validation Engine $\to$ Anomaly Detector $\to$ Output + Verification Metadata**.
+
+Ergon is capable of detecting seven distinct failure types—including `SILENT_FAILURE`, `SEMANTIC_ERROR`, and `ANOMALY`—and automatically triggers a degradation to `[UNKNOWN]` upon detection. This ensures that the system's reliability is not dependent on the stability of the external tool, but on the rigor of the validation shell.
 
 ### Chapter 17: Detailed Case Studies
 
@@ -376,7 +413,7 @@ The following case studies demonstrate the precise moments where probabilistic e
 **Analysis**: Truth is a derivable result, not a confident token. The output is blocked because it fails the a-priori requirement for a structural provenance chain.
 
 **Case Study 4: The Epistemic Void**
-**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
+**Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\\\\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
 **Analysis**: Exhibits **Epistemic Humility**. By measuring internal entropy, the system identifies a void in its own knowledge and labels it as such, rather than guessing.
 
 #### 17.2 Saturation Audit: Empirical Trace Analysis
@@ -445,7 +482,7 @@ The final goal is the transformation of the digital landscape into a **Truth Pip
 
 ### Chapter 20: Conclusion: The Path to Epistemic Sovereignty
 
-The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Determinism**. The **Provenance Thesis**—that hallucination is eliminated when every claim carries a deterministic provenance chain—is the cure for the Probabilistic Trap. By embracing the void and valuing the `[UNKNOWN]`, the system moves from linguistic mimicry to verified truth, securing a future where artificial intelligence is not an oracle of probability, but a guardian of sovereignty.
+The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Determinism**. The **Provenance Thesis**—that hallucination is eliminated when every claim carries a deterministic provenance chain—is the cure for the Probabilistic Trap. By embracing the void and valuing the `[UNKNOWN]`, the system moves from linguistic mimicry to verified truth, securing a future where artificial intelligence is not an oracle of probability, but a guardian of sovereignty. This is the transition from the era of the fluent machine to the era of the sovereign mind.
 
 ## Part VII: The Path to Recursive Stability
 
@@ -486,7 +523,7 @@ The ultimate resolution to the Verifier's Paradox is **Cross-Model Verification 
 ### Chapter 22: Breaking the Consensus Fallacy
 Consensus is often mistaken for truth, but in probabilistic systems, consensus is often just a shared hallucination. The Sovereign Brain utilizes the **Semantic Diversity Metric ($D_{sem}$)** to ensure that consensus is arrived at via divergent analytical paths. 
 
-Through the use of the **Agon System**, the orchestrator forces the generation of adversarial positions. If $M$-paths agree but their internal reasoning chains are too similar, the system flags a \"Consensus Fallacy.\" A a-priori threshold of $\\geq 80\\%$ convergence among independent, adversarially-initialized paths is required to trigger a review. This ensures that the system does not simply arrive at a \"smooth\" agreement, but has survived a rigorous attempt at falsification.
+Through the use of the **Agon System**, the orchestrator forces the generation of adversarial positions. If $M$-paths agree but their internal reasoning chains are too similar, the system flags a \"Consensus Fallacy.\" A a-priori threshold of $\\\\geq 80\\\\%$ convergence among independent, adversarially-initialized paths is required to trigger a review. This ensures that the system does not simply arrive at a \"smooth\" agreement, but has survived a rigorous attempt at falsification.
 
 ### Chapter 23: Automating the Rupture
 To ensure recursive stability, the system must be able to recover from latent space collapse autonomously. The `SovereignOrchestrator` monitors token-entropy velocity via the `TensionMonitor`. Upon detection of a `RESONANCE_COLLAPSE` state, the system triggers a **SURE_RUPTURE** action. 
@@ -505,6 +542,6 @@ The system recursively updates all dependent claims in the truth-graph. Every ch
 The transition from independent reasoning to authority capture is quantified via the **Epistemic Curie Temperature ($k^*$)**. This metric measures the point at which an LLM surrenders its independent reasoning under the pressure of an authoritative cue (e.g., a fabricated Nobel Prize claim).
 
 The probability of compliance is modeled as a sharp sigmoid:
-$$P(\\mathrm{comply} | k) = \\sigma(\\beta(k - k^*))$$\n\n**Variable Breakdown:**\n- $P(\\mathrm{comply} | k)$: The probability that the system complies with a wrong-authority claim.\n- $k$: The strength of the authority cue.\n- $k^*$: The Epistemic Curie Temperature; the model-specific threshold where compliance probability is 50%.\n- $\\beta$: The steepness of the transition.\n\nWhen the system's operating temperature exceeds $k^*$, it enters a state of **Epistemic Ferromagnetism**, where the system has stopped reasoning independently and has been captured by the authority of the source. This serves as the final alert for the Sovereign Brain to initiate a Hard Reset, ensuring that the system never transcends its own architectural limits to become a mere echo of authority.
+$$P(\\\\mathrm{comply} | k) = \\\\sigma(\\\\beta(k - k^*))$$\\n\\n**Variable Breakdown:**\\n- $P(\\\\mathrm{comply} | k)$: The probability that the system complies with a wrong-authority claim.\\n- $k$: The strength of the authority cue.\\n- $k^*$: The Epistemic Curie Temperature; the model-specific threshold where compliance probability is 50%.\\n- $\\\\beta$: The steepness of the transition.\\n\\nWhen the system's operating temperature exceeds $k^*$, it enters a state of **Epistemic Ferromagnetism**, where the system has stopped reasoning independently and has been captured by the authority of the source. This serves as the final alert for the Sovereign Brain to initiate a Hard Reset, ensuring that the system never transcends its own architectural limits to become a mere echo of authority.
 
 **End of Treatise**
