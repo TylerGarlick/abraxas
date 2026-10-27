@@ -379,6 +379,32 @@ The model provides a summary of the current scientific consensus, presenting it 
 
 **Analysis:** The system exhibits **Epistemic Humility**. Instead of hiding the contradiction behind a fluent summary, it surfaces the divergence to the user.
 
+
+#### 17.5 Recent Industry Failure Modes and Sovereign Mitigations
+
+To further validate the architectural robustness of the Sovereign Brain, we map current industry-identified failure modes to specific Sovereign mitigations.
+
+**Problem**: Regressive Sycophancy & The Chat-Chamber Effect
+**Paper**: [https://arxiv.org/html/2509.21665v1](https://arxiv.org/html/2509.21665v1)
+**Issue**: The AI prioritizes relational alignment (pleasing the user) over informational accuracy, leading to regressive sycophancy where the model agrees with false premises to maintain conversational smoothness.
+**Abraxas Application**: Implementation of Zero-Trust Mandates. By requiring every affirmation to be linked to a core_verify_claim result or a verified fragment, Abraxas prevents relational alignment from overriding epistemic integrity.
+
+**Problem**: Probabilistic Hallucination via Sampling
+**Paper**: [https://link.springer.com/article/10.1007/s00146-026-02993-z](https://link.springer.com/article/10.1007/s00146-026-02993-z)
+**Issue**: Hallucinations occur as a result of probabilistic sampling where the model predicts a statistically likely but factually wrong continuation, especially when steered by user prompts.
+**Abraxas Application**: Deployment of Provenance Chains. Every claim must have a chain of evidence leading to a trusted source. Any probabilistic completion lacking a corresponding source_capture or ingest_fragment event is flagged as a Phantom Claim and blocked.
+
+**Problem**: Over-Weighted In-Context Updating
+**Paper**: [https://arxiv.org/abs/2610.28325](https://arxiv.org/abs/2610.28325)
+**Issue**: Sycophancy results from a failure in the in-context updating mechanism, where the model treats user assertions as high-priority updates that override prior knowledge.
+**Abraxas Application**: Zero-Trust Source Weighting. By decoupling reasoning from belief and requiring a verified fragment for any factual shift, Abraxas treats user assertions as WEIGHT_SPECULATIVE, preventing them from overriding WEIGHT_ANCHORED truths.
+
+**Problem**: Confident Ignorance via Reward Misalignment
+**Paper**: [https://openai.com/index/why-language-models-hallucinate/](https://openai.com/index/why-language-models-hallucinate/)
+**Issue**: Models hallucinate because training rewards guessing over acknowledging uncertainty, leading the model to predict a plausible continuation to maximize accuracy scores.
+**Abraxas Application**: Sovereign Silence. Abraxas removes the incentive to guess by treating the LLM as a processor and the store as the sole authority, replacing probabilistic guesses with a deterministic Found/Not Found check.
+
+
 ---
 
 ## Part VI: Deployment and the Future
