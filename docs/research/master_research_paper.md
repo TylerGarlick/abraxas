@@ -223,7 +223,15 @@ Mnemosyne functions as a \"Digital Hippocampus,\" providing a stable, immutable 
 #### 6.3 The Sovereign Vault and Root Anchors
 The reservoir is organized into a hierarchy of **Root Anchors** and derived fragments. Root Anchors are the foundational axioms of the system—verified ground truths that serve as the terminal points of every provenance chain. The Sovereign Vault manages the ingestion of these anchors, ensuring that only vetted, high-Ethos data is committed to the reservoir.
 
-### Chapter 7: Episteme and the Glass Box
+#### 6.4 Fragment Lifecycle and Content-Hashed Immutability
+The creation of a fragment is transactional. The `ingest_fragment` operation computes $H_f$, verifies the referenced $S_{id}$ against the Sovereign Vault, and commits the fragment only when the Sovereign directory hash matches the expected root. Once committed, the fragment enters an append-only log. Alteration is prohibited; updates to knowledge surface as new fragments with new hashes, connected by a `supersedes` edge that preserves the full lineage of the prior claim.
+
+#### 6.5 Retrieval, Saliency, and $M$-Path Divergence
+Retrieval is not similarity search. Mnemosyne executes a **Saliency Filter** during the Kairos pass, scoring each fragment via the Sovereign Weight normalized by the `ethos_weight` baseline. The filter prunes noise, feeding the surviving fragments into the Janus $M$-path seed. Because each path begins from the identical content-hashed evidence but receives adversarial prompt priors, any divergence in their conclusions is a genuine epistemic signal rather than a shared hallucination.
+
+This closes the Mnemosyne boundary: the digital hippocampus does not simulate memory, it anchors the architecture to verifiable truth.
+
+### Chapter 7: Episteme and the Glass Box"
 
 If Mnemosyne is the memory, Episteme is the map. Episteme transforms the \"Black Box\" of AI reasoning into a **Glass Box** by making the exact origin and status of every claim visible.
 
