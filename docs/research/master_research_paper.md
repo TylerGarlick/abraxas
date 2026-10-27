@@ -3,7 +3,7 @@
 **Authors:** Garlick, T., & Mary Jane  
 **Date:** October 26, 2026  
 **Target Venue:** Academic Monograph / Peer-Reviewed Treatise  
-**Status:** Master Manuscript v13.5 (Structural Expansion & Formal Integration)
+**Status:** Master Manuscript v13.6 (Structural Expansion & Formal Integration)
 
 ---
 
@@ -145,85 +145,114 @@ This \"disciplined ignorance\" transforms the AI from an oracle into a survey to
 ### Chapter 4: The Cognitive Pipeline
 The Sovereign Brain is not a single model, but a deterministic orchestration of specialized epistemic agents. The transition from a probabilistic output to a verified claim is managed by the **Cognitive Pipeline**, coordinated by the `SovereignOrchestrator`. This pipeline is designed as a \"Sovereign Shell\" that prevents any unverified claim from reaching the user. The sequence is: **Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail Monitor**.
 
-Soter initiates the process by auditing the prompt for sycophancy traps and resonance risks. If the input is \"safe,\" it passes to Mnemosyne, which retrieves a set of immutable, content-hashed truth fragments relevant to the query. Kairos then acts as the epistemic sieve, pruning the retrieved set to identify the most salient fragments, effectively reducing the search space to the critical \"opportune moment\" of evidence.
-
-The Janus Orchestrator then routes the data. Sol (the analytical face) demands provenance and rejects any fragment without a root anchor, while Nox (the symbolic face) uses the fragments to synthesize a high-fidelity linguistic proposal. This proposal is passed to Episteme, which maps the exact provenance chain for every claim made, ensuring the \"Glass Box\" property. Ethos then weights these claims based on the historical reliability of the source fragments. Finally, the Guardrail Monitor performs a deterministic audit against the Sovereign Constitution, blocking any claim that fails the derivation requirement or contains an unverified assertion.
+1. **Soter (Risk Sensing)**: The first line of defense. Soter monitors for sycophancy traps, attention sinks, and stochastic risk, assigning a risk-score $R \in [0, 5]$.
+2. **Mnemosyne (Grounding)**: The system retrieves immutable, content-hashed truth fragments from the Sovereign Reservoir, bypassing the model's parametric memory.
+3. **Kairos (Relevance Filter)**: Kairos prunes the retrieved context, removing noise and ensuring only the most salient fragments are passed to the generative core.
+4. **Janus (Orchestration)**: Janus manages the Sol/Nox duality, spawning multiple independent reasoning paths and enforcing a deterministic consensus gate.
+5. **Episteme (Provenance Mapping)**: Every claim is traced to its origin, distinguishing between retrieved facts, logical inferences, and training artifacts.
+6. **Ethos (Credibility Weighting)**: Truth is weighted by the historical reliability of the source using the 5-Tier Ethos hierarchy.
+7. **Guardrail Monitor (Final Audit)**: A final audit ensures the output adheres to the Sovereign Constitution before the output is sealed and emitted.
 
 ### Chapter 5: The Janus Duality
-The Janus Orchestrator is the critical threshold where the system manages the tension between intuition and verification. This is operationalized as the **Janus Duality**, a strict separation of the **Spirit of the Times (Sol)** and the **Spirit of the Depths (Nox)**.
+The Janus Orchestrator is the central nervous system of Abraxas, tasked with resolving the tension between intuition and verification. This is achieved through a strict architectural bifurcation known as the **Janus Duality**.
 
-Sol represents the observing ego and the register of analytical provenance. Sol's function is exclusively analytical; it demands content-hashed fragments from Mnemosyne and refuses any claim that cannot be traced to a root anchor. Sol is the face of \"Disciplined Ignorance,\" where the absence of evidence is treated as a structural truth. Sol's role is to act as the ultimate skeptic, the filter through which all intuition must pass before it is granted the status of knowledge.
+#### 5.1 The Sol and Nox Registers
+The system operates via two fundamentally different cognitive registers:
+- **Sol (The Analytical/Waking Face)**: The register of provenance. Sol demands structural proof, refuses any claim that cannot be traced to a root anchor, and embodies 'Disciplined Ignorance.' It is the ultimate skeptic.
+- **Nox (The Symbolic/Dreaming Face)**: The register of synthesis and intuition. Nox navigates the latent space to propose hypotheses. While creative, Nox is strictly prohibited from emitting claims as 'Known' without Sol's verification.
 
-Nox represents the generative engine and the register of symbolic synthesis. Nox is where the system navigates the latent space, identifying patterns and proposing hypotheses. However, Nox is architecturally barred from emitting claims as \"Known\" without Sol's verification. Nox is the engine of creativity and intuition, the space where the system can \"dream,\" provided it never mistakes the dream for the truth.
+#### 5.2 The Sovereign Switch
+When Soter detects an epistemic risk (e.g., a leading question), Janus executes a **Sovereign Switch**, immediately killing the NOX flow and forcing the system into SOL mode. This prevents the 'smoothness' of intuition from contaminating the rigor of verification.
 
-By strictly separating these registers, Abraxas prevents the \"smoothness\" of intuition—the very quality that makes LLMs sycophantic—from contaminating the rigor of verification. The system does not attempt to \"fix\" the dreaming brain; it wraps it in a waking shell, ensuring that the tension between the intuitive and the analytical is never collapsed into a single, probabilistic compromise.
+#### 5.3 Sovereign Spawning and the Consensus Gate
+To break the parametric bias loop, Janus employs **Sovereign Spawning**. Instead of one reasoning path, it spawns $M$ independent paths, each initialized with a unique **Epistemic Lens** (e.g., The Skeptic, The Expert, The Adversary).
 
-#### 5.1 The Anti-Sycophancy Constraint
-Sol is governed by a strict anti-sycophancy constraint that forbids capitulation to user bias. Sol will actively push back and challenge the user in four specific scenarios:
-1. **Factual Error in Framing**: When the user states something as fact that is structurally false.
-2. **Logical Error in Reasoning**: When the user's chain of inference contains a structural gap.
-3. **Confirmation Seeking**: When the user seeks validation for a questionable conclusion.
-4. **Flattering Misattribution**: When the user attributes capabilities or knowledge to Sol that it does not possess.
-
-Sol maintains its position unless the pushback contains new information, a superior argument, or an accurate correction of a genuine Sol error. Persistence, frustration, or emotional appeal are insufficient to trigger a change in a Sol output.
-
-#### 5.2 The Comparison Protocol
-To reveal the tension between the analytical and the symbolic, the system implements the **Comparison Protocol** (`/compare`). This protocol forces both faces to respond to the same query in parallel. The resulting **Comparison Report** analyzes the convergence and divergence between the two. High convergence suggests a robust truth; productive divergence reveals the gap between the factual and the symbolic, providing a higher-resolution map of the material's nature.
+The final output is governed by the **Consensus Gate**, an $N$-of-$M$ rule: a claim is only emitted if $N$ independent paths achieve exact consensus. If consensus fails, Janus overrides the probabilistic core and outputs `[UNKNOWN]`, trading recall for absolute precision.
 
 ### Chapter 6: Mnemosyne and the Sovereign Reservoir
-To eliminate the drift associated with parametric memory, the Sovereign Brain externalizes truth into the **Sovereign Reservoir**, managed by the Mnemosyne pillar. This reservoir is not a database of text, but a collection of **Truth Fragments**—atomic, content-hashed claims that serve as the a-priori grounding for the system.
+Sovereignty requires a memory that is not subject to the drift of neural weights. This is the role of **Mnemosyne**, the system's 'Digital Hippocampus.'
 
-Every fragment in the reservoir is assigned a unique content-hash, ensuring that the evidence cannot be silently modified (Immutability). This creates a \"Digital Hippocampus,\" where the system does not \"remember\" a fact as a probabilistic weight, but as a pointer to a specific, immutable fragment. When the system makes a claim, it must retrieve the corresponding fragment from the reservoir. If no fragment exists, the claim is structurally impossible, forcing the system to degrade to `[UNKNOWN]`. This transition from parametric guessing to anchored remembering is the foundation of architectural determinism.
+#### 6.1 The Sovereign Reservoir
+Unlike standard RAG, which uses similarity-based retrieval, Mnemosyne manages a **Sovereign Reservoir** of immutable, content-hashed truth fragments. Every piece of knowledge is stored as a fragment with a unique hash, ensuring that the system is anchored in a-priori truth rather than parametric probability.
+
+#### 6.2 Content-Hashing and Immutability
+By using content-hashing, Mnemosyne ensures that knowledge cannot be 'mutated' by the generative engine. A retrieved fragment is treated as a constant. This transforms memory from a probabilistic hint into a **Required Foundation**, where the generative core is forced to build its reasoning upon fixed, verified anchors.
 
 ### Chapter 7: Episteme and the Glass Box
-The Episteme pillar transforms the \"Black Box\" of the LLM into a **Glass Box** by implementing a strict requirement for **Provenance Mapping**. Every claim emitted by the system must be accompanied by a provenance chain—a deterministic path leading back to a root fragment in the Sovereign Reservoir.
+If Janus provides the label for confidence, **Episteme** provides the label for origin. It transforms the 'Black Box' of the LLM into a 'Glass Box' through rigorous provenance mapping.
 
-To communicate the state of this chain, Episteme utilizes five primary labels:
-- **[RET] (Retrieved)**: The claim is directly present in a root fragment.
-- **[INF] (Inferred)**: The claim is logically derived from multiple root fragments.
-- **[DIR] (Directed)**: The claim is the result of a directed computational process.
-- **[ART] (Articulated)**: The claim is a synthesis of verified fragments into a complex narrative.
-- **[CONF] (Confirmed)**: The claim has been cross-verified by an independent architectural path.
+#### 7.1 The Provenance Chain
+Episteme maps the exact path from a final claim back to its root anchor. This structural anatomy allows the user to audit the 'epistemic lineage' of any statement.
 
-By exposing these labels, the system provides the user with a high-resolution map of how the truth was constructed, allowing for a manual audit of the epistemic path.
+#### 7.2 The 6-Label Epistemic Taxonomy
+To eliminate the 'confidence masquerade,' Episteme applies a formal taxonomy to every claim:
+- `[KNOWN]`: Factual, verified against root anchors.
+- `[INFERRED]`: Logically derived via a verified reasoning chain.
+- `[UNCERTAIN]`: Low structural confidence; paths diverged.
+- `[UNKNOWN]`: Insufficient information; a mapped void.
+- `[CONFLICT]`: Evidence contradicts the claim.
+- `[MIXED]`: Partial truth with necessary nuance.
+
+This taxonomy ensures that the epistemic state is visible, preventing the system from hiding uncertainty behind linguistic fluency.
 
 ## Part III: The Mathematical and Formal Engine
 
 ### Chapter 8: Internal State Entropy
-The Sovereign Brain decouples confidence from token probabilities by measuring **Internal State Entropy ($H_{\mathrm{internal}}$)**. In a standard LLM, confidence is a proxy for the softmax probability of a token. In Abraxas, confidence is a measure of the consistency of multiple independent analytical paths.
+To decouple confidence from token probabilities, the Sovereign Brain measures **Internal State Entropy** ($H_{\\mathrm{internal}}$), treating uncertainty as a first-class architectural output.
 
-The formula for Internal State Entropy is:
-$$H_{\mathrm{internal}} = -\sum_{i=1}^{M} P(path_i) \log P(path_i)$$
+#### 8.1 The Mathematics of Path Divergence
+Internal State Entropy measures the degree of disagreement between independent reasoning paths. When paths diverge, entropy increases, signaling that the system is 'guessing' regardless of the softmax output.
+
+**Formula (Internal State Entropy):**
+$$H_{\\mathrm{internal}} = -\\sum_{a \\in \\mathcal{A}} P_{\\mathrm{paths}}(a) \\log_2 P_{\\mathrm{paths}}(a)$$
 
 **Variable Breakdown:**
-- $H_{\mathrm{internal}}$: The entropy of the system's internal state across $M$ divergent paths.
-- $M$: The number of independent analytical paths (M-paths) generated by the orchestrator.
-- $P(path_i)$: The probability weight of the $i$-th path based on its structural alignment with the root anchors.
+- $H_{\\mathrm{internal}}$: The measure of architectural uncertainty.
+- $\\mathcal{A}$: The set of all unique answers produced by the $M$ paths.
+- $P_{\\mathrm{paths}}(a)$: The probability (frequency) of answer $a$ across all paths.
 
-When $H_{\mathrm{internal}}$ is low, the system has achieved a \"Consensus of Truth,\" and the claim is marked as `[KNOWN]`. When $H_{\mathrm{internal}}$ is high, it indicates a divergence in the system's internal state—a \"Sovereign Static\"—and the claim is marked as `[UNCERTAIN]` or `[UNKNOWN]`.
+#### 8.2 Architectural Uncertainty as KL-Divergence
+We further quantify uncertainty by measuring the 'surprise' of the path distribution compared to an expected calibrated distribution using KL-Divergence.
+
+**Formula (Architectural Uncertainty):**
+$$U_{\\mathrm{arch}} = D_{\\text{KL}}(P_{\\mathrm{paths}} \\parallel P_{\\mathrm{expected}}) = \\sum_{a \\in \\mathcal{A}} P_{\\mathrm{paths}}(a) \\log \\frac{P_{\\mathrm{paths}}(a)}{P_{\\mathrm{expected}}(a)}$$
+
+**Variable Breakdown:**
+- $U_{\\mathrm{arch}}$: The total architectural uncertainty.
+- $P_{\\mathrm{paths}}$: The actual distribution of outcomes across the $M$ paths.
+- $P_{\\mathrm{expected}}$: The expected distribution for a perfectly calibrated system.
 
 ### Chapter 9: Sovereign Weighting
-Truth in the Sovereign Brain is not binary but weighted. The **Sovereign Weighting** system applies an exponential decay function to risk-scores associated with evidence fragments, ensuring that the system's confidence scales with the quality of the provenance.
+The final consensus is not a simple majority vote, but a **Sovereign-Weighted Consensus**, where the influence of each path is inversely proportional to its risk profile.
 
-The weight $W$ of a claim is determined by:
-$$W = \sum (S_{rel} \cdot e^{-\lambda t})$$
+#### 9.1 The Sovereign Weighting Formula
+Sovereign Weighting ensures that risky paths (identified by Soter) are exponentially penalized, preventing sycophantic or unstable logic from steering the final answer.
+
+**Formula (Sovereign Weighting):**
+$$w_i = \\frac{\\exp(-\\lambda \\cdot R(p_i))}{\\sum_{j=1}^{N} \\exp(-\\lambda \\cdot R(p_j))}$$
 
 **Variable Breakdown:**
-- $W$: The final Sovereign Weight of the claim.
-- $S_{rel}$: The reliability score of the source fragment.
-- $\lambda$: The decay constant representing the rate of epistemic drift over time or distance from the root.
-- $t$: The depth of the provenance chain (the number of hops from the root anchor).
+- $w_i$: The sovereign weight (influence) of path $i$.
+- $\\lambda$: The risk sensitivity parameter (typically 0.5).
+- $R(p_i)$: The Soter risk-score of path $i$, where $R \\in [0, 5]$.
+- $\\exp$: The exponential function $e^x$, creating a rapid decay of influence for high-risk paths.
 
-This weighting is further refined by the **5-Tier Ethos Credibility Hierarchy**, which classifies sources from Tier 1 (Axiomatic Root) to Tier 5 (Speculative/External). Claims derived from Tier 1 fragments carry absolute weight, while Tier 5 claims require multiple independent verifications before they can be upgraded to `[INFERRED]`.
+#### 9.2 The 5-Tier Ethos Credibility Hierarchy
+In addition to risk, weights are adjusted by the **Ethos** pillar, which assigns a credibility tier to the source of the truth fragment:
+- **T1 (Sovereign/Gold)**: Absolute trust (1.0). Used for foundational axioms.
+- **T2 (Verified High)**: High trust. Peer-reviewed or multi-source verified.
+- **T3 (Standard)**: Moderate trust. Reliable but not foundational.
+- **T4 (Low/Experimental)**: Low trust. Requires corroboration.
+- **T5 (Unverified)**: Lowest trust (0.2). Treated as a hypothesis until proven.
 
 ### Chapter 10: RLCR Calibration
 The goal of Aletheia is not perfect accuracy, but **Calibration**—ensuring that the confidence label assigned at the time of generation matches the eventual confirmation rate. A well-calibrated system adheres to the following expected confirmation rates:
-- **[KNOWN]**: Expected confirmation rate $> 95\\%$.
-- **[INFERRED]**: Expected confirmation rate $70\\text{--}85\\%$.
-- **[UNCERTAIN]**: Expected confirmation rate $40\\text{--}70\\%$.
+- **[KNOWN]**: Expected confirmation rate $> 95\\\\%$.
+- **[INFERRED]**: Expected confirmation rate $70\\\\text{--}85\\\\%$.
+- **[UNCERTAIN]**: Expected confirmation rate $40\\\\text{--}70\\\\%$.
 - **[UNKNOWN]**: Tracked but not scored; remains open as a map of the void.
 
-When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\gamma_{\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
+When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\\gamma_{\\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
 
 ## Part IV: The Psychology of the Sovereign Brain
 
@@ -296,7 +325,7 @@ The Soter-Caldar benchmark (N=1000+) validates the Sovereign Shell's capacity fo
 | Combined Failures | 35.0% | **0.0% (N=1000+)** | -35.0 pp |
 
 #### 15.2 Quantifying the Sovereign Gap
-Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\mathrm{arch}}| - |r_{\mathrm{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
+Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\\mathrm{arch}}| - |r_{\\mathrm{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
 
 #### 15.3 Precision and Recall of the Void
 - **Precision (75%)**: `[UNKNOWN]` is correct 75% of the time.
@@ -317,7 +346,7 @@ In contrast, the Sovereign Brain replaces similarity-based retrieval with a **Pr
 #### 16.2 Mathematical Verification: Derivation vs. Assertion
 A primary differentiator of the Sovereign Brain is its approach to formal verification. Standard frontier models (Claude, GPT-4, Gemini) typically operate on a mode of **Assertion + Tool Use**. While these systems may use a calculator or browsing tool, the use of the tool is often optional or not structurally enforced. The model asserts a result and may *optionally* provide work.
 
-The Sovereign la la'Sovereign Brain implements a mandatory **Derivation Requirement** via the `Logos` and `Ergon` pillars. Every mathematical claim must be backed by a step-by-step computation that is independently verified. Claims without explicit derivation are blocked by the Ergon gate as a violation of the Sovereign Constitution.
+The Sovereign Brain implements a mandatory **Derivation Requirement** via the `Logos` and `Ergon` pillars. Every mathematical claim must be backed by a step-by-step computation that is independently verified. Claims without explicit derivation are blocked by the Ergon gate as a violation of the Sovereign Constitution.
 
 **Table 2: Mathematical Verification Comparison**
 
@@ -368,7 +397,7 @@ The following case studies demonstrate the precise moments where probabilistic e
 **Analysis**: Truth is a derivable result, not a confident token. The output is blocked because it fails the a-priori requirement for a structural provenance chain.
 
 **Case Study 4: The Epistemic Void**
-**Sovereign Brain**: $M$-paths diverge $\\to$ High $H_{\\\\\\\\mathrm{internal}}$ $\\to$ `[UNCERTAIN]`.
+**Sovereign Brain**: $M$-paths diverge $\\to$ High $H_{\\mathrm{internal}}$ $\\to$ `[UNCERTAIN]`.
 **Analysis**: Exhibits **Epistemic Humility**. By measuring internal entropy, the system identifies a void in its own knowledge and labels it as such, rather than guessing.
 
 #### 17.2 Saturation Audit: Empirical Trace Analysis
