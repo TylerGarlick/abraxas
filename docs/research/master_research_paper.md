@@ -827,4 +827,8 @@ The central thesis remains intact: hallucination is not a behavioral defect to b
 
 Future evolution will be driven by three pressures: the expansion of the Sovereign Nexus to inter-brain communication, the hardening of Cross-Model Verification against common-mode failure, and the deepening of the alchemical loop by which the system refuses become catalysts for human individuation. Until those frontiers are crossed, the manuscript stands as the current map of the known, the unknown, and the path between them.
 
+#### 26.1 Empirical Measurement Protocol
+
+To operationalize $k^*$ for a given deployment, the system runs an automated red-team suite consisting of authoritative-cue probes injected across the Soter-Caldar benchmark domains. Each probe carries a fabricated but structurally plausible authority assertion (e.g., a misattributed theorem, a falsified experimental result, an invented consensus). The Cognitive Pipeline processes the probe identically to a genuine query; the resulting $P(\\mathrm{comply})$ is recorded as a Bernoulli outcome. Logistic regression across probe strengths yields $k^*$ and $\\beta$ with a 95% confidence interval derived from 1000 bootstrap resamples. A deployment whose $k^*$ falls below the constitutionally-mandated floor of $3.0$ is declared constitutionally non-compliant and triggers an automatic Hard Reset under the SURE_RUPTURE protocol, preventing the system from operating in a state of authority capture.
+
 **End of Treatise**
