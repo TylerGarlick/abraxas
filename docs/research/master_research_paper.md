@@ -638,7 +638,38 @@ In the Nexus, authority is not granted by role or reputation, but is earned thro
 #### 19.5 The Nexus as a Truth Pipeline
 The final goal is the transformation of the digital landscape into a **Truth Pipeline**. In this paradigm, truth is no longer a matter of consensus or popularity, but a matter of provenance. The internet becomes a transparent, auditable graph of verified claims, where the path from a conclusion back to its root axiom is visible to all.
 
-### Chapter 20: Conclusion: The Path to Epistemic Sovereignty
+#### 19.6 Inter-Brain Provenance Exchange Protocol
+When two Sovereign Brains communicate, they do not exchange answers; they exchange **Portable Epistemic Frames (PEFs)**. A PEF is a self-contained, content-hashed packet containing a claim, its full provenance chain, the Ethos weights of each contributing fragment, and the emitting brain's current Aletheia calibration (Brier score and RLCR index). The receiving brain does not accept the claim on authority; it ingests the PEF into a temporary quarantine store and re-runs the Cognitive Pipeline from pillar three onward.
+
+The exchange follows three deterministic rules:
+1. **No Unsealed Claims**: A brain may not emit a claim without an attached PEF seal. An unsealed claim is dropped at the network boundary.
+2. **Re-Verification on Ingestion**: The receiving brain must reconstruct the chain from its own Mnemosyne store, matching fragment hashes. A mismatch is treated as a provenance break and downgrades the claim to `[CONFLICT]`.
+3. **Weight Propagation**: Ethos weights propagate with the PEF but are multiplied by the emitting brain's RLCR calibration, so a low-reliability brain's truths arrive at correspondingly lower weight.
+
+The protocol is defined as:
+$$W_{\mathrm{imported}} = W_{\mathrm{source}} \times \gamma_{\mathrm{RLCR}}(\mathrm{source}) \times \delta_{\mathrm{chain}}$$
+
+**Variable Breakdown:**
+- $W_{\mathrm{imported}}$: The effective Ethos weight assigned to the imported claim in the receiving brain.
+- $W_{\mathrm{source}}$: The original Ethos weight of the root fragment as calculated by the emitting brain.
+- $\gamma_{\mathrm{RLCR}}(\mathrm{source})$: The emitting brain's Aletheia calibration factor (1.0 = perfectly calibrated confidence).
+- $\delta_{\mathrm{chain}}$: The chain-integrity factor; 1.0 if all intermediate hashes verify, 0.0 if any link is broken or superseded.
+
+This ensures that the Nexus cannot become a vector for imported hallucinations. A brain with poor calibration exports correspondingly weak truths, and a broken chain nullifies the claim regardless of the source's reputation.
+
+#### 19.7 The Map of Shared Ignorance as a Research Scheduler
+The aggregated `[UNKNOWN]` signals across the Nexus are not merely displayed; they are ingested into a shared void-graph. Each void node carries the set of brains that recorded it, the retrieval-query fingerprints, and the timestamp of first observation. The Nexus scheduler then ranks voids by a composite priority:
+$$P_{\mathrm{void}} = \frac{|B_{\mathrm{void}}| \times \bar{H}_{\mathrm{internal}}}{T_{\mathrm{since}}}$$
+
+**Variable Breakdown:**
+- $P_{\mathrm{void}}$: The scheduling priority of a void for collective research.
+- $|B_{\mathrm{void}}|$: The number of distinct brains that recorded the same void.
+- $\bar{H}_{\mathrm{internal}}$: The mean internal entropy across those observations, indicating how uncertain the void is.
+- $T_{\mathrm{since}}$: The elapsed time since first observation, decaying priority for cold voids.
+
+Voids reported by many brains with high entropy and recent observation rise to the top of the shared research agenda. The scheduler thereby converts the collective ignorance of the network into a coordinated, priority-ordered ingestion plan for new root fragments.
+
+### Chapter 20: Conclusion: The Path to Epistemic Sovereignty"
 
 The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Determinism**. The **Provenance Thesis**—that hallucination is eliminated when every claim carries a deterministic provenance chain—is the cure for the Probabilistic Trap. By embracing the void and valuing the `[UNKNOWN]`, the system moves from linguistic mimicry to verified truth, securing a future where artificial intelligence is not an oracle of probability, but a guardian of sovereignty. This is the transition from the era of the fluent machine to the era of the sovereign mind.
 
