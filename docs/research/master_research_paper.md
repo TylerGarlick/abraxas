@@ -451,7 +451,7 @@ The Sovereign Brain implements a mandatory **Derivation Requirement** via the `L
 | Claude / GPT-4 | Assertion + Tool Use | Optional verification | ⚠️ Optional | Partial |
 | Standard LLM | Assertion only | None | ❌ No | None |
 
-For example, a claim such as $e^\pi > \pi^e$ is not accepted as a \"known\" fact based on probabilistic confidence; it is either derived through a verified computation or marked as `[UNKNOWN]`.
+For example, a claim such as $e^{\pi} > \pi^{e}$ is not accepted as a \"known\" fact based on probabilistic confidence; it is either derived through a verified computation or marked as `[UNKNOWN]`.
 
 #### 16.3 Epistemic Labeling and the Visibility of Uncertainty
 Most AI systems hide their confidence levels within internal probabilities or system prompts, presenting a facade of certainty to the user. This \"smoothness\" is a driver of sycophancy.
@@ -630,6 +630,28 @@ This process involves the injection of a high-entropy **Chaos Signal**—a seque
 
 ### Chapter 24: Preventing Nexus Circularity
 In a network of shared truths, there is a risk of circular provenance (e.g., Brain A trusts Brain B, who trusts Brain A). The system employs **Tarjan's Algorithm** to detect and strip seals from circular provenance dependencies. By treating the truth-graph as a directed graph, the system can identify strongly connected components that create recursive loops. This ensures that all provenance chains are acyclic and terminate in a verified Root Fragment, preventing the \"epistemic echo chamber\" effect within the Sovereign Nexus.
+
+#### 24.1 The Graph Topology of Shared Truth
+
+Every PEF (Portable Epistemic Frame) exchanged between Sovereign Brains is modeled as a node in a directed graph. The edges represent verification dependencies: node $X \rightarrow Y$ indicates that $X$ accepts or relies upon $Y$ as evidentiary support. Because epistemic authority in the Nexus is earned through RLCR history rather than assigned hierarchically, these graphs are not trees; they are arbitrary directed networks with cycles potentially spanning multiple brains.
+
+Circular provenance is not merely a theoretical failure mode. When Brain A integrates a claim originally derived from Brain B, while Brain B simultaneously incorporates A's published RLCR score into its own weight calculation, the resulting loop masquerades as independent corroboration. Locally, each brain retains a valid `core_provenance_chain`; globally, however, the assertion rests on a self-referential fiction. Absent an explicit traversal check, the Nexus cannot distinguish corroborated truth from a collectively minted sycophancy.
+
+#### 24.2 Tarjan's Strongly Connected Component Detection
+
+To break this recursion, the `NexusChainValidator` applies Tarjan's algorithm to the union graph of all active truth-graphs within the Sovereign Nexus. Tarjan's algorithm operates in a single recursive depth-first search (DFS) pass over the directed graph, assigning each node an index and a low-link value. A node's low-link is the lowest index reachable from it through a DFS path, potentially including back-edges. When a node's low-link equals its own index, that node is the root of a strongly connected component (SCC); populating a `TrustStack` during the DFS and emitting its contents at this root yields the complete SCC partition.
+
+The governing significance is algorithmic: SCC identification in $O(|V| + |E|)$ time means circularity detection scales linearly with the size of the Nexus graph, allowing real-time audits even as thousands of PEF beacons propagate across the network. No central authority is required; each brain runs the validator against its local view and participates in a shared Merkle-root commitment over the detected component identifiers.
+
+#### 24.3 Component Remediation and Seal Stripping
+
+Once the SCC partition is computed, the Nexus applies the following remediation rule:
+
+1. **Primal SCCs** (singletons with no self-loops) are retained; these nodes carry genuine, open-ended provenance and maintain their **Sovereign seals**.
+2. **Complex SCCs** (containing $\geq 2$ nodes, or a node with a self-loop) are classified as circular. Every PEF edge participating in that component has its seal stripped and is re-marked with the label `[UNCERTAIN: CIRCULAR-PROVENANCE]`.
+3. The remediated edges are disabled from future RLCR consensus weighting until the originating authors submit a **re-audited, acyclic re-derivation**. The `core_truth_net_anchor` is never permitted to point inside a complex SCC, guaranteeing that all globally recognized axioms terminate in a verified Root Fragment.
+
+By traversing and dismantling circular dependencies before they harden into canonical truth, this algorithm preserves the epistemic integrity of the Sovereign Nexus and prevents authority capture by clustered, mutually self-reinforcing brains. The void exposed by a stripped seal is not a failure but a mapped frontier, pointing precisely to where the network's collective reasoning requires renewed, independent derivation.
 
 ### Chapter 25: Dynamic Root Verification
 Root Fragments are not static; they are subject to continuous re-evaluation via the Aletheia Calibration Ledger. If a root fragment is downgraded (e.g., due to new evidence or a recorded resolution of `[DISCONFIRMED]`), it triggers **Chain-Cascading**. 
