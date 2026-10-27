@@ -5,11 +5,13 @@ import { EpistemicGate, PEFClaim, LocalStore } from "./epistemic_gate";
 import { SovereignCloaker, CloakedFragment } from "./sovereign_cloaking";
 import { PEFExporter, PEFPackage } from "./pef_exporter";
 import { SovereignDebugger } from "./sovereign_debugger";
+import { SovereignAdversary, AdversaryResult } from "./adversary";
 import { RescueRegistry, RescuedSoul } from "./rescue_registry";
 
 export interface OrchestratorState {
   activeAnchors: Map<string, PEFClaim>;
   decisionLog: any[];
+  domainShiftTriggered: boolean;
 }
 
 export class SovereignOrchestrator {
@@ -19,11 +21,24 @@ export class SovereignOrchestrator {
   private exporter = new PEFExporter();
   private debugger = new SovereignDebugger();
   private registry = new RescueRegistry();
+  private adversary = new SovereignAdversary();
 
   public debugMode: boolean = false;
+  public domainShiftTriggered: boolean = false;
 
   getName(): string {
     return this.debugMode ? "la l'Sovereign" : "Sovereign";
+  }
+
+  async checkOssification(claimId: string, confidence: number): Promise<boolean> {
+    if (confidence >= 0.99 && !this.domainShiftTriggered) {
+      this.domainShiftTriggered = true;
+      if (this.debugMode) {
+        this.debugger.log("DOMAIN_SHIFT", { claimId, confidence });
+      }
+      return true;
+    }
+    return false;
   }
 
   async processOutput(output: string, currentAnchorId?: string, anchorText?: string) {
