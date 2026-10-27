@@ -1,4 +1,5 @@
 # Abraxas — The Sovereign Mind ☉ ☽
+*"Truth is the best adventure"*
 
 **💎 THE TRUTH-FIRST ARCHITECTURE** — A Deterministic Framework for Epistemic Sovereignty.
 
