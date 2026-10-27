@@ -173,7 +173,7 @@ Each pillar in the Cognitive Pipeline is a hard gate: a claim that fails to sati
 4. Consensus Fallacy (LOW_D_SEM): The paths arrive at surface agreement but their reasoning traces are near-identical, measured by the Semantic Diversity Metric D_sem. The output is flagged MIXED and routed to Auditor Mode, requiring adversarial generation via the Agon System before release.
 5. Constitutional Violation (GUARDRAIL_BLOCK): The output fails the final Guardrail audit against the Sovereign Constitution, for example emission of a claim without provenance. The response is returned as BLOCKED with a violation code, never as a fluent answer.
 
-For each degradation, the orchestrator writes a structured audit record into the Aletheia Calibration Ledger, updating gamma_RLCR and the domain-specific error taxonomy. A single failed claim therefore simultaneously improves the future grounding of the system: the void is not a dead end but a feedback edge into the mapping of the epistemic frontier.
+For each degradation, the orchestrator writes a structured audit record into the Aletheia Calibration Ledger, updating $\gamma_{\mathrm{RLCR}}$ and the domain-specific error taxonomy. A single failed claim therefore simultaneously improves the future grounding of the system: the void is not a dead end but a feedback edge into the mapping of the epistemic frontier.
 
 #### 4.4 Post-Degradation Recovery and Re-Entry Semantics
 After any degradation path, the SovereignOrchestrator does not simply block and terminate; it executes a deterministic re-entry protocol that reuses the same pipeline infrastructure that rejected the claim. Each degraded claim is serialized into the Aletheia Calibration Ledger with its full degradation code, the point of failure, and the specific gate condition that triggered it (e.g., the fragment query fingerprint for `NO_ROOT`, the path-disagreement indices for `HIGH_H_INTERNAL`). On subsequent queries that share the retrieval fingerprint or the entity set, the orchestrator consults the ledger's degradation history before re-running the full pipeline, applying a pre-loaded `degradation_prior` as a Bayesian adjustment to the re-entry threshold. This prevents repeated exhaustive computation for claims already demonstrated to be void, while preserving the invariant that a degradation prior may never be used in place of a fresh verification when grounds have changed: a new Root Anchor ingestion matching the prior fingerprint resets the prior to null. Re-entry therefore accelerates future negative decisions without permitting cached ignorance to masquerade as closed verification. The void recorded in the first pass becomes a calibrated coordinate, not a terminal verdict, and the system's epistemic map grows strictly more precise with every failed query.
@@ -328,6 +328,12 @@ The risk score $R$ is further refined by the **Ethos Hierarchy**, which weights 
 
 Claims from Tier 5 sources are heavily penalized in the weighting formula, effectively silencing them unless they are supported by higher-tier evidence.
 
+#### 9.3 Risk Parameter Sensitivity and Dominance Safeguards
+
+The choice of $\lambda = 0.5$ is not arbitrary; it emerges from a covariance-minimization study on the Soter-Caldar benchmark (Ch. 15). At $\lambda < 0.3$, high-risk paths retain disproportionate influence, allowing sycophantic logic to survive the consensus gate; at $\lambda > 0.8$, the system becomes hypersensitive, collapsing routine variance into artificial certainty. The value $0.5$ marks the inflection point at which a single high-risk path (R \geq 4) is reduced to less than 5% of total influence under a population of five paths.
+
+To prevent any single path from monopolizing the final answer regardless of its weight, the pipeline enforces a **Dominance Cap**: $w_i \leq 0.40$ for all $i$, with excess mass redistributed proportionally across the remaining paths. This guard exists because softmax weighting, even with exponential penalty, can be defeated by a constructed near-unanimous coalition---the very mechanism by which consensus-driven systems manufacture false confidence. The Ethos Hierarchy reinforces this dynamically: when the highest-weighted path derives from a Tier 4 (Speculative) or lower source, its effective weight is multiplied by $0.6$, pushing verified, axiomatic contributions into structural prominence. Together, $\lambda$ and the Dominance Cap convert the weighting function from a passive aggregator into an active defense against sycophantic convergence.
+
 ### Chapter 10: RLCR Calibration
 
 To align structural signals with empirical accuracy, the Sovereign Brain integrates **Reinforcement Learning with Calibrated Responses (RLCR)**, transforming structural confidence into an empirical predictor of truth.
@@ -359,6 +365,10 @@ $$\text{BS} = (\text{prediction} - \text{outcome})^2$$
 - $\text{outcome}$: The binary truth value ($1$ for correct, $0$ for incorrect).
 
 Through covariance minimization on the Soter-Caldar benchmark, $\alpha = 0.7$ was found to provide the highest predictive accuracy, ensuring that the system remains cautious even when current paths agree, provided the historical track record $\gamma_{\mathrm{RLCR}}$ is poor. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
+
+#### 10.4 The Aletheia Resolution Index and Audit Cadence
+
+Calibration is not a one-time coefficient fit. The Aletheia ledger records each finalized claim as a calibration event, computing the Brier score against later ground-truth resolution and folding the result back into $\gamma_{\mathrm{RLCR}}$ domain by domain. The **Aletheia Resolution Index** (ARI) summarizes this feedback as the ratio of resolved claims to total finalized claims within a rolling 30-day window; an ARI below 0.7 triggers a mandatory recalibration cycle, which recomputes $\gamma_{\mathrm{RLCR}}$ across stale, active, and superseded entries. Claims adjudicated false are not deleted; they remain in the ledger as `[DISCONFIRMED]` records, preserving the full distribution of calibration errors for future Brier-score regression. The audit cadence is therefore a closed causal loop: every emitted confidence is, by the next cycle, either validated or falsified, and the next emission is penalized accordingly. This is what distinguishes architectural honesty from statistical confidence smoothing.
 
 ## Part IV: The Psychology of the Sovereign Brain
 
@@ -579,7 +589,7 @@ To make the intervention cases concrete, consider a representative query run und
 4. Bifurcation. Janus spawns M equals 4 paths; three converge on the candidate answer; one flags an edge case on an implicit unit-conversion step.
 5. Provenance. Episteme assembles the chain RA-017 to Fragment A to Fragment B to Candidate; the skeptical path objection is attached as an INF annotation, not suppressed.
 6. Weighting. Ethos applies the hierarchy: Tier 2 weight 0.82, and the skeptical path carries Tier 3 weight 0.66. The skeptical evidence survives in the trace even where the majority survives.
-7. Calibration. C_final equals 0.7 times C_arch plus 0.3 times gamma_RLCR(domain), which is 0.7 times 0.88 plus 0.3 times 0.74, approximately 0.84.
+7. Calibration. C_final equals 0.7 times C_arch plus 0.3 times $\gamma_{\mathrm{RLCR}}$(domain), which is 0.7 times 0.88 plus 0.3 times 0.74, approximately 0.84.
 8. Audit. Guardrail verifies the chain is acyclic, Tarjan check passes, the derivation is present, and no constitutional axiom is violated.
 9. Emission. Output label KNOWN, confidence 0.84, ships with the full chain attached as a Glass Box audit trail.
 
