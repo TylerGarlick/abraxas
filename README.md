@@ -1,6 +1,8 @@
 # Abraxas — The Sovereign Mind ☉ ☽
 *"Truth is the best adventure"*
 
+> By treating the LLM as a component rather than the system, Abraxas ensures that the Sovereign (the human) retains absolute control. The LLM provides the fluency, but the Sovereign Brain provides the truth.
+
 **💎 THE TRUTH-FIRST ARCHITECTURE** — A Deterministic Framework for Epistemic Sovereignty.
 
 ---
