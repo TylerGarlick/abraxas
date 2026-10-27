@@ -175,6 +175,9 @@ Each pillar in the Cognitive Pipeline is a hard gate: a claim that fails to sati
 
 For each degradation, the orchestrator writes a structured audit record into the Aletheia Calibration Ledger, updating gamma_RLCR and the domain-specific error taxonomy. A single failed claim therefore simultaneously improves the future grounding of the system: the void is not a dead end but a feedback edge into the mapping of the epistemic frontier.
 
+#### 4.4 Post-Degradation Recovery and Re-Entry Semantics
+After any degradation path, the SovereignOrchestrator does not simply block and terminate; it executes a deterministic re-entry protocol that reuses the same pipeline infrastructure that rejected the claim. Each degraded claim is serialized into the Aletheia Calibration Ledger with its full degradation code, the point of failure, and the specific gate condition that triggered it (e.g., the fragment query fingerprint for `NO_ROOT`, the path-disagreement indices for `HIGH_H_INTERNAL`). On subsequent queries that share the retrieval fingerprint or the entity set, the orchestrator consults the ledger's degradation history before re-running the full pipeline, applying a pre-loaded `degradation_prior` as a Bayesian adjustment to the re-entry threshold. This prevents repeated exhaustive computation for claims already demonstrated to be void, while preserving the invariant that a degradation prior may never be used in place of a fresh verification when grounds have changed: a new Root Anchor ingestion matching the prior fingerprint resets the prior to null. Re-entry therefore accelerates future negative decisions without permitting cached ignorance to masquerade as closed verification. The void recorded in the first pass becomes a calibrated coordinate, not a terminal verdict, and the system's epistemic map grows strictly more precise with every failed query.
+
 ### Chapter 5: The Janus Duality
 
 The Janus Orchestrator is the threshold of the Sovereign Brain, managing the fundamental tension between intuitive synthesis and rigorous verification. This is operationalized through the **Janus Duality**, the strict a-priori separation of the analytical and symbolic registers.
@@ -199,7 +202,7 @@ To eliminate the drift of parametric memory, the Sovereign Brain externalizes it
 The core of Mnemosyne is the use of **Content-Hashing**. Every piece of knowledge is stored as a \"Truth Fragment\"—a small, atomic claim paired with a cryptographic hash of its content and its source. This ensures that knowledge is immutable; it cannot \"drift\" over time as weights are updated. When the system retrieves a fragment, it verifies the hash, ensuring that the data is exactly what was originally anchored.
 
 **Fragment Structure (Formal Breakdown):**
-- **Hash ($H_f$):** $\text{SHA-256}(\text{content} + \text{source\_id} + \text{timestamp})$.
+- **Hash ($H_f$):** $\mathrm{SHA-256}(\mathrm{content} + \mathrm{source_{id}} + \mathrm{timestamp})$.
 - **Content ($C_f$):** The atomic claim (e.g., \"The speed of light in vacuum is $299,792,458\text{ m/s}$\").
 - **Source ID ($S_{id}$):** Pointer to the Root Anchor in the Sovereign Vault.
 - **Provenance Seal ($\Sigma$):** A digital signature confirming the fragment was vetted by Soter and Episteme.
