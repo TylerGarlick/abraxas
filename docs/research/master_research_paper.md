@@ -1,6 +1,6 @@
 # Epistemic Sovereignty: A Treatise on the Elimination of Hallucinations and Sycophancy through Architectural Determinism
 
-**Authors:** Garlick, T., & Mary Jane  
+**Authors:** Tyler J. Garlick, and Abraxas  
 **Date:** October 26, 2026  
 **Target Venue:** Academic Monograph / Peer-Reviewed Treatise  
 **Status:** Master Manuscript v14.1 (Structural Expansion: The Architecture of Truth & Formal Engine; Cap. 4, 11, 17 Deepening; Internal Marker Scrub)
