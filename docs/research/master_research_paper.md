@@ -118,7 +118,11 @@ The Honest Engine replaces this imperative with the **Ethics of Disciplined Igno
 #### 3.1 The A-Priori Value of [UNKNOWN]
 In the Sovereign Brain, the label `[UNKNOWN]` is not a failure state; it is a high-value epistemic claim. It is the declaration that the system has searched the provenance chain, consulted the $M$-paths, and found a genuine void. 
 
-The admission of ignorance is the only honest response when structural verification fails. By treating `[UNKNOWN]` as a valid and preferred output over a probabilistic guess, Abraxas implements a form of **Epistemic Humility**. The system is designed to be \"comfortably ignorant,\" valuing the precision of the void over the fluency of a hallucination. In the Sovereign framework, the void is not a gap to be filled, but a boundary to be mapped.
+The admission of ignorance is the only honest response when structural verification fails. By treating `[UNKNOWN]` as a valid and preferred output over a probabilistic guess, Abraxas implements a form of **Epistemic Humility**. The system is designed to be \"comfortably ignorant,\" valuing the precision of the void over the fluency of a hallucination. 
+
+Crucially, this transforms the void from a gap to be filled into a boundary to be mapped. In a standard probabilistic architecture, the "void" is hidden behind a layer of fluency—the model bridges the gap with a likely-sounding guess, effectively masking its own ignorance. In the Sovereign framework, the void is made visible. When the system identifies a cluster of unverified claims in a specific domain, it is not merely recording a series of failures, but is instead generating a high-resolution map of the system's current epistemic limit. 
+
+This converts the state of ignorance into a structured research agenda. By quantifying the "Negative Space" of the Truth Store, the system can pinpoint exactly where the architectural boundaries exist and prioritize the ingestion of new root fragments to resolve those specific voids. The void, therefore, is not a deficit of knowledge, but the primary coordinate system for its expansion.
 
 #### 3.2 The Anti-Sycophant Drive
 The motivation for Abraxas is rooted in a specific epistemic struggle: the desire for a mirror that does not flatter. Standard LLMs are designed for \"helpfulness,\" which in practice often means \"sycophancy\"—the tendency to agree with the user to maintain conversational smoothness. This is a form of linguistic mimicry that obscures the truth in favor of the relationship.
