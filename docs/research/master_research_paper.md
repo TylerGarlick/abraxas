@@ -442,7 +442,7 @@ $$A_{\mathrm{attune}} = \\frac{1}{N} \\sum_{i=1}^{N} \\mathbb{1}\\left[\\mathrm{
 
 #### 13.3 The Attunement Metric
 
-This metric transforms the Human-AI relationship from a satisfaction score into a falsification record.
+This metric transforms the Human-AI relationship from a satisfaction score into a falsification record. An attunement score near zero indicates alignment-mode collaboration (the system ratifying the human starting position, the sycophancy trap). The productive band lies between 0.3 and 0.6: sustained divergence large enough to show evidence correcting initial positions, small enough to show convergence rather than oscillation. Values above 0.8 over a rolling N>=50 sample suggest a rupture in shared framing rather than mutual falsification, and the Rescue Cycle should be suspended for explicit re-anchoring. Operationally the metric is recomputed every N completed cycles, written into the Aletheia Calibration Ledger, and consulted by the SovereignOrchestrator when privileging the human Anchor's framing in future cycles.
 
 ### Chapter 14: The Alchemical Tool
 
