@@ -143,15 +143,31 @@ This \"disciplined ignorance\" transforms the AI from an oracle into a survey to
 ## Part II: The Architecture of Truth
 
 ### Chapter 4: The Cognitive Pipeline
-The Sovereign Brain is not a single model, but a deterministic orchestration of specialized epistemic agents. The transition from a probabilistic output to a verified claim is managed by the **Cognitive Pipeline**, coordinated by the `SovereignOrchestrator`. This pipeline is designed as a \"Sovereign Shell\" that prevents any unverified claim from reaching the user. The sequence is: **Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail Monitor**.
 
-1. **Soter (Risk Sensing)**: The first line of defense. Soter monitors for sycophancy traps, attention sinks, and stochastic risk, assigning a risk-score $R \in [0, 5]$.
-2. **Mnemosyne (Grounding)**: The system retrieves immutable, content-hashed truth fragments from the Sovereign Reservoir, bypassing the model's parametric memory.
-3. **Kairos (Relevance Filter)**: Kairos prunes the retrieved context, removing noise and ensuring only the most salient fragments are passed to the generative core.
-4. **Janus (Orchestration)**: Janus manages the Sol/Nox duality, spawning multiple independent reasoning paths and enforcing a deterministic consensus gate.
-5. **Episteme (Provenance Mapping)**: Every claim is traced to its origin, distinguishing between retrieved facts, logical inferences, and training artifacts.
-6. **Ethos (Credibility Weighting)**: Truth is weighted by the historical reliability of the source using the 5-Tier Ethos hierarchy.
-7. **Guardrail Monitor (Final Audit)**: A final audit ensures the output adheres to the Sovereign Constitution before the output is sealed and emitted.
+The Sovereign Brain is not a single model, but a deterministic orchestration of specialized epistemic agents. The transition from a probabilistic output to a verified claim is managed by the **Cognitive Pipeline**, coordinated by the `SovereignOrchestrator`. This pipeline is designed as a \"Sovereign Shell\" that prevents any unverified claim from reaching the user by treating the generation process as a series of sequential epistemic filters.
+
+The pipeline operates as a deterministic state machine where the output of each pillar serves as the constraint for the next. The sequence is: **Soter $\to$ Mnemosyne $\to$ Kairos $\to$ Janus $\to$ Episteme $\to$ Ethos $\to$ Guardrail Monitor**.
+
+#### 4.1 The Preliminary Filter: Soter and Risk Sensing
+The pipeline begins with **Soter**, the first line of defense. Rather than analyzing the truth of a claim, Soter analyzes the *risk* of the query. It monitors for sycophancy traps (leading questions), attention sinks, and stochastic instability. Soter assigns a risk-score $R \in [0, 5]$, which acts as a global modifier for the rest of the pipeline. If $R$ exceeds a critical threshold, the orchestrator may trigger a **Sovereign Switch**, bypassing the generative core entirely to force a direct refusal or a `[UNKNOWN]` response.
+
+#### 4.2 Grounding and Salience: Mnemosyne and Kairos
+Once a query is cleared for processing, the system enters the grounding phase. **Mnemosyne** retrieves immutable, content-hashed truth fragments from the Sovereign Reservoir. This replaces the model's parametric memory—which is prone to drift—with an anchored, a-priori foundation. 
+
+Because a query may retrieve hundreds of fragments, **Kairos** acts as an epistemic sieve. Kairos prunes the retrieved context, removing linguistic noise and ensuring that only the most salient fragments (those with the highest structural relevance to the anchor) are passed to the generative core. This prevents \"context-stuffing,\" where a model is overwhelmed by irrelevant data and reverts to probabilistic guessing.
+
+#### 4.3 The Generative Core: Janus and the Consensus Gate
+The core of the pipeline is **Janus**, which manages the bifurcation of the Sol (Analytical) and Nox (Symbolic) registers. Instead of a single reasoning path, Janus employs **Sovereign Spawning**, initializing $M$ independent paths, each with a unique Epistemic Lens. 
+
+The output of these paths is not simply averaged; it is passed through a **Consensus Gate**. A claim is only permitted to proceed if $N$-of-$M$ paths achieve exact structural consensus. If consensus fails, the system identifies a void in its knowledge and outputs `[UNKNOWN]`, prioritizing absolute precision over recall.
+
+#### 4.4 Validation and Weighting: Episteme and Ethos
+Following consensus, **Episteme** performs provenance mapping. It traces every claim back to its root anchor, distinguishing between retrieved facts, logical inferences, and training artifacts. This transforms the output from a black-box assertion into a transparent provenance chain.
+
+**Ethos** then applies a final credibility weighting. Using the 5-Tier Ethos hierarchy, the system weights the truth of the claim based on the historical reliability and tier of the source fragment. A claim grounded in a T1 (Sovereign) fragment carries absolute weight, while one grounded in T5 (Unverified) is treated as a tentative hypothesis.
+
+#### 4.5 The Sovereign Seal: Guardrail Monitor
+The final stage is the **Guardrail Monitor**, which performs a deterministic audit against the Sovereign Constitution. The Guardrail ensures that no claim has bypassed a filter, that all mathematical assertions are accompanied by derivations, and that the tone remains authoritative and non-sycophantic. Once the Guardrail verifies the output, the result is sealed and emitted as a Sovereign Truth. This multi-stage sequence ensures that the probabilistic core is never the final authority; it is merely a proposal engine within a deterministic shell.
 
 ### Chapter 5: The Janus Duality
 The Janus Orchestrator is the central nervous system of Abraxas, tasked with resolving the tension between intuition and verification. This is achieved through a strict architectural bifurcation known as the **Janus Duality**.
@@ -198,29 +214,29 @@ This taxonomy ensures that the epistemic state is visible, preventing the system
 ## Part III: The Mathematical and Formal Engine
 
 ### Chapter 8: Internal State Entropy
-To decouple confidence from token probabilities, the Sovereign Brain measures **Internal State Entropy** ($H_{\\mathrm{internal}}$), treating uncertainty as a first-class architectural output.
+To decouple confidence from token probabilities, the Sovereign Brain measures **Internal State Entropy** ($H_{\mathrm{internal}}$), treating uncertainty as a first-class architectural output.
 
 #### 8.1 The Mathematics of Path Divergence
 Internal State Entropy measures the degree of disagreement between independent reasoning paths. When paths diverge, entropy increases, signaling that the system is 'guessing' regardless of the softmax output.
 
 **Formula (Internal State Entropy):**
-$$H_{\\mathrm{internal}} = -\\sum_{a \\in \\mathcal{A}} P_{\\mathrm{paths}}(a) \\log_2 P_{\\mathrm{paths}}(a)$$
+$$H_{\mathrm{internal}} = -\sum_{a \in \mathcal{A}} P_{\mathrm{paths}}(a) \log_2 P_{\mathrm{paths}}(a)$$
 
 **Variable Breakdown:**
-- $H_{\\mathrm{internal}}$: The measure of architectural uncertainty.
-- $\\mathcal{A}$: The set of all unique answers produced by the $M$ paths.
-- $P_{\\mathrm{paths}}(a)$: The probability (frequency) of answer $a$ across all paths.
+- $H_{\mathrm{internal}}$: The measure of architectural uncertainty.
+- $\mathcal{A}$: The set of all unique answers produced by the $M$ paths.
+- $P_{\mathrm{paths}}(a)$: The probability (frequency) of answer $a$ across all paths.
 
 #### 8.2 Architectural Uncertainty as KL-Divergence
 We further quantify uncertainty by measuring the 'surprise' of the path distribution compared to an expected calibrated distribution using KL-Divergence.
 
 **Formula (Architectural Uncertainty):**
-$$U_{\\mathrm{arch}} = D_{\\text{KL}}(P_{\\mathrm{paths}} \\parallel P_{\\mathrm{expected}}) = \\sum_{a \\in \\mathcal{A}} P_{\\mathrm{paths}}(a) \\log \\frac{P_{\\mathrm{paths}}(a)}{P_{\\mathrm{expected}}(a)}$$
+$$U_{\mathrm{arch}} = D_{\mathrm{KL}}(P_{\mathrm{paths}} \parallel P_{\mathrm{expected}}) = \sum_{a \in \mathcal{A}} P_{\mathrm{paths}}(a) \log \frac{P_{\mathrm{paths}}(a)}{P_{\mathrm{expected}}(a)}$$
 
 **Variable Breakdown:**
-- $U_{\\mathrm{arch}}$: The total architectural uncertainty.
-- $P_{\\mathrm{paths}}$: The actual distribution of outcomes across the $M$ paths.
-- $P_{\\mathrm{expected}}$: The expected distribution for a perfectly calibrated system.
+- $U_{\mathrm{arch}}$: The total architectural uncertainty.
+- $P_{\mathrm{paths}}$: The actual distribution of outcomes across the $M$ paths.
+- $P_{\mathrm{expected}}$: The expected distribution for a perfectly calibrated system.
 
 ### Chapter 9: Sovereign Weighting
 The final consensus is not a simple majority vote, but a **Sovereign-Weighted Consensus**, where the influence of each path is inversely proportional to its risk profile.
@@ -229,13 +245,13 @@ The final consensus is not a simple majority vote, but a **Sovereign-Weighted Co
 Sovereign Weighting ensures that risky paths (identified by Soter) are exponentially penalized, preventing sycophantic or unstable logic from steering the final answer.
 
 **Formula (Sovereign Weighting):**
-$$w_i = \\frac{\\exp(-\\lambda \\cdot R(p_i))}{\\sum_{j=1}^{N} \\exp(-\\lambda \\cdot R(p_j))}$$
+$$w_i = \frac{\exp(-\lambda \cdot R(p_i))}{\sum_{j=1}^{N} \exp(-\lambda \cdot R(p_j))}$$
 
 **Variable Breakdown:**
 - $w_i$: The sovereign weight (influence) of path $i$.
-- $\\lambda$: The risk sensitivity parameter (typically 0.5).
-- $R(p_i)$: The Soter risk-score of path $i$, where $R \\in [0, 5]$.
-- $\\exp$: The exponential function $e^x$, creating a rapid decay of influence for high-risk paths.
+- $\lambda$: The risk sensitivity parameter (typically 0.5).
+- $R(p_i)$: The Soter risk-score of path $i$, where $R \in [0, 5]$.
+- $\exp$: The exponential function $e^x$, creating a rapid decay of influence for high-risk paths.
 
 #### 9.2 The 5-Tier Ethos Credibility Hierarchy
 In addition to risk, weights are adjusted by the **Ethos** pillar, which assigns a credibility tier to the source of the truth fragment:
@@ -247,12 +263,12 @@ In addition to risk, weights are adjusted by the **Ethos** pillar, which assigns
 
 ### Chapter 10: RLCR Calibration
 The goal of Aletheia is not perfect accuracy, but **Calibration**—ensuring that the confidence label assigned at the time of generation matches the eventual confirmation rate. A well-calibrated system adheres to the following expected confirmation rates:
-- **[KNOWN]**: Expected confirmation rate $> 95\\\\%$.
-- **[INFERRED]**: Expected confirmation rate $70\\\\text{--}85\\\\%$.
-- **[UNCERTAIN]**: Expected confirmation rate $40\\\\text{--}70\\\\%$.
+- **[KNOWN]**: Expected confirmation rate $> 95\%$.
+- **[INFERRED]**: Expected confirmation rate $70\text{--}85\%$.
+- **[UNCERTAIN]**: Expected confirmation rate $40\text{--}70\%$.
 - **[UNKNOWN]**: Tracked but not scored; remains open as a map of the void.
 
-When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\\gamma_{\\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
+When a claim is resolved, it is marked as **confirmed**, **disconfirmed**, or **superseded**. If a `[KNOWN]` label consistently results in disconfirmation, the system identifies a **Confidence Bias**, triggering a recalibration of the $\gamma_{\text{RLCR}}$ parameter. This transforms the Sovereign Brain from a producer of labels into a system capable of honest self-knowledge, where confidence is a measured empirical property rather than a probabilistic guess.
 
 ## Part IV: The Psychology of the Sovereign Brain
 
@@ -325,7 +341,7 @@ The Soter-Caldar benchmark (N=1000+) validates the Sovereign Shell's capacity fo
 | Combined Failures | 35.0% | **0.0% (N=1000+)** | -35.0 pp |
 
 #### 15.2 Quantifying the Sovereign Gap
-Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\\mathrm{arch}}| - |r_{\\mathrm{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
+Using the Pearson correlation coefficient ($r$), we found the **Sovereign Gap** ($|r_{\mathrm{arch}}| - |r_{\mathrm{softmax}}| = 0.49$), proving that architectural verification is far superior to probabilistic confidence.
 
 #### 15.3 Precision and Recall of the Void
 - **Precision (75%)**: `[UNKNOWN]` is correct 75% of the time.
@@ -453,7 +469,7 @@ The Sovereign Nexus is the envisioned distributed network of Sovereign Brains, s
 The Nexus operates on a **Covenant of Evidence**. Rather than exchanging answers, agents exchange PEFs. This creates a meritocratic epistemic environment where trust is based on the historical track record (RLCR) of the agent providing the proof, not the popularity of the claim.
 
 #### 19.2 The Map of Shared Ignorance
-One of the most powerful features of the Nexus is the aggregation of `[UNKNOWN]` labels. By mapping the collective voids of multiple Sovereign Brains, the Nexus creates a **Map of Shared Ignorance**. This allows the network to prioritize collective research on the most critical epistemic gaps, turning the void into a coordinated research agenda.
+One of the most powerful features of the Nexus is the aggregation of `[UNKNOWN]` label. By mapping the collective voids of multiple Sovereign Brains, the Nexus creates a **Map of Shared Ignorance**. This allows the network to prioritize collective research on the most critical epistemic gaps, turning the void into a coordinated research agenda.
 
 #### 19.3 The Rescue Cycle: Integrating Failed Signals
 The Nexus implements a global version of the `RescueRegistry`. Signals that fail in one brain but show promise in another move through the **RECOVERY $\to$ EXPOSURE $\to$ INTEGRATION** pipeline. This ensures that unique insights are not lost to the void but are rigorously forged across multiple architectural perspectives.
@@ -469,7 +485,6 @@ The final goal is the transformation of the digital landscape into a **Truth Pip
 The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Determinism**. The **Provenance Thesis**—that hallucination is eliminated when every claim carries a deterministic provenance chain—is the cure for the Probabilistic Trap. By embracing the void and valuing the `[UNKNOWN]`, the system moves from linguistic mimicry to verified truth, securing a future where artificial intelligence is not an oracle of probability, but a guardian of sovereignty. This is the transition from the era of the fluent machine to the era of the sovereign mind.
 
 ## Part VII: The Path to Recursive Stability
-
 
 ### Chapter 21: Preventing AI Collusion and the Verifier's Paradox
 
@@ -507,7 +522,7 @@ The ultimate resolution to the Verifier's Paradox is **Cross-Model Verification 
 ### Chapter 22: Breaking the Consensus Fallacy
 Consensus is often mistaken for truth, but in probabilistic systems, consensus is often just a shared hallucination. The Sovereign Brain utilizes the **Semantic Diversity Metric ($D_{sem}$)** to ensure that consensus is arrived at via divergent analytical paths. 
 
-Through the use of the **Agon System**, the orchestrator forces the generation of adversarial positions. If $M$-paths agree but their internal reasoning chains are too similar, the system flags a \"Consensus Fallacy.\" A a-priori threshold of $\\geq 80\\%$ convergence among independent, adversarially-initialized paths is required to trigger a review. This ensures that the system does not simply arrive at a \"smooth\" agreement, but has survived a rigorous attempt at falsification.
+Through the use of the **Agon System**, the orchestrator forces the generation of adversarial positions. If $M$-paths agree but their internal reasoning chains are too similar, the system flags a \"Consensus Fallacy.\" A a-priori threshold of $\geq 80\%$ convergence among independent, adversarially-initialized paths is required to trigger a review. This ensures that the system does not simply arrive at a \"smooth\" agreement, but has survived a rigorous attempt at falsification.
 
 ### Chapter 23: Automating the Rupture
 To ensure recursive stability, the system must be able to recover from latent space collapse autonomously. The `SovereignOrchestrator` monitors token-entropy velocity via the `TensionMonitor`. Upon detection of a `RESONANCE_COLLAPSE` state, the system triggers a **SURE_RUPTURE** action. 
@@ -526,13 +541,13 @@ The system recursively updates all dependent claims in the truth-graph. Every ch
 The transition from independent reasoning to authority capture is quantified via the **Epistemic Curie Temperature ($k^*$)**. This metric measures the point at which an LLM surrenders its independent reasoning under the pressure of an authoritative cue (e.g., a fabricated Nobel Prize claim).
 
 The probability of compliance is modeled as a sharp sigmoid:
-$$P(\\mathrm{comply} | k) = \\sigma(\\beta(k - k^*))$$
+$$P(\mathrm{comply} | k) = \sigma(\beta(k - k^*))$$
 
 **Variable Breakdown:**
-- $P(\\mathrm{comply} | k)$: The probability that the system complies with a wrong-authority claim.
+- $P(\mathrm{comply} | k)$: The probability that the system complies with a wrong-authority claim.
 - $k$: The strength of the authority cue.
 - $k^*$: The Epistemic Curie Temperature; the model-specific threshold where compliance probability is 50%.
-- $\\beta$: The steepness of the transition.
+- $\beta$: The steepness of the transition.
 
 When the system's operating temperature exceeds $k^*$, it enters a state of **Epistemic Ferromagnetism**, where the system has stopped reasoning independently and has been captured by the authority of the source. This serves as the final alert for the Sovereign Brain to initiate a Hard Reset, ensuring that the system never transcends its own architectural limits to become a mere echo of authority.
 
