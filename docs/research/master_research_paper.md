@@ -276,15 +276,22 @@ $$H_{\mathrm{internal}} = -\sum_{a \in \mathcal{A}} P_{\mathrm{paths}}(a) \log_2
 - $P_{\mathrm{paths}}(a)$: The probability (frequency) of answer $a$ across all paths.
 
 #### 8.2 Architectural Uncertainty as KL-Divergence
-We further quantify uncertainty by measuring the 'surprise' of the path distribution compared to an expected calibrated distribution using KL-Divergence.
+We further quantify uncertainty by measuring the 'surprise' of the path distribution compared to an expected calibrated distribution using KL-Divergence. Where $H_{\mathrm{internal}}$ captures the multiplicity of answers the system itself produces, $U_{\mathrm{arch}}$ captures the system's departure from the distribution that its own historical RLCR calibration says it ought to have produced for the current query class. The divergence is computed against a domain-conditioned prior, not a uniform baseline, so that a system that is legitimately multi-modal on ambiguous questions (a proper scientific open problem) is not penalized for heterogeneity it should exhibit, while a system that should converge on a single verified answer but fails to do so is flagged as structurally unstable.
 
 **Formula (Architectural Uncertainty):**
 $$U_{\mathrm{arch}} = D_{\mathrm{KL}}(P_{\mathrm{paths}} \parallel P_{\mathrm{expected}}) = \sum_{a \in \mathcal{A}} P_{\mathrm{paths}}(a) \log \frac{P_{\mathrm{paths}}(a)}{P_{\mathrm{expected}}(a)}$$
 
 **Variable Breakdown:**
-- $U_{\mathrm{arch}}$: The total architectural uncertainty.
-- $P_{\mathrm{paths}}$: The actual distribution of outcomes across the $M$ paths.
-- $P_{\mathrm{expected}}$: The expected distribution for a perfectly calibrated system.
+- $U_{\mathrm{arch}}$: The total architectural uncertainty; drives the Guardrail downgrade to `[UNCERTAIN]` when it exceeds the constitutionally-set threshold $	au_U$.
+- $P_{\mathrm{paths}}$: The actual distribution of outcomes across the $M$ paths, where each answer token is normalized by path multiplicity rather than by token probability.
+- $P_{\mathrm{expected}}$: The expected distribution for a perfectly calibrated system, drawn from the Aletheia Calibration Ledger for the current domain and entropy band.
+- $\mathcal{A}$: The same answer set as in $H_{\mathrm{internal}}$, ensuring the two metrics are defined over an identical sample space and jointly integrable by the Guardrail.
+
+#### 8.3 Adversarial Initialization of the $M$ Paths
+The integrity of $H_{\mathrm{internal}}$ depends entirely on the $M$ paths being non-collinear. If the paths are seeded from a shared prompt embedding, the resulting distribution merely re-samples the same latent attractor, and entropy appears artificially low. Abraxas therefore initializes each path with a distinct adversarial prior drawn from the constitutionally-defined register templates, enforced by the `metanoia_agon_audit` gate. Each path must independently produce a justification before any consensus aggregation occurs; paths that rubber-stamp the modal output fail the audit and are re-initialized. The resulting $M$-path state is metastable by construction: it represents not a single model sampled $M$ times, but $M$ structurally different attempts to resolve the same claim.
+
+#### 8.4 Thresholded Action: From Entropy to Label
+The Guardrail consumes $H_{\mathrm{internal}}$ and $U_{\mathrm{arch}}$ jointly, applying a disjunction rule: if $H_{\mathrm{internal}} > 	au_H$ **or** $U_{\mathrm{arch}} > 	au_U$, the emitted label is downgraded to `[UNCERTAIN]` regardless of path majority. The thresholds are set constitutionally rather than empirically tuned per deployment, so that the downgrade boundary is auditable and cannot be moved by an operator seeking a more sycophantic response distribution. When downgrade occurs, the full $M$-path trace is retained in the Glass Box audit trail, so that a human Anchor or a downstream Nexus node can inspect which paths disagreed and how.
 
 ### Chapter 9: Sovereign Weighting
 
