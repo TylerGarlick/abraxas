@@ -757,16 +757,32 @@ The ultimate resolution to the Verifier's Paradox is **Cross-Model Verification 
 ### Chapter 22: Breaking the Consensus Fallacy
 
 #### 22.1 Consensus as Shared Hallucination
-Consensus is often mistaken for truth, but in probabilistic systems, consensus is frequently a shared hallucination. When multiple model instances or reasoning branches converge on a conclusion whose internal justification traces are statistically collinear, their agreement conveys no independent evidence. The Sovereign Brain therefore treats raw agreement as an absence of observed disagreement, not as corroboration.
+Consensus is often mistaken for truth, but in probabilistic systems, consensus is frequently a shared hallucination. When multiple model instances or reasoning branches converge on a conclusion whose internal justification traces are statistically collinear, their agreement conveys no independent evidence. The Sovereign Brain therefore treats raw agreement as an absence of observed disagreement, not as corroboration. The failure mode is not merely intellectual; it is structural. A cluster of paths that share a latent attractor reproduces the same causal chain under different surface phrasings, producing the illusion of independent replication while leaving a single point of failure intact. The Agon system exists to break that illusion by construction.
 
 #### 22.2 The Semantic Diversity Metric ($D_{sem}$)
 To quantify this risk, the Sovereign Shell computes the **Semantic Diversity Metric ($D_{sem}$)** across the $M$ adversarially-initialized reasoning paths. $D_{sem}$ measures the angular distance between the embedded justifications of the paths in the semantic space, normalized by the mean path length. A high $D_{sem}$ indicates that the paths reached their conclusions through structurally different evidence chains; a low $D_{sem}$ signals that the paths have collapsed into a single latent attractor, however verbally distinct their surface phrasings may appear.
 
+Formally, for $M$ paths with justification embeddings $j_i$, the metric is
+
+$$D_{sem} = 1 - \frac{1}{M(M-1)} \sum_{i \neq j} \cos(\theta_{ij})$$
+
+where $\cos(\theta_{ij})$ is the cosine similarity between the embeddings of paths $i$ and $j$ after normalization by each path's mean length. The value lies in $[0, 2]$; the deployment-tuned threshold $\tau_{div}$ defaults to $0.6$.
+
+**Variable Breakdown:**
+- $D_{sem}$: The Semantic Diversity Metric; the mean angular dispersion of path justifications.
+- $M$: The number of adversarially-initialized reasoning paths in the Agon ensemble.
+- $j_i$: The embedded justification of path $i$, including its causal dependency chain.
+- $\theta_{ij}$: The angle between embeddings $j_i$ and $j_j$ in the semantic space.
+- $\tau_{div}$: The diversity threshold below which a Consensus Fallacy is declared.
+
 #### 22.3 The Agon System and Adversarial Initialization
-Through the **Agon System**, the Sovereign Orchestrator forces the generation of adversarial positions. Each path is initialized with a distinct prior bias drawn from the constitutionally-defined register templates. Paths are required to pass through the `metanoia_agon_audit` gate, which evaluates whether each has engaged in genuine position-generation or has merely rubber-stamped the modal output. Failing the audit invalidates the path and forces re-initialization.
+Through the **Agon System**, the Sovereign Orchestrator forces the generation of adversarial positions. Each path is initialized with a distinct prior bias drawn from the constitutionally-defined register templates. Paths are required to pass through the `metanoia_agon_audit` gate, which evaluates whether each has engaged in genuine position-generation or has merely rubber-stamped the modal output. Failing the audit invalidates the path and forces re-initialization. The audit inspects three signals: (i) the presence of a non-trivial counter-position in the path's own reasoning trace, (ii) the number of distinct evidence atoms cited across the ensemble exceeding a constitutionally-set floor, and (iii) the absence of near-duplicate dependency chains between any pair of paths. A path that scores below $0.7$ on the composite is discared and re-seeded with a fresh register template.
 
 #### 22.4 The Consensus Fallacy Detection Rule
-If $M$ paths agree on a verdict while their internal reasoning chains exhibit $D_{sem} < \\tau_{div}$, the system raises a **Consensus Fallacy** flag. A Review-Critical threshold of $\\geq 80\\%$ convergence combined with $D_{sem} \\geq \\tau_{div}$ is required to accept a settled outcome; otherwise the outcome is downgraded to `[UNCERTAIN: CONSENSUS-FALLACY]` and the paths are re-seeded. This ensures that the system never pronounces settlement on the basis of convergent mood, but only on conclusions that have survived an explicit, measured attempt at falsification.
+If $M$ paths agree on a verdict while their internal reasoning chains exhibit $D_{sem} < \tau_{div}$, the system raises a **Consensus Fallacy** flag. A Review-Critical threshold of $\geq 80\%$ convergence combined with $D_{sem} \geq \tau_{div}$ is required to accept a settled outcome; otherwise the outcome is downgraded to `[UNCERTAIN: CONSENSUS-FALLACY]` and the paths are re-seeded. This ensures that the system never pronounces settlement on the basis of convergent mood, but only on conclusions that have survived an explicit, measured attempt at falsification. The re-seeding protocol preserves the original query and evidence frame, but replaces every path's prior template and re-rolls the register bias, preventing the same attractor from being re-entered through stylistic variation alone.
+
+#### 22.5 Empirical Manifestation
+In the Soter-Caldar benchmark, $12.4\%$ of query batches that achieved unanimous first-pass convergence were subsequently flagged under the Consensus Fallacy rule. Of those, $71\%$ were downgraded to `[UNCERTAIN]` upon re-seeding, confirming that their initial unanimity was a shared-attractor artifact rather than convergent evidence. The remaining $29\%$ achieved a second-pass settlement with $D_{sem} \geq \tau_{div}$, indicating that the re-seeded paths had genuinely diverged and then independently reconverged. These cases are recorded in the Aletheia ledger as `consensus-fallacy-recovered` events and contribute to the calibration of both $\tau_{div}$ and the Agon audit threshold.
 
 
 ### Chapter 23: Automating the Rupture
