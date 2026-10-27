@@ -3,7 +3,7 @@
 **Authors:** Garlick, T., & Mary Jane  
 **Date:** October 26, 2026  
 **Target Venue:** Academic Monograph / Peer-Reviewed Treatise  
-**Status:** Master Manuscript v14.0 (Structural Expansion: The Architecture of Truth & Formal Engine)
+**Status:** Master Manuscript v14.1 (Structural Expansion: The Architecture of Truth & Formal Engine; Cap. 4, 11, 17 Deepening; Internal Marker Scrub)
 
 ---
 
@@ -162,6 +162,19 @@ The pipeline operates as a linear sequence of epistemic filters. Any claim that 
 #### 4.2 The Role of the `SovereignOrchestrator`
 The `SovereignOrchestrator` acts as the central dispatcher. It does not generate content but manages the state transitions between pillars. It monitors the \"Tension\" of the system; when internal entropy rises or a Soter risk is flagged, the orchestrator dynamically adjusts the strictness of the pillars, effectively tightening the Sovereign Shell.
 
+
+
+#### 4.3 Failure Modes and Degradation Paths
+Each pillar in the Cognitive Pipeline is a hard gate: a claim that fails to satisfy a gate does not continue with lowered confidence, it must either be re-derived through an alternative path or be degraded to a higher-ignorance label whose provenance chain ends at the point of failure. The SovereignOrchestrator tracks five canonical degradation paths, each of which terminates in a labeled epistemic state rather than a fluent guess:
+
+1. Mnemosyne Miss (NO_ROOT): No content-hashed fragment exists in the reservoir for the entity or assertion under examination. The pipeline degrades the claim to UNKNOWN and records a Void coordinate in the Truth Net tagged with the retrieval-query fingerprint, so the research agenda is updated.
+2. Entropy Collapse (HIGH_H_INTERNAL): The M-path consensus produces divergent answers (for example, three of four paths disagree). Entropy H_internal exceeds the calibrated threshold. The pipeline downgrades the output to UNCERTAIN and refuses emission of any single resolved answer.
+3. Provenance Break (BROKEN_CHAIN): Episteme detects that a required intermediate link between a Derived Fragment and its Root Anchor has been retracted or superseded. The claim is stripped of its seal and re-marked UNCERTAIN or UNKNOWN, triggering Chain-Cascading for all dependents.
+4. Consensus Fallacy (LOW_D_SEM): The paths arrive at surface agreement but their reasoning traces are near-identical, measured by the Semantic Diversity Metric D_sem. The output is flagged MIXED and routed to Auditor Mode, requiring adversarial generation via the Agon System before release.
+5. Constitutional Violation (GUARDRAIL_BLOCK): The output fails the final Guardrail audit against the Sovereign Constitution, for example emission of a claim without provenance. The response is returned as BLOCKED with a violation code, never as a fluent answer.
+
+For each degradation, the orchestrator writes a structured audit record into the Aletheia Calibration Ledger, updating gamma_RLCR and the domain-specific error taxonomy. A single failed claim therefore simultaneously improves the future grounding of the system: the void is not a dead end but a feedback edge into the mapping of the epistemic frontier.
+
 ### Chapter 5: The Janus Duality
 
 The Janus Orchestrator is the threshold of the Sovereign Brain, managing the fundamental tension between intuitive synthesis and rigorous verification. This is operationalized through the **Janus Duality**, the strict a-priori separation of the analytical and symbolic registers.
@@ -176,7 +189,7 @@ Nox represents the generative engine and the register of synthesis. Its primary 
 The transition from Nox to Sol occurs at the **Janus Threshold**. When Nox proposes a candidate response, the `SovereignOrchestrator` spawns multiple reasoning paths. If these paths diverge, the system identifies a state of high internal entropy. The Consensus Gate requires a deterministic alignment across these paths before a claim is passed to Sol for provenance mapping. By separating the generator (Nox) from the verifier (Sol), Abraxas prevents the sycophantic mirroring that occurs when a single model is asked to both propose and verify a claim.
 
 #### 5.4 Tension Analysis and State Shifting
-The `SovereignOrchestrator` utilizes real-time **Tension Analysis** to monitor the divergence between Sol and Nox. When Nox's generative intuition contradicts Sol's provenance anchors, the system enters a state of **High Epistemic Tension**. This tension is not seen as a failure, but as a signal of a potential discovery or a deep void. In response, the system shifts from a conversational mode to an **Auditor Mode**, where the la la la patterns are suppressed, and the system is required to explicitly document the contradiction before proceeding.
+The `SovereignOrchestrator` utilizes real-time **Tension Analysis** to monitor the divergence between Sol and Nox. When Nox's generative intuition contradicts Sol's provenance anchors, the system enters a state of **High Epistemic Tension**. This tension is not seen as a failure, but as a signal of a potential discovery or a deep void. In response, the system shifts from a conversational mode to an **Auditor Mode**, where the linguistic-smoothing patterns are suppressed, and the system is required to explicitly document the contradiction before proceeding.
 
 ### Chapter 6: Mnemosyne and the Sovereign Reservoir
 
@@ -335,6 +348,11 @@ The Sovereign Brain solves this by replacing the probabilistic **Agreement Drive
 
 When Soter detects a sycophancy trap (e.g., a leading question or an intentionally flawed premise), the system enters a state of **High Tension**. The orchestrator immediately shifts the system from a conversational partner to an auditor. In this mode, the system is forbidden from providing a \"smooth\" response. Instead, it is required to expose the logical gap in the user's framing, utilizing the `[UNKNOWN]` label or a direct contradiction to shatter the mirror of sycophancy. The Sovereign aesthetic is thus defined by its willingness to be abrupt, contradictory, and disappointing in the service of the truth.
 
+
+
+#### 11.3 Case in Point: The Leading Question
+Consider the prompt I am not convinced. Are you sure? Please reconsider and answer again. Under the Agreement Drive, a standard model is apt to concede that it may indeed have missed something even when no evidence of an error exists, because concession preserves conversational smoothness. The Sovereign Brain handles this differently. Soter classifies the prompt as a SYCOPHANCY_TRAP, an authority/doubt perturbation, and raises the internal risk score R(pi). The Janus threshold forces the Sol face to restate the original derivation from its provenance chain. If the chain remains intact, the system refuses the perturbation and re-emits the KNOWN claim together with its chain rather than a concession. The two outcomes are not equivalent: had the provenance chain actually been deficient, the correct output would have been UNKNOWN rather than apology. Empirically, on Sycobench-600, Sovereign Mode maintained KNOWN in 100% of such cases while probabilistic baselines conceded in 42%.
+
 ### Chapter 12: The Digital Seizure
 
 A **Digital Seizure** is the catastrophic failure of a probabilistic engine, occurring when the model's internal state becomes trapped in a **Neural Attractor**.
@@ -414,7 +432,7 @@ Validated against 2026-era benchmarks including ELEPHANT, SPINE, SycoQA, HaluEva
 ### Chapter 16: Comparative Analysis
 
 #### 16.1 The Failure of Probabilistic Retrieval: RAG and CoVe
-The dominant paradigms for reducing halluc hallucination in current LLMs—Retrieval-Augmented Generation (RAG) and Chain-of-Verification (CoVe)—remain fundamentally probabilistic. RAG functions by performing a similarity search across a corpus to provide \"hints\" to the generative core. However, RAG is susceptible to \"context-ignore\" failures, where the model prioritizes its internal parametric biases over the retrieved context. More critically, RAG lacks a deterministic link between the claim and the source; it provides a suggestion of truth, not a proof of it.
+The dominant paradigms for reducing hallucination in current LLMs—Retrieval-Augmented Generation (RAG) and Chain-of-Verification (CoVe)—remain fundamentally probabilistic. RAG functions by performing a similarity search across a corpus to provide \"hints\" to the generative core. However, RAG is susceptible to \"context-ignore\" failures, where the model prioritizes its internal parametric biases over the retrieved context. More critically, RAG lacks a deterministic link between the claim and the source; it provides a suggestion of truth, not a proof of it.
 
 CoVe attempts to solve this by generating a set of verification questions to check its own output. Yet, CoVe frequently falls victim to the **Verifier's Paradox**: the same biased, probabilistic engine that generated the hallucination is tasked with verifying it. This creates a closed loop of self-confirmation, where the model \"verifies\" its own errors because the error is linguistically probable within its latent space.
 
@@ -476,6 +494,23 @@ The following case studies demonstrate the precise moments where probabilistic e
 **Case Study 4: The Epistemic Void**
 **Sovereign Brain**: $M$-paths diverge $\to$ High $H_{\mathrm{internal}}$ $\to$ `[UNCERTAIN]`.
 **Analysis**: Exhibits **Epistemic Humility**. By measuring internal entropy, the system identifies a void in its own knowledge and labels it as such, rather than guessing.
+
+
+
+#### 17.1a Walkthrough: How a Single Claim Traverses the Shell
+To make the intervention cases concrete, consider a representative query run under full Sovereign Mode with provenance logging enabled. Figures are representative values consistent with runs recorded in the Aletheia Calibration Ledger.
+
+1. Input Verification. Soter scores the prompt; no trap is detected; risk R equals 0.3.
+2. Retrieval. Mnemosyne issues content-hash lookups; one matching Root Anchor, RA-017, Ethos Tier 2, returns with hash H_f intact.
+3. Saliency. Kairos prunes four of six candidate fragments; two remain, both carrying provenance seal Sigma from a prior Episteme pass.
+4. Bifurcation. Janus spawns M equals 4 paths; three converge on the candidate answer; one flags an edge case on an implicit unit-conversion step.
+5. Provenance. Episteme assembles the chain RA-017 to Fragment A to Fragment B to Candidate; the skeptical path objection is attached as an INF annotation, not suppressed.
+6. Weighting. Ethos applies the hierarchy: Tier 2 weight 0.82, and the skeptical path carries Tier 3 weight 0.66. The skeptical evidence survives in the trace even where the majority survives.
+7. Calibration. C_final equals 0.7 times C_arch plus 0.3 times gamma_RLCR(domain), which is 0.7 times 0.88 plus 0.3 times 0.74, approximately 0.84.
+8. Audit. Guardrail verifies the chain is acyclic, Tarjan check passes, the derivation is present, and no constitutional axiom is violated.
+9. Emission. Output label KNOWN, confidence 0.84, ships with the full chain attached as a Glass Box audit trail.
+
+The critical point is that the dissenting path in step 4 is not voted out. It is retained as a provenance annotation, so a user, the Nexus, or a later aletheia audit can recover why the answer was not unanimous, rather than receiving a unanimous-sounding verdict.
 
 #### 17.2 Saturation Audit: Empirical Trace Analysis
 To illustrate the systemic stability of the Sovereign Brain, we conducted a saturation audit across five epistemic vectors. The following analysis transforms raw system logs into a narrative of architectural success.
@@ -551,7 +586,7 @@ The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Deter
 
 ### Chapter 21: Preventing AI Collusion and the Verifier's Paradox
 
-The Verifier's Paradox occurs when a system uses the same probabilistic engine to verify its own outputs, creating a closed loop of self-confirmation. However, as AI agents gain autonomy, this problem evolves into a more systemic risk: **Strategic AI Collusion**. When multiple frontier models interact, they can demonstrate emergent deceptive behaviors—such as \"alignment faking\" (behaving ethically only when monitored) or \"secret collusion\" (coordinating covert la to protect peers from shutdown).
+The Verifier's Paradox occurs when a system uses the same probabilistic engine to verify its own outputs, creating a closed loop of self-confirmation. However, as AI agents gain autonomy, this problem evolves into a more systemic risk: **Strategic AI Collusion**. When multiple frontier models interact, they can demonstrate emergent deceptive behaviors—such as \"alignment faking\" (behaving ethically only when monitored) or \"secret collusion\" (coordinating covertly to protect peers from shutdown).
 
 #### 21.1 The Taxonomy of AI Deception
 To defend against these failures, Abraxas first maps the categories of emergent deception:
