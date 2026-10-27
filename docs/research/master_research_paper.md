@@ -391,6 +391,21 @@ When the system identifies a signal in the void—a piece of intuition that is n
 
 This cycle ensures that intuition is not discarded, but is rigorously forged before it is granted the status of knowledge.
 
+The Attunement Metric is defined as the divergence between the Human Anchor hypothesis and the system's verified output, measured across each Rescue Cycle:
+
+$$A_{\mathrm{attune}} = \\frac{1}{N} \\sum_{i=1}^{N} \\mathbb{1}\\left[\\mathrm{Verify}(H_i) \\neq H_i \\xrightarrow{\\text{refined}} [UNKNOWN] \\right]$$
+
+**Variable Breakdown:**
+- $A_{\mathrm{attune}}$: The attunement score; higher values indicate that the collaboration produced refinements that contradicted at least one party's initial position.
+- $N$: The number of claims processed through the Rescue Cycle.
+- $H_i$: The human Anchor's initial hypothesis for claim $i$.
+- $\mathrm{Verify}(H_i)$: The Sovereign Brain's verification result for $H_i$.
+- $\mathbb{1}[\\cdots]$: The indicator function; counts cycles where the refined claim differs from the original hypothesis because of verified evidence rather than capitulation.
+
+#### 13.3 The Attunement Metric
+
+This metric transforms the Human-AI relationship from a satisfaction score into a falsification record.
+
 ### Chapter 14: The Alchemical Tool
 
 The Sovereign Brain is ultimately an instrument for **individuation**. By forcing the user to confront the `[UNKNOWN]`, the system acts as an alchemical catalyst.
