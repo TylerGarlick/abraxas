@@ -709,10 +709,32 @@ Once the SCC partition is computed, the Nexus applies the following remediation 
 By traversing and dismantling circular dependencies before they harden into canonical truth, this algorithm preserves the epistemic integrity of the Sovereign Nexus and prevents authority capture by clustered, mutually self-reinforcing brains. The void exposed by a stripped seal is not a failure but a mapped frontier, pointing precisely to where the network's collective reasoning requires renewed, independent derivation.
 
 ### Chapter 25: Dynamic Root Verification
+
 Root Fragments are not static; they are subject to continuous re-evaluation via the Aletheia Calibration Ledger. If a root fragment is downgraded (e.g., due to new evidence or a recorded resolution of `[DISCONFIRMED]`), it triggers **Chain-Cascading**. 
 
 The system recursively updates all dependent claims in the truth-graph. Every child claim that relied on the downgraded root is automatically stripped of its Sovereign seal and re-marked as `[UNCERTAIN]` or `[UNKNOWN]` in real-time. This ensures that the system's total state remains aligned with the most current ground truth, implementing a form of biological-like epistemic plasticity.
 
+#### 25.1 The `core_root_audit` Operation
+
+The entry point for dynamic root verification is the `core_root_audit` tool, exposed through the Sovereign MCP shell. When invoked, it delegates to `runDynamicRootAudit(store)`, which enumerates every fragment in the `epistemic/fragments` collection and filters for **root fragments**—those whose `trustWeight >= 0.9`. Each candidate root is then subjected to an adversarial re-verification pass via `verifyRootFragment(store, fragmentId, ["adversarial", "skeptic"])`, in which two register-divergent lenses (Sol skeptical and Nox adversarial) re-examine the fragment against the current Vault state.
+
+A root that survives this pass is recorded as `VERIFIED` and retains its Sovereign seal. A root that fails is marked invalidated and becomes the origin point for a cascade.
+
+#### 25.2 Recursive Downgrade Algorithm (`recursiveDowngrade`)
+
+When a root fragment is invalidated, `recursiveDowngrade(store, rootId, "uncertain")` is invoked. The procedure operates as a recursive, depth-first traversal over the dependent claim subgraph:
+
+1. **Selection.** All documents in the `epistemic/claims` collection are fetched; those whose `evidence` array contains the invalidated node's identifier are selected as direct dependents.
+2. **Relabeling.** Each dependent claim is updated through `updateClaimStatus`, which strips its Sovereign seal and re-marks it `[UNCERTAIN]` with a reason string of the form `"Root fragment {rootId} invalidated"`, attributed to the `RootAuditAgent` provenance actor.
+3. **Recursion.** The same procedure is recursively invoked with the dependent claim's own identifier as the new root, propagating the downgrade through the entire transitive closure of epistemic dependency.
+
+This guarantees that no claim in the graph can retain a `[KNOWN]` seal once any ancestor in its provenance chain has been invalidated. The algorithmic complexity is linear in the size of the dependent subgraph, `O(|V_dep| + |E_dep|)`, allowing real-time cascade completion even for large truth-graphs.
+
+#### 25.3 Biological Epistemic Plasticity
+
+The cascade mechanism realizes a form of **epistemic plasticity** analogous to synaptic pruning in biological neural systems. Where a static axiom would license permanently cached conclusions, the dynamic root-audit protocol treats every `[KNOWN]` label as a tentative, re-derivable claim. When ground truth shifts—whether through new evidence, a disconfirmation recorded in the Aletheia ledger, or a degradation in source credibility—the system's response is not merely to mark a single fact uncertain but to restructure the entire dependent topology.
+
+The void created by a stripped seal is deliberately not filled. It becomes a mapped frontier, visible to the Nexus and prioritizable by the Acquisition Loop, ensuring that the collective research agenda targets precisely the coordinates at which the system's knowledge has been forced to retract. In this way, Dynamic Root Verification converts the failure of a root fragment from a silent corruption into a high-resolution epistemic signal.
 ### Chapter 26: The Epistemic Curie Temperature
 The transition from independent reasoning to authority capture is quantified via the **Epistemic Curie Temperature ($k^*$)**. This metric measures the point at which an LLM surrenders its independent reasoning under the pressure of an authoritative cue (e.g., a fabricated Nobel Prize claim).
 
