@@ -28,7 +28,7 @@ export async function verifyClaim(claim: string, sources: string[], history: Col
   let finalSources = [...sources];
   let status = sources.length ? "partially_verified" : "unverified";
 
-  if (sources.length === 0) {
+  if (sources.length === 0 && fragments) {
     const found = await fragments.find({ content: { $regex: claim, $options: "i" } });
     if (found && found.length > 0 && found[0]) {
       finalSources.push(found[0].provenanceId as string);

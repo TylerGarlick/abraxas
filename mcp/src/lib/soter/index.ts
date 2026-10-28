@@ -131,6 +131,8 @@ export async function triggerInternalRupture(reason: string) {
   
   const calibration = await calibrateSystem("SURE_RUPTURE_TRIGGER");
   
+  currentSovereignState = "STABILITY_PHASE";
+
   return { 
     event: "INTERNAL_RUPTURE", 
     reason, 

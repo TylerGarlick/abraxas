@@ -12,17 +12,12 @@ export async function webFetch(url: string, extractLinks = false, fetcher: Fetch
 }
 
 export async function webSearch(query: string, maxResults = 10, fetcher: Fetcher = fetch) {
-  const key = process.env.OLLAMA_API_KEY;
-  if (key) {
-    const res = await fetcher("https://ollama.com/api/web_search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Authorization": `Bearer ${key}` },
-      body: JSON.stringify({ query, max_results: Math.min(maxResults, 10) }),
-      signal: AbortSignal.timeout(10000)
-    }).catch(() => null);
-    if (res?.ok) return await res.json();
+  const braveKey = process.env.BRAVE_SEARCH_API_KEY;
+  if (braveKey) {
+    const res = await fetcher(`https://api.search.brave.com/res/v1/web/search?q=${encodeURIComponent(query)}&count=${Math.max(1, Math.min(maxResults ?? 10, 10))}`, { method: "GET", headers: { "Accept": "application/json", "X-Subscription-Token": braveKey }, signal: AbortSignal.timeout(10000) }).catch(() => null);
+    if (res?.ok) { try { const data = await res.json() as { web?: { results?: any[] } }; return { results: data?.web?.results?.slice(0, maxResults) ?? [] }; } catch { return { results: [] }; } }
   }
-  return { results: [], error: "Search API unavailable; configure OLLAMA_API_KEY." };
+  return { results: [], error: "Search API unavailable; configure OLLAMA_API_KEY or BRAVE_SEARCH_API_KEY." };
 }
 
 export function synthesize(topic: string, sources: Array<{type: string; value: string}>, results: unknown[], format: string) {
