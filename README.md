@@ -78,6 +78,7 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - **Sovereign-Nexus**: A cognitive ledger that tracks claim trajectories and evolution over time, ensuring epistemic continuity.
 - **Omniscient Auditor**: Performs parallel document and claim review across the active context, ensuring zero-drift between source and synthesis.
 - **Portable Epistemic Frame (PEF)**: An exportable, P2P-ready frame of verified truths and calibrated beliefs shareable across different AI models.
+- **Epistemic Hardening v4 (Medical Claim Densification)**: Introduces `ComplexityScorer` (medical terminology density analysis over SRA/ICD-10/eGFR terms), `DomainFirewall` (paranoid-level breach detection when general-domain text leverages medical terminology), and `ClaimQueuePruner` (enforces a 15-claim cap on unresolved general medical claims to protect downstream system capacity).
 - **Soter Verifier**: Scores responses for risk and vetoes any that violate the Constitution.
 - **Mnemosyne Vault**: A reservoir of fragments in `.abraxas/data` that ensures every claim traces back to a verified Fragment ID.
 
