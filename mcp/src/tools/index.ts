@@ -55,12 +55,15 @@ import { constitutionEnforcementTools } from "./constitution_enforcement.ts";
 import { researchTools as advResearchTools } from "./research_advanced.ts";
 
 
+import { importTools } from "./import.ts";
+
 /** Every tool module exposed by the server. Add new modules here. */
 export const toolModules: ToolModule[] = [
   janusTools,
   systemTools,
   storeTools,
   aletheiaTools,
+  importTools,
   aporiaTools,
   autoAgonTools,
   chronosTools,
