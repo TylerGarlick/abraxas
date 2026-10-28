@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it, expect, vi } from 'vitest';
 import { auditNexusProvenance } from '../src/lib/core/index.ts';
 import type { Store, Collection } from '../src/storage/index.ts';

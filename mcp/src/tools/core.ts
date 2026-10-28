@@ -11,7 +11,7 @@ import {
   exportPef, 
   runDynamicRootAudit,
   updateClaimStatus, 
-  markSovereignPosition, 
+// removed undefined import of markSovereignPosition from primary export
   auditNexusProvenance,
   importPef,
   validatePef
@@ -52,7 +52,7 @@ export const coreTools: ToolModule = {
     defineTool(server, ctx, "core_truth_net_anchor", "Anchor a PEF in the content-addressed Truth-Net for immutable retrieval.", { claim_id: z.string() }, async ({ claim_id }) => {
       const pef = await exportPef(ctx.store, claim_id);
       const hash = pef.integrity.hash;
-      await ctx.store.collection("epistemic/truth-net").upsert(hash, { pef, anchoredAt: new Date().toISOString() });
+      await ctx.store.collection("epistemic/truth-net").upsert({ _id: hash, pef, anchoredAt: new Date().toISOString() });
       return { truth_net_hash: hash, status: "Anchored" };
     });
 

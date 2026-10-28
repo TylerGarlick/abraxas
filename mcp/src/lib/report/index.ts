@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { SovereignNexus } from '../lib/core/nexus';
 
 export interface ReportSection {

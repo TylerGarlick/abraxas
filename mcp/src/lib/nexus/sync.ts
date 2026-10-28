@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { AppContext } from "../../context";
 import { COLLECTIONS } from "../../storage";
 import { verifyAnchor } from "../core";

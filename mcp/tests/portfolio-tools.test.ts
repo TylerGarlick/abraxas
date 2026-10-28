@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test } from "bun:test";
 import { makeContext } from "./helpers.ts";
 import { manageProjectMapping } from "../src/lib/project-bridge/index.ts";

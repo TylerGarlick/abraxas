@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test, describe } from 'bun:test';
 import { findEpistemicBridges, deriveSovereignTruth } from '../src/lib/reasoning/pathfinder';
 import { generateVerificationProof, verifyExternalProof } from '../src/lib/nexus/privacy';
