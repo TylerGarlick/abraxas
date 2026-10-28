@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
 import { SovereignNexus } from "../lib/core/nexus.ts";

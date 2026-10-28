@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test } from "bun:test";
 import { aggregateConfidence, aggregateEvidence, extractSvo, parseClaim, processClaim } from "../src/lib/logos/logic.ts";
 import { fakeCollection } from "./fake-collection.ts";

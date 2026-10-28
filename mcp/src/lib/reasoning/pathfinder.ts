@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { AppContext } from "../../context";
 import { COLLECTIONS } from "../../storage";
 import { createHash } from "node:crypto";

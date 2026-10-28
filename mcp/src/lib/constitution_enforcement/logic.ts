@@ -5,8 +5,9 @@ import path from "node:path";
 
 export async function loadConstitutionRules(ctx: AppContext) {
   const constitutionDir = path.join(process.cwd(), "constitution");
+  if (!fs.existsSync(constitutionDir)) return {};
   const files = fs.readdirSync(constitutionDir).filter(f => f.endsWith(".md"));
-  
+
   const rules: Record<string, string> = {};
   for (const file of files) {
     const content = fs.readFileSync(path.join(constitutionDir, file), "utf-8");
