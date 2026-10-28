@@ -33,7 +33,7 @@ export async function healthReport(ctx: import("../context.ts").AppContext) {
     ctx.log.warn("health: store check failed", { error: String(err) });
   }
   
-  const constitution = await ctx.store.collection("system/constitution").find();
+  const constitution = await ctx.store.collection("system/constitution").find({});
   const constitutionalCount = constitution.length;
   const isSovereign = storeOk && constitutionalCount > 0;
 
