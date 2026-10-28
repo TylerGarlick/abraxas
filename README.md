@@ -103,6 +103,7 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - 📄 **[MCP Architecture Map](docs/architecture/mcp-map.md)** — Detailed topology of the 5-Pillar ecosystem.
 - 📄 **[Project Evolution](docs/history/changelog.md)** — Version history and the shift to the Sovereign Phase.
 - 📄 **[150 Practical Examples](docs/manual/ABRAXAS_EXAMPLES.md)** — How to use Abraxas for real-world verification.
+- 📄 **[MCP Tool Catalog](mcp/README.md)** — Full list of MCP commands (190+), schemas, and call signatures.
 
 ### ⚙️ System Internals
 - 📄 **[System Component Map](docs/systems/skills.md)** — Deep dive into the individual brain modules.
