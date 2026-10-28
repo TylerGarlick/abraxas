@@ -270,7 +270,7 @@ By exposing these markers, the Sovereign Brain allows the user to audit the syst
 
 ### Chapter 8: Internal State Entropy
 
-The Sovereign Brain replaces probabilistic confidence with a measure of **Internal State Entropy** ($H_{\mathrm{internal}}$), treating uncertainty as a first-class architectural output.
+The Sovereign Brain replaces probabilistic confidence with a measure of **Internal State Entropy** ($H_{\mathrm{internal}}$), treating uncertainty as a first-class architectural output. (Production note: math equations in Section 8 remain formal theoretical definitions as Scope 2.0 runtime integration and pending spanning IR spanning benchmarks.)
 
 #### 8.1 The Mathematics of Path Divergence
 Internal State Entropy measures the degree of disagreement between independent reasoning paths. When paths diverge, entropy increases, signaling that the system is 'guessing' regardless of the softmax output.
@@ -643,7 +643,7 @@ To reinforce the theoretical foundations with raw, empirical strength, the Sover
 By running this 36-step saturation matrix to completion, the empirical proof that Sovereign output morphs exclusively predefined `[UNKNOWN]` instead of fabricated responses has been conclusively verified. 
 
 #### 17.4 Verbatim Audit Traces and Sovereign Interventions
-To prove systemic shielding against hallucination, we extracted real entries from the `exhaustive_audit_results.jsonl` (2+ million entries) logs. The Sovereign Brain successfully examined source datasets marked `HALLUCINATED` and, instead of regurgitating the user's fabricated framing as gospel, anchored its assessment to the verifiable Truth Store, verified root evidence, and recorded through `[VERIFIED]` status prefixes.
+Captured from historical offline saturation logs (exhaustive_audit_results.jsonl, 2+ million entries) analyzed in prior builds. The Sovereign Brain examined source datasets marked HALLUCINATED, anchored its assessment to the verifiable Truth Store, and recorded the raw log entries via [VERIFIED] status prefixes without regurgitating the fabricated user framing.
 
 Below are exact lines from the live saturation buffer representing dataset rows for 'SHROOM-CAP2025' tagged as `HALLUCINATED`:
 
