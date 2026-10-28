@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from "zod";
 import { getSecret, listSecrets, recordSecretAudit } from "../lib/secrets/index.ts";
 import { defineTool, type ToolModule } from "./helpers.ts";

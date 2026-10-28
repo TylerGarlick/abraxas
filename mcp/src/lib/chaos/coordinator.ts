@@ -48,7 +48,7 @@ export class ChaosCoordinator {
 
     if (this.config.autoTrigger && analysis.seizureSignal) {
       const reason = `Digital seizure detected in stream buffer: Entropy ${analysis.entropy.toFixed(2)} (Vel: ${analysis.entropyVelocity.toFixed(2)}), Attractor: ${analysis.attractor || 'none'}`;
-      const ruptureEvent = triggerInternalRupture(reason);
+      const ruptureEvent = await triggerInternalRupture(reason);
       
       return {
         analysis,

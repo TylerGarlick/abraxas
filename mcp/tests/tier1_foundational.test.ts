@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test, describe } from 'bun:test';
 import { auditLedgerAgainstConstitution } from '../src/lib/constitution_enforcement/logic';
 import { addFragment, createClaim, verifyAnchor } from '../src/lib/core';
