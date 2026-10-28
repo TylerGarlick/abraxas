@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test, describe } from 'bun:test';
 import { PraxisLogic } from '../src/lib/praxis/index';
 

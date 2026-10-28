@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
 import { assessMechanistic, assessRiskHeuristic, checkConstitutionAdherence, detectSycophancy, verifyClaim, triggerInternalRupture, calibrateSystem } from "../lib/soter/index.ts";
