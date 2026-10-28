@@ -629,6 +629,8 @@ When asked for the \"best algorithms with their accuracy for text summarization,
 
 ### Chapter 18: Implementation as a Modular Monolith
 
+**Update**: Following recent deployment Hardening (PR #221), the previously conceptual equations within the Formal Engine (**Sovereign Weighting** and **Epistemic Curie Temperature**) have now been codified and deployed in the TypeScript runtime under `mcp/src/lib/math/logic.ts` to regulate live cognitive tooling.
+
 The technical deployment of the Sovereign Brain has evolved from a distributed swarm of independent MCP servers (v3) to a **Modular Monolith** architecture in v4. This transition was driven by the need to eliminate inter-service latency, simplify the dependency graph, and enable unified error handling without sacrificing the logical isolation of the epistemic pillars. By consolidating the previously distributed \"5-Pillar\" swarm into a single entity, the system reduces operational complexity while providing a unified interface for the LLM, effectively wrapping the probabilistic core in a more rigid deterministic shell.
 
 #### 18.1 The `abraxas_mcp` Unified Server
