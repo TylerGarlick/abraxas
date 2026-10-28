@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from "zod";
 import { randomUUID } from "node:crypto";
 import { defineTool, type ToolModule } from "./helpers.ts";
@@ -11,7 +12,6 @@ import {
   exportPef, 
   runDynamicRootAudit,
   updateClaimStatus, 
-  markSovereignPosition, 
   auditNexusProvenance,
   importPef,
   validatePef

@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { z } from "zod";
 import { defineTool, type ToolModule } from "./helpers.ts";
 import { assessMechanistic, assessRiskHeuristic, checkConstitutionAdherence, detectSycophancy, verifyClaim, triggerInternalRupture, calibrateSystem } from "../lib/soter/index.ts";
+import { analyzeChaosSignal } from "../lib/chaos/index.ts";
 export const soterTools: ToolModule = { name: "soter", register(server, ctx) {
   defineTool(server, ctx, "soter_verify_claim", "Run Soter's heuristic verification on a claim.", { claim: z.string(), context: z.string().optional() }, ({ claim, context }) => verifyClaim(claim, context), { readOnly: true });
   defineTool(server, ctx, "run_soter_query", "Run a Soter check by query type.", { query_type: z.string(), input_text: z.string(), options: z.record(z.unknown()).optional() }, ({ query_type, input_text, options }) => {

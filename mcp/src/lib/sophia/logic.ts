@@ -32,7 +32,7 @@ export const GAUNTLETS: Record<string, Gauntlet> = {
         action: async (ctx, prev) => {
           const gaps = prev as string[];
           if (!gaps || gaps.length === 0) throw new Error("No gaps found to research");
-          const searchResults = await webSearch(gaps[0]);
+          const searchResults = await webSearch(gaps[0]!, 10);
           return synthesize("Audit Gap: " + gaps[0], [], searchResults.results || [], "summary");
         },
       },

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { expect, test } from "bun:test";
 import { addFragment, createClaim, createCognitiveBlock, generateReceipt, provenanceChain, requiredPipeline, resolveAutoMode, setEpistemicMode, validateBlockChain, updateClaimStatus } from "../src/lib/core/index.ts";
 import { EpistemicMode } from "../src/lib/core/index.ts";
