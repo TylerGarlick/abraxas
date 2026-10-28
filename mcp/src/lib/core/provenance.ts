@@ -26,7 +26,7 @@ export async function auditNexusProvenance(store: Store) {
   const circularIds = new Set<string>();
   const visited = new Set<string>();
   const stack = new Set<string>();
-  const path = [];
+  const path: string[] = [];
 
   function findCycle(node: string) {
     visited.add(node);
@@ -39,7 +39,10 @@ export async function auditNexusProvenance(store: Store) {
         // Cycle found. All nodes from neighbor to the end of the current path are part of the cycle.
         const cycleStartIndex = path.indexOf(neighbor);
         for (let i = cycleStartIndex; i < path.length; i++) {
-          circularIds.add(path[i]);
+          const current = path[i] as string;
+          if (current) {
+            circularIds.add(current);
+          }
         }
         // We return false here because we want to find ALL cycles across the whole graph,
         // and a single DFS path might only reveal one cycle but other nodes on the path

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import type { Store } from '../storage/index.ts';
+import type { Store } from "../../storage/index.ts";
 
 export interface PEF {
   version: string;
@@ -43,8 +43,8 @@ export async function createPef(store: Store, claimId: string): Promise<PEF> {
     version: '1.0',
     anchor: {
       claim_id: claimId,
-      proposition: claim.text,
-      timestamp: claim.createdAt || new Date().toISOString(),
+      proposition: (claim.text as string) ?? "",
+      timestamp: (claim.createdAt as string) || new Date().toISOString(),
     },
     provenance: {
       evidence: evidence.map((f: any) => ({
@@ -56,7 +56,7 @@ export async function createPef(store: Store, claimId: string): Promise<PEF> {
     },
     calibration: {
       confidence: claim.status === 'confirmed' ? 1.0 : 0.5,
-      label: claim.status || 'Unknown',
+      label: (claim.status as string) || 'Unknown',
       metric: 'uncalibrated',
     },
   };
@@ -97,17 +97,17 @@ export async function importPef(store: Store, pefData: PEF): Promise<string> {
     if (existing) {
       evidenceIds.push(e.id);
     } else {
-      const newId = await store.collection('epistemic/fragments').insert({
-        content: e.content,
-        provenanceId: 'imported-pef',
-        trustWeight: e.weight,
-        createdAt: new Date().toISOString(),
-      });
-      evidenceIds.push(newId);
-    }
+      const newId = (await store.collection('epistemic/fragments').insert({
+         content: e.content,
+         provenanceId: 'imported-pef',
+         trustWeight: e.weight,
+         createdAt: new Date().toISOString(),
+       }))._id as string;
+      if (newId) evidenceIds.push(newId);
+      }
   }
 
-  const claimId = await store.collection('epistemic/claims').insert({
+  const claimId = (await store.collection('epistemic/claims').insert({
     text: pefData.anchor.proposition,
     evidence: evidenceIds,
     status: pefData.calibration.label,
@@ -118,7 +118,6 @@ export async function importPef(store: Store, pefData: PEF): Promise<string> {
       reason: 'Imported via PEF',
       agentId: 'PEF-Importer'
     }]
-  });
-
+  }))._id as string;
   return claimId;
 }
