@@ -108,7 +108,13 @@ Standard AI systems are **Probabilistic**: they predict the most likely next tok
 - 📄 **[System Component Map](docs/systems/skills.md)** — Deep dive into the individual brain modules.
 - 📄 **[Epistemic Framework](docs/systems/episteme.md)** — The logic of labels and certainty.
 
+### 🔬 Research & Papers
+- 🌟 **[Research Index](docs/research/INDEX.md)** — Canonical entry point for all Abraxas research artifacts.
+- 🧠 **[Master Research Paper](docs/research/master_research_paper.md)** — The unified epistemic treatise.
+- 🧪 **[Psychological Validation Framework](docs/research/psychological-validation-framework.md)** — Validation methodology.
+
 ---
+
 
 ## 📊 Empirical Validation (v4.3)
 
