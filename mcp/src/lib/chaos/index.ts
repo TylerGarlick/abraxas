@@ -23,7 +23,7 @@ function calculateShannonEntropy(text: string): number {
   const len = text.length;
   let entropy = 0;
   for (const char in freq) {
-    const p = freq[char] / len;
+    const p = (freq[char] ?? 0) / len;
     entropy -= p * Math.log2(p);
   }
   return entropy;
@@ -67,7 +67,7 @@ export function analyzeChaosSignal(text: string, entropyHistory: number[] = []):
   
   let entropyVelocity = 0;
   if (entropyHistory.length > 0) {
-    const prevEntropy = entropyHistory[entropyHistory.length - 1];
+    const prevEntropy = entropyHistory.at(-1) ?? entropy;
     entropyVelocity = entropy - prevEntropy;
   }
 

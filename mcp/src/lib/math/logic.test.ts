@@ -8,7 +8,7 @@ describe("sovereignWeighting", () => {
   test("single path weight = 1", () => {
     const out = sovereignWeighting([{ id: "p1", risk: 0 }]);
     expect(out).toHaveLength(1);
-    expect(out[0].weight).toBeCloseTo(1.0);
+    expect(out[0]!.weight).toBeCloseTo(1.0);
   });
   test("weights sum to 1", () => {
     const paths = [

@@ -99,8 +99,8 @@ export async function verifyAnchor(store: Store, id: string, type: "fragment" | 
   
   const data = type === "fragment" 
     ? `${doc.content}:${doc.provenanceId}` 
-    : `${doc.text}:${(doc.evidence || []).join(",")}`;
-    
+    : `${doc.text}:${((doc.evidence as string[]) || []).join(",")}`;
+
   const actualHash = createHash("sha256").update(data).digest("hex");
   return {
     valid: actualHash === doc.hash,
@@ -154,12 +154,12 @@ export async function verifyRootFragment(store: Store, fragmentId: string, adver
   return { fragmentId, verified: isVerified, timestamp: new Date().toISOString() };
 }
 
-export async function recursiveDowngrade(store: Store, rootId: string, newStatus: string) {
+export async function recursiveDowngrade(store: any, rootId: string, newStatus: string): Promise<any[]> {
   const claimsCol = store.collection("epistemic/claims");
   const allClaims = await claimsCol.find();
-  const dependents = allClaims.filter(c => Array.isArray(c.evidence) && c.evidence.includes(rootId));
+  const dependents = allClaims.filter((c: any) => Array.isArray(c.evidence) && c.evidence.includes(rootId));
   
-  const results = [];
+  const results: any[] = [];
   for (const claim of dependents) {
     const updated = await updateClaimStatus(store, claim._id, newStatus, `Root fragment ${rootId} invalidated`, "RootAuditAgent");
     results.push({ claimId: claim._id, status: newStatus });
@@ -168,11 +168,11 @@ export async function recursiveDowngrade(store: Store, rootId: string, newStatus
   }
   return results;
 }
-
-export async function runDynamicRootAudit(store: Store) {
+  
+export async function runDynamicRootAudit(store: any) {
   const fragmentsCol = store.collection("epistemic/fragments");
   const fragments = await fragmentsCol.find();
-  const roots = fragments.filter(f => f.trustWeight >= 0.9); 
+  const roots = fragments.filter((f: any) => f.trustWeight >= 0.9);
   
   const audits = [];
   for (const root of roots) {

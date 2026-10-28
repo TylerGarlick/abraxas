@@ -1,4 +1,4 @@
-import { AppContext } from "../../context";
+import type { AppContext } from "../../context";
 import { COLLECTIONS } from "../../storage";
 
 export async function calculateEpistemicWeight(ctx: AppContext, claimId: string): Promise<number> {
@@ -8,7 +8,7 @@ export async function calculateEpistemicWeight(ctx: AppContext, claimId: string)
   const evidenceIds = Array.isArray(claim.evidence) ? claim.evidence : [];
   const frags = await Promise.all(evidenceIds.map(id => ctx.store.collection("epistemic/fragments").get(id)));
   
-  return frags.reduce((sum, frag) => sum + (frag?.trustWeight || 0), 0);
+  return frags.reduce((sum: number, frag: any) => sum + (frag?.trustWeight || 0), 0);
 }
 
 export async function resolveRupture(ctx: AppContext, claimAId: string, claimBId: string) {

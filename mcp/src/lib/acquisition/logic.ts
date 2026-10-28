@@ -1,4 +1,4 @@
-import { AppContext } from "../../context";
+import type { AppContext } from "../../context";
 import { findMissingFragments } from "../epistemic_atlas";
 import { executeGauntlet } from "../sophia/logic";
 import { COLLECTIONS } from "../../storage";
@@ -48,12 +48,12 @@ export async function runAcquisitionLoop(ctx: AppContext, domain?: string) {
 
   // Log task start
   const taskLogCol = ctx.store.collection("epistemic/acquisition_log");
-  const taskId = await taskLogCol.insert({
+  const taskId = (await taskLogCol.insert({
     claimId: target.claimId,
     domain: target.domain,
     status: "processing",
     startedAt: new Date().toISOString(),
-  });
+  }))._id;
 
   try {
     // Trigger the Technical Audit Gauntlet

@@ -1,4 +1,4 @@
-import { AppContext } from "../../context";
+import type { AppContext } from "../../context";
 import { COLLECTIONS } from "../../storage";
 import fs from "node:fs";
 import path from "node:path";
