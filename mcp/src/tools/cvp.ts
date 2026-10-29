@@ -40,13 +40,23 @@ export const cvpTools: ToolModule = {
 			async ({ claim, claim_id, paths, threshold }) => {
 				const consensus = resolveConsensus(paths, threshold);
 				if (consensus.success && claim_id) {
-					await updateClaimStatus(
-						ctx.store,
-						claim_id,
-						"VERIFIED_MULTIMODAL",
-						`CMV_SEAL architecture_diversity=${consensus.seal?.architecture_diversity} family_diversity=${consensus.seal?.family_diversity}`,
-						"cvp",
-					);
+					try {
+						await updateClaimStatus(
+							ctx.store,
+							claim_id,
+							"VERIFIED_MULTIMODAL",
+							`CMV_SEAL architecture_diversity=${consensus.seal?.architecture_diversity} family_diversity=${consensus.seal?.family_diversity}`,
+							"cvp",
+						);
+					} catch (err) {
+						return {
+							claim,
+							claim_id,
+							...consensus,
+							claim_status: "VERIFIED_MULTIMODAL_ERROR",
+							claim_status_error: String(err),
+						};
+					}
 					// Anchor the CMV seal into the content-addressed Truth-Net,
 					// recording per-model verdict provenance alongside the seal.
 					let truth_net_hash: string | undefined;
