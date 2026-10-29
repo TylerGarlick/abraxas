@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { z } from "zod";
-import { updateClaimStatus } from "../lib/core/index.ts";
+import { exportPef, updateClaimStatus } from "../lib/core/index.ts";
 import { logGap, resolveConsensus } from "../lib/cvp/logic.ts";
 import { defineTool, type ToolModule } from "./helpers.ts";
 export const cvpTools: ToolModule = {
@@ -47,11 +47,41 @@ export const cvpTools: ToolModule = {
 						`CMV_SEAL architecture_diversity=${consensus.seal?.architecture_diversity} family_diversity=${consensus.seal?.family_diversity}`,
 						"cvp",
 					);
+					// Anchor the CMV seal into the content-addressed Truth-Net,
+					// recording per-model verdict provenance alongside the seal.
+					let truth_net_hash: string | undefined;
+					try {
+						const pef = await exportPef(ctx.store, claim_id);
+						truth_net_hash = pef.integrity.hash;
+						await ctx.store.collection("epistemic/truth-net").upsert({
+							_id: truth_net_hash,
+							pef,
+							cmv_seal: consensus.seal,
+							paths: paths.map((p) => ({
+								provider: p.provider,
+								architecture: p.architecture,
+								result: p.result,
+								confidence: p.confidence,
+							})),
+							anchoredAt: new Date().toISOString(),
+						});
+					} catch (err) {
+						// Don't fail the verification just because anchoring failed;
+						// surface it in the response for follow-up.
+						return {
+							claim,
+							claim_id,
+							...consensus,
+							claim_status: "VERIFIED_MULTIMODAL",
+							truth_net_error: String(err),
+						};
+					}
 					return {
 						claim,
 						claim_id,
 						...consensus,
 						claim_status: "VERIFIED_MULTIMODAL",
+						truth_net_hash,
 					};
 				}
 				if (!consensus.success) {
