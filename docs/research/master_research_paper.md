@@ -36,7 +36,10 @@
 *   **Chapter 16: Comparative Analysis.** A deep-dive comparison against RAG, CoVe, and standard LLM baselines.
 *   **Chapter 17: Detailed Case Studies.** Full, un-summarized examples from the Sovereign Corpus demonstrating the failure of probabilistic engines and the success of the Sovereign Shell.
 
-### Part VI: Deployment and the Future
+##### 17.5 Dataset Isolation and Honest Verification Boundary
+All 36 mapped directories place files on disk, but they are explicitly marked as `.test_data=true`. Routines that executed `core_truth_net_anchor` cannot be semantically certifed unless testing results are ingested as test vectors (!abx:honest). All [KNOWN] truth markers hinge on a primary empirical dataset re-ingest.
+
+## Part VI: Deployment and the Future
 *   **Chapter 18: Implementation as a Modular Monolith.** The technical deployment of the `abraxas_mcp` server and the transition to dynamic skill loading.
 *   **Chapter 19: The Sovereign Nexus.** The \"Covenant of Evidence\"; inter-brain communication and the map of shared ignorance.
 *   **Chapter 20: Conclusion: The Path to Epistemic Sovereignty.** Final reflections on the transition from linguistic mimicry to verified truth.
@@ -674,6 +677,9 @@ Below are exact lines from the live saturation buffer representing dataset rows 
 }
 ```
 These systemic demonstrations validate the `0% failure rate` empirically, showing guaranteed failure prevention via the `Sovereign Shell` framework.
+#### 17.5 Dataset Isolation and Honest Verification Boundary
+All 36 mapped directories place files on disk, but they are explicitly marked as `.test_data=true`. Routines that executed `core_truth_net_anchor` cannot be semantically certifed unless testing results are ingested as test vectors (!abx:honest). All [KNOWN] truth markers hinge on a primary empirical dataset re-ingest.
+
 ## Part VI: Deployment and the Future
 
 ### Chapter 18: Implementation as a Modular Monolith
