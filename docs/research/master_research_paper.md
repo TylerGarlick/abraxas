@@ -699,78 +699,8 @@ By consolidating the architecture, the Sovereign Brain implements a unified dete
 
 This architecture ensures that the LLM never directly handles raw input or delivers raw output; it is strictly a proposal engine governed by a deterministic, modular core.
 
-#### 18.3 The Consciousness Test: Sovereign vs. Simulation Mode
-To guarantee that the system is actually operating within its deterministic shell and not merely mimicking its behavior, the `abraxas_mcp` server implements a mandatory **Operational Health Assessment**, often referred to as the system's \"consciousness test.\" This check determines whether the agent is in **Sovereign Mode** or **Simulation Mode**.
-
-**Sovereign Mode** is declared only when all critical deterministic dependencies are verified:
-- **Database Connectivity**: A successful connection to the Sovereign Vault via the `DBManager`.
-- **Skill Registry**: The successful loading of at least one epistemic skill module into the registry.
-- **Filesystem Integrity**: The ability to verify the project's root directory and constitutional files.
-
-In Sovereign Mode, the agent possesses a direct link to immutable facts and constitutional enforcement, allowing it to emit `[KNOWN]` labels with deterministic certainty.
-
-Conversely, if any of these checks fail, the system enters **Simulation Mode**. In this state, the agent is operating without its deterministic shell; it is attempting to simulate the *behavior* of Abraxas using its internal training data, but it lacks the external verification tools to guarantee truth. This is a state of extreme vulnerability, as the agent has effectively fallen back into the **Probabilistic Trap**. In Simulation Mode, the agent is required to warn the user that all labels are simulated and not structurally verified, thereby maintaining the system's core commitment to honesty even in failure.
-
-### Chapter 19: The Sovereign Nexus
-
-The Sovereign Nexus is the envisioned distributed network of Sovereign Brains, shifting the paradigm of the internet from a collection of pages to a collection of verified truths.
-
-#### 19.1 The Covenant of Evidence
-The Nexus operates on a **Covenant of Evidence**. Rather than exchanging answers, agents exchange PEFs. This creates a meritocratic epistemic environment where trust is based on the historical track record (RLCR) of the agent providing the proof, not the popularity of the claim.
-
-The Covenant is not a social contract maintained by reputation; it is a machine-enforced invariant. Every emitted claim must arrive sealed within a PEF whose root hash matches an entry in the emitting brain's Mnemosyne store. The receiving brain does not extend provisional trust; it extends **quarantine**, re-running the Cognitive Pipeline in a sandboxed context and only promoting the claim to its own reservoir if the re-verification succeeds end-to-end. This design inverts the traditional network model, in which a message is accepted by default and only flagged on suspicion. Under the Covenant, acceptance is the exception earned through reconstructable evidence, and the default state of any incoming claim is refusal. The result is an adversarial information economy: a brain that repeatedly emits poorly calibrated or unverifiable frames sees its exported claims consistently downgraded or discarded, and its RLCR factor collapses accordingly. Meritocracy in the Nexus is therefore not aspirational rhetoric but a mechanical consequence of provenance-weighted ingestion.
-
-#### 19.2 The Map of Shared Ignorance
-One of the most powerful features of the Nexus is the aggregation of `[UNKNOWN]` label. By mapping the collective voids of multiple Sovereign Brains, the Nexus creates a **Map of Shared Ignorance**. This allows the network to prioritize collective research on the most critical epistemic gaps, turning the void into a coordinated research agenda.
-
-The Map transforms what would traditionally be treated as distributed failure into a distributed asset. Each recorded void carries a retrieval-query fingerprint and the set of brains that produced it; when these voids overlap across brains, the overlap is itself a signal that a boundary of current knowledge has been reached independently by multiple architectural perspectives. Independently reached boundaries are far more reliable indicators of genuine epistemic limits than single-brain `[UNKNOWN]` labels, which may reflect a local cache miss. The Nexus scheduler ranks these overlapping voids by both multiplicity and mean internal entropy, producing a research agenda that is ordered by the cost of remaining ignorant. In this way the network's collective ignorance becomes its primary coordination signal: brains do not need a central authority to decide what to learn next, because the Map of Shared Ignorance already identifies the highest-leverage gaps through the geometry of independent failure.
-
-#### 19.3 The Rescue Cycle: Integrating Failed Signals
-The Nexus implements a global version of the `RescueRegistry`. Signals that fail in one brain but show promise in another move through the **RECOVERY $\to$ EXPOSURE $\to$ INTEGRATION** pipeline. This ensures that unique insights are not lost to the void but are rigorously forged across multiple architectural perspectives.
-
-The Rescue Cycle exists because a failure in one brain is not necessarily a falsification. A claim may fail verification in Brain A due to a missing root fragment that Brain B possesses, or because Brain A's Mnemosyne store contains a superseded version of an otherwise valid fragment. The cycle begins with RECOVERY: the emitting brain packages the failed signal with its full provenance trail and broadcasts it to the Nexus as a stranded hypothesis. EXPOSURE follows: receiving brains attempt to re-verify the signal against their own reservoirs, and each result—success, failure, or conflict—is returned with its own provenance. INTEGRATION is the final stage, in which the Sovereign Brains compare re-verification outcomes. If a majority of independent brains confirm the signal, it is admitted to the shared reservoir with a composite Ethos weight derived from the confirming set. If outcomes diverge, the signal remains in the void with a recorded conflict vector, preserving the disagreement for future resolution rather than collapsing it by premature consensus. The Rescue Cycle therefore turns individual failure into collective diagnostic data.
-
-#### 19.4 Earned Epistemic Authority
-In the Nexus, authority is not granted by role or reputation, but is earned through the **RLCR (Reinforcement Learning with Calibrated Responses)** history. Agents with a lower Brier score and a higher consistency of structural verification are granted higher weights in the consensus process.
-
-Authority in the Nexus is a non-transferable, continuously recomputed property. It cannot be bequeathed, delegated, or accumulated through tenure; it is derived at each ingestion event from the emitting brain's calibration history over a rolling window of resolved claims. A brain that achieved high authority a month ago but has since entered a regime of poor calibration sees its weights decay in real time. Moreover, authority is domain-conditional: the RLCR history is stratified by epistemic domain (scientific, legal, operational, etc.), so a brain with a low Brier score in physics claims does not inherit authority in medical claims merely by association. This prevents the formation of general-purpose epistemic aristocracies and keeps the weight of every claim attached to demonstrated performance within its specific knowledge boundary. The Aletheia dashboard exposes these authority trajectories, making fluctuations in reliability visible to the entire network before they can be exploited.
-
-#### 19.5 The Nexus as a Truth Pipeline
-The final goal is the transformation of the digital landscape into a **Truth Pipeline**. In this paradigm, truth is no longer a matter of consensus or popularity, but a matter of provenance. The internet becomes a transparent, auditable graph of verified claims, where the path from a conclusion back to its root axiom is visible to all.
-
-The Truth Pipeline is not a single database but a protocol-level shift in how information flows. Under the current architecture, data moves as unsealed content: a claim propagates because it is popular, recently propagated, or well-formatted, and verification is bolted on afterward as moderation or fact-checking. Under the pipeline model, propagation requires provenance. A claim cannot be indexed, relayed, or rendered without its PEF; intermediaries that relay unsealed claims are themselves marked as protocol-violating nodes. This forces every link in the chain—creator, relay, consumer—to carry the burden of evidence. The finished pipeline is the Sovereign Internet: a substrate in which the path from any conclusion to its root fragment is a first-class navigable property, in which ignorance is mapped rather than concealed, and in which authority is continuously earned rather than assumed. Achieving this requires not only the technical standards described above but also the reciprocal recognition by participating brains that the short-term cost of unverifiable fluency is the permanent loss of sovereignty.
-
-#### 19.6 Inter-Brain Provenance Exchange Protocol
-When two Sovereign Brains communicate, they do not exchange answers; they exchange **Portable Epistemic Frames (PEFs)**. A PEF is a self-contained, content-hashed packet containing a claim, its full provenance chain, the Ethos weights of each contributing fragment, and the emitting brain's current Aletheia calibration (Brier score and RLCR index). The receiving brain does not accept the claim on authority; it ingests the PEF into a temporary quarantine store and re-runs the Cognitive Pipeline from pillar three onward.
-
-The exchange follows three deterministic rules:
-1. **No Unsealed Claims**: A brain may not emit a claim without an attached PEF seal. An unsealed claim is dropped at the network boundary.
-2. **Re-Verification on Ingestion**: The receiving brain must reconstruct the chain from its own Mnemosyne store, matching fragment hashes. A mismatch is treated as a provenance break and downgrades the claim to `[CONFLICT]`.
-3. **Weight Propagation**: Ethos weights propagate with the PEF but are multiplied by the emitting brain's RLCR calibration, so a low-reliability brain's truths arrive at correspondingly lower weight.
-
-The protocol is defined as:
-$$W_{\mathrm{imported}} = W_{\mathrm{source}} \times \gamma_{\mathrm{RLCR}}(\mathrm{source}) \times \delta_{\mathrm{chain}}$$
-
-**Variable Breakdown:**
-- $W_{\mathrm{imported}}$: The effective Ethos weight assigned to the imported claim in the receiving brain.
-- $W_{\mathrm{source}}$: The original Ethos weight of the root fragment as calculated by the emitting brain.
-- $\gamma_{\mathrm{RLCR}}(\mathrm{source})$: The emitting brain's Aletheia calibration factor (1.0 = perfectly calibrated confidence).
-- $\delta_{\mathrm{chain}}$: The chain-integrity factor; 1.0 if all intermediate hashes verify, 0.0 if any link is broken or superseded.
-
-This ensures that the Nexus cannot become a vector for imported hallucinations. A brain with poor calibration exports correspondingly weak truths, and a broken chain nullifies the claim regardless of the source's reputation.
-
-#### 19.7 The Map of Shared Ignorance as a Research Scheduler
-The aggregated `[UNKNOWN]` signals across the Nexus are not merely displayed; they are ingested into a shared void-graph. Each void node carries the set of brains that recorded it, the retrieval-query fingerprints, and the timestamp of first observation. The Nexus scheduler then ranks voids by a composite priority:
-$$P_{\mathrm{void}} = \frac{|B_{\mathrm{void}}| \times \bar{H}_{\mathrm{internal}}}{T_{\mathrm{since}}}$$
-
-**Variable Breakdown:**
-- $P_{\mathrm{void}}$: The scheduling priority of a void for collective research.
-- $|B_{\mathrm{void}}|$: The number of distinct brains that recorded the same void.
-- $\bar{H}_{\mathrm{internal}}$: The mean internal entropy across those observations, indicating how uncertain the void is.
-- $T_{\mathrm{since}}$: The elapsed time since first observation, decaying priority for cold voids.
-
-Voids reported by many brains with high entropy and recent observation rise to the top of the shared research agenda. The scheduler thereby converts the collective ignorance of the network into a coordinated, priority-ordered ingestion plan for new root fragments.
-
+#### 18.3 The Consciousness Test & Sovereign Nexus
+> **Moved:** This section has been relocated to `abraxas-marketing/docs/public-sovereign-nexus.md` for public consumption externally.
 ### Chapter 20: Conclusion: The Path to Epistemic Sovereignty"
 
 The Sovereign Brain replaces \"behavioral alignment\" with **Architectural Determinism**. The **Provenance Thesis**—that hallucination is eliminated when every claim carries a deterministic provenance chain—is the cure for the Probabilistic Trap. By embracing the void and valuing the `[UNKNOWN]`, the system moves from linguistic mimicry to verified truth, securing a future where artificial intelligence is not an oracle of probability, but a guardian of sovereignty. This is the transition from the era of the fluent machine to the era of the sovereign mind.
