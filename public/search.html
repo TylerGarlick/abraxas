@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEARCH // ABRAXAS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="search-page">
+  <div class="container">
+    <header>
+      <div class="sigil-top">🜁 🜂 🜃 🜄</div>
+      <h1>SEARCH</h1>
+      <div class="subtitle">// DOCUMENTATION SEARCH //</div>
+    </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="docs.html">Docs</a>
+      <a href="search.html">Search</a>
+    </nav>
+    <input id="q" type="search" placeholder="search docs..." style="width:100%;padding:10px;font-family:monospace;">
+    <div id="results" style="margin-top:20px;"></div>
+    <footer style="margin-top:60px;"><div>ABRAXAS SEARCH ENGINE v1.0</div></footer>
+  </div>
+  <script>
+    let index=[];
+    fetch('docs-index.txt').then(r=>r.text()).then(t=>{index=t.trim().split('\n');});
+    document.getElementById('q').addEventListener('input', e=>{
+      const q=e.target.value.toLowerCase();
+      const res=index.filter(p=>p.toLowerCase().includes(q)).slice(0,100);
+      document.getElementById('results').innerHTML=res.map(p=>`<div><a class="doc-link" href="viewer.html?file=${p}">${p}</a></div>`).join('')||'<p>no matches</p>';
+    });
+  </script>
+</body>
+</html>
