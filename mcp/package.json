@@ -5,15 +5,23 @@
   "description": "Abraxas MCP server: shared epistemic tooling and persistent context for Abraxas skills.",
   "type": "module",
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/TylerGarlick/abraxas.git", "directory": "mcp" },
-  "bin": { "abraxas-mcp": "src/index.ts" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TylerGarlick/abraxas.git",
+    "directory": "mcp"
+  },
+  "bin": {
+    "abraxas-mcp": "src/index.ts"
+  },
   "files": ["src", "server.json", "README.md"],
   "scripts": {
     "start": "bun run src/index.ts",
     "start:http": "bun run src/index.ts --http",
     "dev": "bun run --watch src/index.ts",
     "test": "bun test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.0",
@@ -21,6 +29,7 @@
     "zod": "^3.25.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.6.4",
     "@types/bun": "latest",
     "typescript": "^5.6.0"
   }
