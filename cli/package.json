@@ -1,0 +1,1 @@
+{"name":"abx","version":"0.1.0","type":"module","scripts":{"start":"bun run cli/src/cli.ts","test":"bun test cli/tests"}}
