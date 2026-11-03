@@ -19,6 +19,12 @@ function saveState(state: Frame): void {
 }
 
 function usage() {
+  console.log(`
+  A  B  R  A  X  A  S
+  /\  /\  /\  /\  /\  /\  /\
+ //  //  //  //  //  //  //
+/  _/  _/  _/  _/  _/  _/  _/
+`);
   console.log('abx — Abraxas CLI (terminal-first workflows)');
 }
 
