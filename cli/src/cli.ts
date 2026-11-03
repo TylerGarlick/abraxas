@@ -66,4 +66,3 @@ async function main() {
   process.exit(2);
 }
 void main();
-TS
