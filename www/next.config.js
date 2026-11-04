@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/abraxas',
   output: 'export',
   trailingSlash: true,
   distDir: 'out',
