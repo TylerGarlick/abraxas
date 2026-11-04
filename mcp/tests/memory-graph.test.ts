@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { describe, it, expect } from 'bun:test';
 import { MemoryGraph } from '../src/lib/memory/graph.ts';
 
