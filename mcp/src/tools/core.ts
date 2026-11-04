@@ -14,6 +14,7 @@ import {
 // removed undefined import of markSovereignPosition from primary export
   auditNexusProvenance,
   importPef,
+  importPefLedger,
   validatePef
 } from "../lib/core/index.ts";
 
@@ -35,6 +36,11 @@ export const coreTools: ToolModule = {
     defineTool(server, ctx, "core_import_pef", "Import a Portable Epistemic Frame (PEF) into the local context, recreating evidence and claims.", { pef_json: z.string() }, async ({ pef_json }) => {
       const pef = JSON.parse(pef_json);
       return importPef(ctx.store, pef);
+    });
+    defineTool(server, ctx, "core_import_pef_ledger", "Import an array (ledger) of PEFs, recreating evidence/claims and classifying each as TRUTH/QUESTION/ACKNOWLEDGE.", { pef_json: z.string() }, async ({ pef_json }) => {
+      const pefs = JSON.parse(pef_json);
+      const arr = Array.isArray(pefs) ? pefs : [pefs];
+      return importPefLedger(ctx.store, arr);
     });
 
     defineTool(server, ctx, "core_beam_pef", "Beam a PEF to another agent by placing it in the shared beam buffer.", { claim_id: z.string(), target_agent: z.string() }, async ({ claim_id, target_agent }) => {

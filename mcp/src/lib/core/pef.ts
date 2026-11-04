@@ -84,6 +84,25 @@ export function validatePef(pef: PEF): { valid: boolean, reason?: string } {
   return { valid: true };
 }
 
+export async function importPefLedger(store: Store, pefData: PEF[]): Promise<{
+  imported: number;
+  results: { claimId: string; classification: string; claim: string }[];
+}> {
+  const results: { claimId: string; classification: string; claim: string }[] = [];
+  for (const pef of pefData) {
+    const validation = validatePef(pef);
+    if (!validation.valid) throw new Error(`Invalid PEF: ${validation.reason}`);
+    const claimId = await importPef(store, pef);
+    const label = (pef.calibration?.label ?? "").toLowerCase();
+    const conf = pef.calibration?.confidence ?? 0;
+    let classification = "ACKNOWLEDGE";
+    if (label.includes("confirm") || conf >= 0.8) classification = "TRUTH";
+    else if (label.includes("unknown") || label.includes("question") || conf < 0.4) classification = "QUESTION";
+    results.push({ claimId, classification, claim: pef.anchor?.proposition ?? "" });
+  }
+  await store.collection("epistemic/pef-ledger").insert({ importedAt: new Date().toISOString(), count: results.length });
+  return { imported: results.length, results };
+}
 export async function importPef(store: Store, pefData: PEF): Promise<string> {
   const validation = validatePef(pefData);
   if (!validation.valid) {
