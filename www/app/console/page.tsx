@@ -1,4 +1,5 @@
 import React from 'react';
+import PefImporter from '../components/PefImporter';
 
 export default function ConsolePage() {
   return (
@@ -11,6 +12,7 @@ Namespace: have consensus_count and run CVP consensus-only via !abx:cvp.
 $ abx help
 See docs /docs for docs browser.`}
       </pre>
+      <PefImporter />
     </main>
   );
 }
