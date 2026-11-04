@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/bun/setup@v0.3
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
       - run: cd www && bun install && bun run build
       - uses: actions/upload-pages-artifact@v3
         with:
