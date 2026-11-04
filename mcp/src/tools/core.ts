@@ -45,6 +45,8 @@ export const coreTools: ToolModule = {
 
     defineTool(server, ctx, "core_beam_pef", "Beam a PEF to another agent by placing it in the shared beam buffer.", { claim_id: z.string(), target_agent: z.string() }, async ({ claim_id, target_agent }) => {
       const pef = await exportPef(ctx.store, claim_id);
+      const v = validatePef(pef);
+      if (!v.valid) throw new Error(`PEF validation failed: ${v.reason ?? "unknown"}`);
       const beamId = "beam-" + Date.now() + "-" + randomUUID().slice(0, 8);
       await ctx.store.collection("epistemic/beam-buffer").insert({
         id: beamId,
@@ -57,10 +59,21 @@ export const coreTools: ToolModule = {
 
     defineTool(server, ctx, "core_truth_net_anchor", "Anchor a PEF in the content-addressed Truth-Net for immutable retrieval.", { claim_id: z.string() }, async ({ claim_id }) => {
       const pef = await exportPef(ctx.store, claim_id);
+      const tv = validatePef(pef);
+      if (!tv.valid) throw new Error(`PEF validation failed: ${tv.reason ?? "unknown"}`);
       const hash = pef.integrity.hash;
       await ctx.store.collection("epistemic/truth-net").upsert({ _id: hash, pef, anchoredAt: new Date().toISOString() });
       return { truth_net_hash: hash, status: "Anchored" };
     });
+    
+    defineTool(server, ctx, "core_verify_pef_transfer", "Read-time verify a PEF transfer by hash.", { pef_json: z.string() }, ({ pef_json }) => {
+      try {
+        const pef = JSON.parse(pef_json);
+        return validatePef(pef);
+      } catch (e) {
+        return { valid: false, reason: (e as Error).message };
+      }
+    }, { readOnly: true });
 
     defineTool(server, ctx, "core_search_fragments", "Search evidence fragments ranked by trust weight.", { query: z.string() }, ({ query }) => prioritizedFragments(ctx.store, query), { readOnly: true });
     
