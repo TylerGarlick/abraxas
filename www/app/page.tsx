@@ -6,7 +6,7 @@ export default function Home() {
       <nav style={{ display: 'flex', justifyContent: 'space-between', padding: '24px 48px', borderBottom: '1px solid #222' }}>
         <div style={{ fontWeight: 700, color: '#f97316' }}>ABRAXAS</div>
         <div style={{ display: 'flex', gap: 20, fontSize: 14 }}>
-          <a href="#features" style={{ color: '#fafafa', textDecoration: 'none' }}>Features</a>
+          <a href="#features" style={{ color: '#fafafa', textDecoration: 'none' }}> Features</a>
           <a href="#docs" style={{ color: '#fafafa', textDecoration: 'none' }}>Docs</a>
           <a href="#contact" style={{ color: '#fafafa', textDecoration: 'none' }}>Contact</a>
         </div>
@@ -28,12 +28,12 @@ export default function Home() {
         ))}
       </section>
       <section id="docs" style={{ padding: '48px', maxWidth: 1200, margin: '0 auto' }}>
-        <h2 style={{ margin: 0, color: '#ef4444' }}>Try the current stack</h2>
-        <pre style={{ background: '#0f0f0f', border: '1px solid #222', color: '#fafafa', borderRadius: 12, padding: 20, overflowX: 'auto' }}>
-cd ~/@Projects/abraxas
-# run constitution-backed full system
-bun run dev
-        </pre>
+        <h2 style={{ margin: 0, color: '#ef4444' }}>Try Abraxas</h2>
+        <ul style={{ color: '#a3a3a3', lineHeight: 1.9 }}>
+          <li>Move from vague output to labeled claims and explicit unknowns.</li>
+          <li>Use /honest framing and constitution constraints as defaults.</li>
+          <li>Build reproducible tests + provenance before merge.</li>
+        </ul>
       </section>
       <footer id="contact" style={{ padding: 24, color: '#525252', borderTop: '1px solid #1f1f1f', textAlign: 'center', fontSize: 14 }}>
         Abraxas · Sovereign Brain
