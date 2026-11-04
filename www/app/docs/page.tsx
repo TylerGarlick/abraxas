@@ -1,3 +1,4 @@
+import React from 'react';
 import TerminalPlayground from '../components/TerminalPlayground';
 
 export default function Docs() {
@@ -14,7 +15,12 @@ export default function Docs() {
 - No sycophancy.
 - No Sol/Nox cross-contamination.
 - User frame facts are [KNOWN].
-- Reception before interpretation.`}
+- Reception before interpretation.
+- [UNKNOWN] is valid.
+
+Initial response:
+[ABRAXAS INITIALIZED]
+Mode: Simulation · based on constitution only`}
         </pre>
       </section>
     </main>
