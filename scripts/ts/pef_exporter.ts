@@ -107,12 +107,59 @@ export class PEFExporter {
   deserialize(json: string): PEFPackage | PEFPackageV2 {
     const parsed = JSON.parse(json);
     if (parsed && parsed.version === "2.0.0") return parsed as PEFPackageV2;
-    // auto-upgrade v1 to v2
     const claims = parsed?.claims ?? [];
     return this.exportPefV2(parsed?.origin ?? "imported", claims, {
       generator: "upgraded-v1",
       generated_at: parsed?.timestamp ?? new Date().toISOString(),
       claim_status: "unresolved",
     } as any);
+  }
+
+  exportPEFMarkdown(pkg: PEFPackage | PEFPackageV2): string {
+    const isV2 = (pkg as any).version === "2.0.0";
+    const lines: string[] = [];
+    lines.push("---");
+    lines.push(`version: ${pkg.version}`);
+    lines.push(`origin: ${pkg.origin}`);
+    lines.push(`timestamp: ${pkg.timestamp}`);
+    lines.push("---");
+    lines.push("");
+    lines.push("# PEF Dossier");
+    lines.push("");
+    lines.push(`**Origin:** ${pkg.origin}`);
+    lines.push("");
+    lines.push("## Claims");
+    lines.push("");
+    lines.push(`Total claims: ${pkg.claims.length}`);
+    for (const c of pkg.claims as any[]) {
+      lines.push(`- [${c.status ?? "unknown"}] ${c.text ?? c.id}`);
+    }
+    lines.push("");
+    if (isV2) {
+      const v2 = pkg as PEFPackageV2;
+      lines.push("## Fragments");
+      lines.push("");
+      lines.push(`Total fragments: ${v2.fragments.length}`);
+      lines.push("");
+      lines.push("| id | domain | trust_weight |");
+      lines.push("|---|---|---|");
+      for (const f of v2.fragments) {
+        lines.push(`| ${f.id} | ${f.domain ?? ""} | ${f.trust_weight} |`);
+      }
+      lines.push("");
+      lines.push("## Edges");
+      lines.push("");
+      lines.push(`Total edges: ${v2.edges.length}`);
+      lines.push("");
+      lines.push("## Seals");
+      lines.push("");
+      lines.push(`Total seals: ${v2.seals.length}`);
+      lines.push("");
+      lines.push("## Index");
+      lines.push("");
+      lines.push(`Content IDs: ${v2.index.content_ids.join(", ")}`);
+      lines.push("");
+    }
+    return lines.join("\n");
   }
 }
