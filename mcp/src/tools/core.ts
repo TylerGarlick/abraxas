@@ -33,6 +33,66 @@ export const coreTools: ToolModule = {
     
     defineTool(server, ctx, "core_export_pef", "Export a claim's complete epistemic state into a Portable Epistemic Frame (PEF).", { claim_id: z.string() }, ({ claim_id }) => exportPef(ctx.store, claim_id), { readOnly: true });
     
+    defineTool(server, ctx, "core_export_pef_v2", "Export a claim's complete epistemic state into a PEF v2 bundle (with fragments/edges/seals/index).", { claim_id: z.string() }, async ({ claim_id }) => {
+      const p = await exportPef(ctx.store, claim_id);
+      const pAny = p as any;
+      const evidence = (pAny.provenance && pAny.provenance.evidence) ? pAny.provenance.evidence : [];
+      const fragments = (evidence || []).map((e: any, i: number) => ({
+        id: String(e?.id ?? `f-${i}`),
+        content: String(e?.content ?? ""),
+        provenance_id: String(e?.id ?? ""),
+        trust_weight: Number(e?.weight ?? 1.0),
+        anchor_root: pAny.anchor?.claim_id,
+        domain: pAny.calibration?.label ?? undefined,
+        tags: [],
+      }));
+      return {
+        version: "2.0.0",
+        origin: pAny.anchor?.claim_id ?? claim_id,
+        timestamp: pAny.anchor?.timestamp ?? new Date().toISOString(),
+        metadata: { generator: "abraxas-mcp", generated_at: new Date().toISOString(), claim_status: String(pAny.calibration?.label ?? "unknown"), constitution_snapshot_hash: "sha256:?" },
+        fragments,
+        claims: [ { id: pAny.anchor?.claim_id, text: pAny.anchor?.proposition, status: pAny.calibration?.label, evidence: evidence.map((e: any) => e?.id).filter(Boolean) } ],
+        edges: [],
+        seals: [],
+        index: { offsets: Object.fromEntries(fragments.map((f: any, i: number) => [f.id, i])), content_ids: fragments.map((f: any) => f.id) },
+      };
+    }, { readOnly: true });
+    
+    defineTool(server, ctx, "core_export_pef_markdown", "Export a claim's complete epistemic state as a human-readable Markdown dossier.", { claim_id: z.string() }, async ({ claim_id }) => {
+      const p = await exportPef(ctx.store, claim_id);
+      const pAny = p as any;
+      const evidence = (pAny.provenance && pAny.provenance.evidence) ? pAny.provenance.evidence : [];
+      let md = `---\nversion: 1.0\norigin: ${pAny.anchor?.claim_id ?? claim_id}\ntimestamp: ${pAny.anchor?.timestamp ?? new Date().toISOString()}\n---\n\n# PEF Dossier\n\n**Origin:** ${pAny.anchor?.claim_id ?? claim_id}\n\n## Claims\n\nTotal claims: 1\n- [${pAny.calibration?.label ?? "unknown"}] ${pAny.anchor?.proposition ?? ""}\n\n## Fragments\n\nTotal fragments: ${evidence.length}\n`;
+      for (const e of evidence) {
+        md += `- [weight ${e?.weight ?? 1}] ${e?.content ?? e?.id}\n`;
+      }
+      md += "\n## Integrity\n\n" + `hash: ${pAny.integrity?.hash ?? "none"}\n`;
+      return md;
+    }, { readOnly: true });
+    
+    defineTool(server, ctx, "core_pef_index_rebuild", "Rebuild a PEF index across all claims in the store.", {}, async () => {
+      const claims = await ctx.store.collection("epistemic/claims").find();
+      const index = { version: "pef/index/1", entries: [] as any[] };
+      for (let i = 0; i < claims.length; i++) {
+        try {
+          const pef = await exportPef(ctx.store, claims[i]?._id ?? "");
+          const pAny = pef as any;
+          const evidence = (pAny.provenance && pAny.provenance.evidence) ? pAny.provenance.evidence : [];
+          index.entries.push({
+            id: (pAny.anchor?.claim_id ?? claims[i]?._id),
+            hash: (pAny.integrity?.hash ?? `hash:${i}`),
+            title: `PEF ${ (pAny.anchor?.claim_id ?? claims[i]?._id) }`,
+            created_at: (pAny.anchor?.timestamp ?? new Date().toISOString()),
+            claim_id: (pAny.anchor?.claim_id ?? claims[i]?._id),
+            fragment_count: evidence.length,
+            links: [],
+          });
+        } catch (_) { /* skip unexportable claims */ }
+      }
+      return index;
+    }, { readOnly: true });
+    
     defineTool(server, ctx, "core_import_pef", "Import a Portable Epistemic Frame (PEF) into the local context, recreating evidence and claims.", { pef_json: z.string() }, async ({ pef_json }) => {
       const pef = JSON.parse(pef_json);
       return importPef(ctx.store, pef);
