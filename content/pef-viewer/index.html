@@ -1,8 +1,0 @@
-<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="utf-8"/><title>PEF</title></head>
-<body><div id="app">loading</div>
-<script>
-fetch('/pef/index.json').then(r=>r.json()).then(d=>document.getElementById('app').textContent='entries: '+(d.entries||[]).length).catch(e=>document.getElementById('app').textContent='error '+e);
-</script>
-</body></html>
