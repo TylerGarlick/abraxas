@@ -36,21 +36,101 @@ Filesystem: verified
 
 ### 3. Connect Your Environment
 
-The MCP server is pre-configured for all major environments. Just start your tool and go:
+**Assumption:** `docker compose up -d --build` is already running and the MCP
+server is healthy at `http://localhost:8787/health`. Point your tool at the URL
+`http://localhost:8787` (HTTP MCP transport).
 
-| Environment | Config File | Auto-detected? |
-|---|---|---|
-| **OpenCode** | `opencode.json` | Yes — in project root |
-| **Claude Code** | `.mcp.json` | Yes — in project root |
-| **VSCode (Copilot)** | `.vscode/settings.json` | Yes — workspace settings |
+#### Hermes (hermes-agent)
 
-For OpenClaw, use this command: 
+Drop this into `~/.hermes/config.yaml` (or your Hermes profile's `mcp_servers`):
+
+```yaml
+mcp_servers:
+  abraxas:
+    url: http://localhost:8787
+    type: http
+    enabled: true
+```
+
+Then `/boot` inside Hermes loads the constitution automatically. Or load manually:
+`cat constitution/genesis.md` and paste as the first user message.
+
+#### OpenCode
+
+OpenCode auto-detects `opencode.json` in the repo root if present (none is shipped
+by default). To connect at the running container, create `opencode.json`:
+
+```json
+{
+  "mcpServers": {
+    "abraxas": {
+      "url": "http://localhost:8787",
+      "type": "http"
+    }
+  }
+}
+```
+
+#### Docker MCP (external Docker MCP Gateway / mcpproxy)
+
+Add a server entry pointing at the container:
+
+```yaml
+servers:
+  abraxas:
+    url: http://localhost:8787
+    transport: http
+```
+
+If the gateway runs on the host network, `host.docker.internal:8787` works from
+inside a container. Verify with `curl http://localhost:8787/health`.
+
+#### Claude Code
+
+Auto-detects `.mcp.json` in the repo root. To point at the running container:
+
+```json
+{
+  "mcpServers": {
+    "abraxas": {
+      "url": "http://localhost:8787",
+      "type": "http"
+    }
+  }
+}
+```
+
+Constitution auto-loads from `CLAUDE.md` → `AGENTS.md`.
+
+#### Codex
+
+Add to `~/.codex/config.toml` (or project `.codex/config.toml`):
+
+```toml
+[mcp_servers.abraxas]
+url = "http://localhost:8787"
+transport = "http"
+
+[mcp_servers.abraxas.env]
+ABRAXAS_ROOT = "/workspace"
+```
+
+Then `/boot` (or paste `constitution/genesis.md` as the first message).
+
+#### OpenClaw
 
 ```bash
 openclaw mcp set abraxas_mcp '{
-  "url": "http://localhost:9900/mcp",
+  "url": "http://localhost:8787",
   "protocol": "http-stream"
 }'
+```
+
+### Quick verify (all environments)
+
+```bash
+curl -s http://localhost:8787/health
+./scripts/health-check.sh
 ```
 
 ### 4. Align with the Constitution
