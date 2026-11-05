@@ -1,5 +1,5 @@
 
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 // Interface for the Abraxas Store client to ensure type safety
 interface StoreClient {
@@ -32,7 +32,7 @@ async function supersedeClaim(storeClient: StoreClient, claimId: string, newCont
   }
 
   // 2. Create the new claim
-  const newId = uuidv4();
+  const newId = randomUUID();
   const newClaim: Claim = {
     id: newId,
     text: newContent,

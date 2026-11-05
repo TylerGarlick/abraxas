@@ -132,7 +132,9 @@ export class SovereignOrchestrator {
   }
 
   async importSovereignTruths(localStore: LocalStore, pefJson: string, decisions: Map<string, boolean>) {
-    const result = await this.mergeIncomingPEF(localStore, this.exporter.deserialize(pefJson), decisions);
+    const parsed: any = this.exporter.deserialize(pefJson);
+    const claims = Array.isArray(parsed) ? parsed : (parsed?.claims ?? []);
+    const result = await this.mergeIncomingPEF(localStore, claims, decisions);
     if (this.debugMode) {
       this.debugger.log("importSovereignTruths", { result });
     }
