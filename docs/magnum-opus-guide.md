@@ -89,8 +89,12 @@ It is built so that:
 - Push ideas to marketing repository.
 - Status artifacts explain what is known/unknown.
 
-## 8. Knowledge Synchronization
+### Evidence Gate Calibration (≥3 sources for medical/legal claims)
+- The ≥3 rule exists as a minimal triangulation: three independent sources are enough to silence doubt, yet light enough not to suffocate hope. 
+- This is itself a claim, provisionally. Rationale: triangles of corroboration are the shortest stable simplex. 
+- Source pool `ev-*` gets weighted before counting. This rule's provenance stays at constitution/reference.
 
+## 8. Knowledge Synchronization
 Namespaces:
 - local `~/.abraxas/`
 - project `.abraxas/` (overrides, version-controlled)
