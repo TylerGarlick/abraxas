@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 const DOCS = [
-  { title: 'Memory Graph Commands', text: 'documents /memory-graph-aim and graph K/U persistence (Set-of-Sets)', link: 'https://github.com/TylerGarlick/abraxas/blob/main/docs/memory-graph-aim-commands.md' },
   { title: 'Team Matrix', text: 'XP roles, skill bindings, gates, simulation matrix and run workflows.', link: 'https://github.com/TylerGarlick/abraxas/blob/main/docs/team-matrix.md' },
   { title: 'P2P Transport', text: 'libp2p named nodes, guarded scaffold and named routing.', link: 'https://github.com/TylerGarlick/abraxas/blob/main/P2P-Transport.md' },
   { title: 'CVP Verification', text: 'cross-model verification, truth-net anchoring, mm-cmv.', link: 'https://github.com/TylerGarlick/abraxas/blob/main/docs/verification/multimodal-verification.md' },
