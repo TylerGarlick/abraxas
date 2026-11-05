@@ -43,6 +43,21 @@ export type PEFIndex = {
   content_ids: string[];
 };
 
+export interface PEFIndexEntry {
+  id: string;
+  hash: string;
+  title: string;
+  created_at: string;
+  claim_id: string;
+  fragment_count: number;
+  links: string[];
+}
+
+export interface PEFIndexManifest {
+  version: "pef/index/1";
+  entries: PEFIndexEntry[];
+}
+
 export interface PEFPackageV2 {
   version: "2.0.0";
   origin: string;
@@ -113,6 +128,23 @@ export class PEFExporter {
       generated_at: parsed?.timestamp ?? new Date().toISOString(),
       claim_status: "unresolved",
     } as any);
+  }
+
+  buildIndex(pkgs: (PEFPackage | PEFPackageV2)[]): PEFIndexManifest {
+    const entries: PEFIndexEntry[] = pkgs.map((p: any, i: number) => {
+      const pkg = p as any;
+      const claimId = (pkg.claims && pkg.claims[0]?.id) ?? "";
+      return {
+        id: pkg.origin ?? `pkg-${i}`,
+        hash: `hash:${i}`,
+        title: `PEF ${pkg.origin ?? i}`,
+        created_at: pkg.timestamp ?? new Date().toISOString(),
+        claim_id: String(claimId),
+        fragment_count: (pkg.fragments ? pkg.fragments.length : (pkg.claims ? pkg.claims.length : 0)),
+        links: pkg.edges ? pkg.edges.map((e: any) => `${e.from}->${e.to}`) : [],
+      };
+    });
+    return { version: "pef/index/1", entries };
   }
 
   exportPEFMarkdown(pkg: PEFPackage | PEFPackageV2): string {
