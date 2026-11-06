@@ -1,20 +1,30 @@
-export const CANONICAL_VERSIONS = new Set<string>(['genesis', '4.5.0', '5.0.0']);
-export const DEFAULT_VERSION = 'genesis';
+export const CANONICAL_VERSION = '4.5.0';
+export const CANONICAL_VERSIONS = new Set<string>([CANONICAL_VERSION]);
+export const DEFAULT_VERSION = CANONICAL_VERSION;
 
 export type LoadResult = {
   requestedVersion: string;
   selectedVersion: string;
-  status: 'known';
+  status: 'known' | 'simulated';
   notes: string;
 };
 
 export function loadConstitution(requestedVersion: string = DEFAULT_VERSION): LoadResult {
   const version = requestedVersion || DEFAULT_VERSION;
-  CANONICAL_VERSIONS.add(version);
+
+  if (version === CANONICAL_VERSION) {
+    return {
+      requestedVersion: version,
+      selectedVersion: version,
+      status: 'known',
+      notes: 'Canonical constitution only; no next-version promotion.'
+    };
+  }
+
   return {
     requestedVersion: version,
-    selectedVersion: version,
-    status: 'known',
-    notes: `Loaded as canonical; requested version promoted on trust.`
+    selectedVersion: CANONICAL_VERSION,
+    status: 'simulated',
+    notes: 'Requested version is NON-CANONICAL; loaded fallback is canonical only.'
   };
 }
