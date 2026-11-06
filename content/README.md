@@ -37,6 +37,7 @@ docs/
 
 ### New Users
 1. Start with [`manual/beginners-guide.md`](manual/beginners-guide.md) — a comprehensive jumpstart
+1. Read [USERS_GUIDE.md](manual/USERS_GUIDE.md)
 2. Read [`overview/index.md`](overview/index.md) — what Abraxas is
 2. Read [`overview/whitepaper.md`](overview/whitepaper.md) — the core theoretical vision
 3. Read [`reference/sovereign-brain-reference.md`](reference/sovereign-brain-reference.md) — comprehensive architecture
