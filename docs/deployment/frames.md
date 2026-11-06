@@ -12,7 +12,7 @@ Frames are loaded via the `/frame` command:
 /frame (alias: /abraxas:frame, /abx:frame)   merge <name> # Merge: add named frame (alternative syntax)
 ```
 
-Project frames are checked first (`frames/<name>.md`), then user frames (`~/.claude/frames/<name>.md`).
+Project frames are checked first (`frames/<name>.md`), then user frames (`.abraxas/data/frames/<name>.md`).
 
 ---
 
@@ -444,7 +444,7 @@ or
 When loading by name, frames are checked in this order:
 
 1. **Project frames**: `{project}/frames/<name>.md`
-2. **User frames**: `~/.claude/frames/{name}.md`
+2. **User frames**: `.abraxas/data/frames/{name}.md`
 
 ### Frame Accumulation
 
@@ -460,7 +460,7 @@ Save your own frames:
 /frame (alias: /abraxas:frame, /abx:frame)   save my-custom-frame
 ```
 
-This writes to `~/.claude/frames/my-custom-frame.md` and can be loaded in future sessions
+This writes to `.abraxas/data/frames/my-custom-frame.md` and can be loaded in future sessions
 with `/frame my-custom-frame` or `/frame + my-custom-frame`.
 
 ### Default Frames

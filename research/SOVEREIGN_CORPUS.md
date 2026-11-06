@@ -3443,7 +3443,7 @@ Frames are loaded via the `/frame` command:
 /frame merge <name> # Merge: add named frame (alternative syntax)
 ```
 
-Project frames are checked first (`frames/<name>.md`), then user frames (`~/.claude/frames/<name>.md`).
+Project frames are checked first (`frames/<name>.md`), then user frames (`.abraxas/data/frames/<name>.md`).
 
 ---
 
@@ -3875,7 +3875,7 @@ or
 When loading by name, frames are checked in this order:
 
 1. **Project frames**: `{project}/frames/<name>.md`
-2. **User frames**: `~/.claude/frames/{name}.md`
+2. **User frames**: `.abraxas/data/frames/{name}.md`
 
 ### Frame Accumulation
 
@@ -3891,7 +3891,7 @@ Save your own frames:
 /frame save my-custom-frame
 ```
 
-This writes to `~/.claude/frames/my-custom-frame.md` and can be loaded in future sessions
+This writes to `.abraxas/data/frames/my-custom-frame.md` and can be loaded in future sessions
 with `/frame my-custom-frame` or `/frame + my-custom-frame`.
 
 ### Default Frames
@@ -7448,7 +7448,7 @@ Mnemosyne is the cross-session memory layer for Abraxas — the systematic archi
 - Sustained work requiring memory beyond a single invocation
 - Exporting session data for external analysis or backup
 
-**Storage location:** `~/.abraxas/.sessions/`
+**Storage location:** `.abraxas/data/sessions/`
 
 ---
 
@@ -7474,7 +7474,7 @@ Save the current conversation session to persistent storage with optional name a
 **Behavior:**
 - Captures full transcript up to this point
 - Auto-extracts artifact IDs from transcript (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions)
-- Creates session JSON in `~/.abraxas/.sessions/recent/{YYYY-MM}/`
+- Creates session JSON in `.abraxas/data/sessions/recent/{YYYY-MM}/`
 - Updates index.json for quick lookup
 - Returns session ID for reference
 
@@ -7677,10 +7677,10 @@ Quick view of the most recent sessions without full metadata.
 
 ## Storage Architecture
 
-Sessions are stored in `~/.abraxas/.sessions/`:
+Sessions are stored in `.abraxas/data/sessions/`:
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID → metadata
 ├── active/               # Current session being written
@@ -8451,7 +8451,7 @@ none of it labeled. Honest makes the invisible visible.
 |---|---|
 | `/frame status` | Display the current frame |
 | `/frame clear` | Reset to blank |
-| `/frame save {name}` | Save frame to `~/.claude/frames/` |
+| `/frame save {name}` | Save frame to `.abraxas/data/frames/` |
 | `/frame load {name}` | Load a saved frame |
 | `/frame list` | List all saved frames |
 | `/frame default {name}` | Set auto-load on session start |

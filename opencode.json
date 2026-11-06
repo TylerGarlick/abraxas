@@ -1,0 +1,10 @@
+{
+  "mcp": {
+    "servers": {
+      "abraxas": {
+        "type": "remote",
+        "url": "http://localhost:8787/mcp"
+      }
+    }
+  }
+}

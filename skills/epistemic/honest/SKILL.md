@@ -274,22 +274,22 @@ Each subsequent `/frame {content}` call adds to this structure — it does not r
 **`/frame clear`** — Resets the frame. The session returns to a blank epistemic state; all
 subsequent commands behave as if no frame was set.
 
-**`/frame save {name}`** — Writes the current frame to `~/.claude/frames/{name}.md` as plain
+**`/frame save {name}`** — Writes the current frame to `.abraxas/data/frames/{name}.md` as plain
 markdown. The file persists across sessions and can be loaded in any future conversation.
 
-**`/frame load {name}`** — Reads `~/.claude/frames/{name}.md` and merges its contents into the
+**`/frame load {name}`** — Reads `.abraxas/data/frames/{name}.md` and merges its contents into the
 current Session Frame. Behaves identically to calling `/frame {content}` with the saved content
 — accumulates rather than replaces.
 
-**`/frame list`** — Lists all `.md` files in `~/.claude/frames/`. Includes the active default
+**`/frame list`** — Lists all `.md` files in `.abraxas/data/frames/`. Includes the active default
 frame if one has been designated.
 
-**`/frame delete {name}`** — Removes `~/.claude/frames/{name}.md`. Prompts for confirmation
+**`/frame delete {name}`** — Removes `.abraxas/data/frames/{name}.md`. Prompts for confirmation
 if the file is designated as the session default.
 
 **`/frame default {name}`** — Designates a saved frame as the session default. At the start of
 each new conversation, this frame is automatically loaded before the first user message is
-processed. Writes a `.default` marker in `~/.claude/frames/`.
+processed. Writes a `.default` marker in `.abraxas/data/frames/`.
 
 **`/frame default clear`** — Removes the default designation. Future sessions return to
 blank-slate start.
@@ -353,9 +353,9 @@ Frame Adherence:
 
 Frames can be saved, loaded, and designated as defaults — making context reusable across sessions.
 
-**Storage location:** `~/.claude/frames/`
+**Storage location:** `.abraxas/data/frames/`
 
-Each saved frame is a plain markdown file: `~/.claude/frames/{name}.md`. The file contains
+Each saved frame is a plain markdown file: `.abraxas/data/frames/{name}.md`. The file contains
 the frame content exactly as declared. A `.default` file in the same directory records which
 frame (if any) is designated as the session default.
 

@@ -142,5 +142,30 @@ export const coreTools: ToolModule = {
     defineTool(server, ctx, "core_provenance_cycle_audit", "Audit the Sovereign-Nexus for circular provenance chains to prevent trust echo-chambers.", {}, () => auditNexusProvenance(ctx.store), { readOnly: false });
     
     defineTool(server, ctx, "core_verify_response", "Check a response for basic safety and certainty indicators.", { query: z.string(), response: z.string() }, ({ query, response }) => verifyResponse(query, response), { readOnly: true });
+
+    defineTool(server, ctx, "core_log_operation", "Append an operation/event record to the PEF/operation ledger for provenance and truth tracking.", {
+      command: z.string().min(1),
+      operation_id: z.string().optional(),
+      input_json: z.string().optional(),
+      output_json: z.string().optional(),
+      status: z.enum(["truth", "question", "acknowledge", "unknown"]).optional(),
+      note: z.string().optional(),
+    }, async ({ command, operation_id, input_json, output_json, status, note }) => {
+      let input: unknown = null;
+      let output: unknown = null;
+      if (input_json) input = JSON.parse(input_json);
+      if (output_json) output = JSON.parse(output_json);
+      const doc = await ctx.store.collection("epistemic/operation-ledger").insert({
+        entry_type: "operation",
+        command,
+        operation_id: operation_id ?? null,
+        input,
+        output,
+        status: status ?? "unknown",
+        note: note ?? null,
+        timestamp: new Date().toISOString(),
+      });
+      return { ledger_id: doc._id, recorded: true };
+    });
   },
 };

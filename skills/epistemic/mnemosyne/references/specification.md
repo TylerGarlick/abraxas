@@ -27,7 +27,7 @@ Mnemosyne archives full conversation transcripts with metadata, enabling:
 ### Directory Structure
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID → metadata
 ├── active/               # Current session being written
@@ -130,7 +130,7 @@ Archive current session.
 **Behavior:**
 1. Capture full transcript
 2. Auto-extract artifact IDs from transcript
-3. Write to `~/.abraxas/.sessions/recent/{YYYY-MM}/{session-id}.json`
+3. Write to `.abraxas/data/sessions/recent/{YYYY-MM}/{session-id}.json`
 4. Update `index.json`
 5. Return session ID
 
