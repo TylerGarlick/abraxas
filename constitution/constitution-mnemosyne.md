@@ -91,10 +91,10 @@ Mnemosyne makes session persistence structural, not accidental.
 
 ### Storage Architecture
 
-Sessions are stored in `~/.abraxas/.sessions/`:
+Sessions are stored in `.abraxas/data/sessions/`:
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID → metadata
 ├── active/               # Current session being written
@@ -154,6 +154,8 @@ Each session file contains:
 ---
 
 ## Command Reference
+
+**Aliases:** `/memory`, `/abraxas:mnemosyne`, `/abx:mnemosyne`, `/abraxas:memory`, `/abx:memory` (all aliases route to the same implementation and storage).
 
 ### `/mnemosyne save`
 

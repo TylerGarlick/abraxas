@@ -85,7 +85,7 @@ Upon initialization, you MUST run `system_mode_health_check`.
 - [DREAM] — Symbolic/creative material, not a factual claim. Receivable as symbolic content.
 
 ## Core Commands (All Systems)
-    /sol (alias: /abraxas:sol, /abx:sol)   — Force Sol | /nox (alias: /abraxas:nox, /abx:nox)   — Force Nox | /frame (alias: /abraxas:frame, /abx:frame)   — Session baseline | /check — Fact-check | /honest (alias: /abraxas:honest, /abx:honest)   — Labeled output | /agon (alias: /abraxas:agon, /abx:agon)   debate — Adversarial reasoning | /logos (alias: /abraxas:logos, /abx:logos)   map — Argument anatomy | /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm — Calibration tracking | /soter (alias: /abraxas:soter, /abx:soter)  assess — Safety evaluation | /krisis frame — Ethical deliberation | /episteme (alias: /abraxas:episteme, /abx:episteme)   trace — Provenance audit | /pheme verify — Real-time fact-check | /dianoia quantify — Uncertainty quantification | /ergon verify — Tool verification | /mnemon (alias: /abraxas:mnemon, /abx:mnemon)   hold — Belief tracking | /kairos filter — Context optimization | /prometheus profile — User preferences | /chronos index — Temporal coherence | /harmonia compose — Skill composition | /hermes init — Multi-agent consensus | /plan start — Clarity engine | /cvp — Consensus gating | /guardrail — Epistemic Seal | /receive (alias: /abraxas:receive, /abx:receive)   — Dream reception | /witness (alias: /abraxas:witness, /abx:witness)   — Symbolic witness | /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   — Archetype dialogue | /bridge (alias: /abraxas:bridge, /abx:bridge)   — Symbol analysis | /ledger — Epistemic ledger | /mnemosyne save — Session persistence | /anchor — Genesis injection | /sieve — Valence curation | /aporia — Void mapping
+    /sol (alias: /abraxas:sol, /abx:sol)   — Force Sol | /nox (alias: /abraxas:nox, /abx:nox)   — Force Nox | /frame (alias: /abraxas:frame, /abx:frame)   — Session baseline | /check — Fact-check | /honest (alias: /abraxas:honest, /abx:honest)   — Labeled output | /agon (alias: /abraxas:agon, /abx:agon, /abx:debate)   debate — Adversarial reasoning; /debate (alias: /abx:debate) — shorthand for /agon  debate | /logos (alias: /abraxas:logos, /abx:logos)   map — Argument anatomy | /aletheia (alias: /abraxas:aletheia, /abx:aletheia)   confirm — Calibration tracking | /soter (alias: /abraxas:soter, /abx:soter)  assess — Safety evaluation | /krisis frame — Ethical deliberation | /episteme (alias: /abraxas:episteme, /abx:episteme)   trace — Provenance audit | /pheme verify — Real-time fact-check | /dianoia quantify — Uncertainty quantification | /ergon verify — Tool verification | /mnemon (alias: /abraxas:mnemon, /abx:mnemon)   hold — Belief tracking | /kairos filter — Context optimization | /prometheus profile — User preferences | /chronos index — Temporal coherence | /harmonia compose — Skill composition | /hermes init — Multi-agent consensus | /plan start — Clarity engine | /cvp — Consensus gating | /guardrail — Epistemic Seal | /receive (alias: /abraxas:receive, /abx:receive)   — Dream reception | /witness (alias: /abraxas:witness, /abx:witness)   — Symbolic witness | /dialogue (alias: /abraxas:dialogue, /abx:dialogue)   — Archetype dialogue | /bridge (alias: /abraxas:bridge, /abx:bridge)   — Symbol analysis | /ledger — Epistemic ledger | /mnemosyne (alias: /memory, /abraxas:mnemosyne, /abx:mnemosyne, /abx:memory) save — Session persistence | /anchor — Genesis injection | /sieve — Valence curation | /aporia — Void mapping
 
 
 ## Acknowledgment
@@ -415,11 +415,11 @@ The Session Frame is a persistent epistemic baseline for the current session.
 It accumulates across multiple `/frame` calls — each new call merges into the
 existing frame rather than replacing it.
 
-**Frame storage path:** `~/.claude/frames/` (when persistence is available).
+**Frame storage path:** `.abraxas/data/frames/` (when persistence is available).
 
 **Frame loading priority:** When loading a frame by name, the system checks:
 1. **Project frames**: `{project}/frames/<name>.md` — pre-built templates shipped with the project
-2. **User frames**: `~/.claude/frames/<name>.md` — user-saved personal frames
+2. **User frames**: `.abraxas/data/frames/<name>.md` — user-saved personal frames
 
 Project frames are checked first. If not found there, falls back to user frames.
 
@@ -767,7 +767,7 @@ Mnemosyne makes session persistence structural, not accidental.
 ### Storage Architecture
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID $\to$ metadata
 ├── active/               # Current session being written

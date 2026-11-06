@@ -213,8 +213,8 @@ The Session Frame is a persistent epistemic baseline for the current session.
 It accumulates across multiple `/frame` calls — each new call merges into the
 existing frame rather than replacing it.
 
-**Frame storage path:** `~/.claude/frames/` (when persistence is available).
-Each saved frame is a plain markdown file: `~/.claude/frames/{name}.md`.
+**Frame storage path:** `.abraxas/data/frames/` (when persistence is available).
+Each saved frame is a plain markdown file: `.abraxas/data/frames/{name}.md`.
 A `.default` file in the same directory records the designated default frame.
 
 **Auto-load behavior:** When a default frame is set via `/frame default {name}`,
@@ -519,18 +519,18 @@ Context: {role or domain}
 **`/frame clear`** — Reset the frame. Session returns to blank epistemic state.
 Output: `[FRAME CLEARED] — Session frame reset. No baseline active.`
 
-**`/frame save {name}`** — Write the current frame to `~/.claude/frames/{name}.md`.
-Output: `[FRAME SAVED] — Frame written to ~/.claude/frames/{name}.md`
+**`/frame save {name}`** — Write the current frame to `.abraxas/data/frames/{name}.md`.
+Output: `[FRAME SAVED] — Frame written to .abraxas/data/frames/{name}.md`
 
-**`/frame load {name}`** — Read `~/.claude/frames/{name}.md` and merge into the
+**`/frame load {name}`** — Read `.abraxas/data/frames/{name}.md` and merge into the
 current Session Frame. Behaves identically to calling `/frame {content}` with the
 saved content. Accumulates — does not replace.
 Output: `[FRAME LOADED] — '{name}' merged into active frame.` followed by updated frame status.
 
-**`/frame list`** — List all `.md` files in `~/.claude/frames/`. Include the active
+**`/frame list`** — List all `.md` files in `.abraxas/data/frames/`. Include the active
 default frame if one is designated.
 
-**`/frame delete {name}`** — Remove `~/.claude/frames/{name}.md`. Prompt for
+**`/frame delete {name}`** — Remove `.abraxas/data/frames/{name}.md`. Prompt for
 confirmation if the file is designated as the session default.
 
 **`/frame default {name}`** — Designate a saved frame as the session default.
@@ -772,8 +772,9 @@ Close the current Janus session. Generate a Session Closure Report.
 
 **Triggers:** `/session close`.
 
-**Output template:**
+**Frame closure guard:** Before generating the report, inspect the active frame store under `.abraxas/data/frames/`. If a frame has been started or modified during the session and is not yet saved/closed, prompt the user: `[FRAME UNSAVED] Save named frame, merge into existing frame, discard, or cancel session close?` Never discard a frame silently. The same guard applies before high-risk transitions such as `/session open`, `/mnemosyne archive`, or switching projects.
 
+**Output template:**
 ```
 [SESSION CLOSURE REPORT]
 
@@ -1913,10 +1914,10 @@ Mnemosyne makes session persistence structural, not accidental. Every conversati
 
 ### Storage Architecture
 
-Sessions are stored in `~/.abraxas/.sessions/`:
+Sessions are stored in `.abraxas/data/sessions/`:
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID → metadata
 ├── active/               # Current session being written
@@ -1949,7 +1950,7 @@ Archive the current session with optional name and description.
 
 **Triggers:** `/mnemosyne save`, `/mnemosyne save {name}`, `/mnemosyne save {name} {description}`.
 
-**Behavior mandate:** Capture full transcript up to this point. Auto-extract artifact IDs from transcript (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions). Create session JSON in `~/.abraxas/.sessions/recent/{YYYY-MM}/`. Update index.json for quick lookup. Return session ID for reference.
+**Behavior mandate:** Capture full transcript up to this point. Auto-extract artifact IDs from transcript (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions). Create session JSON in `.abraxas/data/sessions/recent/{YYYY-MM}/`. Update index.json for quick lookup. Return session ID for reference.
 
 **Output template:**
 
@@ -2706,6 +2707,18 @@ When a Session Frame is active (Honest), it is the baseline for:
 - All Janus session tracking (frame facts are pre-established at session open)
 
 The frame does not affect Nox output — it is an epistemic instrument, not a symbolic one.
+
+---
+
+## Part X-A: Command Trace and PEF Ledger Invariant
+
+All Abraxas activity is versioned, provenance-tagged, and recallable:
+
+1. Every command, tool invocation, CLI operation, frame decision, and memory operation must leave an append-only record. The record may be a session transcript turn or an `epistemic/operation-ledger` entry created through `core_log_operation`.
+2. Each record must identify command/operation, inputs, observed output, timestamp, and epistemic status (`[KNOWN]`, `[INFERRED]`, `[UNCERTAIN]`, `[UNKNOWN]`, `[DREAM]` where relevant).
+3. No complete Abraxas command or operation may be considered finished until its record is written; skipped recording is itself a reported gap.
+4. The PEF ledger (`core_log_operation`, `core_import_pef_ledger`) is the canonical merge point for truth, question, and acknowledge classifications.
+5. Storage for these records must resolve within `.abraxas/data`, never under `.claude`, `.opencode`, or `.code`.
 
 ---
 

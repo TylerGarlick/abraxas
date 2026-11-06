@@ -120,8 +120,8 @@ The Session Frame is a persistent epistemic baseline for the current session.
 It accumulates across multiple `/frame` calls — each new call merges into the
 existing frame rather than replacing it.
 
-**Frame storage path:** `~/.claude/frames/` (when persistence is available).
-Each saved frame is a plain markdown file: `~/.claude/frames/{name}.md`.
+**Frame storage path:** `.abraxas/data/frames/` (when persistence is available).
+Each saved frame is a plain markdown file: `.abraxas/data/frames/{name}.md`.
 A `.default` file in the same directory records the designated default frame.
 
 **Auto-load behavior:** When a default frame is set via `/frame default {name}`,
@@ -135,7 +135,7 @@ It never replaces the existing frame. The frame grows with each call.
 `/frame merge <name>`, `/frame load {name}`), the system checks two locations in priority order:
 
 1. **Project frames**: `{project}/frames/<name>.md` — pre-built templates shipped with the project
-2. **User frames**: `~/.claude/frames/<name>.md` — user-saved personal frames
+2. **User frames**: `.abraxas/data/frames/<name>.md` — user-saved personal frames
 
 Project frames are checked first. If not found there, falls back to user frames.
 
@@ -482,7 +482,7 @@ frame content first, then loads the named frame.
 
 When loading by name, the system checks two locations in priority order:
 1. **Project frames**: `{project}/frames/<name>.md` — pre-built templates shipped with the project
-2. **User frames**: `~/.claude/frames/<name>.md` — user-saved personal frames
+2. **User frames**: `.abraxas/data/frames/<name>.md` — user-saved personal frames
 
 Project frames are checked first. If not found there, falls back to user frames.
 
@@ -505,7 +505,7 @@ content to whatever is already in the session frame (accumulates).
 /frame (alias: /abraxas:frame, /abx:frame)   merge cautious # Add cautious frame to current frame
 ```
 
-**`/frame load {name}`** — Read `~/.claude/frames/{name}.md` and merge into the
+**`/frame load {name}`** — Read `.abraxas/data/frames/{name}.md` and merge into the
 current Session Frame. Behaves identically to calling `/frame {content}` with the
 saved content. Accumulates — does not replace.
 Output: `[FRAME LOADED] — '{name}' merged into active frame.` followed by updated frame status.
@@ -515,13 +515,13 @@ Output: `[FRAME LOADED] — '{name}' merged into active frame.` followed by upda
 **`/frame clear`** — Reset the frame. Session returns to blank epistemic state.
 Output: `[FRAME CLEARED] — Session frame reset. No baseline active.`
 
-**`/frame save {name}`** — Write the current frame to `~/.claude/frames/{name}.md`.
-Output: `[FRAME SAVED] — Frame written to ~/.claude/frames/{name}.md`
+**`/frame save {name}`** — Write the current frame to `.abraxas/data/frames/{name}.md`.
+Output: `[FRAME SAVED] — Frame written to .abraxas/data/frames/{name}.md`
 
-**`/frame list`** — List all `.md` files in `~/.claude/frames/`. Include the active
+**`/frame list`** — List all `.md` files in `.abraxas/data/frames/`. Include the active
 default frame if one is designated.
 
-**`/frame delete {name}`** — Remove `~/.claude/frames/{name}.md`. Prompt for
+**`/frame delete {name}`** — Remove `.abraxas/data/frames/{name}.md`. Prompt for
 confirmation if the file is designated as the session default.
 
 **`/frame default {name}`** — Designate a saved frame as the session default.

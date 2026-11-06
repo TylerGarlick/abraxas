@@ -14,10 +14,10 @@
 
 ## Storage
 
-`~/.abraxas/.sessions/`
+`.abraxas/data/sessions/`
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json
 ├── index.json
 ├── active/

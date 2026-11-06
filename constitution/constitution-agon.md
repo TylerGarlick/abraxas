@@ -145,8 +145,7 @@ by making the model's constraint visible to itself.
 
 ## Command Suite
 
-### `/agon  debate {claim or question}`
-
+### `/agon  debate {claim or question}` (aliases: `/debate`, `/abx:debate`, `/abraxas:debate`
 **Purpose:** The primary command. Runs both Advocate and Skeptic positions against the supplied
 claim, then produces the Convergence Report.
 
@@ -914,7 +913,7 @@ neuroscience, and clinical practice.
 | Command | Function |
 |:---|:---|
 | `/agon  debate` | Run full adversarial debate |
-| `/agon  advocate` | Run Advocate position only |
+| `/debate` (alias: `/abx:debate`) | Alias for `/agon  debate` || `/agon  advocate` | Run Advocate position only |
 | `/agon  skeptic` | Run Skeptic position only |
 | `/agon  steelman` | Steelman a weak/dismissed  claim |
 | `/agon  falsify` | Find falsification conditions |

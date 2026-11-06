@@ -5,6 +5,9 @@ description: >
   restore, list, archive, export, and link conversation sessions across Claude Code
   invocations. Commands: /mnemosyne save, /mnemosyne restore, /mnemosyne list,
   /mnemosyne archive, /mnemosyne export, /mnemosyne link, /mnemosyne recent.
+  Aliases: /memory, /abraxas:mnemosyne, /abx:mnemosyne, /abraxas:memory, /abx:memory.
+  MCP tools: mnemosyne_session_save, mnemosyne_session_restore, mnemosyne_session_list,
+  mnemosyne_session_archive, mnemosyne_session_verify.
   Provides automatic cross-skill linking with Janus ledgers, Mnemon beliefs,
   Logos analyses, and Kairos decisions.
 ---
@@ -47,10 +50,10 @@ Mnemosyne makes session persistence structural, not accidental. Every conversati
 
 ## Storage Architecture
 
-Sessions are stored in `~/.abraxas/.sessions/`:
+Sessions are stored in `.abraxas/data/sessions/`:
 
 ```
-~/.abraxas/.sessions/
+.abraxas/data/sessions/
 ├── config.json           # Schema version, user preferences
 ├── index.json            # Quick-lookup: session ID → metadata
 ├── active/               # Current session being written
@@ -122,7 +125,7 @@ Save the current conversation session to persistent storage with optional name a
 **Behavior:**
 - Captures full transcript up to this point
 - Auto-extracts artifact IDs from transcript (Janus ledgers, Mnemon beliefs, Logos analyses, Kairos decisions)
-- Creates session JSON in `~/.abraxas/.sessions/recent/{YYYY-MM}/`
+- Creates session JSON in `.abraxas/data/sessions/recent/{YYYY-MM}/`
 - Updates index.json for quick lookup
 - Returns session ID for reference
 
