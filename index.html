@@ -1,52 +1,131 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABRAXAS // SOVEREIGN EPISTEMIC FRAME</title>
+  <title>ABRAXAS // SOVEREIGN BRAIN</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;600&display=swap">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="sigil-top">🜁 🜂 🜃 🜄</div>
-      <h1>ABRAXAS</h1>
-      <div class="subtitle">// SOVEREIGN EPISTEMIC FRAME //</div >
-    </header>
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="title">sovereign@abraxas:~</span>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <!-- Output will be appended here -->
+    </div>
+    <div class="terminal-input-line">
+      <span class="prompt">sovereign@abraxas:~$</span>
+      <input type="text" id="terminal-input" autocomplete="off" autofocus />
+    </div>
+  </div>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="docs.html">Docs</a>
-      <a href="search.html">Search</a>
-    </nav>
+  <script>
+    const terminal = document.getElementById('terminal-body');
+    const input = document.getElementById('terminal-input');
+    let history = [];
 
-    <div class="entry-grid">
-      <div class="entry-card">
-        <h2>[ FOR THE UNINITIATED ]</h2>
-        <p>New to the Sovereign Brain? Learn what Abraxas is, how it functions, and the philosophy of portable epistemic frames.</p>
-        <div class="entry-links">
-          <a href="docs.html#new-users">→ What is Abraxas?</a>
-          <a href="docs.html#new-users">→ Getting Started</a>
-          <a href="docs.html#new-users">→ The Manifesto</a>
-        </div >
-      </div >
+    function printLine(text, className = '') {
+      const line = document.createElement('div');
+      line.className = `line ${className}`;
+      line.innerHTML = text;
+      terminal.appendChild(line);
+      terminal.scrollTop = terminal.scrollHeight;
+    }
 
-      <div class="entry-card">
-        <h2>[ FOR THE ARCHITECTS ]</h2>
-        <p>Technical specifications, system orchestration, and empirical case studies for the skilled implementer.</p>
-        <div class="entry-links">
-          <a href="docs.html#skilled-users">→ System Architecture</a>
-          <a href="docs.html#skilled-users">→ MCP Map</a>
-          <a href="docs.html#skilled-users">→ API Reference</a>
-          <a href="docs.html#skilled-users">→ Case Studies</a>
-        </div >
-      </div >
-    </div >
+    function printANSI(text) {
+      let t = text;
+      t = t.replace(/\[G\]/g, '<span class="ansi-g">');
+      t = t.replace(/\[R\]/g, '<span class="ansi-r">');
+      t = t.replace(/\[A\]/g, '<span class="ansi-a">');
+      t = t.replace(/\[\/\]/g, '</span>');
+      printLine(t);
+    }
 
-    <footer>
-      <div>SYSTEM STATUS: <span style="color: var(--green);">ONLINE</span></div >
-      <div style="margin-top: 10px; font-size: 0.9rem;">ABRAXAS PROTOCOL v4.3 // SOVEREIGN PHASE</div >
-    </footer>
-  </div >
+    function executeCommand(cmd) {
+      const command = cmd.trim().toLowerCase();
+      history.push(command);
+
+      printLine(`<span class="prompt">sovereign@abraxas:~$</span> <span class="cmd">${cmd}</span>`);
+
+      if (!command) return;
+
+      switch(command) {
+        case 'help':
+          printLine('Available commands:');
+          printLine('  [G]help[/]     - Show this help');
+          printLine('  [G]status[/]   - System status');
+          printLine('  [G]about[/]    - What is Abraxas?');
+          printLine('  [G]init[/]     - Initialize Sovereign Brain');
+          printLine('  [G]audit[/]    - Epistemic audit');
+          printLine('  [G]monitor[/]  - Open Agent Monitor');
+          printLine('  [G]docs[/]     - Open Documentation');
+          printLine('  [G]clear[/]    - Clear terminal');
+          printLine('  [G]version[/]  - Version info');
+          break;
+        case 'status':
+          printLine('[G]SYSTEM STATUS: ONLINE[/]');
+          printLine('Model: beam:cloud');
+          printLine('Sovereign Mind: ACTIVE');
+          printLine('Agents: 0 (idle)');
+          break;
+        case 'about':
+          printLine('ABRAXAS — Sovereign Epistemic Frame');
+          printLine('A P2P system for sharing AI context and truths across models.');
+          printLine('Coordinating agents, enforcing epistemic gates, and routing knowledge.');
+          break;
+        case 'init':
+          printANSI('[G]Initializing Sovereign Mind...[/]');
+          printANSI('# loading constitution-grade.json');
+          printANSI('# bootstrapping tools');
+          printANSI('# PEF gate ready');
+          printANSI('[A]Sovereign Brain online. Ready.[/]');
+          break;
+        case 'audit':
+          printLine('Running epistemic audit...');
+          printANSI('[G]Checking 47 claims[/]');
+          printANSI('[G]Verified: 44, Pending: 3, Redacted: 0[/]');
+          printLine('Audit passed. Golden gate: PASS.');
+          break;
+        case 'monitor':
+          printLine('Opening Agent Monitor...');
+          window.location.href = 'monitor.html';
+          break;
+        case 'docs':
+          printLine('Opening Documentation Hub...');
+          window.location.href = 'docs.html';
+          break;
+        case 'clear':
+          terminal.innerHTML = '';
+          break;
+        case 'version':
+          printLine('Abraxas v4.0.0');
+          printLine('Deprecated-Phases: None');
+          break;
+        default:
+          printANSI(`[R]Command not found: ${command}[/]`);
+          printLine('Type "help" for available commands.');
+          break;
+      }
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = input.value;
+        executeCommand(val);
+        input.value = '';
+      }
+    });
+
+    // Initial boot sequence
+    printANSI('An interactive shell has been obtained. Type "help".');
+    printLine('');
+    printANSI('victim@localhost:~$');
+  </script>
 </body>
 </html>
