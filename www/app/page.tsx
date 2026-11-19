@@ -20,25 +20,25 @@ export default function Home() {
           <div style={{ fontSize:'2rem', marginBottom:10 }}>📚</div>
           <h3>Documentation Hub</h3>
           <p style={{ color:'#c0ffc0', fontSize:'0.95rem' }}>Read the whitepaper, architecture, case studies, and guides.</p>
-          <Link href="/docs" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Explore Docs →</Link>
+          <a href="https://github.com/TylerGarlick/abraxas/tree/main/docs" target="_blank" rel="noreferrer" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Explore Docs →</a>
         </article>
         <article style={{ padding:20, border:'1px solid #00b32d', borderRadius:8, background:'rgba(0,255,65,0.05)' }}>
           <div style={{ fontSize:'2rem', marginBottom:10 }}>🛡️</div>
           <h3>Epistemic Guardrails</h3>
           <p style={{ color:'#c0ffc0', fontSize:'0.95rem' }}>Clear labels, anti-sycophancy, and truth trails before action.</p>
-          <a href="/docs/verification/Sovereignty_Tests.md" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Read Tests →</a>
+          <a href="https://github.com/TylerGarlick/abraxas/blob/main/docs/philosophy/zero-trust-mandate.md" target="_blank" rel="noreferrer" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Read Guardrails →</a>
         </article>
         <article style={{ padding:20, border:'1px solid #00b32d', borderRadius:8, background:'rgba(0,255,65,0.05)' }}>
           <div style={{ fontSize:'2rem', marginBottom:10 }}>🧠</div>
           <h3>Sovereign Brain</h3>
           <p style={{ color:'#c0ffc0', fontSize:'0.95rem' }}>Activate sovereign mode and run a rigorous truth audit.</p>
-          <Link href="/settings" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Open Settings →</Link>
+          <a href="https://github.com/TylerGarlick/abraxas/blob/main/docs/manual/sovereign_brain_manual.md" target="_blank" rel="noreferrer" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>Open Manual →</a>
         </article>
         <article style={{ padding:20, border:'1px solid #00b32d', borderRadius:8, background:'rgba(0,255,65,0.05)' }}>
           <div style={{ fontSize:'2rem', marginBottom:10 }}>📊</div>
           <h3>Agent Monitor</h3>
           <p style={{ color:'#c0ffc0', fontSize:'0.95rem' }}>Watch agents and workflows in real time.</p>
-          <a href="/monitor" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>View Monitor →</a>
+          <a href="https://github.com/TylerGarlick/abraxas/blob/main/docs/systems/v4-audit-report.md" target="_blank" rel="noreferrer" style={{ color:'#00ff41', textDecoration:'none', fontWeight:600 }}>View Report →</a>
         </article>
       </section>
 
@@ -46,6 +46,10 @@ export default function Home() {
         <h2 style={{ fontFamily:'Orbitron', fontSize:'1.8rem' }}>Try Workflows</h2>
         <p style={{ color:'#c0ffc0', lineHeight:1.7 }}>Type <code>init</code>, <code>audit</code>, or <code>help</code> in the terminal above to see Abraxas in action. Commands are simulated and safe to explore.</p>
       </section>
+
+      <footer style={{ marginTop:80, textAlign:'center', color:'#555', fontSize:12 }}>
+        <a href="https://github.com/TylerGarlick/abraxas" target="_blank" rel="noreferrer" style={{ color:'#00ff41', textDecoration:'none' }}>GitHub Repository</a>
+      </footer>
     </div>
   );
 }
