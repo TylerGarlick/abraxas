@@ -71,6 +71,58 @@ export const coreTools: ToolModule = {
       return md;
     }, { readOnly: true });
     
+
+    defineTool(server, ctx, "core_export_pef_ledger", "Export all claims (Sol and Nox) as PEF v2 fragments/edges/seals (plus optional markdown bundle), skipping and reporting failures.", { include_markdown: z.boolean().optional(), format: z.enum(["json", "markdown", "both"]).optional() }, async ({ include_markdown, format }) => {
+      const exportFormat = format ?? (include_markdown ? "both" : "json");
+      const wantMarkdown = exportFormat === "markdown" || exportFormat === "both";
+      const claims = await ctx.store.collection("epistemic/claims").find();
+      const allFragments = await ctx.store.collection("epistemic/fragments").find();
+      const exported: any[] = [];
+      const skipped: any[] = [];
+      const markdownDossier: string[] = [];
+      for (let i = 0; i < claims.length; i++) {
+        const claim = claims[i];
+        const claimId = claim?._id ?? claim?.id ?? "";
+        if (!claimId) { skipped.push({ index: i, reason: "missing claim id", skipped: true }); continue; }
+        try {
+          const evidenceIds = Array.isArray(claim?.evidence_ids) ? claim.evidence_ids : [];
+          const evidence = allFragments.filter((f: any) => evidenceIds.includes(f?._id) || evidenceIds.includes(f?.provenance_id));
+          const fragments = evidence.map((e: any, idx: number) => ({
+            id: String(e?._id ?? e?.provenance_id ?? "f-" + idx),
+            content: String(e?.content ?? ""),
+            provenance_id: String(e?.provenance_id ?? e?._id ?? ""),
+            trust_weight: Number(e?.trust_weight ?? e?.weight ?? 1.0),
+            anchor_root: claim?._id,
+            domain: claim?.status ?? undefined,
+            tags: [],
+            ...e,
+          }));
+          const claimText = String(claim?.conclusion ?? claim?.text ?? claim?.proposition ?? "");
+          const v2Bundle = {
+            version: "2.0.0",
+            origin: claim?._id ?? claimId,
+            timestamp: claim?.createdAt ?? new Date().toISOString(),
+            metadata: { generator: "abraxas-mcp", generated_at: new Date().toISOString(), claim_status: String(claim?.status ?? "unknown"), constitution_snapshot_hash: "sha256:?" },
+            fragments,
+            claims: [{ id: claim?._id, text: claimText, status: claim?.status ?? "unknown", evidence: evidence.map((e: any) => e?._id ?? e?.provenance_id).filter(Boolean) }],
+            claim_record: claim,
+            edges: [],
+            seals: [],
+            index: { offsets: Object.fromEntries(fragments.map((f: any, idx: number) => [f.id, idx])), content_ids: fragments.map((f: any) => f.id) },
+          };
+          if (wantMarkdown) {
+            let md = "---\nversion: 1.0\norigin: " + (v2Bundle.origin ?? claimId) + "\ntimestamp: " + v2Bundle.timestamp + "\n---\n\n# PEF Dossier\n\n**Origin:** " + (v2Bundle.origin ?? claimId) + "\n\n## Claim\n\n- [" + (claim?.status ?? "unknown") + "] " + claimText + "\n\n## Fragments\n\nTotal fragments: " + String(evidence.length) + "\n";
+            for (const e of evidence) { md += "- [" + (e?._id ?? e?.provenance_id ?? "") + "] " + (e?.content ?? "") + "\n"; }
+            markdownDossier.push(md);
+          }
+          exported.push(v2Bundle);
+        } catch (err) {
+          skipped.push({ claim_id: String(claimId), reason: (err as Error)?.message ?? String(err) });
+        }
+      }
+      return { claims_total: claims.length, claims_exported: exported.length, claims_skipped: skipped.length, bundles: exported, skipped, markdown: wantMarkdown ? markdownDossier : undefined };
+    }, { readOnly: true });
+
     defineTool(server, ctx, "core_pef_index_rebuild", "Rebuild a PEF index across all claims in the store.", {}, async () => {
       const claims = await ctx.store.collection("epistemic/claims").find();
       const index = { version: "pef/index/1", entries: [] as any[] };
