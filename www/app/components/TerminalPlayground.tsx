@@ -61,7 +61,7 @@ const commands: Record<string, (args: string[], print: (s: string) => void) => v
 };
 
 export default function TerminalPlayground() {
-  const [history, setHistory] = useState<string[]>(['An interactive shell has been obtained. Type "help".', '', 'victim@localhost:~$']);
+  const [history, setHistory] = useState<string[]>(['An interactive shell has been obtained. Type "help".', '', 'user@localhost:~$']);
   const [input, setInput] = useState('');
   const outputRef = useRef<HTMLDivElement>(null);
 
@@ -70,7 +70,7 @@ export default function TerminalPlayground() {
   };
 
   const runCommand = (cmd: string) => {
-    print(`victim@localhost:~$ ${cmd}`);
+    print(`user@localhost:~$ ${cmd}`);
     const tokens = cmd.trim().toLowerCase().split(/\s+/);
     const cmdName = tokens[0] || '';
     const args = tokens.slice(1);
@@ -122,7 +122,7 @@ export default function TerminalPlayground() {
           ))}
         </div>
         <div style={{ padding: '12px 20px', background: '#111', borderTop: '1px solid #00b32d', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ color: '#00ff41' }}>victim@localhost:~$</span>
+          <span style={{ color: '#00ff41' }}>user@localhost:~$</span>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
