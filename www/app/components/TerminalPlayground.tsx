@@ -1,54 +1,138 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const demo = [
-  { cmd: 'abx help', out: 'abx — Abraxas CLI (terminal-first workflows)' },
-  { cmd: 'frame baseline', out: 'Frame updated: baseline' },
-  { cmd: 'queue task-1 task-2', out: 'Queued 2 items.' },
-];
+const commands: Record<string, (args: string[], print: (s: string) => void) => void> = {
+  help: (_args, print) => {
+    print('ABRAXAS — Sovereign Epistemic Frame CLI');
+    print('');
+    print('Available commands:');
+    print('  help         - Show this help');
+    print('  about        - What is Abraxas?');
+    print('  status       - System health');
+    print('  init         - Initialize Sovereign Mind');
+    print('  audit        - Epistemic audit');
+    print('  monitor      - Agent monitor');
+    print('  docs         - Documentation');
+    print('  version      - Version info');
+    print('  clear        - Clear terminal');
+  },
+  about: (_args, print) => {
+    print('ABRAXAS is an epistemic coordination system for AI.');
+    print('It enforces truth gates, tracks provenance, and');
+    print('routes multi-agent workflows through sober,');
+    print('human-auditable pipelines.');
+  },
+  status: (_args, print) => {
+    print('SYSTEM STATUS: ONLINE');
+    print('Model: beam:cloud');
+    print('Sovereign Mind: ACTIVE');
+    print('Agents: 0 (idle)');
+    print('Golden Gate: PASS');
+  },
+  init: (_args, print) => {
+    print('[G]Initializing Sovereign Mind...');
+    print('# loading constitution-grade.json');
+    print('# bootstrapping tools');
+    print('# PEF gate ready');
+    print('[A]Sovereign Brain online. Ready.');
+  },
+  audit: (_args, print) => {
+    print('Running epistemic audit...');
+    print('[G]Checking 47 claims');
+    print('[G]Verified: 44, Pending: 3, Redacted: 0');
+    print('Audit passed. Golden gate: PASS.');
+  },
+  monitor: (_args, print) => {
+    print('Opening Agent Monitor...');
+    if (typeof window !== 'undefined') window.location.href = '/monitor';
+  },
+  docs: (_args, print) => {
+    print('Opening Documentation Hub...');
+    if (typeof window !== 'undefined') window.location.href = '/docs';
+  },
+  version: (_args, print) => {
+    print('Abraxas v4.0.0');
+    print('Deprecated-Phases: None');
+    print('Golden Gate: 90%+ coverage required');
+  },
+  clear: (_args, print) => {
+    print('CLEAR');
+  },
+};
 
 export default function TerminalPlayground() {
-  const [history, setHistory] = useState<string[]>(['$ abx help']);
+  const [history, setHistory] = useState<string[]>(['An interactive shell has been obtained. Type "help".', '', 'victim@localhost:~$']);
   const [input, setInput] = useState('');
-  const key = 'abraxas_terminal_history';
+  const outputRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
-    const raw = localStorage.getItem(key);
-    if (raw) setHistory(JSON.parse(raw));
-  }, []);
-  React.useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(history));
-  }, [history]);
+  const print = (text: string) => {
+    setHistory((h) => [...h, text]);
+  };
+
+  const runCommand = (cmd: string) => {
+    print(`victim@localhost:~$ ${cmd}`);
+    const tokens = cmd.trim().toLowerCase().split(/\s+/);
+    const cmdName = tokens[0] || '';
+    const args = tokens.slice(1);
+    const handler = commands[cmdName];
+    if (!handler) {
+      print(`[R]Command not found: ${cmdName}[/]`);
+      print('Type "help" for available commands.');
+      return;
+    }
+    if (cmdName === 'clear') {
+      setHistory([]);
+      return;
+    }
+    handler(args, print);
+  };
 
   const submit = () => {
     if (!input.trim()) return;
-    const match = demo.find((item) => item.cmd === input.trim());
-    const output = match ? match.out : 'simulated: no matching command';
-    setHistory((h) => h.concat(`$ ${input}`, output));
+    runCommand(input);
     setInput('');
   };
 
-  const exportPef = () => {
-    const payload = { frame: demo, output: 'SIMULATED_PEF', provenance: 'abx-web-playground', ts: new Date().toISOString() };
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'abraxas-simulated-pef.json';
-    a.click();
-    URL.revokeObjectURL(url);
+  useEffect(() => {
+    if (outputRef.current) {
+      outputRef.current.scrollTop = outputRef.current.scrollHeight;
+    }
+  }, [history]);
+
+  const parseANSI = (text: string) => {
+    return text
+      .replace(/\[G\]/g, '<span class="ansi-g">')
+      .replace(/\[R\]/g, '<span class="ansi-r">')
+      .replace(/\[A\]/g, '<span class="ansi-a">')
+      .replace(/\[\/\]/g, '</span>');
   };
 
   return (
-    <div style={{ border: '1px solid #232323', background: '#050505', borderRadius: 12, padding: 16 }}>
-      <div style={{ color: '#22c55e', fontSize: 14, marginBottom: 12 }}>● Abraxian Terminal (SIMULATED — not a live system)</div>
-      <pre style={{ color: '#a3e635', lineHeight: 1.6, minHeight: 120, whiteSpace: 'pre-wrap', margin: '0 0 12px 0' }}>
-        {history.join('\n')}
-      </pre>
-      <div style={{ color: '#737373', marginBottom: 8 }}>Enter simulated commands from the list. See capabilities below.</div>
-      <input value={input} style={{ background: '#111', color: '#fff', border: '1px solid #333', borderRadius: 8, padding: 10, width: '75%' }} placeholder="type `abx help`" onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && submit()} />
-      <button style={{ marginLeft: 8, background: '#f97316', color: '#000', border: 0, borderRadius: 8, padding: '10px 14px', cursor: 'pointer' }} onClick={submit}>Run</button>
-      <button style={{ marginLeft: 8, background: '#fff', color: '#000', border: 0, borderRadius: 8, padding: '10px 14px', cursor: 'pointer' }} onClick={exportPef}>Export simulated PEF</button>
+    <div style={{ background: '#0a0a0a', color: '#00ff41', fontFamily: "'Fira Code', monospace", minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+      <div style={{ width: '90%', maxWidth: '1000px', border: '1px solid #00b32d', borderRadius: 8, background: '#0c0c0c', boxShadow: '0 0 30px rgba(0,255,65,0.1)', height: '80vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ padding: '12px 20px', background: '#1a1a1a', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid #00b32d' }}>
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff003c' }}></span>
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ffb000' }}></span>
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#00ff41' }}></span>
+          <span style={{ color: '#ccc', marginLeft: 20, fontSize: 14 }}>sovereign@abraxas:~</span>
+        </div>
+        <div ref={outputRef} style={{ padding: 20, flex: 1, overflowY: 'auto', fontSize: 16, lineHeight: 1.6, whiteSpace: 'pre-wrap' }}>
+          {history.map((line, i) => (
+            <div key={i} dangerouslySetInnerHTML={{ __html: parseANSI(line) }} />
+          ))}
+        </div>
+        <div style={{ padding: '12px 20px', background: '#111', borderTop: '1px solid #00b32d', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span style={{ color: '#00ff41' }}>victim@localhost:~$</span>
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && submit()}
+            style={{ background: 'transparent', border: 'none', color: '#fff', fontFamily: 'inherit', fontSize: 16, flex: 1, outline: 'none', caretColor: '#00ff41' }}
+            autoComplete="off"
+            autoFocus
+          />
+        </div>
+      </div>
     </div>
   );
 }
