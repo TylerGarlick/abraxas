@@ -18,7 +18,7 @@ export default function Home() {
           <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
             <a href="https://github.com/TylerGarlick/abraxas" target="_blank" rel="noreferrer" style={{ background:'#ff8a3d', color:'#0b0613', padding:'14px 28px', borderRadius:8, fontWeight:700, textDecoration:'none' }}>View on GitHub</a>
             <a href="https://github.com/TylerGarlick/abraxas/tree/main/docs" target="_blank" rel="noreferrer" style={{ border:'1px solid #9b6bff', color:'#d8c4ff', padding:'14px 28px', borderRadius:8, fontWeight:600, textDecoration:'none' }}>Read the Docs</a>
-            <a href="/console/" style={{ border:'1px solid #ff8a3d', color:'#ff8a3d', padding:'14px 28px', borderRadius:8, fontWeight:600, textDecoration:'none' }}>Open Console</a>
+            <a href="/abraxas/console/" style={{ border:'1px solid #ff8a3d', color:'#ff8a3d', padding:'14px 28px', borderRadius:8, fontWeight:600, textDecoration:'none' }}>Open Console</a>
           </div>
         </header>
 
