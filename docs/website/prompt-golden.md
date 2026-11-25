@@ -13,7 +13,7 @@ Build a single-page, marketing hero-driven landing page for Abraxas. Inform and 
 - Must cover: why named Abraxas, alchemical nature, "Truth is the best adventure."
 
 ## Audience split
-- For Builders: deterministic PEF artefacts, provenance, portable state.
+- For Builders: deterministic PEF artifacts, provenance, portable state.
 - For Truth-Seekers: ownership, no re-reasoning, local-first, calibrated confidence.
 
 ## Structure

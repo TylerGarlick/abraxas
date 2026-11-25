@@ -38,7 +38,7 @@ export default function Home() {
           <section style={{ marginBottom:64, display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(280px,1fr))', gap:24 }}>
             <div style={{ border:'1px solid #3a2a5e', borderRadius:12, padding:24, background:'rgba(155,107,255,0.05)' }}>
               <h3 style={{ color:'#9b6bff', marginTop:0 }}>For Builders</h3>
-              <p style={{ color:'#d8c4ff', lineHeight:1.6 }}>MCP + PEF artefacts, provenance chains, portable epistemic state, no hallucinations-as-authority. Audit outputs before they ship.</p>
+              <p style={{ color:'#d8c4ff', lineHeight:1.6 }}>MCP + PEF artifacts, provenance chains, portable epistemic state, no hallucinations-as-authority. Audit outputs before they ship.</p>
             </div>
             <div style={{ border:'1px solid #3a2a5e', borderRadius:12, padding:24, background:'rgba(255,138,61,0.05)' }}>
               <h3 style={{ color:'#ff8a3d', marginTop:0 }}>For Truth-Seekers</h3>
@@ -52,7 +52,7 @@ export default function Home() {
           </section>
 
           <section style={{ marginBottom:64 }}>
-            <h2 style={{ fontFamily:'"Playfair Display", serif', color:'#9b6bff', fontSize:'2rem', marginBottom:16 }}>Example output — a PEF artefact</h2>
+            <h2 style={{ fontFamily:'"Playfair Display", serif', color:'#9b6bff', fontSize:'2rem', marginBottom:16 }}>Example output — a PEF artifact</h2>
             <p style={{ color:'#d8c4ff', marginBottom:12 }}>A synthetic, illustrative PEF claim (representative shape):</p>
             <pre style={{ background:'#130a24', border:'1px solid #3a2a5e', borderRadius:8, padding:16, overflow:'auto', fontSize:13, color:'#e9ddff' }}>{`{
   "id": "claim:pef-demo-001",
