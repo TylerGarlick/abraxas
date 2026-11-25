@@ -1,6 +1,5 @@
 import React from 'react';
 import TerminalPlayground from '../components/TerminalPlayground';
-import PefImporter from '../components/PefImporter';
 
 export default function ConsolePage() {
   return (
@@ -12,8 +11,8 @@ export default function ConsolePage() {
       <main style={{ display:'flex', justifyContent:'center' }}>
         <TerminalPlayground />
       </main>
-      <section style={{ maxWidth:900, margin:'40px auto 0' }}>
-        <PefImporter />
+      <section style={{ maxWidth:900, margin:'40px auto 0', textAlign:'center' }}>
+        <a href="/abraxas/pef-importer/" style={{ color:'#9b6bff', textDecoration:'none', fontWeight:600 }}>Open PEF Importer →</a>
       </section>
     </div>
   );
