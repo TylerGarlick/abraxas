@@ -83,16 +83,3 @@ export function readPefFile(name: string, dir = defaultPefDir()): PefDocument | 
     return null;
   }
 }
-export interface CalendarEvent { date: string; title: string; id: string; }
-export interface PEF { events: CalendarEvent[]; }
-export function buildPef(events: CalendarEvent[]): PEF {
-  return { events };
-}
-export function savePef(events: CalendarEvent[], dir: string): { path: string } {
-  const fs = require('fs');
-  const path = require('path');
-  const filename = events[0]?.id ? `${events[0].id}.pef` : 'event.pef';
-  const fullPath = path.join(dir, filename);
-  fs.writeFileSync(fullPath, JSON.stringify({ events }, null, 2));
-  return { path: fullPath };
-}
